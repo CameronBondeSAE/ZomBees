@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Oscar
@@ -26,7 +25,7 @@ namespace Oscar
     
         private void SpawnGuy()
         {
-            Instantiate(TheGuy,spawnLoc,quaternion.identity);
+            Instantiate(TheGuy,spawnLoc,Quaternion.identity);
         }
     }
 
