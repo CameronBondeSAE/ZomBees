@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: Boter
+  m_EditorClassIdentifier: 
+  conditions:
+    position: {x: 122, y: 96}
+    list:
+    - id: 0
+      name: Am I at the target position
+    - id: 1
+      name: Has target
+  actions:
+  - name: Move to target
+    isDefault: 0
+    state: {fileID: 5260714939863079074, guid: d1c3a29ed1aa22344bdd6c44e90907cf, type: 3}
+    cost: 0
+    position: {x: 628, y: 233}
+    pre:
+    - id: 1
+      value: 1
+    post:
+    - id: 0
+      value: 1
+  - name: Pick a random target
+    isDefault: 0
+    state: {fileID: 750034942665546280, guid: 9903a5a1d52d55f418aeebedd4f9019c, type: 3}
+    cost: 0
+    position: {x: 404, y: 231}
+    pre:
+    - id: 1
+      value: 0
+    post:
+    - id: 1
+      value: 1
+  - name: Idle
+    isDefault: 1
+    state: {fileID: 5260714939863079074, guid: 4262d16c2052f254585c8279255b18d3, type: 3}
+    cost: 0
+    position: {x: 412, y: -81}
+    pre: []
+    post: []
+  goals:
+  - name: Arrive at target
+    isDefault: 1
+    position: {x: 124, y: 290}
+    conditions:
+    - id: 0
+      value: 1
+  worldStates:
+  - position: {x: 117, y: 516}
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
