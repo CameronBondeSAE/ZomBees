@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuyDudeSpawner : MonoBehaviour
+public class GuyDudeSpawnerer : MonoBehaviour
 {
     public GameObject guyDude;
     public int amount;

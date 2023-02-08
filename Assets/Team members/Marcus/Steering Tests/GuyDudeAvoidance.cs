@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class Avoid : MonoBehaviour
+public class GuyDudeAvoidance : MonoBehaviour
 {
     public Rigidbody rb;
     private float distance = 5f;
