@@ -4,31 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Avoid : MonoBehaviour
+namespace Oscar
 {
-    public LittleGuy guy;
-    private RaycastHit hitInfo;
-    private float distance = 5f;
-    private int direction = 1;
-
-    private void Start()
+    public class Avoid : MonoBehaviour
     {
-        direction = Random.Range(0,2);
-        print(direction);
-    }
-
-    public void Update()
-    {
-        if (Physics.Raycast(guy.rb.transform.localPosition, transform.forward, out hitInfo, distance, 255, QueryTriggerInteraction.Ignore))
+        public LittleGuy guy;
+        private RaycastHit hitInfo;
+        private float distance = 5f;
+        private int direction = 1;
+        private float spinTimer;
+        
+        private void Start()
         {
-            if (direction == 1)
+            direction = Random.Range(0,2);
+            print(direction);
+        }
+    
+        public void Update()
+        {
+            if (Physics.Raycast(guy.rb.transform.localPosition, transform.forward, out hitInfo, distance, 255, QueryTriggerInteraction.Ignore))
             {
-                guy.rb.AddRelativeTorque(Vector3.up, ForceMode.VelocityChange);
-            }
-            else
-            {
-                guy.rb.AddRelativeTorque(Vector3.down, ForceMode.VelocityChange);
+                if (direction == 1)
+                {
+                    guy.rb.AddRelativeTorque(Vector3.up, ForceMode.VelocityChange);
+                }
+                else
+                {
+                    guy.rb.AddRelativeTorque(Vector3.down, ForceMode.VelocityChange);
+                }
             }
         }
     }
 }
+

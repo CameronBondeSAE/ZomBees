@@ -4,26 +4,30 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+namespace Oscar
 {
-    public GameObject TheGuy;
-    private Vector3 spawnLoc;
-
-    private void Start()
+    public class Spawner : MonoBehaviour
     {
-        spawnLoc = new Vector3(transform.position.x, transform.position.y,transform.position.z);
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        public GameObject TheGuy;
+        private Vector3 spawnLoc;
+    
+        private void Start()
         {
-            SpawnGuy();
+            spawnLoc = new Vector3(transform.position.x, transform.position.y,transform.position.z);
+        }
+    
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SpawnGuy();
+            }
+        }
+    
+        private void SpawnGuy()
+        {
+            Instantiate(TheGuy,spawnLoc,quaternion.identity);
         }
     }
 
-    private void SpawnGuy()
-    {
-        Instantiate(TheGuy,spawnLoc,quaternion.identity);
-    }
 }
