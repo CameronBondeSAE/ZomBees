@@ -10,3 +10,8 @@ interface IItem
     void Disposed(); 
     void Discription(); 
 }
+interface ISwitchable
+{
+    public void TurnOn();
+    public void TurnOff();
+}
