@@ -20,7 +20,7 @@ namespace AlexM
 
 		[SerializeField]
 		private float groundAngle, groundAngleOffset;
-
+		
 		private void Awake()
 		{
 			GetReferences();
@@ -195,8 +195,25 @@ namespace AlexM
 		private void Update()
 		{
 			_movement = (_inputManager.moveDirection.y * _fwdDirection) + (_inputManager.moveDirection.x * _rightDirection);
+
+
+			
+			
+			
+			// ISwitchable switchable;
+			// switchable.TurnOn();
 		}
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		private void ApplyMovement()
 		{
 			if (GetSpeed() < maxSpeed)
