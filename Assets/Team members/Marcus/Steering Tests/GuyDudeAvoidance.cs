@@ -1,15 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GuyDudeAvoidance : MonoBehaviour
 {
-    public Rigidbody rb;
+    private Rigidbody rb;
     private float distance = 5f;
 
     private float turnTimer;
     private int turnDir;
     private float turnSpeedModif = 1f;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     // Update is called once per frame
     void Update()

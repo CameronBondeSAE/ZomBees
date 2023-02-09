@@ -680,6 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guyDude: {fileID: 775067037153443091, guid: 92736c489051b4e428d3d025c20fe588, type: 3}
   amount: 10
+  spawnDelay: 1.5
   spawnedAI: []
 --- !u!4 &1461078080
 Transform:
