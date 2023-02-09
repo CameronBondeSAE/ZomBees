@@ -7,7 +7,11 @@ public class GuyDudeSpawnerer : MonoBehaviour
     public GameObject guyDude;
     public int amount;
 
-    private float spawnTimer = 1.5f;
+    /// <summary>
+    /// Number of seconds between each ai is spawned
+    /// </summary>
+    public float spawnDelay;
+    private float spawnTimer;
     public List<GameObject> spawnedAI;
 
     void Update()
@@ -19,7 +23,7 @@ public class GuyDudeSpawnerer : MonoBehaviour
             GameObject ai = Instantiate(guyDude, transform.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
             spawnedAI.Add(ai);
 
-            spawnTimer = 1.5f;
+            spawnTimer = spawnDelay;
         }
     }
 }

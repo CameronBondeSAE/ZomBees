@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 5988595959550785182}
   - component: {fileID: 6537350412031921264}
   - component: {fileID: 3773504708116088665}
-  - component: {fileID: 1514273445442474096}
   - component: {fileID: 4433964841698455471}
+  - component: {fileID: 1514273445442474096}
+  - component: {fileID: -8736215181125482743}
   - component: {fileID: 266969825347556338}
   m_Layer: 0
   m_Name: Guy Dude
@@ -110,19 +111,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1514273445442474096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775067037153443091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f20980fe076ee14e93402faf8685917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 266969825347556338}
 --- !u!114 &4433964841698455471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +124,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!114 &1514273445442474096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775067037153443091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f20980fe076ee14e93402faf8685917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8736215181125482743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775067037153443091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1649e2ffb8de41749981292743b10993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderDelay: 2
 --- !u!54 &266969825347556338
 Rigidbody:
   m_ObjectHideFlags: 0
