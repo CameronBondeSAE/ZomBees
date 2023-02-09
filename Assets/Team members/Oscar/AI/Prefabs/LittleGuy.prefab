@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5143625605528576947}
   - component: {fileID: 5143625605528576953}
   - component: {fileID: 5143625605528576948}
+  - component: {fileID: -6392674014478369256}
   m_Layer: 0
   m_Name: LittleGuy
   m_TagString: Untagged
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5143625605528576954}
-  speed: 5
+  speed: 10
 --- !u!114 &5143625605528576953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +176,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9189c094191dfd4ba01d5ab1db2ea68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guy: {fileID: 5143625605528576947}
+--- !u!114 &-6392674014478369256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e294f87f2c7a8b44ab06c018a6ae01cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 5143625605528576947}
