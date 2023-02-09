@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5143625605528576953}
   - component: {fileID: 5143625605528576948}
   - component: {fileID: -6392674014478369256}
+  - component: {fileID: 6805405142270282650}
   m_Layer: 0
   m_Name: LittleGuy
   m_TagString: Untagged
@@ -192,3 +193,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 5143625605528576947}
+--- !u!114 &6805405142270282650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8da37dfe68a2343a046b862b249f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guy: {fileID: 5143625605528576947}
+  target: {fileID: 0}

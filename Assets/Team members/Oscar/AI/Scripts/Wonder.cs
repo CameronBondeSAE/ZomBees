@@ -20,11 +20,11 @@ namespace Oscar
         
         private void Start()
         {
-            zoomX = Random.Range(-0.3f, 0.3f);
-            zoomZ = Random.Range(-0.3f, 0.3f);
+            zoomX = Random.Range(-0.5f, 0.5f);
+            zoomZ = Random.Range(-0.5f, 0.5f);
         }
 
-        void Update()
+        void FixedUpdate()
         {
             float x = zoomX + Time.time;// * scale;
             float z = zoomZ + Time.time;// * scale;
