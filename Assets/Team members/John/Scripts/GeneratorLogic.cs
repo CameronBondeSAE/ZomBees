@@ -10,6 +10,12 @@ public class GeneratorLogic : MonoBehaviour, ISwitchable
     private AudioSource generatorAudio;
     public KeyCode activateKey;
 
+    public delegate void PoweredOn();
+    //Change this event to something like ZoneOneHasBeenPoweredOn if we will
+    //have a set amount of powered objects tied to this generator and other powered
+    //objects tied to other generators
+    public static event PoweredOn TheGeneratorHasBeenTurnedOn;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +42,14 @@ public class GeneratorLogic : MonoBehaviour, ISwitchable
             TurnOff();
         }
     }
-
+    
     public void TurnOn()
     {
         generatorAudio.enabled = generatorState;
+        if (TheGeneratorHasBeenTurnedOn != null)
+        {
+            TheGeneratorHasBeenTurnedOn();
+        }
     }
 
     public void TurnOff()
