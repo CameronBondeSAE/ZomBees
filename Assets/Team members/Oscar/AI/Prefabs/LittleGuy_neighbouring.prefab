@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6167758006184477401}
   - component: {fileID: -8442080190741209546}
   - component: {fileID: 1653025622359038949}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: LittleGuy_neighbouring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,6 +207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6945a3d003c50424096d16413cda98a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comrades:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!135 &1653025622359038949
 SphereCollider:
   m_ObjectHideFlags: 0
