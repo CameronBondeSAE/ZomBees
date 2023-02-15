@@ -679,8 +679,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guyDude: {fileID: 775067037153443091, guid: 92736c489051b4e428d3d025c20fe588, type: 3}
-  amount: 10
-  spawnDelay: 1.5
+  amount: 50
+  spawnDelay: 0.7
   spawnedAI: []
 --- !u!4 &1461078080
 Transform:

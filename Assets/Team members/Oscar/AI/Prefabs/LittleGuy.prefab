@@ -13,14 +13,16 @@ GameObject:
   - component: {fileID: 5143625605528576951}
   - component: {fileID: 5143625605528576952}
   - component: {fileID: 5143625605528576954}
+  - component: {fileID: -360333720092626356}
   - component: {fileID: 5143625605528576947}
   - component: {fileID: 6004558029404348797}
   - component: {fileID: 5143625605528576953}
-  - component: {fileID: 6167758006184477401}
-  - component: {fileID: -8442080190741209546}
-  - component: {fileID: 1653025622359038949}
-  m_Layer: 14
-  m_Name: LittleGuy_neighbouring
+  - component: {fileID: 5143625605528576948}
+  - component: {fileID: -6430991568586597876}
+  - component: {fileID: -6769917441932770529}
+  - component: {fileID: -201657598699274531}
+  m_Layer: 0
+  m_Name: LittleGuy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +41,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5143625605528576950
 MeshFilter:
@@ -123,8 +125,8 @@ Rigidbody:
   m_GameObject: {fileID: 5143625605528576955}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 5
-  m_AngularDrag: 5
+  m_Drag: 2
+  m_AngularDrag: 3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -141,6 +143,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-360333720092626356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728de552ef46851498d7b77940195cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingState: {fileID: 5143625605528576948}
+  currentState: {fileID: 0}
 --- !u!114 &5143625605528576947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 5143625605528576947}
---- !u!114 &6167758006184477401
+--- !u!114 &5143625605528576948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,11 +207,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 5143625605528576955}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9189c094191dfd4ba01d5ab1db2ea68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guy: {fileID: 5143625605528576947}
+--- !u!114 &-6430991568586597876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e294f87f2c7a8b44ab06c018a6ae01cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 5143625605528576947}
---- !u!114 &-8442080190741209546
+--- !u!114 &-6769917441932770529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8da37dfe68a2343a046b862b249f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guy: {fileID: 5143625605528576947}
+  target: {fileID: 0}
+  turnSpeed: 0.05
+--- !u!114 &-201657598699274531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,24 +254,3 @@ MonoBehaviour:
   comrades:
     serializedVersion: 2
     m_Bits: 16384
---- !u!135 &1653025622359038949
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5143625605528576955}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}

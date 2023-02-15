@@ -17,7 +17,7 @@ namespace Oscar
         
         
         private float randomness;
-        
+
         private void Start()
         {
             zoomX = Random.Range(-0.5f, 0.5f);
@@ -33,6 +33,7 @@ namespace Oscar
             
             guy.rb.AddRelativeTorque(0,perlin,0);
         }
+        
     }
 }
 

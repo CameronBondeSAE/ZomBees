@@ -13,11 +13,10 @@ namespace Oscar
         private float distance = 5f;
         private int direction = 1;
         private float spinTimer;
-        
+
         private void Start()
         {
             direction = Random.Range(0,2);
-            print(direction);
         }
     
         public void FixedUpdate()
@@ -34,6 +33,7 @@ namespace Oscar
                 }
             }
         }
+        
     }
 }
 

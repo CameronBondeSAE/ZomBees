@@ -3,30 +3,35 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(FlyDudeSpawner))]
-public class FlyDudeSpawnerEditor : Editor
+namespace Marcus
 {
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
+    
+    [CustomEditor(typeof(FlyDudeSpawner))]
 
-        if (GUILayout.Button("Spawn") && Application.isPlaying)
+    public class FlyDudeSpawnerEditor : Editor
+    {
+        public override void OnInspectorGUI()
         {
-            (target as FlyDudeSpawner)?.Spawn();
+            base.OnInspectorGUI();
+
+            if (GUILayout.Button("Spawn") && Application.isPlaying)
+            {
+                (target as FlyDudeSpawner)?.Spawn();
+            }
         }
     }
-}
 
-[CustomEditor(typeof(GuyDudeSpawnerer))]
-public class GuyDudeSpawnererEditor : Editor
-{
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(GuyDudeSpawnerer))]
+    public class GuyDudeSpawnererEditor : Editor
     {
-        base.OnInspectorGUI();
-        
-        if (GUILayout.Button("Spawn") && Application.isPlaying)
+        public override void OnInspectorGUI()
         {
-            (target as GuyDudeSpawnerer)?.Spawn();
+            base.OnInspectorGUI();
+
+            if (GUILayout.Button("Spawn") && Application.isPlaying)
+            {
+                (target as GuyDudeSpawnerer)?.Spawn();
+            }
         }
     }
 }

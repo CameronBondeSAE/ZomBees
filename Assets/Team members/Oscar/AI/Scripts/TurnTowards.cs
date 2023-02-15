@@ -36,6 +36,7 @@ namespace Oscar
             
             guy.rb.AddRelativeTorque(0,angle * turnSpeed,0);
         }
+        
     }
 }
 

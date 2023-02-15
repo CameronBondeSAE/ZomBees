@@ -2,32 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuyDudeSpawnerer : MonoBehaviour
+namespace Marcus
 {
-    public GameObject guyDude;
-    public int amount;
-
-    /// <summary>
-    /// Number of seconds between each ai is spawned
-    /// </summary>
-    public float spawnDelay;
-    private float spawnTimer;
-    public List<GameObject> spawnedAI;
-
-    void Update()
+    public class GuyDudeSpawnerer : MonoBehaviour
     {
-        spawnTimer -= Time.deltaTime;
+        public GameObject guyDude;
+        public int amount;
 
-        if (spawnTimer <= 0 && spawnedAI.Count < amount)
+        /// <summary>
+        /// Number of seconds between each ai is spawned
+        /// </summary>
+        public float spawnDelay;
+
+        private float spawnTimer;
+        public List<GameObject> spawnedAI;
+
+        void Update()
         {
-            Spawn();
-            spawnTimer = spawnDelay;
-        }
-    }
+            spawnTimer -= Time.deltaTime;
 
-    public void Spawn()
-    {
-        GameObject ai = Instantiate(guyDude, transform.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
-        spawnedAI.Add(ai);
+            if (spawnTimer <= 0 && spawnedAI.Count < amount)
+            {
+                Spawn();
+                spawnTimer = spawnDelay;
+            }
+        }
+
+        public void Spawn()
+        {
+            GameObject ai = Instantiate(guyDude, transform.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+            spawnedAI.Add(ai);
+        }
     }
 }
