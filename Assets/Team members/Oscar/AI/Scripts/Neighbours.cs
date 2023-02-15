@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class Neighbours : Oscar.StateBase
+    public class Neighbours : MonoBehaviour
     {
         public LayerMask comrades;
 
@@ -40,28 +40,6 @@ namespace Oscar
             }
         }
 
-        #region stateRegions
-
-        public override void Enter()
-        {
-            Debug.Log("AVOID IT!");
-            base.Enter();
-        }
-        
-        public override void Execute()
-        {
-            Debug.Log("Execute");
-            base.Execute();
-        }
-        
-        public override void Exit()
-        {
-            Debug.Log("Exit");
-            base.Exit();
-        }
-
-        #endregion
-        
     }
 }
 

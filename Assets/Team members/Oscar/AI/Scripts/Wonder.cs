@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Oscar
 {
-    public class Wonder : Oscar.StateBase
+    public class Wonder : MonoBehaviour
     {
         public LittleGuy guy;
 
@@ -34,27 +34,6 @@ namespace Oscar
             guy.rb.AddRelativeTorque(0,perlin,0);
         }
         
-        #region stateRegions
-
-        public override void Enter()
-        {
-            Debug.Log("AVOID IT!");
-            base.Enter();
-        }
-        
-        public override void Execute()
-        {
-            Debug.Log("Execute");
-            base.Execute();
-        }
-        
-        public override void Exit()
-        {
-            Debug.Log("Exit");
-            base.Exit();
-        }
-
-        #endregion
     }
 }
 

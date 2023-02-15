@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class TurnTowards : Oscar.StateBase
+    public class TurnTowards : MonoBehaviour
     {
         public LittleGuy guy;
         public GameObject target;
@@ -37,27 +37,6 @@ namespace Oscar
             guy.rb.AddRelativeTorque(0,angle * turnSpeed,0);
         }
         
-        #region stateRegions
-
-        public override void Enter()
-        {
-            Debug.Log("AVOID IT!");
-            base.Enter();
-        }
-        
-        public override void Execute()
-        {
-            Debug.Log("Execute");
-            base.Execute();
-        }
-        
-        public override void Exit()
-        {
-            Debug.Log("Exit");
-            base.Exit();
-        }
-
-        #endregion
     }
 }
 
