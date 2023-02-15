@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Oscar
 {
-    public class Avoid : Oscar.StateBase
+    public class Avoid : MonoBehaviour
     {
         public LittleGuy guy;
         private RaycastHit hitInfo;
@@ -34,27 +34,6 @@ namespace Oscar
             }
         }
         
-        #region stateRegions
-
-        public override void Enter()
-        {
-            Debug.Log("AVOID IT!");
-            base.Enter();
-        }
-        
-        public override void Execute()
-        {
-            Debug.Log("Execute");
-            base.Execute();
-        }
-        
-        public override void Exit()
-        {
-            Debug.Log("Exit");
-            base.Exit();
-        }
-
-        #endregion
     }
 }
 
