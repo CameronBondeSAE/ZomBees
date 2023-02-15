@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 817842765}
   - component: {fileID: 817842764}
   - component: {fileID: 817842770}
+  - component: {fileID: 817842771}
   - component: {fileID: 817842769}
   m_Layer: 0
   m_Name: Generator
@@ -556,6 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa98172e294740042aa373d365062f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generatorShuttingDown: {fileID: 8300000, guid: b520b8b0c620f344fa256a5edc494306, type: 3}
 --- !u!114 &817842770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,10 +570,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a2926b240fe9e4d8b7c3ef4d957681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatorStartUp: {fileID: 8300000, guid: ce3092c34e5e65247a3814c30831dc81, type: 3}
+  generatorStartUp: {fileID: 8300000, guid: 7885b963e4929eb4cb3620aab3abf4f1, type: 3}
+--- !u!114 &817842771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817842763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56757378822b3d144afaee496e924bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   generatorRunning: {fileID: 8300000, guid: 0ef2dc1ee9b78084da6fbec8853cf32b, type: 3}
-  generatorShuttingDown: {fileID: 8300000, guid: b520b8b0c620f344fa256a5edc494306, type: 3}
-  timePassed: 0
 --- !u!1 &959155430
 GameObject:
   m_ObjectHideFlags: 0
