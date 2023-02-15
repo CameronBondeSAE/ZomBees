@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
-[CustomEditor(typeof(VLightsEditor))]
+
+[CustomEditor(typeof(LightEnable))]
 public class VLightEditor : Editor
 {
    public override void OnInspectorGUI()
@@ -12,7 +13,7 @@ public class VLightEditor : Editor
         if (GUILayout.Button("enter"))
         {
 
-            VLightsEditor toggleStateTest = target as VLightsEditor;
+            LightEnable toggleStateTest = target as LightEnable;
             toggleStateTest.enabled = true;
         }
     }
