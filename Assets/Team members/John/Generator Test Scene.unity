@@ -512,7 +512,6 @@ GameObject:
   - component: {fileID: 817842766}
   - component: {fileID: 817842765}
   - component: {fileID: 817842764}
-  - component: {fileID: 817842769}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -530,7 +529,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0ef2dc1ee9b78084da6fbec8853cf32b, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -703,21 +702,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &817842769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817842763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 212e4a472495afd40bcbcd4ae418189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  generator: {fileID: 817842763}
-  generatorState: 0
-  activateKey: 115
 --- !u!1 &959155430
 GameObject:
   m_ObjectHideFlags: 0
