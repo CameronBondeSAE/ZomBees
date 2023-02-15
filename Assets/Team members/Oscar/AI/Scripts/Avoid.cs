@@ -6,18 +6,17 @@ using Random = UnityEngine.Random;
 
 namespace Oscar
 {
-    public class Avoid : MonoBehaviour
+    public class Avoid : Oscar.StateBase
     {
         public LittleGuy guy;
         private RaycastHit hitInfo;
         private float distance = 5f;
         private int direction = 1;
         private float spinTimer;
-        
+
         private void Start()
         {
             direction = Random.Range(0,2);
-            print(direction);
         }
     
         public void FixedUpdate()
@@ -34,6 +33,28 @@ namespace Oscar
                 }
             }
         }
+        
+        #region stateRegions
+
+        public override void Enter()
+        {
+            Debug.Log("AVOID IT!");
+            base.Enter();
+        }
+        
+        public override void Execute()
+        {
+            Debug.Log("Execute");
+            base.Execute();
+        }
+        
+        public override void Exit()
+        {
+            Debug.Log("Exit");
+            base.Exit();
+        }
+
+        #endregion
     }
 }
 
