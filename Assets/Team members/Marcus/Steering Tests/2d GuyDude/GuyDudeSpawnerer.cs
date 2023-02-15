@@ -20,10 +20,14 @@ public class GuyDudeSpawnerer : MonoBehaviour
 
         if (spawnTimer <= 0 && spawnedAI.Count < amount)
         {
-            GameObject ai = Instantiate(guyDude, transform.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
-            spawnedAI.Add(ai);
-
+            Spawn();
             spawnTimer = spawnDelay;
         }
+    }
+
+    public void Spawn()
+    {
+        GameObject ai = Instantiate(guyDude, transform.position, Quaternion.Euler(0, Random.Range(0, 360), 0));
+        spawnedAI.Add(ai);
     }
 }
