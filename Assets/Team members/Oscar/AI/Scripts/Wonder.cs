@@ -32,7 +32,6 @@ namespace Oscar
             perlin = Mathf.PerlinNoise(x,z)*2-1;
             
             guy.rb.AddRelativeTorque(0,perlin,0);
-            print(perlin);
         }
     }
 }

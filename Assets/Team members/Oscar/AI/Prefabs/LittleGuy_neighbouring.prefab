@@ -14,12 +14,13 @@ GameObject:
   - component: {fileID: 5143625605528576952}
   - component: {fileID: 5143625605528576954}
   - component: {fileID: 5143625605528576947}
+  - component: {fileID: 6004558029404348797}
   - component: {fileID: 5143625605528576953}
-  - component: {fileID: 5143625605528576948}
-  - component: {fileID: -6392674014478369256}
-  - component: {fileID: 6805405142270282650}
+  - component: {fileID: 6167758006184477401}
+  - component: {fileID: -8442080190741209546}
+  - component: {fileID: 1653025622359038949}
   m_Layer: 0
-  m_Name: LittleGuy
+  m_Name: LittleGuy_neighbouring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,6 +155,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5143625605528576954}
   speed: 10
+--- !u!114 &6004558029404348797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3ef7ff354ec3744a9c010e49dccc95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guy: {fileID: 5143625605528576947}
+  feelerAmount: 10
 --- !u!114 &5143625605528576953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,20 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 5143625605528576947}
---- !u!114 &5143625605528576948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5143625605528576955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9189c094191dfd4ba01d5ab1db2ea68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guy: {fileID: 5143625605528576947}
---- !u!114 &-6392674014478369256
+--- !u!114 &6167758006184477401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 5143625605528576947}
---- !u!114 &6805405142270282650
+--- !u!114 &-8442080190741209546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,8 +204,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 5143625605528576955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d8da37dfe68a2343a046b862b249f05, type: 3}
+  m_Script: {fileID: 11500000, guid: 6945a3d003c50424096d16413cda98a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guy: {fileID: 5143625605528576947}
-  target: {fileID: 657022866459837512, guid: a7b54559f7e0aca47b1ff486e345780f, type: 3}
+--- !u!135 &1653025622359038949
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
