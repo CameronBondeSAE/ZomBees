@@ -17,10 +17,7 @@ namespace Oscar
     
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SpawnGuy();
-            }
+            
         }
     
         private void SpawnGuy()
