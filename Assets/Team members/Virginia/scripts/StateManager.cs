@@ -26,7 +26,17 @@ namespace Virginia
 
             // At first 'currentstate' will ALWAYS be null
 
+            if (currentState != null)
+            {
+                currentState.enabled = false;
+            }
+
+            newState.enabled = true;
+
+            // New state swap over to incoming state
+            currentState = newState;
         }
     }
+
 
 }
