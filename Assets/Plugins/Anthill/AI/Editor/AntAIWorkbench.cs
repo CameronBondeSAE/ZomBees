@@ -1,13 +1,14 @@
 namespace Anthill.AI
 {
 	using System;
-	using System.Reflection;
 	using System.Collections.Generic;
 
 	using UnityEngine;
 	using UnityEditor;
-
+	
+	using Anthill.Editor;
 	using Anthill.Utils;
+	using Anthill.Extensions;
 
 	/// <summary>
 	/// Main class of the AIWorkbench.
@@ -32,14 +33,27 @@ namespace Anthill.AI
 			public AntAIBaseNode toNode;
 		}
 
-		#region Variables
+		private struct Deletion
+		{
+			public int index;
+			public bool confirm;
 
-		// ● ○
-		internal const string _TRUE = "1"; //"▮";
-		internal const string _FALSE = "0"; //"●";
+			public static Deletion Empty
+			{
+				get => new Deletion
+				{
+					index = -1,
+					confirm = false
+				};
+			}
+		}
 
+	#region Variables
+
+		// Nodes
 		private List<AntAIBaseNode> _nodes;
 
+		// Styles
 		private GUIStyle _titleStyle;
 		private GUIStyle _labelStyle;
 		private GUIStyle _smallLabelStyle;
@@ -52,26 +66,49 @@ namespace Anthill.AI
 		private GUIStyle _successStyle;
 		private GUIStyle _activeSuccessStyle;
 
-		private Vector2 _offset;
-		private Vector2 _drag;
-		private Vector2 _totalDrag;
-		// private Vector2 _mousePosition;
+		// Helpers
+		private Vector2 _spawnPosition;
 		private bool _alignToGrid;
+		private bool _isReloaded;
+		private bool _isConditionsFoldout;
+		private bool _isCardsFoldout;
+		private Deletion _delCondition;
+		private Deletion _delNode;
+		private Vector2 _sideBarScrollPos;
 
+		// Scrolling window
+		private Rect _scrollViewRect;
+		private Vector2 _scrollPos = Vector2.zero;
+		private Vector2 _scrollStartMousePos;
+		private bool _isWindowScrollActive = false;
+
+		// Mouse
+		public static Vector2 mousePosition;
+		public static Vector2 zoomScrollCorrectedMousePosition;
+		public static Vector2 zoomScrollCorrectedMenuPosition;
+
+		// Lerping Cam Position
+		private bool _isLerpToPos = false;
+		private Vector2 _targetPosition;
+		private float _counter = 0.0f;
+
+		// Zoom
+		public static float zoomScale = 1f;
+		private static float _zoomScaleLowerLimit = 0.6f;
+		private static float _zoomScaleUpperLimit = 1.4f;
+
+		// Sizings
+    	private float _topPanelHeight = 22.0f;
+    	private static float _leftPaneWidth = 200.0f;
+
+		// Data
 		private AntAIScenario _current;
 		private AntAIScenario[] _scenarios;
 		private List<Connection> _connections;
-		private List<LabelData> _labels;
 
-		private static Texture2D _aaLineTexture;
-		private static Texture2D _lineTexture;
-		private static Material _blitMaterial;
-		private static Material _blendMaterial;
-		private static Rect _lineRect = new Rect(0, 0, 1, 1);
-		private static Matrix4x4 _matrixBackup;
+	#endregion
 
-		#endregion
-		#region Getters / Setters
+	#region Getters / Setters
 
 		public bool IsAlignToGrid
 		{
@@ -80,11 +117,12 @@ namespace Anthill.AI
 
 		public Vector2 Offset
 		{
-			get => _offset;
+			get => Vector2.zero;
 		}
 
-		#endregion
-		#region Initialize Window
+	#endregion
+
+	#region Initialize Window
 
 		// [MenuItem("Tools/Anthill/AI Workbench")]
 		public static AntAIWorkbench ShowWindow()
@@ -112,13 +150,9 @@ namespace Anthill.AI
 			return a;
 		}
 
-		internal static string BoolToStr(bool aValue)
-		{
-			return (aValue) ? _TRUE : _FALSE;
-		}
+	#endregion
 
-		#endregion
-		#region Unit Calls
+	#region Unit Calls
 
 		private void OnEnable()
 		{
@@ -141,10 +175,32 @@ namespace Anthill.AI
 			_activeSuccessStyle = CreateNodeStyle("node3 on.png");
 			_failStyle = CreateNodeStyle("node6.png");
 			_activeFailStyle = CreateNodeStyle("node6 on.png");
+
 			_nodes = new List<AntAIBaseNode>();
 			_connections = new List<Connection>();
-			_labels = new List<LabelData>();
 			_scenarios = GetAllInstances<AntAIScenario>();
+			
+			_isReloaded = true;
+			_delCondition = Deletion.Empty;
+			_delNode = Deletion.Empty;
+		}
+
+		private void Update()
+		{
+			if (_isLerpToPos)
+			{
+				if (_counter > 1.0f)
+				{
+					_isLerpToPos = false;
+					_counter = 0f;
+				}
+				else
+				{
+					Repaint();
+					_scrollPos = Vector2.Lerp(_scrollPos, _targetPosition, _counter);
+					_counter += 0.002f;
+				}
+			}
 		}
 
 		private void OnInspectorUpdate()
@@ -165,110 +221,247 @@ namespace Anthill.AI
 
 		private void OnGUI()
 		{
-			Handles.DrawSolidRectangleWithOutline(
-				new Rect(0.0f, 0.0f, position.width, position.height), 
-				new Color(0.184f, 0.184f, 0.184f), 
-				new Color(0.184f, 0.184f, 0.184f)
-			);
-
-			DrawGrid(20, Color.gray, 0.1f);
-			DrawGrid(100, Color.gray, 0.1f);
-			
-			if (_current != null)
+			if (_isReloaded)
 			{
-				DrawLabels();
-				DrawLinks();
-				DrawNodes(_nodes);
-				ProcessEvents(Event.current);
+				SetCurrentScenario(_current);
+				_isReloaded = false;
 			}
-			else
+
+			var currentEvent = Event.current;
+			mousePosition = currentEvent.mousePosition;
+			zoomScrollCorrectedMousePosition = (new Vector2(mousePosition.x - 200.0f, mousePosition.y - 21.0f) / zoomScale) + _scrollPos + new Vector2(200.0f, 21.0f);
+			zoomScrollCorrectedMenuPosition = ((new Vector2(mousePosition.x - 200.0f, mousePosition.y - 40.0f) + _scrollPos) / zoomScale) + new Vector2(200.0f, 40.0f);
+
+			GUILayout.BeginHorizontal();
 			{
-				if (Event.current.type == EventType.Repaint)
+				GUILayout.BeginVertical(GUILayout.Width(_leftPaneWidth));
 				{
-					GUI.Label(
-						new Rect(10.0f, 10.0f, 200.0f, 50.0f), 
-						"AI scenario not selected.",
-						_titleStyle
-					);
+					GUILayout.BeginVertical(GUILayout.Width(_leftPaneWidth));
+					{
+						_sideBarScrollPos = GUILayout.BeginScrollView(_sideBarScrollPos);
+						DrawPreset();
+						DrawConditions();
+						DrawCards();
+						GUILayout.EndScrollView();
+					}
+					GUILayout.EndVertical();
+				}
+				GUILayout.EndVertical();
 
-					GUI.Label(
-						new Rect(20.0f, 50.0f, 200.0f, 50.0f),
-						"Create new scenario:",
-						_labelStyle
-					);
+				AntGuiDrawer.DrawLine(
+					new Vector2(_leftPaneWidth, 0.0f), 
+					new Vector2(_leftPaneWidth, position.height),
+					Color.black,
+					1.0f
+				);
+				
+				// Toolbar.
+				GUILayout.BeginHorizontal(GUILayout.Height(_topPanelHeight));
+				{
+					DrawToolbar();
+				}
+				GUILayout.EndHorizontal();
 
-					GUI.Label(
-						new Rect(30.0f, 80.0f, 200.0f, 50.0f),
-						"1. Open context menu in the Project window.",
-						_smallLabelStyle
-					);
+				// AntGuiDrawer.DrawLine(
+				// 	new Vector2(_leftPaneWidth, _topPanelHeight), 
+				// 	new Vector2(position.width, _topPanelHeight),
+				// 	Color.black,
+				// 	1.0f
+				// );
 
-					GUI.Label(
-						new Rect(30.0f, 100.0f, 200.0f, 50.0f),
-						"2. Select `Create > Anthill > AI Scenario`.",
-						_smallLabelStyle
-					);
-
-					GUI.Label(
-						new Rect(30.0f, 120.0f, 200.0f, 50.0f),
-						"3. Enter the name and setup new AI behaviour.",
-						_smallLabelStyle
-					);
+				// Scrollable window area.
+				if (!(position.width < _leftPaneWidth + 50.0f))
+				{
+					DrawScrollAreaGUI(currentEvent);
 				}
 			}
+			GUILayout.EndHorizontal();
+		}
 
+	#endregion
+
+	#region Private Methods
+
+		private void DrawToolbar()
+		{
 			EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
 			{
-				string currentName = (_current != null) ? _current.name : "Open";
-				if (GUILayout.Button(currentName, EditorStyles.toolbarDropDown))
-				{
-					_scenarios = GetAllInstances<AntAIScenario>();
-					var menu = new GenericMenu();
-					if (_scenarios != null && _scenarios.Length > 0)
-					{
-						for (int i = 0, n = _scenarios.Length; i < n; i++)
-						{
-							bool isSelected = (_current != null && _current.name.Equals(_scenarios[i].name));
-							menu.AddItem(new GUIContent(_scenarios[i].name), isSelected, SelectPresetHandler, _scenarios[i].name);
-						}
-					}
-					else
-					{
-						menu.AddDisabledItem(new GUIContent("<No AI Scenarios>"));
-					}
-
-					menu.DropDown(new Rect(0.0f, 12.0f, 0.0f, 0.0f));
-				}
-
-				if (_current != null)
-				{
-					if (GUILayout.Button("Conditions to Enum", EditorStyles.toolbarButton))
-					{
-						CopyConditionsAsEnum();
-					}
-				}
-
 				GUILayout.FlexibleSpace();
+
+				GUILayout.Label("Zoom");
+				zoomScale = EditorGUILayout.Slider(zoomScale, _zoomScaleLowerLimit, _zoomScaleUpperLimit, GUILayout.MaxWidth(160.0f));
 			}
 			EditorGUILayout.EndHorizontal();
 		}
 
-		#endregion
-		#region Private Methods
-
-		private void DrawLabels()
+		private void DrawScrollAreaGUI(Event aEvent)
 		{
-			LabelData item;
-			Rect rect = new Rect();
-			for (int i = 0, n = _labels.Count; i < n; i++)
+			_scrollViewRect = new Rect(_leftPaneWidth, _topPanelHeight, position.width - _leftPaneWidth, position.height - _topPanelHeight - 3);
+			_scrollViewRect = AntZoomArea.Begin(zoomScale, _scrollViewRect);
+
+			using (var scope = new GUI.ScrollViewScope(_scrollViewRect, _scrollPos, new Rect(_leftPaneWidth, _topPanelHeight, 10000.0f, 10000.0f)))
 			{
-				item = _labels[i];
-				rect.x = item.rect.x + _totalDrag.x;
-				rect.y = item.rect.y + _totalDrag.y;
-				rect.width = item.rect.width;
-				rect.height = item.rect.height;
-				GUI.Label(rect, item.caption, item.style);
+				scope.handleScrollWheel = false;
+				_scrollPos = scope.scrollPosition;
+
+				Handles.DrawSolidRectangleWithOutline(
+					new Rect(_leftPaneWidth + 2, _topPanelHeight, 10000.0f, 10000.0f), 
+					AntAIEditorStyle.Gray,
+					AntAIEditorStyle.Gray
+				);
+
+				AntGuiDrawer.DrawBackgroundGrid(_scrollViewRect, _scrollPos, 20, Color.gray, 1.0f);
+				AntGuiDrawer.DrawBackgroundGrid(_scrollViewRect, _scrollPos, 100, Color.gray, 1.0f);
+
+				if (_current != null)
+				{
+					DrawLinks();
+					DrawNodes(_nodes);
+					ScrollViewGUIEvents(aEvent);
+				}
+				else
+				{
+					if (aEvent.type == EventType.Repaint)
+					{
+						_scrollPos = Vector2.zero;
+						DrawHelp();
+					}
+				}
 			}
+			AntZoomArea.End();
+		}
+
+		public void ScrollViewGUIEvents(Event aEvent)
+		{
+			for (int i = _nodes.Count - 1; i >= 0; i--)
+			{
+				if (_nodes[i].ProcessEvents(aEvent, this))
+				{
+					return;
+				}
+			}
+
+			// Right Click
+			// -----------
+			if (aEvent.button == 1)
+			{
+				if (aEvent.type == EventType.MouseDown)
+				{
+					if (_current != null)
+					{
+						var menu = new GenericMenu();
+						menu.AddItem(new GUIContent("● Add Action"), false, AddActionHandler);
+						menu.AddItem(new GUIContent("★ Add Goal"), false, AddGoalHandler);
+						menu.AddItem(new GUIContent("Add World State"), false, AddWorldStateHandler);
+						menu.AddSeparator("");
+						menu.AddItem(new GUIContent("Align To Grid"), _alignToGrid, AlignToGridHandler);
+						_spawnPosition = aEvent.mousePosition;
+						menu.ShowAsContext();
+					}
+				}
+			}
+
+			// Left Click
+			// ----------
+			else if (aEvent.button == 0)
+			{
+				if (aEvent.type == EventType.MouseDown)
+				{
+					if (_scrollViewRect.Contains(mousePosition))
+					{
+						if (GUI.GetNameOfFocusedControl() != "nothing")
+						{
+							GUI.FocusControl("nothing");
+						}
+
+						var rect = new Rect(_scrollViewRect.x, _scrollViewRect.y + 14f, _scrollViewRect.width, _scrollViewRect.height - 14f);
+						if (!_isWindowScrollActive && rect.Contains(mousePosition))
+						{
+							_isWindowScrollActive = true;
+						}
+
+						_scrollStartMousePos = mousePosition;
+					}
+				}
+				else if (aEvent.type == EventType.MouseDrag)
+				{
+					if (_isWindowScrollActive)
+					{
+						if (_isLerpToPos)
+						{
+							_isLerpToPos = false;
+						}
+						
+						Vector2 mouseMovementDifference = (mousePosition - _scrollStartMousePos);
+						_scrollPos -= new Vector2(mouseMovementDifference.x / zoomScale, mouseMovementDifference.y / zoomScale);
+						_scrollStartMousePos = mousePosition;
+						aEvent.Use();
+
+						GUI.changed = true;
+					}
+				}
+				else if (aEvent.type == EventType.MouseUp || aEvent.type == EventType.DragExited)
+				{
+					if (_isWindowScrollActive)
+					{
+						_isWindowScrollActive = false;
+					}
+
+					if (GUIUtility.hotControl != 0)
+					{
+						GUIUtility.hotControl = 0;
+					}
+
+					aEvent.Use();
+				}
+			}
+
+			// Mouse Wheel
+			// -----------
+			if (aEvent.type == EventType.ScrollWheel && aEvent.control)
+			{
+				zoomScale += -(aEvent.delta.y / 100f);
+				zoomScale = Mathf.Clamp(zoomScale, _zoomScaleLowerLimit, _zoomScaleUpperLimit);            
+				aEvent.Use();
+			}
+
+			// if (aEvent.modifiers == EventModifiers.Control && aEvent.keyCode == KeyCode.S)
+			// {
+			// 	Debug.Log("CTRL+S Keys Pressed");
+			// }
+		}
+
+		private void DrawHelp()
+		{
+			GUI.Label(
+				new Rect(210.0f, 30.0f, 200.0f, 50.0f), 
+				"AI scenario not selected.",
+				_titleStyle
+			);
+
+			GUI.Label(
+				new Rect(220.0f, 70.0f, 200.0f, 50.0f),
+				"Create new scenario:",
+				_labelStyle
+			);
+
+			GUI.Label(
+				new Rect(230.0f, 100.0f, 200.0f, 50.0f),
+				"1. Open context menu in the Project window.",
+				_smallLabelStyle
+			);
+
+			GUI.Label(
+				new Rect(230.0f, 120.0f, 200.0f, 50.0f),
+				"2. Select `Create ► Anthill ► AI Scenario`.",
+				_smallLabelStyle
+			);
+
+			GUI.Label(
+				new Rect(230.0f, 140.0f, 200.0f, 50.0f),
+				"3. Enter the name and setup new AI behaviour.",
+				_smallLabelStyle
+			);
 		}
 
 		private void DrawLinks()
@@ -320,9 +513,220 @@ namespace Anthill.AI
 			for (int i = 0, n = _connections.Count; i < n; i++)
 			{
 				con = _connections[i];
-				DrawSolidLine(con.from, con.to, c);
-				DrawSolidLine(con.center, con.arrowA, c);
-				DrawSolidLine(con.center, con.arrowB, c);
+				AntGuiDrawer.DrawLine(con.from, con.to, c, 3.0f);
+				AntGuiDrawer.DrawLine(con.center, con.arrowA, c, 3.0f);
+				AntGuiDrawer.DrawLine(con.center, con.arrowB, c, 3.0f);
+			}
+		}
+
+		private void DrawPreset()
+		{
+			EditorGUILayout.BeginHorizontal();
+			{
+				var prev = _current;
+				_current = (AntAIScenario) EditorGUILayout.ObjectField(_current, typeof(AntAIScenario), false);
+				if (!System.Object.ReferenceEquals(_current, prev))
+				{
+					SetCurrentScenario(_current);
+				}
+			}
+			EditorGUILayout.EndHorizontal();
+		}
+
+		private void DrawConditions()
+		{
+			GUILayout.BeginHorizontal(EditorStyles.toolbar);
+			{
+				var caption = (_isConditionsFoldout)
+					? $"▼ Conditions"
+					: $"► Conditions";
+
+				var style = new GUIStyle(EditorStyles.toolbarButton);
+				style.alignment = TextAnchor.MiddleLeft;
+				_isConditionsFoldout = GUILayout.Toggle(_isConditionsFoldout, caption, style);
+
+				if (GUILayout.Button("+ Add", EditorStyles.toolbarButton, GUILayout.Width(46)))
+				{
+					_isConditionsFoldout = true;
+					if (_current != null)
+					{
+						_current.AddCondition("<Unnamed>");
+						EditorUtility.SetDirty(_current);
+						GUI.changed = true;
+					}
+				}
+			}
+			GUILayout.EndHorizontal();
+
+			if (!_isConditionsFoldout)
+			{
+				return;
+			}
+
+			if (_current != null && _current.conditions.list.Length > 0)
+			{
+				for (int i = 0, n = _current.conditions.list.Length; i < n; i++)
+				{
+					GUILayout.BeginHorizontal(EditorStyles.toolbar);
+					_current.conditions.list[i].name = EditorGUILayout.TextField(
+						_current.conditions.list[i].name, 
+						EditorStyles.toolbarTextField, 
+						GUILayout.MaxWidth(200.0f)
+					);
+					
+					GUILayout.FlexibleSpace();
+
+					if (_delCondition.index == i)
+					{
+						var c = GUI.color;
+						GUI.color = AntAIEditorStyle.Red;
+						if (GUILayout.Button("Delete?", EditorStyles.toolbarButton, GUILayout.MaxWidth(70.0f)))
+						{
+							_delCondition.confirm = true;
+						}
+
+						GUI.color = AntAIEditorStyle.Green;
+						if (GUILayout.Button("×", EditorStyles.toolbarButton, GUILayout.MaxWidth(18.0f)))
+						{
+							_delCondition.index = -1;
+						}
+						GUI.color = c;
+					}
+					else
+					{
+						if (GUILayout.Button("×", EditorStyles.toolbarButton, GUILayout.MaxWidth(18.0f)))
+						{
+							_delCondition.index = i;
+						}
+					}
+					GUILayout.EndHorizontal();
+				}
+
+				if (_delCondition.index > -1 && _delCondition.confirm)
+				{
+					_current.RemoveConditionAt(_delCondition.index);
+					EditorUtility.SetDirty(_current);
+					_delCondition.index = -1;
+					_delCondition.confirm = false;
+				}
+
+				EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
+				{
+					if (GUILayout.Button("Copy Conditions as Enum", EditorStyles.toolbarButton))
+					{
+						CopyConditionsAsEnum();
+					}
+				}
+				EditorGUILayout.EndHorizontal();
+			}
+			else
+			{
+				GUILayout.Label("No Coditions", EditorStyles.centeredGreyMiniLabel);
+			}
+		}
+
+		private void DrawCards()
+		{
+			var style = new GUIStyle(EditorStyles.toolbarButton);
+			style.alignment = TextAnchor.MiddleLeft;
+
+			GUILayout.BeginHorizontal(EditorStyles.toolbar);
+			{
+				var caption = (_isCardsFoldout)
+					? $"▼ List of Nodes"
+					: $"► List of Nodes";
+
+				_isCardsFoldout = GUILayout.Toggle(_isCardsFoldout, caption, style);
+			}
+			GUILayout.EndHorizontal();
+
+			if (!_isCardsFoldout)
+			{
+				return;
+			}
+			
+			if (_nodes.Count > 0)
+			{
+				var c = GUI.color;
+				for (int i = 0, n = _nodes.Count; i < n; i++)
+				{
+					GUILayout.BeginHorizontal(EditorStyles.toolbar);
+					{
+						GUI.color = _nodes[i].Color;
+
+						int limit = (_delNode.index == i) ? 18 : AntAIEditorStyle.CardTitleLimit;
+						var title = _nodes[i].Title;
+						if (title.Length > limit)
+						{
+							title = $"{title.Substring(0, limit - 3)}...";
+						}
+						
+						if (GUILayout.Button(title, style))
+						{
+							for (int j = 0, nj = _nodes.Count; j < nj; j++)
+							{
+								_nodes[j].IsSelected = false;
+							}
+
+							_nodes[i].IsSelected = true;
+							LerpToNode(i);
+						}
+
+						GUI.color = c;
+						if (_nodes[i] is AntAIWorldStateNode)
+						{
+							var node = _nodes[i] as AntAIWorldStateNode;
+							node.WorldState.isAutoUpdate = GUILayout.Toggle(node.WorldState.isAutoUpdate, "UPD", EditorStyles.toolbarButton, GUILayout.MaxWidth(40.0f));
+						}
+
+						if (!(_nodes[i] is AntAIActionStateNode))
+						{
+							if (_delNode.index == i)
+							{
+								GUI.color = AntAIEditorStyle.Red;
+								if (GUILayout.Button("Delete?", EditorStyles.toolbarButton, GUILayout.MaxWidth(70.0f)))
+								{
+									_delNode.confirm = true;
+								}
+
+								GUI.color = AntAIEditorStyle.Green;
+								if (GUILayout.Button("×", EditorStyles.toolbarButton, GUILayout.MaxWidth(18.0f)))
+								{
+									_delNode.index = -1;
+								}
+								GUI.color = c;
+							}
+							else
+							{
+								if (GUILayout.Button("×", EditorStyles.toolbarButton, GUILayout.MaxWidth(18.0f)))
+								{
+									_delNode.index = i;
+								}
+							}
+						}
+					}
+					GUILayout.EndHorizontal();
+				}
+
+				if (_delNode.index > -1 && _delNode.confirm)
+				{
+					DeleteNodeAt(_delNode.index);
+					_delNode.index = -1;
+					_delNode.confirm = false;
+				}
+			}
+		}
+
+		private void LerpToNode(int aIndex)
+		{
+			if (_current != null && aIndex >= 0 && aIndex < _nodes.Count)
+			{
+				_isLerpToPos = true;
+				_counter = 0.0f;
+
+				AntAIBaseNode selectedNode = _nodes[aIndex];
+				Vector2 offset = new Vector2(position.width * 0.5f, position.height * 0.5f);
+				_targetPosition = selectedNode.rect.position - offset;
 			}
 		}
 
@@ -344,10 +748,13 @@ namespace Anthill.AI
 		{
 			_current = aScenario;
 			ClearNodes();
-			_labels.Clear();
-			if (_current == null) return;
+
+			if (_current == null)
+			{
+				return;
+			}
 			
-			_nodes.Add(CreateConditionNode(_current));
+			FixPositionHelper.Fix(_current);
 
 			// Add All Actions.
 			for (int i = 0, n = _current.actions.Length; i < n; i++)
@@ -385,16 +792,6 @@ namespace Anthill.AI
 			_nodes.Clear();
 		}
 
-		private void AddLabel(float aX, float aY, string aCaption, GUIStyle aStyle)
-		{
-			_labels.Add(new LabelData
-			{
-				caption = aCaption,
-				rect = new Rect(aX, aY, 500.0f, 50.0f),
-				style = aStyle
-			});
-		}
-
 		private AntAIWorldStateNode CreateWorldStateNode(AntAIScenario aScenario, AntAIWorldState aWorldState)
 		{
 			var node = new AntAIWorldStateNode(aWorldState.position, 200.0f, 300.0f, _actionStyle, _activeActionStyle);
@@ -421,108 +818,18 @@ namespace Anthill.AI
 		{
 			var node = new AntAIActionNode(aAction.position, 200.0f, 300.0f, _nodeStyle, _activeNodeStyle);
 			node.EventDelete += DeleteActionHandler;
-			node.title = "▶ {0}";
+			node.title = "● {0}";
 			node.Scenario = aScenario;
 			node.Action = aAction;
 			return node;
 		}
 
-		private AntAIConditionNode CreateConditionNode(AntAIScenario aScenario)
-		{
-			var node = new AntAIConditionNode(aScenario.conditions.position, 200.0f, 300.0f, _nodeStyle, _activeNodeStyle);
-			node.title = "CONDITIONS";
-			node.Scenario = aScenario;
-			return node;
-		}
-
 		private void DrawNodes(List<AntAIBaseNode> aNodes)
 		{
-			for (int i = 0, n = aNodes.Count; i < n; i++)
+			for (int i = aNodes.Count - 1; i >= 0; i--)
 			{
 				aNodes[i].Draw();
 			}
-		}
-
-		private void ProcessEvents(Event aEvent)
-		{
-			_drag = Vector2.zero;
-
-			for (int i = _nodes.Count - 1; i >= 0; i--)
-			{
-				if (_nodes[i].ProcessEvents(aEvent, this))
-				{
-					return;
-				}
-			}
-
-			switch (aEvent.type)
-			{
-				case EventType.MouseDown :
-					if (aEvent.button == 1 && _current != null)
-					{
-						var menu = new GenericMenu();
-						menu.AddItem(new GUIContent("▶ Add Action"), false, AddActionHandler);
-						menu.AddItem(new GUIContent("★ Add Goal"), false, AddGoalHandler);
-						menu.AddItem(new GUIContent("Add World State"), false, AddWorldStateHandler);
-						menu.AddSeparator("");
-						menu.AddItem(new GUIContent("Align To Grid"), _alignToGrid, AlignToGridHandler);
-						// _mousePosition = aEvent.mousePosition;
-						menu.ShowAsContext();
-					}
-					break;
-
-				case EventType.MouseDrag :
-					if (aEvent.button == 0)
-					{
-						OnDrag(aEvent.delta);
-					}
-					break;
-			}
-		}
-
-		private void OnDrag(Vector2 aDelta)
-		{
-			_totalDrag += aDelta;
-			_drag = aDelta;
-
-			for (int i = 0, n = _nodes.Count; i < n; i++)
-			{
-				_nodes[i].Drag(aDelta);
-			}
-
-			GUI.changed = true;
-		}
-
-		private void DrawGrid(float aCellSize, Color aColor, float aOpacity)
-		{
-			int cols = Mathf.CeilToInt(position.width / aCellSize);
-			int rows = Mathf.CeilToInt(position.height / aCellSize);
-
-			Handles.BeginGUI();
-			Color c = Handles.color;
-			Handles.color = new Color(aColor.r, aColor.g, aColor.b, aOpacity);
-
-			_offset += _drag * 0.5f;
-			Vector3 newOffset = new Vector3(_offset.x % aCellSize, _offset.y % aCellSize, 0.0f);
-
-			for (int i = 0; i < cols; i++)
-			{
-				Handles.DrawLine(
-					new Vector3(aCellSize * i, -aCellSize, 0.0f) + newOffset,
-					new Vector3(aCellSize * i, position.height, 0.0f) + newOffset
-				);
-			}
-
-			for (int i = 0; i < rows; i++)
-			{
-				Handles.DrawLine(
-					new Vector3(-aCellSize, aCellSize * i, 0.0f) + newOffset,
-					new Vector3(position.width, aCellSize * i, 0.0f) + newOffset
-				);
-			}
-
-			Handles.color = c;
-			Handles.EndGUI();
 		}
 
 		private void ClearPlan()
@@ -541,56 +848,58 @@ namespace Anthill.AI
 			}
 		}
 
-		#endregion
-		#region Event Handlers
+	#endregion
+
+	#region Event Handlers
 
 		public void SelectPresetHandler(object aPresetName)
 		{
 			AntAIScenario selectedPreset = System.Array.Find(_scenarios, x => x.name.Equals(aPresetName.ToString()));
 			_current = selectedPreset;
-			ClearNodes();
-
 			SetCurrentScenario(selectedPreset);
-
-			// Old selection in the project window.
-			// ------------------------------------
-			// if (Selection.objects.Length == 1 && Selection.objects[0] is AntAIScenario)
-			// {
-			// 	var tmp = (AntAIScenario) Selection.objects[0];
-			// 	if (tmp == null)
-			// 	{
-			// 		SetCurrentScenario(null);
-			// 	}
-			// 	else if (!System.Object.ReferenceEquals(tmp, _current))
-			// 	{
-			// 		SetCurrentScenario(tmp);
-			// 	}
-			// }
-			// else
-			// {
-			// 	SetCurrentScenario(null);
-			// }
 		}
 
 		private void AddActionHandler()
 		{
-			AntArray.Add(ref _current.actions, new AntAIScenarioAction());
+			var action = new AntAIScenarioAction();
+			action.position = _spawnPosition;
+			AntArray.Add(ref _current.actions, action);
 			_nodes.Add(CreateActionNode(_current, _current.actions[_current.actions.Length - 1]));
 			EditorUtility.SetDirty(_current);
 		}
 
 		private void AddGoalHandler()
 		{
-			AntArray.Add(ref _current.goals, new AntAIScenarioGoal());
+			var goal = new AntAIScenarioGoal();
+			goal.position = _spawnPosition;
+			AntArray.Add(ref _current.goals, goal);
 			_nodes.Add(CreateGoalNode(_current, _current.goals[_current.goals.Length - 1]));
 			EditorUtility.SetDirty(_current);
 		}
 
 		private void AddWorldStateHandler()
 		{
-			AntArray.Add(ref _current.worldStates, new AntAIWorldState());
+			var worldState = new AntAIWorldState();
+			worldState.position = _spawnPosition;
+			AntArray.Add(ref _current.worldStates, worldState);
 			_nodes.Add(CreateWorldStateNode(_current, _current.worldStates[_current.worldStates.Length - 1]));
 			EditorUtility.SetDirty(_current);
+		}
+
+		private void DeleteNodeAt(int aIndex)
+		{
+			if (_nodes[_delNode.index] is AntAIActionNode)
+			{
+				DeleteActionHandler(_nodes[_delNode.index] as AntAIActionNode);
+			}
+			else if (_nodes[_delNode.index] is AntAIGoalNode)
+			{
+				DeleteGoalHandler(_nodes[_delNode.index] as AntAIGoalNode);
+			}
+			else if (_nodes[_delNode.index] is AntAIWorldStateNode)
+			{
+				DeleteWorldStateHandler(_nodes[_delNode.index] as AntAIWorldStateNode);
+			}
 		}
 
 		private void DeleteWorldStateHandler(AntAIWorldStateNode aNode)
@@ -657,14 +966,20 @@ namespace Anthill.AI
 				action = aPlanner.GetAction(aPlan[i]);
 				preConditions = curConditions.Clone();
 				curConditions.Act(action.post);
-				// DescribePlan(action.name, aPlanner, curConditions, preConditions);
 
 				pos.x += 220.0f;
 				if (i + 1 == aPlan.Count)
 				{
-					node = (aPlan.isSuccess)
-						? new AntAIActionStateNode(pos, 200.0f, 300.0f, _successStyle, _activeSuccessStyle)
-						: new AntAIActionStateNode(pos, 200.0f, 300.0f, _failStyle, _activeFailStyle);
+					if (aPlan.isSuccess)
+					{
+						node = new AntAIActionStateNode(pos, 200.0f, 300.0f, _successStyle, _activeSuccessStyle);
+						node.Color = AntAIEditorStyle.CardGreen;
+					}
+					else
+					{
+						node = new AntAIActionStateNode(pos, 200.0f, 300.0f, _failStyle, _activeFailStyle);
+						node.Color = AntAIEditorStyle.CardRed;
+					}
 				}
 				else
 				{
@@ -684,88 +999,6 @@ namespace Anthill.AI
 			_alignToGrid = !_alignToGrid;
 		}
 
-		private void DrawSolidLine(Vector2 aPointA, Vector2 aPointB, Color aColor,
-			float aWidth = 2.0f, bool aAntialias = true)
-		{
-			if (_lineTexture == null)
-			{
-				InitializeSolid();
-			}
-
-			// Note that theta = atan2(dy, dx) is the angle we want to rotate by, but instead
-        	// of calculating the angle we just use the sine (dy/len) and cosine (dx/len).
-			float dx = aPointB.x - aPointA.x;
-			float dy = aPointB.y - aPointA.y;
-			float len = Mathf.Sqrt(dx * dx + dy * dy);
-
-			// Early out on tiny lines to avoid divide by zero.
-        	// Plus what's the point of drawing a line 1/1000th of a pixel long??
-			if (len < 0.001f)
-			{
-				return;
-			}
-
-			// Pick texture and material (and tweak width) based on anti-alias setting.
-			Texture2D tex;
-			Material mat;
-			if (aAntialias)
-			{
-				// Multiplying by three is fine for anti-aliasing width-1 lines, but make a wide "fringe"
-            	// for thicker lines, which may or may not be desirable.
-				aWidth *= 3.0f;
-				tex = _aaLineTexture;
-				mat = _blendMaterial;
-			}
-			else
-			{
-				tex = _lineTexture;
-				mat = _blitMaterial;
-			}
-
-			float wdx = aWidth * dy / len;
-			float wdy = aWidth * dx / len;
-
-			var m = Matrix4x4.identity;
-			m.m00 = dx;
-			m.m01 = -wdx;
-			m.m03 = aPointA.x + 0.5f * wdx;
-			m.m10 = dy;
-			m.m11 = wdy;
-			m.m13 = aPointA.y - 0.5f * wdy;
-
-			// Use GL matrix and Graphics.DrawTexture rather than GUI.matrix and GUI.DrawTexture,
-        	// for better performance. (Setting GUI.matrix is slow, and GUI.DrawTexture is just a
-        	// wrapper on Graphics.DrawTexture.)
-			GL.PushMatrix();
-			GL.MultMatrix(m);
-			Graphics.DrawTexture(_lineRect, tex, _lineRect, 0, 0, 0, 0, aColor, mat);
-			GL.PopMatrix();
-		}
-
-		private void InitializeSolid()
-		{
-			if (_lineTexture == null)
-			{
-				_lineTexture = new Texture2D(1, 1, TextureFormat.ARGB32, true);
-				_lineTexture.SetPixel(0, 1, Color.white);
-				_lineTexture.Apply();
-			}
-
-			if (_aaLineTexture == null)
-			{
-				_aaLineTexture = new Texture2D(1, 3, TextureFormat.ARGB32, true);
-				_aaLineTexture.SetPixel(0, 0, new Color(1.0f, 1.0f, 1.0f, 0.0f));
-				_aaLineTexture.SetPixel(0, 1, Color.white);
-				_aaLineTexture.SetPixel(0, 2, new Color(1.0f, 1.0f, 1.0f, 0.0f));
-				_aaLineTexture.Apply();
-			}
-
-			// GUI.blitMaterial and GUI.blendMaterial are used internally by GUI.DrawTexture,
-        	// depending on the alphaBlend parameter. Use reflection to "borrow" these references.
-			_blitMaterial = (Material) typeof(GUI).GetMethod("get_blitMaterial", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, null);
-			_blendMaterial = (Material)typeof(GUI).GetMethod("get_blendMaterial", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, null);
-		}
-
 		private void CopyConditionsAsEnum()
 		{
 			var str = string.Format("public enum {0}", (_current != null) ? _current.name : "AICondition");
@@ -773,7 +1006,7 @@ namespace Anthill.AI
 			string conditionName = string.Empty;
 			for (int i = 0, n = _current.conditions.list.Length; i < n; i++)
 			{
-				conditionName = RemoveSpacesFromString(_current.conditions.list[i].name);
+				conditionName = _current.conditions.list[i].name.RemoveSpaces();
 				str = string.Concat(str, $"\t{conditionName} = {_current.conditions.list[i].id}");
 				str = (i + 1 == _current.conditions.list.Length)
 					? string.Concat(str, "\n}")
@@ -788,25 +1021,6 @@ namespace Anthill.AI
 			EditorUtility.DisplayDialog("Copied!", "All conditions copied to the clipboard as Enum.", "Ok");
 		}
 
-		// todo: make this method as string extension.
-		private string RemoveSpacesFromString(string aValue)
-		{
-			char[] characters = aValue.ToCharArray();
-			List<char> nonBlankChars = new List<char>();
-
-			char blank = ' ';
-			int numChars = characters.Length;
-			for (int i = 0; i < numChars; i++)
-			{
-				if (characters[i] != blank)
-				{
-					nonBlankChars.Add(characters[i]);
-				}
-			}
-
-			return new string(nonBlankChars.ToArray());
-		}
-
-		#endregion
+	#endregion
 	}
 }

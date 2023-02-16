@@ -4,18 +4,21 @@ namespace Anthill.AI
 	using UnityEditor;
 
 	using Anthill.Utils;
+	using Anthill.Extensions;
 
 	/// <summary>
 	/// This is implementation of the Goal card in the AIWorkbench.
 	/// </summary>
 	public class AntAIGoalNode : AntAIBaseNode
 	{
-		#region Variables
-
 		public delegate void GoalNodeDelegate(AntAIGoalNode aNode);
 		public event GoalNodeDelegate EventDelete;
 		public event GoalNodeDelegate EventAsDefault;
 
+	#region Private Variables
+
+		private float _baseHeight = 20.0f;
+		private const float _lineHeight = 21.0f;
 		private AntAIScenario _scenario;
 		private AntAIScenarioGoal _goal;
 
@@ -24,15 +27,55 @@ namespace Anthill.AI
 		private GUIStyle _badgeStyle;
 		private GUIStyle _labelStyle;
 
-		#endregion
-		#region Public Methods
+	#endregion
+
+	#region Getters / Setters
+
+		public AntAIScenario Scenario
+		{
+			get => _scenario;
+			set
+			{
+				_scenario = value;
+				rect.position = new Vector2(200.0f, 30.0f);
+			}
+		}
+
+		public AntAIScenarioGoal Goal
+		{
+			get => _goal;
+			set
+			{
+				_goal = value;
+				rect.position = _goal.position;
+			}
+		}
+
+		public override bool IsSelected
+		{
+			get => _isSelected;
+			set
+			{
+				_isSelected = value;
+				UpdateStyle();
+			}
+		}
+
+		public override string Title
+		{
+			get => string.Format(title, _goal.name);
+		}
+
+	#endregion
+
+	#region Public Methods
 
 		public AntAIGoalNode(Vector2 aPosition, float aWidth, float aHeight,
 			GUIStyle aDefaultStyle, GUIStyle aSelectedStyle) : base(aPosition, aWidth, aHeight, aDefaultStyle, aSelectedStyle)
 		{
 			_defaultStyle = CreateNodeStyle("node1.png");
 			_activeDefaultStyle = CreateNodeStyle("node1 on.png");
-			_badgeStyle = new GUIStyle("CN CountBadge");
+			_badgeStyle = new GUIStyle(EditorStyles.toolbarButton);
  			_badgeStyle.normal.textColor = Color.white;
 			_badgeStyle.active.textColor = Color.white;
 			_badgeStyle.focused.textColor = Color.white;
@@ -60,35 +103,37 @@ namespace Anthill.AI
 		{
 			UpdateStyle();
 
-			rect.height = (20.0f * 2 + 20.0f * _goal.conditions.Length) - 1.0f;
-			rect.height += (_goal.conditions.Length == 0) ? 20.0f : 0.0f;
-#if UNITY_2019_3_OR_NEWER
+			rect.height = (_baseHeight + _lineHeight * (_goal.conditions.Length + 1)) + 1.0f;
+			rect.height += (_goal.conditions.Length == 0) ? _lineHeight : 0.0f;
 			rect.height += 54.0f;
-#else
-			rect.height += 52.0f;
-#endif
+
 			GUI.Box(rect, "", currentStyle);
+
+			var title = Title;
+			if (title.Length > AntAIEditorStyle.CardTitleLimit)
+			{
+				title = $"{title.Substring(0, AntAIEditorStyle.CardTitleLimit - 3)}...";
+			}
 			
 			// Title
-			GUI.Label(new Rect(rect.x + 12.0f, rect.y + 12.0f, rect.y + 12.0f, rect.width - 24.0f), string.Format(title, _goal.name), _titleStyle);
+			GUI.Label(
+				new Rect(rect.x + 12.0f, rect.y + 12.0f, rect.y + 12.0f, rect.width - 24.0f), 
+				title, 
+				_titleStyle
+			);
 
 			content.x = rect.x + 7.0f;
 			content.y = rect.y + 30.0f;
 			content.width = rect.width - 14.0f;
-			content.height = rect.height - 50.0f;
+			content.height = rect.height - 54.0f;
 			GUI.Box(content, "", _bodyStyle);
 
-			content.y += 1.0f;
-
-			content.height = (20.0f * 2 + 20.0f * _goal.conditions.Length) - 1.0f;
-			content.height += (_goal.conditions.Length == 0) ? 20.0f : 0.0f;
-
-			content.y += 4.0f;
 			EditorGUI.BeginChangeCheck();
 			GUILayout.BeginArea(content);
 			{
-				EditorGUIUtility.labelWidth = 80.0f;
+				EditorGUIUtility.labelWidth = 40.0f;
 
+				GUILayout.Space(2.0f);
 				GUILayout.BeginHorizontal();
 				{
 					GUILayout.Space(4.0f);
@@ -117,22 +162,16 @@ namespace Anthill.AI
 						{
 							isDragged = true;
 							GUI.changed = true;
-							isSelected = true;
-							currentStyle = (_goal.isDefault) 
-								? _activeDefaultStyle
-								: selectedStyle;
+							IsSelected = true;
 						}
 						else
 						{
 							GUI.changed = true;
-							isSelected = false;
-							currentStyle = (_goal.isDefault)
-								? _defaultStyle
-								: normalStyle;
+							IsSelected = false;
 						}
 					}
 
-					if (aEvent.button == 1 && isSelected &&
+					if (aEvent.button == 1 && IsSelected &&
 						rect.Contains(aEvent.mousePosition))
 					{
 						ProcessContextMenu();
@@ -143,8 +182,8 @@ namespace Anthill.AI
 				case EventType.MouseUp :
 					if (isDragged && aWorkbench.IsAlignToGrid)
 					{
-						var dx = Mathf.Floor((rect.x - aWorkbench.Offset.x) / 20.0f);
-						var dy = Mathf.Floor((rect.y - aWorkbench.Offset.y) / 20.0f);
+						var dx = Mathf.RoundToInt((rect.x - aWorkbench.Offset.x) / 20.0f);
+						var dy = Mathf.RoundToInt((rect.y - aWorkbench.Offset.y) / 20.0f);
 						rect.x = aWorkbench.Offset.x + dx * 20.0f;
 						rect.y = aWorkbench.Offset.y + dy * 20.0f;
 						aWorkbench.Repaint();
@@ -166,12 +205,13 @@ namespace Anthill.AI
 			return false;
 		}
 
-		#endregion
-		#region Private Methods
+	#endregion
+
+	#region Private Methods
 
 		private void UpdateStyle()
 		{
-			if (isSelected)
+			if (IsSelected)
 			{
 				currentStyle = (_goal.isDefault) 
 					? _activeDefaultStyle
@@ -183,6 +223,10 @@ namespace Anthill.AI
 					? _defaultStyle
 					: normalStyle;
 			}
+
+			Color = (_goal.isDefault)
+				? AntAIEditorStyle.CardBlue
+				: AntAIEditorStyle.CardWhite;
 		}
 
 		protected override void ProcessContextMenu()
@@ -199,59 +243,57 @@ namespace Anthill.AI
 			GUILayout.BeginVertical();
 			{
 				var c = GUI.color;
-				GUILayout.BeginHorizontal();
+				GUILayout.BeginHorizontal(EditorStyles.toolbar);
 				{
 					EditorGUILayout.LabelField(aLabel, EditorStyles.boldLabel);
 					GUILayout.FlexibleSpace();
+
+					GUILayout.BeginVertical();
+					GUILayout.Space(2.0f);
 					if (GUILayout.Button("", "OL Plus"))
 					{
 						var menu = new GenericMenu();
 						for (int i = 0, n = _scenario.conditions.list.Length; i < n; i++)
 						{
-							menu.AddItem(new GUIContent(_scenario.conditions.list[i].name), false, OnAddCondition, _scenario.conditions.list[i].name);
+							menu.AddItem(
+								new GUIContent(_scenario.conditions.list[i].name), 
+								false, 
+								OnAddCondition, 
+								_scenario.conditions.list[i].name
+							);
 						}
 						menu.ShowAsContext();
 					}
+					GUILayout.EndVertical();
 				}
 				GUILayout.EndHorizontal();
 
 				if (aConditions.Length == 0)
 				{
-					GUILayout.Label("<Empty>", EditorStyles.centeredGreyMiniLabel);
+					EditorGUILayout.LabelField("No Conditions", EditorStyles.centeredGreyMiniLabel);
 				}
 				else
 				{
 					int delIndex = -1;
 					for (int i = 0, n = aConditions.Length; i < n; i++)
 					{
-#if UNITY_2019_3_OR_NEWER
-							GUILayout.BeginHorizontal();
-#else
-							GUILayout.BeginHorizontal("Icon.ClipSelected");
-#endif
+						GUILayout.BeginHorizontal(EditorStyles.toolbar);
+						GUI.color = c * ((aConditions[i].value) 
+							? AntAIEditorStyle.Green
+							: AntAIEditorStyle.Red
+						);
+
+						if (GUILayout.Button(aConditions[i].value.ToStr(), _badgeStyle, GUILayout.MaxWidth(20.0f)))
 						{
-							GUILayout.Space(4.0f);
-							GUI.color = c * ((aConditions[i].value) 
-								? new Color(0.5f, 1.0f, 0.5f) // green
-								: new Color(1.0f, 0.5f, 0.5f) // red
-							);
+							aConditions[i].value = !aConditions[i].value;
+						}
 
-							if (GUILayout.Button(AntAIWorkbench.BoolToStr(aConditions[i].value), _badgeStyle, GUILayout.MaxWidth(20.0f), GUILayout.MaxHeight(20.0f)))
-							{
-								aConditions[i].value = !aConditions[i].value;
-							}
+						EditorGUILayout.LabelField(_scenario.conditions.GetName(aConditions[i].id), EditorStyles.miniBoldLabel);
 
-#if UNITY_2019_3_OR_NEWER
-							GUILayout.Label(_scenario.conditions.GetName(aConditions[i].id), _labelStyle);
-#else
-							GUILayout.Label(_scenario.conditions.GetName(aConditions[i].id));
-#endif
-
-							GUI.color = c;
-							if (GUILayout.Button("", "OL Minus", GUILayout.MaxWidth(18.0f), GUILayout.MaxHeight(18.0f)))
-							{
-								delIndex = i;
-							}
+						GUI.color = c;
+						if (GUILayout.Button("×", EditorStyles.toolbarButton, GUILayout.MaxWidth(18.0f)))
+						{
+							delIndex = i;
 						}
 						GUILayout.EndHorizontal();
 					}
@@ -265,8 +307,9 @@ namespace Anthill.AI
 			GUILayout.EndVertical();
 		}
 
-		#endregion
-		#region Event Handlers
+	#endregion
+
+	#region Event Handlers
 
 		private void SetAsDefaultHandler()
 		{
@@ -301,29 +344,6 @@ namespace Anthill.AI
 			AntArray.Add(ref _goal.conditions, item);
 		}
 
-		#endregion
-		#region Getters / Setters
-
-		public AntAIScenario Scenario
-		{
-			get => _scenario;
-			set
-			{
-				_scenario = value;
-				rect.position = _scenario.conditions.position;
-			}
-		}
-
-		public AntAIScenarioGoal Goal
-		{
-			get => _goal;
-			set
-			{
-				_goal = value;
-				rect.position = _goal.position;
-			}
-		}
-
-		#endregion
+	#endregion
 	}
 }

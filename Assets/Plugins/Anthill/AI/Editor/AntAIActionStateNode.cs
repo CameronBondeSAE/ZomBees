@@ -3,6 +3,7 @@ namespace Anthill.AI
 	using System.Collections.Generic;
 	using UnityEngine;
 	using UnityEditor;
+	using Anthill.Extensions;
 
 	/// <summary>
 	/// This class implements a card of the plan that can be builded from the world state card
@@ -10,7 +11,7 @@ namespace Anthill.AI
 	/// </summary>
 	public class AntAIActionStateNode : AntAIBaseNode
 	{
-		#region Variables
+	#region Private Variables
 
 		private struct Item
 		{
@@ -19,19 +20,20 @@ namespace Anthill.AI
 			public bool isChanged;
 		}
 
-		private const float LINE_HEIGHT = 20.0f;
+		private const float lineHeight = 21.0f;
 		private List<Item> _items;
 		private GUIStyle _badgeStyle;
 		private GUIStyle _labelStyle;
 		private GUIStyle _boldLabelStyle;
 
-		#endregion
-		#region Public Methods
+	#endregion
+
+	#region Public Methods
 
 		public AntAIActionStateNode(Vector2 aPosition, float aWidth, float aHeight,
 			GUIStyle aDefaultStyle, GUIStyle aSelectedStyle) : base(aPosition, aWidth, aHeight, aDefaultStyle, aSelectedStyle)
 		{
-			_badgeStyle = new GUIStyle("CN CountBadge");
+			_badgeStyle = new GUIStyle(EditorStyles.toolbarButton);
  			_badgeStyle.normal.textColor = Color.white;
 			_badgeStyle.active.textColor = Color.white;
 			_badgeStyle.focused.textColor = Color.white;
@@ -72,93 +74,77 @@ namespace Anthill.AI
 		public override void Draw()
 		{
 			rect.height = (_items.Count > 0)
-				? LINE_HEIGHT * _items.Count
-				: LINE_HEIGHT;
+				? lineHeight * _items.Count
+				: lineHeight;
 			rect.height += 52.0f;
+
 			GUI.Box(rect, "", currentStyle);
 			
+			var title = Title;
+			if (title.Length > AntAIEditorStyle.CardTitleLimit)
+			{
+				title = $"{title.Substring(0, AntAIEditorStyle.CardTitleLimit - 3)}...";
+			}
+			
 			// Title
-			GUI.Label(new Rect(rect.x + 12.0f, rect.y + 12.0f, rect.y + 12.0f, rect.width - 24.0f), title, _titleStyle);
+			GUI.Label(
+				new Rect(rect.x + 12.0f, rect.y + 12.0f, rect.y + 12.0f, rect.width - 24.0f), 
+				title, 
+				_titleStyle
+			);
 
 			content.x = rect.x + 7.0f;
 			content.y = rect.y + 30.0f;
 			content.width = rect.width - 14.0f;
-			content.height = rect.height - 50.0f;
+			content.height = rect.height - 52.0f;
 			GUI.Box(content, "", _bodyStyle);
-
-#if UNITY_2019_3_OR_NEWER
-			content.y += 3.0f;
-#else
-			content.y += 1.0f;
-#endif
-
-			content.height = (_items.Count > 0)
-				? LINE_HEIGHT * _items.Count
-				: LINE_HEIGHT;
 
 			var c = GUI.color;
 			GUILayout.BeginArea(content);
+			if (_items.Count > 0)
 			{
-				EditorGUIUtility.labelWidth = 80.0f;
-				if (_items.Count > 0)
-				{
-					GUILayout.BeginVertical();
-					{
-						for (int i = 0, n = _items.Count; i < n; i++)
-						{
-#if UNITY_2019_3_OR_NEWER
-							GUILayout.BeginHorizontal();
-#else
-							GUILayout.BeginHorizontal("Icon.ClipSelected");
-#endif
-							{
-								GUILayout.Space(4.0f);
-								GUI.color = c * ((_items[i].value) 
-									? new Color(0.5f, 1.0f, 0.5f) // green
-									: new Color(1.0f, 0.5f, 0.5f) // red
-								);
-								
-								GUILayout.Button(AntAIWorkbench.BoolToStr(_items[i].value), _badgeStyle, GUILayout.MaxWidth(20.0f), GUILayout.MaxHeight(20.0f));
-								GUI.color = c;
-								
-								if (_items[i].isChanged)
-								{
+				GUILayout.BeginVertical();
 
-#if UNITY_2019_3_OR_NEWER
-									GUILayout.Label(string.Concat("▶ ", _items[i].name), _boldLabelStyle);
-#else
-									GUILayout.Label(string.Concat("▶ ", _items[i].name));
-#endif
-									GUILayout.FlexibleSpace();
-									GUILayout.BeginVertical();
-									{
-										GUILayout.Space(2.0f);
-										GUILayout.Label((_items[i].value) ? "YES" : "NO", GUI.skin.FindStyle("AssetLabel"));
-									}
-									GUILayout.EndVertical();
-								}
-								else
-								{
-#if UNITY_2019_3_OR_NEWER
-									GUILayout.Label(_items[i].name, _labelStyle);
-#else
-									GUILayout.Label(_items[i].name);
-#endif
-								}
-							}
-							GUILayout.EndHorizontal();
-						}
-					}
-					GUILayout.EndVertical();
-				}
-				else
+				for (int i = 0, n = _items.Count; i < n; i++)
 				{
-					GUILayout.Label("<No Coditions>", EditorStyles.centeredGreyMiniLabel);
+					GUILayout.BeginHorizontal(EditorStyles.toolbar);
+						
+					GUI.color = c * ((_items[i].value) 
+						? AntAIEditorStyle.Green
+						: AntAIEditorStyle.Red
+					);
+					
+					GUILayout.Button(_items[i].value.ToStr(), _badgeStyle, GUILayout.MaxWidth(18.0f));
+					GUI.color = c;
+					
+					if (_items[i].isChanged)
+					{
+						GUILayout.BeginVertical();
+						{
+							GUILayout.Space(3.0f);
+							GUILayout.Label((_items[i].value) ? "YES" : "NO", GUI.skin.FindStyle("AssetLabel"));
+						}
+						GUILayout.EndVertical();
+						
+						EditorGUILayout.LabelField(string.Concat("►  ", _items[i].name), EditorStyles.miniBoldLabel);
+					}
+					else
+					{
+						EditorGUILayout.LabelField(_items[i].name, EditorStyles.miniBoldLabel);
+					}
+					
+					GUILayout.EndHorizontal();
 				}
+
+				GUILayout.EndVertical();
+			}
+			else
+			{
+				GUILayout.Label("No Coditions", EditorStyles.centeredGreyMiniLabel);
 			}
 			GUILayout.EndArea();
 		}
 
-		#endregion
+	#endregion
 	}
 }
