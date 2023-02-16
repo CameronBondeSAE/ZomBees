@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: BeeAndFlowers
+  m_EditorClassIdentifier: 
+  conditions:
+    position: {x: 35, y: 46.999985}
+    list:
+    - id: 0
+      name: PollenDelivered
+    - id: 1
+      name: SeeFlower
+    - id: 2
+      name: HasPollen
+    - id: 3
+      name: SeeHive
+    - id: 4
+      name: NearHive
+  actions:
+  - name: GetPollen
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 280, y: 46.999985}
+    pre:
+    - id: 2
+      value: 0
+    post:
+    - id: 2
+      value: 1
+    - id: 4
+      value: 0
+  - name: ReturnToHive
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 903, y: 45.999985}
+    pre:
+    - id: 2
+      value: 1
+    - id: 3
+      value: 1
+    - id: 4
+      value: 0
+    post:
+    - id: 4
+      value: 1
+  - name: DeliverPollen
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 1097, y: 43.999985}
+    pre:
+    - id: 2
+      value: 1
+    - id: 4
+      value: 1
+    - id: 0
+      value: 0
+    post:
+    - id: 0
+      value: 1
+    - id: 2
+      value: 0
+  - name: FindHive
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 700, y: 48.999985}
+    pre:
+    - id: 2
+      value: 1
+    - id: 3
+      value: 0
+    post:
+    - id: 3
+      value: 1
+  - name: CollectPollen
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 496, y: 46.999985}
+    pre:
+    - id: 2
+      value: 0
+    - id: 1
+      value: 1
+    post:
+    - id: 2
+      value: 1
+  goals:
+  - name: PollenDelivered
+    isDefault: 1
+    position: {x: 234, y: 267}
+    conditions:
+    - id: 0
+      value: 1
+  - name: FindFlower
+    isDefault: 0
+    position: {x: 43, y: 267}
+    conditions:
+    - id: 2
+      value: 1
+  worldStates:
+  - position: {x: 40, y: 377}
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
+    - id: 2
+      value: 0
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0
