@@ -7,7 +7,7 @@ namespace Anthill.AI
 	/// </summary>
 	public class AntAIPlanner
 	{
-		#region Variables
+	#region Variables
 		
 		public const int MAX_ATOMS = 32;   // Max of the conditions.
 		public const int MAX_ACTIONS = 32; // Max of the actions.
@@ -28,8 +28,9 @@ namespace Anthill.AI
 		private int _defActionIndex = -1;
 		private int _defGoalIndex = -1;
 
-		#endregion
-		#region Public Methods
+	#endregion
+
+	#region Public Methods
 
 		public void LoadScenario(AntAIScenario aScenario)
 		{
@@ -400,8 +401,9 @@ namespace Anthill.AI
 			}
 		}
 
-		#endregion
-		#region Private Methods
+	#endregion
+
+	#region Private Methods
 
 		private List<AntAIAction> GetPossibleTransitions(AntAICondition aCurrent)
 		{
@@ -441,6 +443,6 @@ namespace Anthill.AI
 			}
 		}
 
-		#endregion
+	#endregion
 	}
 }

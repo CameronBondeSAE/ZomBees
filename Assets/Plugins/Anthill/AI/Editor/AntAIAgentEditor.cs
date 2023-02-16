@@ -3,21 +3,24 @@ namespace Anthill.AI
 	using UnityEngine;
 	using UnityEditor;
 
+	using Anthill.Extensions;
+
 	/// <summary>
 	/// This is custom editor for the AIAgent.
 	/// </summary>
 	[CustomEditor(typeof(AntAIAgent))]
 	public class AntAIAgentEditor : Editor
 	{
-		#region Variables
+	#region Private Variables
 		
 		private AntAIAgent _self;
 		private bool _isGoal;
 		private bool _isWorldState;
 		private bool _isPlan;
 		
-		#endregion
-		#region Unity Calls
+	#endregion
+	
+	#region Unity Calls
 		
 		private void OnEnable()
 		{
@@ -49,10 +52,10 @@ namespace Anthill.AI
 							{
 								GUILayout.Space(4.0f);
 								GUI.color = c * ((_self.Goal.GetValue(i)) 
-									? new Color(0.5f, 1.0f, 0.5f) // green
-									: new Color(1.0f, 0.5f, 0.5f) // red
+									? AntAIEditorStyle.Green
+									: AntAIEditorStyle.Red
 								);
-								GUILayout.Button(AntAIWorkbench.BoolToStr(_self.Goal.GetValue(i)), "CN CountBadge", GUILayout.MaxWidth(20.0f), GUILayout.MaxHeight(20.0f));
+								GUILayout.Button(_self.Goal.GetValue(i).ToStr(), "CN CountBadge", GUILayout.MaxWidth(20.0f), GUILayout.MaxHeight(20.0f));
 								EditorGUILayout.LabelField(_self.planner.atoms[i]);
 							}
 							EditorGUILayout.EndHorizontal();
@@ -81,10 +84,10 @@ namespace Anthill.AI
 							{
 								GUILayout.Space(4.0f);
 								GUI.color = c * ((_self.worldState.GetValue(i)) 
-									? new Color(0.5f, 1.0f, 0.5f) // green
-									: new Color(1.0f, 0.5f, 0.5f) // red
+									? AntAIEditorStyle.Green
+									: AntAIEditorStyle.Red
 								);
-								GUILayout.Button(AntAIWorkbench.BoolToStr(_self.worldState.GetValue(i)), "CN CountBadge", GUILayout.MaxWidth(20.0f), GUILayout.MaxHeight(20.0f));
+								GUILayout.Button(_self.worldState.GetValue(i).ToStr(), "CN CountBadge", GUILayout.MaxWidth(20.0f), GUILayout.MaxHeight(20.0f));
 								EditorGUILayout.LabelField(string.Concat(_self.planner.atoms[i]));
 							}
 							EditorGUILayout.EndHorizontal();
@@ -143,6 +146,6 @@ namespace Anthill.AI
 			}
 		}
 		
-		#endregion
+	#endregion
 	}
 }

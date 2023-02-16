@@ -10,14 +10,13 @@ namespace Anthill.AI
 	/// </summary>
 	public abstract class AntAIBaseNode
 	{
-		#region Variables
+	#region Public Variables
 
 		public Rect rect;
 		public Rect content;
 		public string title;
 		public string value;
 		public bool isDragged;
-		public bool isSelected;
 		public bool isActive;
 		public List<AntAIBaseNode> links;
 
@@ -25,11 +24,52 @@ namespace Anthill.AI
 		public GUIStyle normalStyle;
 		public GUIStyle selectedStyle;
 
+	#endregion
+
+	#region Private Variables
+
 		protected GUIStyle _bodyStyle;
 		protected GUIStyle _titleStyle;
 
-		#endregion
-		#region Public Methods
+		protected bool _isSelected;
+		protected Color _color = AntAIEditorStyle.CardWhite;
+
+	#endregion
+
+	#region Getters / Setters
+		
+		public Vector2 Position
+		{
+			get => rect.position;
+			set => rect.position = value;
+		}
+
+		public virtual bool IsSelected
+		{
+			get => _isSelected;
+			set
+			{
+				_isSelected = value;
+				currentStyle = (_isSelected)
+					? selectedStyle
+					: normalStyle;
+			}
+		}
+
+		public virtual Color Color
+		{
+			get => _color;
+			set => _color = value;
+		}
+
+		public virtual string Title
+		{
+			get => title;
+		}
+		
+	#endregion
+
+	#region Public Methods
 
 		public AntAIBaseNode(Vector2 aPosition, float aWidth, float aHeight,
 			GUIStyle aDefaultStyle, GUIStyle aSelectedStyle)
@@ -44,6 +84,10 @@ namespace Anthill.AI
 
 			_titleStyle = new GUIStyle();
 			_titleStyle.fontStyle = FontStyle.Bold;
+			if (EditorGUIUtility.isProSkin)
+			{
+				_titleStyle.normal.textColor = Color.white;
+			}
 			
 			links = new List<AntAIBaseNode>();
 		}
@@ -59,7 +103,11 @@ namespace Anthill.AI
 			GUI.Box(rect, "", currentStyle);
 			
 			// Title
-			GUI.Label(new Rect(rect.x + 12.0f, rect.y + 12.0f, rect.y + 12.0f, rect.width - 24.0f), title, _titleStyle);
+			GUI.Label(
+				new Rect(rect.x + 12.0f, rect.y + 12.0f, rect.y + 12.0f, rect.width - 24.0f), 
+				title, 
+				_titleStyle
+			);
 
 			content.x = rect.x + 7.0f;
 			content.y = rect.y + 30.0f;
@@ -70,6 +118,7 @@ namespace Anthill.AI
 
 		public virtual bool ProcessEvents(Event aEvent, AntAIWorkbench aWorkbench)
 		{
+			bool result = false;
 			switch (aEvent.type)
 			{
 				case EventType.MouseDown :
@@ -79,18 +128,18 @@ namespace Anthill.AI
 						{
 							isDragged = true;
 							GUI.changed = true;
-							isSelected = true;
-							currentStyle = selectedStyle;
+							IsSelected = true;
+							result = true;
 						}
 						else
 						{
 							GUI.changed = true;
-							isSelected = false;
+							IsSelected = false;
 							currentStyle = normalStyle;
 						}
 					}
 
-					if (aEvent.button == 1 && isSelected &&
+					if (aEvent.button == 1 && IsSelected &&
 						rect.Contains(aEvent.mousePosition))
 					{
 						ProcessContextMenu();
@@ -101,8 +150,8 @@ namespace Anthill.AI
 				case EventType.MouseUp :
 					if (isDragged && aWorkbench.IsAlignToGrid)
 					{
-						var dx = Mathf.Floor((rect.x - aWorkbench.Offset.x) / 20.0f);
-						var dy = Mathf.Floor((rect.y - aWorkbench.Offset.y) / 20.0f);
+						var dx = Mathf.RoundToInt((rect.x - aWorkbench.Offset.x) / 20.0f);
+						var dy = Mathf.RoundToInt((rect.y - aWorkbench.Offset.y) / 20.0f);
 						rect.x = aWorkbench.Offset.x + dx * 20.0f;
 						rect.y = aWorkbench.Offset.y + dy * 20.0f;
 						aWorkbench.Repaint();
@@ -115,11 +164,11 @@ namespace Anthill.AI
 					{
 						Drag(aEvent.delta);
 						aEvent.Use();
-						return true;
+						result = true;
 					}
 					break;
 			}
-			return false;
+			return result;
 		}
 
 		public Vector2 GetOutputPoint(Vector2 aToPosition)
@@ -156,8 +205,9 @@ namespace Anthill.AI
 			);
 		}
 
-		#endregion
-		#region Private Methods
+	#endregion
+
+	#region Private Methods
 
 		protected virtual void ProcessContextMenu()
 		{
@@ -186,15 +236,6 @@ namespace Anthill.AI
 			return style;
 		}
 
-		#endregion
-		#region Getters / Setters
-		
-		public Vector2 Position
-		{
-			get => rect.position;
-			set => rect.position = value;
-		}
-		
-		#endregion
+	#endregion
 	}
 }

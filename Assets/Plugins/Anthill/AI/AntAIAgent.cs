@@ -10,7 +10,7 @@ namespace Anthill.AI
 	[AddComponentMenu("Anthill/AntAIAgent")]
 	public class AntAIAgent : MonoBehaviour
 	{
-		#region Variables
+	#region Public Variables
 
 		[Tooltip("Enable this if you don't want use the standart Update() method.")]
 		public bool manualUpdate;
@@ -24,7 +24,11 @@ namespace Anthill.AI
 		public AntAIPlanner planner = new AntAIPlanner();
 		public AntAICondition worldState = new AntAICondition();
 		public AntAIPlan currentPlan = new AntAIPlan();
-		
+	
+	#endregion
+
+	#region Private Variables
+
 		private List<AntAIState> _states;
 		private AntAIState _currentState;
 		private AntAICondition _currentGoal;
@@ -32,8 +36,9 @@ namespace Anthill.AI
 
 		private float _thinkInterval;
 
-		#endregion
-		#region Getters / Setters
+	#endregion
+
+	#region Getters / Setters
 		
 		/// <summary>
 		/// Returns active goal.
@@ -45,8 +50,9 @@ namespace Anthill.AI
 		/// </summary>
 		public AntAIState State { get => _currentState; }
 		
-		#endregion
-		#region Unity Calls
+	#endregion
+
+	#region Unity Calls
 
 		private void Awake()
 		{
@@ -113,8 +119,9 @@ namespace Anthill.AI
 			}
 		}
 
-		#endregion
-		#region Public Methods
+	#endregion
+
+	#region Public Methods
 
 		/// <summary>
 		/// Calling this function to update the AI decisions.
@@ -200,8 +207,9 @@ namespace Anthill.AI
 			SetState(defAction.state.name, true);
 		}
 
-		#endregion
-		#region Private Methods
+	#endregion
+
+	#region Private Methods
 
 		private bool ContainsState(string aName)
 		{
@@ -258,6 +266,6 @@ namespace Anthill.AI
 			}
 		}
 		
-		#endregion
+	#endregion
 	}
 }

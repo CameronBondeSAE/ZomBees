@@ -8,14 +8,33 @@ namespace Anthill.AI
 	/// </summary>
 	public abstract class AntAIState : MonoBehaviour
 	{
-		#region Variables
+	#region Private Variables
 		
 		private bool _isFinished = false;
 		private bool _allowInterrupting = true;
 		private List<string> _interruptions = new List<string>();
 		
-		#endregion
-		#region Public Methods
+	#endregion
+
+	#region Getters / Setters
+		
+		/// <summary>
+		/// List of interruption conditions.
+		/// </summary>
+		public List<string> Interruptions { get => _interruptions; }
+
+		/// <summary>
+		/// Determines possobility to force interruption of the current state.
+		/// </summary>
+		public virtual bool AllowInterrupting
+		{
+			get => _allowInterrupting;
+			set => _allowInterrupting = value;
+		}
+		
+	#endregion
+
+	#region Public Methods
 		
 		/// <summary>
 		/// Calling when game object and state is created.
@@ -108,23 +127,6 @@ namespace Anthill.AI
 			return false;
 		}
 
-		#endregion
-		#region Getters / Setters
-		
-		/// <summary>
-		/// List of interruption conditions.
-		/// </summary>
-		public List<string> Interruptions { get => _interruptions; }
-
-		/// <summary>
-		/// Determines possobility to force interruption of the current state.
-		/// </summary>
-		public virtual bool AllowInterrupting
-		{
-			get => _allowInterrupting;
-			set => _allowInterrupting = value;
-		}
-		
-		#endregion
+	#endregion
 	}
 }
