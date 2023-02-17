@@ -8,7 +8,7 @@ namespace Marcus
     public class GuyDudeAlignment : MonoBehaviour
     {
         // Variable pointing to your Neighbours component
-        private GuyDudeNeighbours neighbours;
+        public GuyDudeNeighbours neighbours;
         
         public float force;
         Vector3 targetDirection;
@@ -22,10 +22,7 @@ namespace Marcus
         void FixedUpdate()
         {
             // Some are Torque, some are Force		
-            if (neighbours != null && neighbours.neighbourDudes != null)
-            {
-                targetDirection = CalculateMove(neighbours.neighbourDudes);
-            }
+            targetDirection = CalculateMove(neighbours.neighbourDudes);
 
             // Cross will take YOUR direction and the TARGET direction and turn it into a rotation force vector
             Vector3 cross = Vector3.Cross(transform.forward, targetDirection);

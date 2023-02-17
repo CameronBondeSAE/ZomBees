@@ -6,7 +6,7 @@ namespace Marcus
 {
     public class GuyDudeSeparation : MonoBehaviour
     {
-        private GuyDudeNeighbours neighbours;
+        public GuyDudeNeighbours neighbours;
         
         Vector3 targetPosition;
         private Rigidbody rb;
@@ -21,10 +21,7 @@ namespace Marcus
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (neighbours != null && neighbours.neighbourDudes != null)
-            {
-                targetPosition = CalculateMove(neighbours.neighbourDudes);
-            }
+            targetPosition = CalculateMove(neighbours.neighbourDudes);
             
             Vector3 directionAwayFromTarget = (transform.position - targetPosition).normalized;
             rb.AddForce(directionAwayFromTarget * force);
