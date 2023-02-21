@@ -20,8 +20,9 @@ GameObject:
   - component: {fileID: 5143625605528576948}
   - component: {fileID: -6430991568586597876}
   - component: {fileID: -6769917441932770529}
-  - component: {fileID: -201657598699274531}
-  m_Layer: 0
+  - component: {fileID: 1796058845128724838}
+  - component: {fileID: 944401354550413188}
+  m_Layer: 14
   m_Name: LittleGuy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +42,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5143625605528576950
 MeshFilter:
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728de552ef46851498d7b77940195cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: {fileID: 5143625605528576948}
+  startingState: {fileID: 0}
   currentState: {fileID: 0}
 --- !u!114 &5143625605528576947
 MonoBehaviour:
@@ -239,7 +240,7 @@ MonoBehaviour:
   guy: {fileID: 5143625605528576947}
   target: {fileID: 0}
   turnSpeed: 0.05
---- !u!114 &-201657598699274531
+--- !u!114 &1796058845128724838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,3 +255,25 @@ MonoBehaviour:
   comrades:
     serializedVersion: 2
     m_Bits: 16384
+  friendsList: []
+--- !u!135 &944401354550413188
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}

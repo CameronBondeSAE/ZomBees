@@ -18,9 +18,11 @@ GameObject:
   - component: {fileID: 5143625605528576953}
   - component: {fileID: 6167758006184477401}
   - component: {fileID: -8442080190741209546}
+  - component: {fileID: 2251457496187910197}
+  - component: {fileID: 6652227294163101882}
   - component: {fileID: 1653025622359038949}
   m_Layer: 14
-  m_Name: LittleGuy_Neighbouring
+  m_Name: LittleGuy_Alignment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +41,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5143625605528576950
 MeshFilter:
@@ -210,6 +212,34 @@ MonoBehaviour:
   comrades:
     serializedVersion: 2
     m_Bits: 16384
+  friendsList: []
+--- !u!114 &2251457496187910197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25896563404c2446ab9215e4f051735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbours: {fileID: -8442080190741209546}
+  force: 5
+--- !u!114 &6652227294163101882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143625605528576955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9189c094191dfd4ba01d5ab1db2ea68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guy: {fileID: 5143625605528576947}
 --- !u!135 &1653025622359038949
 SphereCollider:
   m_ObjectHideFlags: 0
