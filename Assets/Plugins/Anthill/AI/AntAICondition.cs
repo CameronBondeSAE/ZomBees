@@ -5,16 +5,21 @@ namespace Anthill.AI
 	/// </summary>
 	public class AntAICondition
 	{
-		#region Variables
+	#region Variables
 
 		public string name;   // Name of the Conditions list.
 		public bool[] values; // Values of the conditions.
 		public bool[] mask;   // Mask of the conditions.
 
+	#endregion
+
+	#region Private Variables
+
 		private AntAIPlanner _planner;
 
-		#endregion
-		#region Public Methods
+	#endregion
+
+	#region Public Methods
 
 		public AntAICondition()
 		{
@@ -271,6 +276,6 @@ namespace Anthill.AI
 			return result;
 		}
 
-		#endregion
+	#endregion
 	}
 }

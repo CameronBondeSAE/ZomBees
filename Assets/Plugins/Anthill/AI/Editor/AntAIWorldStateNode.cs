@@ -4,14 +4,13 @@ namespace Anthill.AI
 	using UnityEditor;
 
 	using Anthill.Utils;
+	using Anthill.Extensions;
 
 	/// <summary>
 	/// This is implementation world state card for debuging of the scenarios.
 	/// </summary>
 	public class AntAIWorldStateNode : AntAIBaseNode
 	{
-		#region Variables
-
 		public delegate void WorldStateNodeDelegate(AntAIWorldStateNode aNode);
 		public event WorldStateNodeDelegate EventDelete;
 		public event WorldStateNodeDelegate EventClearPlan;
@@ -19,20 +18,53 @@ namespace Anthill.AI
 		public delegate void BuildPlanDelegate(AntAIWorldStateNode aNode, AntAIPlan aPlan, AntAIPlanner aPlanner);
 		public event BuildPlanDelegate EventBuildPlan;
 
+	#region Private Variables
+
 		private AntAIScenario _scenario;
 		private AntAIWorldState _worldState;
 		private GUIStyle _badgeStyle;
 		private GUIStyle _labelStyle;
 
-		private const float LINE_HEIGHT = 20.0f;
+		private const float lineHeight = 21.0f;
+		private string _currentGoal = string.Empty;
 
-		#endregion
-		#region Public Methods
+	#endregion
+
+	#region Getters / Setters
+
+		public AntAIScenario Scenario
+		{
+			get => _scenario;
+			set
+			{
+				_scenario = value;
+				rect.position = new Vector2(200.0f, 30.0f);
+			}
+		}
+
+		public AntAIWorldState WorldState
+		{
+			get => _worldState;
+			set
+			{
+				_worldState = value;
+				rect.position = _worldState.position;
+			}
+		}
+
+		public override Color Color
+		{
+			get => AntAIEditorStyle.CardOrange;
+		}
+
+	#endregion
+
+	#region Public Methods
 
 		public AntAIWorldStateNode(Vector2 aPosition, float aWidth, float aHeight,
 			GUIStyle aDefaultStyle, GUIStyle aSelectedStyle) : base(aPosition, aWidth, aHeight, aDefaultStyle, aSelectedStyle)
 		{
-			_badgeStyle = new GUIStyle("CN CountBadge");
+			_badgeStyle = new GUIStyle(EditorStyles.toolbarButton);
  			_badgeStyle.normal.textColor = Color.white;
 			_badgeStyle.active.textColor = Color.white;
 			_badgeStyle.focused.textColor = Color.white;
@@ -63,9 +95,14 @@ namespace Anthill.AI
 				return;
 			}
 
+			if (_worldState.isAutoUpdate && Event.current.type == EventType.Repaint)
+			{
+				CheckGoals();
+			}
+
 			rect.height = (_worldState.list.Length > 0)
-				? LINE_HEIGHT * _worldState.list.Length
-				: LINE_HEIGHT;
+				? lineHeight * _worldState.list.Length - 1.0f
+				: lineHeight - 1.0f;
 			rect.height += 52.0f;
 			GUI.Box(rect, "", currentStyle);
 			
@@ -75,11 +112,12 @@ namespace Anthill.AI
 			content.x = rect.x + 7.0f;
 			content.y = rect.y + 30.0f;
 			content.width = rect.width - 14.0f;
-			content.height = rect.height - 50.0f;
+			content.height = rect.height - 52.0f;
 			GUI.Box(content, "", _bodyStyle);
 
 			var r = new Rect(rect.x + rect.width - 25.0f, rect.y + 11.0f, 20.0f, 44.0f);
 			EditorGUI.BeginChangeCheck();
+
 			GUILayout.BeginArea(r);
 			if (GUILayout.Button("", "OL Plus", GUILayout.MaxWidth(16.0f), GUILayout.MaxHeight(16.0f)))
 			{
@@ -95,16 +133,6 @@ namespace Anthill.AI
 			}
 			GUILayout.EndArea();
 
-#if UNITY_2019_3_OR_NEWER
-			content.y += 3.0f;
-#else
-			content.y += 1.0f;
-#endif
-
-			content.height = (_worldState.list.Length > 0)
-				? LINE_HEIGHT * _worldState.list.Length
-				: LINE_HEIGHT;
-
 			var c = GUI.color;
 			GUILayout.BeginArea(content);
 			{
@@ -116,30 +144,26 @@ namespace Anthill.AI
 					{
 						for (int i = 0, n = _worldState.list.Length; i < n; i++)
 						{
-#if UNITY_2019_3_OR_NEWER
-							GUILayout.BeginHorizontal();
-#else
-							GUILayout.BeginHorizontal("Icon.ClipSelected");
-#endif
+							GUILayout.BeginHorizontal(EditorStyles.toolbar);
 							{
-								GUILayout.Space(4.0f);
 								GUI.color = c * ((_worldState.list[i].value) 
-									? new Color(0.5f, 1.0f, 0.5f) // Green
-									: new Color(1.0f, 0.5f, 0.5f) // Red
+									? AntAIEditorStyle.Green
+									: AntAIEditorStyle.Red
 								);
 								
-								if (GUILayout.Button(AntAIWorkbench.BoolToStr(_worldState.list[i].value), _badgeStyle, GUILayout.MaxWidth(20.0f), GUILayout.MaxHeight(20.0f)))
+								if (GUILayout.Button(_worldState.list[i].value.ToStr(), _badgeStyle, GUILayout.MaxWidth(20.0f)))
 								{
 									_worldState.list[i].value = !_worldState.list[i].value;
+									if (_worldState.isAutoUpdate)
+									{
+										BuildPlanHandler();
+									}
 								}
 
-#if UNITY_2019_3_OR_NEWER
-								GUILayout.Label(_scenario.conditions.GetName(_worldState.list[i].id), _labelStyle);
-#else
-								GUILayout.Label(_scenario.conditions.GetName(_worldState.list[i].id));
-#endif
+								EditorGUILayout.LabelField(_scenario.conditions.GetName(_worldState.list[i].id), EditorStyles.miniBoldLabel);
+
 								GUI.color = c;
-								if (GUILayout.Button("", "OL Minus", GUILayout.MaxWidth(18.0f), GUILayout.MaxHeight(18.0f)))
+								if (GUILayout.Button("×", EditorStyles.toolbarButton, GUILayout.MaxWidth(18.0f)))
 								{
 									delIndex = i;
 								}
@@ -156,7 +180,7 @@ namespace Anthill.AI
 				}
 				else
 				{
-					GUILayout.Label("<No Coditions>", EditorStyles.centeredGreyMiniLabel);
+					GUILayout.Label("No Coditions", EditorStyles.centeredGreyMiniLabel);
 				}
 			}
 			GUILayout.EndArea();
@@ -173,14 +197,28 @@ namespace Anthill.AI
 			menu.AddItem(new GUIContent("Build Plan"), false, BuildPlanHandler);
 			menu.AddItem(new GUIContent("Clear Plan"), false, ClearPlanHandler);
 			menu.AddSeparator("");
+			menu.AddItem(new GUIContent("Auto Update"), _worldState.isAutoUpdate, AutoUpdateHandler);
 			menu.AddItem(new GUIContent("Delete World State"), false, DeleteHandler);
 			menu.ShowAsContext();
 		}
+
+		private void CheckGoals()
+		{
+			for (int i = 0, n = _scenario.goals.Length; i < n; i++)
+			{
+				if (_scenario.goals[i].isDefault && !_currentGoal.Equals(_scenario.goals[i].name))
+				{
+					_currentGoal = _scenario.goals[i].name;
+					BuildPlanHandler();
+				}
+			}
+		}
 		
-		#endregion
-		#region Event Handlers
+	#endregion
+
+	#region Event Handlers
 		
-		private void BuildPlanHandler()
+		public void BuildPlanHandler()
 		{
 			// Create planner.
 			var planner = new AntAIPlanner();
@@ -238,6 +276,11 @@ namespace Anthill.AI
 			}
 		}
 
+		private void AutoUpdateHandler()
+		{
+			_worldState.isAutoUpdate = !_worldState.isAutoUpdate;
+		}
+
 		private void DeleteHandler()
 		{
 			if (EditorUtility.DisplayDialog("Delete", "Remove the World State?", "Yes", "No"))
@@ -274,29 +317,6 @@ namespace Anthill.AI
 			EditorUtility.SetDirty(_scenario);
 		}
 
-		#endregion
-		#region Getters / Setters
-
-		public AntAIScenario Scenario
-		{
-			get => _scenario;
-			set
-			{
-				_scenario = value;
-				rect.position = _scenario.conditions.position;
-			}
-		}
-
-		public AntAIWorldState WorldState
-		{
-			get => _worldState;
-			set
-			{
-				_worldState = value;
-				rect.position = _worldState.position;
-			}
-		}
-
-		#endregion
+	#endregion
 	}
 }

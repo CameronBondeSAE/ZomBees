@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: DeliveryBot
   m_EditorClassIdentifier: 
   conditions:
-    position: {x: 330, y: 132}
     list:
     - id: 0
       name: Is Cargo Delivered
@@ -30,7 +29,7 @@ MonoBehaviour:
     isDefault: 1
     state: {fileID: 8400329349100883308, guid: 833b0a8c86341410c978f31bd430d721, type: 3}
     cost: 0
-    position: {x: 586, y: 135}
+    position: {x: 220, y: 40}
     pre:
     - id: 2
       value: 0
@@ -41,7 +40,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5515846128908556828, guid: 0c940e25a995546fa9e5d2ea52f5a5de, type: 3}
     cost: 0
-    position: {x: 786, y: 135}
+    position: {x: 423, y: 41}
     pre:
     - id: 2
       value: 0
@@ -54,7 +53,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4085724386837840609, guid: 806378908fe7e4d9f8ea7402179b33c7, type: 3}
     cost: 0
-    position: {x: 986, y: 135}
+    position: {x: 623, y: 41}
     pre:
     - id: 2
       value: 1
@@ -67,7 +66,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5033328925660565644, guid: 5374f1d38f57d43b4a6051050709c2c6, type: 3}
     cost: 0
-    position: {x: 786, y: 355}
+    position: {x: 423, y: 261}
     pre:
     - id: 2
       value: 1
@@ -82,7 +81,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 324823241764491759, guid: 1b316199a25ca4cb5abc9609d93d481a, type: 3}
     cost: 0
-    position: {x: 986, y: 355}
+    position: {x: 627, y: 262}
     pre:
     - id: 2
       value: 1
@@ -95,36 +94,30 @@ MonoBehaviour:
       value: 1
     - id: 2
       value: 0
-  - name: <Unnamed>
-    isDefault: 0
-    state: {fileID: 0}
-    cost: 0
-    position: {x: 151, y: 252}
-    pre: []
-    post: []
   goals:
   - name: Find Cargo
     isDefault: 0
-    position: {x: 606, y: 655}
+    position: {x: 220, y: 560}
     conditions:
     - id: 2
       value: 1
   - name: Delivery
     isDefault: 1
-    position: {x: 806, y: 655}
+    position: {x: 420, y: 560}
     conditions:
     - id: 0
       value: 1
   worldStates:
-  - position: {x: 607, y: 775}
+  - position: {x: 224, y: 684}
+    isAutoUpdate: 1
     list:
+    - id: 0
+      value: 0
     - id: 1
       value: 0
     - id: 2
       value: 0
     - id: 3
-      value: 1
+      value: 0
     - id: 4
       value: 0
-    - id: 0
-      value: 1

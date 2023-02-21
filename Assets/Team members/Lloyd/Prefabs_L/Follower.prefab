@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 889221430700715582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 889221432442366991}
@@ -99,7 +99,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -118,6 +118,8 @@ GameObject:
   - component: {fileID: 889221432442366977}
   - component: {fileID: 889221432442366988}
   - component: {fileID: 5398443304142197064}
+  - component: {fileID: 6965517448354199428}
+  - component: {fileID: 5860857128426339124}
   m_Layer: 14
   m_Name: Follower
   m_TagString: Untagged
@@ -134,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 889221432442366976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 889221430700715583}
@@ -153,15 +155,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712f94d40f652934da9aeccc4ad1f1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationPoint: {fileID: 0}
-  speed: 200
-  angle: 0
-  circleSize: 2000
+  rotationTransform: {fileID: 0}
+  maxSpeed: 150
+  speed: 70
+  angle: 129600
+  circleSize: 500
   reverseDirection: 0
   moveInX: 0
   moveInY: 0
   moveInZ: 0
-  layer:
+  followerLayer:
     serializedVersion: 2
     m_Bits: 16384
 --- !u!54 &889221432442366977
@@ -174,7 +177,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 10
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -198,13 +201,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889221432442366976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82193a8b06de18d47ae03c06c0bf21c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 500
-  sphereRadius: 80
+  force: 50
+  sphereRadius: 1
 --- !u!114 &5398443304142197064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,5 +221,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  torqueSpeed: 50
+  torqueSpeed: 500
   rb: {fileID: 0}
+--- !u!114 &6965517448354199428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889221432442366976}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd2edcb2cfe48144975c76d12f0030c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centerPoint: {x: 0, y: 0, z: 0}
+  radius: 100
+  numVectors: 6
+  moveSpeed: 200
+  maxSpeed: 500
+  minDistance: 10
+  reverseDirection: 0
+  moveInX: 0
+  moveInY: 0
+  moveInZ: 0
+--- !u!114 &5860857128426339124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889221432442366976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe5dbf48b01ba74a911d954576706f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 100
+  targetPos: {x: 0, y: 0, z: 0}

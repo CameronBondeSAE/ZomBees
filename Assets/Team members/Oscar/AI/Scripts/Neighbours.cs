@@ -9,7 +9,7 @@ namespace Oscar
     {
         public LayerMask comrades;
 
-        private List<GameObject> friendsList = new List<GameObject>();
+        public List<GameObject> friendsList = new List<GameObject>();
 
         /*
         * This code uses a bitwise operation to check if the layer of the GameObject represented by "other" is included

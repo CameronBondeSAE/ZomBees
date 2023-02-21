@@ -47,7 +47,7 @@ namespace Anthill.Animation
 		private int _complete;
 		private float _delay;
 
-		#region Unity Calls
+	#region Unity Calls
 
 		protected virtual void Awake()
 		{
@@ -113,8 +113,9 @@ namespace Anthill.Animation
 			}
 		}
 
-		#endregion
-		#region Public Methods
+	#endregion
+
+	#region Public Methods
 
 		/// <summary>
 		/// Change the current animation.
@@ -217,8 +218,9 @@ namespace Anthill.Animation
 			SetFrame(_currentFrame);
 		}
 
-		#endregion
-		#region Private Methods
+	#endregion
+
+	#region Private Methods
 
 		private void AnimationComplete()
 		{
@@ -259,8 +261,9 @@ namespace Anthill.Animation
 					: i;
 		}
 
-		#endregion
-		#region Getters / Setters
+	#endregion
+
+	#region Getters / Setters
 
 		/// <summary>
 		/// Returns true if current animation is playing.
@@ -298,6 +301,6 @@ namespace Anthill.Animation
 		/// </summary>
 		public int CurrentFrame { get => RoundFrame(_currentFrame); }
 
-		#endregion
+	#endregion
 	}
 }

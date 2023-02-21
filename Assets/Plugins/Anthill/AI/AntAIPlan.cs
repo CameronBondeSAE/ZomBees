@@ -7,14 +7,34 @@ namespace Anthill.AI
 	/// </summary>
 	public class AntAIPlan
 	{
-		#region Variables
+	#region Variables
 
 		public bool isSuccess; // True if plan is successed.
 
 		private readonly List<string> _actions;
 
-		#endregion
-		#region Public Methods
+	#endregion
+
+	#region Getters / Setters
+
+		/// <summary>
+		/// Returns name of the action by index.
+		/// </summary>
+		public string this[int aIndex]
+		{
+			get => (aIndex >= 0 && aIndex < _actions.Count)
+				? _actions[aIndex]
+				: string.Empty;
+		}
+
+		/// <summary>
+		/// Returns count of actions in the plan.
+		/// </summary>
+		public int Count { get => _actions.Count; }
+
+	#endregion
+
+	#region Public Methods
 
 		public AntAIPlan()
 		{
@@ -38,24 +58,6 @@ namespace Anthill.AI
 			_actions.Insert(0, aValue);
 		}
 
-		#endregion
-		#region Getters / Setters
-
-		/// <summary>
-		/// Returns name of the action by index.
-		/// </summary>
-		public string this[int aIndex]
-		{
-			get => (aIndex >= 0 && aIndex < _actions.Count)
-				? _actions[aIndex]
-				: string.Empty;
-		}
-
-		/// <summary>
-		/// Returns count of actions in the plan.
-		/// </summary>
-		public int Count { get => _actions.Count; }
-
-		#endregion
+	#endregion
 	}
 }

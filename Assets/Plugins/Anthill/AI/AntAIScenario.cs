@@ -2,6 +2,7 @@ namespace Anthill.AI
 {
 	using System;
 	using UnityEngine;
+	using Anthill.Utils;
 
 	/// <summary>
 	/// Scenario it's a collection of the conditions, actions and goals that need to know for
@@ -33,6 +34,135 @@ namespace Anthill.AI
 		/// </summary>
 		[HideInInspector]
 		public AntAIWorldState[] worldStates = new AntAIWorldState[0];
+	
+	#region Public Methods
+
+		public void AddCondition(string aName)
+		{
+			AntArray.Add(ref conditions.list, new AntAIScenarioConditionItem
+			{
+				id = conditions.list.Length,
+				name = aName
+			});
+		}
+
+		public void RemoveConditionAt(int aIndex)
+		{
+			if (aIndex >= 0 && aIndex < conditions.list.Length)
+			{
+				UpdateConditionIndexes(aIndex);
+				UpdateActionIndexes(aIndex);
+				UpdateGoalIndexes(aIndex);
+				UpdateWorldStates(aIndex);
+
+				AntArray.RemoveAt(ref conditions.list, aIndex);
+			}
+		}
+
+	#endregion
+
+	#region Private Methods
+
+		private void UpdateConditionIndexes(int aDelIndex)
+		{
+			for (int i = conditions.list.Length - 1; i >= 0; i--)
+			{
+				if (conditions.list[i].id > aDelIndex)
+				{
+					conditions.list[i].id -= 1;
+				}
+			}
+		}
+
+		private void UpdateActionIndexes(int aDelIndex)
+		{
+			for (int i = 0, n = actions.Length; i < n; i++)
+			{
+				var action = actions[i];
+
+				// Update pre conditions for actions.
+				for (int j = action.pre.Length - 1; j >= 0; j--)
+				{
+					if (action.pre[j].id == aDelIndex)
+					{
+						AntArray.RemoveAt(ref action.pre, j);
+					}
+					else
+					{
+						if (action.pre[j].id > aDelIndex)
+						{
+							action.pre[j].id -= 1;
+						}
+					}
+				}
+
+				// Update post conditions for actions.
+				for (int j = action.post.Length - 1; j >= 0; j--)
+				{
+					if (action.post[j].id == aDelIndex)
+					{
+						AntArray.RemoveAt(ref action.post, j);
+					}
+					else
+					{
+						if (action.post[j].id > aDelIndex)
+						{
+							action.post[j].id -= 1;
+						}
+					}
+				}
+			}
+		}
+
+		private void UpdateGoalIndexes(int aDelIndex)
+		{
+			for (int i = 0, n = goals.Length; i < n; i++)
+			{
+				var goal = goals[i];
+
+				// Update goal conditions.
+				for (int j = goal.conditions.Length - 1; j >= 0; j--)
+				{
+					if (goal.conditions[j].id == aDelIndex)
+					{
+						AntArray.RemoveAt(ref goal.conditions, j);
+					}
+					else
+					{
+						if (goal.conditions[j].id > aDelIndex)
+						{
+							goal.conditions[j].id -= 1;
+						}
+					}
+				}
+			}
+		}
+
+		private void UpdateWorldStates(int aDelIndex)
+		{
+			for (int i = 0, n = worldStates.Length; i < n; i++)
+			{
+				var state = worldStates[i];
+
+				// Update world state conditions.
+				for (int j = state.list.Length - 1; j >= 0; j--)
+				{
+					if (state.list[j].id == aDelIndex)
+					{
+						AntArray.RemoveAt(ref state.list, j);
+					}
+					else
+					{
+						if (state.list[j].id > aDelIndex)
+						{
+							state.list[j].id -= 1;
+						}
+					}
+				}
+			}
+		}
+
+	#endregion
 	}
 
 	/// <summary>
@@ -43,6 +173,7 @@ namespace Anthill.AI
 	public class AntAIWorldState
 	{
 		public Vector2 position;
+		public bool isAutoUpdate;
 		public AntAIScenarioItem[] list;
 		
 		public AntAIWorldState()
@@ -112,7 +243,7 @@ namespace Anthill.AI
 	[Serializable]
 	public class AntAIScenarioCondition
 	{
-		public Vector2 position;
+		// public Vector2 position;
 		public AntAIScenarioConditionItem[] list = new AntAIScenarioConditionItem[0];
 		
 		public AntAIScenarioCondition Clone()

@@ -4,7 +4,7 @@ namespace Anthill.AI
 
 	public class AntAIAction
 	{
-		#region Variables
+	#region Public Variables
 
 		public int cost;            // Cost of the action.
 		public string name;         // Name of the action.
@@ -12,8 +12,9 @@ namespace Anthill.AI
 		public AntAICondition pre;  // Previous world state.
 		public AntAICondition post; // Current world state.
 
-		#endregion
-		#region Public Methods
+	#endregion
+	
+	#region Public Methods
 
 		public AntAIAction(string aName, int aCost = 1)
 		{
@@ -24,6 +25,6 @@ namespace Anthill.AI
 			post = new AntAICondition();
 		}
 
-		#endregion
+	#endregion
 	}
 }

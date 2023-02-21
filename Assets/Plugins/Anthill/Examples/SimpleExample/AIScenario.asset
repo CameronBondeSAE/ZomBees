@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: AIScenario
   m_EditorClassIdentifier: 
   conditions:
-    position: {x: 71, y: 276}
     list:
     - id: 0
       name: Is Cargo Delivered
@@ -27,23 +26,21 @@ MonoBehaviour:
       name: Near Base
   actions:
   - name: Search Cargo
-    isDefault: 0
+    isDefault: 1
     state: {fileID: 0}
     cost: 0
-    position: {x: 442, y: 370}
+    position: {x: 400, y: 40}
     pre:
     - id: 2
       value: 0
     post:
     - id: 1
       value: 1
-    - id: 4
-      value: 0
   - name: Pickup Cargo
     isDefault: 0
     state: {fileID: 0}
     cost: 0
-    position: {x: 693, y: 328}
+    position: {x: 600, y: 40}
     pre:
     - id: 2
       value: 0
@@ -56,7 +53,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 0}
     cost: 0
-    position: {x: 930, y: 318}
+    position: {x: 800, y: 40}
     pre:
     - id: 2
       value: 1
@@ -69,7 +66,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 0}
     cost: 0
-    position: {x: 1159, y: 322}
+    position: {x: 600, y: 260}
     pre:
     - id: 2
       value: 1
@@ -84,7 +81,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 0}
     cost: 0
-    position: {x: 1375, y: 338}
+    position: {x: 800, y: 260}
     pre:
     - id: 2
       value: 1
@@ -100,18 +97,19 @@ MonoBehaviour:
   goals:
   - name: Find Cargo
     isDefault: 0
-    position: {x: 281, y: 794}
+    position: {x: 400, y: 560}
     conditions:
     - id: 2
       value: 1
   - name: Delivery
     isDefault: 1
-    position: {x: 491, y: 796}
+    position: {x: 600, y: 560}
     conditions:
     - id: 0
       value: 1
   worldStates:
-  - position: {x: 165, y: 933}
+  - position: {x: 393, y: 746}
+    isAutoUpdate: 1
     list:
     - id: 0
       value: 0
@@ -122,4 +120,4 @@ MonoBehaviour:
     - id: 3
       value: 0
     - id: 4
-      value: 1
+      value: 0

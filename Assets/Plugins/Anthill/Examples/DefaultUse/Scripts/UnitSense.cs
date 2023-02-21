@@ -45,15 +45,11 @@ public class UnitSense : MonoBehaviour, ISense
 
 		// 2. Optimized setup of the World Conditions for the planner.
 		// -----------------------------------------------------------
-		aWorldState.BeginUpdate(aAgent.planner);
-		{
-			aWorldState.Set(DeliveryBot.IsCargoDelivered, false);
-			aWorldState.Set(DeliveryBot.SeeCargo, IsSeeCargo());
-			aWorldState.Set(DeliveryBot.HasCargo, _control.HasCargo);
-			aWorldState.Set(DeliveryBot.SeeBase, IsSeeBase());
-			aWorldState.Set(DeliveryBot.NearBase, IsNearBase());
-		}
-		aWorldState.EndUpdate();
+		aWorldState.Set(DeliveryBot.IsCargoDelivered, false);
+		aWorldState.Set(DeliveryBot.SeeCargo, IsSeeCargo());
+		aWorldState.Set(DeliveryBot.HasCargo, _control.HasCargo);
+		aWorldState.Set(DeliveryBot.SeeBase, IsSeeBase());
+		aWorldState.Set(DeliveryBot.NearBase, IsNearBase());
 
 		// HINT: When you have finished the AI Scenario, just export all conditions
 		// as enum and use it to set conditions from the code.
