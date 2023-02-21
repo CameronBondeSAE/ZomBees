@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
+using Random = System.Random;
 
 public class Follower : MonoBehaviour, IFollower
 {
-    public Transform rotationPoint;
+    public Transform rotationTransform;
+    private Transform target;
+
+    public float maxSpeed;
     public float speed;
     public float angle;
     public float circleSize;
@@ -19,10 +23,19 @@ public class Follower : MonoBehaviour, IFollower
 
     private Rigidbody rb;
 
-    public LayerMask layer;
+    public LayerMask followerLayer;
+
+    private float angleOffset;
+
+    private void Start()
+    {
+        Begin();
+    }
 
     public void Begin()
     {
+        //angleOffset = Random.Range(0f, 360f);
+        
         rb = GetComponent<Rigidbody>();
 
         reverseDirection = (UnityEngine.Random.value > 0.5f);
@@ -30,22 +43,22 @@ public class Follower : MonoBehaviour, IFollower
         moveInY = (UnityEngine.Random.value > 0.5f);
         moveInZ = (UnityEngine.Random.value > 0.5f);
 
-        Physics.IgnoreLayerCollision(layer, layer, true);
+        Physics.IgnoreLayerCollision(followerLayer, followerLayer, true);
     }
 
-    public void SetRotationPoint(Transform transform)
+    public void SetRotationPoint(Transform swarmTransform)
     {
-        rotationPoint = transform;
+        rotationTransform = swarmTransform;
     }
-
+    
     private void FixedUpdate()
     {
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        target = rotationTransform;
         if (rb != null)
         {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, speed);
-
             CircleMovement();
-            MoveToTarget();
+            //MoveToTarget();
         }
     }
 
@@ -53,16 +66,16 @@ public class Follower : MonoBehaviour, IFollower
     {
         if (reverseDirection)
         {
-            angle = Mathf.Repeat(angle - Time.deltaTime * speed, 360.0f);
+            angle = Mathf.Repeat(angle - Time.deltaTime * speed + angleOffset, 360.0f);
         }
         else
         {
-            angle = Mathf.Repeat(angle + Time.deltaTime * speed, 360.0f);
+            angle = Mathf.Repeat(angle + Time.deltaTime * speed + angleOffset, 360.0f);
         }
 
-        float x = rotationPoint.position.x;
-        float y = rotationPoint.position.y;
-        float z = rotationPoint.position.z;
+        float x = rotationTransform.position.x;
+        float y = rotationTransform.position.y;
+        float z = rotationTransform.position.z;
 
         if (moveInX)
         {
@@ -81,25 +94,25 @@ public class Follower : MonoBehaviour, IFollower
 
         Vector3 targetPosition = new Vector3(x, y, z);
         Vector3 direction = targetPosition - transform.position;
-        Vector3 forceDirection = direction.normalized;
-
         float distance = direction.magnitude;
+
+        float force = 0f;
         if (distance > circleSize)
         {
-            rb.AddForce(forceDirection * (distance - circleSize) * speed * Time.deltaTime, ForceMode.VelocityChange);
+            force = (distance - circleSize) * speed * Time.deltaTime;
         }
         else if (distance < circleSize)
         {
-            rb.AddForce(forceDirection * (circleSize - distance) * speed * Time.deltaTime, ForceMode.VelocityChange);
+            force = (circleSize - distance) * speed * Time.deltaTime;
         }
 
-        rb.AddForce(direction.normalized * speed * Time.deltaTime, ForceMode.VelocityChange);
+        rb.AddForce(direction.normalized * force + direction.normalized * speed * Time.deltaTime, ForceMode.VelocityChange);
     }
 
     private void MoveToTarget()
     {
-        Vector3 targetPosition = rotationPoint.position +
-                                 circleSize * (transform.position - rotationPoint.position).normalized;
+        Vector3 targetPosition = rotationTransform.position +
+                                 circleSize * (transform.position - rotationTransform.position).normalized;
         Vector3 direction = targetPosition - transform.position;
         rb.AddForce(direction.normalized * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }

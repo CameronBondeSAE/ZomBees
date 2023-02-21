@@ -61,7 +61,7 @@ public class FollowerPushback : MonoBehaviour, IFollower
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(transform.position, sphereRadius);
     }
 }

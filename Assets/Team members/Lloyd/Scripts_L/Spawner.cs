@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
+    // Spawner instantiates GameObject at random 360 direction
+    // for amount numSwarmers every second waitTime
+    // 
     public int numSwarmers;
     public GameObject swarmer;
 
@@ -16,9 +19,13 @@ public class Spawner : MonoBehaviour
 
     private GameObject parent;
 
+    public QueenEvent queenEvent;
+
     private void Start()
     {
         parent = new GameObject();
+
+        queenEvent = GetComponent<QueenEvent>();
         
         StartCoroutine(SpawnSwarmer());
     }
@@ -31,12 +38,15 @@ public class Spawner : MonoBehaviour
             Vector3 position = transform.position;
             int randomAngle = Random.Range(0, 360);
             randomAngle = Mathf.RoundToInt(randomAngle);
-            Quaternion rotation = Quaternion.Euler(0, randomAngle, 0);
+            Quaternion rotation = Quaternion.Euler(transform.rotation.x + randomAngle,transform.rotation.y + randomAngle,transform.rotation.z + randomAngle);
             GameObject swarmerObj = Instantiate(swarmer, position, rotation) as GameObject;
 
             Follower follower;
             follower = swarmerObj.GetComponent<Follower>();
             follower.SetRotationPoint(transform);
+
+            queenEvent.ChangeSwarmTransform += swarmerObj.GetComponent<Follower>().SetRotationPoint;
+
             follower.Begin();
 
             FollowerLookTowards turn;

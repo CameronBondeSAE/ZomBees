@@ -21,7 +21,7 @@ public class FollowerLookTowards : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 targetDir = target.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
+        Quaternion targetRotation = Quaternion.LookRotation(targetDir, transform.up);
         Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * torqueSpeed);
         rb.MoveRotation(rotation);
     }
