@@ -17,8 +17,8 @@ namespace Marcus
         // Start is called before the first frame update
         void Start()
         {
-            xOffset = Random.Range(0, 50);
-            zOffset = Random.Range(0, 50);
+            xOffset = Random.Range(-1000, 1000);
+            zOffset = Random.Range(-1000, 1000);
 
             rb = GetComponent<Rigidbody>();
         }
