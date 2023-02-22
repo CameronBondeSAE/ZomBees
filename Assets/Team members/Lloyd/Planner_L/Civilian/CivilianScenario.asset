@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: CivilianScenario
+  m_EditorClassIdentifier: 
+  conditions:
+    list:
+    - id: 0
+      name: SeeBees
+    - id: 1
+      name: InCombatDistance
+  actions:
+  - name: Idle
+    isDefault: 1
+    state: {fileID: 2953068733267188434, guid: 52ca1e766581d7e45a214e1aa5e97876, type: 3}
+    cost: 5
+    position: {x: 392, y: 49}
+    pre:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
+    post: []
+  - name: MoveToFight
+    isDefault: 0
+    state: {fileID: 336746838650548776, guid: 17876aa8c7611dd41934786aa4777ea8, type: 3}
+    cost: 0
+    position: {x: 853, y: 89}
+    pre:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 0
+    post:
+    - id: 1
+      value: 1
+  - name: Attack
+    isDefault: 0
+    state: {fileID: 336746838650548776, guid: 17876aa8c7611dd41934786aa4777ea8, type: 3}
+    cost: 0
+    position: {x: 810, y: 338}
+    pre:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 1
+    post: []
+  - name: Search
+    isDefault: 0
+    state: {fileID: 2576729589343070424, guid: ce3dd9320bc8a5347a918cf5f27dde64, type: 3}
+    cost: 0
+    position: {x: 643, y: 90}
+    pre:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
+    post: []
+  goals:
+  - name: FightBees
+    isDefault: 1
+    position: {x: 422, y: 320}
+    conditions:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 1
+  worldStates: []

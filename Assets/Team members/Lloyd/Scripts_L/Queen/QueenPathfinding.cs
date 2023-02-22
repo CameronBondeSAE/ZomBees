@@ -58,7 +58,7 @@ public class QueenPathfinding : MonoBehaviour
         
         curSpeed = rb.velocity.magnitude;
 
-        QueenTurn();
+        //QueenTurn();
     }
 
     private void QueenTurn()

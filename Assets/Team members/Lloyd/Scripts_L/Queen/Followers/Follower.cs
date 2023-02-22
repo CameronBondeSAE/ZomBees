@@ -39,9 +39,21 @@ public class Follower : MonoBehaviour, IFollower
         rb = GetComponent<Rigidbody>();
 
         reverseDirection = (UnityEngine.Random.value > 0.5f);
-        moveInX = (UnityEngine.Random.value > 0.5f);
-        moveInY = (UnityEngine.Random.value > 0.5f);
-        moveInZ = (UnityEngine.Random.value > 0.5f);
+
+        moveInX = UnityEngine.Random.value > 0.5f;
+        moveInY = UnityEngine.Random.value > 0.5f;
+        moveInZ = UnityEngine.Random.value > 0.5f;
+
+        int count = (moveInX ? 1 : 0) + (moveInY ? 1 : 0) + (moveInZ ? 1 : 0);
+        if (count < 2) {
+            if (!moveInX) {
+                moveInX = true;
+            } else if (!moveInY) {
+                moveInY = true;
+            } else {
+                moveInZ = true;
+            }
+        }
 
         Physics.IgnoreLayerCollision(followerLayer, followerLayer, true);
     }
