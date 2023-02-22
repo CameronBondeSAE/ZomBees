@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: CamGuy
+  m_EditorClassIdentifier: 
+  conditions:
+    list:
+    - id: 0
+      name: hasThings
+    - id: 1
+      name: hasStuffs
+  actions:
+  - name: GetThing
+    isDefault: 0
+    state: {fileID: 720868268028485920, guid: 21b629564bf70ff4fb11c715bbd0fea8, type: 3}
+    cost: 0
+    position: {x: 326, y: 56}
+    pre:
+    - id: 0
+      value: 0
+    post:
+    - id: 0
+      value: 1
+  - name: GetStuff
+    isDefault: 0
+    state: {fileID: 1261127021300930339, guid: 65291b03d55e24f409b49bf0a7a8632f, type: 3}
+    cost: 1
+    position: {x: 532, y: 56}
+    pre:
+    - id: 1
+      value: 0
+    post:
+    - id: 1
+      value: 1
+  - name: Chill
+    isDefault: 1
+    state: {fileID: 720868268028485920, guid: 4be93f2d661659540b6eba288d5a1f74, type: 3}
+    cost: 0
+    position: {x: 777, y: 59}
+    pre: []
+    post: []
+  goals:
+  - name: HasEreythang
+    isDefault: 1
+    position: {x: 324, y: 265}
+    conditions:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 1
+  worldStates:
+  - position: {x: 323, y: 413}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
