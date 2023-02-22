@@ -41,7 +41,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5143625605528576950
 MeshFilter:
@@ -164,13 +164,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5143625605528576955}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f3ef7ff354ec3744a9c010e49dccc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 5143625605528576947}
-  feelerAmount: 10
+  feelerAmount: 3
 --- !u!114 &5143625605528576953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25896563404c2446ab9215e4f051735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guy: {fileID: 5143625605528576947}
   neighbours: {fileID: -8442080190741209546}
   force: 5
 --- !u!114 &6652227294163101882
@@ -240,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 5143625605528576947}
+  feel: {fileID: 6004558029404348797}
 --- !u!135 &1653025622359038949
 SphereCollider:
   m_ObjectHideFlags: 0

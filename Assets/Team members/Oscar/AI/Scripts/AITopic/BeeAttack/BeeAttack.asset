@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: BeeAttack
   m_EditorClassIdentifier: 
   conditions:
-    position: {x: 23, y: 116.000046}
     list:
     - id: 0
       name: CivilianFound
@@ -29,10 +28,10 @@ MonoBehaviour:
       name: NearCivilian
   actions:
   - name: FindCivilian
-    isDefault: 0
-    state: {fileID: 0}
+    isDefault: 1
+    state: {fileID: 5151639814098272507, guid: 9bac3fba4d742454ab0bae809586c585, type: 3}
     cost: 0
-    position: {x: 252, y: 109}
+    position: {x: 214.85712, y: 117.57143}
     pre:
     - id: 0
       value: 0
@@ -43,9 +42,9 @@ MonoBehaviour:
       value: 0
   - name: HuntCivilian
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 8498775084374475277, guid: 7c17b2551859b2d4986c1148ec2b5c54, type: 3}
     cost: 0
-    position: {x: 451, y: 108}
+    position: {x: 412.42853, y: 119.42857}
     pre:
     - id: 0
       value: 1
@@ -56,9 +55,9 @@ MonoBehaviour:
       value: 1
   - name: KillCivilian
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2070308679456346508, guid: 651b8a308b2afb5408bf9adb9a57f589, type: 3}
     cost: 0
-    position: {x: 650, y: 108}
+    position: {x: 611.42865, y: 122.28572}
     pre:
     - id: 5
       value: 1
@@ -69,9 +68,9 @@ MonoBehaviour:
       value: 1
   - name: FindHive
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 750766627820751241, guid: 255345cb40384d344903426054b38616, type: 3}
     cost: 0
-    position: {x: 848, y: 106}
+    position: {x: 812.28564, y: 118.85713}
     pre:
     - id: 1
       value: 1
@@ -82,9 +81,9 @@ MonoBehaviour:
       value: 1
   - name: ReportToHive
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 4285402013411140230, guid: d3e52d1dc37ca234d948d98a24c744d3, type: 3}
     cost: 0
-    position: {x: 1788, y: 43.000046}
+    position: {x: 1014.182, y: 372.31924}
     pre:
     - id: 1
       value: 1
@@ -99,24 +98,9 @@ MonoBehaviour:
       value: 0
   - name: ReturnToHive
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 7024754919687007859, guid: cdff72ff28dec3b43912f7f0c37677fc, type: 3}
     cost: 0
-    position: {x: 1582, y: 45.000046}
-    pre:
-    - id: 1
-      value: 1
-    - id: 2
-      value: 1
-    - id: 3
-      value: 0
-    post:
-    - id: 3
-      value: 1
-  - name: ReturnToHive
-    isDefault: 0
-    state: {fileID: 0}
-    cost: 0
-    position: {x: 1049, y: 106}
+    position: {x: 1011.8572, y: 118.85715}
     pre:
     - id: 1
       value: 1
@@ -129,9 +113,9 @@ MonoBehaviour:
       value: 1
   - name: ReportKill
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 4381177985382937254, guid: 1ba8791e94b12694bbbc90f48eafa4a9, type: 3}
     cost: 0
-    position: {x: 1246, y: 109}
+    position: {x: 1205.7141, y: 121}
     pre:
     - id: 1
       value: 1
@@ -144,21 +128,29 @@ MonoBehaviour:
       value: 1
     - id: 0
       value: 0
+  - name: BingChillin
+    isDefault: 0
+    state: {fileID: 5209514404538048304, guid: 352d2e1829b73604a9fe9dfe4cc8b3e9, type: 3}
+    cost: 0
+    position: {x: 1216, y: 380}
+    pre: []
+    post: []
   goals:
   - name: LocateCivilian
     isDefault: 0
-    position: {x: 14, y: 366}
+    position: {x: 214, y: 366}
     conditions:
     - id: 1
       value: 1
   - name: ReportKill
     isDefault: 1
-    position: {x: 217, y: 365}
+    position: {x: 417, y: 365}
     conditions:
     - id: 4
       value: 1
   worldStates:
-  - position: {x: 7, y: 497}
+  - position: {x: 205, y: 702}
+    isAutoUpdate: 1
     list:
     - id: 0
       value: 0

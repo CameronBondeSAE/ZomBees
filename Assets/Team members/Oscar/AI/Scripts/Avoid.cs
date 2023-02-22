@@ -9,28 +9,18 @@ namespace Oscar
     public class Avoid : MonoBehaviour
     {
         public LittleGuy guy;
-        private RaycastHit hitInfo;
+        public Feeler feel;
         private float distance = 5f;
         private int direction = 1;
         private float spinTimer;
 
-        private void Start()
-        {
-            direction = Random.Range(0,2);
-        }
     
         public void FixedUpdate()
         {
-            if (Physics.Raycast(guy.rb.transform.localPosition, transform.forward, out hitInfo, distance, 255, QueryTriggerInteraction.Ignore))
+            RaycastHit hitInfo = feel.GetHitInfo();
+            if (hitInfo.collider != null)
             {
-                if (direction == 1)
-                {
-                    guy.rb.AddRelativeTorque(Vector3.up, ForceMode.VelocityChange);
-                }
-                else
-                {
-                    guy.rb.AddRelativeTorque(Vector3.down, ForceMode.VelocityChange);
-                }
+                guy.rb.AddRelativeTorque(Vector3.up, ForceMode.VelocityChange);
             }
         }
         

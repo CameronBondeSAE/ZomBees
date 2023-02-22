@@ -8,8 +8,12 @@ namespace Oscar
     public class Neighbours : MonoBehaviour
     {
         public LayerMask comrades;
+        
+        public LayerMask enemys;
 
-        public List<GameObject> friendsList = new List<GameObject>();
+        public List<Transform> friendsList = new List<Transform>();
+        
+        public List<Transform> enemyList = new List<Transform>();
 
         /*
         * This code uses a bitwise operation to check if the layer of the GameObject represented by "other" is included
@@ -23,23 +27,21 @@ namespace Oscar
         {
             if ((comrades.value & (1 << other.gameObject.layer)) > 0)
             {
-                if (!friendsList.Contains(other.gameObject))
+                if (!friendsList.Contains(other.transform))
                 {
-                    friendsList.Add(other.gameObject);
+                    friendsList.Add(other.transform);
+                    print("added " + other.gameObject.name);
+                }
+            }
+            if ((enemys.value & (1 << other.gameObject.layer)) > 0)
+            {
+                if (!enemyList.Contains(other.transform))
+                {
+                    enemyList.Add(other.transform);
                     print("added " + other.gameObject.name);
                 }
             }
         }
-        //if it leaves the sphere remove it from the list
-        private void OnTriggerExit(Collider other)
-        {
-            if (friendsList.Contains(other.gameObject))
-            {
-                friendsList.Remove(other.gameObject);
-                print("removed " + other.gameObject.name);
-            }
-        }
-
     }
 }
 
