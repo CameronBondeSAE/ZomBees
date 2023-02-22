@@ -28,7 +28,7 @@ MonoBehaviour:
       name: NearCivilian
   actions:
   - name: FindCivilian
-    isDefault: 0
+    isDefault: 1
     state: {fileID: 5151639814098272507, guid: 9bac3fba4d742454ab0bae809586c585, type: 3}
     cost: 0
     position: {x: 214.85712, y: 117.57143}
