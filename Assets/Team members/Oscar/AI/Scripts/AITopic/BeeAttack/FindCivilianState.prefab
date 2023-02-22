@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639c723a5712b214e9c426e03d350764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guy: {fileID: 2221404923712474766, guid: f643544d5a5946a49b79210c5a7eb7f2, type: 3}
+  target: {fileID: 6689132010039563438, guid: 9577da339be7f294cb87f71e7345a5ff, type: 3}
+  turnTowards: {fileID: 4140420755569280218, guid: f643544d5a5946a49b79210c5a7eb7f2, type: 3}
