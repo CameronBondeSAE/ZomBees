@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 6652227294163101882}
   - component: {fileID: 1653025622359038949}
   m_Layer: 14
-  m_Name: LittleGuy_Alignment
+  m_Name: LittleGuy_Cohesion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
