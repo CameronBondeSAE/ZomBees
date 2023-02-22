@@ -29,8 +29,8 @@ public class FlyDudeWandering : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            xOffset[i] = Random.Range(0, 50);
-            zOffset[i] = Random.Range(0, 50);
+            xOffset[i] = Random.Range(-1000, 1000);
+            zOffset[i] = Random.Range(-1000, 1000);
         }
         
         rb = GetComponent<Rigidbody>();

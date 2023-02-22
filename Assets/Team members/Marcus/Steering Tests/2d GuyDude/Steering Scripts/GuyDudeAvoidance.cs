@@ -2,18 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Marcus
 {
     public class GuyDudeAvoidance : MonoBehaviour
     {
         private Rigidbody rb;
-        private float distance = 5f;
 
-        private float turnTimer;
-        private int turnDir;
-        private float turnSpeedModif = 1f;
+        public GuyDudeFeelers leftFeeler;
+        public GuyDudeFeelers rightFeeler;
+        public GuyDudeBail bailFeeler;
 
         private void Start()
         {
@@ -23,27 +21,23 @@ namespace Marcus
         // Update is called once per frame
         void Update()
         {
-            turnTimer -= Time.deltaTime;
-            if (turnTimer <= 0)
+            float bailForce = bailFeeler.CalculateForce();
+            float leftForce = leftFeeler.TurnForce();
+            float rightForce = rightFeeler.TurnForce() * -1;
+
+            if(bailForce > 0)
             {
-                ChangeDir();
+                TurnAway(bailForce);
             }
-
-            RaycastHit hitInfo;
-            Physics.Raycast(rb.transform.localPosition, transform.forward, out hitInfo, distance, 255, QueryTriggerInteraction.Ignore);
-
-            if (hitInfo.collider)
+            else
             {
-                turnSpeedModif += Random.Range(-0.5f, 0.5f);
-                rb.AddRelativeTorque(Vector3.up * turnSpeedModif * turnDir);
+                TurnAway(leftForce + rightForce);
             }
         }
 
-        void ChangeDir()
+        void TurnAway(float desiredTurnForce)
         {
-            // Generate either -1 or 1
-            turnDir = Random.Range(0, 2) * 2 - 1;
-            turnTimer = 1f;
+            rb.AddTorque(Vector3.up * desiredTurnForce);
         }
     }
 }

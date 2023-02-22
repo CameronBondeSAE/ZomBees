@@ -6,16 +6,43 @@ namespace Marcus
 {
     public class FlyDudeSeparation : MonoBehaviour
     {
+        public FlyDudeNeighbours neighbours;
+        
+        Vector3 targetPosition;
+        private Rigidbody rb;
+        public float force;
+        
         // Start is called before the first frame update
         void Start()
         {
-
+            rb = GetComponent<Rigidbody>();
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
+            targetPosition = CalculateMove(neighbours.neighbourDudes);
+            
+            Vector3 directionAwayFromTarget = (transform.position - targetPosition).normalized;
+            rb.AddForce(directionAwayFromTarget * force);
+        }
 
+        public Vector3 CalculateMove(List<Transform> neighbours)
+        {
+            if (neighbours.Count == 0)
+            {
+                return Vector3.zero; 
+            }
+
+            Vector3 separationMove = Vector3.zero;
+            
+            foreach (Transform item in neighbours)
+            {
+                separationMove += item.position;
+            }
+
+            separationMove /= neighbours.Count;
+            return separationMove;
         }
     }
 }
