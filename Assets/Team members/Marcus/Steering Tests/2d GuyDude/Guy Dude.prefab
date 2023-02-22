@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 2616272285196809084}
-  force: 1
+  force: 1.2
 --- !u!114 &7448549789755019800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 2616272285196809084}
-  force: 1
+  force: 1.5
 --- !u!1 &2103246317133133758
 GameObject:
   m_ObjectHideFlags: 0

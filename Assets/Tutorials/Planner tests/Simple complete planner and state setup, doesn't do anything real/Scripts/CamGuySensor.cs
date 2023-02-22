@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamGuySensor : MonoBehaviour, ISense
+public partial class CamGuySensor : MonoBehaviour, ISense
 {
 	public bool demoBoolFakeHasAmmo          = false;
 	public bool demoBoolFakeHasTarget        = false;
