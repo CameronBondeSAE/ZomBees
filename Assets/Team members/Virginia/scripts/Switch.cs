@@ -6,7 +6,7 @@ using System;
 
 namespace Virginia
 {
-    public class Switch : MonoBehaviour
+    public class Switch : MonoBehaviour, ISwitchable
     {
         public event Action TurnOnEvent;
         public event Action TurnOffEvent;

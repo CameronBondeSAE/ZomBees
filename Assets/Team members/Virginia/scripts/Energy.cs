@@ -8,6 +8,10 @@ public class Energy : MonoBehaviour
     public float MaxHealth = 50;
 
 
+    void FixedUpadate()
+    {
+        Amount = Amount * Time.deltaTime;
+    }  
 
     public void Change(float changeAmount)
     {
