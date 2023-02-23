@@ -1,16 +1,20 @@
-interface IInteractable
+using System;
+
+public interface IInteractable
 {
-    void Inspect(); 
-    void Pickup(); 
+    public void Interact();
+    public void Inspect(); 
+    public void Pickup(); 
 }
 
-interface IItem
+public interface IItem
 {
-    void Consumed(); 
-    void Disposed(); 
-    void Discription(); 
+    public void Consumed(); 
+    public void Disposed(); 
+    public void  Description(); 
 }
-interface ISwitchable
+
+public interface ISwitchable
 {
     public void TurnOn();
     public void TurnOff();
