@@ -12,21 +12,23 @@ public class HuntCivilianState : AntAIState
     private Vector3 targetPos;
 
     public float turnSpeed;
-    
+
+    private Vision vision;
 
     public override void Enter()
     {
         base.Enter();
+
+        vision = GetComponent<Vision>();
         
-        Finish();
-        // if (target != null)
-        // {
-        //     targetTransform = target.transform;
-        // }
-        // else
-        // {
-        //     Finish();
-        // }
+        if (vision.civilGuyInSight != null)
+        {
+            
+        }
+        else
+        {
+            Reset();
+        }
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
