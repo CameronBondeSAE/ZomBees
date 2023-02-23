@@ -1,21 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundEmitter : MonoBehaviour
 {
-    public float radius;
-
     private List<IHear> listeners = new List<IHear>();
 
     private IHear listener;
 
     private void OnEnable()
     {
-        EmitSound();
+        EmitSound(this.gameObject, 50f);
     }
 
-    private void EmitSound()
+    public void EmitSound(GameObject origin, float radius)
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
@@ -23,19 +22,11 @@ public class SoundEmitter : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            IHear listener = collider.GetComponent<IHear>();
+            listener = collider.GetComponent<IHear>();
 
             if (listener != null)
             {
-                listeners.Add(listener);
-                Vector3 listenerPos = collider.transform.position;
-                RaycastHit[] hits = Physics.RaycastAll(transform.position, listenerPos - transform.position, radius);
-                int hitCount = hits.Length;
-
-                if (hits.Length <= radius)
-                {
-                    listener.SoundHeard(gameObject, hitCount);
-                }
+                listener.SoundHeard(origin);
             }
         }
     }

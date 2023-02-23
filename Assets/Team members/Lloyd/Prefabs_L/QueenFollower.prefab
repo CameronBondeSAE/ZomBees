@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 6965517448354199428}
   - component: {fileID: 5860857128426339124}
   m_Layer: 14
-  m_Name: Follower
+  m_Name: QueenFollower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

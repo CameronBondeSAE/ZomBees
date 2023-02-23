@@ -20,6 +20,8 @@ public class QueenStateManager : MonoBehaviour
     
     public MonoBehaviour queenPatrol;
 
+    public MonoBehaviour queenInvestigateSound;
+
     private QueenEvent queenEvent;
 
     private void OnEnable()

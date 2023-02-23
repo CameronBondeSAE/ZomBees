@@ -7,6 +7,24 @@ using Vector3 = UnityEngine.Vector3;
 
 public class QueenEvent : MonoBehaviour
 {
+    
+    
+    public delegate void EventHandler(object sender, EventArgs args);
+
+    public event EventHandler myEvent;
+
+    public void OnMyEvent()
+    {
+        myEvent?.Invoke(this, new QueenEventArgs());
+    }
+
+
+
+
+
+
+
+
     // QUEEN ATTACK
     //
     // swarm is projected to the new position
@@ -34,5 +52,5 @@ public class QueenEvent : MonoBehaviour
     public void OnChangeQueenState(MonoBehaviour state, bool activated)
     {
         ChangeQueenState?.Invoke(state, activated);
-    }
+    }   
 }

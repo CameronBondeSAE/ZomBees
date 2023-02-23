@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Civilian
 {
-    public class CivilianBrain : MonoBehaviour, ISense, IHear
+    public class CivilianBrain : MonoBehaviour, ISense
     {
         public bool seeBees;
 
@@ -25,17 +25,6 @@ namespace Civilian
             aWorldState.Set("SeeBees", seeBees);
             aWorldState.Set("InCombatDistance", inCombatDistance);
             aWorldState.EndUpdate();
-        }
-
-        public void ReturnPosition(Vector3 myPos)
-        {
-            myPos = transform.position;
-            Debug.Log(myPos);
-        }
-
-        public void SoundHeard(GameObject source, int hits)
-        {
-            Debug.Log("Heard something with " + hits + " number of objects between");
         }
     }
 }
