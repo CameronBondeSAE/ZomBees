@@ -24,6 +24,7 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         parent = new GameObject();
+        parent.name = "Swarmer Parent";
 
         queenEvent = GetComponent<QueenEvent>();
         

@@ -129,7 +129,7 @@ MonoBehaviour:
   sightDistance: 250
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 130871
   force: 5
   customSightDistances: []
   multiplier: 1

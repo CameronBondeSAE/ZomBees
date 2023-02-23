@@ -24,6 +24,7 @@ namespace CameronBonde
 			antAIAgent.worldState.Set("Am I at the target position", false);
 			// antAIAgent.worldState.Set("Has target",                  false);
 			antAIAgent.worldState.EndUpdate();
+			
 		}
 	}
 }
