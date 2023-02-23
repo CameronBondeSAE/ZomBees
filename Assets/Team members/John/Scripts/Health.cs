@@ -24,7 +24,7 @@ public class Health : MonoBehaviour
             //Die
             currHealth = 0;
         }
-        Debug.Log("Taking damage");
+        //Debug.Log("Taking damage");
         
     }
 }
