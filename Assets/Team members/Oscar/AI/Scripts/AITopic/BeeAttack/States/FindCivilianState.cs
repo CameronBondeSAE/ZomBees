@@ -36,14 +36,16 @@ public class FindCivilianState : AntAIState
     {
         base.Execute(aDeltaTime, aTimeScale);
 
-        if (neighbours.enemyList != null)
-        {
-            Finish();
-        }
-        else
-        {
-            print("idk");
-        }
+        // if (neighbours.enemyList != null)
+        // {
+        //     Finish();
+        // }
+        // else
+        // {
+        //     print("idk");
+        // }
+        
+        Finish();
     }
 
     public override void Exit()
