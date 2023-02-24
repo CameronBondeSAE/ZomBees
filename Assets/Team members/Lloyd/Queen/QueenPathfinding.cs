@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Oscar;
+using Anthill.AI;
+using Lloyd;
 using UnityEngine;
 
-public class QueenPathfinding : MonoBehaviour
+public class QueenPathfinding : AntAIState
 {
     // Queen has a List of GameObjects flyPoints which is as large as numFlyPoints
     // Queen get s a reference to the next flyPoint and stores it as currentFlyPoint, and the old previousFlyPoint
@@ -29,7 +30,7 @@ public class QueenPathfinding : MonoBehaviour
 
     private Rigidbody rb;
 
-    private void OnEnable()
+    public override void Enter()
     {
         rb = GetComponent<Rigidbody>();
 

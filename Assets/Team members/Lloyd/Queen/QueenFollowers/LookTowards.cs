@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Lloyd;
 
-public class FollowerLookTowards : MonoBehaviour
+public class LookTowards : MonoBehaviour
 {
     public Transform target;
     public float torqueSpeed;

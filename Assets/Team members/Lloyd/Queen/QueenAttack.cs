@@ -37,7 +37,6 @@ public class QueenAttack : AntAIState
     {
         while (true)
         {
-            // Get the current lists of targets and followers
             targets = scenManager.harvestTargets;
             followers = scenManager.followers;
 

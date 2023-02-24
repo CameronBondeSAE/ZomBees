@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using Tanks;
 using UnityEngine;
+using Lloyd;
 
 public class QueenScenarioManager : MonoBehaviour, ISense
 {
@@ -12,6 +14,8 @@ public class QueenScenarioManager : MonoBehaviour, ISense
     public bool seeking;
     public bool spottedHuman;
     public bool attacking;
+
+    private LookTowards lookTowards;
 
     public List<GameObject> followers = new List<GameObject>();
 
@@ -33,7 +37,21 @@ public class QueenScenarioManager : MonoBehaviour, ISense
     {
         movePoint = newMovePoint;
     }
-    
+
+    private void OnEnable()
+    {
+        lookTowards = GetComponent<LookTowards>();
+    }
+
+    public void FixedUpdate()
+    {
+        if(attacking)
+            lookTowards.SetTarget(harvestTargets[0].transform);
+        
+        else
+            lookTowards.SetTarget(movePoint.transform);
+    }
+
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
         aWorldState.BeginUpdate(aAgent.planner);
