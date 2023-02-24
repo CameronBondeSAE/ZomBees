@@ -16,9 +16,15 @@ public class CivilianEmotions : MonoBehaviour
         public enum CivType
         {
                 Neutral,
+                Coward,
                 Fighter,
                 Scientist,
-                HalfBee
+                
+                HalfBee,
+
+                Rescued,
+                
+                TurnedIntoBee
         }
         public CivType myType;
 }

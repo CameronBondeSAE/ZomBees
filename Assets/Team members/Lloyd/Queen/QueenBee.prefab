@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 996445085214038052}
   - component: {fileID: 996445085214038053}
   - component: {fileID: 1554903795873965021}
+  - component: {fileID: 1399967279988117161}
+  - component: {fileID: 3260325020911688652}
   m_Layer: 0
   m_Name: QueenBee
   m_TagString: Untagged
@@ -127,9 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ca777de88315a488843fff65f4b6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 500
-  queenEvent: {fileID: 0}
-  attacking: 0
+  timeBetweenAttacks: 0
 --- !u!114 &996445085214038052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   - {fileID: 996445085214038053}
   queenAttack: {fileID: 996445085214038074}
   queenPatrol: {fileID: 996445085214038053}
+  queenInvestigateSound: {fileID: 0}
 --- !u!114 &996445085214038053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +186,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1399967279988117161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996445085214038077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e724e36405834fa192b36cd6a4e6059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manualUpdate: 0
+  thinkInterval: 0.1
+  scenario: {fileID: 11400000, guid: 8f574ee3e23628448a86b9cb6212fd21, type: 2}
+--- !u!114 &3260325020911688652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996445085214038077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &996445086267055042
