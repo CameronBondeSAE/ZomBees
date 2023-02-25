@@ -1,21 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Marcus
 {
-    public class FearSense : MonoBehaviour
+    public class FearSense : MonoBehaviour, IAdrenalineSensitive
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        public Vector3 targetPos;
 
+        private void Update()
+        {
+            if (targetPos != Vector3.zero)
+            {
+                PathfindToSource();
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        public void PathfindToSource()
         {
-
+            print(targetPos);
         }
     }
 }
