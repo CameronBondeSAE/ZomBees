@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Marcus
 {
-    public interface IAdrenalineSensitive
+    public class MarcusEventArgs : EventArgs
     {
-        void PathfindToSource(object civ, Vector3 searchPos);
+        public Vector3 AdrenalineSearchPos;
     }
 }

@@ -21,6 +21,11 @@ namespace Marcus
         private int aloneRoundRobin;
         private int groupedRoundRobin;
 
+        public delegate void EventHandler(object sender, EventArgs args);
+        public event EventHandler CanSmellAdrenaline;
+        
+        private bool eventCast;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -60,22 +65,13 @@ namespace Marcus
             }
             
             adrenaline = Mathf.Clamp(adrenaline, 0, 10);
-            Collider[] smellers = Physics.OverlapSphere(transform.position, adrenaline * 2);
-            
-            foreach (Collider item in smellers)
+            if (Physics.OverlapSphere(transform.position, adrenaline * 2).Length >= 0 && !eventCast)
             {
-               GiveTarget(item);
-            }
-        }
-
-        void GiveTarget(Collider item)
-        {
-            Vector3 randomness = new Vector3(Random.Range(10f, 20f), 0, Random.Range(10f, 20f));
-                
-            if (item.gameObject.GetComponent<FearSense>() != null)
-            {
-                //Pass my position with some randomness
-                item.gameObject.GetComponent<FearSense>().targetPos = transform.position + randomness;
+                EventArgs args = new MarcusEventArgs
+                {
+                    AdrenalineSearchPos = transform.position + new Vector3(Random.Range(10f,20f), 0, Random.Range(10f,20f))
+                };
+                CanSmellAdrenaline?.Invoke(this, args);
             }
         }
     }

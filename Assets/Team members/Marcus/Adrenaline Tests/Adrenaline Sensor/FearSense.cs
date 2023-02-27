@@ -7,19 +7,19 @@ namespace Marcus
 {
     public class FearSense : MonoBehaviour, IAdrenalineSensitive
     {
-        public Vector3 targetPos;
+        private void OnEnable()
+        {
+            
+        }
 
         private void Update()
         {
-            if (targetPos != Vector3.zero)
-            {
-                PathfindToSource();
-            }
+            
         }
-
-        public void PathfindToSource()
+        
+        public void PathfindToSource(object civ, Vector3 searchPos)
         {
-            print(targetPos);
+            print(searchPos);
         }
     }
 }
