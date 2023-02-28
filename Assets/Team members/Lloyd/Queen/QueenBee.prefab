@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1554903795873965021}
   - component: {fileID: 1399967279988117161}
   - component: {fileID: 3260325020911688652}
+  - component: {fileID: 354935420591315065}
   m_Layer: 0
   m_Name: QueenBee
   m_TagString: Untagged
@@ -86,6 +87,7 @@ MonoBehaviour:
   waitTime: 0.1
   FollowerList: []
   queenEvent: {fileID: 0}
+  scenManager: {fileID: 0}
 --- !u!114 &996445085214038072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +217,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0
+  maxListeners: 0
+--- !u!114 &354935420591315065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996445085214038077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52786547559fad4ab20d9a2c56c03e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  torqueSpeed: 0
+  rb: {fileID: 0}
 --- !u!1 &996445086267055042
 GameObject:
   m_ObjectHideFlags: 0

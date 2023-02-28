@@ -10,7 +10,7 @@ public class WorldState : MonoBehaviour
     public float timeScale;
     
     public bool ticking;
-    
+
     public enum currentDay
     {
         Day1,
@@ -45,7 +45,9 @@ public class WorldState : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(GetFormattedTime());
+        Debug.Log("TIME: "+GetFormattedTime());
+        Debug.Log(currentTimeOfDay);
+        Debug.Log(currentDayTracker);
     }
 
     IEnumerator MarchOfTime()
@@ -58,15 +60,15 @@ public class WorldState : MonoBehaviour
                 time = 0;
             }
 
-            if (time >= 6 * MinutesPerHour && time < 12 * MinutesPerHour)
+            if (time >= 10 * MinutesPerHour && time < 14 * MinutesPerHour)
             {
                 currentTimeOfDay = TimeOfDay.Midday;
             }
-            else if (time >= 12 * MinutesPerHour && time < 18 * MinutesPerHour)
+            else if (time >= 14 * MinutesPerHour && time < 20 * MinutesPerHour)
             {
                 currentTimeOfDay = TimeOfDay.Evening;
             }
-            else if (time >= 18 * MinutesPerHour || time < 6 * MinutesPerHour)
+            else if (time >= 20 * MinutesPerHour || time < 4 * MinutesPerHour)
             {
                 currentTimeOfDay = TimeOfDay.Night;
             }
