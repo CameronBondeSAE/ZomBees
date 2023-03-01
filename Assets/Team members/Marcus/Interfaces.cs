@@ -6,6 +6,6 @@ namespace Marcus
 {
     public interface IAdrenalineSensitive
     {
-        void PathfindToSource(object civ, Vector3 searchPos);
+        void PathfindToSource(Vector3 searchPos);
     }
 }
