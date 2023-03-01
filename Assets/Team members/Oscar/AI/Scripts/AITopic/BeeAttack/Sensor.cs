@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
-using MyNamespace;
+using Oscar;
 using UnityEngine;
 
 public class Sensor : MonoBehaviour, ISense

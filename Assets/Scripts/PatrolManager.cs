@@ -14,6 +14,7 @@ public class PatrolManager : MonoBehaviour
 	public List<PatrolPoint> indoors;
 	public List<PatrolPoint> sneaky;
 	public List<PatrolPoint> waterTargets;
+	public List<PatrolPoint> resourcePoints;
 
 	public static PatrolManager singleton;
 

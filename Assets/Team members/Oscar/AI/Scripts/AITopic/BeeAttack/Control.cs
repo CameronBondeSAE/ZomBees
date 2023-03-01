@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Oscar;
 using UnityEngine;
 
-namespace MyNamespace
+namespace Oscar
 {
     public class Control : MonoBehaviour
     {

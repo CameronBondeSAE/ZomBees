@@ -30,7 +30,7 @@ namespace Oscar
                 if (!friendsList.Contains(other.transform))
                 {
                     friendsList.Add(other.transform);
-                    print("added " + other.gameObject.name);
+                    //print("added " + other.gameObject.name);
                 }
             }
             if ((enemys.value & (1 << other.gameObject.layer)) > 0)
@@ -38,7 +38,7 @@ namespace Oscar
                 if (!enemyList.Contains(other.transform))
                 {
                     enemyList.Add(other.transform);
-                    print("added " + other.gameObject.name);
+                    //print("added " + other.gameObject.name);
                 }
             }
         }

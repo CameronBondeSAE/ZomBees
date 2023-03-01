@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 5894797841426157641}
   - component: {fileID: 5894797841426157638}
   - component: {fileID: 5894797841426157636}
-  - component: {fileID: 7804884663462838706}
   - component: {fileID: 5894797841426157645}
   - component: {fileID: 5042671405235032707}
   - component: {fileID: 5894797841426157639}
@@ -171,7 +170,7 @@ Transform:
   m_Children:
   - {fileID: 8695546132656955444}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5894797841426157640
 MeshFilter:
@@ -273,20 +272,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &7804884663462838706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5894797841426157637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728de552ef46851498d7b77940195cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingState: {fileID: 0}
-  currentState: {fileID: 0}
 --- !u!114 &5894797841426157645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5894797841426157636}
-  speed: 10
+  speed: 2
 --- !u!114 &5042671405235032707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +293,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5894797841426157637}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f3ef7ff354ec3744a9c010e49dccc95, type: 3}
   m_Name: 
@@ -322,12 +307,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5894797841426157637}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e55ccf1f82d422340bcc08eafbd761ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guy: {fileID: 5894797841426157645}
+  littleGuy: {fileID: 5894797841426157645}
 --- !u!114 &5894797841426157642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,13 +320,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5894797841426157637}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9189c094191dfd4ba01d5ab1db2ea68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 5894797841426157645}
-  feel: {fileID: 0}
+  feel: {fileID: 5042671405235032707}
 --- !u!114 &3490241771106822642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +414,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3863860406981341197, guid: 0b2a045cd8ff7f943aadeae2e70b78cb, type: 3}
       propertyPath: m_InnerSpotPercent
-      value: 40
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863860406981341197, guid: 0b2a045cd8ff7f943aadeae2e70b78cb, type: 3}
+      propertyPath: m_VolumetricDimmer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3863860406981341197, guid: 0b2a045cd8ff7f943aadeae2e70b78cb, type: 3}
       propertyPath: m_CustomSpotLightShadowCone
@@ -437,11 +426,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7927349615202929874, guid: 0b2a045cd8ff7f943aadeae2e70b78cb, type: 3}
       propertyPath: m_Intensity
-      value: 105562.49
+      value: 186833.44
       objectReference: {fileID: 0}
     - target: {fileID: 7927349615202929874, guid: 0b2a045cd8ff7f943aadeae2e70b78cb, type: 3}
       propertyPath: m_SpotAngle
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7927349615202929874, guid: 0b2a045cd8ff7f943aadeae2e70b78cb, type: 3}
       propertyPath: m_ShadowRadius
@@ -578,5 +567,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialLength: 10
-  distance: 0
+  distance: 5
   lightCone: {fileID: 4539583032385463224}
