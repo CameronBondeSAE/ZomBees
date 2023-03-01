@@ -5,28 +5,35 @@ using System.Collections;
 
 public class ElevenLabsVoiceAPITest : MonoBehaviour
 {
-	string         apiUrl = "https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM";
-	private string apiKey = "11ce6c73cc5e0a806f38b60e31d7cae5";
+	string         voiceID = "21m00Tcm4TlvDq8ikWAM";
+	string         apiUrl  = "https://api.elevenlabs.io/v1/text-to-speech/";
+	private string apiKey  = "11ce6c73cc5e0a806f38b60e31d7cae5";
 
 	public AudioSource audioSource;
 
+	
+	public string text             = "bums are great";
+	public int    stability        = 0;
+	public int    similarity_boost = 0;
+
+
 	[Button]
-	public void SynthesizeSpeech(string textToSynthesize)
+	public void SynthesizeSpeech()
 	{
-		StartCoroutine(SendSynthesizeRequest2(textToSynthesize));
+		StartCoroutine(SendSynthesizeRequest());
 	}
 	
-	IEnumerator SendSynthesizeRequest2(string textToSynthesize)
+	IEnumerator SendSynthesizeRequest()
 	{
 		// Set up the request
-		string          url     = "https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM";
+		string          url     = apiUrl+voiceID;
 		UnityWebRequest request = new UnityWebRequest(url, "POST");
 		request.SetRequestHeader("accept",       "audio/mpeg");
 		request.SetRequestHeader("xi-api-key",   "11ce6c73cc5e0a806f38b60e31d7cae5");
 		request.SetRequestHeader("Content-Type", "application/json");
 
 		// Set up the request data
-		string jsonRequestBody = "{\"text\": \"Waaaz happnin boyeeee!!!\",\"voice_settings\": {\"stability\": 0,\"similarity_boost\": 0}}";
+		string jsonRequestBody = "{\"text\":\"" + text + "\",\"voice_settings\":{\"stability\":" + stability + ",\"similarity_boost\":" + similarity_boost + "}}";
 		byte[] bodyRaw         = new System.Text.UTF8Encoding(true).GetBytes(jsonRequestBody);
 		request.uploadHandler   = (UploadHandler)new UploadHandlerRaw(bodyRaw);
 		request.downloadHandler = (DownloadHandler)new DownloadHandlerAudioClip("", AudioType.MPEG);
@@ -45,32 +52,6 @@ public class ElevenLabsVoiceAPITest : MonoBehaviour
 		else
 		{
 			Debug.LogError("Error sending text-to-speech request: " + request.error);
-		}
-	}
-	
-	
-	private IEnumerator SendSynthesizeRequest(string textToSynthesize)
-	{
-		string jsonRequest = "{\"text\":\"" + textToSynthesize + "\"}";
-
-		using (UnityWebRequest www = UnityWebRequest.PostWwwForm(apiUrl, jsonRequest))
-		{
-			www.SetRequestHeader("accept",       "audio/mpeg");
-			www.SetRequestHeader("xi-api-key",   apiKey);
-			www.SetRequestHeader("Content-Type", "application/json");
-
-			yield return www.SendWebRequest();
-
-			if (www.result != UnityWebRequest.Result.Success)
-			{
-				Debug.LogError(www.error);
-			}
-			else
-			{
-				byte[] audioBytes = www.downloadHandler.data;
-				audioSource.clip = WavUtility.ToAudioClip(audioBytes);
-				audioSource.Play();
-			}
 		}
 	}
 }
