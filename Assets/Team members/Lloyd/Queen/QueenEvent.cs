@@ -19,12 +19,6 @@ public class QueenEvent : MonoBehaviour
     }
 
 
-
-
-
-
-
-
     // QUEEN ATTACK
     //
     // swarm is projected to the new position

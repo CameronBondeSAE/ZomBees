@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
+using UnityEngine.VFX;
 using Random = System.Random;
 
 public class Follower : MonoBehaviour, IFollower
@@ -27,7 +28,7 @@ public class Follower : MonoBehaviour, IFollower
 
     private float angleOffset;
 
-    private void Start()
+    private void OnEnable()
     {
         Begin();
     }
@@ -54,13 +55,16 @@ public class Follower : MonoBehaviour, IFollower
                 moveInZ = true;
             }
         }
-
-        Physics.IgnoreLayerCollision(followerLayer, followerLayer, true);
     }
 
     public void SetRotationPoint(Transform swarmTransform)
     {
         rotationTransform = swarmTransform;
+    }
+
+    public void SetCircleSize(float newCircleSize)
+    {
+        circleSize = newCircleSize;
     }
     
     private void FixedUpdate()

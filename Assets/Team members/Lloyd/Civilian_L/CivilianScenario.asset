@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: CivilianScenario
+  m_EditorClassIdentifier: 
+  conditions:
+    list:
+    - id: 0
+      name: InRange
+    - id: 1
+      name: Talking
+    - id: 2
+      name: Idle
+    - id: 3
+      name: Interacting
+    - id: 4
+      name: Moving
+    - id: 5
+      name: HasResource
+    - id: 6
+      name: Looking
+  actions:
+  - name: Talk
+    isDefault: 0
+    state: {fileID: 5874405294486384567, guid: 3cfabb8b928b2a34faad8c79fa90ca40, type: 3}
+    cost: 0
+    position: {x: 231.46912, y: 54.234573}
+    pre:
+    - id: 1
+      value: 1
+    post: []
+  - name: WalkTo
+    isDefault: 0
+    state: {fileID: 5253148898078404268, guid: 3aa8c8867b14ad9458214c4d598b0e61, type: 3}
+    cost: 1
+    position: {x: 800.34326, y: 249.87836}
+    pre:
+    - id: 0
+      value: 0
+    - id: 4
+      value: 1
+    - id: 5
+      value: 0
+    post:
+    - id: 0
+      value: 1
+    - id: 4
+      value: 0
+  - name: Idle
+    isDefault: 1
+    state: {fileID: 2953068733267188434, guid: 52ca1e766581d7e45a214e1aa5e97876, type: 3}
+    cost: 1
+    position: {x: 229.52676, y: 252.8172}
+    pre: []
+    post: []
+  - name: Interact
+    isDefault: 0
+    state: {fileID: 835345909184254382, guid: 29b324b727946334e93f803585a54773, type: 3}
+    cost: 1
+    position: {x: 1039.0125, y: 269.03714}
+    pre:
+    - id: 0
+      value: 1
+    post:
+    - id: 5
+      value: 1
+    - id: 3
+      value: 0
+  - name: LookTowards
+    isDefault: 0
+    state: {fileID: 7649346275582795230, guid: 5227efac876fa4142895ccc5f90d93dd, type: 3}
+    cost: 0
+    position: {x: 523.3334, y: 81.66667}
+    pre:
+    - id: 6
+      value: 1
+    post: []
+  goals:
+  - name: Survive
+    isDefault: 0
+    position: {x: 517.6666, y: 344.66666}
+    conditions: []
+  - name: GainResources
+    isDefault: 1
+    position: {x: 898.02466, y: 609.13586}
+    conditions:
+    - id: 5
+      value: 1
+  worldStates:
+  - position: {x: 212.96289, y: 602.1605}
+    isAutoUpdate: 1
+    list:
+    - id: 5
+      value: 0
+    - id: 0
+      value: 0

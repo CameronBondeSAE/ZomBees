@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CircleMovement : MonoBehaviour
 {
+    public QueenEvent queenEvent;
+    
     public Vector3 centerPoint;
     public float radius;
     public int numVectors;
@@ -19,7 +21,11 @@ public class CircleMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isWaiting = false;
 
-    public bool reverseDirection;
+    public bool negativeRadius;
+
+    public bool reverseDirectionX;
+    public bool reverseDirectionY;
+    public bool reverseDirectionZ;
     public bool moveInX;
     public bool moveInY;
     public bool moveInZ;
@@ -28,42 +34,64 @@ public class CircleMovement : MonoBehaviour
     private float y = 1;
     private float z = 1;
 
-    private void Start()
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         
         float angleStep = 360f / numVectors;
         
-        reverseDirection = (UnityEngine.Random.value > 0.5f);
-        moveInX = (UnityEngine.Random.value > 0.5f);
+        negativeRadius = (UnityEngine.Random.value > 0.5f);
+
+            moveInX = (UnityEngine.Random.value > 0.5f);
+        reverseDirectionX = (UnityEngine.Random.value > 0.5f);
+        
         moveInY = (UnityEngine.Random.value > 0.5f);
+        reverseDirectionY = (UnityEngine.Random.value > 0.5f);
+        
         moveInZ = (UnityEngine.Random.value > 0.5f);
+        reverseDirectionZ = (UnityEngine.Random.value > 0.5f);
 
         for (int i = 0; i < numVectors; i++)
         {
             float angle = i * angleStep;
+            
+            float perlinValue = Mathf.PerlinNoise(Time.time, Time.deltaTime);
+            radius += perlinValue;
+
+            if (negativeRadius)
+                radius *= -1;
+            
 
             if (moveInX)
-            {
                 x = centerPoint.x + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
-            }
-
-            if (moveInY){
+            
+            if (moveInY)
                 y = centerPoint.y + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
-            }
 
             if (moveInZ)
-            {
                 z = centerPoint.z + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
-            }
-            if (reverseDirection)
-            {
-                x *= -1;
-                y *= -1;
-                z *= -1;
-            }
             
+            if (reverseDirectionX)
+                x *= -1;
+            
+            if(reverseDirectionY){
+                y *= -1;}
+            
+            if(reverseDirectionZ)
+                z *= -1;
+            
+            int count = (moveInX ? 1 : 0) + (moveInY ? 1 : 0) + (moveInZ ? 1 : 0);
+            if (count < 2) {
+                if (!moveInX) {
+                    moveInX = true;
+                } else if (!moveInY) {
+                    moveInY = true;
+                } else {
+                    moveInZ = true;
+                }
+            }
+
             targetPoints.Add(new Vector3(centerPoint.x + x, centerPoint.y + y, centerPoint.z + z));
         }
     }
@@ -88,8 +116,6 @@ public class CircleMovement : MonoBehaviour
 
     private IEnumerator WaitForDistance(Vector3 targetPoint)
     {
-        isWaiting = true;
-
         while (distance > minDistance)
         {
             yield return null;

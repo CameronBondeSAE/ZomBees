@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
 
     public QueenEvent queenEvent;
 
-    public QueenScenarioManager scenManager;
+    public QueenScenarioManager queenScene;
 
     private void Start()
     {
@@ -30,8 +30,8 @@ public class Spawner : MonoBehaviour
 
         queenEvent = GetComponent<QueenEvent>();
 
-        scenManager = GetComponent<QueenScenarioManager>();
-        
+        queenScene = GetComponent<QueenScenarioManager>();
+
         StartCoroutine(SpawnSwarmer());
     }
     private IEnumerator SpawnSwarmer()
@@ -50,15 +50,14 @@ public class Spawner : MonoBehaviour
             follower = swarmerObj.GetComponent<Follower>();
             follower.SetRotationPoint(transform);
             
-            scenManager.AddFollower(swarmerObj);
+            queenScene.AddFollower(swarmerObj);
 
-            queenEvent.ChangeSwarmTransform += swarmerObj.GetComponent<Follower>().SetRotationPoint;
+            queenEvent.ChangeSwarmTransform += follower.SetRotationPoint;
+            queenEvent.ChangeSwarmCircleSize += follower.SetCircleSize;
+            
+            queenEvent.OnChangeSwarmPoint(swarmer.transform);
 
             follower.Begin();
-
-            LookTowards turn;
-            turn = swarmerObj.GetComponent<LookTowards>();
-            turn.SetTarget(transform);
 
             swarmerObj.transform.SetParent(parent.transform);
 
