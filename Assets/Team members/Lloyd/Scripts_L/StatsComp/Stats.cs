@@ -4,7 +4,7 @@ using UnityEngine;
 using Lloyd;
 using Team_members.Lloyd.Scripts_L.StatsComp;
 
-public class Stats : MonoBehaviour
+public class StatsComp : MonoBehaviour
 {
     // Stats contains a Dictionary of floats
     // can read / change stat floats through ChangeState
@@ -26,6 +26,8 @@ public class Stats : MonoBehaviour
     public float moveSpeed;
     public float maxMoveSpeed;
 
+    public float pickupRadius;
+
     private Dictionary<string, float> statValues = new Dictionary<string, float>();
 
     private StatsModelView modelView;
@@ -40,6 +42,8 @@ public class Stats : MonoBehaviour
 
         statValues["moveSpeed"] = moveSpeed;
         statValues["maxMoveSpeed"] = maxMoveSpeed;
+
+        statValues["pickupRadius"] = pickupRadius;
         
         modelView = GetComponentInChildren<StatsModelView>();
         

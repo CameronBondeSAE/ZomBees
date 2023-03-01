@@ -17,13 +17,13 @@ public class MoveForwards : AntAIState
     private float moveSpeed;
     private float maxSpeed;
 
-    public Stats stats;
+    public StatsComp stats;
 
     private void OnEnable()
     {
         rb = GetComponentInParent<Rigidbody>();
 
-        stats = GetComponentInParent<Stats>();
+        stats = GetComponentInParent<StatsComp>();
         moveSpeed = stats.moveSpeed;
         maxSpeed = stats.maxMoveSpeed;
     }

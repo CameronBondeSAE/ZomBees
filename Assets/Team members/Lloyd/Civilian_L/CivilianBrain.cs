@@ -6,7 +6,9 @@ namespace Team_members.Lloyd.Civilian_L
 {
     public class CivilianBrain : AntAIAgent, ISense
     {
-        private Stats stats;
+        public GameObject rightHand;
+        
+        private StatsComp stats;
         public enum CivStates
         {
             Idle,
@@ -16,7 +18,13 @@ namespace Team_members.Lloyd.Civilian_L
         }
 
         public CivStates myState;
-    
+
+        public bool wantToActivate;
+
+        public bool wantToPickup;
+
+        public float pickupRadius;
+
         public bool idle;
 
         public bool inRange;
@@ -46,25 +54,12 @@ namespace Team_members.Lloyd.Civilian_L
         private void OnEnable()
         {
             hearingComp = GetComponent<HearingComp>();
-            stats = GetComponent<Stats>();
+            stats = GetComponent<StatsComp>();
+
+            pickupRadius = stats.pickupRadius;
         }
 
-        [Button("IdleState")]
-        public void ChangeIdle()
-        {
-            ChangeState(CivStates.Idle);
-        }
-        [Button("MoveState")]
-        public void ChangeMove()
-        {
-            ChangeState(CivStates.Move);
-        }
-        [Button("InteractState")]
-        public void ChangeInteract()
-        {
-            ChangeState(CivStates.Interact);
-        }
-
+        [Button("CHANGE STATE")]
         public void ChangeState(CivStates newState)
         {
             if (myState == newState)
@@ -77,8 +72,7 @@ namespace Team_members.Lloyd.Civilian_L
             talking = false;
             moving = false;
             interacting = false;
-        
-        
+
             myState = newState;
 
             if (myState == CivStates.Idle)
@@ -109,8 +103,10 @@ namespace Team_members.Lloyd.Civilian_L
 
             if (myState == CivStates.Interact)
             {
+                moving = false;
+                talking = false;
+                idle = false;
                 interacting = true;
-                //target = interact target
             }
         }
 
@@ -137,6 +133,8 @@ namespace Team_members.Lloyd.Civilian_L
             aWorldState.Set("Interacting", interacting);
         
             aWorldState.Set("InRange", inRange);
+
+            aWorldState.Set("WantToInteract", wantToActivate);
 
             aWorldState.EndUpdate();
         }

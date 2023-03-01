@@ -1521,8 +1521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   held: 0
-  active: 0
-  useable: 0
+  active: 1
+  useable: 1
   myState: 1
 --- !u!114 &330680411033487799
 MonoBehaviour:

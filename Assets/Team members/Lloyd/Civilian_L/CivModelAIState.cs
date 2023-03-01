@@ -9,13 +9,13 @@ namespace Team_members.Lloyd.Civilian_L
 
         public Rigidbody rb;
 
-        public Stats stats;
+        public StatsComp stats;
 
         private void Awake()
         {
             civBrain = GetComponent<CivilianBrain>();
             rb = GetComponent<Rigidbody>();
-            stats = GetComponent<Stats>();
+            stats = GetComponent<StatsComp>();
         }
 
         public override void Enter()
@@ -28,7 +28,7 @@ namespace Team_members.Lloyd.Civilian_L
             
             
             if (stats == null)
-                stats = GetComponentInParent<Stats>();
+                stats = GetComponentInParent<StatsComp>();
         }
     }
 }

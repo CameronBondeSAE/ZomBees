@@ -23,18 +23,10 @@ public class ItemPickup : IPickup
 
     public PickupState myState;
 
-    public void PickUp(GameObject parent)
+    public void SwitchHeld(GameObject parent)
     {
-        if (!held)
-        {
-            gameObject.transform.SetParent(parent.transform);
-            held = true;
-            ChangeState(PickupState.Held);
-        }
-    }
-
-    public void PutDown(GameObject parent)
-    {
+        held = !held;
+        
         if (held)
         {
             gameObject.transform.SetParent(null);
@@ -47,8 +39,17 @@ public class ItemPickup : IPickup
                 ChangeState(PickupState.Active);
             }
         }
+        
+        if (!held)
+        {
+            gameObject.transform.SetParent(parent.transform);
+            gameObject.transform.position = parent.transform.position;
+            gameObject.transform.rotation = parent.transform.rotation;
+            held = true;
+            ChangeState(PickupState.Held);
+        }
     }
-
+    
     public void SwitchActive()
     {
         if (useable)
