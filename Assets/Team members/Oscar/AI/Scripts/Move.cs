@@ -8,10 +8,10 @@ namespace Oscar
 {
     public class Move : MonoBehaviour
     {
-        public LittleGuy guy;
+        public LittleGuy littleGuy;
         void Update()
         {
-            guy.rb.AddRelativeForce(Vector3.forward * guy.speed,ForceMode.Acceleration);
+            littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed,ForceMode.Acceleration);
         }
     }
 }

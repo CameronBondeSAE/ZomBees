@@ -8,7 +8,6 @@ namespace Oscar
     {
         public Rigidbody rb;
         public float speed;
-
     }
 }
 

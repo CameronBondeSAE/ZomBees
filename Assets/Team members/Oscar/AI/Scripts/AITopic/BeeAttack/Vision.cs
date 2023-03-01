@@ -11,6 +11,7 @@ namespace Oscar
         public float feelerAmount;
 
         public float spacing;
+        public float offset;
         
         public List<Transform> civilGuyInSight;
         
@@ -18,7 +19,7 @@ namespace Oscar
         {
             for (int i = 0; i < feelerAmount; i++)
             {
-                Vector3 direction = Quaternion.Euler(0f, i * spacing, 0f) * guy.transform.forward;
+                Vector3 direction = Quaternion.Euler(0f, i * spacing - offset, 0f) * guy.transform.forward;
                 Physics.Raycast(guy.rb.transform.localPosition, direction, out RaycastHit hitInfo, distance, 255,
                     QueryTriggerInteraction.Ignore);
                 if (hitInfo.collider == null)

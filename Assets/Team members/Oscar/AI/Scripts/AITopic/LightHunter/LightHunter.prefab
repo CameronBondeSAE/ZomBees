@@ -184,12 +184,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5456320216544290732}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e55ccf1f82d422340bcc08eafbd761ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guy: {fileID: 1853546493801413536}
+  littleGuy: {fileID: 1853546493801413536}
 --- !u!114 &4897569144944274036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,8 +203,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guy: {fileID: 1853546493801413536}
-  feelerAmount: 0
-  spacing: 0
+  distance: 15
+  feelerAmount: 5
+  spacing: 1
+  offset: 2
+  lightInSight: []
 --- !u!114 &924000894343828957
 MonoBehaviour:
   m_ObjectHideFlags: 0

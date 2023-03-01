@@ -40,7 +40,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5536512628873761423
 MeshFilter:
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55ccf1f82d422340bcc08eafbd761ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guy: {fileID: 2221404923712474766}
+  littleGuy: {fileID: 2221404923712474766}
 --- !u!114 &846588081587511539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guy: {fileID: 2221404923712474766}
   feelerAmount: 10
-  spacing: 3
+  spacing: 5
+  offset: 22.5
   civilGuyInSight: []
 --- !u!114 &3003469513053121440
 MonoBehaviour:
@@ -252,10 +253,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d015b36a5c7e1478d39e99a0c357d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  civilianFound: 0
-  nearCivilian: 0
-  civilianDead: 0
-  seeHive: 0
-  nearHive: 0
-  killReported: 0
   vision: {fileID: 392801403}
