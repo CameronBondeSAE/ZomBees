@@ -16,8 +16,9 @@ namespace Virginia
              if (Physics.Raycast(transform.position, transform.forward, out hitInfo, 2f))
             {
                 Debug.Log("hit");
+               
                 ISwitchable thinginfront = hitInfo.transform.GetComponent<ISwitchable>();
-
+                    
             }
 
         }

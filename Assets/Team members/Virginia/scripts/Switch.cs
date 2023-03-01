@@ -6,15 +6,19 @@ using System;
 
 namespace Virginia
 {
-    public class Switch : MonoBehaviour
+    public class Switch : MonoBehaviour, ISwitchable
     {
         public event Action TurnOnEvent;
         public event Action TurnOffEvent;
+       
+
 
         [Button]  // cheat - plugin
         public void TurnOn()
         {
+
             TurnOnEvent?.Invoke();
+
         }
 
         [Button] // cheat - plugin
@@ -23,9 +27,7 @@ namespace Virginia
             TurnOffEvent?.Invoke();
 
 
-            RaycastHit hitInfo;
-            Physics.Raycast(transform.position, transform.forward, out hitInfo, 1f);
-            // hitInfo.transform.GetComponent<ISwitchable>().....
+          
         }
     }
 }
