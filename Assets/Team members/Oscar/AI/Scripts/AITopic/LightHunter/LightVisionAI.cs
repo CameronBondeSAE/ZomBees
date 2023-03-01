@@ -17,23 +17,42 @@ public class LightVisionAI : MonoBehaviour
 
     public List<Transform> lightInSight;
 
+    public List<Transform> honeyInSight;
+
     private void FixedUpdate()
     {
-        List<Transform> stillInSight = new List<Transform>();
-
-        for (int felt = 0; felt < feelerAmount; felt++)
+        for (int f = 0; f < feelerAmount; f++)
         {
-            Vector3 direction = Quaternion.Euler(0f, felt * spacing - offset, 0f) * guy.transform.forward;
+            Vector3 direction = Quaternion.Euler(0f, f * spacing - offset, 0f) * guy.transform.forward;
             Physics.Raycast(guy.rb.transform.localPosition, direction, out RaycastHit hitInfo, distance, 255,
                 QueryTriggerInteraction.Collide);
-            if (hitInfo.collider.GetComponentInParent<LightLength>() != null)
+            if (hitInfo.collider != null)
             {
-                Transform lightRay = hitInfo.transform;
+                if (hitInfo.collider.GetComponentInParent<LightLength>() != null)
+                {
+                    Transform lightRay = hitInfo.transform;
                     
-                if (!lightInSight.Contains(lightRay))
-                { 
-                    lightInSight.Add(hitInfo.transform);
+                    if (!lightInSight.Contains(lightRay)) 
+                    { 
+                        lightInSight.Add(hitInfo.transform); 
+                    } 
                 }
+
+                if (hitInfo.collider.GetComponent<Honey>() != null)
+                {
+                    Transform honeyStuff = hitInfo.transform;
+
+                    if (!honeyInSight.Contains(honeyStuff))
+                    {
+                        honeyInSight.Add(hitInfo.transform);
+                    }
+                }
+                
+            }
+            else
+            { 
+                lightInSight.Clear();
+                honeyInSight.Clear();
             }
         }
     }
