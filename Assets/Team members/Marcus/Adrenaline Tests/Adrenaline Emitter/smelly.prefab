@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adrenaline: 0
+  adrenalinePotency: 2
   neighbours: {fileID: 4289266490928846906}
   myStats: {fileID: 4289266491152451452}
 --- !u!54 &4289266491152451449

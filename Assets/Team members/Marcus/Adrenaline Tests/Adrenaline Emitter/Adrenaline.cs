@@ -11,6 +11,12 @@ namespace Marcus
     {
         [ReadOnly] [SerializeField] 
         private float adrenaline;
+        
+        /// <summary>
+        /// Multipler to determine the range of adrenaline sphere
+        /// Higher potency means larger range for bees to smell
+        /// </summary>
+        public float adrenalinePotency;
 
         public Neighbours neighbours;
         public CivilianStats myStats;
@@ -20,11 +26,6 @@ namespace Marcus
         private float timeAlone;
         private int aloneRoundRobin;
         private int groupedRoundRobin;
-
-        public delegate void EventHandler(object sender, EventArgs args);
-        public event EventHandler CanSmellAdrenaline;
-        
-        private bool eventCast;
 
         // Start is called before the first frame update
         void Start()
@@ -65,13 +66,16 @@ namespace Marcus
             }
             
             adrenaline = Mathf.Clamp(adrenaline, 0, 10);
-            if (Physics.OverlapSphere(transform.position, adrenaline * 2).Length >= 0 && !eventCast)
+            float adrenalineRange = adrenaline * adrenalinePotency;
+            
+            foreach (Collider item in Physics.OverlapSphere(transform.position, adrenalineRange))
             {
-                EventArgs args = new MarcusEventArgs
+                IAdrenalineSensitive bee = item.GetComponent<IAdrenalineSensitive>();
+                if (bee != null)
                 {
-                    AdrenalineSearchPos = transform.position + new Vector3(Random.Range(10f,20f), 0, Random.Range(10f,20f))
-                };
-                CanSmellAdrenaline?.Invoke(this, args);
+                    bee.PathfindToSource(transform.position + 
+                                         new Vector3(Random.Range(-adrenalineRange,adrenalineRange), 0, Random.Range(-adrenalineRange, adrenalineRange)));
+                }
             }
         }
     }

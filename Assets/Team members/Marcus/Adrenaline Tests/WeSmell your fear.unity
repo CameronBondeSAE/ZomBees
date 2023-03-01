@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adrenaline: 0
+  adrenalinePotency: 0
   neighbours: {fileID: 308268622}
   myStats: {fileID: 827550912}
 --- !u!114 &827550912
@@ -587,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30cef79559f82e2488bc27eb8f1cab6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasObjective: 0
 --- !u!136 &916090633
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -700,7 +702,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &1075273723
 GameObject:
@@ -1076,6 +1078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adrenaline: 0
+  adrenalinePotency: 0
   neighbours: {fileID: 246397069}
   myStats: {fileID: 2072697298}
 --- !u!114 &2072697298
