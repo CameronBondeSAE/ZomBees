@@ -66,12 +66,15 @@ namespace Marcus
             }
             
             adrenaline = Mathf.Clamp(adrenaline, 0, 10);
-            foreach (Collider item in Physics.OverlapSphere(transform.position, adrenaline*adrenalinePotency))
+            float adrenalineRange = adrenaline * adrenalinePotency;
+            
+            foreach (Collider item in Physics.OverlapSphere(transform.position, adrenalineRange))
             {
                 IAdrenalineSensitive bee = item.GetComponent<IAdrenalineSensitive>();
                 if (bee != null)
                 {
-                    bee.PathfindToSource(transform.position + new Vector3(Random.Range(10f,20f), 0, Random.Range(10f, 20f)));
+                    bee.PathfindToSource(transform.position + 
+                                         new Vector3(Random.Range(-adrenalineRange,adrenalineRange), 0, Random.Range(-adrenalineRange, adrenalineRange)));
                 }
             }
         }
