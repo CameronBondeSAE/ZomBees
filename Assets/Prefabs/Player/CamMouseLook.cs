@@ -30,7 +30,7 @@ namespace AlexM
 			Cursor.visible   = false;
 		}
 
-		void Update()
+		void FixedUpdate()
 		{
 			OldMouseMovement();
 		}
