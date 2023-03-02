@@ -570,10 +570,6 @@ PrefabInstance:
       propertyPath: invert
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 488536307018931611, guid: 17a9d4a3d42c62746ac18cc3322a8043, type: 3}
-      propertyPath: mouseSensitivity
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 6271187260368080563, guid: 17a9d4a3d42c62746ac18cc3322a8043, type: 3}
       propertyPath: m_RootOrder
       value: 1

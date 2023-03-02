@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Interaction : MonoBehaviour
+namespace Cam
 {
-	void OnCollisionEnter(Collision collision)
+	public class Interaction : MonoBehaviour
 	{
-		// What we hit has a script that implements "ISwitchable" interface
-		ISwitchable switchable = collision.gameObject.GetComponent<ISwitchable>();
-		
-		if (switchable != null)
+		void OnCollisionEnter(Collision collision)
 		{
-			if(Random.value>0.5f)
-				switchable.TurnOn();
-			else
-				switchable.TurnOff();
+			// What we hit has a script that implements "ISwitchable" interface
+			ISwitchable switchable = collision.gameObject.GetComponent<ISwitchable>();
+		
+			if (switchable != null)
+			{
+				if(Random.value>0.5f)
+					switchable.TurnOn();
+				else
+					switchable.TurnOff();
+			}
 		}
 	}
 }

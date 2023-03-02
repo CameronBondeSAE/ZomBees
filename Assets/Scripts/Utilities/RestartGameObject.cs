@@ -19,7 +19,7 @@ public class RestartGameObject : EditorWindow
 	void OnGUI()
 	{
 		GUILayout.BeginHorizontal();
-		if (GUILayout.Button("Re-call Awake and Start for GameObject"))
+		if (GUILayout.Button("Awake+Start"))
 		{
 			// Get all the components attached to this game object
 			var components = Selection.activeGameObject.GetComponents<Component>();
@@ -45,7 +45,7 @@ public class RestartGameObject : EditorWindow
 			}
 		}
 
-		if (GUILayout.Button("Delete and reinstantiate GameObject"))
+		if (GUILayout.Button("Respawn"))
 		{
 			// Get the original prefab for the selected game object
 			GameObject originalPrefab = PrefabUtility.GetCorrespondingObjectFromOriginalSource(Selection.activeGameObject);
