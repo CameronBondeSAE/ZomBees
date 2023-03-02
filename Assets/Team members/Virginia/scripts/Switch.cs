@@ -18,6 +18,10 @@ namespace Virginia
         {
 
             TurnOnEvent?.Invoke();
+            
+            
+                
+            GetComponent<Renderer>().material.color = Color.green;
 
         }
 
@@ -28,6 +32,8 @@ namespace Virginia
 
 
           
+                
+            GetComponent<Renderer>().material.color = Color.red;
         }
     }
 }
