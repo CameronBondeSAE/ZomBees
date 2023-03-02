@@ -13,9 +13,7 @@ namespace Marcus
         public Vector3Int worldSize;
         public Vector3Int gridSize;
         
-        [ReadOnly][SerializeReference]
         private bool[,] gridNodeReferences;
-        
         
         private void Awake()
         {
@@ -24,23 +22,6 @@ namespace Marcus
 
         // Start is called before the first frame update
         void Start()
-        {
-            /*for (int x = 0; x < worldSize.x; x++)
-            {
-                for (int z = 0; z < worldSize.z; z++)
-                {
-                    if (Physics.OverlapBox(new Vector3(x * gridSize.x, 0, z * gridSize.z),
-                            new Vector3(gridSize.x, gridSize.y, gridSize.z), Quaternion.identity).Length > 0)
-                    {
-                        // Something is there
-                        gridNodeReferences[x, z]/*.isBlocked#1# = true;
-                    }
-                }
-            }*/
-        }
-
-        // Update is called once per frame
-        void Update()
         {
             for (int x = 0; x < worldSize.x; x++)
             {
@@ -55,17 +36,26 @@ namespace Marcus
                 }
             }
         }
+
+        // Update is called once per frame
+        void Update()
+        {
+            
+        }
         
         private void OnDrawGizmos()
         {
-            for (int x = 0; x < worldSize.x; x++)
+            if (Application.isPlaying)
             {
-                for (int z = 0; z < worldSize.z; z++)
+                for (int x = 0; x < worldSize.x; x++)
                 {
-                    if (gridNodeReferences[x, z]/*.isBlocked*/)
+                    for (int z = 0; z < worldSize.z; z++)
                     {
-                        Gizmos.color = Color.red;
-                        Gizmos.DrawCube(new Vector3(x, 0, z) + gridOffset, Vector3.one);
+                        if (gridNodeReferences[x, z]/*.isBlocked*/)
+                        {
+                            Gizmos.color = Color.red;
+                            Gizmos.DrawCube(new Vector3(x, 0, z) + gridOffset, Vector3.one);
+                        }
                     }
                 }
             }

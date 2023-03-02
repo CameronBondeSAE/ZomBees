@@ -7010,7 +7010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0ebb40f9ce59a4c88d095bdcbb8994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridOffset: {x: -50, y: 0, z: 0}
+  gridOffset: {x: -50, y: 0, z: -50}
   worldSize: {x: 100, y: 1, z: 100}
   gridSize: {x: 1, y: 1, z: 1}
 --- !u!4 &1383028062
