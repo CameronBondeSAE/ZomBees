@@ -1,5 +1,6 @@
 using System;
 
+[Serializable]
 public class Stat<T>
 {
     public event Action<T> OnValueChanged;
