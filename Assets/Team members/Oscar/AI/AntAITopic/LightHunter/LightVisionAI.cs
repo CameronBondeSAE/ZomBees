@@ -15,9 +15,9 @@ public class LightVisionAI : MonoBehaviour
     public float spacing;
     public float offset;
 
-    public List<Transform> lightInSight;
+    public List<GameObject> lightInSight;
 
-    public List<Transform> honeyInSight;
+    public List<GameObject> honeyInSight;
 
     private void FixedUpdate()
     {
@@ -30,21 +30,21 @@ public class LightVisionAI : MonoBehaviour
             {
                 if (hitInfo.collider.GetComponentInParent<LightLength>() != null)
                 {
-                    Transform lightRay = hitInfo.transform;
+                    GameObject lightRay = hitInfo.collider.gameObject;
                     
                     if (!lightInSight.Contains(lightRay)) 
                     { 
-                        lightInSight.Add(hitInfo.transform); 
+                        lightInSight.Add(hitInfo.collider.gameObject); 
                     } 
                 }
 
                 if (hitInfo.collider.GetComponent<Honey>() != null)
                 {
-                    Transform honeyStuff = hitInfo.transform;
+                    GameObject honeyStuff = hitInfo.collider.gameObject;
 
                     if (!honeyInSight.Contains(honeyStuff))
                     {
-                        honeyInSight.Add(hitInfo.transform);
+                        honeyInSight.Add(hitInfo.collider.gameObject);
                     }
                 }
                 

@@ -7,39 +7,32 @@ using UnityEngine;
 public class CollectHoney : AntAIState
 {
     private LittleGuy littleGuy;
-
     private LightVisionAI vision;
-
-    private Transform targetTransform;
+    
+    //private GameObject target;
+    //private Vector3 targetDir;
+    //private float angle;
     
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
                 
         littleGuy = aGameObject.GetComponent<LittleGuy>();
+        
+        // target = vision.honeyInSight[0];
+        // targetDir = target.transform.position - transform.position;
+        // angle = Vector3.SignedAngle(transform.forward, targetDir, Vector3.up);
+        /* angle = Vector3.SignedAngle(transform.forward,
+                   vision.honeyInSight[0].transform.position - transform.position, Vector3.up);*/
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
+        //littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, angle * littleGuy.speed,0);
         
-        //if (vision.honeyInSight != null)
-        {
-            targetTransform = vision.honeyInSight[0];
-            
-            Vector3 targetDir = targetTransform.position - transform.position;
-            
-            float angle = Vector3.SignedAngle(transform.forward, targetDir, Vector3.up);
-                        
-            littleGuy.rb.AddRelativeTorque(0,angle * littleGuy.speed,0);
-            
-            littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed * 2,ForceMode.Acceleration);
-        }
-        //else
-        {
-            //Finish();
-        }
-
-        
+        littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
+            vision.honeyInSight[0].transform.position - transform.position, Vector3.up) * littleGuy.speed,0);
+        littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 2),ForceMode.Acceleration);
     }
 }

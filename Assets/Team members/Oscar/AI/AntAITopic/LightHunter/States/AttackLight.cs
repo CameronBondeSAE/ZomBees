@@ -9,7 +9,7 @@ public class AttackLight : AntAIState
     private LittleGuy littleGuy;
     private LightVisionAI vision;
 
-    private Transform targetTransform;
+    private GameObject target;
     
     public override void Create(GameObject aGameObject)
     {
@@ -24,16 +24,16 @@ public class AttackLight : AntAIState
         
         if (vision.lightInSight[0] != null)
         {
-            targetTransform = vision.lightInSight[0];
+            target = vision.lightInSight[0];
         }
 
-        Vector3 targetDir = targetTransform.position - transform.position;
+        Vector3 targetDir = target.transform.position - transform.position;
 
         float angle = Vector3.SignedAngle(transform.forward, targetDir, Vector3.up);
             
         littleGuy.rb.AddRelativeTorque(0,angle * littleGuy.speed,0);
 
-        littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed * 2,ForceMode.Acceleration);
+        littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 2),ForceMode.Acceleration);
 
     }
 }
