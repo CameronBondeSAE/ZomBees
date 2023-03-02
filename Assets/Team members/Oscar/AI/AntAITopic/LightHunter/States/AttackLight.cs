@@ -20,8 +20,6 @@ public class AttackLight : AntAIState
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
-        
-        
         base.Execute(aDeltaTime, aTimeScale);
         
         if (vision.lightInSight[0] != null)
@@ -35,7 +33,7 @@ public class AttackLight : AntAIState
             
         littleGuy.rb.AddRelativeTorque(0,angle * littleGuy.speed,0);
 
-        littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed,ForceMode.Acceleration);
+        littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed * 2,ForceMode.Acceleration);
 
     }
 }
