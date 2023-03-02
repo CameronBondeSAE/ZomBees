@@ -29,12 +29,12 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""a90ff2ee-f70f-476f-96a5-936a438923a2"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Jump"",
@@ -73,7 +73,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Flashlight"",
+                    ""name"": ""Torch"",
                     ""type"": ""Button"",
                     ""id"": ""78d02e40-e2ab-4294-a1df-0d71907db1cc"",
                     ""expectedControlType"": ""Button"",
@@ -110,61 +110,6 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""WSAD"",
-                    ""id"": ""d9504426-b255-4f17-9d5f-30fac44ac427"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""4bcc672d-bf94-48d4-be81-a13f4e47d35f"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""2bdcacc6-0c1b-4aae-b04d-48bc79fda692"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""e8a42053-03f8-48bb-8b9b-26a0cf239947"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""01601401-3904-48af-97c6-0eed51fcb279"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": """",
                     ""id"": ""99443dd9-b1de-458d-a03a-ec5dcbf7d643"",
@@ -216,7 +161,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Flashlight"",
+                    ""action"": ""Torch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -285,6 +230,61 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""c5843484-85e1-450f-b39b-6564fc992d71"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""03bf3b46-244e-4522-aa02-a3c2a6e2176b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""79a0e776-27db-40ef-9783-9009cb9a5dbf"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""fd22e48e-c376-4363-a257-a91af6bdd4e7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cdd1f39f-e464-499d-8f7e-5cb6a885e32f"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -298,7 +298,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
         m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
         m_Movement_Menu = m_Movement.FindAction("Menu", throwIfNotFound: true);
-        m_Movement_Flashlight = m_Movement.FindAction("Flashlight", throwIfNotFound: true);
+        m_Movement_Torch = m_Movement.FindAction("Torch", throwIfNotFound: true);
         m_Movement_Use = m_Movement.FindAction("Use", throwIfNotFound: true);
         m_Movement_Pickup = m_Movement.FindAction("Pick up", throwIfNotFound: true);
         m_Movement_Drop = m_Movement.FindAction("Drop", throwIfNotFound: true);
@@ -366,7 +366,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Sprint;
     private readonly InputAction m_Movement_Crouch;
     private readonly InputAction m_Movement_Menu;
-    private readonly InputAction m_Movement_Flashlight;
+    private readonly InputAction m_Movement_Torch;
     private readonly InputAction m_Movement_Use;
     private readonly InputAction m_Movement_Pickup;
     private readonly InputAction m_Movement_Drop;
@@ -379,7 +379,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
         public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
         public InputAction @Menu => m_Wrapper.m_Movement_Menu;
-        public InputAction @Flashlight => m_Wrapper.m_Movement_Flashlight;
+        public InputAction @Torch => m_Wrapper.m_Movement_Torch;
         public InputAction @Use => m_Wrapper.m_Movement_Use;
         public InputAction @Pickup => m_Wrapper.m_Movement_Pickup;
         public InputAction @Drop => m_Wrapper.m_Movement_Drop;
@@ -407,9 +407,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Menu.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnMenu;
-                @Flashlight.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlashlight;
-                @Flashlight.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlashlight;
-                @Flashlight.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlashlight;
+                @Torch.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnTorch;
+                @Torch.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnTorch;
+                @Torch.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnTorch;
                 @Use.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnUse;
                 @Use.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnUse;
                 @Use.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnUse;
@@ -438,9 +438,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
-                @Flashlight.started += instance.OnFlashlight;
-                @Flashlight.performed += instance.OnFlashlight;
-                @Flashlight.canceled += instance.OnFlashlight;
+                @Torch.started += instance.OnTorch;
+                @Torch.performed += instance.OnTorch;
+                @Torch.canceled += instance.OnTorch;
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
@@ -461,7 +461,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
-        void OnFlashlight(InputAction.CallbackContext context);
+        void OnTorch(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
         void OnPickup(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);

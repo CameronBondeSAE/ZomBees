@@ -6,7 +6,9 @@ namespace AlexM
 {
 	public class CamMouseLook : MonoBehaviour
 	{
-		public float     mouseSensitivity = 1f;
+		public float mouseSensitivity = 1f;
+		public bool  invert = false;
+		
 		public Camera    camera;
 		public Transform playerbody;
 
@@ -28,7 +30,7 @@ namespace AlexM
 			Cursor.visible   = false;
 		}
 
-		void FixedUpdate()
+		void Update()
 		{
 			OldMouseMovement();
 		}
@@ -51,7 +53,14 @@ namespace AlexM
 			float mouseXSpeed = mouseDelta.x;
 			float mouseYSpeed = mouseDelta.y;
 
-			pitch -= mouseYSpeed * mouseSensitivity;
+			if (invert)
+			{
+				pitch += mouseYSpeed * mouseSensitivity;
+			}
+			else
+			{
+				pitch -= mouseYSpeed * mouseSensitivity;
+			}
 			pitch =  Mathf.Clamp(pitch, -89f, 89f);
 
 			//Rotate the main body of the player on the horizontal axis

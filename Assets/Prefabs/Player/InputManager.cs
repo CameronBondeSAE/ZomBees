@@ -11,7 +11,7 @@ namespace AlexM
 		private CamMouseLook    _camScript;
 
 
-		[HideInInspector]
+		// [HideInInspector]
 		public Vector2 moveDirection;
 
 		#endregion
