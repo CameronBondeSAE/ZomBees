@@ -4,16 +4,26 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 namespace V {
-    public class DoorOpen : MonoBehaviour
+    public class DoorOpen : MonoBehaviour, ISwitchable
     {
         [Button]  // cheat - plugin
-        public void open()
-        { gameObject.SetActive(true); }
+        public void TurnOn()
+        { 
+            
+            gameObject.SetActive(true);
+            
+
+        }
 
 
         [Button]  // cheat - plugin
-        public void close()
-        { gameObject.SetActive(false); }
+        public void TurnOff()
+        {
+            
+            gameObject.SetActive(false);
+        
+        
+        }
 
 
 
