@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 public class GeneratorStartingState : MonoBehaviour
 {
     public AudioClip generatorStartUp;
-
     private AudioSource generatorAudio;
+    private bool componentActive = true;
     
 
 
@@ -26,9 +26,20 @@ public class GeneratorStartingState : MonoBehaviour
         Debug.Log("Phase 1 complete!");
         generatorAudio.Stop();
     }
-
-    public void Thingthing()
+    
+    // new public method to toggle the enabled state of the component
+    public void ToggleActivation()
     {
-        
+        componentActive = !componentActive;
+        enabled = componentActive;
+
+        if (componentActive)
+        {
+            OnEnable();
+        }
+        else
+        {
+            OnDisable();
+        }
     }
 }

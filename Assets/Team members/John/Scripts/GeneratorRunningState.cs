@@ -15,11 +15,6 @@ public class GeneratorRunningState : MonoBehaviour
         generatorAudio.clip = generatorRunning;
         Debug.Log("Phase 2 Begins!");
         Debug.Log("The sound clip playing is "+generatorAudio.clip);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         generatorAudio.Play();
     }
 

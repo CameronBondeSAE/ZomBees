@@ -7,24 +7,20 @@ public class RefferenceScript : MonoBehaviour, ISwitchable
 {
     public MonoBehaviour iSwitchable;
 
-    public delegate void DoThing();
-
-    public static event DoThing thingHasBeenDone;
+    public delegate void SwitchOnTheLight();
+    public static event SwitchOnTheLight theLightIsSwitchedOn;
 
     public void TurnOn()
     {
-        if (thingHasBeenDone != null)
+        if (theLightIsSwitchedOn != null)
         {
-            if (iSwitchable)
-            {
-                thingHasBeenDone();
-            }
+            theLightIsSwitchedOn();
         }
     }
 
     public void TurnOff()
     {
-        
+        theLightIsSwitchedOn = null;
     }
 
 }
