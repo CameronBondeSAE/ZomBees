@@ -11,7 +11,7 @@ public class Generator_Starting_Editor : Editor
     {
         base.OnInspectorGUI();
 
-        if (GUILayout.Button("Start the Engine"))
+        if (GUILayout.Button("Start the Engine")&& target != null)
         {
             // ‘target’ is the magic variable that editors use to link back to the original component. It’s in the BASE CLASS, so you have to ‘cast’ to get access to YOUR functions.
             GeneratorStartingState generatorStartingState = (GeneratorStartingState)target;
