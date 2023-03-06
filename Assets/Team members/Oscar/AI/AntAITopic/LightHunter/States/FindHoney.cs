@@ -14,13 +14,13 @@ public class FindHoney : AntAIState
     {
         base.Create(aGameObject);
         
-        //littleGuy = aGameObject.GetComponent<LittleGuy>();
+        littleGuy = aGameObject.GetComponent<LittleGuy>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
         
-        //littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed,ForceMode.Acceleration);
+        littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed,ForceMode.Acceleration);
     }
 }

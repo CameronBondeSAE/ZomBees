@@ -9,8 +9,16 @@ public class LightControllerAI : MonoBehaviour
 
     public bool seeTheHoney()
     {
-        print(vision.honeyInSight.Count > 0);
-        return vision.honeyInSight.Count > 0;
+        if (vision.honeyInSight.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+        
     }
 
     public bool hasTheHoney()
@@ -20,7 +28,6 @@ public class LightControllerAI : MonoBehaviour
 
     public bool seeTheLight()
     {
-        print(vision.lightInSight.Count > 0);
         return vision.lightInSight.Count > 0;
     }
     

@@ -176,7 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5456320216544290733}
-  speed: 1
+  littleGuyModel: {fileID: 5456320216544290732}
+  speed: 3
 --- !u!114 &2618092197398739709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5456320216544290732}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e55ccf1f82d422340bcc08eafbd761ab, type: 3}
   m_Name: 
@@ -204,10 +205,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guy: {fileID: 1853546493801413536}
   distance: 15
-  feelerAmount: 5
+  feelerAmount: 1
   spacing: 1
-  offset: 2
+  offset: 0
   lightInSight: []
+  honeyInSight: []
 --- !u!114 &924000894343828957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualUpdate: 0
   thinkInterval: 0.1
-  scenario: {fileID: 11400000, guid: 7a10e14114f23ae479c8115c2a3ecf7c, type: 2}
+  scenario: {fileID: 11400000, guid: 0542c21241bc3074ab6c839d0d9e23b1, type: 2}
 --- !u!114 &4033677449838928058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,13 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db007a32b4c24f4a88ae6dc7a8618f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeTheHoney: 0
-  hasTheHoney: 0
-  seeTheHive: 0
-  nearTheHive: 0
-  deliveredTheHoney: 0
-  seeTheLight: 0
-  enemyIsDead: 0
   lightController: {fileID: 1074013572422905989}
 --- !u!114 &1074013572422905989
 MonoBehaviour:
