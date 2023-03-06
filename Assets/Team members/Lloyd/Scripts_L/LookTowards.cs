@@ -4,8 +4,10 @@ using UnityEngine;
 using Lloyd;
 using Team_members.Lloyd.Civilian_L;
 
-public class LookTowards : CivModelAIState
+public class LookTowards : MonoBehaviour
 {
+    private CivilianBrain civBrain;
+    
     public Transform target;
     public float torqueSpeed;
     public Rigidbody rb;
@@ -16,12 +18,14 @@ public class LookTowards : CivModelAIState
     {
         rb = GetComponent<Rigidbody>();
 
-       // WaitUntil (civBrain.target)
-       // target = civBrain.target;
+        civBrain = GetComponent<CivilianBrain>();
     }
 
     private void FixedUpdate()
     {
+        looking = civBrain.looking;
+        target = civBrain.target;
+        
         if (looking)
         {
             Vector3 targetDir = target.position - transform.position;

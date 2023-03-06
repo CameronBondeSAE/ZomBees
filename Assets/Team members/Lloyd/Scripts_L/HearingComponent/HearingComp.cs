@@ -11,17 +11,7 @@ public class HearingComp : MonoBehaviour, IHear
     // calculates distance between HearingComp and source and fires a RaycastAll the length of distance at source
     // hitCount returns how many objects are in between HearingComp and source
 
-    //where to put perlin randomiser for sound?
-    // float noiseX = Mathf.PerlinNoise(point.x * scale, 0f);
-    // float noiseY = Mathf.PerlinNoise(point.y * scale, 0f);
-    // float noiseZ = Mathf.PerlinNoise(point.z * scale, 0f);
-    //
-    // // Add the Perlin noise values to each component of the point
-    // point.x += noiseX;
-    // point.y += noiseY;
-    // point.z += noiseZ;
-    //public float perlionScale = 1f;
-
+    
     // Hearing Comp tracks number of sounds heard with soundsList
     // soundsList is sorted by input volume, loudest to the top
     // 
@@ -51,6 +41,7 @@ public class HearingComp : MonoBehaviour, IHear
         heardSound = false;
     }
 
+
     public void SoundHeard(GameObject source, float volume, float fear, float beeness)
     {
         float distance = Vector3.Distance(transform.position, source.transform.position);
@@ -69,4 +60,18 @@ public class HearingComp : MonoBehaviour, IHear
         
         soundsList.Sort((a, b) => -1 * a.volume.CompareTo(b.volume));
     }
+    
+    
+    
+    //where to put perlin randomiser for sound?
+         // float noiseX = Mathf.PerlinNoise(point.x * scale, 0f);
+         // float noiseY = Mathf.PerlinNoise(point.y * scale, 0f);
+         // float noiseZ = Mathf.PerlinNoise(point.z * scale, 0f);
+         //
+         // // Add the Perlin noise values to each component of the point
+         // point.x += noiseX;
+         // point.y += noiseY;
+         // point.z += noiseZ;
+         //public float perlionScale = 1f;
+
 }

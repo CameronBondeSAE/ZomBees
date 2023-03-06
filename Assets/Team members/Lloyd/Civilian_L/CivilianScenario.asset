@@ -81,15 +81,6 @@ MonoBehaviour:
     post:
     - id: 5
       value: 1
-  - name: LookTowards
-    isDefault: 0
-    state: {fileID: 7649346275582795230, guid: 5227efac876fa4142895ccc5f90d93dd, type: 3}
-    cost: 0
-    position: {x: 523.3334, y: 81.66667}
-    pre:
-    - id: 6
-      value: 1
-    post: []
   goals:
   - name: Survive
     isDefault: 0
