@@ -10,10 +10,7 @@ public class LightVisionAI : MonoBehaviour
 {
     public LittleGuy guy;
     public float distance;
-    public float feelerAmount;
-
-    public float spacing;
-    public float offset;
+    //public int feelerAmount;
 
     public List<GameObject> lightInSight;
 
@@ -21,9 +18,9 @@ public class LightVisionAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        for (int f = 0; f < feelerAmount; f++)
+        //for (int f = 0; f < feelerAmount; f++)
         {
-            Vector3 direction = Quaternion.Euler(0f, f * spacing - offset, 0f) * guy.transform.forward;
+            Vector3 direction = Quaternion.Euler(0f, 0f, 0f) * guy.transform.forward;
             Physics.Raycast(guy.rb.transform.localPosition, direction, out RaycastHit hitInfo, distance, 255,
                 QueryTriggerInteraction.Collide);
             if (hitInfo.collider != null)
@@ -34,7 +31,7 @@ public class LightVisionAI : MonoBehaviour
                     
                     if (!lightInSight.Contains(lightRay)) 
                     { 
-                        lightInSight.Add(hitInfo.collider.gameObject); 
+                        lightInSight.Add(lightRay); 
                     } 
                 }
 
@@ -44,9 +41,11 @@ public class LightVisionAI : MonoBehaviour
 
                     if (!honeyInSight.Contains(honeyStuff))
                     {
-                        honeyInSight.Add(hitInfo.collider.gameObject);
+                        honeyInSight.Add(honeyStuff);
                     }
                 }
+                
+                //avoid walls coming to a script near you!
                 
             }
             else

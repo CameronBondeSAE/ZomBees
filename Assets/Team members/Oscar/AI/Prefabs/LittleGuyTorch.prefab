@@ -170,7 +170,7 @@ Transform:
   m_Children:
   - {fileID: 8695546132656955444}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5894797841426157640
 MeshFilter:
@@ -285,7 +285,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5894797841426157636}
+  littleGuyModel: {fileID: 0}
   speed: 2
+  turnSpeed: 0
 --- !u!114 &5042671405235032707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +309,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5894797841426157637}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e55ccf1f82d422340bcc08eafbd761ab, type: 3}
   m_Name: 

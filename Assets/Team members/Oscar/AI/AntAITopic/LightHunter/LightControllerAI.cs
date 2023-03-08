@@ -6,17 +6,15 @@ using UnityEngine;
 public class LightControllerAI : MonoBehaviour
 {
     public LightVisionAI vision;
-
+    
     public bool seeTheHoney()
     {
         if (vision.honeyInSight.Count > 0)
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     public bool hasTheHoney()
@@ -30,11 +28,7 @@ public class LightControllerAI : MonoBehaviour
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
-
+        return false;
     }
     
     public bool enemyIsDead()
