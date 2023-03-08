@@ -48,7 +48,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 0}
     cost: 0
-    position: {x: 611, y: 283}
+    position: {x: 604, y: 303}
     pre:
     - id: 1
       value: 1
@@ -122,25 +122,35 @@ MonoBehaviour:
   goals:
   - name: Goal
     isDefault: 1
-    position: {x: 1041, y: 652}
+    position: {x: 1204, y: 657}
     conditions:
+    - id: 5
+      value: 1
     - id: 1
       value: 0
     - id: 2
       value: 0
-    - id: 5
+    - id: 7
       value: 1
   worldStates:
   - position: {x: 329, y: 651}
     isAutoUpdate: 0
     list:
-    - id: 3
+    - id: 0
+      value: 0
+    - id: 1
       value: 1
     - id: 2
+      value: 1
+    - id: 3
       value: 1
     - id: 4
       value: 0
     - id: 5
       value: 0
-    - id: 1
-      value: 1
+    - id: 6
+      value: 0
+    - id: 7
+      value: 0
+    - id: 8
+      value: 0
