@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using HarmonyLib;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Sirenix.OdinInspector;
 using Tanks;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 namespace Lloyd
 {
@@ -12,12 +15,26 @@ namespace Lloyd
     {
         public bool drawingGrid = false;
         public float scanTime;
+        public float perlinScale;
+        private float randomTime;
+        public float minRandTime;
+        public float maxRandTime;
+
+        private bool blocked = false;
+        private bool negative;
+
+        public Vector3Int offest;
+
+        public GameObject cubePrefab;
 
         public Vector3Int gridSize;
 
         public Vector3Int cubeSize;
 
-        public WorldNode[,] nodes;
+        public WorldNode[,,] nodes;
+        private float nodeCost;
+
+        public List<WorldNode> worldNodes;
 
         public List<WorldNode> openNodes = new List<WorldNode>();
         public List<WorldNode> closeNodes = new List<WorldNode>();
@@ -26,78 +43,64 @@ namespace Lloyd
 
         private void OnEnable()
         {
+            worldNodes = new List<WorldNode>();
             SpawnGrid();
         }
 
         private void SpawnGrid()
         {
-            nodes = new WorldNode[gridSize.x, gridSize.z];
+            nodes = new WorldNode[gridSize.x, gridSize.y, gridSize.z];
         }
 
         [Button]
         public void Scan()
         {
-            if (!drawingGrid)
-                StartCoroutine(ScanCoRoutine());
+            StartCoroutine(ScanRoutine());
         }
 
-        private IEnumerator ScanCoRoutine()
+        public IEnumerator ScanRoutine()
         {
-            for (int x = 0; x < gridSize.x; x++)
+            int startX = ((int)Mathf.Floor(gridSize.x / 2f));
+            int startY = ((int)Mathf.Floor(gridSize.y / 2f));
+            int startZ = ((int)Mathf.Floor(gridSize.z / 2f));
+
+            var nodePos = Vector3Int.zero;
+
+            for (int x = startX; x < startX + gridSize.x; x++)
             {
-                for (int z = 0; z < gridSize.z; z++)
+                nodePos.x = x * cubeSize.x;
+
+                for (int y = startY; y < startY + gridSize.y; y++)
                 {
-                    if (x < 0 || x >= nodes.GetLength(0) || z < 0 || z >= nodes.GetLength(1))
+                    nodePos.y = y * cubeSize.y;
+
+                    for (int z = startZ; z < startZ + gridSize.z; z++)
                     {
-                        continue;
-                    }
+                        float perlinValue = Mathf.PerlinNoise((x + y + z) * perlinScale, Time.time);
+                        float randomTime = Mathf.Lerp(minRandTime, maxRandTime, perlinValue);
 
-                    Vector3 nodePosition = new Vector3(x * cubeSize.x, 0, z * cubeSize.z);
+                        nodePos.z = z * cubeSize.z;
+                        AddNode(nodePos);
 
-                    Collider[] colliders = Physics.OverlapBox(nodePosition,
-                        new Vector3(gridSize.x / 2f, gridSize.y / 2f, gridSize.z / 2f), Quaternion.identity);
-
-                    WorldNode node = new WorldNode(nodePosition, colliders.Length > 0);
-
-                    nodes[x, z] = node;
-
-                    if (node.isBlocked)
-                    {
-                        closeNodes.Add(node);
-                    }
-                    else
-                    {
-                        openNodes.Add(node);
+                        yield return new WaitForSeconds(randomTime);
                     }
                 }
             }
-
-            yield return new WaitForSeconds(scanTime);
-            drawingGrid = false;
         }
 
-        private void OnDrawGizmos()
+        private void AddNode(Vector3Int input)
         {
-            if (drawingGrid)
+            if (input.x >= 0 && input.x < gridSize.x * cubeSize.x &&
+                input.y >= 0 && input.y < gridSize.y * cubeSize.y &&
+                input.z >= 0 && input.z < gridSize.z * cubeSize.z)
             {
-                for (int x = 0; x < gridSize.x; x++)
-                {
-                    for (int z = 0; z < gridSize.y; z++)
-                    {
-                        Vector3 nodePosition = new Vector3(x * cubeSize.x, 0, z * cubeSize.z);
+                WorldNode node = new WorldNode(input, blocked, nodeCost);
+                nodes[(int)node.position.x, (int)node.position.y, (int)node.position.z] = node;
 
-                        if (nodes[x, z].isBlocked)
-                        {
-                            Gizmos.color = Color.red;
-                            Gizmos.DrawCube(nodePosition, cubeSize);
-                        }
-                        else
-                        {
-                            Gizmos.color = Color.green;
-                            Gizmos.DrawCube(nodePosition, cubeSize);
-                        }
-                    }
-                }
+                GameObject nodePrefab =
+                    Instantiate(cubePrefab, node.position, Quaternion.identity, transform) as GameObject;
+
+                worldNodes.Add(node);
             }
         }
     }

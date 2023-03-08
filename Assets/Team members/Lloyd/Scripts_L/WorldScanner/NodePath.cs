@@ -13,12 +13,6 @@ public class NodePath : MonoBehaviour
 
     public List<WorldNode> openNeighbours;
 
-    public WorldNode[,] startNode;
-
-    public WorldNode[,] endNode;
-
-    public WorldNode[,] neighbourNode;
-
     private Vector3 cubeSize;
 
     private Vector3 gridSize;
@@ -47,7 +41,6 @@ public class NodePath : MonoBehaviour
             if (Mathf.Abs(openNode.position.x - currentPosition.x) <= 1 &&
                 Mathf.Abs(openNode.position.y - currentPosition.y) <= 1)
             {
-                openNode.openNeighbour = true;
                 openNeighbours.Add(openNode);
             }
         }
