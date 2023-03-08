@@ -16,24 +16,24 @@ public class AttackLight : AntAIState
         base.Create(aGameObject);
         
         littleGuy = aGameObject.GetComponent<LittleGuy>();
+        
+        vision = aGameObject.GetComponent<LightVisionAI>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
         
-        if (vision.lightInSight[0] != null)
+        if (vision.lightInSight.Count > 0)
         {
-            target = vision.lightInSight[0];
+            littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
+                vision.lightInSight[0].transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed,0);
+            littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 2), ForceMode.Acceleration);
         }
-
-        Vector3 targetDir = target.transform.position - transform.position;
-
-        float angle = Vector3.SignedAngle(transform.forward, targetDir, Vector3.up);
-            
-        littleGuy.rb.AddRelativeTorque(0,angle * littleGuy.speed,0);
-
-        littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 2),ForceMode.Acceleration);
+        else
+        {
+            Finish();
+        }
 
     }
 }

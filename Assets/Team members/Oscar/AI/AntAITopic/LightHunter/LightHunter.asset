@@ -22,12 +22,14 @@ MonoBehaviour:
       name: SeeLight
     - id: 3
       name: EnemyDead
+    - id: 4
+      name: StayAlive
   actions:
   - name: FindHoney
     isDefault: 1
     state: {fileID: 2621847876358071861, guid: 7876b8a22e13eb4408d015b5b9b96811, type: 3}
     cost: 0
-    position: {x: 343, y: 157}
+    position: {x: 337, y: 143}
     pre:
     - id: 0
       value: 0
@@ -40,7 +42,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4989140728558527309, guid: 875d553a2038dc04fb0c4aa2f1fa19cd, type: 3}
     cost: 0
-    position: {x: 533, y: 158}
+    position: {x: 528, y: 142}
     pre:
     - id: 0
       value: 1
@@ -49,11 +51,13 @@ MonoBehaviour:
     post:
     - id: 1
       value: 1
+    - id: 4
+      value: 1
   - name: AttackLight
     isDefault: 0
     state: {fileID: 4989140728558527309, guid: 0440764b60b33e142b88b5fa8917c1b2, type: 3}
     cost: 0
-    position: {x: 786, y: 159}
+    position: {x: 773, y: 146}
     pre:
     - id: 2
       value: 1
@@ -62,21 +66,19 @@ MonoBehaviour:
     post:
     - id: 3
       value: 1
+    - id: 4
+      value: 1
   goals:
   - name: CollectHoney
     isDefault: 1
-    position: {x: 340, y: 428}
+    position: {x: 335, y: 381}
     conditions:
     - id: 1
       value: 1
-  - name: KillLightSource
-    isDefault: 0
-    position: {x: 573, y: 425}
-    conditions:
-    - id: 3
+    - id: 4
       value: 1
   worldStates:
-  - position: {x: 335, y: 587}
+  - position: {x: 340, y: 516}
     isAutoUpdate: 1
     list:
     - id: 0
@@ -86,4 +88,6 @@ MonoBehaviour:
     - id: 2
       value: 0
     - id: 3
+      value: 0
+    - id: 4
       value: 0

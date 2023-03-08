@@ -178,6 +178,7 @@ MonoBehaviour:
   rb: {fileID: 5456320216544290733}
   littleGuyModel: {fileID: 5456320216544290732}
   speed: 3
+  turnSpeed: 0.5
 --- !u!114 &2618092197398739709
 MonoBehaviour:
   m_ObjectHideFlags: 0

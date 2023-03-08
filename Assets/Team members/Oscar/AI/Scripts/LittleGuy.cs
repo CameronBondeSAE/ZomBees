@@ -10,6 +10,7 @@ namespace Oscar
         public Rigidbody rb;
         public GameObject littleGuyModel;
         public float speed;
+        public float turnSpeed;
     }
 }
 

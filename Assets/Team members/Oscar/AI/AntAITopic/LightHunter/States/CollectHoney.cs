@@ -9,9 +9,9 @@ public class CollectHoney : AntAIState
     private LittleGuy littleGuy;
     private LightVisionAI vision;
     
-    private GameObject target;
-    private Vector3 targetDir;
-    private float angle;
+    // private GameObject target;
+    // private Vector3 targetDir;
+    // private float angle;
     
     public override void Create(GameObject aGameObject)
     {
@@ -35,7 +35,8 @@ public class CollectHoney : AntAIState
 
         if (vision.honeyInSight.Count > 0)
         {
-            littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, vision.honeyInSight[0].transform.position - transform.position, Vector3.up) * littleGuy.speed,0);
+            littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
+                vision.honeyInSight[0].transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed,0);
             littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 2), ForceMode.Acceleration);
         }
         else
