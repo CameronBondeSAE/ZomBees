@@ -12,7 +12,7 @@ namespace AlexM
 		private PlayerMovement  _pMovement;
 		private CamMouseLook    _camScript;
 
-		public Interaction interaction;
+		//public Interaction interaction;
 
 		// [HideInInspector]
 		public Vector2 moveDirection;
@@ -42,7 +42,7 @@ namespace AlexM
 
 		void UseOnperformed(InputAction.CallbackContext obj)
 		{
-			interaction.Interact();
+			//interaction.Interact();
 		}
 
 		private void Awake()
