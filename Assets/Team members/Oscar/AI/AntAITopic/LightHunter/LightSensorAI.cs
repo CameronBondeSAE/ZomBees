@@ -6,7 +6,7 @@ using UnityEngine;
 public class LightSensorAI : MonoBehaviour, ISense
 {
     public LightControllerAI lightController;
-
+    
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
         //using bools as a temporary before changing to the control script returning values.

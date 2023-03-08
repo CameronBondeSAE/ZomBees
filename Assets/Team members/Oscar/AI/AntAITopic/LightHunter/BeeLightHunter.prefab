@@ -16,13 +16,12 @@ GameObject:
   - component: {fileID: 126763145256878995}
   - component: {fileID: 1853546493801413536}
   - component: {fileID: 2618092197398739709}
-  - component: {fileID: -2380198507561759026}
   - component: {fileID: 4897569144944274036}
   - component: {fileID: 924000894343828957}
   - component: {fileID: 4033677449838928058}
   - component: {fileID: 1074013572422905989}
   m_Layer: 14
-  m_Name: LightHunter
+  m_Name: BeeLightHunter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,8 +177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5456320216544290733}
   littleGuyModel: {fileID: 5456320216544290732}
-  speed: 5
-  turnSpeed: 0.15
+  speed: 3
+  turnSpeed: 0.5
 --- !u!114 &2618092197398739709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,20 +192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   littleGuy: {fileID: 1853546493801413536}
---- !u!114 &-2380198507561759026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5456320216544290732}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9189c094191dfd4ba01d5ab1db2ea68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guy: {fileID: 1853546493801413536}
-  feel: {fileID: 0}
 --- !u!114 &4897569144944274036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +206,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guy: {fileID: 1853546493801413536}
   distance: 15
+  feelerAmount: 1
+  spacing: 1
+  offset: 0
   lightInSight: []
   honeyInSight: []
 --- !u!114 &924000894343828957
