@@ -11,9 +11,9 @@ public class LightDetector : MonoBehaviour
         // detect the bool
         if (other != null)
         {
-            if (other.GetComponent<Character>())
+            if (other.GetComponent<DynamicObject>())
             {
-                if (other.GetComponent<Character>().isLit == true)
+                if (other.GetComponent<DynamicObject>().isLit == true)
                 {
                     print("The Glow Is So Beautiful!");
                 }

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using UnityEngine;
 
-public class LightLength : MonoBehaviour
+public class LightLength : DynamicObject
 {
     public float initialLength;
     public float distance;
