@@ -17,7 +17,7 @@ namespace Marcus
             aWorldState.Set(CivilianPlannerTest.IsHungry, controller.IsHungry());
             aWorldState.Set(CivilianPlannerTest.CanSeeFood, controller.CanSeeFood());
             aWorldState.Set(CivilianPlannerTest.HasFood, controller.HasFood());
-            
+
             aWorldState.EndUpdate();
         }
         

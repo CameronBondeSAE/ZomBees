@@ -14166,14 +14166,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Guy Man
       objectReference: {fileID: 0}
-    - target: {fileID: 6723931238778956224, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357213602106278246, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8053649277983958044, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_RootOrder
       value: 1

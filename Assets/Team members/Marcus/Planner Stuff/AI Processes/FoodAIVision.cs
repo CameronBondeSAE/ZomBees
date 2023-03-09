@@ -12,7 +12,7 @@ namespace Marcus
 
         private float spacing;
         private float offset;
-
+        
         public List<object> visableFood;
 
         private void Start()

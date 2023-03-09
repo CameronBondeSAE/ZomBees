@@ -7,6 +7,7 @@ namespace Marcus
     public class FoodAIController : MonoBehaviour
     {
         public FoodAIVision vision;
+        public FoodAIHolding hand;
 
         public bool CanSeeFood()
         {
@@ -20,6 +21,11 @@ namespace Marcus
 
         public bool HasFood()
         {
+            if (hand.holdingFood)
+            {
+                return true;
+            }
+
             return false;
         }
 
