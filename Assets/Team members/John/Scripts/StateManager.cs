@@ -19,7 +19,7 @@ namespace Johns
         public void ChangeState(MonoBehaviour newState)
         {
             // Check if the state is the same and DON'T swap
-            if (newState == currentState)
+            if (newState == null || newState == currentState)
             {
                 return;
             }

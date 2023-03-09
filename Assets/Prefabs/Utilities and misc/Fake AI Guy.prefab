@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 2843158076734876656}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2072177004840980637
 MeshFilter:
@@ -164,6 +164,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cbd0ad92ce9bff045b260c77a61d8612, type: 3}
   - {fileID: 8300000, guid: 1ecfcabc6c5ff914f9c6e663d255fc44, type: 3}
   - {fileID: 8300000, guid: c5ff3ad9f52b4814aa48ef8afa8bf70f, type: 3}
+  - {fileID: 8300000, guid: ab6e1eeb3257146418105e758fcbe167, type: 3}
   chanceOutOf10: 7
   audioSource: {fileID: 2628806701806315655}
 --- !u!82 &2628806701806315655
@@ -187,9 +188,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 20.81
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -197,23 +198,41 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.13351135
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -7.492995
+      outSlope: -7.492995
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.23179016
+      value: 0.47608948
+      inSlope: -1.8732487
+      outSlope: -1.8732487
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5069458
+      value: 0.15834045
+      inSlope: -0.7273115
+      outSlope: -0.7273115
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.24283338
+    - serializedVersion: 3
+      time: 0.99728394
+      value: 0
+      inSlope: -0.1335647
+      outSlope: -0.1335647
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

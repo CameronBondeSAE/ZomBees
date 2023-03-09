@@ -13,17 +13,17 @@ namespace Virginia
 
         public ISwitchable ThingToSwitch;
         public StateManager StateManager;
-        public List<ISwitchable> SwitchableList;
+        public List<ISwitchable> SwitchableList = new List<ISwitchable>();
 
         [Button]  // cheat - plugin
         public void TurnOn()
         {
-            foreach (ISwitchable item in SwitchableList)
-            {
-                item.TurnOn();
-                item.TurnOff();
-                
-            }
+            // foreach (ISwitchable item in SwitchableList)
+            // {
+            //     item.TurnOn();
+            //     item.TurnOff();
+            //     
+            // }
             StateManager.ChangeState(GetComponent<SwitchOn>());
             
         }
