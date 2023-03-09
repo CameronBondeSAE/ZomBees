@@ -17,7 +17,7 @@ namespace Virginia
             RaycastHit hitInfo;
              if (Physics.Raycast(transform.position, transform.forward, out hitInfo, 3f))
             {
-                Debug.DrawRay(transform.position, hitInfo.point,Color.blue);
+               Debug.DrawLine(transform.position, hitInfo.point,Color.blue);
                 Debug.Log("hit");
                
                 ISwitchable thinginfront = hitInfo.transform.GetComponent<ISwitchable>();

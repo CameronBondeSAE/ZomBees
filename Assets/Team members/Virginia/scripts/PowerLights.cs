@@ -10,8 +10,11 @@ public class PowerLights : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vswitch.TurnOnEvent += TurnOn;
-        Vswitch.TurnOffEvent += TurnOff;
+        if (Vswitch != null)
+        {
+            Vswitch.TurnOnEvent += TurnOn;
+            Vswitch.TurnOffEvent += TurnOff;
+        }
     }
 
     private void TurnOn()

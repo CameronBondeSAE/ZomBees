@@ -6,35 +6,25 @@ using System;
 
 namespace Virginia
 {
-    public class Switch : MonoBehaviour, ISwitchable
+    public class Switch : SerializedMonoBehaviour, ISwitchable
     {
         public event Action TurnOnEvent;
         public event Action TurnOffEvent;
 
         public ISwitchable ThingToSwitch;
+        public StateManager StateManager;
 
         [Button]  // cheat - plugin
         public void TurnOn()
         {
-            TurnOnEvent?.Invoke();
-
-            ThingToSwitch.TurnOn(); 
-
-            GetComponent<Renderer>().material.color = Color.green;
-
+            StateManager.ChangeState(GetComponent<SwitchOn>());
+            
         }
 
         [Button] // cheat - plugin
         public void TurnOff()
         {
-            TurnOffEvent?.Invoke();
-
-            ThingToSwitch.TurnOff();
-
-
-
-
-            GetComponent<Renderer>().material.color = Color.red;
+            StateManager.ChangeState(GetComponent<SwitchOff>());
         }
     }
 }
