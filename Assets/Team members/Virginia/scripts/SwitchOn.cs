@@ -7,19 +7,17 @@ namespace Virginia
     public class SwitchOn : MonoBehaviour
     {
         public Switch Switch;
+        
         void OnEnable()
         {
-
+            
             //TurnOnEvent?.Invoke();
-
             Switch.ThingToSwitch?.TurnOn();
 
             GetComponent<Renderer>().material.color = Color.green;
         }
 
-        // Update is called once per frame
-
-
+      
         void OnDisable()
         {
             Debug.Log("light is off");

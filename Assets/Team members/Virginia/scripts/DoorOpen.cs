@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-namespace V {
+namespace Virginia {
     public class DoorOpen : MonoBehaviour, ISwitchable
     {
         [Button]  // cheat - plugin

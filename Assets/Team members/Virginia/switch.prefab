@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3154532379790007985}
   - component: {fileID: 7404140275193800236}
   - component: {fileID: -7428574510256755813}
+  - component: {fileID: 406138924}
   m_Layer: 0
-  m_Name: Switch
+  m_Name: switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,3 +119,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a48ea98c162614b8c9dad996f8c1e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: ThingToSwitch
+      Entry: 6
+      Data: 
+  StateManager: {fileID: 406138924}
+--- !u!114 &406138924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51181126692320928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3805b6a514a16bc429de1ec77dcc6990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingState: {fileID: 0}
+  currentState: {fileID: 0}
