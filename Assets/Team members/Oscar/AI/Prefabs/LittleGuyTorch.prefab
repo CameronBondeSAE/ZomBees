@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8171642705554333048}
   - component: {fileID: 6972557170121339087}
   - component: {fileID: 1767787807723290193}
+  - component: {fileID: 1482992657}
   m_Layer: 0
   m_Name: LightCone
   m_TagString: Untagged
@@ -27,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4539583032385463224}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2684793766132304902}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!33 &6466560469372979920
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -50,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4539583032385463224}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -128,6 +129,18 @@ MonoBehaviour:
   _proportionalRadius: 0
   _coneRadius: 0.5
   _coneHeight: 1
+--- !u!114 &1482992657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539583032385463224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc05da250044bb4db2297f315d07935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5894797841426157637
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +161,6 @@ GameObject:
   - component: {fileID: 3490241771106822642}
   - component: {fileID: 3792937636808634593}
   - component: {fileID: 1027860144912392856}
-  - component: {fileID: 1996329785591100538}
   m_Layer: 14
   m_Name: LittleGuyTorch
   m_TagString: Untagged
@@ -170,7 +182,7 @@ Transform:
   m_Children:
   - {fileID: 8695546132656955444}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5894797841426157640
 MeshFilter:
@@ -295,7 +307,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5894797841426157637}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f3ef7ff354ec3744a9c010e49dccc95, type: 3}
   m_Name: 
@@ -377,27 +389,6 @@ MonoBehaviour:
     m_Bits: 0
   friendsList: []
   enemyList: []
---- !u!135 &1996329785591100538
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5894797841426157637}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1634616842587374730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -563,7 +554,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8695546132656955448}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0be7595dfe38c284599c598296f1343c, type: 3}
   m_Name: 

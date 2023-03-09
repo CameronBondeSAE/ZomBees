@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class Character : MonoBehaviour
+    public class DynamicObject : MonoBehaviour
     {
         public bool isLit;
     }
