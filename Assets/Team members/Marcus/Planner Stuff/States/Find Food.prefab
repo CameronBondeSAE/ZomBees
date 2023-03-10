@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f8bc67e575fce498eb442abe348ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 6352044589181877563, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
+  foodSense: {fileID: 0}
+  walkTime: 5
