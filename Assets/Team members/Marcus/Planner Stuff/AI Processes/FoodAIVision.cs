@@ -33,7 +33,7 @@ namespace Marcus
 
                 if (Physics.Raycast(visionLine, out hitInfo, feelerLength))
                 {
-                    if (hitInfo.collider.GetComponent<Food>() != null)
+                    if (hitInfo.collider.GetComponent<Food>() != null && !visableFood.Contains(hitInfo.collider.gameObject))
                     {
                         visableFood.Add(hitInfo.collider.gameObject);
                     }

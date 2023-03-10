@@ -296,9 +296,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3765656164223006910}
   - component: {fileID: 3765656164223006905}
-  - component: {fileID: 1862596662496953627}
   - component: {fileID: 6504962030028823563}
+  - component: {fileID: 1862596662496953627}
   - component: {fileID: 3954576592102751471}
+  - component: {fileID: 778148290908108449}
   m_Layer: 14
   m_Name: AI Brain
   m_TagString: Untagged
@@ -336,6 +337,19 @@ MonoBehaviour:
   manualUpdate: 0
   thinkInterval: 0.1
   scenario: {fileID: 11400000, guid: 52b6a365b7f4339438ca1565da2a4f32, type: 2}
+--- !u!114 &6504962030028823563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765656164223006911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37604900c49acf549bbcfe3e5acc6b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1862596662496953627}
 --- !u!114 &1862596662496953627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,19 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vision: {fileID: 3954576592102751471}
   hand: {fileID: 4784546211133223649}
---- !u!114 &6504962030028823563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3765656164223006911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37604900c49acf549bbcfe3e5acc6b07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1862596662496953627}
+  hunger: {fileID: 778148290908108449}
 --- !u!114 &3954576592102751471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,6 +379,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feelerAmount: 5
   feelerLength: 5
+--- !u!114 &778148290908108449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765656164223006911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fc62375f9e73043b413a502351c0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHunger: 10
+  hunger: 0
+  isHungy: 0
 --- !u!1 &4163470155064568175
 GameObject:
   m_ObjectHideFlags: 0

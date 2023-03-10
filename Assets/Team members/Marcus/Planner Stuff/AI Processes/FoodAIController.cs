@@ -8,6 +8,7 @@ namespace Marcus
     {
         public FoodAIVision vision;
         public FoodAIHolding hand;
+        public FoodAIHunger hunger;
 
         public bool CanSeeFood()
         {
@@ -31,6 +32,11 @@ namespace Marcus
 
         public bool IsHungry()
         {
+            if (hunger.isHungy)
+            {
+                return true;
+            }
+            
             return false;
         }
     }
