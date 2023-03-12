@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor.Validation;
+using UnityEditor.Media;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.XR;
@@ -34,12 +35,15 @@ public class BeeWings : MonoBehaviour
 
     public float slowAngle;
     public float slowSpeed;
+    public float slowTime;
 
     public float medAngle;
     public float medSpeed;
+    public float medTime;
 
     public float fastAngle;
     public float fastSpeed;
+    public float fastTime;
 
     private bool isRotating = false;
 
@@ -52,14 +56,16 @@ public class BeeWings : MonoBehaviour
     private bool flapping = false;
     private bool rotatingToSecond;
 
-    public GameObject pivot;
     public Vector3 pivotOffset;
+
+    public bool returning;
+
+    public GameObject pivotPoint;
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.rotation = pivot.transform.rotation;
+        rb = GetComponentInParent<Rigidbody>();
 
         originalRotation = transform.localRotation;
         targetRotation = originalRotation * Quaternion.AngleAxis(flapAngle, flapAxis);
@@ -68,40 +74,50 @@ public class BeeWings : MonoBehaviour
         ChangeBeeState(BeeState.Slow);
         flapping = true;
 
-        pivot.transform.SetParent(transform.parent);
-        pivot.transform.localPosition = pivotOffset;
-        
-        StartCoroutine(RotateRigidbodyCoroutine());
+        //StartCoroutine(RotateRigidbodyCoroutine());
 
-        //StartCoroutine(FlapWings());
+        StartCoroutine(FlapWings());
     }
+
+    private float flipThreshold=5;
+    float proportionalGain = 100f;
 
     IEnumerator FlapWings()
     {
-        Quaternion targetRotation = Quaternion.identity;
-        float angleThreshold = 1f;
+        float timeSinceFlap = 0f;
+        float expectedAngleDiff = 0f;
+        float prevAngleDiff = 0f;
 
         while (flapping)
         {
-            Vector3 flapAxis = pivot.transform.forward;
+            timeSinceFlap += Time.deltaTime;
 
-            Quaternion currentRotation = rb.rotation;
-            Quaternion newRotation = Quaternion.AngleAxis(flapAngle, flapAxis) * currentRotation;
-            targetRotation = Quaternion.Slerp(currentRotation, newRotation, flapTime);
+            expectedAngleDiff = Mathf.Lerp(0f, flapAngle, Mathf.Clamp01(timeSinceFlap / flapTime));
 
-            float angleDiff = Quaternion.Angle(rb.rotation, targetRotation);
-            while (angleDiff > angleThreshold)
+            float angleDiff = Quaternion.Angle(transform.rotation, targetRotation);
+
+            float proportionalTorque = Mathf.Clamp((angleDiff - expectedAngleDiff) * proportionalGain, 0f, flapSpeed);
+    
+            Vector3 torqueDir = Vector3.Cross(transform.up, targetRotation * Vector3.up);
+            rb.AddTorque(torqueDir * proportionalTorque, ForceMode.Force);
+
+            if (angleDiff < flipThreshold)
             {
-                Vector3 torqueDir = Vector3.Cross(rb.transform.up, targetRotation * Vector3.up);
-                rb.AddTorque(torqueDir * flapSpeed, ForceMode.Impulse);
-
-                yield return new WaitForFixedUpdate();
-
-                angleDiff = Quaternion.Angle(rb.rotation, targetRotation);
+                targetRotation = Quaternion.AngleAxis(-flapAngle, flapAxis) * transform.rotation;
+                timeSinceFlap = 0f;
             }
+
+            yield return null;
         }
     }
 
+    private void FixedUpdate()
+    {
+        rb.position = pivotPoint.transform.position;
+    }
+
+
+    #region BeeState
 
     public void ChangeBeeState(BeeState newState)
     {
@@ -124,23 +140,28 @@ public class BeeWings : MonoBehaviour
         {
             flapAngle = slowAngle;
             flapSpeed = slowSpeed;
+            flapTime = slowTime;
         }
 
         else if (newState == BeeState.Medium)
         {
             flapAngle = medAngle;
             flapSpeed = medSpeed;
+            flapTime = medTime;
         }
 
         else if (newState == BeeState.Fast)
         {
             flapAngle = fastAngle;
             flapSpeed = fastSpeed;
+            flapTime = fastTime;
         }
 
         myState = newState;
         flapping = true;
     }
+
+    #endregion
 
     private IEnumerator RotateRigidbodyCoroutine()
     {
