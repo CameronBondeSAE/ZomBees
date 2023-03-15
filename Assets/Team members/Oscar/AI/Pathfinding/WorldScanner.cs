@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using Cinemachine;
-using Tanks;
-using UnityEditor.Experimental.GraphView;
+using Oscar;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
@@ -12,45 +9,46 @@ public class WorldScanner : MonoBehaviour
 {
     public Vector3Int size;
     public Vector3Int gridSize;
-    public bool[,] gridNodeReferences;
 
+    public Oscar.Nodes[,] gridNodeReferences;
+    public LayerMask layerMask;
+    
     public Vector3 currentPos;
     public bool[,] grid;
 
-    //public bool isBlocked;
-
-    // Start is called before the first frame update
-    private void Awake()
+    private bool firstScan;
+    
+    public void ScanWorld()
     {
-        currentPos = transform.position;
-        gridNodeReferences = new bool[size.x,size.z];
-    }
-
-    void Start()
-    {
+        gridNodeReferences = new Nodes[size.x, size.z];
+        
         for (int x = 0; x < size.x; x++)
         {
             for (int z = 0; z < size.z; z++)
             {
-                if (Physics.OverlapBox(new Vector3(x * gridSize.x, 0, z * gridSize.z),
-                        new Vector3(gridSize.x, gridSize.y, gridSize.z) / 2f, Quaternion.identity).Length > 0)
+                gridNodeReferences[x, z] = new Nodes();
+                gridNodeReferences[x, z].gridPos = new Vector2Int(x, z);
+                gridNodeReferences[x, z].worldPos = new Vector3(x, 0, z);
+
+                if (Physics.OverlapBox(/*transform.position + */new Vector3(x * gridSize.x, 0, z * gridSize.z),
+                        new Vector3(gridSize.x, 0, gridSize.z)/2f, Quaternion.identity).Length > 0)
                 {
-                    // Something is there
-                    gridNodeReferences[x, z] = true;
+                    gridNodeReferences[x, z].isBlocked = true;
                 }
             }
         }
+        firstScan = true;
     }
-
+    
     private void OnDrawGizmos()
     {
-        if (Application.isPlaying)
+        if (Application.isPlaying && firstScan == true)
         {
             for (int x = 0; x < size.x; x++)
             {
                 for (int z = 0; z < size.y; z++)
                 {
-                    if (gridNodeReferences[x, z])
+                    if (gridNodeReferences[x, z].isBlocked)
                     {
                         Gizmos.color = Color.red;
                         Gizmos.DrawCube(new Vector3(x, 1, z), Vector3.one);
