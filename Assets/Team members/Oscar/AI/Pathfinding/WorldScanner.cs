@@ -35,6 +35,10 @@ public class WorldScanner : MonoBehaviour
                 {
                     gridNodeReferences[x, z].isBlocked = true;
                 }
+                else
+                {
+                    gridNodeReferences[x, z].isBlocked = false;
+                }
             }
         }
         firstScan = true;

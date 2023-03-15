@@ -11,5 +11,7 @@ namespace Oscar
         public bool isBlocked;
 
         public Vector2Int gridPos;
+
+        public Vector3 startPos;
     }
 }
