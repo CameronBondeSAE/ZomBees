@@ -15,7 +15,7 @@ namespace Marcus
             Vector3 targetDirection = targetPosition - me.transform.position;
             if (me.transform.forward != targetDirection)
             {
-                me.AddTorque(Vector3.up * turnSpeed);
+                me.AddTorque(Vector3.Cross(me.transform.forward, targetDirection).normalized * turnSpeed);
             }
         }
     }
