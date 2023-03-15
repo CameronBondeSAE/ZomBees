@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Virginia
 
-namespace V
+namespace Virginia
 {
     public class ProximitySwitch : MonoBehaviour
     {
         // Start is called before the first frame update
-       private void TriggerOnEnter(Collider other)
+       private void OnTriggerEnter(Collider other)
         {
             Debug.Log("on");
 

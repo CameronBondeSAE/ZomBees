@@ -4,14 +4,15 @@ public interface IInteractable
 {
     public void Interact();
     public void Inspect(); 
-    public void Pickup(); 
+    
 }
 
 public interface IItem
 {
-    public void Consumed(); 
-    public void Disposed(); 
-    public void  Description(); 
+    public void Consume(); 
+    public void Dispose(); 
+    public void Description();
+    public void Pickup(); 
 }
 
 public interface ISwitchable

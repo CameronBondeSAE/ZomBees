@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Virginia
 
-namespace V
+
+namespace Virginia
 {
     public class ProximitySwitchOff : MonoBehaviour
     {
-        private void TriggerOnExit(Collider other)
+        private void OnTriggerExit(Collider other)
         {
             Debug.Log("off");
 
