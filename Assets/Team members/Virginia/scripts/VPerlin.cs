@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Virginia;
  
-namespace V {
+namespace Virginia {
 public class VPerlin : MonoBehaviour
 {
         public float offset;
