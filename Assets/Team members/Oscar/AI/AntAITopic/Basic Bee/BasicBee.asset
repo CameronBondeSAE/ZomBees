@@ -33,7 +33,7 @@ MonoBehaviour:
   actions:
   - name: FindFood
     isDefault: 1
-    state: {fileID: 0}
+    state: {fileID: 6652321108598669598, guid: c330721cb3e1aae41a55e988e9cfece9, type: 3}
     cost: 0
     position: {x: 319, y: 134}
     pre:
@@ -46,7 +46,7 @@ MonoBehaviour:
       value: 1
   - name: CollectFood
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 6652321108598669598, guid: 72623ed644398494dab7f8a3219b161f, type: 3}
     cost: 0
     position: {x: 527, y: 137}
     pre:
@@ -59,7 +59,7 @@ MonoBehaviour:
       value: 1
   - name: FindHive
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 6652321108598669598, guid: 0df1a53a88e6d9946bd2f1f1cb92180c, type: 3}
     cost: 0
     position: {x: 735, y: 139}
     pre:
@@ -72,7 +72,7 @@ MonoBehaviour:
       value: 1
   - name: DeliverFood
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 6652321108598669598, guid: 77b5d257ff2f00342b9d11927894c43e, type: 3}
     cost: 0
     position: {x: 936, y: 138}
     pre:
@@ -87,7 +87,7 @@ MonoBehaviour:
       value: 1
   - name: AttackCivilian
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 6652321108598669598, guid: c6f467b5aa68c9d4a82428b2e5e50982, type: 3}
     cost: 0
     position: {x: 523.21045, y: 368.1052}
     pre:
@@ -102,7 +102,7 @@ MonoBehaviour:
       value: 1
   - name: DropOfFood
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 6652321108598669598, guid: 4800aac147649c44abd6ef7e4fc4e261, type: 3}
     cost: 0
     position: {x: 1133.9473, y: 140.84207}
     pre:
