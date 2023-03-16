@@ -12,10 +12,15 @@ public class PerlinNoiseSpawner : MonoBehaviour
 
     public int length = 0;
     public int width = 0;
-    public float height = Random.Range(0f, 200f);
+    public float height;
     
 
     private List<GameObject> spawnedThings = new List<GameObject>();
+
+    private void Awake()
+    {
+        height = Random.Range(0f, 200f);
+    }
 
     [Button]
     void SpawnCubes()
