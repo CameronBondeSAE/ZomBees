@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173599305}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -169,7 +169,7 @@ Transform:
   m_Children:
   - {fileID: 1173599306}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 4110.97, z: 0}
 --- !u!33 &5456320216544290721
 MeshFilter:
@@ -330,6 +330,7 @@ MonoBehaviour:
   distance: 15
   lightInSight: []
   honeyInSight: []
+  civiliansVisible: []
 --- !u!114 &924000894343828957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db007a32b4c24f4a88ae6dc7a8618f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightController: {fileID: 1074013572422905989}
+  oscarController: {fileID: 1074013572422905989}
 --- !u!114 &1074013572422905989
 MonoBehaviour:
   m_ObjectHideFlags: 0
