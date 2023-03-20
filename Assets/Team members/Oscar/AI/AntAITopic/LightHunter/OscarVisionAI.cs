@@ -6,16 +6,18 @@ using Oscar;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class LightVisionAI : MonoBehaviour
+public class OscarVisionAI : MonoBehaviour
 {
     public LittleGuy guy;
     public float distance;
 
-    //public int feelerAmount;
+    //public int feelerAmount;\
 
     public List<GameObject> lightInSight;
 
     public List<GameObject> honeyInSight;
+
+    public List<GameObject> civiliansVisible;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,6 +35,17 @@ public class LightVisionAI : MonoBehaviour
                     }
                 }
             }
+            
+            if (other.GetComponent<CivilGuy>() != null)
+            {
+                GameObject civGuy = other.gameObject;
+
+                if (!civiliansVisible.Contains(civGuy))
+                {
+                    civiliansVisible.Add(civGuy);
+                }
+            }
+            
             if (other.GetComponent<Honey>() != null)
             {
                 GameObject honeyStuff = other.gameObject;
@@ -58,6 +71,12 @@ public class LightVisionAI : MonoBehaviour
             GameObject honeyStuff = other.gameObject;
         
             honeyInSight.Remove(honeyStuff);
+        }
+        if (other.GetComponent<CivilGuy>() != null)
+        {
+            GameObject civGuy = other.gameObject;
+            
+            civiliansVisible.Remove(civGuy);
         }
     }
     // private void FixedUpdate()

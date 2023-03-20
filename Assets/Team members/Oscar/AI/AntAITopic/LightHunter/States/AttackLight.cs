@@ -7,17 +7,15 @@ using UnityEngine;
 public class AttackLight : AntAIState
 {
     private LittleGuy littleGuy;
-    private LightVisionAI vision;
+    private OscarVisionAI vision;
 
-    private GameObject target;
-    
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
         
         littleGuy = aGameObject.GetComponent<LittleGuy>();
         
-        vision = aGameObject.GetComponent<LightVisionAI>();
+        vision = aGameObject.GetComponent<OscarVisionAI>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
