@@ -7,7 +7,7 @@ using UnityEngine;
 public class CollectHoney : AntAIState
 {
     private LittleGuy littleGuy;
-    private LightVisionAI vision;
+    private OscarVisionAI vision;
     
     // private GameObject target;
     // private Vector3 targetDir;
@@ -19,7 +19,7 @@ public class CollectHoney : AntAIState
                 
         littleGuy = aGameObject.GetComponent<LittleGuy>();
 
-        vision = aGameObject.GetComponent<LightVisionAI>();
+        vision = aGameObject.GetComponent<OscarVisionAI>();
 
         // target = vision.honeyInSight[0];
         // targetDir = target.transform.position - transform.position;

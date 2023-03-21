@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Oscar;
 using UnityEngine;
 
-public class LightControllerAI : MonoBehaviour
+public class OscarControllerAI : MonoBehaviour
 {
-    public LightVisionAI vision;
+    public OscarVisionAI vision;
     
-    public bool seeTheHoney()
+    public bool seeTheFood()
     {
         if (vision.honeyInSight.Count > 0)
         {
@@ -17,7 +17,7 @@ public class LightControllerAI : MonoBehaviour
         return false;
     }
 
-    public bool hasTheHoney()
+    public bool hasTheFood()
     {
         return false;
     }
@@ -28,6 +28,16 @@ public class LightControllerAI : MonoBehaviour
         {
             return true;
         }
+        return false;
+    }
+
+    public bool seeCivilians()
+    {
+        if (vision.civiliansVisible.Count > 0)
+        {
+            return true;
+        }
+
         return false;
     }
     
