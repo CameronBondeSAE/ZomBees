@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using UnityEngine;
 
-public class Honey : MonoBehaviour
+namespace Oscar
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Honey : MonoBehaviour
     {
-        
-    }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.GetComponent<LittleGuy>())
+            {
+                MoveToShadowRealm();
+            }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void MoveToShadowRealm()
+        {
+            gameObject.transform.position = new Vector3(40, 30, 30);
+        }
     }
 }

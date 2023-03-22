@@ -28,7 +28,7 @@ public class AttackCivilian : AntAIState
         {
             littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
                 vision.civiliansVisible[0].transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed,0);
-            littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 2), ForceMode.Acceleration);
+            littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 4), ForceMode.Acceleration);
         }
         else
         {
