@@ -8,8 +8,8 @@ using UnityEngine.Serialization;
 
 public class OscarVisionAI : MonoBehaviour
 {
-    public LittleGuy guy;
-    public float distance;
+    //public LittleGuy guy;
+    //public float distance;
 
     //public int feelerAmount;\
 
