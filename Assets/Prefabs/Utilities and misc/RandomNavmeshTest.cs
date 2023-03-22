@@ -7,15 +7,25 @@ public class RandomNavmeshTest : MonoBehaviour
 	public NavMeshAgent navMeshAgent;
 	public float        arrivedDistance = 1.5f;
 
+	// Debugging
+	public Transform target;
+	private NavMeshPath path;
+	private float elapsed = 0.0f;
+	
 	// Start is called before the first frame update
 	void Start()
 	{
+		// Debugging
+		path = new NavMeshPath();
+		elapsed = 0.0f;
+		
+		
 		FindRandomSpot();
 	}
 
 	
 	[Button]
-	public void FindRandomSpot()
+	public Vector3 FindRandomSpot()
 	{
 		int     index       = Random.Range(0, PatrolManager.singleton.pathsWithIndoors.Count);
 		Vector3 finalTarget = Vector3.zero;
@@ -31,17 +41,13 @@ public class RandomNavmeshTest : MonoBehaviour
 		if (PatrolManager.singleton.pathsWithIndoors[index] != null)
 		{
 			navMeshAgent.SetDestination(finalTarget);
+			return finalTarget;
 		}
-	}
 
-	// Update is called once per frame
-	void Update()
-	{
-		if (ReachedDestinationOrGaveUp())
-		{
-			FindRandomSpot();
-		}	
+		return Vector3.zero; // HACK won't really know if it succeeded. Should be bool or something
 	}
+	
+	
 	
 	public bool ReachedDestinationOrGaveUp()
 	{
@@ -59,4 +65,27 @@ public class RandomNavmeshTest : MonoBehaviour
 
 		return false;
 	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		Vector3 randomSpot = Vector3.zero;
+		if (ReachedDestinationOrGaveUp())
+		{
+			randomSpot = FindRandomSpot();
+		}	
+		
+		
+		// Debugging
+		// Update the way to the goal every second.
+		elapsed += Time.deltaTime;
+		if (elapsed > 1.0f)
+		{
+			elapsed -= 1.0f;
+			NavMesh.CalculatePath(transform.position, randomSpot, NavMesh.AllAreas, path);
+		}
+		for (int i = 0; i < path.corners.Length - 1; i++)
+			Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red, 1f);
+	}
+	
 }
