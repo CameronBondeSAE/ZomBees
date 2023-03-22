@@ -1,9 +1,9 @@
-using Unity.Netcode;
+// using Unity.Netcode;
 using UnityEngine;
 
 namespace Alex
 {
-    public class Torch : NetworkBehaviour
+/*    public class Torch : NetworkBehaviour
     {
         public bool isOn = false;
         public GameObject lightSorce;
@@ -44,5 +44,5 @@ namespace Alex
                 isOn = false;
             }
         }
-    }
+    }*/
 }

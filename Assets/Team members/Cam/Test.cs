@@ -2,7 +2,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
+// using Unity.Netcode;
 using UnityEngine;
 
 
@@ -18,7 +18,7 @@ public class Test : SerializedMonoBehaviour
 
 	public Dictionary<string, Stat<float>> testStatsDic;
 
-	public NetworkVariable<float> health;
+	// public NetworkVariable<float> health;
 
 
 	public Stat<float> beeness;
