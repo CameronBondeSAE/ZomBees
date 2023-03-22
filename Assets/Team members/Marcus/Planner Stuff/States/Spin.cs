@@ -7,6 +7,12 @@ namespace Marcus
 {
     public class Spin : AntAIState
     {
-        
+        public override void Enter()
+        {
+            base.Enter();
+
+            GetComponentInParent<GuyDudeMovement>().MoveToPoint
+                (PatrolManager.singleton.indoors[Random.Range(0,PatrolManager.singleton.indoors.Count)]);
+        }
     }
 }

@@ -20,6 +20,10 @@ MonoBehaviour:
       name: CanSeeFood
     - id: 2
       name: HasFood
+    - id: 3
+      name: IsScared
+    - id: 4
+      name: CanSeeBees
   actions:
   - name: Find Food
     isDefault: 0
