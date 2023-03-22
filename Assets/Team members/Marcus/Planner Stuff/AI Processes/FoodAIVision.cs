@@ -38,9 +38,11 @@ namespace Marcus
                         visableFood.Add(hitInfo.collider.gameObject);
                     }
                 }
+                else
+                {
+                    visableFood.Clear();
+                }
             }
-            
-            visableFood.Clear();
         }
     }
 }
