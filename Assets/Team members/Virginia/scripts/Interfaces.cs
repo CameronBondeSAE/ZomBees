@@ -11,7 +11,7 @@ public interface IItem
 {
     public void Consume(); 
     public void Dispose(); 
-    public void Description();
+    public string Description();
     public void Pickup(); 
 }
 

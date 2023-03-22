@@ -6,7 +6,7 @@ using System;
 
 namespace Virginia
 {
-    public class Switch : SerializedMonoBehaviour, ISwitchable
+    public class Switch : SerializedMonoBehaviour, ISwitchable, IInteractable 
     {
         public event Action TurnOnEvent;
         public event Action TurnOffEvent;
@@ -33,5 +33,10 @@ namespace Virginia
         {
             StateManager.ChangeState(GetComponent<SwitchOff>());
         }
+        
+        public void Interact()
+        {}
+        public void Inspect()
+        {}
     }
 }
