@@ -12,13 +12,8 @@ namespace Oscar
         {
             if (collision.gameObject.GetComponent<LittleGuy>())
             {
-                MoveToShadowRealm();
+                UtilityManager.DeleteAfterDelay(gameObject);
             }
-        }
-
-        public void MoveToShadowRealm()
-        {
-            gameObject.transform.position = new Vector3(40, 30, 30);
         }
     }
 }
