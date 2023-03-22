@@ -12,15 +12,15 @@ public class PerlinD1 : MonoBehaviour
     }
 
     // Update is called once per frame
-    /*void Update()
+    void Update()
     {
-        Y = Mathf.PerlinNoise1D(x);
+       /* Y = Mathf.PerlinNoise1D(x);
         for (int x = 0; x < 100; x++)
         {
             Vector3 brickPosition = new Vector3();
             brickPosition.x = x;
             brickPosition.y = x;
             Instantiate(brickPrefab, brickPosition, Quaternion.identity);
-        }
-    }*/
+        }*/
+    }
 }

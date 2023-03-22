@@ -641,7 +641,7 @@ Transform:
   - {fileID: 3765656164223006910}
   - {fileID: 5233947389087070155}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8055998312902322576
 CapsuleCollider:
@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00abb12e18952747a656df6b9a8c544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: {fileID: 3229676320155578576, guid: 2a1c5446d2e35714aaab1c1cfc268dd0, type: 3}
+  food: {fileID: 4824920774586090150, guid: 019b6dd58af5e094ea46d56c79b7e9c8, type: 3}
   holdingFood: 0
 --- !u!65 &4484991338645957138
 BoxCollider:
