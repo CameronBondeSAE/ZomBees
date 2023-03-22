@@ -19,6 +19,7 @@ namespace Marcus
         void Update()
         {
             rb.AddRelativeForce(Vector3.forward * speed);
+            
         }
     }
 }
