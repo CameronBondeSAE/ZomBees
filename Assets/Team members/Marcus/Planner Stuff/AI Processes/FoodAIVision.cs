@@ -39,6 +39,8 @@ namespace Marcus
                     }
                 }
             }
+            
+            visableFood.Clear();
         }
     }
 }

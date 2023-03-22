@@ -7,6 +7,18 @@ namespace Marcus
 {
     public class GetFood : AntAIState
     {
-        
+        public override void Enter()
+        {
+            base.Enter();
+
+            GetComponentInParent<GuyDudeAvoidance>().enabled = false;
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+
+            GetComponentInParent<GuyDudeAvoidance>().enabled = true;
+        }
     }
 }

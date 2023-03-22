@@ -7,6 +7,6 @@ namespace Marcus
 {
     public class EatFood : AntAIState
     {
-        
+        public FoodAIHolding hand;
     }
 }
