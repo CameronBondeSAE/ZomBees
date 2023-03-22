@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -11,28 +12,33 @@ public class PerlinItemSpawning : MonoBehaviour
 
     public int length = 0;
     public int width = 0;
-    public float height;
+
+    public float perlinLowerLimit;
+    public float perlinUpperLimit;
     
     private List<GameObject> spawnedItems = new List<GameObject>();
     
-    // Start is called before the first frame update
-    void Awake()
+    private void Update()
     {
-        height = Random.Range(0f, 200f);
+        perlinLowerLimit = Random.Range(0f, -1f);
+        perlinUpperLimit = Random.Range(0f, 1f);
     }
 
-    
     [Button]
     void SpawnItems()
     {
-        float y = Mathf.PerlinNoise(height, 0);
+        ClearItems();
         
         for (int z = 0; z < length; z++)
         {
             for (int x = 0; x < width; x++)
             {
-                Vector3 instantiatePosition = new Vector3(x, y, z);
-                spawnedItems.Add(Instantiate(item, instantiatePosition, quaternion.identity));
+                float perlinValue = Mathf.PerlinNoise(x*perlinLowerLimit, z * perlinUpperLimit);
+                Vector3 instantiatePosition = new Vector3(x, perlinValue, z);
+                if (instantiatePosition.y > 0.9f)
+                {
+                    spawnedItems.Add(Instantiate(item, instantiatePosition, quaternion.identity)); 
+                }
             }
         }
     }
