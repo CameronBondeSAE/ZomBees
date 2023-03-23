@@ -35,12 +35,12 @@ namespace Marcus
             if (ReachedDestinationOrGaveUp())
             {
                 print("Got to my spot......");
+                targetPoint = null;
             }
         }
         
         public bool ReachedDestinationOrGaveUp()
         {
-
             if (!navMeshAgent.pathPending)
             {
                 if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance + arrivalDisance)
