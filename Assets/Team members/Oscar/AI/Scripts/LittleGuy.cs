@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
@@ -11,6 +12,13 @@ namespace Oscar
         public GameObject littleGuyModel;
         public float speed;
         public float turnSpeed;
+
+        public List<GameObject> collectedObjects;
+
+        private void Awake()
+        {
+            collectedObjects = new List<GameObject>();
+        }
     }
 }
 

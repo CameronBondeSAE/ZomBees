@@ -287,6 +287,7 @@ MonoBehaviour:
   littleGuyModel: {fileID: 5456320216544290732}
   speed: 5
   turnSpeed: 0.15
+  collectedObjects: []
 --- !u!114 &2618092197398739709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,8 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c449362f1f21d4aad8bb34c51ff949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guy: {fileID: 1853546493801413536}
-  distance: 15
   lightInSight: []
   honeyInSight: []
   civiliansVisible: []

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 498041809768793979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.5}
-  m_LocalScale: {x: 5, y: 5, z: 8}
+  m_LocalScale: {x: 5, y: 5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5571471917264393360}
@@ -169,7 +169,7 @@ Transform:
   m_Children:
   - {fileID: 498041809768793976}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 4110.97, z: 0}
 --- !u!33 &5571471917264393363
 MeshFilter:
@@ -285,8 +285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5571471917264393375}
   littleGuyModel: {fileID: 5571471917264393374}
-  speed: 5
-  turnSpeed: 0.15
+  speed: 2
+  turnSpeed: 0.05
 --- !u!114 &2502931121601251791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,10 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c449362f1f21d4aad8bb34c51ff949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guy: {fileID: 2256436266696984722}
-  distance: 15
-  isLightHunter: 0
-  isBasicBee: 1
   lightInSight: []
   honeyInSight: []
   civiliansVisible: []
@@ -361,14 +357,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerAI: {fileID: 580629843692700599}
-  seeTheFood: 0
-  hasTheFood: 0
   seeTheHive: 0
   nearTheHive: 0
   deliveredTheFood: 0
   beeStayAlive: 0
-  seeTheCivilian: 0
-  enemyIsDead: 0
 --- !u!114 &580629843692700599
 MonoBehaviour:
   m_ObjectHideFlags: 0

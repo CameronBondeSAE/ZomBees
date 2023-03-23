@@ -1427,6 +1427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLit: 0
+  isMoving: 0
 --- !u!1001 &1731084657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2118,14 +2119,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 498041809768793976, guid: c095eae6352134c46b7528034bce46b1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 498041809768793976, guid: c095eae6352134c46b7528034bce46b1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 498041809768793980, guid: c095eae6352134c46b7528034bce46b1, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2138,14 +2131,6 @@ PrefabInstance:
       propertyPath: m_AdditionalVertexStreams
       value: 
       objectReference: {fileID: 1098370846}
-    - target: {fileID: 2256436266696984722, guid: c095eae6352134c46b7528034bce46b1, type: 3}
-      propertyPath: speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2256436266696984722, guid: c095eae6352134c46b7528034bce46b1, type: 3}
-      propertyPath: turnSpeed
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 5571471917264393360, guid: c095eae6352134c46b7528034bce46b1, type: 3}
       propertyPath: m_RootOrder
       value: 4
