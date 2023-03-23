@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 649932186960307384}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4565452290139138870
 MonoBehaviour:
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingState: {fileID: 686424383034384650}
-  currentState: {fileID: 686424383034384650}
+  currentState: {fileID: 0}
 --- !u!114 &686424383034384650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4565452290139138868}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0701a88bff704cc45b53ca4b0ae1582b, type: 3}
   m_Name: 
