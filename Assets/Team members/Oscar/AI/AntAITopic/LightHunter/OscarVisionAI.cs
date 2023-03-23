@@ -21,6 +21,7 @@ public class OscarVisionAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //if more things for vision look at 
         if (other != null)
         {
             if (other.GetComponent<DynamicObject>() != null)

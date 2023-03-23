@@ -6,6 +6,8 @@ namespace Oscar
 {
     public class DynamicObject : MonoBehaviour
     {
+        //perception levels
         public bool isLit;
+        public bool isMoving;
     }
 }
