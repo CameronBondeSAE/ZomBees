@@ -15,7 +15,7 @@ namespace Marcus
         {
             base.Enter();
 
-            GetComponentInParent<GuyDudeMovement>().MoveToPoint
+            GetComponentInParent<AdvancedGuyDudeMovement>().MoveToPoint
                 (PatrolManager.singleton.resourcePoints[Random.Range(0,PatrolManager.singleton.resourcePoints.Count)]);
             
             foodSense.SetActive(true);

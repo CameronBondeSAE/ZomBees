@@ -18,5 +18,16 @@ namespace Marcus
                 me.AddTorque(Vector3.Cross(me.transform.forward, targetDirection).normalized * turnSpeed);
             }
         }
+        
+        public void TurnTowards(Rigidbody me, Vector3 targetVector3, float turnSpeed)
+        {
+            targetPosition = targetVector3;
+            
+            Vector3 targetDirection = targetPosition - me.transform.position;
+            if (me.transform.forward != targetDirection)
+            {
+                me.AddTorque(Vector3.Cross(me.transform.forward, targetDirection).normalized * turnSpeed);
+            }
+        }
     }
 }

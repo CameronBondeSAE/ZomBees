@@ -24,12 +24,18 @@ MonoBehaviour:
       name: IsScared
     - id: 4
       name: CanSeeBees
+    - id: 5
+      name: IsDaytime
+    - id: 6
+      name: IsHidden
+    - id: 7
+      name: CanHearBees
   actions:
   - name: Find Food
     isDefault: 0
     state: {fileID: 7819847402425102426, guid: 0b2f22a9956c18c479f87ede19246a3d, type: 3}
     cost: 0
-    position: {x: 316, y: 247}
+    position: {x: 316, y: 277}
     pre:
     - id: 0
       value: 1
@@ -44,7 +50,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 242594687593455450, guid: 3a478a1aebebc2643839fb820ca38aec, type: 3}
     cost: 0
-    position: {x: 722, y: 249}
+    position: {x: 722, y: 279}
     pre:
     - id: 0
       value: 1
@@ -59,14 +65,14 @@ MonoBehaviour:
     isDefault: 1
     state: {fileID: 1874639598432770460, guid: c0ec2f7207c386e45bc29cf7b4d8cd4a, type: 3}
     cost: 0
-    position: {x: 208, y: 55}
+    position: {x: 205, y: 52}
     pre: []
     post: []
   - name: Get Food
     isDefault: 0
     state: {fileID: 8722729060447549500, guid: f70046e295812d449b52c18e9b2d3a7d, type: 3}
     cost: 0
-    position: {x: 519, y: 250}
+    position: {x: 519, y: 280}
     pre:
     - id: 1
       value: 1
@@ -75,20 +81,106 @@ MonoBehaviour:
       value: 0
     - id: 2
       value: 1
+  - name: Wander
+    isDefault: 0
+    state: {fileID: 1018751149673479226, guid: 2129152edd50d254da010407eb500cc7, type: 3}
+    cost: 0
+    position: {x: 1229, y: 40}
+    pre:
+    - id: 5
+      value: 1
+    post: []
+  - name: Stay Hidden
+    isDefault: 0
+    state: {fileID: 5939613662183716017, guid: 0c35d060137636f42a5675c7af86bc3e, type: 3}
+    cost: 0
+    position: {x: 709, y: 538}
+    pre:
+    - id: 6
+      value: 1
+    post:
+    - id: 7
+      value: 0
+  - name: Hide
+    isDefault: 0
+    state: {fileID: 4938375913519877200, guid: 5505eca6116aeea4cba44d504c80b181, type: 3}
+    cost: 0
+    position: {x: 513, y: 536}
+    pre:
+    - id: 6
+      value: 0
+    - id: 7
+      value: 1
+    post:
+    - id: 6
+      value: 1
+  - name: Run
+    isDefault: 0
+    state: {fileID: 5591337468728248698, guid: c2591cd6f91d3ce4287efa2986ae26d3, type: 3}
+    cost: 0
+    position: {x: 316, y: 532}
+    pre:
+    - id: 4
+      value: 1
+    post:
+    - id: 4
+      value: 0
+  - name: Leave Hiding
+    isDefault: 0
+    state: {fileID: 2877110659774664227, guid: 0038c0f600c38ba459e6ba6a3834093f, type: 3}
+    cost: 0
+    position: {x: 907, y: 538}
+    pre:
+    - id: 6
+      value: 1
+    - id: 7
+      value: 0
+    post:
+    - id: 6
+      value: 0
+  - name: Unscared
+    isDefault: 0
+    state: {fileID: 1874639598432770460, guid: c0ec2f7207c386e45bc29cf7b4d8cd4a, type: 3}
+    cost: -1
+    position: {x: 310, y: 751}
+    pre:
+    - id: 3
+      value: 1
+    post:
+    - id: 3
+      value: 0
   goals:
   - name: Goal
     isDefault: 1
-    position: {x: 1388, y: 858}
+    position: {x: 400, y: 51}
     conditions:
     - id: 0
       value: 0
+    - id: 4
+      value: 0
+    - id: 7
+      value: 0
+    - id: 3
+      value: 0
+    - id: 6
+      value: 0
   worldStates:
-  - position: {x: 286, y: 873}
+  - position: {x: 238, y: 999}
     isAutoUpdate: 1
     list:
     - id: 0
-      value: 1
+      value: 0
     - id: 1
       value: 0
     - id: 2
+      value: 0
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0
+    - id: 5
+      value: 0
+    - id: 6
+      value: 0
+    - id: 7
       value: 0

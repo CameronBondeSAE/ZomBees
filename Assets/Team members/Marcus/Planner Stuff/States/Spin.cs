@@ -11,7 +11,7 @@ namespace Marcus
         {
             base.Enter();
 
-            GetComponentInParent<GuyDudeMovement>().MoveToPoint
+            GetComponentInParent<AdvancedGuyDudeMovement>().MoveToPoint
                 (PatrolManager.singleton.indoors[Random.Range(0,PatrolManager.singleton.indoors.Count)]);
         }
     }
