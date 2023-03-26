@@ -19,6 +19,8 @@ public class OscarVisionAI : MonoBehaviour
 
     public List<GameObject> civiliansVisible;
 
+    public List<GameObject> hivesInSight;
+
     private void OnTriggerEnter(Collider other)
     {
         //if more things for vision look at 
@@ -56,6 +58,16 @@ public class OscarVisionAI : MonoBehaviour
                     honeyInSight.Add(honeyStuff);
                 }
             }
+
+            if (other.GetComponent<Hive>() != null)
+            {
+                GameObject hiveLoc = other.gameObject;
+
+                if (!hivesInSight.Contains(hiveLoc))
+                {
+                    hivesInSight.Add(hiveLoc);
+                }
+            }
         }
     }
 
@@ -78,6 +90,13 @@ public class OscarVisionAI : MonoBehaviour
             GameObject civGuy = other.gameObject;
             
             civiliansVisible.Remove(civGuy);
+        }
+
+        if (other.GetComponent<Hive>() != null)
+        {
+            GameObject hiveLoc = other.gameObject;
+
+            hivesInSight.Remove(hiveLoc);
         }
     }
     // private void FixedUpdate()

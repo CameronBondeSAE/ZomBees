@@ -6,6 +6,7 @@ using UnityEngine;
 public class OscarControllerAI : MonoBehaviour
 {
     public OscarVisionAI vision;
+    public LittleGuy littleGuy;
     
     public bool seeTheFood()
     {
@@ -19,6 +20,11 @@ public class OscarControllerAI : MonoBehaviour
 
     public bool hasTheFood()
     {
+        if(littleGuy.collectedObjects.Count >= 3)
+        {
+            return true;
+        }
+
         return false;
     }
 

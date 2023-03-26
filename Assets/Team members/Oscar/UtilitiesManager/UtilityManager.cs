@@ -27,11 +27,11 @@ namespace Oscar
             instance.StartCoroutine(DisableCoroutine(obj));
         }
 
-        private static IEnumerator DisableCoroutine(GameObject gObj)
+        private static IEnumerator DisableCoroutine(GameObject obj)
         {
             yield return new WaitForSeconds(1f);
 
-            gObj.SetActive(false);
+            obj.SetActive(false);
         }
 
         public static void DeleteAfterDelay(GameObject obj)
@@ -41,11 +41,23 @@ namespace Oscar
             instance.StartCoroutine(DeleteCoroutine(obj));
         }
 
-        private static IEnumerator DeleteCoroutine(GameObject gObj)
+        private static IEnumerator DeleteCoroutine(GameObject obj)
         {
             yield return new WaitForSeconds(3f);
             
-            Destroy(gObj);
+            Destroy(obj);
+        }
+
+        public static void EnableAfterDelay(GameObject obj)
+        {
+            instance.StartCoroutine(EnableCoroutine(obj));
+        }
+        
+        private static IEnumerator EnableCoroutine(GameObject obj)
+        {
+            yield return new WaitForSeconds(1f);
+
+            obj.SetActive(true);
         }
     }
 

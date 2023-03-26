@@ -15,6 +15,8 @@ namespace Oscar
 
         public List<GameObject> collectedObjects;
 
+        public GameObject myHive;
+
         private void Awake()
         {
             collectedObjects = new List<GameObject>();
