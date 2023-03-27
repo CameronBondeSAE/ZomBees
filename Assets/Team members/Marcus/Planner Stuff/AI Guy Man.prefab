@@ -619,7 +619,6 @@ GameObject:
   - component: {fileID: 1420924924716081631}
   - component: {fileID: 4380904934306938065}
   - component: {fileID: 6018393821343957203}
-  - component: {fileID: 768189929514828613}
   m_Layer: 14
   m_Name: AI Guy Man
   m_TagString: Untagged
@@ -642,7 +641,7 @@ Transform:
   - {fileID: 3765656164223006910}
   - {fileID: 5233947389087070155}
   m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8055998312902322576
 CapsuleCollider:
@@ -679,8 +678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8caecddde722f894a81598c4b0277e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 6352044589181877563}
   speed: 10
-  navMeshAgent: {fileID: 768189929514828613}
   targetPoint: {fileID: 0}
 --- !u!114 &5661392993011220153
 MonoBehaviour:
@@ -779,28 +778,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: {fileID: 9213331890733096373}
   force: 1.5
---- !u!195 &768189929514828613
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5860060659983799258}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &7262582350536973438
 GameObject:
   m_ObjectHideFlags: 0

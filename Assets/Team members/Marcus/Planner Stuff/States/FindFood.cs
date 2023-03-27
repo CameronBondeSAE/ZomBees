@@ -9,7 +9,12 @@ namespace Marcus
 {
     public class FindFood : AntAIState
     {
-        public GameObject foodSense;
+        private TurnToFood foodSense;
+
+        private void OnEnable()
+        {
+            foodSense = GetComponentInParent<TurnToFood>();
+        }
 
         public override void Enter()
         {
@@ -18,14 +23,14 @@ namespace Marcus
             GetComponentInParent<AdvancedGuyDudeMovement>().MoveToPoint
                 (PatrolManager.singleton.resourcePoints[Random.Range(0,PatrolManager.singleton.resourcePoints.Count)]);
             
-            foodSense.SetActive(true);
+            foodSense.gameObject.SetActive(true);
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            foodSense.SetActive(false);
+            foodSense.gameObject.SetActive(false);
         }
     }
 }

@@ -6,92 +6,46 @@ using UnityEngine.AI;
 
 namespace Marcus
 {
-    public class AdvancedGuyDudeMovement : MonoBehaviour
+    public class AdvancedGuyDudeMovement : TurnFunction
     {
-        public NavMeshAgent navMeshAgent;
-        private float arrivalDisance = 1.5f;
-        
+        public Rigidbody rb;
+        public float speed;
         public PatrolPoint targetPoint;
+        
+        private NavMeshPath path;
+        private int pathCounter;
+        
+        private void Start()
+        {
+            path = new NavMeshPath();
+        }
 
         public void MoveToPoint(PatrolPoint destination)
         {
             targetPoint = destination;
-            navMeshAgent.SetDestination(targetPoint.transform.position);
+            pathCounter = 0;
+                
+            NavMesh.CalculatePath(transform.position, targetPoint.transform.position, NavMesh.AllAreas, path);
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (ReachedDestinationOrGaveUp() && targetPoint)
+            var nextPoint = path.corners[pathCounter];
+
+            if (targetPoint)
             {
-                print("Got to my spot......");
-                targetPoint = null;
-            }
-        }
-        
-        public bool ReachedDestinationOrGaveUp()
-        {
-            if (!navMeshAgent.pathPending)
-            {
-                if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance + arrivalDisance)
-                {
-                    if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        #region Manual Movement Test
-
-        private class FakeScript : TurnFunction
-        {
-            private NavMeshPath path;
-            public PatrolPoint targetPoint;
-            public Rigidbody rb;
-            public float speed;
-
-            private int pathCounter;
-
-            private void MyFakeStart()
-            {
-                path = new NavMeshPath();
-            }
-
-            private void FakeMoveToPoint(PatrolPoint destination)
-            {
-                targetPoint = destination;
-                pathCounter = 0;
-            }
-        
-            private void MyFakeUpdate()
-            {
-                NavMesh.CalculatePath(transform.position, targetPoint.transform.position, NavMesh.AllAreas, path);
-                var nextPoint = path.corners[pathCounter];
-
-                if (targetPoint)
-                {
-                    if (transform.forward + nextPoint.normalized != nextPoint)
-                    {
-                        TurnTowards(rb, nextPoint, 2f);
-                    }
-                    else
-                    {
-                        rb.AddRelativeForce(Vector3.forward * speed);
-                    }
-                }
+                Vector3 distanceFromPoint = targetPoint.transform.position - transform.position;
                 
-                // Just for debug
-                for (int i = 0; i < path.corners.Length - 1; i++)
+                if (transform.forward + distanceFromPoint != nextPoint)
                 {
-                    Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
+                    TurnTowards(rb, nextPoint, 2f);
+                }
+                else
+                {
+                    rb.AddRelativeForce(Vector3.forward * speed);
                 }
             }
         }
-
-        #endregion
     }
 }

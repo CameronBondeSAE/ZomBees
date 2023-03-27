@@ -9,10 +9,16 @@ namespace Marcus
 {
     public class EatFood : AntAIState
     {
-        public FoodAIHolding hand;
-        public FoodAIHunger hunger;
+        private FoodAIHolding hand;
+        private FoodAIHunger hunger;
 
         private float waitTimer = 3f;
+
+        private void OnEnable()
+        {
+            hand = GetComponentInParent<FoodAIHolding>();
+            hunger = GetComponentInParent<FoodAIHunger>();
+        }
 
         public override void Enter()
         {
