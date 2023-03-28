@@ -8,6 +8,8 @@ public class TileTracker : MonoBehaviour
 {
     //Chat GPT assisted script
     
+    public bool initialized=false;
+    
     public const float cubeSize = 1;
     
     const int boardSize = 16;
@@ -31,12 +33,13 @@ public class TileTracker : MonoBehaviour
     public SquareType myType;
     
     public SquareType[,] board = new SquareType[boardSize, boardSize];
-    
-    private void OnEnable()
+
+
+    public void StartGame()
     {
         MakeBoard();
     }
-
+    
     private void MakeBoard()
     {
         for (int x = 0; x < boardSize; x++) {
@@ -44,6 +47,8 @@ public class TileTracker : MonoBehaviour
                 Vector2 position = new Vector3(x * cubeSize, 0, y * cubeSize);
             }
         }
+
+        initialized = true;
     }
     
     public SquareType[,] GetSquareTypesInArea(int centerX, int centerZ, int radius)
@@ -72,11 +77,11 @@ public class TileTracker : MonoBehaviour
                square.y < 0 || square.y >= board.GetLength(1);
     }
     
-    public void EditorChangeSquareType(int x, int y, SquareType type)
+    /*public void EditorChangeSquareType(int x, int y, SquareType type)
     {
         board[targetX, targetY] = myType;
         SquareTypeChanged?.Invoke(targetX, targetY, myType);
-    }
+    }*/
 
     public void ChangeSquareType(int x, int y, SquareType type)
     {

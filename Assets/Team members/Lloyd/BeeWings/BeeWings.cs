@@ -114,6 +114,8 @@ public class BeeWings : MonoBehaviour
     private void FixedUpdate()
     {
         rb.position = pivotPoint.transform.position;
+
+        transform.localRotation *= pivotPoint.transform.localRotation;
     }
 
 

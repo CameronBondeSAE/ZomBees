@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldState : MonoBehaviour
+public class WorldTime : MonoBehaviour
 {
-    public static WorldState WorldInstance { get; private set; }
+    //cowritten with ChatGPT
+
+    public bool initialized = false;
 
     public float time;
 
@@ -37,21 +39,12 @@ public class WorldState : MonoBehaviour
     private const float HoursPerDay = 24;
     private const float MinutesPerDay = MinutesPerHour * HoursPerDay;
 
-    public void Start()
+    public void StartGame()
     {
-        if (WorldInstance == null)
-        {
-            WorldInstance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        
         time = 0;
         currentTimeOfDay = TimeOfDay.Morning;
         ticking = true;
+        initialized = true;
         StartCoroutine(MarchOfTime());
     }
 
@@ -100,8 +93,11 @@ public class WorldState : MonoBehaviour
 
     public string GetFormattedTime()
     {
+        float realTime = time;
         int hours = Mathf.FloorToInt(time / MinutesPerHour);
         int minutes = Mathf.FloorToInt(time % MinutesPerHour);
-        return string.Format("{0:00}:{1:00}", hours, minutes);
+        
+        //cool
+        return string.Format("{0:00}:{1:00}", hours, minutes+" ("+realTime+")");
     }
 }

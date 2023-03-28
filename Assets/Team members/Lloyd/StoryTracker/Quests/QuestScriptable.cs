@@ -26,6 +26,9 @@ public class QuestScriptable : ScriptableObject
 
         private int listLength;
 
+        private QuestTracker questTracker;
+        private WorldTime worldTime;
+
         public int minRequirements;
         public List<QuestRequirements> requirements = new List<QuestRequirements>();
         public QuestScriptable[] fulfilled;
@@ -43,22 +46,18 @@ public class QuestScriptable : ScriptableObject
                 Failed
         }
         public QuestStatus questStatus;
-        
-        public void OnEnable()
-        {
-                if(QuestTracker.QuestInstance != null)
-                QuestTracker.QuestInstance.FinishedInitializeEvent += Begin;
-        }
 
-        public void Begin()
+        public void Begin(QuestTracker tracker, WorldTime time)
         {
+                questTracker = tracker;
+                worldTime = time;
                 ChangeQuestStatus(QuestStatus.Idle);
         }
                 
 
         public void Update()
         {
-                float time = WorldState.WorldInstance.time;
+                float time = worldTime.time;
                 
                 if(time >= startTime)
                         ChangeQuestStatus(QuestStatus.Began);
@@ -82,29 +81,23 @@ public class QuestScriptable : ScriptableObject
                 if (status == QuestStatus.Idle)
                 {
                         listLength = requirements.Count;
-                        QuestTracker.QuestInstance.AddQuest(this);
                 }
 
                 if (status == QuestStatus.Began)
                 {
-                        QuestTracker.QuestInstance.MoveQuest(0, this, 1);
+                        questTracker.MoveQuest(0, this, 1);
                 }
 
                 else if (status == QuestStatus.Completed)
                 {
-                        QuestTracker.QuestInstance.MoveQuest(0, this, 2);
+                        questTracker.MoveQuest(0, this, 2);
                 }
 
                 else if (status == QuestStatus.Failed)
                 {
-                        QuestTracker.QuestInstance.MoveQuest(0, this, 3);
+                        questTracker.MoveQuest(0, this, 3);
                 }
                 
                 questStatus = status;
-        }
-
-        private void OnDisable()
-        {
-                QuestTracker.QuestInstance.FinishedInitializeEvent -= Begin;
         }
 }

@@ -36,7 +36,12 @@ public class PathFinder : MonoBehaviour
     private Dictionary<Vector2Int, int> SquareCosts = new Dictionary<Vector2Int, int>();
     private Dictionary<Vector2Int, Vector2Int> SquareParents = new Dictionary<Vector2Int, Vector2Int>();
 
-    public void OnEnable()
+    public void SetTileTracker(TileTracker newTileTracker)
+    {
+        tileTracker = newTileTracker;
+    }
+
+    public void StartGame()
     {
         tileTracker.ChangeSquareType(startCoords.x, startCoords.y, TileTracker.SquareType.Me);
         tileTracker.ChangeSquareType(targetCoords.x, targetCoords.y, TileTracker.SquareType.Goal);
