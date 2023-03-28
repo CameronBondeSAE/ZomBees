@@ -12,30 +12,47 @@ public class CivSpawner : MonoBehaviour
     
     public GameObject civPrefab;
 
+    public GameObject newCiv;
+
     public TileTracker tileTracker;
 
     public bool initialized=false;
 
+    public float spawnDelay = 0.5f;
+    public float startDelay = 0.5f;
+
     [Button]
     public void StartGame(TileTracker newTileTracker)
     {
+        StartCoroutine(SpawnCivs(newTileTracker));
+    }
+
+    private IEnumerator SpawnCivs(TileTracker newTileTracker)
+    {
+        yield return new WaitForSeconds(startDelay);
+
         foreach (Vector2 spawnPoint in spawnPoints)
         {
-            GameObject newCiv = Instantiate(civPrefab, new Vector3(spawnPoint.x, 0, spawnPoint.y), Quaternion.identity) as GameObject;
+            newCiv = Instantiate(civPrefab, new Vector3(spawnPoint.x, 0, spawnPoint.y), Quaternion.identity) as GameObject;
             PathFinder pathFind = newCiv.GetComponent<PathFinder>();
             Vector2Int spawnPointInt = new Vector2Int((int)spawnPoint.x, (int)spawnPoint.y);
             pathFind.startCoords = spawnPointInt;
             newTileTracker.ChangeSquareType((int)spawnPoint.x, (int)spawnPoint.y, TileTracker.SquareType.Ally);
             pathFind.SetTileTracker(newTileTracker);
             pathFind.StartGame();
-
             pathFind.FindPath();
-            
-            TileCiv tileCiv = newCiv.GetComponent<TileCiv>();
-            tileCiv.SetPath();
+
+            yield return new WaitForSeconds(spawnDelay);
         }
 
         initialized = true;
+    }
+
+    [Button]
+    public void Begin()
+    {
+        TileCiv tileCiv = newCiv.GetComponent<TileCiv>();
+        tileCiv.SetPath();
     }
         
 }

@@ -59,12 +59,20 @@ public class PathFinder : MonoBehaviour
     }
 
     [Button]
-    public void ChangeTargetCoords(Vector2Int myCoords, Vector2Int newTarget)
+    public void ChangeTargetCoords(Vector2Int newTarget)
     {
-        startCoords = myCoords;
+        startCoords = currentCoords;
         targetCoords = newTarget;
         
         FindPath();
+    }
+
+    public void SetNewCurrent(Vector2Int newPost, Vector2Int oldPost)
+    {
+        currentCoords = newPost;
+        tileTracker.ChangeSquareType(newPost.x, newPost.y, TileTracker.SquareType.Me);
+        tileTracker.ChangeSquareType(oldPost.x, oldPost.y, TileTracker.SquareType.Open);
+
     }
 
     [Button]

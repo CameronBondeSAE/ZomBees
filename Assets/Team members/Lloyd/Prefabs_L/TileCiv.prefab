@@ -226,7 +226,7 @@ MonoBehaviour:
   moving: 0
   target: {x: 0, y: 0, z: 0}
   minDist: 1
-  moveSpeed: 1
+  moveSpeed: 0.01
   rb: {fileID: 8719337754071283550}
   pathList: []
 --- !u!54 &8719337754071283550

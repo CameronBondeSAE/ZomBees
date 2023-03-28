@@ -18,6 +18,9 @@ public class TileTracker : MonoBehaviour
     public int targetY;
     public int targetZ;
 
+    [InlineEditor()]
+    public TileLevelMaker scriptObj;
+    
     public enum SquareType
     {
         Open,
@@ -36,6 +39,7 @@ public class TileTracker : MonoBehaviour
 
     public void StartGame()
     {
+        board = scriptObj.Board();
         MakeBoard();
     }
     

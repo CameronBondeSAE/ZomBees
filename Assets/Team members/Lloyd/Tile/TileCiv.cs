@@ -54,23 +54,23 @@ public class TileCiv : MonoBehaviour
             float distToTargetSqr = (rb.transform.position - target).sqrMagnitude;
 
             if (distToTargetSqr < (minDist + 0.001f) * (minDist + 0.001f))
-            {
-                int newX = pathList[0].x;
-                int newY = pathList[0].y;
-                tileTracker.ChangeSquareType(newX, newY, TileTracker.SquareType.Me);
 
-                if (pathList.Count > 1)
+                if (pathList[1] != null && pathList[0] != null)
                 {
-                    int oldX = pathList[1].x;
-                    int oldY = pathList[1].y;
-                    tileTracker.ChangeSquareType(oldX, oldY, TileTracker.SquareType.Open);
+                    int newX = pathList[1].x;
+                    int newZ = pathList[1].z;
+                    Debug.Log("NEW : " + newX + " , " + newX);
+
+                    int oldX = pathList[0].x;
+                    int oldZ = pathList[0].z;
+                    Debug.Log("OLD : " + oldZ + " , " + oldZ);
+
+                    pathfinder.SetNewCurrent(new Vector2Int(newX, newZ), new Vector2Int(oldX, oldZ));
+
+                    pathList.RemoveAt(0);
                 }
 
-                pathfinder.currentCoords = new Vector2Int(pathList[0].x,pathList[0].y);
-
-                pathList.RemoveAt(0);
-
-                if (pathList.Count > 0)
+            if (pathList.Count > 0)
                 {
                     target = pathList[0];
                 }
@@ -93,4 +93,3 @@ public class TileCiv : MonoBehaviour
             
             
     }
-}

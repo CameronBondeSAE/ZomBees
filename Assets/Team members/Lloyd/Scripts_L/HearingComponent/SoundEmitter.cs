@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
 using Lloyd;
+using Sirenix.OdinInspector;
 
 public class SoundEmitter : MonoBehaviour
 {
@@ -19,7 +20,13 @@ public class SoundEmitter : MonoBehaviour
 
     [Header("SIZE OF NOISE RADIUS")] public float radius;
 
-    [Header("VOLUME OF SOUND")] public float volume;
+    //[Header("VOLUME OF SOUND")] public float volume;
+    
+    [Header("INCREASE/DECREASE FEAR")] public float fear;
+
+    [Header("HOW MUCH LIKE A BEE")] public float beeness;
+
+    [Header("TEAM?")] public Team team;
 
     [Header("THE MAX NUMBER OF LISTENERS (lower for performance?)")]
     public int maxListeners;
@@ -29,6 +36,11 @@ public class SoundEmitter : MonoBehaviour
        // EmitSound(gameObject, radius);
     }
 
+    [Button]
+    public void EmitInspectorSound()
+    {
+        EmitSound(this.gameObject, radius, fear, beeness, team);
+    }
     public void EmitSound(GameObject origin, float volume, float fear, float beeness, Team team)
     {
         Collider[] hitColliders = new Collider[maxListeners];

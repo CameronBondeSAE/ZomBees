@@ -48,4 +48,5 @@ MonoBehaviour:
   targetX: 0
   targetY: 0
   targetZ: 0
+  scriptObj: {fileID: 11400000, guid: cb39499c5e9ffb341a052d8c21c226bb, type: 2}
   myType: 0

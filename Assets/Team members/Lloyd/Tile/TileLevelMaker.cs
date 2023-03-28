@@ -14,11 +14,15 @@ public class TileLevelMaker : ScriptableObject
     const int boardSize = 16;
 
     private TileEventArgs tileEventArgs;
-    public TileTracker.SquareType myType;
     
     public TileTracker.SquareType[,] board = new TileTracker.SquareType[boardSize, boardSize];
 
     public TileTracker.SquareType[,] previousBoard;
+
+    private void StartGame()
+    {
+        
+    }
 
     [Button]
     public void SaveSettings()
