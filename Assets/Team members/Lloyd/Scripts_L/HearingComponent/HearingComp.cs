@@ -26,6 +26,7 @@ public class HearingComp : MonoBehaviour, IHear
         public float volume;
         public float fear;
         public float beeness;
+        public Team team;
     }
 
     public List<SoundData> soundsList = new List<SoundData>();
@@ -41,15 +42,17 @@ public class HearingComp : MonoBehaviour, IHear
         heardSound = false;
     }
 
-
-    public void SoundHeard(GameObject source, float volume, float fear, float beeness)
+    public void SoundHeard(GameObject source, float volume, float fear, float beeness, Team heardTeam)
     {
         float distance = Vector3.Distance(transform.position, source.transform.position);
         RaycastHit[] hits =
             Physics.RaycastAll(transform.position, source.transform.position - transform.position, distance);
         int hitCount = hits.Length;
         
-        Debug.Log("Heard something with " + hitCount + " number of objects between");
+        Debug.Log("Heard something"+distance+" far away with ");
+        Debug.Log( + hitCount + " number of objects between");
+        Debug.Log("Scary level :"+fear);
+        Debug.Log("Bee level :"+fear);
 
         SoundData soundData = new SoundData();
         soundData.source = source;
@@ -59,10 +62,17 @@ public class HearingComp : MonoBehaviour, IHear
         soundsList.Add(soundData);
         
         soundsList.Sort((a, b) => -1 * a.volume.CompareTo(b.volume));
+        OnSoundHeardEvent(source,volume,fear,beeness,heardTeam);
     }
     
+    public event Action<HearingEventArgs> SoundHeardEvent;
+
+    public void OnSoundHeardEvent(GameObject source, float volume, float fear, float beeness, Team heardTeam)
+    {
+        SoundHeardEvent?.Invoke(new HearingEventArgs{ Source = source, Volume = volume, Fear = fear, Beeness = beeness, Team = heardTeam});
+    }
     
-    
+
     //where to put perlin randomiser for sound?
          // float noiseX = Mathf.PerlinNoise(point.x * scale, 0f);
          // float noiseY = Mathf.PerlinNoise(point.y * scale, 0f);

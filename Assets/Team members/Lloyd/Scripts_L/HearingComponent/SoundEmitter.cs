@@ -29,7 +29,7 @@ public class SoundEmitter : MonoBehaviour
        // EmitSound(gameObject, radius);
     }
 
-    public void EmitSound(GameObject origin, float volume, float fear, float team)
+    public void EmitSound(GameObject origin, float volume, float fear, float beeness, Team team)
     {
         Collider[] hitColliders = new Collider[maxListeners];
         int numColliders = Physics.OverlapSphereNonAlloc(origin.transform.position, radius, hitColliders);
@@ -41,7 +41,7 @@ public class SoundEmitter : MonoBehaviour
             listener = collider.GetComponent<IHear>();
             if (listener != null)
             {
-                listener.SoundHeard(origin, volume, fear, team);
+                listener.SoundHeard(origin, volume, fear, beeness, team);
             }
         }
     }

@@ -19,17 +19,22 @@ public class PathFinder : MonoBehaviour
     private List<Vector2Int> SquaresToBeScanned = new List<Vector2Int>();
     private List<Vector2Int> SquaresScanned = new List<Vector2Int>();
 
+    
+    //where to set values? so not hard coded
+
+    public int allyNeighbourCost=3;
+    public int enemyNeighbourCost=3;
+    
     private Dictionary<TileTracker.SquareType, int> SquareTypeCosts = new Dictionary<TileTracker.SquareType, int>()
     {
-        {TileTracker.SquareType.Me, Int32.MinValue},
+        {TileTracker.SquareType.Me, Int32.MaxValue},
         
-        { TileTracker.SquareType.Open, 2 },
+        { TileTracker.SquareType.Open, 5 },
         { TileTracker.SquareType.Blocked, int.MaxValue },
-        { TileTracker.SquareType.Ally, 3 },
+        { TileTracker.SquareType.Ally, int.MaxValue },
         { TileTracker.SquareType.Goal, 1 },
         { TileTracker.SquareType.Honey, 4 },
         { TileTracker.SquareType.Enemy, int.MaxValue },
-        
         { TileTracker.SquareType.SafeRoom, 1 }
     };
 
@@ -50,11 +55,6 @@ public class PathFinder : MonoBehaviour
     
     private void OnSquareTypeChanged(int x, int y, TileTracker.SquareType squareType)
     {
-        PathFind();
-    }
-
-    public void PathFind()
-    {
         FindPath();
     }
 
@@ -68,7 +68,7 @@ public class PathFinder : MonoBehaviour
     }
 
     [Button]
-    private void FindPath()
+    public void FindPath()
     {
         SquaresToBeScanned.Clear();
         SquaresScanned.Clear();
@@ -109,7 +109,6 @@ public class PathFinder : MonoBehaviour
             {
                 if (tileTracker.IsOutOfBounds(neighbour) ||
                     tileTracker.GetSquareType(neighbour.x, neighbour.y) == TileTracker.SquareType.Blocked ||
-                    tileTracker.GetSquareType(neighbour.x, neighbour.y) == TileTracker.SquareType.Enemy ||
                     SquaresScanned.Contains(neighbour))
                 {
                     continue;
@@ -120,6 +119,23 @@ public class PathFinder : MonoBehaviour
 
                 if (!SquareCosts.ContainsKey(neighbour) || newCost < SquareCosts[neighbour])
                 {
+                    if (tileTracker.GetSquareType(neighbour.x, neighbour.y) == TileTracker.SquareType.Open)
+                    {
+                        int neighbourCost;
+                        if (tileTracker.GetSquareType(neighbour.x, neighbour.y) == TileTracker.SquareType.Enemy)
+                        {
+                            neighbourCost = enemyNeighbourCost;
+                            newCost += neighbourCost;
+                        }
+
+                        else if (tileTracker.GetSquareType(neighbour.x, neighbour.y) == TileTracker.SquareType.Ally
+                                 || tileTracker.GetSquareType(neighbour.x, neighbour.y) == TileTracker.SquareType.SafeRoom)
+                        {
+                            neighbourCost = allyNeighbourCost;
+                            newCost -= neighbourCost;
+                        }
+                    }
+
                     SquareCosts[neighbour] = newCost;
                     SquareParents[neighbour] = current;
 
@@ -154,15 +170,38 @@ public class PathFinder : MonoBehaviour
     }
 
     public List<Vector3Int> publicPath = new List<Vector3Int>();
-    
+
     private List<Vector2Int> GetNeighbours(Vector2Int square)
     {
         List<Vector2Int> neighbours = new List<Vector2Int>();
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0)
+                {
+                    continue;
+                }
+
+                Vector2Int neighbour = square + new Vector2Int(x, y);
+
+                if (!tileTracker.IsOutOfBounds(neighbour) &&
+                    tileTracker.GetSquareType(square.x+x,square.y+y) != TileTracker.SquareType.Blocked)
+                {
+                    neighbours.Add(neighbour);
+                }
+            }
+        }
+
+        return neighbours;
+
+        /*List<Vector2Int> neighbours = new List<Vector2Int>();
         neighbours.Add(new Vector2Int(square.x + 1, square.y));
         neighbours.Add(new Vector2Int(square.x - 1, square.y));
         neighbours.Add(new Vector2Int(square.x, square.y + 1));
         neighbours.Add(new Vector2Int(square.x, square.y - 1));
-        return neighbours;
+        return neighbours;*/
     }
     
     private void DrawPath(List<Vector2Int> path)

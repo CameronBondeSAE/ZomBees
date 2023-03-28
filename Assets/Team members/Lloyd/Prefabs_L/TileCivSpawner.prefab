@@ -45,7 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints:
-  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 4, y: 0}
+  - {x: 7, y: 0}
+  - {x: 9, y: 0}
+  targetPoints: []
   civPrefab: {fileID: 4935393568139594451, guid: d4aa851dd11efe440b96aa10982baaef, type: 3}
   tileTracker: {fileID: 0}
   initialized: 0

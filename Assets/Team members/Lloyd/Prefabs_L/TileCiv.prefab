@@ -151,7 +151,6 @@ GameObject:
   - component: {fileID: 1173769279856429734}
   - component: {fileID: 1387148285723395527}
   - component: {fileID: 8719337754071283550}
-  - component: {fileID: 6634314314555377611}
   m_Layer: 0
   m_Name: TileCiv
   m_TagString: Untagged
@@ -188,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78dad845d4f9a7c4a84fb17a1f912e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentQuest: {fileID: 0}
   currentGoal: 0
 --- !u!114 &1173769279856429734
 MonoBehaviour:
@@ -203,9 +203,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileTracker: {fileID: 0}
   startCoords: {x: 0, y: 0}
-  targetCoords: {x: 7, y: 7}
+  targetCoords: {x: 15, y: 15}
   currentCoords: {x: 0, y: 0}
   squareSize: 1
+  allyNeighbourCost: 3
+  enemyNeighbourCost: 3
   publicPath: []
 --- !u!114 &1387148285723395527
 MonoBehaviour:
@@ -221,10 +223,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathfinder: {fileID: 1173769279856429734}
   tileTracker: {fileID: 0}
-  waitingOnGoal: 0
+  moving: 0
   target: {x: 0, y: 0, z: 0}
   minDist: 1
-  moveSpeed: 5
+  moveSpeed: 1
   rb: {fileID: 8719337754071283550}
   pathList: []
 --- !u!54 &8719337754071283550
@@ -254,17 +256,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6634314314555377611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4935393568139594451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heardSound: 0
-  loudestSound: {fileID: 0}

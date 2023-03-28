@@ -11,61 +11,89 @@ public class ZombeeGameManager : MonoBehaviour
 
     public GameObject worldTime; 
     public GameObject newWorldTime;
-    
+    private WorldTime newWorldTimeScript;
+
     public GameObject questTracker;
     public GameObject newQuestTracker;
+    private QuestTracker newQuestTrackerScript;
 
     public GameObject tileTracker;
     public GameObject newTileTracker;
+    private TileTracker newTileTrackerScript;
 
     public GameObject civSpawner;
     public GameObject newCivSpawner;
+    private CivSpawner newCivSpawnerScript;
 
+    public List<TileLevelMaker> customLevels;
+    private TileLevelMaker loadLevel;
+    private TileTracker.SquareType[,] board;
+    
     [Button]
     public void StartGame()
     {
-        newWorldTime = Instantiate(worldTime, transform.position, Quaternion.identity) as GameObject;
+        Vector3 position = transform.position;
+        
+        newWorldTime = Instantiate(worldTime, position, Quaternion.identity) as GameObject;
+        newWorldTimeScript = newWorldTime.GetComponent<WorldTime>();
 
-        newQuestTracker = Instantiate(questTracker, transform.position, Quaternion.identity) as GameObject;
+        newQuestTracker = Instantiate(questTracker, position, Quaternion.identity) as GameObject;
+        newQuestTrackerScript = newQuestTracker.GetComponent<QuestTracker>();
 
-        newTileTracker = Instantiate(tileTracker, transform.position, Quaternion.identity) as GameObject;
+        newTileTracker = Instantiate(tileTracker, position, Quaternion.identity) as GameObject;
+        newTileTrackerScript = newTileTracker.GetComponent<TileTracker>();
 
-        newCivSpawner = Instantiate(civSpawner, transform.position, Quaternion.identity) as GameObject;
+        newCivSpawner = Instantiate(civSpawner, position, Quaternion.identity) as GameObject;
+        newCivSpawnerScript = newCivSpawner.GetComponent<CivSpawner>();
         
         StartCoroutine(Begin());
     }
 
     private IEnumerator Begin()
     {
-        newWorldTime.GetComponent<WorldTime>().StartGame();
-        while (!newWorldTime.GetComponent<WorldTime>().initialized)
+        newWorldTimeScript.StartGame();
+        while (!newWorldTimeScript.initialized)
         {
             yield return null;
         }
         Debug.Log("timer started"); 
         
-        newQuestTracker.GetComponent<QuestTracker>().StartGame(newWorldTime.GetComponent<WorldTime>());
-        while (!newQuestTracker.GetComponent<QuestTracker>().initialized)
+        newQuestTrackerScript.StartGame(newWorldTimeScript);
+        while (!newQuestTrackerScript.initialized)
         {
             yield return null;
         }
         Debug.Log("quests set"); 
         
-        newTileTracker.GetComponent<TileTracker>().StartGame();
-        while (!newTileTracker.GetComponent<TileTracker>().initialized)
+        newTileTrackerScript.StartGame();
+        while (!newTileTrackerScript.initialized)
         {
             yield return null;
         }
+        LoadLevel();
         Debug.Log("tiles made");
             
-        newCivSpawner.GetComponent<CivSpawner>().StartGame(newTileTracker.GetComponent<TileTracker>());
-        while (!newCivSpawner.GetComponent<CivSpawner>().initialized)
+        newCivSpawnerScript.StartGame(newTileTrackerScript);
+        while (!newCivSpawnerScript.initialized)
         {
             yield return null;
         }
         Debug.Log("civs spawned");
     }
     
-    //subscribe to events
+    public void LoadLevel()
+    {
+        loadLevel = customLevels[0];
+        board = loadLevel.Board();
+        for (int x = 0; x < board.GetLength(0); x++)
+        {
+            for (int y = 0; y < board.GetLength(1); y++)
+            {
+                newTileTrackerScript.ChangeSquareType(x, y, board[x,y]);
+            }
+        }
+    }
+    
+    //subscribe to events later
     
 }

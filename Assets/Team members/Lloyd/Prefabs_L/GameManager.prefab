@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8188236082929428610
 MonoBehaviour:
@@ -52,3 +52,6 @@ MonoBehaviour:
   newTileTracker: {fileID: 0}
   civSpawner: {fileID: 6757004829756018335, guid: 3ae4d4f828b44c440951f3ddfd02f4f2, type: 3}
   newCivSpawner: {fileID: 0}
+  customLevels:
+  - {fileID: 11400000, guid: cb39499c5e9ffb341a052d8c21c226bb, type: 2}
+  currentLevel: {fileID: 0}

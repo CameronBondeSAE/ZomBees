@@ -34,7 +34,6 @@ public class TileTracker : MonoBehaviour
     
     public SquareType[,] board = new SquareType[boardSize, boardSize];
 
-
     public void StartGame()
     {
         MakeBoard();

@@ -1852,7 +1852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &445658961
 Transform:
   m_ObjectHideFlags: 0
@@ -2139,7 +2139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &668101335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2237,7 +2237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &788336803
 Transform:
   m_ObjectHideFlags: 0
@@ -2268,7 +2268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &827043972
 Transform:
   m_ObjectHideFlags: 0
@@ -2302,7 +2302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &896786894
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2400,7 +2400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &934304517
 Transform:
   m_ObjectHideFlags: 0
@@ -2795,6 +2795,7 @@ MonoBehaviour:
   cubeSize: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   cam: {fileID: 0}
+  blocked: 0
 --- !u!4 &1207789319
 Transform:
   m_ObjectHideFlags: 0
@@ -3071,7 +3072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1407153021
 Transform:
   m_ObjectHideFlags: 0
@@ -3102,7 +3103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1506840029
 Transform:
   m_ObjectHideFlags: 0
@@ -3136,7 +3137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1608139471
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3235,7 +3236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1632183437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3421,7 +3422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1719827065
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3687,7 +3688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1792253508
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3791,7 +3792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1816999657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3804,8 +3805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2448161036749346bc119e186501fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawingGrid: 0
-  scanTime: 0
+  nodeTracker: {fileID: 0}
   perlinScale: 0.4
   minRandTime: 0.06
   maxRandTime: 0.1
@@ -3814,9 +3814,6 @@ MonoBehaviour:
   gridSize: {x: 5, y: 5, z: 5}
   cubeSize: {x: 1, y: 1, z: 1}
   worldNodes: []
-  openNodes: []
-  closeNodes: []
-  openNeighbours: []
 --- !u!65 &1816999658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3929,16 +3926,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da4ae9d31970d3449ac0915f2c3476d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldNodes: []
   myNode:
     position: {x: 0, y: 0, z: 0}
     isBlocked: 0
     nodeCost: 0
-  targetNodes: []
+  targetNodes:
+    position: {x: 0, y: 0, z: 0}
+    isBlocked: 0
+    nodeCost: 0
+  allNodes: []
   avoidNodes: []
   openNodes: []
   blockedNodes: []
-  world: {fileID: 0}
 --- !u!1 &1823468773
 GameObject:
   m_ObjectHideFlags: 0
@@ -4279,7 +4278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &2012597769
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -7,6 +7,9 @@ public class CivSpawner : MonoBehaviour
 {
     public List<Vector2> spawnPoints = new List<Vector2>();
     
+    //add to whatever
+    public List<Vector2> targetPoints = new List<Vector2>();
+    
     public GameObject civPrefab;
 
     public TileTracker tileTracker;
@@ -25,6 +28,11 @@ public class CivSpawner : MonoBehaviour
             newTileTracker.ChangeSquareType((int)spawnPoint.x, (int)spawnPoint.y, TileTracker.SquareType.Ally);
             pathFind.SetTileTracker(newTileTracker);
             pathFind.StartGame();
+
+            pathFind.FindPath();
+            
+            TileCiv tileCiv = newCiv.GetComponent<TileCiv>();
+            tileCiv.SetPath();
         }
 
         initialized = true;

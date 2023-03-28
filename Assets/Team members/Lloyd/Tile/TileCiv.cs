@@ -12,7 +12,7 @@ public class TileCiv : MonoBehaviour
 
     public TileTracker tileTracker;
 
-    public bool waitingOnGoal=true;
+    public bool moving=false;
     
     public Vector3 target;
     
@@ -32,15 +32,15 @@ public class TileCiv : MonoBehaviour
     [Button]
     public void SetPath()
     {
+        tileTracker = pathfinder.tileTracker;
         pathList = new List<Vector3Int>(pathfinder.publicPath);
-        waitingOnGoal = false;
         target = pathList[0];
-        waitingOnGoal = false;
+        moving = true;
     }
 
     public void FixedUpdate()
     {
-        if(!waitingOnGoal)
+        if(moving)
         Move();
     }
 
@@ -55,15 +55,18 @@ public class TileCiv : MonoBehaviour
 
             if (distToTargetSqr < (minDist + 0.001f) * (minDist + 0.001f))
             {
+                int newX = pathList[0].x;
+                int newY = pathList[0].y;
+                tileTracker.ChangeSquareType(newX, newY, TileTracker.SquareType.Me);
+
+                if (pathList.Count > 1)
+                {
+                    int oldX = pathList[1].x;
+                    int oldY = pathList[1].y;
+                    tileTracker.ChangeSquareType(oldX, oldY, TileTracker.SquareType.Open);
+                }
+
                 pathfinder.currentCoords = new Vector2Int(pathList[0].x,pathList[0].y);
-                
-                /*int oldX = pathList[0].x;
-                int oldY = pathList[0].y;
-                tileTracker.ChangeSquareType(oldX, oldY, TileTracker.SquareType.Open);
-                                         
-                int newX = pathList[1].x;
-                int newY = pathList[1].y;
-                tileTracker.ChangeSquareType(newX, newY, TileTracker.SquareType.Me);*/
 
                 pathList.RemoveAt(0);
 
@@ -73,16 +76,12 @@ public class TileCiv : MonoBehaviour
                 }
                 else
                 {
+                    moving = false;
                     rb.velocity = Vector3.zero;
-                    waitingOnGoal = true;
-                    
                     return;
                 }
 
                 /**/
-            }
-            else
-            {
                 /*Vector3 direction = target - rb.transform.position;
                 direction.Normalize();
                 Vector3 force = direction * moveSpeed;
