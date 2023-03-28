@@ -13,45 +13,64 @@ public class QuestTracker : MonoBehaviour
     // quests can be Began, Completed and Failed
     // quests are move to the appropriate list 
     
+    public static QuestTracker QuestInstance { get; private set; }
+    
     #region QuestTracker
     
-    public List<GameObject> quests = new List<GameObject>();
+    public List<QuestScriptable> quests = new List<QuestScriptable>();
 
-    public List<GameObject> questsBegan = new List<GameObject>();
+    public List<QuestScriptable> questsBegan = new List<QuestScriptable>();
 
-    public List<GameObject> questsCompleted = new List<GameObject>();
+    public List<QuestScriptable> questsCompleted = new List<QuestScriptable>();
 
-    public List<GameObject> questsFailed = new List<GameObject>();
+    public List<QuestScriptable> questsFailed = new List<QuestScriptable>();
 
-    private List<GameObject>[] questLists;
+    private List<QuestScriptable>[] questLists;
 
     public Color textColor;
 
-    private void Start()
+    private void Awake()
     {
         Initialize();
+        if (QuestInstance == null)
+        {
+            QuestInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Initialize()
     {
-        questLists = new List<GameObject>[4];
+        questLists = new List<QuestScriptable>[4];
         for (int i = 0; i < questLists.Length; i++)
         {
-            questLists[i] = new List<GameObject>();
+            questLists[i] = new List<QuestScriptable>();
         }
 
         questLists[0] = quests;
         questLists[1] = questsBegan;
         questLists[2] = questsCompleted;
         questLists[3] = questsFailed;
+        
+        OnFinishedInitializeEvent();
+    }
+    
+    public event Action FinishedInitializeEvent;
+
+    public void OnFinishedInitializeEvent()
+    {
+        FinishedInitializeEvent?.Invoke();
     }
 
-    public void AddQuest(GameObject quest, string questName)
+    public void AddQuest(QuestScriptable quest)
     {
         quests.Add(quest);
     }
     
-    public void MoveQuest(int oldListIndex, GameObject questObj, int newListIndex)
+    public void MoveQuest(int oldListIndex, QuestScriptable questObj, int newListIndex)
     {
         if (questLists[oldListIndex].Contains(questObj))
         {
@@ -62,18 +81,17 @@ public class QuestTracker : MonoBehaviour
 
         if (newListIndex >= 2)
         {
-            questObj.SetActive(false);
+            
         }
 
         else
-
         {
             Debug.LogWarning("Quest not found in 'quests' list.");
         }
     }
     #endregion
     
-    #region QuestText
+    #region QuestTextViewShit
     public TMP_Text questText;
     public float fadeSpeed;
 

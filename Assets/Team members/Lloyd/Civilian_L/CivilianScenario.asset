@@ -35,7 +35,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5874405294486384567, guid: 3cfabb8b928b2a34faad8c79fa90ca40, type: 3}
     cost: 0
-    position: {x: 231.46912, y: 54.234573}
+    position: {x: 194.46912, y: 18.234573}
     pre:
     - id: 1
       value: 1
@@ -44,7 +44,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5253148898078404268, guid: 3aa8c8867b14ad9458214c4d598b0e61, type: 3}
     cost: 1
-    position: {x: 800.34326, y: 249.87836}
+    position: {x: 415.34326, y: 218.87836}
     pre:
     - id: 4
       value: 1
@@ -57,7 +57,7 @@ MonoBehaviour:
     isDefault: 1
     state: {fileID: 2953068733267188434, guid: 52ca1e766581d7e45a214e1aa5e97876, type: 3}
     cost: 1
-    position: {x: 229.52676, y: 252.8172}
+    position: {x: 198.52676, y: 217.8172}
     pre:
     - id: 2
       value: 1
@@ -70,7 +70,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 835345909184254382, guid: 29b324b727946334e93f803585a54773, type: 3}
     cost: 1
-    position: {x: 1039.0125, y: 269.03714}
+    position: {x: 620.01245, y: 198.03714}
     pre:
     - id: 0
       value: 1
@@ -84,11 +84,11 @@ MonoBehaviour:
   goals:
   - name: Survive
     isDefault: 0
-    position: {x: 517.6666, y: 344.66666}
+    position: {x: 409.66663, y: 96.66666}
     conditions: []
   - name: GainResources
     isDefault: 1
-    position: {x: 1240, y: 500}
+    position: {x: 1077, y: 603}
     conditions:
     - id: 5
       value: 1

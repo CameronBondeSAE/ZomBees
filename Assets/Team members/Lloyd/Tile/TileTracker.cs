@@ -1,16 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class TileTracker : MonoBehaviour
 {
+    //Chat GPT assisted script
+    
     public const float cubeSize = 1;
     
-    const int boardSize = 8;
+    const int boardSize = 16;
 
     public int targetX;
     public int targetY;
+    public int targetZ;
 
     public enum SquareType
     {
@@ -20,13 +24,14 @@ public class TileTracker : MonoBehaviour
         Honey,
         Ally,
         Enemy,
-        Goal
+        Goal,
+        
+        SafeRoom
     }
     public SquareType myType;
     
-    
     public SquareType[,] board = new SquareType[boardSize, boardSize];
-
+    
     private void OnEnable()
     {
         MakeBoard();
@@ -36,17 +41,17 @@ public class TileTracker : MonoBehaviour
     {
         for (int x = 0; x < boardSize; x++) {
             for (int y = 0; y < boardSize; y++) {
-                Vector3 position = new Vector3(x * cubeSize, 0, y * cubeSize);
+                Vector2 position = new Vector3(x * cubeSize, 0, y * cubeSize);
             }
         }
     }
     
-    public SquareType[,] GetSquareTypesInArea(int centerX, int centerY, int radius)
+    public SquareType[,] GetSquareTypesInArea(int centerX, int centerZ, int radius)
     {
         int startX = Mathf.Max(0, centerX - radius);
         int endX = Mathf.Min(boardSize - 1, centerX + radius);
-        int startY = Mathf.Max(0, centerY - radius);
-        int endY = Mathf.Min(boardSize - 1, centerY + radius);
+        int startY = Mathf.Max(0, centerZ - radius);
+        int endY = Mathf.Min(boardSize - 1, centerZ + radius);
     
         SquareType[,] area = new SquareType[endX - startX + 1, endY - startY + 1];
     
@@ -61,8 +66,6 @@ public class TileTracker : MonoBehaviour
         return area;
     }
 
-    
-
     public bool IsOutOfBounds(Vector2Int square)
     {
         return square.x < 0 || square.x >= board.GetLength(0) ||
@@ -73,14 +76,25 @@ public class TileTracker : MonoBehaviour
     {
         board[targetX, targetY] = myType;
         SquareTypeChanged?.Invoke(targetX, targetY, myType);
-
     }
-    
+
     public void ChangeSquareType(int x, int y, SquareType type)
     {
         board[x, y] = type;
         SquareTypeChanged?.Invoke(x, y, type);
-
+    }
+    
+    [Button]
+    public void ChangeSquareTypeInRange(int startX, int startY, int endX, int endY, SquareType type)
+    {
+        for (int i = startX; i <= endX; i++)
+        {
+            for (int j = startY; j <= endY; j++)
+            {
+                board[i, j] = type;
+                SquareTypeChanged?.Invoke(i, j, type);
+            }
+        }
     }
 
     public SquareType GetSquareType(int x, int y)
@@ -88,15 +102,22 @@ public class TileTracker : MonoBehaviour
         return board[x, y];
     }
     
+    public delegate void SquareTypeChangedEventHandler(int x, int y, SquareType squareType);
+    public event SquareTypeChangedEventHandler SquareTypeChanged;
+
+    #region ViewShit
+
     private static readonly Dictionary<SquareType, Color> SquareTypeToColor = new Dictionary<SquareType, Color>
     {
-        { SquareType.Open, Color.white },
-        { SquareType.Ally, Color.green },
+        { SquareType.Open, Color.gray },
+        { SquareType.Ally, Color.white },
         { SquareType.Enemy, Color.red },
         { SquareType.Honey, Color.yellow },
         { SquareType.Blocked, Color.black },
         { SquareType.Goal, Color.magenta },
         { SquareType.Me, Color.blue },
+
+        { SquareType.SafeRoom, Color.green}
     };
 
     private void OnDrawGizmos()
@@ -112,6 +133,6 @@ public class TileTracker : MonoBehaviour
         }
     }
     
-    public delegate void SquareTypeChangedEventHandler(int x, int y, SquareType squareType);
-    public event SquareTypeChangedEventHandler SquareTypeChanged;
+    
+    #endregion
 }

@@ -1,27 +1,34 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class NodeTrigger : MonoBehaviour
 {
-    private bool blocked;
+    public WorldNode worldNode;
 
-    private void OnEnable()
+    public bool blocked;
+
+    [Button]
+    public void FlipBlocked()
     {
+        blocked = !blocked;
+        worldNode.OnChangeNodeState(worldNode, blocked);
     }
-
-    public void OnTriggerStay(Collider other)
+    
+    public void OnTriggerEnter(Collider other)
     {
         if (other != null)
         {
-            Debug.Log("blocked");
             blocked = true;
+            worldNode.OnChangeNodeState(worldNode, blocked);
         }
-        else
-        {
-            Debug.Log("unblocked");
-            blocked = false;
-        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        blocked = false;
+        worldNode.OnChangeNodeState(worldNode, blocked);
     }
 }

@@ -1,27 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
+    //Chat GPT assisted script
+    
     public TileTracker tileTracker;
     public Vector2Int startCoords;
     public Vector2Int targetCoords;
 
-    public int squareSize;
+    public Vector2Int currentCoords;
+
+    public float squareSize;
 
     private List<Vector2Int> SquaresToBeScanned = new List<Vector2Int>();
     private List<Vector2Int> SquaresScanned = new List<Vector2Int>();
 
     private Dictionary<TileTracker.SquareType, int> SquareTypeCosts = new Dictionary<TileTracker.SquareType, int>()
     {
+        {TileTracker.SquareType.Me, Int32.MinValue},
+        
         { TileTracker.SquareType.Open, 2 },
         { TileTracker.SquareType.Blocked, int.MaxValue },
         { TileTracker.SquareType.Ally, 3 },
         { TileTracker.SquareType.Goal, 1 },
         { TileTracker.SquareType.Honey, 4 },
-        { TileTracker.SquareType.Enemy, int.MaxValue }
+        { TileTracker.SquareType.Enemy, int.MaxValue },
+        
+        { TileTracker.SquareType.SafeRoom, 1 }
     };
 
     private Dictionary<Vector2Int, int> SquareCosts = new Dictionary<Vector2Int, int>();
@@ -44,23 +53,33 @@ public class PathFinder : MonoBehaviour
         FindPath();
     }
 
+    [Button]
+    public void ChangeTargetCoords(Vector2Int myCoords, Vector2Int newTarget)
+    {
+        startCoords = myCoords;
+        targetCoords = newTarget;
+        
+        FindPath();
+    }
+
+    [Button]
     private void FindPath()
     {
         SquaresToBeScanned.Clear();
         SquaresScanned.Clear();
         SquareCosts.Clear();
         SquareParents.Clear();
-        
+
         SquaresToBeScanned.Add(startCoords);
         SquareCosts[startCoords] = 0;
         SquareParents[startCoords] = startCoords;
+        
+        publicPath.Clear();
 
         while (SquaresToBeScanned.Count > 0)
         {
             SquaresToBeScanned.Sort((a, b) => SquareCosts[a].CompareTo(SquareCosts[b]));
 
-            
-            
             int minCost = int.MaxValue;
             Vector2Int current = new Vector2Int();
             foreach (Vector2Int square in SquaresToBeScanned)
@@ -123,13 +142,14 @@ public class PathFinder : MonoBehaviour
 
             foreach (Vector2Int square in path)
             {
-                
+                publicPath.Add(new Vector3Int(square.x, 0, square.y));
             }
             DrawPath(path);
         }
     }
-    
 
+    public List<Vector3Int> publicPath = new List<Vector3Int>();
+    
     private List<Vector2Int> GetNeighbours(Vector2Int square)
     {
         List<Vector2Int> neighbours = new List<Vector2Int>();

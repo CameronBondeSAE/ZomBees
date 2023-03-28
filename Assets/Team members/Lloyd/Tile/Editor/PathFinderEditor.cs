@@ -4,6 +4,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
+/*
 [CustomEditor(typeof(PathFinder))]
 public class PathFinderEditor : Editor
 {
@@ -16,4 +17,4 @@ public class PathFinderEditor : Editor
             (target as PathFinder)?.PathFind();
         }
     }
-}
+}*/

@@ -13,8 +13,8 @@ namespace Lloyd
 {
     public class L_WorldScanner : MonoBehaviour
     {
-        public bool drawingGrid = false;
-        public float scanTime;
+        public NodeTracker nodeTracker;
+        
         public float perlinScale;
         private float randomTime;
         public float minRandTime;
@@ -36,13 +36,9 @@ namespace Lloyd
 
         public List<WorldNode> worldNodes;
 
-        public List<WorldNode> openNodes = new List<WorldNode>();
-        public List<WorldNode> closeNodes = new List<WorldNode>();
-
-        public List<WorldNode> openNeighbours = new List<WorldNode>();
-
         private void OnEnable()
         {
+            nodeTracker = GetComponent<NodeTracker>();
             worldNodes = new List<WorldNode>();
             SpawnGrid();
         }
@@ -87,7 +83,7 @@ namespace Lloyd
                 }
             }
         }
-
+        
         private void AddNode(Vector3Int input)
         {
             if (input.x >= 0 && input.x < gridSize.x * cubeSize.x &&
@@ -100,7 +96,7 @@ namespace Lloyd
                 GameObject nodePrefab =
                     Instantiate(cubePrefab, node.position, Quaternion.identity, transform) as GameObject;
 
-                worldNodes.Add(node);
+                nodeTracker.allNodes.Add(node);
             }
         }
     }

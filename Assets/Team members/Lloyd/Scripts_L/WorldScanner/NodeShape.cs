@@ -13,25 +13,32 @@ public class NodeShape : ImmediateModeShapeDrawer
     
     private Cuboid cube;
 
-    public void OnEnable()
+    public bool blocked;
+
+    public void CubeTime()
     {
         cube = gameObject.AddComponent<Cuboid>();
-        cube.transform.position = transform.position;
-        cube.transform.rotation = Quaternion.identity;
-        cube.Color = new Color(color.r, color.g, color.b, 1f);
-        cube.Size = new Vector3(cubeSize, cubeSize, cubeSize);
+        if (cube)
+        {
+            cube.transform.position = transform.position;
+            cube.transform.rotation = Quaternion.identity;
+            cube.Color = new Color(color.r, color.g, color.b, 1f);
+            cube.Size = new Vector3(cubeSize, cubeSize, cubeSize);
+        }
     }
 
     private void Update()
     {
         DrawShapes(cam);
+
+        //cube.Color = color;
     }
 
-
-    [Button]
-    public void ChangeColour(Color newColor)
+    public void ChangeColour(WorldNode x, bool _blocked)
     {
-        color = newColor;
+        blocked = _blocked;
+            color = blocked ? Color.red : Color.green;
+            CubeTime();
     }
 
     public override void DrawShapes(Camera cam)
@@ -40,11 +47,6 @@ public class NodeShape : ImmediateModeShapeDrawer
         {
             Draw.Cuboid(transform.position, Quaternion.identity, new Vector3(cubeSize, cubeSize, cubeSize), color);
         }
-    }
-
-    public override void OnDisable()
-    {
-        base.OnDisable();
     }
 }
 

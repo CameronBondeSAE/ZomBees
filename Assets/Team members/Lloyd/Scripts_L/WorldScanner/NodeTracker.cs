@@ -6,49 +6,47 @@ using UnityEngine;
 
 public class NodeTracker : MonoBehaviour
 {
-    //NodeTracker keeps track of nodes and turns them on / off
+    //NodeTracker keeps track of nodes and if they're open/blocked
 
     //list of nodes (weighted by cost)
 
-    public List<WorldNode> worldNodes;
-
     public WorldNode myNode;
 
-    public List<WorldNode> targetNodes;
+    public WorldNode targetNodes;
 
+    public List<WorldNode> allNodes = new List<WorldNode>();
+    
     public List<WorldNode> avoidNodes;
 
     public List<WorldNode> openNodes;
     public List<WorldNode> blockedNodes;
-
-    public L_WorldScanner world;
-
-    private void OnEnable()
+    
+    public void GridArray()
     {
-        world = GetComponent<L_WorldScanner>();
-        SubscribeToNodes();
-    }
-
-    private void SubscribeToNodes()
-    {
-        for (int x = 0; x < worldNodes.Count; x++)
+        foreach (WorldNode node in allNodes)
         {
-            worldNodes[x].ChangeNodeState += ChangeNodeStateVoid;
+            node.ChangeNodeAction += ChangeNodeStateVoid;
+            node.OnChangeNodeState(node, false);
         }
     }
     
-    public void ChangeNodeStateVoid(WorldNode inputWorldNode, Vector3 nodePos, bool blocked, float nodeCost)
+    public void ChangeNodeStateVoid(WorldNode inputWorldNode,bool blocked)
     {
         List<WorldNode> list;
-        Vector3 pos = nodePos;
 
         if (blocked)
+        {
             list = blockedNodes;
+            inputWorldNode.isBlocked = true;
+        }
         else
+        {
             list = openNodes;
+            inputWorldNode.isBlocked = false;
+        }
 
         //check for node 
-        WorldNode existingNode = list.Find(node => node.position == pos);
+        WorldNode existingNode = list.Find(node => node.position == inputWorldNode.position);
 
         if (existingNode != null)
         {
@@ -59,6 +57,6 @@ public class NodeTracker : MonoBehaviour
             list.Add(inputWorldNode);
         }
 
-        list.Sort((n1, n2) => -n1.nodeCost.CompareTo(n2.nodeCost));
+        //list.Sort((n1, n2) => -n1.nodeCost.CompareTo(n2.nodeCost));
     }
 }

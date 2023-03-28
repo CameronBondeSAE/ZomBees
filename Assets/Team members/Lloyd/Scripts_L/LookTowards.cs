@@ -7,7 +7,7 @@ using Team_members.Lloyd.Civilian_L;
 public class LookTowards : MonoBehaviour
 {
     private CivilianBrain civBrain;
-    
+
     public Transform target;
     public float torqueSpeed;
     public Rigidbody rb;

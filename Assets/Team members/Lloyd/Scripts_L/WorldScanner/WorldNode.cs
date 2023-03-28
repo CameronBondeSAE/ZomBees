@@ -17,16 +17,10 @@ public class WorldNode
         isBlocked = blocked;
         nodeCost = cost;
     }
-    public void ChangeNode(Vector3 pos, bool blocked, float cost)
-    {
-        position = pos;
-        isBlocked = blocked;
-        nodeCost = cost;
-    }
     
-    public Action<WorldNode, Vector3, bool, float> ChangeNodeState;
-    public void OnChangeNodeState(WorldNode me, Vector3 pos, bool blocked, float cost)
+    public Action<WorldNode, bool> ChangeNodeAction;
+    public void OnChangeNodeState(WorldNode me, bool blocked)
     {
-        ChangeNodeState?.Invoke(me,pos, blocked, cost);
+        ChangeNodeAction?.Invoke(me, blocked);
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WorldState : MonoBehaviour
 {
+    public static WorldState WorldInstance { get; private set; }
+
     public float time;
 
     public float timeScale;
@@ -37,6 +39,16 @@ public class WorldState : MonoBehaviour
 
     public void Start()
     {
+        if (WorldInstance == null)
+        {
+            WorldInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        
         time = 0;
         currentTimeOfDay = TimeOfDay.Morning;
         ticking = true;
@@ -45,9 +57,9 @@ public class WorldState : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("TIME: "+GetFormattedTime());
-        Debug.Log(currentTimeOfDay);
-        Debug.Log(currentDayTracker);
+       // Debug.Log("TIME: "+GetFormattedTime());
+       // Debug.Log(currentTimeOfDay);
+       // Debug.Log(currentDayTracker);
     }
 
     IEnumerator MarchOfTime()

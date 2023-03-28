@@ -25,7 +25,7 @@ public class NodePath : MonoBehaviour
         cubeSize = worldScanner.cubeSize;
         gridSize = worldScanner.gridSize;
 
-        openNodes = worldScanner.openNodes;
+        openNodes = worldScanner.worldNodes;
     }
 
     [Button]
