@@ -35,21 +35,19 @@ namespace Marcus
         // Update is called once per frame
         void Update()
         {
-            var nextPoint = path.corners[pathCounter];
-
             if (targetPoint)
             {
-                Vector3 distanceFromPoint = targetPoint.transform.position - transform.position;
+                Vector3 nextPoint = path.corners[pathCounter];
+                float distanceFromPoint = Vector3.Distance(transform.position, nextPoint);
                 
-                if (transform.position + distanceFromPoint != nextPoint)
-                {
-                    TurnTowards(rb, nextPoint, 0.2f);
-                }
-                else if (distanceFromPoint.normalized.magnitude <= stoppingDistance)
+                if (distanceFromPoint <= stoppingDistance)
                 {
                     pathCounter++;
                 }
 
+                float turnSpeed = Vector3.Angle(transform.forward, nextPoint);
+                TurnTowards(rb, nextPoint, turnSpeed);
+                
                 rb.AddRelativeForce(Vector3.forward * speed);
             }
             
