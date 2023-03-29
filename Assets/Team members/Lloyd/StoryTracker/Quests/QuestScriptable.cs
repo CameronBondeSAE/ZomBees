@@ -9,7 +9,19 @@ public class QuestScriptable : ScriptableObject
         //written in tandem with chat GPT
 
         private AIModelView modelView;
+
+        public string questPrompt;
         
+        public string SendPrompt()
+        {
+                return questPrompt;
+        }
+
+        public void ChangeString(QuestStatus status)
+        {
+                
+        }
+
         [System.Serializable]
          public class QuestRequirements
          {
@@ -21,6 +33,8 @@ public class QuestScriptable : ScriptableObject
         public string questName;
         public string questDescription;
 
+        public float time;
+        
         public float startTime;
         public float endTime;
 
@@ -33,6 +47,8 @@ public class QuestScriptable : ScriptableObject
         public List<QuestRequirements> requirements = new List<QuestRequirements>();
         public QuestScriptable[] fulfilled;
 
+        public string QuestPrompt;
+        
         public void RequirementFulfilled(int requirementIndex)
         {
                 requirements[requirementIndex].requirementFulfilled = true;
@@ -53,11 +69,10 @@ public class QuestScriptable : ScriptableObject
                 worldTime = time;
                 ChangeQuestStatus(QuestStatus.Idle);
         }
-                
 
         public void Update()
         {
-                float time = worldTime.time;
+                time = worldTime.time;
                 
                 if(time >= startTime)
                         ChangeQuestStatus(QuestStatus.Began);
@@ -72,7 +87,7 @@ public class QuestScriptable : ScriptableObject
                                 ChangeQuestStatus(QuestStatus.Failed);
                         }
                 }
-                Debug.Log(time);
+               // Debug.Log(time);
         }
 
         [Button]
@@ -99,5 +114,14 @@ public class QuestScriptable : ScriptableObject
                 }
                 
                 questStatus = status;
+                
+                OnQuestEvent(questName, questStatus);
+        }
+        
+        public event Action<string, QuestScriptable.QuestStatus> QuestEvent;
+        [Button]
+        public void OnQuestEvent(string QuestName, QuestScriptable.QuestStatus status)
+        {
+                QuestEvent?.Invoke(QuestName, status);
         }
 }

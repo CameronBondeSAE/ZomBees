@@ -5,6 +5,7 @@ using HarmonyLib;
 using UnityEngine;
 using TMPro;
 using Lloyd;
+using Sirenix.OdinInspector;
 
 public class QuestTracker : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class QuestTracker : MonoBehaviour
             
         initialized = true;
     }
-    
+
     public void MoveQuest(int oldListIndex, QuestScriptable questObj, int newListIndex)
     {
         if (questLists[oldListIndex].Contains(questObj))
@@ -61,10 +62,10 @@ public class QuestTracker : MonoBehaviour
         {
             Debug.LogWarning("Quest not found in 'quests' list.");
         }
-    
-        //event for completed / failed
-        
     }
+
+    //event for completed / failed
+    
     #endregion
     
     #region QuestTextViewShit

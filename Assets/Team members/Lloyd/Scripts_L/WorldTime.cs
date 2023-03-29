@@ -48,13 +48,6 @@ public class WorldTime : MonoBehaviour
         StartCoroutine(MarchOfTime());
     }
 
-    private void Update()
-    {
-       // Debug.Log("TIME: "+GetFormattedTime());
-       // Debug.Log(currentTimeOfDay);
-       // Debug.Log(currentDayTracker);
-    }
-
     IEnumerator MarchOfTime()
     {
         while (ticking)

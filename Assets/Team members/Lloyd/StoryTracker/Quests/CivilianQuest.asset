@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632921f4fa542b84b88e5ff7f108b8c5, type: 3}
   m_Name: CivilianQuest
   m_EditorClassIdentifier: 
-  questName: LookForFood
+  questPrompt: 
+  questName: Panic
   questDescription: 
-  startTime: 0
+  time: 116
+  startTime: 50
   endTime: 0
   minRequirements: 1
   requirements:
@@ -22,4 +24,5 @@ MonoBehaviour:
     requirementName: 
     requirementlocation: {x: 0, y: 0, z: 0}
   fulfilled: []
-  questStatus: 0
+  QuestPrompt: 
+  questStatus: 3

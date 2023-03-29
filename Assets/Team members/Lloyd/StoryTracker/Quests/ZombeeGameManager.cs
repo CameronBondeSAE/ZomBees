@@ -15,7 +15,7 @@ public class ZombeeGameManager : MonoBehaviour
 
     public GameObject questTracker;
     public GameObject newQuestTracker;
-    private QuestTracker newQuestTrackerScript;
+    public QuestTracker newQuestTrackerScript;
 
     public GameObject tileTracker;
     public GameObject newTileTracker;

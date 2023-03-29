@@ -19,11 +19,6 @@ public class TileLevelMaker : ScriptableObject
 
     public TileTracker.SquareType[,] previousBoard;
 
-    private void StartGame()
-    {
-        
-    }
-
     [Button]
     public void SaveSettings()
     {

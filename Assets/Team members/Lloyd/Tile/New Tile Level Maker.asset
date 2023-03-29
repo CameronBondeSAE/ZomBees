@@ -13,4 +13,3 @@ MonoBehaviour:
   m_Name: New Tile Level Maker
   m_EditorClassIdentifier: 
   LevelMaker: NAME HERE
-  myType: 0
