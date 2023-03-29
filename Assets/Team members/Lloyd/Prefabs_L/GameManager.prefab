@@ -48,10 +48,10 @@ MonoBehaviour:
   newWorldTime: {fileID: 0}
   questTracker: {fileID: 4610916517720961256, guid: dcd190b6f367be8489df062ed46087a5, type: 3}
   newQuestTracker: {fileID: 0}
+  newQuestTrackerScript: {fileID: 0}
   tileTracker: {fileID: 6202037697091711939, guid: 4eda53f0151aa27408bfd8ddb08155d9, type: 3}
   newTileTracker: {fileID: 0}
   civSpawner: {fileID: 6757004829756018335, guid: 3ae4d4f828b44c440951f3ddfd02f4f2, type: 3}
   newCivSpawner: {fileID: 0}
   customLevels:
   - {fileID: 11400000, guid: cb39499c5e9ffb341a052d8c21c226bb, type: 2}
-  currentLevel: {fileID: 0}

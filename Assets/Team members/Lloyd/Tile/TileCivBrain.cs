@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class TileCivBrain : MonoBehaviour
 {
+    public TileCivMouth civMouth;
+    //public TileCivHead civHead;
+    //public TileCivEyes civEyes;
+    
+    private void StartGame()
+    {
+        
+    }
+
     private HearingComp ears;
     public bool listening;
     public float hearingThreshold;

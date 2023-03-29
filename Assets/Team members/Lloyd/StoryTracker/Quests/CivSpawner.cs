@@ -20,10 +20,12 @@ public class CivSpawner : MonoBehaviour
 
     public float spawnDelay = 0.5f;
     public float startDelay = 0.5f;
+    
+    public CharacterCreator charCre;
 
-    [Button]
     public void StartGame(TileTracker newTileTracker)
     {
+        charCre = GetComponent<CharacterCreator>();
         StartCoroutine(SpawnCivs(newTileTracker));
     }
 
@@ -41,6 +43,8 @@ public class CivSpawner : MonoBehaviour
             pathFind.SetTileTracker(newTileTracker);
             pathFind.StartGame();
             pathFind.FindPath();
+            
+            charCre.RandomiseCiv(newCiv);
 
             yield return new WaitForSeconds(spawnDelay);
         }

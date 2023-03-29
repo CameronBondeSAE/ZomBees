@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1830087028783106188}
   - component: {fileID: 8878708201682915224}
+  - component: {fileID: 921626932137409738}
   m_Layer: 0
   m_Name: TileCivSpawner
   m_TagString: Untagged
@@ -46,10 +47,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - {x: 0, y: 0}
-  targetPoints: []
+  - {x: 3, y: 0}
+  - {x: 5, y: 0}
+  - {x: 7, y: 0}
+  - {x: 9, y: 0}
+  - {x: 11, y: 0}
+  targetPoints:
+  - {x: 15, y: 15}
   civPrefab: {fileID: 4935393568139594451, guid: d4aa851dd11efe440b96aa10982baaef, type: 3}
   newCiv: {fileID: 0}
   tileTracker: {fileID: 0}
   initialized: 0
   spawnDelay: 0.5
   startDelay: 0.5
+--- !u!114 &921626932137409738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6757004829756018335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11cb1cb364af564cbb96b64913cf092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTeam: 0
+  enteredName: 

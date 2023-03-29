@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoryEvent : StoryEventMustSucceed
+public class StoryEvent : MonoBehaviour
 {
     private float timeStamp;
 

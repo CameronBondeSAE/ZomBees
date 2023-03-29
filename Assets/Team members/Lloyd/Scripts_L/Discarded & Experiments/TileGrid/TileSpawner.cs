@@ -1,10 +1,11 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TileSpawner : MonoBehaviour
 {
-    public enum Team
+    public enum TileTeam
     {
         Neutral,
         Human,
@@ -13,7 +14,7 @@ public class TileSpawner : MonoBehaviour
 
     public List<GameObject> objectsToSpawn;
 
-    public Team team;
+    public TileTeam team;
 
     private GameObject[,] squares;
 
@@ -42,4 +43,5 @@ public class TileSpawner : MonoBehaviour
 //        }
 }
 }
+#1#
 */

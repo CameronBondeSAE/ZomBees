@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class TileCivMouth : MonoBehaviour
 {
-    private bool fear;
+    public float volume;
 
-    private string prompt;
+    public float fear;
 
-    public void Prompt()
+    public void OnTalk()
     {
-        if (fear)
-            prompt = "I'm scared!";
-
-        else
-        {
-            prompt = "I'm chill!";
-        }
+        
     }
 }
