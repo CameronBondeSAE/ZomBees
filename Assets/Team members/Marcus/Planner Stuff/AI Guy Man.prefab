@@ -680,7 +680,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6352044589181877563}
   speed: 10
+  stoppingDistance: 5
   targetPoint: {fileID: 0}
+  pathCounter: 0
 --- !u!114 &5661392993011220153
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,12 +11,14 @@ namespace Marcus
     {
         public Rigidbody rb;
         public float speed;
+        public float stoppingDistance;
         public PatrolPoint targetPoint;
         
         private NavMeshPath path;
+        [ReadOnly] [SerializeField]
         private int pathCounter;
-        
-        private void Start()
+
+        private void OnEnable()
         {
             path = new NavMeshPath();
         }
@@ -24,7 +27,8 @@ namespace Marcus
         {
             targetPoint = destination;
             pathCounter = 0;
-                
+            
+            path.ClearCorners();
             NavMesh.CalculatePath(transform.position, targetPoint.transform.position, NavMesh.AllAreas, path);
         }
 
@@ -37,15 +41,20 @@ namespace Marcus
             {
                 Vector3 distanceFromPoint = targetPoint.transform.position - transform.position;
                 
-                if (transform.forward + distanceFromPoint != nextPoint)
+                if (transform.position + distanceFromPoint != nextPoint)
                 {
-                    TurnTowards(rb, nextPoint, 2f);
+                    TurnTowards(rb, nextPoint, 0.2f);
                 }
-                else
+                else if (distanceFromPoint.normalized.magnitude <= stoppingDistance)
                 {
-                    rb.AddRelativeForce(Vector3.forward * speed);
+                    pathCounter++;
                 }
+
+                rb.AddRelativeForce(Vector3.forward * speed);
             }
+            
+            for (int i = 0; i < path.corners.Length - 1; i++)
+                Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
         }
     }
 }
