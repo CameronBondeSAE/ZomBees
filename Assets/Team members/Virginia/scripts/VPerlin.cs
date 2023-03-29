@@ -11,6 +11,7 @@ public class VPerlin : MonoBehaviour
 
         private void Start()
         {
+       
             offset = Random.Range(-10f, 1000f);
         }
         void Update()
