@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: OscarCivilian
+  m_EditorClassIdentifier: 
+  conditions:
+    list:
+    - id: 0
+      name: seeBee
+    - id: 1
+      name: nearBee
+    - id: 2
+      name: isScared
+    - id: 3
+      name: stayAlive
+    - id: 4
+      name: killBee
+  actions:
+  - name: HuntBees
+    isDefault: 1
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 206, y: 28}
+    pre:
+    - id: 0
+      value: 0
+    post:
+    - id: 0
+      value: 1
+  - name: AttackBees
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 597, y: 30}
+    pre:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 1
+    - id: 4
+      value: 0
+    post:
+    - id: 4
+      value: 1
+    - id: 3
+      value: 1
+  - name: TacticalRetreat
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 790, y: 31}
+    pre:
+    - id: 2
+      value: 1
+    post:
+    - id: 3
+      value: 1
+  - name: ApproachBee
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 400, y: 30}
+    pre:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 0
+    post:
+    - id: 1
+      value: 1
+  goals:
+  - name: DefeateBees
+    isDefault: 1
+    position: {x: 337, y: 318}
+    conditions:
+    - id: 3
+      value: 1
+    - id: 4
+      value: 1
+  worldStates:
+  - position: {x: 335, y: 453}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 0
+    - id: 2
+      value: 1
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0

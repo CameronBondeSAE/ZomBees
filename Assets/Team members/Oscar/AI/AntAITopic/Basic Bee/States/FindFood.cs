@@ -34,7 +34,7 @@ public class FindFood : AntAIState
         perlin = Mathf.PerlinNoise(x, z) * 2 - 1;
         sine = Mathf.Sin(x*z);
         
-        littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed,ForceMode.Acceleration);
+        //littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed,ForceMode.Acceleration);
         littleGuy.rb.AddRelativeTorque(sine,perlin,0);
     }
 }

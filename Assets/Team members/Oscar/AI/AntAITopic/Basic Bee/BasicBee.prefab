@@ -169,7 +169,7 @@ Transform:
   m_Children:
   - {fileID: 498041809768793976}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 4110.97, z: 0}
 --- !u!33 &5571471917264393363
 MeshFilter:
@@ -287,6 +287,8 @@ MonoBehaviour:
   littleGuyModel: {fileID: 5571471917264393374}
   speed: 2
   turnSpeed: 0.05
+  collectedObjects: []
+  myHive: {fileID: 0}
 --- !u!114 &2502931121601251791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +331,7 @@ MonoBehaviour:
   lightInSight: []
   honeyInSight: []
   civiliansVisible: []
+  hivesInSight: []
 --- !u!114 &737415551801730799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,3 +377,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vision: {fileID: 4980646194317187398}
+  littleGuy: {fileID: 2256436266696984722}
