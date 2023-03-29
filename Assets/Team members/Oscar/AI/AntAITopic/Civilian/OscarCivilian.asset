@@ -27,9 +27,9 @@ MonoBehaviour:
   actions:
   - name: HuntBees
     isDefault: 1
-    state: {fileID: 0}
+    state: {fileID: 5933066165940633835, guid: f1efd9fda47ad8c429768d8033c5f544, type: 3}
     cost: 0
-    position: {x: 206, y: 28}
+    position: {x: 206, y: 58}
     pre:
     - id: 0
       value: 0
@@ -38,9 +38,9 @@ MonoBehaviour:
       value: 1
   - name: AttackBees
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 5933066165940633835, guid: 98231a44aaa9fbe48be17c38aabfbe71, type: 3}
     cost: 0
-    position: {x: 597, y: 30}
+    position: {x: 597, y: 60}
     pre:
     - id: 0
       value: 1
@@ -55,9 +55,9 @@ MonoBehaviour:
       value: 1
   - name: TacticalRetreat
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 5933066165940633835, guid: 9529c97f36619644eb6d395e906e4a07, type: 3}
     cost: 0
-    position: {x: 790, y: 31}
+    position: {x: 790, y: 61}
     pre:
     - id: 2
       value: 1
@@ -66,9 +66,9 @@ MonoBehaviour:
       value: 1
   - name: ApproachBee
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 5933066165940633835, guid: 55df6f2227e6cf34db354b6953919001, type: 3}
     cost: 0
-    position: {x: 400, y: 30}
+    position: {x: 400, y: 60}
     pre:
     - id: 0
       value: 1
@@ -80,14 +80,14 @@ MonoBehaviour:
   goals:
   - name: DefeateBees
     isDefault: 1
-    position: {x: 337, y: 318}
+    position: {x: 337, y: 348}
     conditions:
     - id: 3
       value: 1
     - id: 4
       value: 1
   worldStates:
-  - position: {x: 335, y: 453}
+  - position: {x: 335, y: 483}
     isAutoUpdate: 1
     list:
     - id: 0

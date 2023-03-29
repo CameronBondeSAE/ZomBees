@@ -39,13 +39,16 @@ public class OscarVisionAI : MonoBehaviour
                 }
             }
             
-            if (other.GetComponent<CivilGuy>() != null)
+            if (other.GetComponent<LittleGuy>() != null)
             {
-                GameObject civGuy = other.gameObject;
-
-                if (!civiliansVisible.Contains(civGuy))
+                if (other.GetComponent<LittleGuy>().isBee == false)
                 {
-                    civiliansVisible.Add(civGuy);
+                    GameObject civGuy = other.gameObject;
+                    
+                    if (!civiliansVisible.Contains(civGuy))
+                    {
+                        civiliansVisible.Add(civGuy);
+                    }
                 }
             }
             
@@ -85,11 +88,14 @@ public class OscarVisionAI : MonoBehaviour
         
             honeyInSight.Remove(honeyStuff);
         }
-        if (other.GetComponent<CivilGuy>() != null)
+        if (other.GetComponent<LittleGuy>() != null)
         {
-            GameObject civGuy = other.gameObject;
-            
-            civiliansVisible.Remove(civGuy);
+            if (other.GetComponent<LittleGuy>().isBee == false)
+            {
+                GameObject civGuy = other.gameObject;
+                
+                civiliansVisible.Remove(civGuy);
+            }
         }
 
         if (other.GetComponent<Hive>() != null)

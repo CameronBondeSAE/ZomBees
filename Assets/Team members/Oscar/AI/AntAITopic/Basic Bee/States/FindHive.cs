@@ -25,7 +25,7 @@ public class FindHive : AntAIState
 
         littleGuy.rb.AddRelativeTorque(0,
             Vector3.SignedAngle(transform.forward, 
-                littleGuy.myHive.transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed, 0);
+                littleGuy.myHome.transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed, 0);
         littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed),ForceMode.Acceleration);
     }
 }

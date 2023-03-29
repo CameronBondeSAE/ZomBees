@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Oscar
 {
     public class LittleGuy : AntAIState
     {
+        public bool isBee;
         public Rigidbody rb;
         public GameObject littleGuyModel;
         public float speed;
@@ -15,7 +17,7 @@ namespace Oscar
 
         public List<GameObject> collectedObjects;
 
-        public GameObject myHive;
+        public GameObject myHome;
 
         private void Awake()
         {
