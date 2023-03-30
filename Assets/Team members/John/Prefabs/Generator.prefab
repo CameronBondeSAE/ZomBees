@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 1571959202447919134}
   - component: {fileID: 1571959202447919133}
   - component: {fileID: 1571959202447919132}
+  - component: {fileID: 819307575913174768}
   - component: {fileID: 1571959202447919106}
   - component: {fileID: 1571959202447919107}
   - component: {fileID: 1571959202447919105}
-  - component: {fileID: 1571959202447919108}
-  - component: {fileID: 108269369}
+  - component: {fileID: -2323117451282190901}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &1571959202447919135
 MeshFilter:
@@ -123,7 +123,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -167,7 +167,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -197,7 +197,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.994
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -207,6 +207,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &819307575913174768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571959202447919131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd58f8392a77b44cbaf5d54047367c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1571959202447919106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generatorStartUp: {fileID: 8300000, guid: 335ba50e06fa74741b847e16546f29cd, type: 3}
+  stateMachine: {fileID: 0}
 --- !u!114 &1571959202447919107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56757378822b3d144afaee496e924bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatorRunning: {fileID: 8300000, guid: 0ef2dc1ee9b78084da6fbec8853cf32b, type: 3}
+  generatorRunning: {fileID: 8300000, guid: f49d3d7d1a59ace428635608f48c58d7, type: 3}
+  stateMachine: {fileID: 0}
 --- !u!114 &1571959202447919105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,22 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa98172e294740042aa373d365062f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatorShuttingDown: {fileID: 8300000, guid: b520b8b0c620f344fa256a5edc494306, type: 3}
---- !u!114 &1571959202447919108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571959202447919131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b41037c59228d1a46bbb64acd3bd3f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingState: {fileID: 0}
-  currentState: {fileID: 0}
---- !u!114 &108269369
+  generatorShuttingDown: {fileID: 8300000, guid: ca7d171cbf0a77748ad357e00048409e, type: 3}
+  stateMachine: {fileID: 0}
+--- !u!114 &-2323117451282190901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,8 +1,9 @@
+using Oscar;
 using UnityEngine;
 
 namespace Johns
 {
-	public class GeneratorModel : MonoBehaviour, ISwitchable
+	public class GeneratorModel : DynamicObject, ISwitchable
 	{
 		public ISwitchable thingToGivePowerTo;
 
@@ -13,6 +14,7 @@ namespace Johns
 
 		public void TurnOff()
 		{
+			
 		}
 	}
 }
