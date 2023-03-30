@@ -45,9 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialized: 0
-  quests:
-  - {fileID: 11400000, guid: 10baa76e8e290f340b3a9a7a1fc9420d, type: 2}
-  - {fileID: 11400000, guid: 10baa76e8e290f340b3a9a7a1fc9420d, type: 2}
+  quests: []
   questsBegan: []
   questsCompleted: []
   questsFailed: []

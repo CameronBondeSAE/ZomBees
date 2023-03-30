@@ -82,7 +82,17 @@ public class CivEventArgs : EventArgs
 
         French=8,
         OverlyBritish=16,
-        Welsh=32
+        Welsh=32,
+        
+        Greek=64,
+        Czechoslovakian=128,
+        Croatian = 256,
+        
+        Scottish,
+        Irish,
+        Dutch,
+        Italian,
+        Russian
     }
 
     // Emotional states, effects conversations, stats, actions, etc
@@ -104,7 +114,21 @@ public class CivEventArgs : EventArgs
 
         Pious=128,
 
-        Rambo=256
+        Rambo=256,
+        
+        Obnoxious,
+        
+        Combative,
+        
+        Sarcastic,
+        
+        Contrarian,
+        
+        Introverted,
+        
+        Traumatised,
+        
+        UsesProfanity
     }
    
    // determines character emotional profile

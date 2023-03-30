@@ -151,6 +151,8 @@ GameObject:
   - component: {fileID: 1173769279856429734}
   - component: {fileID: 1387148285723395527}
   - component: {fileID: 8719337754071283550}
+  - component: {fileID: 1046010567785216630}
+  - component: {fileID: 8614238435835551189}
   m_Layer: 0
   m_Name: TileCiv
   m_TagString: Untagged
@@ -187,8 +189,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78dad845d4f9a7c4a84fb17a1f912e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuest: {fileID: 0}
-  currentGoal: 0
+  myTeam: 0
+  myName: 
+  beeness: 0
+  hunger: 0
+  fear: 0
+  speechVolume: 0
+  loyaltyToPlayer: 0
+  myActionState: 0
+  myEmotion: 0
+  myCivCiv: 0
+  myTopic: 0
+  myPersonality: 0
+  myCharType: 0
 --- !u!114 &1173769279856429734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,3 +269,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1046010567785216630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935393568139594451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92cf41a51e969c340bf801dfcbfeb807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTeam: 0
+  myName: 
+  beeness: 0
+  hunger: 0
+  fear: 0
+  speechVolume: 0
+  loyaltyToPlayer: 0
+  myActionState: 0
+  myEmotion: 0
+  myCountryOfOrigin: 0
+  myTopic: 0
+  myPersonality: 0
+  myCharacterType: 0
+  announcement: 0
+  finalPrompt: 
+--- !u!114 &8614238435835551189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935393568139594451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9bdcca8f55b6894290b0263e3be6e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 0}
+  jsonParse: {fileID: 0}

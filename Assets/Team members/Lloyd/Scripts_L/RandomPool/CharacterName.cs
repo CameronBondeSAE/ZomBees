@@ -10,7 +10,7 @@ public class RandomNameGenerator
     
     public RandomNameGenerator()
     {
-        names = new List<string> { "Cam", "John", "Lloyd", "Marcus", "Oscar", "Virginia", "Arnold Schwarzenegger", "Christopher Walken", "Buzz Lightyear", "Beeyoncé" };
+        names = new List<string> { "Cam", "John", "Lloyd", "Marcus", "Oscar", "Virginia" };
         celebNames = new List<string> { "Arnold Schwarzenegger", "Christopher Walken", "Joan of Arc", "Mike Tyson", "Muhammed Ali", "Solid Snake" };
         zombeeNames = new List<string> { "Buzz Lightyear", "Beeyoncé" };
     }
@@ -20,7 +20,7 @@ public class RandomNameGenerator
         Random random = new Random();
 
         if (type == CivEventArgs.Personality.Celebrity)
-            return celebNames[random.Next(names.Count)];
+            return celebNames[random.Next(celebNames.Count)];
         
         return names[random.Next(names.Count)];
     }
