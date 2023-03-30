@@ -3,22 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorOpen : MonoBehaviour
+namespace Virginia
 {
-    // Start is called before the first frame update
-
-    public GameObject ChildDoor;
-    public void OnEnable()
+    public class DoorOpen : VStateBase
     {
+        // Start is called before the first frame update
+
+        public GameObject ChildDoor;
+
+        public void OnEnable()
+        {
 
 
-        ChildDoor.SetActive(false);
+            ChildDoor.SetActive(false);
 
 
-    }
+        }
 
-    public void OnDisable()
-    {
-        Debug.Log("closed");
+        public void OnDisable()
+        {
+            Debug.Log("closed");
+        }
     }
 }

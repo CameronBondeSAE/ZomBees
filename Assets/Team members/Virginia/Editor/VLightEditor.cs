@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-
-[CustomEditor(typeof(LightEnable))]
-public class VLightEditor : Editor
+namespace Virginia
 {
-   public override void OnInspectorGUI()
+    [CustomEditor(typeof(LightEnable))]
+    public class VLightEditor : Editor
     {
-       base.OnInspectorGUI();
-        if (GUILayout.Button("enter"))
+        public override void OnInspectorGUI()
         {
+            base.OnInspectorGUI();
+            if (GUILayout.Button("enter"))
+            {
 
-            LightEnable toggleStateTest = target as LightEnable;
-            toggleStateTest.enabled = true;
+                LightEnable toggleStateTest = target as LightEnable;
+                toggleStateTest.enabled = true;
+            }
         }
     }
 }

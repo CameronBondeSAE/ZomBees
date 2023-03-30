@@ -3,17 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorClosed : MonoBehaviour
+namespace Virginia
 {
-    public GameObject ChildDoor;
-    public void OnEnable()
+    
+    public class DoorClosed : VStateBase
     {
+        public GameObject ChildDoor;
 
-        ChildDoor.SetActive(true);
-    }
+        public void OnEnable()
+        {
 
-    public void OnDisable()
-    {
-        Debug.Log("opened");
+            ChildDoor.SetActive(true);
+        }
+
+        public void OnDisable()
+        {
+            Debug.Log("opened");
+        }
     }
 }

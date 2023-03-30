@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightEnable : MonoBehaviour
+namespace Virginia
 {
-    // Start is called before the first frame update
-    void OnEnable()
-    {
-        Debug.Log("light is on");
-    }
 
-    // Update is called once per frame
-    void Update()
+    public class LightEnable : MonoBehaviour
     {
-        Debug.Log("light is still on");
-    }
+        // Start is called before the first frame update
+        void OnEnable()
+        {
+            Debug.Log("light is on");
+        }
 
-    void OnDisable()
-    {
-        Debug.Log("light is off");
+        // Update is called once per frame
+        void Update()
+        {
+            Debug.Log("light is still on");
+        }
+
+        void OnDisable()
+        {
+            Debug.Log("light is off");
+        }
     }
 }

@@ -946,6 +946,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2996201521405011679, guid: 0d904f0980c036542a23add8bb735db4, type: 3}
+      propertyPath: Vswitch
+      value: 
+      objectReference: {fileID: 470922523}
+    - target: {fileID: 5060738457988462820, guid: 0d904f0980c036542a23add8bb735db4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5567526131091160004, guid: 0d904f0980c036542a23add8bb735db4, type: 3}
       propertyPath: m_Name
       value: Spot Light
@@ -968,7 +976,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2001393243}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620744399}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
