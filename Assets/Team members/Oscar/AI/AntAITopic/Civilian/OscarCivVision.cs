@@ -1,7 +1,9 @@
 using System;
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using Oscar;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class OscarCivVision : MonoBehaviour
@@ -9,6 +11,9 @@ public class OscarCivVision : MonoBehaviour
     public List<GameObject> beesInSight;
 
     public List<GameObject> honeyInSight;
+
+    public MemoryManger memoryManger;
+    public Memory memory;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +26,13 @@ public class OscarCivVision : MonoBehaviour
                     GameObject beeStuff = other.gameObject;
                 
                     beesInSight.Add(beeStuff);
+                    
+                    memory.position = Vector2Int.RoundToInt(beeStuff.transform.position);
+                    memory.description = "Saw a bee";
+                    memory.timeStamp = Time.time;
+                    memory.theThing = beeStuff.GetComponent<DynamicObject>();
+                    
+                    memoryManger.memories.Add(memory);
                 }
             }
             

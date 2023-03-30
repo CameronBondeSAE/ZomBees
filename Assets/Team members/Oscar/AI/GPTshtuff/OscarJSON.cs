@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class PromptResult
+    public class PromptResult : MonoBehaviour
     {
         public enum Actions
         {
@@ -15,7 +15,7 @@ namespace Oscar
             attackBee,
             tacticalRetreat
         }
-        
+
         public string personality;
         public string outputSpeech;
         public bool announcement;
@@ -29,26 +29,28 @@ namespace Oscar
 
     public class OscarJSON : MonoBehaviour
     {
+        public PromptStim _promptResult;
+
+        private MemoryManger memoryManger;
+        
         [TextArea(5, 40)] public string finalPrompt;
-
-        private PromptResult _promptResult;
-
+        
         [Button]
         void CreatePrompt()
         {
             OscarCivController civConditions = GetComponent<OscarCivController>();
-
+            memoryManger = GetComponent<MemoryManger>();
+            
             Emotions emotions = new Emotions
             {
                 attitude = 1f
             };
 
 
-            finalPrompt =
-                string.Format("Using this JSON as a template. attitude is a 0 to 1 float value. " +
-                              "replace Example in personality to {_promptResult.personality}. " +
-                              "Replace ExampleAction with one of the actions in {_promptResult.action}. " +
-                              "Announcement is a bool and is true if they aren’t replying to a specific character", _promptResult.personality, _promptResult.action);
+            finalPrompt = "Using this JSON as a template. attitude is a 0 to 1 float value. ";
+            finalPrompt += "\nreplace Example in personality to: " + _promptResult.personality;
+            finalPrompt += "\nReplace ExampleAction with an action like: " + _promptResult.enumValue;
+            finalPrompt += "\nAnnouncement is a bool and is true if they aren’t replying to a specific character";
              finalPrompt += "";
             // Example JSON to teach GPT what to return
             finalPrompt += @"
@@ -57,15 +59,16 @@ namespace Oscar
                 ""outputSpeech"": ""Example"",
                 ""announcement"": true,
                 ""action"": ExampleAction
-		    }";
 
+		    }";
+            finalPrompt += "\nThe following list of bools are the characters conditions in the world:";
             finalPrompt += "\nCan I see a bee: " + civConditions.SeeBeeBool();
-            finalPrompt += "\nAm I near the Bee: " + civConditions.NearBeeBool();
             finalPrompt += "\nAm I scared: " + civConditions.IsScaredBool();
             finalPrompt += "\nAm I Alive: " + civConditions.StayAliveBool();
             finalPrompt += "\nHave I killed a bee: " + civConditions.KilledBeeBool();
-
-            finalPrompt += "\nUse this information to generate a spontaneous outburst from the character";
+            finalPrompt += "\nThis is the memory of what the civilian has already seen in JSON: " + memoryManger.memories;
+            
+            finalPrompt += "\nUse the template and the characters condition information to generate a response from the characters perspective";
             
             Debug.Log(finalPrompt);
         }

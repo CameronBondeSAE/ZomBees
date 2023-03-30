@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace Oscar
 {
-    public class LittleGuy : AntAIState
+    public class LittleGuy : DynamicObject
     {
         public bool isBee;
         public Rigidbody rb;

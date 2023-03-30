@@ -306,6 +306,9 @@ GameObject:
   - component: {fileID: 541422740}
   - component: {fileID: 541422739}
   - component: {fileID: 541422738}
+  - component: {fileID: 541422746}
+  - component: {fileID: 541422747}
+  - component: {fileID: 541422745}
   - component: {fileID: 541422743}
   - component: {fileID: 541422744}
   m_Layer: 0
@@ -411,7 +414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541422732}
   m_LocalRotation: {x: -0, y: -0.60587406, z: -0, w: 0.7955606}
-  m_LocalPosition: {x: 1.21, y: 2.33, z: -5.15}
+  m_LocalPosition: {x: 2.47, y: 2.33, z: -1.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -460,6 +463,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beesInSight: []
   honeyInSight: []
+  memoryManger: {fileID: 541422746}
+  memory: {fileID: 541422747}
 --- !u!114 &541422741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae14b77d76a23a499b6abe454a12762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
   isBee: 0
   rb: {fileID: 541422742}
   littleGuyModel: {fileID: 541422732}
@@ -518,15 +525,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef12fe7da31586b48b1fec72a2717636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _promptResult: {fileID: 541422745}
   finalPrompt: "Using this JSON as a template. attitude is a 0 to 1 float value.
-    replace Example in personality to {{_promptResult.personality}}. \r\n                         
-    Replace ExampleAction with one of the actions in {{_promptResult.action}}. \r\n                         
-    Announcement is a bool and is true if they aren\u2019t replying to a specific
-    character\r\n\t\t    {\r\n                \"personality\": \"Example\",\r\n               
-    \"outputSpeech\": \"Example\",\r\n                \"announcement\": true,\r\n               
-    \"action\": ExampleAction\r\n\t\t    }\nCan I see a bee: False\nAm I near the
-    Bee: False\nAm I scared: False\nAm I Alive: False\nHave I killed a bee: False\nUse
-    this information to generate a spontaneous outburst from the character"
+    \nreplace Example in personality to: Tough Guy\nAnnouncement is a bool and is
+    true if they aren\u2019t replying to a specific character\r\n\t\t    {\r\n               
+    \"personality\": \"Example\",\r\n                \"outputSpeech\": \"Example\",\r\n               
+    \"announcement\": true,\r\n\t\t    }\nThe following list of bools are the characters
+    conditions in the world:\nCan I see a bee: False\nAm I scared: False\nAm I Alive:
+    False\nHave I killed a bee: False\n this is the memory of what the civilian has
+    already seen: \nUse this information to generate a response from the character"
 --- !u!114 &541422744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,15 +546,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504b643f294646f469227e93e96b7e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prompt: "Using this JSON as a template. attitude is a 0 to 1 float value. replace
-    Example in personality to {_promptResult.personality}. \r\n                         
-    Replace ExampleAction with one of the actions in {_promptResult.action}. \r\n                         
-    Announcement is a bool and is true if they aren\u2019t replying to a specific
-    character\r\n\t\t    {\r\n                \"personality\": \"Example\",\r\n               
-    \"outputSpeech\": \"Example\",\r\n                \"announcement\": true,\r\n               
-    \"action\": ExampleAction\r\n\t\t    }\nCan I see a bee: False\nAm I near the
-    Bee: False\nAm I scared: False\nAm I Alive: False\nHave I killed a bee: False\nUse
-    this information to generate a spontaneous outburst from the character"
+  prompt: "Using this JSON as a template. attitude is a 0 to 1 float value. \nreplace
+    Example in personality to: Tough Guy\nAnnouncement is a bool and is true if they
+    aren\u2019t replying to a specific character\r\n\t\t    {\r\n               
+    \"personality\": \"Example\",\r\n                \"outputSpeech\": \"Example\",\r\n               
+    \"announcement\": true,\r\n\t\t    }\nThe following list of bools are the characters
+    conditions in the world:\nCan I see a bee: False\nAm I scared: False\nAm I Alive:
+    False\nHave I killed a bee: False\n this is the memory of what the civilian has
+    already seen: \nUse this information to generate a response from the character"
+  textMeshProUGUI: {fileID: 0}
+--- !u!114 &541422745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541422732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e7b6e7e2f268f438683bbded9f622d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensor: {fileID: 541422738}
+  theMemories: {fileID: 541422746}
+  personality: Tough Guy
+  outputSpeech: 
+  announcement: 0
+  enumValue: 0
+--- !u!114 &541422746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541422732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1083c2cffea8fbf4aaff94b3e468e76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  memories: []
+--- !u!114 &541422747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541422732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a19fb3e72fe00cb4993fbdec7d7d3a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
+  description: 
+  timeStamp: 0
+  theThing: {fileID: 0}
 --- !u!1 &775105818
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,11 +13,6 @@ public class OscarCivController : MonoBehaviour
         return vision.beesInSight.Count >= 1;
     }
 
-    public bool NearBeeBool()
-    {
-        return false;
-    }
-
     public bool IsScaredBool()
     {
         return false;
@@ -29,6 +24,11 @@ public class OscarCivController : MonoBehaviour
     }
 
     public bool KilledBeeBool()
+    {
+        return false;
+    }
+
+    public bool PlayerIsTalking()
     {
         return false;
     }
