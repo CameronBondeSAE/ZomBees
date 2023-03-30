@@ -414,7 +414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541422732}
   m_LocalRotation: {x: -0, y: -0.60587406, z: -0, w: 0.7955606}
-  m_LocalPosition: {x: 2.47, y: 2.33, z: -1.44}
+  m_LocalPosition: {x: 1.41, y: 2.33, z: -1.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -527,13 +527,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _promptResult: {fileID: 541422745}
   finalPrompt: "Using this JSON as a template. attitude is a 0 to 1 float value.
-    \nreplace Example in personality to: Tough Guy\nAnnouncement is a bool and is
-    true if they aren\u2019t replying to a specific character\r\n\t\t    {\r\n               
-    \"personality\": \"Example\",\r\n                \"outputSpeech\": \"Example\",\r\n               
-    \"announcement\": true,\r\n\t\t    }\nThe following list of bools are the characters
-    conditions in the world:\nCan I see a bee: False\nAm I scared: False\nAm I Alive:
-    False\nHave I killed a bee: False\n this is the memory of what the civilian has
-    already seen: \nUse this information to generate a response from the character"
+    \nreplace ExamplePersonality in personality to: Tough Guy\nReplace ExampleAction
+    with an action like: seeBee\nReplace ExampleSpeech in the outputSpeech with the
+    characters response.\nAnnouncement is a bool and is true if they aren\u2019t
+    replying to a specific character.\r\n\t\t    {\r\n                \"personality\":
+    ExamplePersonality,\r\n                \"outputSpeech\": ExampleSpeech,\r\n               
+    \"announcement\": true,\r\n                \"action\": ExampleAction\r\n\r\n\t\t   
+    }\nThe following list of bools are the characters conditions in the world:\nCan
+    I see a bee: False\nAm I scared: False\nAm I Alive: False\nHave I killed a bee:
+    False\nThis is the memory of what the civilian has already seen: \nUse the character
+    condition information and its memories to influence a response from the characters
+    perspective. Place the response in the JSON template"
 --- !u!114 &541422744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,13 +551,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prompt: "Using this JSON as a template. attitude is a 0 to 1 float value. \nreplace
-    Example in personality to: Tough Guy\nAnnouncement is a bool and is true if they
-    aren\u2019t replying to a specific character\r\n\t\t    {\r\n               
-    \"personality\": \"Example\",\r\n                \"outputSpeech\": \"Example\",\r\n               
-    \"announcement\": true,\r\n\t\t    }\nThe following list of bools are the characters
-    conditions in the world:\nCan I see a bee: False\nAm I scared: False\nAm I Alive:
-    False\nHave I killed a bee: False\n this is the memory of what the civilian has
-    already seen: \nUse this information to generate a response from the character"
+    ExamplePersonality in personality to: Tough Guy\nReplace ExampleAction with an
+    action like: seeBee\nReplace ExampleSpeech in the outputSpeech with the characters
+    response.\nAnnouncement is a bool and is true if they aren\u2019t replying to
+    a specific character.\r\n\t\t    {\r\n                \"personality\": ExamplePersonality,\r\n               
+    \"outputSpeech\": ExampleSpeech,\r\n                \"announcement\": true,\r\n               
+    \"action\": ExampleAction\r\n\r\n\t\t    }\nThe following list of bools are the
+    characters conditions in the world:\nCan I see a bee: False\nAm I scared: False\nAm
+    I Alive: False\nHave I killed a bee: False\nThis is the memory of what the civilian
+    has already seen: \nUse the character condition information and its memories
+    to influence a response from the characters perspective. Place the response in
+    the JSON template"
   textMeshProUGUI: {fileID: 0}
 --- !u!114 &541422745
 MonoBehaviour:

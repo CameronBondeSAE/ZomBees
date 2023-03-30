@@ -48,15 +48,16 @@ namespace Oscar
 
 
             finalPrompt = "Using this JSON as a template. attitude is a 0 to 1 float value. ";
-            finalPrompt += "\nreplace Example in personality to: " + _promptResult.personality;
+            finalPrompt += "\nreplace ExamplePersonality in personality to: " + _promptResult.personality;
             finalPrompt += "\nReplace ExampleAction with an action like: " + _promptResult.enumValue;
-            finalPrompt += "\nAnnouncement is a bool and is true if they aren’t replying to a specific character";
+            finalPrompt += "\nReplace ExampleSpeech in the outputSpeech with the characters response.";
+            finalPrompt += "\nAnnouncement is a bool and is true if they aren’t replying to a specific character.";
              finalPrompt += "";
             // Example JSON to teach GPT what to return
             finalPrompt += @"
 		    {
-                ""personality"": ""Example"",
-                ""outputSpeech"": ""Example"",
+                ""personality"": ExamplePersonality,
+                ""outputSpeech"": ExampleSpeech,
                 ""announcement"": true,
                 ""action"": ExampleAction
 
@@ -66,9 +67,16 @@ namespace Oscar
             finalPrompt += "\nAm I scared: " + civConditions.IsScaredBool();
             finalPrompt += "\nAm I Alive: " + civConditions.StayAliveBool();
             finalPrompt += "\nHave I killed a bee: " + civConditions.KilledBeeBool();
-            finalPrompt += "\nThis is the memory of what the civilian has already seen in JSON: " + memoryManger.memories;
+            finalPrompt += "\nThis is the memory of what the civilian has already seen: ";
+            foreach (var memory in memoryManger.memories)
+            {
+                finalPrompt += "\nMemory time: " + memory.timeStamp;
+                finalPrompt += "\nRemembered Object " + memory.description;
+                finalPrompt += "\nRemembered dynamicObject position: " + memory.position;
+                finalPrompt += "\nRemembered DynamicObject: " + memory.theThing;
+            }
             
-            finalPrompt += "\nUse the template and the characters condition information to generate a response from the characters perspective";
+            finalPrompt += "\nUse the character condition information and its memories to influence a response from the characters perspective. Place the response in the JSON template";
             
             Debug.Log(finalPrompt);
         }
