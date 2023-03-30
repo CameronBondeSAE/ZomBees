@@ -3,20 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElevatorStateOff : MonoBehaviour
+
+namespace CameronBonde
 {
-    void OnEnable()
+
+    public class ElevatorStateOff : StateBase
     {
-        Debug.Log("Elevator Off");
+        void OnEnable()
+        {
+            DoThing();
+
+            Debug.Log("Elevator Off");
+        }
+
+        void Update()
+        {
+
+        }
+
+        void OnDisable()
+        {
+
+        }
     }
 
-    void Update()
-    {
-        
-    }
-
-    void OnDisable()
-    {
-        
-    }
 }

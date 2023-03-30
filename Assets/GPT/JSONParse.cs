@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 // Fake test classes only
-class PromptResults
+[Serializable]
+public class PromptResults : EventArgs
 {
 	public enum Actions
 	{
@@ -16,6 +18,7 @@ class PromptResults
 	public string personality;
 	public string outputSpeech;
 	public bool announcement;
+	public bool announcement22;
 	public Actions action;
 }
 
@@ -25,7 +28,7 @@ class Emotions
 	// MORE
 }
 
-public class WorldStateConditions
+public class WorldStateConditions : EventArgs
 {
 	public float clock;
 	public bool homeBaseInvaded = true;
@@ -39,12 +42,33 @@ public class WorldStateConditions
 //
 public class JSONParse : MonoBehaviour
 {
+	public PromptResults promptResults2;
+	
+	class CamsEventArgs : EventArgs
+	{
+		public PromptResults promptResults;
+	}
+
+	
+	delegate void MyDelegate(object owner, EventArgs eventargs);
+
+	event MyDelegate MyEvent;
+	
+	
+
 	[TextArea(5, 40)]
 	public string finalPrompt;
 
 	[Button]
 	void CreatePrompt()
 	{
+		
+		
+		MyEvent += OnMyEvent;
+		
+		
+		MyEvent?.Invoke(this, new WorldStateConditions());
+		
 		// Generate fake objects to test
 		WorldStateConditions worldStateConditions = new WorldStateConditions
 		{
@@ -57,7 +81,7 @@ public class JSONParse : MonoBehaviour
 		{
 			fear = 1f
 		};
-		
+
 		// Insert conditions into prompt
 		// Note the @ syntax allows special characters to included. In this case quotes. If you put a double "" it'll count as one.
 		// TEST TEST TEST TEST I've no idea what I'm doing, so use this to experiment as it works to some degree.
@@ -96,6 +120,19 @@ public class JSONParse : MonoBehaviour
 		string thing;
 		int    var1 = 99;
 		thing = $@"Cam is ""cool"" because {var1}";
+	}
+
+	void OnMyEvent(object owner, EventArgs results)
+	{
+		PromptResults promptResults = results as PromptResults;
+		if (promptResults != null)
+		{
+			Debug.Log(promptResults.outputSpeech);
+		}
+		else
+		{
+			Debug.LogWarning("Not PromptResults");
+		}
 	}
 
 	[Button]

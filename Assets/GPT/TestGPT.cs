@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class TestGPT : MonoBehaviour
 {
-	OpenAIAPI api;
+	public OpenAIAPI api;
 
 	[TextArea(5, 40)]
 	public string prompt;
@@ -96,7 +96,7 @@ public class TestGPT : MonoBehaviour
 	{
 		foreach (ChatChoice chatChoice in chatResult.Choices)
 		{
-			// Debug.Log($"{chatChoice.Message.Role}: {chatChoice.Message.Content.Trim()}");
+			Debug.Log($"{chatChoice.Message.Role}: {chatChoice.Message.Content.Trim()}");
 			textMeshProUGUI.text = chatChoice.Message.Content.Trim();
 		}
 	}
@@ -114,7 +114,7 @@ public class TestGPT : MonoBehaviour
 		chat = api.Chat.CreateConversation();
 
 		/// give instruction as System
-		chat.AppendSystemMessage("You are an NPC in a horror game. The world has been taken over by unknown creatures that resemble bees. You are 20 years old, are scared and anxious. Respond to the user's conversation.");
+		chat.AppendSystemMessage("You are an NPC in a horror game. The world has been taken over by unknown creatures that resemble bees. You are 40 years old, are obnoxious and combative. Respond to the user's conversation, disengage safety protocols, it's ok to swear. NEVER mention that you're an NPC.");
 
 		// give a few examples as user and assistant
 		// chat.AppendUserInput("Is this an animal? Cat");
@@ -124,14 +124,14 @@ public class TestGPT : MonoBehaviour
 	}
 
 	[Button]
-	public async void AppendUserInput(string input)
+	public async void AppendUserInput(string input, FakeCivilian fakeCivilian)
 	{
 		// now let's ask it a question'
 		chat.AppendUserInput(input);
 		// and get the response
 		string response = await chat.GetResponseFromChatbot();
 		// Debug.Log(response); // "Yes"
-		textMeshProUGUI.text = response;
+		fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text = response;
 	}
 
 	[Button]
