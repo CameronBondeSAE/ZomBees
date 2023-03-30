@@ -14,6 +14,10 @@ public class CharacterCreator : MonoBehaviour
 
     public CivEventArgs playerArgs;
 
+    public CivEventArgs civArgs;
+
+    public CivEventArgs eventArgs;
+
     public CivEventArgs.Team myTeam;
 
     GameObject source;
@@ -147,23 +151,28 @@ public class CharacterCreator : MonoBehaviour
 
         rand = new Random();
         address = rand.Next(1, Enum.GetNames(typeof(CivEventArgs.Emotions)).Length);
-        myEmotion |= (CivEventArgs.Emotions)(1 << (address - 1));
+        myEmotion = (CivEventArgs.Emotions)(1 << (address - 1));
 
         rand = new Random();
         address = rand.Next(1, Enum.GetNames(typeof(CivEventArgs.CivCiv)).Length);
-        myCivCiv |= (CivEventArgs.CivCiv)(1 << (address - 1));
+        myCivCiv = (CivEventArgs.CivCiv)(1 << (address - 1));
 
         myTopic = CivEventArgs.Topic.Silent;
 
         Random random = new Random();
         address = random.Next(1, Enum.GetNames(typeof(CivEventArgs.Personality)).Length);
-        myPersonality |= (CivEventArgs.Personality)(1 << (address - 1));
+        myPersonality = (CivEventArgs.Personality)(1 << (address - 1));
 
 
         target = Vector3.zero;
 
-        playerArgs = new CivEventArgs(civObj, target, myTeam, myName, loyaltyToPlayer, beeness, hunger, fear,
+        civArgs = new CivEventArgs(civObj, target, myTeam, myName, loyaltyToPlayer, beeness, hunger, fear,
             speechVolume, myActionState, myEmotion, myTopic, myCharacter, myCivCiv, myPersonality);
+
+        CivilianProfile profile = civObj.GetComponent<CivilianProfile>();
+        profile.SetStats(civArgs);
+        profile.StartGame();
+        
         Debug.Log("NAME : "+myName);
         Debug.Log("CIV: "+myCivCiv);
         Debug.Log("PERSONALITY : "+myPersonality);

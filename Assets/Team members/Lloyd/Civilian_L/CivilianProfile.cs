@@ -5,32 +5,41 @@ using UnityEngine;
 
 public class CivilianProfile : MonoBehaviour
 {
-   public enum EmotionalEvents
-   {
-      HeardSomething,
-      SawSomething,
-      PlayerOrdered,
-      TurnedIntoBee,
-      TurnedBackFromBee
-   };
-   
-   public QuestScriptable currentQuest;
-   public enum CivGoal
-   {
-      HideInSafeRoom,
-      FollowPlayer,
-      FollowPlayerOrder,
-      Interact,
-      LookingForFood,
-      TurningIntoBee
-   }
-   public CivGoal currentGoal;
+    public CivEventArgs myArgs;
+    public CivEventArgs.Team myTeam;
+    public string myName;
+    public float beeness;
+    public float hunger;
+    public float fear;
+    public  float speechVolume;
+    public  float loyaltyToPlayer;
+    public CivEventArgs.ActionState myActionState;
+    public CivEventArgs.Emotions myEmotion;
+    public CivEventArgs.CivCiv myCivCiv;
+    public CivEventArgs.Topic myTopic;
+    public CivEventArgs.Personality myPersonality;
+    public CivEventArgs.Character myCharType;
 
-   public void ChangeState(CivGoal newGoal)
-   {
-      if (currentGoal == newGoal)
-         return;
+    Vector3 target;
 
-      currentGoal = newGoal;
-   }
+    public void SetStats(CivEventArgs args)
+    {
+        myArgs = args;
+        myTeam = args.MyTeam;
+        myName = args.CivName;
+        beeness = args.beeness;
+        hunger = args.hunger;
+        fear = args.fear;
+        loyaltyToPlayer = args.loyaltyToPlayer;
+        myEmotion = args.MyEmotion;
+        myCivCiv = args.MyCivCiv;
+        myPersonality = args.MyPersonality;
+        myCharType = args.MyCharacter;
+    }
+
+    public void StartGame()
+    {
+        TileCivMouth mouth = GetComponent<TileCivMouth>();
+        mouth.StartGame(myArgs);
+    }
 }

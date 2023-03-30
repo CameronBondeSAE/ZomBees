@@ -43,6 +43,7 @@ public class QuestTracker : MonoBehaviour
         questLists.Add(questsCompleted);
         questLists.Add(questsFailed);
 
+        if(quests.Count > 0)
         foreach (QuestScriptable scriptable in quests)
         {
             scriptable.Begin(this, time);
