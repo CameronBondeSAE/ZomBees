@@ -6,25 +6,28 @@ using Sirenix.OdinInspector;
 using System;
 using Virginia;
 
-public class PerlinD1 : MonoBehaviour
+namespace Virginia
 {
-    public GameObject Cube;
-    
-    // Start is called before the first frame update
-    void Start()
+    public class PerlinD1 : MonoBehaviour
     {
-       
-    }
+        public GameObject Cube;
 
-    // Update is called once per frame
-    [Button]
-    void Spawn()
-    {
-        for (int x = 0; x < 100; x++)
+        // Start is called before the first frame update
+        void Start()
         {
-            Vector3 Cubes = new Vector3(x,0,0);
-            x = x;
-            Instantiate(Cube, Cubes, quaternion.identity);
+
+        }
+
+        // Update is called once per frame
+        [Button]
+        void Spawn()
+        {
+            for (int x = 0; x < 100; x++)
+            {
+                Vector3 Cubes = new Vector3(x, 0, 0);
+                x = x;
+                Instantiate(Cube, Cubes, quaternion.identity);
+            }
         }
     }
 }

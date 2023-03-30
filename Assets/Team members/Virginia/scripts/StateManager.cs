@@ -6,17 +6,22 @@ namespace Virginia
 {
     public class StateManager : MonoBehaviour
     {
-        public MonoBehaviour startingState;
-        public MonoBehaviour currentState;
+        public VStateBase startingState;
+        public VStateBase currentState;
 
         // Set a default state
         private void Start()
         {
+            foreach (VStateBase vStateBase in GetComponents<VStateBase>())
+            {
+                vStateBase.enabled = false;
+            }
+
             ChangeState(startingState);
         }
 
         // This works for ANY STATE
-        public void ChangeState(MonoBehaviour newState)
+        public void ChangeState( VStateBase newState)
         {
             // Check if the state is the same and DON'T swap
             if (newState == currentState)

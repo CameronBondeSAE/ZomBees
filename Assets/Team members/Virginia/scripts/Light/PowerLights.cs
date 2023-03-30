@@ -3,27 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using Virginia;
 
-public class PowerLights : MonoBehaviour
+namespace Virginia
 {
-    public Light light;
-    public Virginia.Switch Vswitch;
-    // Start is called before the first frame update
-    void Start()
+    public class PowerLights : MonoBehaviour
     {
-        if (Vswitch != null)
+        public Light light;
+
+        public Virginia.Switch Vswitch;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            Vswitch.TurnOnEvent += TurnOn;
-            Vswitch.TurnOffEvent += TurnOff;
+            if (Vswitch != null)
+            {
+                Vswitch.TurnOnEvent += TurnOn;
+                Vswitch.TurnOffEvent += TurnOff;
+            }
         }
-    }
 
-    private void TurnOn()
-    {
-        light.enabled = true;
-    }
-    private void TurnOff()
-    {
-        light.enabled = false;
-    }
+        private void TurnOn()
+        {
+            light.enabled = true;
+        }
 
+        private void TurnOff()
+        {
+            light.enabled = false;
+        }
+
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using Virginia;
 namespace Virginia
 {
-    public class SwitchOn : MonoBehaviour
+    public class SwitchOn : VStateBase
     {
         public Switch Switch;
         
