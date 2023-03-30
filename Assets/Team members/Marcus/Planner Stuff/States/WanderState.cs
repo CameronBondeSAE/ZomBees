@@ -7,16 +7,12 @@ namespace Marcus
 {
     public class WanderState : AntAIState
     {
-        // Start is called before the first frame update
-        void Start()
+        public override void Enter()
         {
+            base.Enter();
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            GetComponentInParent<AdvancedGuyDudeMovement>().MoveToPoint
+                (PatrolManager.singleton.pathsWithIndoors[Random.Range(0,PatrolManager.singleton.pathsWithIndoors.Count)]);
         }
     }
 }

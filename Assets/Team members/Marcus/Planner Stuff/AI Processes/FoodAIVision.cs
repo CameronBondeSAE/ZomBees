@@ -14,15 +14,20 @@ namespace Marcus
         private float offset;
         
         public List<object> visableFood;
+        public List<object> visableObjects;
 
         private void Start()
         {
             visableFood = new List<object>();
+            visableObjects = new List<object>();
             
             spacing = 20f / feelerAmount;
             offset = feelerAmount / 2f;
         }
 
+        public delegate void OnObjectSeen(GameObject thing);
+        public event OnObjectSeen memoryEvent;
+        
         private void Update()
         {
             for (int i = 0; i < feelerAmount; i++)
@@ -37,10 +42,18 @@ namespace Marcus
                     {
                         visableFood.Add(hitInfo.collider.gameObject);
                     }
+
+                    if (hitInfo.collider.GetComponent<FakeDynamicObject>() &&
+                        !visableObjects.Contains(hitInfo.collider.gameObject))
+                    {
+                        visableObjects.Add(hitInfo.collider.gameObject);
+                        memoryEvent?.Invoke(hitInfo.collider.gameObject);
+                    }
                 }
                 else
                 {
                     visableFood.Clear();
+                    visableObjects.Clear();
                 }
             }
         }
