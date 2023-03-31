@@ -1,15 +1,16 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FastScriptReload.Editor.Compilation;
+using FastScriptReload.Editor.Compilation.ScriptGenerationOverrides;
 using FastScriptReload.Runtime;
 using ImmersiveVRTools.Runtime.Common;
 using ImmersiveVrToolsCommon.Runtime.Logging;
 using UnityEditor;
+using UnityEditor.Compilation;
 using UnityEngine;
 
 namespace FastScriptReload.Editor
@@ -19,7 +20,19 @@ namespace FastScriptReload.Editor
     public class FastScriptReloadManager
     {
         private static FastScriptReloadManager _instance;
-        public static FastScriptReloadManager Instance => _instance ?? (_instance = new FastScriptReloadManager());
+        public static FastScriptReloadManager Instance
+        {
+            get {
+                if (_instance == null)
+                {
+                    _instance = new FastScriptReloadManager();
+                    LoggerScoped.LogDebug("Created Manager");
+                }
+
+                return _instance;
+            }
+        }
+
         private static string DataPath = Application.dataPath;
 
         public const string FileWatcherReplacementTokenForApplicationDataPath = "<Application.dataPath>";
@@ -28,24 +41,30 @@ namespace FastScriptReload.Editor
             [FileWatcherReplacementTokenForApplicationDataPath] = () => DataPath
         };
 
+        private bool _wasLockReloadAssembliesCalled;
         private PlayModeStateChange _lastPlayModeStateChange;
         private List<FileSystemWatcher> _fileWatchers = new List<FileSystemWatcher>();
         private IEnumerable<string> _currentFileExclusions;
-        public bool EnableExperimentalThisCallLimitationFix { get; set; }
+        private int _triggerDomainReloadIfOverNDynamicallyLoadedAssembles = 100;
+        public bool EnableExperimentalThisCallLimitationFix { get; private set; }
+#pragma warning disable 0618
         public AssemblyChangesLoaderEditorOptionsNeededInBuild AssemblyChangesLoaderEditorOptionsNeededInBuild { get; private set; } = new AssemblyChangesLoaderEditorOptionsNeededInBuild();
+#pragma warning restore 0618
 
         private List<DynamicFileHotReloadState> _dynamicFileHotReloadStateEntries = new List<DynamicFileHotReloadState>();
 
         private DateTime _lastTimeChangeBatchRun = default(DateTime);
-        private bool _executeOnlyInPlaymode = true; //TODO: potentially later add editor support - needed?
         private bool _assemblyChangesLoaderResolverResolutionAlreadyCalled;
-        
+        private bool _isEditorModeHotReloadEnabled;
+        private int _hotReloadPerformedCount = 0;
+        private bool _isOnDemandHotReloadEnabled;
+
         private void OnWatchedFileChange(object source, FileSystemEventArgs e)
         {
-            if (_lastPlayModeStateChange != PlayModeStateChange.EnteredPlayMode)
+            if (!_isEditorModeHotReloadEnabled && _lastPlayModeStateChange != PlayModeStateChange.EnteredPlayMode)
             {
 #if ImmersiveVrTools_DebugEnabled
-            Debug.Log($"Application not playing, change to: {e.Name} won't be compiled and hot reloaded");
+            LoggerScoped.Log($"Application not playing, change to: {e.Name} won't be compiled and hot reloaded");
 #endif
                 return;
             }
@@ -53,7 +72,7 @@ namespace FastScriptReload.Editor
             var filePathToUse = e.FullPath;
             if (!File.Exists(filePathToUse))
             {
-                Debug.LogWarning(@"Fast Script Reload - Unity File Path Bug - Warning!
+                LoggerScoped.LogWarning(@"Fast Script Reload - Unity File Path Bug - Warning!
 Path for changed file passed by Unity does not exist. This is a known editor bug, more info: https://issuetracker.unity3d.com/issues/filesystemwatcher-returns-bad-file-path
                     
 Best course of action is to update editor as issue is already fixed in newer (minor and major) versions.
@@ -69,24 +88,24 @@ Workaround will search in all folders (under project root) and will use first fo
                 var fileFoundInAssets = Directory.GetFiles(DataPath, changedFileName, SearchOption.AllDirectories);
                 if (fileFoundInAssets.Length == 0)
                 {
-                    Debug.LogError($"FileWatcherBugWorkaround: Unable to find file '{changedFileName}', changes will not be reloaded. Please update unity editor.");
+                    LoggerScoped.LogError($"FileWatcherBugWorkaround: Unable to find file '{changedFileName}', changes will not be reloaded. Please update unity editor.");
                     return;
                 }
                 else if(fileFoundInAssets.Length  == 1)
                 {
-                    Debug.Log($"FileWatcherBugWorkaround: Original Unity passed file path: '{e.FullPath}' adjusted to found: '{fileFoundInAssets[0]}'");
+                    LoggerScoped.Log($"FileWatcherBugWorkaround: Original Unity passed file path: '{e.FullPath}' adjusted to found: '{fileFoundInAssets[0]}'");
                     filePathToUse = fileFoundInAssets[0];
                 }
                 else
                 {
-                    Debug.LogWarning($"FileWatcherBugWorkaround: Multiple files found. Original Unity passed file path: '{e.FullPath}' adjusted to found: '{fileFoundInAssets[0]}'");
+                    LoggerScoped.LogWarning($"FileWatcherBugWorkaround: Multiple files found. Original Unity passed file path: '{e.FullPath}' adjusted to found: '{fileFoundInAssets[0]}'");
                     filePathToUse = fileFoundInAssets[0];
                 }
             }
 
             if (_currentFileExclusions != null && _currentFileExclusions.Any(fp => filePathToUse.Replace("\\", "/").EndsWith(fp)))
             {
-                Debug.LogWarning($"FastScriptReload: File: '{filePathToUse}' changed, but marked as exclusion. Hot-Reload will not be performed. You can manage exclusions via" +
+                LoggerScoped.LogWarning($"FastScriptReload: File: '{filePathToUse}' changed, but marked as exclusion. Hot-Reload will not be performed. You can manage exclusions via" +
                                  $"\r\nRight click context menu (Fast Script Reload > Add / Remove Hot-Reload exclusion)" +
                                  $"\r\nor via Window -> Fast Script Reload -> Start Screen -> Exclusion menu");
             
@@ -99,7 +118,7 @@ Workaround will search in all folders (under project root) and will use first fo
                           && (DateTime.UtcNow - f.FileChangedOn).TotalMilliseconds < msThresholdToConsiderSameChangeFromDifferentFileWatchers);
             if (isDuplicatedChangesComingFromDifferentFileWatcher)
             {
-                Debug.LogWarning($"FastScriptReload: Looks like change to: {filePathToUse} have already been added for processing. This can happen if you have multiple file watchers set in a way that they overlap.");
+                LoggerScoped.LogWarning($"FastScriptReload: Looks like change to: {filePathToUse} have already been added for processing. This can happen if you have multiple file watchers set in a way that they overlap.");
                 return;
             }
 
@@ -117,7 +136,7 @@ Workaround will search in all folders (under project root) and will use first fo
 
             if (!directoryInfo.Exists)
             {
-                Debug.LogWarning($"FastScriptReload: Directory: '{directoryPath}' does not exist, make sure file-watcher setup is correct. You can access via: Window -> Fast Script Reload -> File Watcher (Advanced Setup)");
+                LoggerScoped.LogWarning($"FastScriptReload: Directory: '{directoryPath}' does not exist, make sure file-watcher setup is correct. You can access via: Window -> Fast Script Reload -> File Watcher (Advanced Setup)");
             }
             
             var fileWatcher = new FileSystemWatcher();
@@ -132,20 +151,6 @@ Workaround will search in all folders (under project root) and will use first fo
         
             _fileWatchers.Add(fileWatcher);
         }
-    
-        public void StartWatchingSingleFile(string fullFilePath) 
-        {
-            var fileWatcher = new FileSystemWatcher();
-            var fileToWatch = new FileInfo(fullFilePath);
-            fileWatcher.Path = fileToWatch.Directory.FullName;
-            fileWatcher.Filter = fileToWatch.Name;
-            fileWatcher.NotifyFilter = NotifyFilters.LastWrite;
-            fileWatcher.Changed += OnWatchedFileChange;
-        
-            fileWatcher.EnableRaisingEvents = true;
-        
-            _fileWatchers.Add(fileWatcher);
-        }
 
         static FastScriptReloadManager()
         {
@@ -153,13 +158,74 @@ Workaround will search in all folders (under project root) and will use first fo
             EditorApplication.update += Instance.Update;
             EditorApplication.playModeStateChanged += Instance.OnEditorApplicationOnplayModeStateChanged;
         }
-    
-        [MenuItem("Assets/Fast Script Reload/Add Hot-Reload Exclusion", false)]
+        
+        ~FastScriptReloadManager()
+        {
+            LoggerScoped.LogDebug("Destroying FSR Manager "); 
+            if (_instance != null)
+            {
+                if (_lastPlayModeStateChange == PlayModeStateChange.EnteredPlayMode)
+                {
+                    LoggerScoped.LogError("Manager is being destroyed in play session, this indicates some sort of issue where static variables were reset, hot reload will not function properly please reset. " +
+                                          "This is usually caused by Unity triggering that reset for some reason that's outside of asset control - other static variables will also be affected and recovering just hot reload would hide wider issue.");
+                }
+                ClearFileWatchers();
+            }
+        }
+        
+        private const int BaseMenuItemPriority_ManualScriptOverride = 100;
+        [MenuItem("Assets/Fast Script Reload/Add \\ Open User Script Rewrite Override", false, BaseMenuItemPriority_ManualScriptOverride + 1)]
+        public static void AddHotReloadManualScriptOverride()
+        {
+            if (Selection.activeObject is MonoScript script)
+            {
+                ScriptGenerationOverridesManager.AddScriptOverride(script);
+            }
+        }
+        
+        [MenuItem("Assets/Fast Script Reload/Add \\ Open User Script Rewrite Override", true)]
+        public static bool AddHotReloadManualScriptOverrideValidateFn()
+        {
+            return Selection.activeObject is MonoScript;
+        }
+        
+        [MenuItem("Assets/Fast Script Reload/Remove User Script Rewrite Override", false, BaseMenuItemPriority_ManualScriptOverride + 2)]
+        public static void RemoveHotReloadManualScriptOverride()
+        {
+            if (Selection.activeObject is MonoScript script)
+            {
+                ScriptGenerationOverridesManager.TryRemoveScriptOverride(script);
+            }
+        }
+        
+        [MenuItem("Assets/Fast Script Reload/Remove User Script Rewrite Override", true)]
+        public static bool RemoveHotReloadManualScriptOverrideValidateFn()
+        {
+            if (Selection.activeObject is MonoScript script)
+            {
+                return ScriptGenerationOverridesManager.TryGetScriptOverride(  
+                    new FileInfo(Path.Combine(Path.Combine(Application.dataPath + "//..", AssetDatabase.GetAssetPath(script)))),
+                    out var _
+                );
+            }
+
+            return false;
+        }
+        
+        [MenuItem("Assets/Fast Script Reload/Show User Script Rewrite Overrides", false, BaseMenuItemPriority_ManualScriptOverride + 3)]
+        public static void ShowManualScriptRewriteOverridesInUi()
+        {
+            var window = FastScriptReloadWelcomeScreen.Init();
+            window.OpenUserScriptRewriteOverridesSection();
+        }
+        
+        private const int BaseMenuItemPriority_Exclusions = 200;
+        [MenuItem("Assets/Fast Script Reload/Add Hot-Reload Exclusion", false, BaseMenuItemPriority_Exclusions + 1)]
         public static void AddFileAsExcluded()
         {
             FastScriptReloadPreference.FilesExcludedFromHotReload.AddElement(ResolveRelativeToAssetDirectoryFilePath(Selection.activeObject));
         }
-    
+
         [MenuItem("Assets/Fast Script Reload/Add Hot-Reload Exclusion", true)]
         public static bool AddFileAsExcludedValidateFn()
         {
@@ -168,7 +234,7 @@ Workaround will search in all folders (under project root) and will use first fo
                        .Contains(ResolveRelativeToAssetDirectoryFilePath(Selection.activeObject));
         }
 
-        [MenuItem("Assets/Fast Script Reload/Remove Hot-Reload Exclusion", false)]
+        [MenuItem("Assets/Fast Script Reload/Remove Hot-Reload Exclusion", false, BaseMenuItemPriority_Exclusions + 2)]
         public static void RemoveFileAsExcluded()
         {
             FastScriptReloadPreference.FilesExcludedFromHotReload.RemoveElement(ResolveRelativeToAssetDirectoryFilePath(Selection.activeObject));
@@ -182,25 +248,50 @@ Workaround will search in all folders (under project root) and will use first fo
                    .Contains(ResolveRelativeToAssetDirectoryFilePath(Selection.activeObject));
         }
     
-        [MenuItem("Assets/Fast Script Reload/Show Exclusions", false)]
+        [MenuItem("Assets/Fast Script Reload/Show Exclusions", false, BaseMenuItemPriority_Exclusions + 3)]
         public static void ShowExcludedFilesInUi()
         {
             var window = FastScriptReloadWelcomeScreen.Init();
             window.OpenExclusionsSection();
         }
+
+
     
         private static string ResolveRelativeToAssetDirectoryFilePath(UnityEngine.Object obj)
         {
             return AssetDatabase.GetAssetPath(obj.GetInstanceID());
         }
 
-        private void Update()
+        public void Update()
         {
-            if (_executeOnlyInPlaymode && !EditorApplication.isPlaying)
+            _isEditorModeHotReloadEnabled = (bool)FastScriptReloadPreference.EnableExperimentalEditorHotReloadSupport.GetEditorPersistedValueOrDefault();
+            if (_lastPlayModeStateChange == PlayModeStateChange.ExitingPlayMode && Instance._fileWatchers.Any())
+            {
+                ClearFileWatchers();
+            }
+            
+            if (!_isEditorModeHotReloadEnabled  && !EditorApplication.isPlaying)
             {
                 return;
             }
 
+            if (_isEditorModeHotReloadEnabled)
+            {
+                EnsureInitialized();
+            }
+            else if (_lastPlayModeStateChange == PlayModeStateChange.EnteredPlayMode)
+            {
+
+                EnsureInitialized();
+
+                // if (_lastPlayModeStateChange != PlayModeStateChange.ExitingPlayMode && Application.isPlaying && Instance._fileWatchers.Count == 0 && FastScriptReloadPreference.FileWatcherSetupEntries.GetElementsTyped().Count > 0)
+                // {
+                //     LoggerScoped.LogWarning("Reinitializing file-watchers as defined configuration does not match current instance setup. If hot reload still doesn't work you'll need to reset play session.");
+                //     ClearFileWatchers();
+                //     EnsureInitialized();
+                // }
+            }
+            
             AssignConfigValuesThatCanNotBeAccessedOutsideOfMainThread();
 
             if (!_assemblyChangesLoaderResolverResolutionAlreadyCalled)
@@ -216,10 +307,22 @@ Workaround will search in all folders (under project root) and will use first fo
             }
         }
 
+        private static void ClearFileWatchers()
+        {
+            foreach (var fileWatcher in Instance._fileWatchers)
+            {
+                fileWatcher.Dispose();
+            }
+
+            Instance._fileWatchers.Clear();
+        }
+
         private void AssignConfigValuesThatCanNotBeAccessedOutsideOfMainThread()
         {
             //TODO: PERF: needed in file watcher but when run on non-main thread causes exception. 
             _currentFileExclusions = FastScriptReloadPreference.FilesExcludedFromHotReload.GetElements();
+            _triggerDomainReloadIfOverNDynamicallyLoadedAssembles = (int)FastScriptReloadPreference.TriggerDomainReloadIfOverNDynamicallyLoadedAssembles.GetEditorPersistedValueOrDefault();
+            _isOnDemandHotReloadEnabled = (bool)FastScriptReloadPreference.EnableOnDemandReload.GetEditorPersistedValueOrDefault();
             EnableExperimentalThisCallLimitationFix = (bool)FastScriptReloadPreference.EnableExperimentalThisCallLimitationFix.GetEditorPersistedValueOrDefault();
             AssemblyChangesLoaderEditorOptionsNeededInBuild.UpdateValues(
                 (bool)FastScriptReloadPreference.IsDidFieldsOrPropertyCountChangedCheckDisabled.GetEditorPersistedValueOrDefault(),
@@ -229,6 +332,19 @@ Workaround will search in all folders (under project root) and will use first fo
 
         public void TriggerReloadForChangedFiles()
         {
+            if (!Application.isPlaying && _hotReloadPerformedCount > _triggerDomainReloadIfOverNDynamicallyLoadedAssembles) 
+            {
+                LoggerScoped.LogWarning($"Dynamically created assembles reached over: {_triggerDomainReloadIfOverNDynamicallyLoadedAssembles} - triggering full domain reload to clean up. You can adjust that value in settings.");
+#if UNITY_2019_3_OR_NEWER
+                CompilationPipeline.RequestScriptCompilation(); //TODO: add some timer to ensure this does not go into some kind of loop
+#elif UNITY_2017_1_OR_NEWER
+                 var editorAssembly = Assembly.GetAssembly(typeof(Editor));
+                 var editorCompilationInterfaceType = editorAssembly.GetType("UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface");
+                 var dirtyAllScriptsMethod = editorCompilationInterfaceType.GetMethod("DirtyAllScripts", BindingFlags.Static | BindingFlags.Public);
+                 dirtyAllScriptsMethod.Invoke(editorCompilationInterfaceType, null);
+#endif
+            }
+            
             var assemblyChangesLoader = AssemblyChangesLoaderResolver.Instance.Resolve();
             var changesAwaitingHotReload = _dynamicFileHotReloadStateEntries
                 .Where(e => e.IsAwaitingCompilation)
@@ -238,7 +354,7 @@ Workaround will search in all folders (under project root) and will use first fo
             {
                 changesAwaitingHotReload.ForEach(c => { c.IsBeingProcessed = true; });
 
-                UnityMainThreadDispatcher.Instance.EnsureInitialized();
+                var unityMainThreadDispatcher = UnityMainThreadDispatcher.Instance.EnsureInitialized(); //need to pass that in, resolving on other than main thread will cause exception
                 Task.Run(() =>
                 {
                     List<string> sourceCodeFilesWithUniqueChangesAwaitingHotReload = null;
@@ -248,7 +364,7 @@ Workaround will search in all folders (under project root) and will use first fo
                             .GroupBy(e => e.FullFileName)
                             .Select(e => e.First().FullFileName).ToList();
                     
-                        var dynamicallyLoadedAssemblyCompilerResult = DynamicAssemblyCompiler.Compile(sourceCodeFilesWithUniqueChangesAwaitingHotReload);
+                        var dynamicallyLoadedAssemblyCompilerResult = DynamicAssemblyCompiler.Compile(sourceCodeFilesWithUniqueChangesAwaitingHotReload, unityMainThreadDispatcher);
                         if (!dynamicallyLoadedAssemblyCompilerResult.IsError)
                         {
                             changesAwaitingHotReload.ForEach(c =>
@@ -264,6 +380,8 @@ Workaround will search in all folders (under project root) and will use first fo
                                 c.HotSwappedOn = DateTime.UtcNow;
                                 c.IsBeingProcessed = false;
                             }); //TODO: technically not all were hot swapped at same time
+
+                            _hotReloadPerformedCount++;
                         }
                         else
                         {
@@ -289,38 +407,46 @@ Workaround will search in all folders (under project root) and will use first fo
                     }
                     catch (Exception ex)
                     {
-                        Debug.LogError($"Error when updating files: '{(sourceCodeFilesWithUniqueChangesAwaitingHotReload != null ? string.Join(",", sourceCodeFilesWithUniqueChangesAwaitingHotReload.Select(fn => new FileInfo(fn).Name)) : "unknown")}', {ex}");
+                        LoggerScoped.LogError($"Error when updating files: '{(sourceCodeFilesWithUniqueChangesAwaitingHotReload != null ? string.Join(",", sourceCodeFilesWithUniqueChangesAwaitingHotReload.Select(fn => new FileInfo(fn).Name)) : "unknown")}', {ex}");
                     }
                 });
             }
 
             _lastTimeChangeBatchRun = DateTime.UtcNow;
         }
-
+        
         private void OnEditorApplicationOnplayModeStateChanged(PlayModeStateChange obj)
         {
             Instance._lastPlayModeStateChange = obj;
 
-            if (obj == PlayModeStateChange.ExitingPlayMode && Instance._fileWatchers.Any())
+            if ((bool)FastScriptReloadPreference.IsForceLockAssembliesViaCode.GetEditorPersistedValueOrDefault())
             {
-                foreach (var fileWatcher in Instance._fileWatchers)
+                if (obj == PlayModeStateChange.EnteredPlayMode)
                 {
-                    fileWatcher.Dispose();
+                    EditorApplication.LockReloadAssemblies();
+                    _wasLockReloadAssembliesCalled = true;
                 }
-                Instance._fileWatchers.Clear();
             }
-
-            if (obj == PlayModeStateChange.EnteredPlayMode)
+            
+            if(obj == PlayModeStateChange.EnteredEditMode && _wasLockReloadAssembliesCalled)
             {
-                Init();
+                EditorApplication.UnlockReloadAssemblies();
+                _wasLockReloadAssembliesCalled = false;
             }
         }
 
-        private static void Init()
+        private static bool HotReloadDisabled_WarningMessageShownAlready;
+
+        private static void EnsureInitialized()
         {
-            if (!(bool)FastScriptReloadPreference.EnableAutoReloadForChangedFiles.GetEditorPersistedValueOrDefault())
+            if (!(bool)FastScriptReloadPreference.EnableAutoReloadForChangedFiles.GetEditorPersistedValueOrDefault()
+                && !(bool)FastScriptReloadPreference.EnableOnDemandReload.GetEditorPersistedValueOrDefault())
             {
-                LoggerScoped.LogDebug("Hot reload disabled, file watchers will not be initialized.");
+                if (!HotReloadDisabled_WarningMessageShownAlready)
+                {
+                    LoggerScoped.LogWarning($"Both auto hot reload and on-demand reload are disabled, file watchers will not be initialized. Please adjust settings and restart if you want hot reload to work.");
+                    HotReloadDisabled_WarningMessageShownAlready = true;
+                }
                 return;
             }
             
@@ -329,7 +455,7 @@ Workaround will search in all folders (under project root) and will use first fo
                 var fileWatcherSetupEntries = FastScriptReloadPreference.FileWatcherSetupEntries.GetElementsTyped();
                 if (fileWatcherSetupEntries.Count == 0)
                 {
-                    Debug.LogWarning($"FastScriptReload: There are no file watcher setup entries. Tool will not be able to pick changes automatically");
+                    LoggerScoped.LogWarning($"There are no file watcher setup entries. Tool will not be able to pick changes automatically");
                 }
                 
                 foreach (var fileWatcherSetupEntry in fileWatcherSetupEntries)

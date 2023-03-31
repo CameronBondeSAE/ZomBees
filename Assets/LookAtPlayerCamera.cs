@@ -15,9 +15,13 @@ public class LookAtPlayerCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        var targetPosition = target.position;
-        targetPosition.y = transform.position.y;
-        transform.LookAt(targetPosition);
-        transform.Rotate(0,180f,0);
+	    if (target != null)
+	    {
+		    var targetPosition = target.position;
+		    targetPosition.y = transform.position.y;
+		    transform.LookAt(targetPosition);
+		    transform.Rotate(0,180f,0);
+	    }
+
     }
 }

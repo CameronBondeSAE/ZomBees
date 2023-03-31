@@ -8,8 +8,8 @@ using System.Reflection;
 using HarmonyLib;
 using ImmersiveVRTools.Runtime.Common;
 using ImmersiveVRTools.Runtime.Common.Extensions;
+using ImmersiveVrToolsCommon.Runtime.Logging;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace FastScriptReload.Runtime
 {
@@ -51,28 +51,23 @@ namespace FastScriptReload.Runtime
             {
                 var sw = new Stopwatch();
                 sw.Start();
-                
-                var allTypesInNonDynamicGeneratedAssemblies = AppDomain.CurrentDomain.GetAssemblies()
-                    .Where(a => !a.GetCustomAttributes<DynamicallyCreatedAssemblyAttribute>().Any())
-                    .SelectMany(a => a.GetTypes())
-                    .ToList();
 
                 foreach (var createdType in dynamicallyLoadedAssemblyWithUpdates.GetTypes()
-                             .Where(t => t.IsClass
-                                         && !typeof(Delegate).IsAssignableFrom(t) //don't redirect delegates
+                             .Where(t => (t.IsClass
+                                         && !typeof(Delegate).IsAssignableFrom(t)) //don't redirect delegates
+                                         // || (t.IsValueType && !t.IsPrimitive) //struct check, ensure works
                              )
                         )
                 {
                     if (createdType.GetCustomAttribute<PreventHotReload>() != null)
                     {
                         //TODO: ideally type would be excluded from compilation not just from detour
-                        Debug.Log($"Type: {createdType.Name} marked as {nameof(PreventHotReload)} - ignoring change.");
+                        LoggerScoped.Log($"Type: {createdType.Name} marked as {nameof(PreventHotReload)} - ignoring change.");
                         continue;
                     }
                     
                     var createdTypeNameWithoutPatchedPostfix = RemoveClassPostfix(createdType.FullName);
-                    var matchingTypeInExistingAssemblies = allTypesInNonDynamicGeneratedAssemblies.SingleOrDefault(t => t.FullName == createdTypeNameWithoutPatchedPostfix);
-                    if (matchingTypeInExistingAssemblies != null)
+                    if (ProjectTypeCache.AllTypesInNonDynamicGeneratedAssemblies.TryGetValue(createdTypeNameWithoutPatchedPostfix, out var matchingTypeInExistingAssemblies))
                     {
                         _existingTypeToRedirectedType[matchingTypeInExistingAssemblies] = createdType;
                         
@@ -95,25 +90,23 @@ namespace FastScriptReload.Runtime
                             {
                                 if (matchingMethodInExistingType.IsGenericMethod)
                                 {
-                                    Debug.LogWarning($"Method: '{matchingMethodInExistingType.FullDescription()}' is generic. Hot-Reload for generic methods is not supported yet, you won't see changes for that method.");
+                                    LoggerScoped.LogWarning($"Method: '{matchingMethodInExistingType.FullDescription()}' is generic. Hot-Reload for generic methods is not supported yet, you won't see changes for that method.");
                                     continue;
                                 }
 
                                 if (matchingMethodInExistingType.DeclaringType != null && matchingMethodInExistingType.DeclaringType.IsGenericType)
                                 {
-                                    Debug.LogWarning($"Type for method: '{matchingMethodInExistingType.FullDescription()}' is generic. Hot-Reload for generic types is not supported yet, you won't see changes for that type.");
+                                    LoggerScoped.LogWarning($"Type for method: '{matchingMethodInExistingType.FullDescription()}' is generic. Hot-Reload for generic types is not supported yet, you won't see changes for that type.");
                                     continue;
                                 }
-                                
-#if ImmersiveVrTools_DebugEnabled
-                                Debug.Log($"Trying to detour method, from: '{matchingMethodInExistingType.FullDescription()}' to: '{createdTypeMethodToUpdate.FullDescription()}'");
-#endif
+
+                                LoggerScoped.LogDebug($"Trying to detour method, from: '{matchingMethodInExistingType.FullDescription()}' to: '{createdTypeMethodToUpdate.FullDescription()}'");
                                 DetourCrashHandler.LogDetour(matchingMethodInExistingType.ResolveFullName());
                                 Memory.DetourMethod(matchingMethodInExistingType, createdTypeMethodToUpdate);
                             }
-                            else
+                            else 
                             {
-                                Debug.LogWarning($"Method: {createdTypeMethodToUpdate.FullDescription()} does not exist in initially compiled type: {matchingTypeInExistingAssemblies.FullName}. " +
+                                LoggerScoped.LogWarning($"Method: {createdTypeMethodToUpdate.FullDescription()} does not exist in initially compiled type: {matchingTypeInExistingAssemblies.FullName}. " +
                                                  $"Adding new methods at runtime is not fully supported. \r\n" +
                                                  $"It'll only work new method is only used by declaring class (eg private method)\r\n" +
                                                  $"Make sure to add method before initial compilation.");
@@ -125,13 +118,13 @@ namespace FastScriptReload.Runtime
                     }
                     else
                     {
-                        Debug.LogWarning($"Unable to find existing type for: '{createdType.FullName}', this is not an issue if you added new type");
+                        LoggerScoped.LogWarning($"FSR: Unable to find existing type for: '{createdType.FullName}', this is not an issue if you added new type. <color=orange>If it's an existing type please do a full domain-reload - one of optimisations is to cache existing types for later lookup on first call.</color>");
                         FindAndExecuteStaticOnScriptHotReloadNoInstance(createdType);
                         FindAndExecuteOnScriptHotReload(createdType);
                     }
                 }
                 
-                Debug.Log($"Hot-reload completed (took {sw.ElapsedMilliseconds}ms)");
+                LoggerScoped.Log($"Hot-reload completed (took {sw.ElapsedMilliseconds}ms)");
             }
             finally
             {
@@ -146,13 +139,15 @@ namespace FastScriptReload.Runtime
 
         private static bool DidFieldsOrPropertyCountChanged(Type createdType, Type matchingTypeInExistingAssemblies)
         {
-            var createdTypeFieldAndPropertiesCount = createdType.GetFields(ALL_BINDING_FLAGS).Length + createdType.GetProperties(ALL_BINDING_FLAGS).Length;
-            var matchingTypeFieldAndPropertiesCount = matchingTypeInExistingAssemblies.GetFields(ALL_BINDING_FLAGS).Length + matchingTypeInExistingAssemblies.GetProperties(ALL_BINDING_FLAGS).Length;
-            if (createdTypeFieldAndPropertiesCount != matchingTypeFieldAndPropertiesCount)
+            var createdTypeFieldAndProperties = createdType.GetFields(ALL_BINDING_FLAGS).Concat(createdType.GetProperties(ALL_BINDING_FLAGS).Cast<MemberInfo>()).ToList();
+            var matchingTypeFieldAndProperties = matchingTypeInExistingAssemblies.GetFields(ALL_BINDING_FLAGS).Concat(matchingTypeInExistingAssemblies.GetProperties(ALL_BINDING_FLAGS).Cast<MemberInfo>()).ToList();
+            if (createdTypeFieldAndProperties.Count != matchingTypeFieldAndProperties.Count)
             {
-                Debug.LogError($"It seems you've added/removed field to changed script. This is not supported and will result in undefined behaviour. Hot-reload will not be performed for type: {matchingTypeInExistingAssemblies.Name}" +
-                               $"\r\n\r\nYou can skip the check and force reload anyway if needed, to do so go to: 'Window -> Fast Script Reload -> Start Screen -> Reload -> tick 'Disable added/removed fields check'");
-                Debug.Log(
+                var addedMemberNames = createdTypeFieldAndProperties.Select(m => m.Name).Except(matchingTypeFieldAndProperties.Select(m => m.Name)).ToList();
+                LoggerScoped.LogError($"It seems you've added/removed field to changed script. This is not supported and will result in undefined behaviour. Hot-reload will not be performed for type: {matchingTypeInExistingAssemblies.Name}" +
+                               $"\r\n\r\nYou can skip the check and force reload anyway if needed, to do so go to: 'Window -> Fast Script Reload -> Start Screen -> Reload -> tick 'Disable added/removed fields check'" +
+                               (addedMemberNames.Any() ? $"\r\nAdded: {string.Join(", ", addedMemberNames)}" : ""));
+                LoggerScoped.Log(
                     $"<color=orange>There's an experimental feature that allows to add new fields (which are adjustable in editor), to enable please:</color>" +
                     $"\r\n - Open Settings 'Window -> Fast Script Reload -> Start Screen -> New Fields -> tick 'Enable experimental added field support'");
                 return true;
@@ -181,6 +176,10 @@ namespace FastScriptReload.Runtime
             {
                 UnityMainThreadDispatcher.Instance.Enqueue(() =>
                 {
+                    if (!typeof(MonoBehaviour).IsAssignableFrom(type)) {
+                        LoggerScoped.LogWarning($"Type: {type.Name} is not {nameof(MonoBehaviour)}, {ON_HOT_RELOAD_METHOD_NAME} method can't be executed. You can still use static version: {ON_HOT_RELOAD_NO_INSTANCE_STATIC_METHOD_NAME}");
+                        return;
+                    }
                     foreach (var instanceOfType in GameObject.FindObjectsOfType(type)) //TODO: perf - could find them in different way?
                     {
                         onScriptHotReloadFnForType.Invoke(instanceOfType, null);
@@ -226,8 +225,9 @@ namespace FastScriptReload.Runtime
             IsDidFieldsOrPropertyCountChangedCheckDisabled = isDidFieldsOrPropertyCountChangedCheckDisabled;
             EnableExperimentalAddedFieldsSupport = enableExperimentalAddedFieldsSupport;
         }
-
+#pragma warning disable 0618
         [Obsolete("Needed for network serialization")]
+#pragma warning enable 0618
         public AssemblyChangesLoaderEditorOptionsNeededInBuild()
         {
         }

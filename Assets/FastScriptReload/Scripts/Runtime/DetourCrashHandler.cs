@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using ImmersiveVrToolsCommon.Runtime.Logging;
 using UnityEngine;
 
 namespace FastScriptReload.Runtime
@@ -19,7 +20,7 @@ namespace FastScriptReload.Runtime
 #if UNITY_EDITOR
             Init();
 #else
-            Debug.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
+            LoggerScoped.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
 #endif
         }
 
@@ -28,8 +29,12 @@ namespace FastScriptReload.Runtime
         {
 #if UNITY_EDITOR
             LastDetourFilePath = Path.GetTempPath() + Application.productName + "-last-detour.txt";
+            foreach (var c in Path.GetInvalidFileNameChars()) 
+            { 
+                LastDetourFilePath = LastDetourFilePath.Replace(c, '-'); 
+            }
 #else
-            Debug.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
+            LoggerScoped.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
 #endif
         }
 
@@ -38,7 +43,7 @@ namespace FastScriptReload.Runtime
 #if UNITY_EDITOR
             File.AppendAllText(LastDetourFilePath, fullName + Environment.NewLine);
 #else
-            Debug.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
+            LoggerScoped.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
 #endif
         }
 
@@ -53,7 +58,7 @@ namespace FastScriptReload.Runtime
 
             return string.Empty;
 #else
-            Debug.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
+            LoggerScoped.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
             return string.Empty;
 #endif
         }
@@ -63,7 +68,7 @@ namespace FastScriptReload.Runtime
 #if UNITY_EDITOR
             File.Delete(LastDetourFilePath);
 #else
-            Debug.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
+            LoggerScoped.Log($"{nameof(DetourCrashHandler)}: currently only supported in Editor");
 #endif
         }
     }
