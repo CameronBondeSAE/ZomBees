@@ -57,33 +57,18 @@ MonoBehaviour:
     post:
     - id: 1
       value: 1
-  - name: FindHive
-    isDefault: 0
-    state: {fileID: 6652321108598669598, guid: 0df1a53a88e6d9946bd2f1f1cb92180c, type: 3}
-    cost: 0
-    position: {x: 735, y: 139}
-    pre:
-    - id: 1
-      value: 1
-    - id: 2
-      value: 0
-    post:
-    - id: 2
-      value: 1
   - name: DeliverFood
     isDefault: 0
     state: {fileID: 6652321108598669598, guid: 77b5d257ff2f00342b9d11927894c43e, type: 3}
     cost: 0
-    position: {x: 936, y: 138}
+    position: {x: 726, y: 136}
     pre:
     - id: 1
       value: 1
     - id: 2
-      value: 1
-    - id: 3
       value: 0
     post:
-    - id: 3
+    - id: 2
       value: 1
   - name: AttackCivilian
     isDefault: 0
@@ -104,11 +89,11 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 6652321108598669598, guid: 4800aac147649c44abd6ef7e4fc4e261, type: 3}
     cost: 0
-    position: {x: 1133.9473, y: 140.84207}
+    position: {x: 923.94727, y: 134.84207}
     pre:
     - id: 1
       value: 1
-    - id: 3
+    - id: 2
       value: 1
     - id: 4
       value: 0
@@ -133,10 +118,8 @@ MonoBehaviour:
     - id: 0
       value: 0
     - id: 1
-      value: 0
+      value: 1
     - id: 2
-      value: 0
-    - id: 3
       value: 0
     - id: 4
       value: 0

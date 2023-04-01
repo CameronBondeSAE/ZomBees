@@ -142,8 +142,6 @@ GameObject:
   - component: {fileID: 5571471917264393373}
   - component: {fileID: 5571471917264393375}
   - component: {fileID: 2256436266696984722}
-  - component: {fileID: 2502931121601251791}
-  - component: {fileID: 6349706528624328188}
   - component: {fileID: 4980646194317187398}
   - component: {fileID: 737415551801730799}
   - component: {fileID: 2293153713711874638}
@@ -170,7 +168,7 @@ Transform:
   m_Children:
   - {fileID: 498041809768793976}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 4110.97, z: 0}
 --- !u!33 &5571471917264393363
 MeshFilter:
@@ -284,6 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae14b77d76a23a499b6abe454a12762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
   isBee: 1
   rb: {fileID: 5571471917264393375}
   littleGuyModel: {fileID: 5571471917264393374}
@@ -291,33 +291,6 @@ MonoBehaviour:
   turnSpeed: 0.05
   collectedObjects: []
   myHome: {fileID: 0}
---- !u!114 &2502931121601251791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5571471917264393374}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e55ccf1f82d422340bcc08eafbd761ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  littleGuy: {fileID: 2256436266696984722}
---- !u!114 &6349706528624328188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5571471917264393374}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9189c094191dfd4ba01d5ab1db2ea68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guy: {fileID: 2256436266696984722}
-  feel: {fileID: 0}
 --- !u!114 &4980646194317187398
 MonoBehaviour:
   m_ObjectHideFlags: 0
