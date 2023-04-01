@@ -13,7 +13,8 @@ namespace Virginia
         public void OnEnable()
         {
 
-            ChildDoor.SetActive(true);
+            //ChildDoor.SetActive(true);
+            ChildDoor.transform.DOLocalRotate(new Vector3(0, 0, 0), 1.5f);
         }
 
         public void OnDisable()

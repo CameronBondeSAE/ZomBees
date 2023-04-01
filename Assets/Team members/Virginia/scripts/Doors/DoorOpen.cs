@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 namespace Virginia
@@ -15,7 +17,8 @@ namespace Virginia
         {
 
 
-            ChildDoor.SetActive(false);
+           // ChildDoor.SetActive(false);
+           ChildDoor.transform.DOLocalRotate(new Vector3(0, 100, 0), 1.5f);
 
 
         }
