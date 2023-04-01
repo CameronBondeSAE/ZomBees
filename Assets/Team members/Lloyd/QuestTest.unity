@@ -1615,6 +1615,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8188236082929428610, guid: 08fc05f8c17349645b8829ce9f6dc6cd, type: 3}
+      propertyPath: newQuestTrackerScript
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8188236082929428610, guid: 08fc05f8c17349645b8829ce9f6dc6cd, type: 3}
       propertyPath: customLevels.Array.size
       value: 1
       objectReference: {fileID: 0}
