@@ -75,7 +75,7 @@ public class WorldTime : MonoBehaviour
                 currentTimeOfDay = TimeOfDay.Morning;
             }
 
-            if (time % 720 == 0)
+            if (time % 1440 == 0)
             {
                 currentDayTracker++;
             }

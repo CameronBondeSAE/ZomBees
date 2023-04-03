@@ -5,13 +5,23 @@ using UnityEngine;
 
 public class TileCivBrain : MonoBehaviour
 {
+    [Header("CIV HAS A THIS % CHANCE TO TALK EVERY EVENT")]
+    public int talkPercent;
+
     public TileCivMouth civMouth;
     //public TileCivHead civHead;
     //public TileCivEyes civEyes;
+
+    public enum CivBrainState
+    {
+        Talking,
+        Listening
+    }
+    public CivBrainState myState;
     
     private void StartGame()
     {
-        
+        civMouth = GetComponent<TileCivMouth>();
     }
 
     private HearingComp ears;
@@ -41,10 +51,20 @@ public class TileCivBrain : MonoBehaviour
         }
 
         lastSound = heardSound;
+        
+        
     }
 
     public void SawSomething()
     {
+        
+    }
+
+    public void Exclaim(CivEventArgs.Topic topic)
+    {
+        int randomValue = UnityEngine.Random.Range(0, 100);
+        if (randomValue <= talkPercent) ;
+        
         
     }
 

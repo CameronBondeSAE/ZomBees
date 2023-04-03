@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 8719337754071283550}
   - component: {fileID: 1046010567785216630}
   - component: {fileID: 8614238435835551189}
+  - component: {fileID: 8244767804127822383}
   m_Layer: 0
   m_Name: TileCiv
   m_TagString: Untagged
@@ -281,20 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92cf41a51e969c340bf801dfcbfeb807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTeam: 0
-  myName: 
-  beeness: 0
-  hunger: 0
-  fear: 0
-  speechVolume: 0
-  loyaltyToPlayer: 0
-  myActionState: 0
-  myEmotion: 0
-  myCountryOfOrigin: 0
-  myTopic: 0
-  myPersonality: 0
-  myCharacterType: 0
-  announcement: 0
   finalPrompt: 
 --- !u!114 &8614238435835551189
 MonoBehaviour:
@@ -310,3 +297,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile: {fileID: 0}
   jsonParse: {fileID: 0}
+--- !u!114 &8244767804127822383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935393568139594451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62279dd8fcd0244c8ac6867f04852be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  civMouth: {fileID: 0}
+  listening: 0
+  hearingThreshold: 0

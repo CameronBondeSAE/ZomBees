@@ -8,7 +8,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(TileLevelMaker))]
 public class TileLevelMakerDrawer : PropertyDrawer
 {
-    private const int boardSize = 16;
+    /*private const int boardSize = 16;
     private const float fieldSize = 20f;
     [ExecuteInEditMode]
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -36,7 +36,7 @@ public class TileLevelMakerDrawer : PropertyDrawer
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         return fieldSize + EditorGUIUtility.singleLineHeight;
-    }
+    }*/
     
     
 }
