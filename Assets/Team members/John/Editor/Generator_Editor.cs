@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-[CustomEditor(typeof(GeneratorStartingState))]
+/*[CustomEditor(typeof(GeneratorStartingState))]
 public class Generator_Starting_Editor : Editor
 {
     
@@ -53,4 +53,4 @@ public class _Editor : Editor
             generatorShuttingDownState.ToggleActivation();
         }
     }
-}
+}*/

@@ -2,31 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Johns;
+using Sirenix.OdinInspector;
 using UnityEngine;
 public class GeneratorRunningState : MonoBehaviour
 {
     public AudioClip generatorRunning;
     private AudioSource generatorAudio;
     private bool componentActive = true;
-    public StateManager stateMachine;
 
     private void OnEnable()
     {
-        stateMachine.ChangeState(this);
+        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
         generatorAudio = GetComponent<AudioSource>();
         generatorAudio.clip = generatorRunning;
-        Debug.Log("Phase 2 Begins!");
-        Debug.Log("The sound clip playing is "+generatorAudio.clip);
         generatorAudio.Play();
     }
-
+    
+    [Button]
     private void OnDisable()
     {
         generatorAudio.Stop();
-        Debug.Log("Phase 2 Complete!");
+        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorShuttingDownState>());
     }
     
-    public void ToggleActivation()
+    /*public void ToggleActivation()
     {
         componentActive = !componentActive;
         enabled = componentActive;
@@ -39,5 +38,6 @@ public class GeneratorRunningState : MonoBehaviour
         {
             OnDisable();
         }
-    }
+    }*/
+    
 }
