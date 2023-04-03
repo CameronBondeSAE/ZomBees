@@ -17,20 +17,20 @@ MonoBehaviour:
     - id: 0
       name: seeBee
     - id: 1
-      name: nearBee
-    - id: 2
       name: isScared
-    - id: 3
+    - id: 2
       name: stayAlive
-    - id: 4
+    - id: 3
       name: killBee
-    - id: 5
+    - id: 4
       name: isPlayerTalking
+    - id: 5
+      name: PrioritisePlayer
   actions:
   - name: HuntBees
     isDefault: 1
     state: {fileID: 5933066165940633835, guid: f1efd9fda47ad8c429768d8033c5f544, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 206, y: 58}
     pre:
     - id: 0
@@ -44,53 +44,68 @@ MonoBehaviour:
     cost: 0
     position: {x: 600, y: 58}
     pre:
-    - id: 2
+    - id: 1
       value: 1
     post:
-    - id: 3
+    - id: 2
       value: 1
   - name: ApproachBee
     isDefault: 0
     state: {fileID: 5933066165940633835, guid: 55df6f2227e6cf34db354b6953919001, type: 3}
-    cost: 0
-    position: {x: 400, y: 60}
+    cost: 1
+    position: {x: 400, y: 53.0475}
     pre:
     - id: 0
       value: 1
-    - id: 4
+    - id: 3
       value: 0
     post:
-    - id: 4
-      value: 1
     - id: 3
       value: 1
-  - name: Discuss
+    - id: 2
+      value: 1
+  - name: Listen
     isDefault: 0
     state: {fileID: 8654147478926489066, guid: feb01932b4c918e49be1b1f459ff134d, type: 3}
-    cost: -1
+    cost: 0
     position: {x: 801, y: 60}
     pre:
+    - id: 4
+      value: 1
+    post:
+    - id: 4
+      value: 0
+    - id: 5
+      value: 1
+  - name: Talk
+    isDefault: 0
+    state: {fileID: 7638367005194116147, guid: adabaa9e8688a6b449c5e0f76c2881c5, type: 3}
+    cost: 0
+    position: {x: 1001, y: 60}
+    pre:
+    - id: 4
+      value: 0
     - id: 5
       value: 1
     post:
-    - id: 5
-      value: 0
-    - id: 3
+    - id: 2
       value: 1
   goals:
   - name: DefeateBees
     isDefault: 1
-    position: {x: 337, y: 348}
+    position: {x: 309.50757, y: 295.71378}
     conditions:
+    - id: 2
+      value: 1
     - id: 3
       value: 1
-    - id: 4
-      value: 1
   worldStates:
-  - position: {x: 335, y: 483}
+  - position: {x: 310.66626, y: 450.55502}
     isAutoUpdate: 1
     list:
     - id: 0
+      value: 0
+    - id: 1
       value: 0
     - id: 2
       value: 0
@@ -99,4 +114,4 @@ MonoBehaviour:
     - id: 4
       value: 0
     - id: 5
-      value: 1
+      value: 0

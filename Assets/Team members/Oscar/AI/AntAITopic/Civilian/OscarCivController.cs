@@ -8,6 +8,7 @@ public class OscarCivController : MonoBehaviour
     public OscarCivVision vision;
     public LittleGuy littleGuy;
 
+    public bool playerTalkin;
     public bool SeeBeeBool()
     {
         return vision.beesInSight.Count >= 1;
@@ -29,6 +30,11 @@ public class OscarCivController : MonoBehaviour
     }
 
     public bool PlayerIsTalking()
+    {
+        return playerTalkin;
+    }
+
+    public bool PrioritiseThePlayer()
     {
         return false;
     }

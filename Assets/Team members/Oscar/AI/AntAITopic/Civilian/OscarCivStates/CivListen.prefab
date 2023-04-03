@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5405824446459801820}
   - component: {fileID: -6841806367248682041}
   m_Layer: 0
-  m_Name: Discuss
+  m_Name: CivListen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

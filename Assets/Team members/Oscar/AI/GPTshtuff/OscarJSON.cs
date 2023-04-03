@@ -33,11 +33,14 @@ namespace Oscar
 
         private MemoryManger memoryManger;
         
+        public string conversationPrompt = "";
+        
         [TextArea(5, 40)] public string finalPrompt;
         
         [Button]
-        void CreatePrompt()
+        public void CreatePrompt()
         {
+            conversationPrompt = "";
             OscarCivController civConditions = GetComponent<OscarCivController>();
             memoryManger = GetComponent<MemoryManger>();
             
@@ -47,7 +50,7 @@ namespace Oscar
             };
 
 
-            finalPrompt = "Using this JSON as a template. attitude is a 0 to 1 float value. ";
+            finalPrompt = "Using this JSON as a template. ";
             finalPrompt += "\nreplace ExamplePersonality in personality to: " + _promptResult.personality;
             finalPrompt += "\nReplace ExampleAction with an action like: " + _promptResult.enumValue;
             finalPrompt += "\nReplace ExampleSpeech in the outputSpeech with the characters response.";
@@ -76,7 +79,9 @@ namespace Oscar
                 finalPrompt += "\nRemembered DynamicObject: " + memory.theThing;
             }
             
-            finalPrompt += "\nUse the character condition information and its memories to influence a response from the characters perspective. Place the response in the JSON template";
+            finalPrompt += "\nUse the character condition information and its memories as context to influence a response from the characters perspective. Place the response in the JSON template";
+
+            finalPrompt += conversationPrompt;
             
             Debug.Log(finalPrompt);
         }

@@ -16,6 +16,7 @@ public class OscarCivSensor : MonoBehaviour, ISense
         aWorldState.Set(OscarCivilian.stayAlive, civController.StayAliveBool());
         aWorldState.Set(OscarCivilian.killBee, civController.KilledBeeBool());
         aWorldState.Set(OscarCivilian.isPlayerTalking, civController.PlayerIsTalking());
+        aWorldState.Set(OscarCivilian.PrioritisePlayer, civController.PrioritiseThePlayer());
         
         aWorldState.EndUpdate();
     }
@@ -25,6 +26,7 @@ public class OscarCivSensor : MonoBehaviour, ISense
         isScared = 1,
         stayAlive = 2,
         killBee = 3,
-        isPlayerTalking = 4
+        isPlayerTalking = 4,
+        PrioritisePlayer = 5
     }
 }
