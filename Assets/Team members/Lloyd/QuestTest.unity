@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.33694, g: 325.04984, b: 430.2193, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -290,6 +290,7 @@ MonoBehaviour:
   hasResource: 0
   hearingSomething: 0
   target: {fileID: 0}
+  targetPos: {x: 0, y: 0, z: 0}
   movingTarget: {fileID: 0}
   talkTarget: {fileID: 0}
   listening: 0
@@ -1112,6 +1113,7 @@ MonoBehaviour:
   beeness: 0
   team: 0
   maxListeners: 10
+  mySoundType: 0
 --- !u!114 &1893934803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,7 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heardSound: 0
-  loudestSound: {fileID: 0}
+  loudestRecentSound: {x: 0, y: 0, z: 0}
 --- !u!114 &1893934804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,8 +1155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9bdcca8f55b6894290b0263e3be6e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0
-  fear: 0
+  profile: {fileID: 0}
+  jsonParse: {fileID: 0}
 --- !u!1 &1988709170
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,10 +23,15 @@ public class Spawner : MonoBehaviour
 
     public QueenScenarioManager queenScene;
 
+    public Rigidbody rb;
+
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        
         parent = new GameObject();
         parent.name = "Swarmer Parent";
+        parent.transform.parent = transform;
 
         queenEvent = GetComponent<QueenEvent>();
 
@@ -34,6 +39,7 @@ public class Spawner : MonoBehaviour
 
         StartCoroutine(SpawnSwarmer());
     }
+
     private IEnumerator SpawnSwarmer()
     {
         for (int i = 0; i < numSwarmers; i++)

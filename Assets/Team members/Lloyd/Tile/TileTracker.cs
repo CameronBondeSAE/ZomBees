@@ -10,7 +10,12 @@ public class TileTracker : MonoBehaviour
     
     public bool initialized=false;
     
-    public const float cubeSize = 1;
+    public const float cubeSize = 10;
+
+    public float CubeSize()
+    {
+        return cubeSize;
+    }
     
     const int boardSize = 16;
 
@@ -76,8 +81,8 @@ public class TileTracker : MonoBehaviour
 
     public bool IsOutOfBounds(Vector2Int square)
     {
-        return square.x < 0 || square.x >= board.GetLength(0) ||
-               square.y < 0 || square.y >= board.GetLength(1);
+        return square.x < 0 || square.x  >= board.GetLength(0) ||
+               square.y  < 0  || square.y  >= board.GetLength(1);
     }
     
     /*public void EditorChangeSquareType(int x, int y, SquareType type)

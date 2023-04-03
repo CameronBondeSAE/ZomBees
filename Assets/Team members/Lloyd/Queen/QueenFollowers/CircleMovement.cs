@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CircleMovement : MonoBehaviour
 {
-    public QueenEvent queenEvent;
-    
     public Vector3 centerPoint;
     public float radius;
     public int numVectors;
@@ -33,6 +31,11 @@ public class CircleMovement : MonoBehaviour
     private float x = 1;
     private float y = 1;
     private float z = 1;
+
+    public void SetCenterPoint(Transform target)
+    {
+        centerPoint = target.localPosition;
+    }
 
     private void OnEnable()
     {

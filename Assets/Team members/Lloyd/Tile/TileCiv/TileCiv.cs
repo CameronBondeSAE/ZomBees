@@ -20,6 +20,8 @@ public class TileCiv : MonoBehaviour
 
     public float moveSpeed;
 
+    public float maxSpeed;
+
     public Rigidbody rb;
     
     public List<Vector3Int> pathList;
@@ -80,15 +82,18 @@ public class TileCiv : MonoBehaviour
                     rb.velocity = Vector3.zero;
                     return;
                 }
+            
+            Vector3 newPosition = Vector3.Slerp(rb.transform.position, target, Time.deltaTime * moveSpeed / distToTargetSqr);
+            Vector3 direction = newPosition - rb.transform.position;
+            direction.Normalize();
+            Vector3 attractionForce = direction * moveSpeed / Time.deltaTime - rb.velocity;
+            rb.AddForce(attractionForce, ForceMode.Force);
 
-                /**/
-                /*Vector3 direction = target - rb.transform.position;
-                direction.Normalize();
-                Vector3 force = direction * moveSpeed;
-                rb.AddForce(force, ForceMode.Acceleration);*/
-                
-                Vector3 newPos = Vector3.Slerp(rb.transform.position, target, Time.deltaTime * moveSpeed / distToTargetSqr);
-                rb.MovePosition(newPos);
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
+            
             }
             
             

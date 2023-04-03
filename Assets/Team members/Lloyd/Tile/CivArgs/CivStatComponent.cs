@@ -16,54 +16,95 @@ public class CivStatComponent : MonoBehaviour
     }
 
     public float beenessThresh;
+    public float BeenessThresh
+    {
+        get => threshMap[CivFloats.beeness];
+        set => threshMap[CivFloats.beeness] = value;
+    }
     public bool bee;
+    public bool Bee
+    {
+        get => boolMap[CivFloats.beeness];
+        set => boolMap[CivFloats.beeness] = value;
+    }
 
-    public float fear
+    public float fear;
+    public float Fear
     {
         get => floatMap[CivFloats.fear];
         set => floatMap[CivFloats.fear] = value;
     }
 
-    public float fearThresh;
+    public float fearThresh; 
+    public float FearThresh
+    {
+        get => threshMap[CivFloats.fear];
+        set => threshMap[CivFloats.fear] = value;
+    }
     public bool feared;
+    public bool Feared
+    {
+        get => boolMap[CivFloats.fear];
+        set => boolMap[CivFloats.fear] = value;
+    }
 
-    public float hunger
+    public float hunger;
+    public float Hunger
     {
         get => floatMap[CivFloats.hunger];
         set => floatMap[CivFloats.hunger] = value;
     }
 
     public float hungerThresh;
+    public float HungerThresh
+    {
+        get => threshMap[CivFloats.fear];
+        set => threshMap[CivFloats.hunger] = value;
+    }
     public bool hungry;
+    public bool Hungry
+    {
+        get => boolMap[CivFloats.hunger];
+        set => boolMap[CivFloats.hunger] = value;
+    }
 
     private float minValue = 0.0f;
     private float maxValue = 1.0f;
 
-    private Dictionary<CivFloats, float> floatMap = new Dictionary<CivFloats, float>
+    public Dictionary<CivFloats, float> floatMap = new Dictionary<CivFloats, float>
     {
         { CivFloats.beeness, 0.0f },
         { CivFloats.fear, 0.0f },
         { CivFloats.hunger, 0.0f }
     };
 
-    private Dictionary<CivFloats, float> threshMap = new Dictionary<CivFloats, float>
+    public Dictionary<CivFloats, float> threshMap = new Dictionary<CivFloats, float>
     {
         { CivFloats.beeness, 0.0f },
         { CivFloats.fear, 0.0f },
         { CivFloats.hunger, 0.0f }
     };
 
-    private Dictionary<CivFloats, bool> boolMap = new Dictionary<CivFloats, bool>
+    public Dictionary<CivFloats, bool> boolMap = new Dictionary<CivFloats, bool>
     {
         { CivFloats.beeness, false },
         { CivFloats.fear, false },
         { CivFloats.hunger, false }
     };
 
-    public void Update()
+    public void Start()
     {
         beeness = Beeness;
-        Debug.Log(beeness);
+        beenessThresh = BeenessThresh;
+        bee = Bee;
+        
+        fear = Fear;
+        fearThresh = FearThresh;
+        feared = Feared;
+        
+        hunger = Hunger;
+        hungerThresh = HungerThresh;
+        hungry = Hungry;
     }
 
     [Button]

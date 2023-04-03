@@ -16,7 +16,7 @@ public class FollowerMinDist : MonoBehaviour
 
     public void SetVector3(Vector3 pos)
     {
-        
+        targetPos = pos;
     }
 
     private void FixedUpdate()

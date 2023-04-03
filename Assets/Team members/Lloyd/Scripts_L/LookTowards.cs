@@ -21,11 +21,19 @@ public class LookTowards : MonoBehaviour
         civBrain = GetComponent<CivilianBrain>();
     }
 
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+
     private void FixedUpdate()
     {
-        looking = civBrain.looking;
-        target = civBrain.target;
-        
+        if (civBrain != null)
+        {
+            looking = civBrain.looking;
+            target = civBrain.target;
+        }
+
         if (looking)
         {
             Vector3 targetDir = target.position - transform.position;

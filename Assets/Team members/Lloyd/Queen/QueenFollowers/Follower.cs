@@ -28,6 +28,12 @@ public class Follower : MonoBehaviour, IFollower
 
     private float angleOffset;
 
+    private LookTowards lookTowards;
+
+    private CircleMovement circleMovement;
+
+    private FollowerMinDist minDist;
+
     private void OnEnable()
     {
         Begin();
@@ -36,7 +42,12 @@ public class Follower : MonoBehaviour, IFollower
     public void Begin()
     {
         //angleOffset = Random.Range(0f, 360f);
-        
+        circleMovement = GetComponent<CircleMovement>();
+
+        minDist = GetComponent<FollowerMinDist>();
+
+        lookTowards = GetComponent<LookTowards>();
+
         rb = GetComponent<Rigidbody>();
 
         reverseDirection = (UnityEngine.Random.value > 0.5f);
@@ -73,8 +84,11 @@ public class Follower : MonoBehaviour, IFollower
         target = rotationTransform;
         if (rb != null)
         {
-            CircleMovement();
-            //MoveToTarget();
+            //CircleMovement();
+            MoveToTarget();
+            lookTowards.SetTarget(target);
+            circleMovement.SetCenterPoint(target);
+            minDist.SetVector3(target.position);
         }
     }
 

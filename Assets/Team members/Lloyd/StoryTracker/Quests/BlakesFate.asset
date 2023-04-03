@@ -13,16 +13,24 @@ MonoBehaviour:
   m_Name: BlakesFate
   m_EditorClassIdentifier: 
   questPrompt: 
-  questName: 
-  questDescription: 
+  questName: Blake's Fate
+  questDescription: A kid shows up and seems to have a grasp on the basics. They
+    fuckin' die.
   time: 0
   startTime: 0
-  endTime: 0
+  endTime: 10
   minRequirements: 0
   requirements:
   - requirementFulfilled: 0
     requirementName: 
     requirementlocation: {x: 0, y: 0, z: 0}
+    requirementStartTime: 0
+    requirementEndTime: 0
+  - requirementFulfilled: 0
+    requirementName: 
+    requirementlocation: {x: 0, y: 0, z: 0}
+    requirementStartTime: 0
+    requirementEndTime: 0
   fulfilled: []
   QuestPrompt: 
   questStatus: 0

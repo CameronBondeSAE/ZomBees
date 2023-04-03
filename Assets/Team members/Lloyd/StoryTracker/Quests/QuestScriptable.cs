@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Quest Data", menuName = "Quest Data")]
+[Serializable]
 public class QuestScriptable : ScriptableObject
 {  
         //written in tandem with chat GPT
@@ -28,14 +29,19 @@ public class QuestScriptable : ScriptableObject
                  public bool requirementFulfilled;
                  public string requirementName;
                  public Vector3 requirementlocation;
+                 public float requirementStartTime;
+                 public float requirementEndTime;
          }
          
-        public string questName;
-        public string questDescription;
+         [SerializeField]
+         public string questName;
+         [SerializeField]
+         public string questDescription;
 
         public float time;
-        
+        [SerializeField]
         public float startTime;
+        [SerializeField]
         public float endTime;
 
         private int listLength;
@@ -73,6 +79,35 @@ public class QuestScriptable : ScriptableObject
         public void Update()
         {
                 time = worldTime.time;
+
+                        foreach (QuestRequirements requirement in requirements)
+                        {
+                                if (!requirement.requirementFulfilled && time >= requirement.requirementEndTime)
+                                {
+                                        requirement.requirementFulfilled = false;
+                                        Debug.Log($"{requirement.requirementName} has failed!");
+                                }
+                        }
+
+                        if (time >= endTime)
+                        {
+                                int fulfilledCount = 0;
+                                foreach (QuestScriptable quest in fulfilled)
+                                {
+                                        if (quest.questStatus == QuestStatus.Completed)
+                                        {
+                                                fulfilledCount++;
+                                        }
+                                }
+                                if (fulfilledCount >= minRequirements)
+                                {
+                                        ChangeQuestStatus(QuestStatus.Completed);
+                                }
+                                else
+                                {
+                                        ChangeQuestStatus(QuestStatus.Failed);
+                                }
+                        }
                 
                 if(time >= startTime)
                         ChangeQuestStatus(QuestStatus.Began);

@@ -14,11 +14,10 @@ public class PathFinder : MonoBehaviour
 
     public Vector2Int currentCoords;
 
-    public float squareSize;
-
     private List<Vector2Int> SquaresToBeScanned = new List<Vector2Int>();
     private List<Vector2Int> SquaresScanned = new List<Vector2Int>();
 
+    private int cubeSize;
     
     //where to set values? so not hard coded
 
@@ -48,6 +47,7 @@ public class PathFinder : MonoBehaviour
 
     public void StartGame()
     {
+        cubeSize = (int)tileTracker.CubeSize();
         tileTracker.ChangeSquareType(startCoords.x, startCoords.y, TileTracker.SquareType.Me);
         tileTracker.ChangeSquareType(targetCoords.x, targetCoords.y, TileTracker.SquareType.Goal);
         tileTracker.SquareTypeChanged += OnSquareTypeChanged;
@@ -171,7 +171,7 @@ public class PathFinder : MonoBehaviour
 
             foreach (Vector2Int square in path)
             {
-                publicPath.Add(new Vector3Int(square.x, 0, square.y));
+                publicPath.Add(new Vector3Int(square.x*cubeSize, 0, square.y*cubeSize));
             }
             DrawPath(path);
         }
@@ -218,16 +218,16 @@ public class PathFinder : MonoBehaviour
 
         foreach (Vector2Int square in path)
         {
-            Vector3 pos = new Vector3(square.x, 0, square.y);
+            Vector3 pos = new Vector3(square.x*cubeSize, 0, square.y*cubeSize);
             Debug.DrawLine(pos, pos, Color.clear, float.MaxValue);
         }
 
         if (path.Count < 2) return;
 
         Vector2Int start = path[0];
-        Vector3 startPos = new Vector3(start.x, 0, start.y);
+        Vector3 startPos = new Vector3(start.x*cubeSize, 0, start.y*cubeSize);
         Vector2Int next = path[1];
-        Vector3 endPos = new Vector3(next.x , 0, next.y);
+        Vector3 endPos = new Vector3(next.x*cubeSize, 0, next.y*cubeSize);
         Debug.DrawLine(startPos, endPos, Color.red, 1f);
 
         for (int i = 1; i < path.Count - 1; i++)
@@ -235,8 +235,8 @@ public class PathFinder : MonoBehaviour
             Vector2Int current = path[i];
             next = path[i + 1];
 
-            startPos = new Vector3(current.x, 0, current.y);
-            endPos = new Vector3(next.x, 0, next.y);
+            startPos = new Vector3(current.x*cubeSize, 0, current.y*cubeSize);
+            endPos = new Vector3(next.x*cubeSize, 0, next.y*cubeSize);
 
             Debug.DrawLine(startPos, endPos, Color.red, 1f);
         }

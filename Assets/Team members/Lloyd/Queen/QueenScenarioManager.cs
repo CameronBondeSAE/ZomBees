@@ -20,7 +20,9 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         Investigate,
         Attack,
         SeekHive,
-        SpawnHive
+        SpawnHive,
+        
+        Attacking
     }
 
     public QueenState myState;
@@ -48,11 +50,20 @@ public class QueenScenarioManager : MonoBehaviour, ISense
 
     public float thinkTime;
 
+    public Rigidbody rb;
+
     private void OnEnable()
     {
+        rb = GetComponent<Rigidbody>();
         queenEvent = GetComponent<QueenEvent>();
 
         StartCoroutine(Decide());
+    }
+
+    public void FixedUpdate()
+    {
+        if(rb!=null)
+        queenEvent.OnChangeSwarmPoint(rb.transform);
     }
 
     private IEnumerator Decide()
