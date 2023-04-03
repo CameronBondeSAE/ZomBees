@@ -20,6 +20,8 @@ public class CivilianProfile : MonoBehaviour
     public CivEventArgs.Personality myPersonality;
     public CivEventArgs.Character myCharType;
 
+    public CivCiv myCiv;
+
     Vector3 target;
 
     public void SetStats(CivEventArgs args)

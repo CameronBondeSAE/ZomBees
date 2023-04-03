@@ -87,7 +87,6 @@ public class QuestScriptable : ScriptableObject
                                 ChangeQuestStatus(QuestStatus.Failed);
                         }
                 }
-               // Debug.Log(time);
         }
 
         [Button]

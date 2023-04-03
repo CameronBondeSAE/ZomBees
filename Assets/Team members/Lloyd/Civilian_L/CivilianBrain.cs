@@ -44,6 +44,7 @@ namespace Team_members.Lloyd.Civilian_L
         public bool hearingSomething;
 
         public Transform target;
+        public Vector3 targetPos;
 
         public GameObject movingTarget;
 
@@ -83,8 +84,8 @@ namespace Team_members.Lloyd.Civilian_L
 
                 if (hearingSomething)
                 {
-                    Transform loudestSound = hearingComp.loudestSound.transform;
-                    target = loudestSound.gameObject.transform;
+                    Vector3 loudestSound = hearingComp.loudestRecentSound;
+                    targetPos = loudestSound;
                 }
             }
 
