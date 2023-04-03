@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Oscar;
@@ -7,6 +8,18 @@ public class OscarCivController : MonoBehaviour
 {
     public OscarCivVision vision;
     public LittleGuy littleGuy;
+    public HearingComp ears;
+    private bool hearSounds;
+    
+    private void OnEnable()
+    {
+        ears.SoundHeardEvent += CreateFear;
+    }
+
+    private void OnDisable()
+    {
+        ears.SoundHeardEvent -= DecreaseFear;
+    }
 
     public bool playerTalkin;
     public bool SeeBeeBool()
@@ -14,9 +27,26 @@ public class OscarCivController : MonoBehaviour
         return vision.beesInSight.Count >= 1;
     }
 
+    void CreateFear(HearingEventArgs eventArgs)
+    {
+        hearSounds = true;
+    }
+
+    void DecreaseFear(HearingEventArgs eventArgs)
+    {
+        hearSounds = false;
+    }
+    
     public bool IsScaredBool()
     {
-        return false;
+        if (hearSounds)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public bool StayAliveBool()

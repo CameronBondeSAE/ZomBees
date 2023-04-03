@@ -30,7 +30,7 @@ MonoBehaviour:
   - name: HuntBees
     isDefault: 1
     state: {fileID: 5933066165940633835, guid: f1efd9fda47ad8c429768d8033c5f544, type: 3}
-    cost: 1
+    cost: 2
     position: {x: 206, y: 58}
     pre:
     - id: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   - name: ApproachBee
     isDefault: 0
     state: {fileID: 5933066165940633835, guid: 55df6f2227e6cf34db354b6953919001, type: 3}
-    cost: 1
+    cost: 2
     position: {x: 400, y: 53.0475}
     pre:
     - id: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   - name: Listen
     isDefault: 0
     state: {fileID: 8654147478926489066, guid: feb01932b4c918e49be1b1f459ff134d, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 801, y: 60}
     pre:
     - id: 4
@@ -80,7 +80,7 @@ MonoBehaviour:
   - name: Talk
     isDefault: 0
     state: {fileID: 7638367005194116147, guid: adabaa9e8688a6b449c5e0f76c2881c5, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 1001, y: 60}
     pre:
     - id: 4
