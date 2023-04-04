@@ -14,8 +14,13 @@ public class AlienEggPulse : MonoBehaviour, IInteractable
     // Alien Egg is an IInteractable. Interacting with it can reduce its HP. Reducing HP to zero will result in destroying the alien egg
     //
     // Alien Egg uses DoTween to "pulse". It gets increasingly faster the less time it has left to hatch
+    //
+    // Alien Egg spawns either the Guy it started as or a designated Bee depending on if the Egg is destroyed before it hatches or not
 
     private bool pulsing;
+
+    public GameObject Guy;
+    public GameObject Bee;
 
     [Button]
     public void DestroyEgg()

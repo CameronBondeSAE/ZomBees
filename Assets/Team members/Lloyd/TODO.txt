@@ -1,0 +1,15 @@
+TO DO:
+
+-- better "egg" model (level asset?)
+
+-- story requirements
+
+-- better "bee" models
+
+-- civ faces
+
+-- interact with thing
+
+-- bee wings
+
+-- 
