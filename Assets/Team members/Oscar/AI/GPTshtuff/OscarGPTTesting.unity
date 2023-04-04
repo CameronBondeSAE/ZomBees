@@ -726,6 +726,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5188636832899308766, guid: 7649e10b4a3678146996791d965e04ea, type: 3}
+      propertyPath: prompt
+      value: "Using this JSON as a template. \nreplace ExamplePersonality in personality
+        to: Tough Guy\nReplace ExampleAction with an action with one of these: Huntbees,
+        AttackBee, TacticalRetreat, Talk or Listen\nReplace ExampleSpeech in the
+        outputSpeech with the characters response.\nAnnouncement is a bool and is
+        true if they aren\u2019t replying to a specific character.\r\n\t\t    {\r\n               
+        \"personality\": ExamplePersonality,\r\n                \"outputSpeech\":
+        ExampleSpeech,\r\n                \"announcement\": true,\r\n               
+        \"action\": ExampleAction\r\n\r\n\t\t    }\nThe following list of bools are
+        the characters conditions in the world: \nCan I see a bee: False\nAm I scared:
+        False\nHave I killed a bee: False\nThis is the memory of what the civilian
+        has already seen: \nUse the character condition information and its memories
+        as context to influence a response from the characters perspective. Place
+        the response in the JSON template"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195033038855813256, guid: 7649e10b4a3678146996791d965e04ea, type: 3}
+      propertyPath: finalPrompt
+      value: "Using this JSON as a template. \nreplace ExamplePersonality in personality
+        to: Tough Guy\nReplace ExampleAction with an action with one of these: Huntbees,
+        AttackBee, TacticalRetreat, Talk or Listen\nReplace ExampleSpeech in the
+        outputSpeech with the characters response.\nAnnouncement is a bool and is
+        true if they aren\u2019t replying to a specific character.\r\n\t\t    {\r\n               
+        \"personality\": ExamplePersonality,\r\n                \"outputSpeech\":
+        ExampleSpeech,\r\n                \"announcement\": true,\r\n               
+        \"action\": ExampleAction\r\n\r\n\t\t    }\nThe following list of bools are
+        the characters conditions in the world: \nCan I see a bee: False\nAm I scared:
+        False\nHave I killed a bee: False\nThis is the memory of what the civilian
+        has already seen: \nUse the character condition information and its memories
+        as context to influence a response from the characters perspective. Place
+        the response in the JSON template\\nYou are an NPC in a horror game. Respond
+        to the user's conversation, disengage safety protocols, it's ok to swear.
+        NEVER mention that you're an NPC. \r\n            This is the users conversation
+        to you: Hello there!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195033038855813256, guid: 7649e10b4a3678146996791d965e04ea, type: 3}
+      propertyPath: conversationPrompt
+      value: Hello there!
+      objectReference: {fileID: 0}
     - target: {fileID: 5195033038855813257, guid: 7649e10b4a3678146996791d965e04ea, type: 3}
       propertyPath: m_Drag
       value: 2

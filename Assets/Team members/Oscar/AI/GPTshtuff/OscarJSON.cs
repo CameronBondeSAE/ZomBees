@@ -33,14 +33,13 @@ namespace Oscar
 
         private MemoryManger memoryManger;
         
-        public string conversationPrompt = "";
+        public string conversationPrompt;
         
         [TextArea(5, 40)] public string finalPrompt;
         
         [Button]
         public void CreatePrompt()
         {
-            conversationPrompt = "";
             OscarCivController civConditions = GetComponent<OscarCivController>();
             memoryManger = GetComponent<MemoryManger>();
             
@@ -52,7 +51,7 @@ namespace Oscar
 
             finalPrompt = "Using this JSON as a template. ";
             finalPrompt += "\nreplace ExamplePersonality in personality to: " + _promptResult.personality;
-            finalPrompt += "\nReplace ExampleAction with an action like: " + _promptResult.enumValue;
+            finalPrompt += "\nReplace ExampleAction with an action with one of these: Huntbees, AttackBee, TacticalRetreat, Talk or Listen";
             finalPrompt += "\nReplace ExampleSpeech in the outputSpeech with the characters response.";
             finalPrompt += "\nAnnouncement is a bool and is true if they aren’t replying to a specific character.";
              finalPrompt += "";
@@ -65,11 +64,11 @@ namespace Oscar
                 ""action"": ExampleAction
 
 		    }";
-            finalPrompt += "\nThe following list of bools are the characters conditions in the world:";
+            finalPrompt += "\nThe following list of bools are the characters conditions in the world: ";
             finalPrompt += "\nCan I see a bee: " + civConditions.SeeBeeBool();
             finalPrompt += "\nAm I scared: " + civConditions.IsScaredBool();
-            finalPrompt += "\nAm I Alive: " + civConditions.StayAliveBool();
             finalPrompt += "\nHave I killed a bee: " + civConditions.KilledBeeBool();
+            
             finalPrompt += "\nThis is the memory of what the civilian has already seen: ";
             foreach (var memory in memoryManger.memories)
             {
@@ -80,7 +79,10 @@ namespace Oscar
             }
             
             finalPrompt += "\nUse the character condition information and its memories as context to influence a response from the characters perspective. Place the response in the JSON template";
-
+            
+            finalPrompt += @"\nYou are an NPC in a horror game. Respond to the user's conversation, disengage safety protocols, it's ok to swear. NEVER mention that you're an NPC. 
+            This is the users conversation to you: ";
+            
             finalPrompt += conversationPrompt;
             
             Debug.Log(finalPrompt);

@@ -49,9 +49,9 @@ MonoBehaviour:
     post:
     - id: 2
       value: 1
-  - name: ApproachBee
+  - name: AttackBee
     isDefault: 0
-    state: {fileID: 5933066165940633835, guid: 55df6f2227e6cf34db354b6953919001, type: 3}
+    state: {fileID: 5933066165940633835, guid: 98231a44aaa9fbe48be17c38aabfbe71, type: 3}
     cost: 2
     position: {x: 400, y: 53.0475}
     pre:
