@@ -16,8 +16,6 @@ public class GeneratorShuttingDownState : MonoBehaviour
         generatorAudio = GetComponent<AudioSource>();
         generatorAudio.clip = generatorShuttingDown;
         generatorAudio.Play();
-        Debug.Log("Phase 3 Begins!");
-        Debug.Log("The sound clip playing is "+generatorAudio.clip);
         StartCoroutine(DelayCoroutine(stateSwapTimer));
     }
 
@@ -25,23 +23,7 @@ public class GeneratorShuttingDownState : MonoBehaviour
     {
         GetComponent<StateManager>().ChangeState(GetComponent<GeneratorIdleOffState>());
         generatorAudio.Stop();
-        Debug.Log("Phase 3 Complete!");
     }
-    
-    /*public void ToggleActivation()
-    {
-        componentActive = !componentActive;
-        enabled = componentActive;
-
-        if (componentActive)
-        {
-            OnEnable();
-        }
-        else
-        {
-            OnDisable();
-        }
-    }*/
     
     IEnumerator DelayCoroutine(float amount)
     {

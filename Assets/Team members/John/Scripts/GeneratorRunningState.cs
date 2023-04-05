@@ -4,40 +4,67 @@ using System.Collections.Generic;
 using Johns;
 using Sirenix.OdinInspector;
 using UnityEngine;
-public class GeneratorRunningState : MonoBehaviour
+using UnityEngine.ProBuilder.MeshOperations;
+
+public class GeneratorRunningState : MonoBehaviour, ISwitchable
 {
     public AudioClip generatorRunning;
     private AudioSource generatorAudio;
-    private bool componentActive = true;
+    public bool isEnabled;
+    public float audioClipTimer;
 
     private void OnEnable()
     {
-        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
+        isEnabled = true;
         generatorAudio = GetComponent<AudioSource>();
         generatorAudio.clip = generatorRunning;
-        generatorAudio.Play();
+        StartCoroutine(PlaySoundLoop());
+        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
     }
     
     [Button]
     private void OnDisable()
     {
-        generatorAudio.Stop();
+        isEnabled = false;
         GetComponent<StateManager>().ChangeState(GetComponent<GeneratorShuttingDownState>());
     }
-    
-    /*public void ToggleActivation()
-    {
-        componentActive = !componentActive;
-        enabled = componentActive;
 
-        if (componentActive)
-        {
-            OnEnable();
-        }
-        else
-        {
-            OnDisable();
-        }
-    }*/
+    public void TurnOn()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void TurnOff()
+    {
+        OnDisable();
+    }
     
+    IEnumerator PlaySoundLoop()
+    {
+        while (true)
+        {
+            if (isEnabled)
+            {
+                AudioSource audioSource = GetComponent<AudioSource>();
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
+                yield return new WaitForSeconds(audioClipTimer);
+            }
+            else
+            {
+                GetComponent<AudioSource>().Stop(); 
+                yield return null;
+            }
+        }
+    }
+    
+    
+    public void PlaySound()
+    {
+        generatorAudio = GetComponent<AudioSource>();
+        generatorAudio.clip = generatorRunning;
+        generatorAudio.Play();
+    }
 }

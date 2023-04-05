@@ -10,12 +10,10 @@ public class GeneratorIdleOffState : MonoBehaviour
     
     public void OnEnable()
     {
-        Debug.Log("Phase 1 Begins!");
     }
     
     public void OnDisable()
     {
-        Debug.Log("Phase 1 complete!");
     }
     
     public void ToggleActivation()
