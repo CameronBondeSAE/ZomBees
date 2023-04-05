@@ -21,7 +21,7 @@ namespace Universe
 
         Cache.rootFolder = pathPrefix + "Cache";
 
-        string openAIKey = File.ReadAllText(pathPrefix + "openai-key.txt");
+        string openAIKey = "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"; //File.ReadAllText(pathPrefix + "openai-key.txt");
         TextAI.key  = openAIKey;
         CoroutineVariant.TextAI.key = openAIKey;
         // ImageAIDallE.key = openAIKey;
