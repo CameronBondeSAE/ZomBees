@@ -58,7 +58,7 @@ public class BeeWing : MonoBehaviour
 
             float offset = (randomOffset * perlinValue) * Time.deltaTime;
 
-            flapToAngle += offset;
+            //flapToAngle += offset;
             
             ChangeWingStats(flapToAngle, lerpFlapSpeed, true);
         }

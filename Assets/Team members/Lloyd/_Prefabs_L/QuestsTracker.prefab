@@ -46,8 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialized: 0
   quests: []
-  questsBegan:
-  - {fileID: 0}
+  questsBegan: []
   questsCompleted: []
   questsFailed: []
   questText: {fileID: 0}

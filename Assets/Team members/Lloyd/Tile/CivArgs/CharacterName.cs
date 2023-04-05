@@ -11,7 +11,7 @@ public class RandomNameGenerator
     public RandomNameGenerator()
     {
         names = new List<string> { "Cam", "John", "Lloyd", "Marcus", "Oscar", "Virginia" };
-        celebNames = new List<string> { "Arnold Schwarzenegger", "Christopher Walken", "Joan of Arc", "Mike Tyson", "Muhammed Ali", "Solid Snake" };
+        celebNames = new List<string> { "Arnold Schwarzenegger", "Christopher Walken", "Joan of Arc", "Mike Tyson", "Muhammed Ali", "Solid Snake", "Borat", "Buzz Aldrin", "Bee-thoven", "Honey Boo-boo", "Bee-tlejuice", "Barry Gibb", "Robin Gibb" };
         zombeeNames = new List<string> { "Buzz Lightyear", "Beeyoncé" };
     }
 

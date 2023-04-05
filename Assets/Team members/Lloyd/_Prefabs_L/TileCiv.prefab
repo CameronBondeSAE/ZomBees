@@ -160,7 +160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5268023196479596251
 Transform:
   m_ObjectHideFlags: 0
@@ -203,6 +203,7 @@ MonoBehaviour:
   myTopic: 0
   myPersonality: 0
   myCharType: 0
+  myCiv: 0
 --- !u!114 &1173769279856429734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +220,6 @@ MonoBehaviour:
   startCoords: {x: 0, y: 0}
   targetCoords: {x: 15, y: 15}
   currentCoords: {x: 0, y: 0}
-  squareSize: 1
   allyNeighbourCost: 3
   enemyNeighbourCost: 3
   publicPath: []
@@ -241,6 +241,7 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   minDist: 1
   moveSpeed: 0.01
+  maxSpeed: 0
   rb: {fileID: 8719337754071283550}
   pathList: []
 --- !u!54 &8719337754071283550

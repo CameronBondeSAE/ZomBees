@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5903857830387009678}
-  - component: {fileID: 8188236082929428610}
+  - component: {fileID: -6865707534537125056}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8188236082929428610
+--- !u!114 &-6865707534537125056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,5 +53,4 @@ MonoBehaviour:
   newTileTracker: {fileID: 0}
   civSpawner: {fileID: 6757004829756018335, guid: 3ae4d4f828b44c440951f3ddfd02f4f2, type: 3}
   newCivSpawner: {fileID: 0}
-  customLevels:
-  - {fileID: 11400000, guid: cb39499c5e9ffb341a052d8c21c226bb, type: 2}
+  customLevels: []

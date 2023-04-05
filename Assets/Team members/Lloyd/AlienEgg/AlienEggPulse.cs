@@ -112,7 +112,6 @@ public class AlienEggPulse : MonoBehaviour, IInteractable
 
     public void OnTimesUp()
     {
-        ticking = false;
         TimesUpEvent?.Invoke();
         Debug.Log("TIMES UP!");
         ticking = false;

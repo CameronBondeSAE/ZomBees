@@ -52,8 +52,6 @@ public class QuestScriptable : ScriptableObject
         public int minRequirements;
         public List<QuestRequirements> requirements = new List<QuestRequirements>();
         public QuestScriptable[] fulfilled;
-
-        public string QuestPrompt;
         
         public void RequirementFulfilled(int requirementIndex)
         {

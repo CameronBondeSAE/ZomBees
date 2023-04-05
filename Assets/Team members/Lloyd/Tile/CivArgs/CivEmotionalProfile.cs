@@ -5,32 +5,31 @@ namespace Team_members.Lloyd.Tile.CivArgs
     [Flags]
     public enum EmotionalProfile
     {
-        Random=1,
+        Random=1 << 0,
         
-        //hunger goes up at a higher rate, etc
-        Hungry=2,
+        Hungry=1 << 1,
 
-        Calm=4,
-        Hardened=8,
+        Calm=1 << 2,
+        Hardened=1 << 3,
 
-        Paranoid=16,
-        Schizophrenic=32,
-        Panic=64,
+        Paranoid=1 << 4,
+        Schizophrenic=1 << 5,
+        Panic=1 << 6,
 
-        Pious=128,
+        Pious=1 << 7,
 
-        Rambo=256,
+        Rambo=1 << 8,
         
-        Obnoxious,
+        Obnoxious=1 << 9,
         
-        Combative,
+        Combative=1 << 10,
         
-        Sarcastic,
+        Sarcastic=1 << 11,
         
-        Contrarian,
+        Contrarian=1 << 12,
         
-        Introverted,
+        Introverted=1 << 13,
         
-        Traumatised
+        Traumatised=1 << 14
     }
 }

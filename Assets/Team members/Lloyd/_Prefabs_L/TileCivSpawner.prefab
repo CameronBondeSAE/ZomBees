@@ -60,7 +60,7 @@ MonoBehaviour:
   initialized: 0
   spawnDelay: 0.5
   startDelay: 0.5
-  charCre: {fileID: 0}
+  charCre: {fileID: 921626932137409738}
 --- !u!114 &921626932137409738
 MonoBehaviour:
   m_ObjectHideFlags: 0

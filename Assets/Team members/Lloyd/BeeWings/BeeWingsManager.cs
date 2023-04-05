@@ -63,7 +63,7 @@ public class BeeWingsManager : MonoBehaviour
             }
             if (i % 3 == 0)
             {
-                offset = RandomOffset();
+              //  offset = RandomOffset();
             }
 
             GameObject newWing = Instantiate(wing, startPosition + new Vector3((i % 2 == 0 ? 1 : -1) * xDistance, currentPair * yDistance, currentPair*zDistance), Quaternion.Euler(0, i % 2 == 0 ? 0 : 180, 0));

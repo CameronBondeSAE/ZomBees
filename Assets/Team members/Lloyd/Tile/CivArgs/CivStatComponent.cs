@@ -8,7 +8,12 @@ public class CivStatComponent : MonoBehaviour
     #region FloatStats
 
     //
-    public float beeness;
+    [ShowInInspector]
+    public float beenessDisplayed
+    {
+        get => Beeness;
+        set => Beeness = value;
+    }
     public float Beeness
     {
         get => floatMap[CivFloats.beeness];
@@ -28,7 +33,12 @@ public class CivStatComponent : MonoBehaviour
         set => boolMap[CivFloats.beeness] = value;
     }
 
-    public float fear;
+    [ShowInInspector]
+    public float fearDisplayed
+    {
+        get => Fear;
+        set => Fear = value;
+    }
     public float Fear
     {
         get => floatMap[CivFloats.fear];
@@ -58,7 +68,7 @@ public class CivStatComponent : MonoBehaviour
     public float hungerThresh;
     public float HungerThresh
     {
-        get => threshMap[CivFloats.fear];
+        get => threshMap[CivFloats.hunger];
         set => threshMap[CivFloats.hunger] = value;
     }
     public bool hungry;
@@ -94,11 +104,11 @@ public class CivStatComponent : MonoBehaviour
 
     public void Start()
     {
-        beeness = Beeness;
+        //beeness = Beeness;
         beenessThresh = BeenessThresh;
         bee = Bee;
         
-        fear = Fear;
+        //fear = Fear;
         fearThresh = FearThresh;
         feared = Feared;
         
@@ -144,5 +154,6 @@ public class CivStatComponent : MonoBehaviour
     public void OnHeardSound(HearingEventArgs soundArgs)
     {
         ChangeStat(CivFloats.fear, soundArgs.Fear);
+        Debug.Log("AHHH");
     }
 }
