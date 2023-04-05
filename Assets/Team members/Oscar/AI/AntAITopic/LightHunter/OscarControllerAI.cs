@@ -20,13 +20,22 @@ public class OscarControllerAI : MonoBehaviour
 
     public bool hasTheFood()
     {
-        if(littleGuy.collectedObjects.Count >= 3)
+        if(littleGuy.collectedObjects.Count == 3)
         {
             return true;
         }
 
         return false;
     }
+
+    /*public bool DeliverTheFood()
+    {
+        if (GetComponentInChildren<DeliverFood>().IveDelivered)
+        {
+            return true;
+        }
+        return false;
+    }*/
 
     public bool seeTheLight()
     {

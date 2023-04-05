@@ -15,6 +15,7 @@ public class DeliverFood : AntAIState
     
     private NavMeshAgent navMeshAgent;
     private float arrivedDistance = 1.5f;
+    public bool IveDelivered;
 
     private Transform target;
     private NavMeshPath path;
@@ -22,7 +23,8 @@ public class DeliverFood : AntAIState
 
     public override void Create(GameObject aGameObject)
     {
-        base.Create(aGameObject); littleGuy = aGameObject.GetComponent<LittleGuy>();
+        base.Create(aGameObject); 
+        littleGuy = aGameObject.GetComponent<LittleGuy>();
         myhome = aGameObject.GetComponent<LittleGuy>().myHome;
         navMeshAgent = aGameObject.GetComponentInParent<NavMeshAgent>();
         controllerAI = aGameObject.GetComponent<OscarControllerAI>();
@@ -67,6 +69,7 @@ public class DeliverFood : AntAIState
         if (ReachedDestinationOrFailed())
         {
             theHive = TheHive();
+            IveDelivered = true;
         }
         
         elapsed += Time.deltaTime;

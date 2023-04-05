@@ -51,14 +51,17 @@ public class OscarVisionAI : MonoBehaviour
                     }
                 }
             }
-            
-            if (other.GetComponent<Honey>() != null)
-            {
-                GameObject honeyStuff = other.gameObject;
 
-                if (!honeyInSight.Contains(honeyStuff))
+            if (other.gameObject.GetComponent<Honey>().BeeObtained == false)
+            {
+                if (other.GetComponent<Honey>() != null)
                 {
-                    honeyInSight.Add(honeyStuff);
+                    GameObject honeyStuff = other.gameObject;
+
+                    if (!honeyInSight.Contains(honeyStuff))
+                    {
+                        honeyInSight.Add(honeyStuff);
+                    }
                 }
             }
 

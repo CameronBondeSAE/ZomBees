@@ -7,6 +7,8 @@ namespace Oscar
     public class UtilityManager : MonoBehaviour
     {
         public static UtilityManager instance;
+
+        public static Hive myBase;
         private void Awake()
         {
             if (instance == null)
@@ -18,11 +20,13 @@ namespace Oscar
             {
                 gameObject.SetActive(false);
             }
+            
+            myBase = FindObjectOfType<Hive>();
         }
 
         public static void DisableAfterDelay(GameObject obj)
         {
-            obj.transform.position = new Vector3(40, 30, 30);
+            obj.transform.position = new Vector3(myBase.transform.position.x - 3,20f,myBase.transform.position.z - 3)  /*new Vector3(40, 30, 30)*/;
 
             instance.StartCoroutine(DisableCoroutine(obj));
         }

@@ -19,16 +19,12 @@ MonoBehaviour:
     - id: 1
       name: HasFood
     - id: 2
-      name: SeeHive
-    - id: 3
-      name: NearHive
-    - id: 4
       name: DeliveredFood
-    - id: 5
+    - id: 3
       name: StayAlive
-    - id: 6
+    - id: 4
       name: SeeCivilian
-    - id: 7
+    - id: 5
       name: EnemyDead
   actions:
   - name: FindFood
@@ -70,62 +66,45 @@ MonoBehaviour:
     post:
     - id: 2
       value: 1
+    - id: 3
+      value: 1
   - name: AttackCivilian
     isDefault: 0
     state: {fileID: 6652321108598669598, guid: c6f467b5aa68c9d4a82428b2e5e50982, type: 3}
     cost: 0
-    position: {x: 523.21045, y: 368.1052}
+    position: {x: 921.21045, y: 136.1052}
     pre:
-    - id: 6
-      value: 1
-    - id: 7
-      value: 0
-    post:
-    - id: 7
-      value: 1
-    - id: 5
-      value: 1
-  - name: DropOfFood
-    isDefault: 0
-    state: {fileID: 6652321108598669598, guid: 4800aac147649c44abd6ef7e4fc4e261, type: 3}
-    cost: 0
-    position: {x: 923.94727, y: 134.84207}
-    pre:
-    - id: 1
-      value: 1
-    - id: 2
-      value: 1
-    - id: 4
-      value: 0
-    post:
     - id: 4
       value: 1
     - id: 5
+      value: 0
+    post:
+    - id: 5
+      value: 1
+    - id: 3
       value: 1
   goals:
   - name: FoodDelivery
     isDefault: 1
     position: {x: 319.31573, y: 369.89462}
     conditions:
-    - id: 4
+    - id: 2
       value: 1
-    - id: 5
+    - id: 3
       value: 1
   worldStates:
-  - position: {x: 298.4209, y: 616.9999}
+  - position: {x: 320.4209, y: 509.99988}
     isAutoUpdate: 1
     list:
     - id: 0
       value: 0
     - id: 1
-      value: 1
+      value: 0
     - id: 2
+      value: 0
+    - id: 3
       value: 0
     - id: 4
       value: 0
     - id: 5
-      value: 0
-    - id: 6
-      value: 0
-    - id: 7
       value: 0

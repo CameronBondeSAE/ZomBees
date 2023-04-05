@@ -1,22 +1,38 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.ComponentModel;
 using Oscar;
+using Sirenix.OdinInspector;
+using Unity.Collections;
 using UnityEngine;
 
 namespace Oscar
 {
     public class Honey : MonoBehaviour, IItem
     {
+        [Sirenix.OdinInspector.ReadOnly]public bool BeeObtained;
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.GetComponent<LittleGuy>())
+            if (collision.gameObject.GetComponent<LittleGuy>() != null)
             {
-                collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Add(gameObject);
-                Pickup(gameObject);
+                if (collision.gameObject.GetComponent<LittleGuy>().isBee)
+                {
+                    if (!collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Contains(collision.gameObject))
+                    {
+                        collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Add(gameObject);
+                        Pickup(gameObject);
+                    }
+                }
             }
         }
-        
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<Hive>() != null)
+            {
+                BeeObtained = true;
+            }
+        }
+
         public string Description()
         {
             //its honey, idk what to place here
