@@ -772,6 +772,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7131769920120445919, guid: 170766a39bcc05f4e845ad852265bb2c, type: 3}
+      propertyPath: amount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131769920120445919, guid: 170766a39bcc05f4e845ad852265bb2c, type: 3}
+      propertyPath: isEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131769920120445919, guid: 170766a39bcc05f4e845ad852265bb2c, type: 3}
+      propertyPath: audioClipTimer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

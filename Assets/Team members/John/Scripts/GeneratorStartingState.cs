@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Johns;
 using Sirenix.OdinInspector;
 using UnityEngine;
-public class GeneratorStartingState : MonoBehaviour
+public class GeneratorStartingState : MonoBehaviour, ISwitchable
 {
     public AudioClip generatorStartUp;
     private AudioSource generatorAudio;
@@ -18,38 +18,29 @@ public class GeneratorStartingState : MonoBehaviour
         generatorAudio = GetComponent<AudioSource>();
         generatorAudio.clip = generatorStartUp;
         generatorAudio.Play();
-        Debug.Log("Phase 1 Begins!");
-        Debug.Log("The sound clip playing is "+generatorAudio.clip);
         StartCoroutine(DelayCoroutine(stateSwapTimer));
     }
 
     public void OnDisable()
     {
         GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
-        Debug.Log("Phase 1 complete!");
         generatorAudio.Stop();
     }
-    
-    
-    /*public void ToggleActivation()
-    {
-        componentActive = !componentActive;
-        enabled = componentActive;
-
-        if (componentActive)
-        {
-            OnEnable();
-        }
-        else
-        {
-            OnDisable();
-        }
-    }*/
 
     IEnumerator DelayCoroutine(float amount)
     {
         Debug.Log("Coroutine Ran Succesfully");
         yield return new WaitForSeconds(amount);
         OnDisable();
+    }
+
+    public void TurnOn()
+    {
+        OnEnable();
+    }
+
+    public void TurnOff()
+    {
+        throw new NotImplementedException();
     }
 }
