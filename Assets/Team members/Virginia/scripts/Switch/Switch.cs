@@ -36,13 +36,13 @@ namespace Virginia
 
         public void Interact()
         {
-            if (GetComponent<StateManager>().currentState == GetComponent<SwitchOn>())
-            {
-                StateManager.ChangeState(GetComponent<SwitchOff>());
-            }
-            else if (GetComponent<StateManager>().currentState == GetComponent<SwitchOff>())
+            if (GetComponent<StateManager>().currentState == GetComponent<SwitchOff>())
             {
                 StateManager.ChangeState(GetComponent<SwitchOn>());
+            }
+            else if (GetComponent<StateManager>().currentState == GetComponent<SwitchOn>())
+            {
+                StateManager.ChangeState(GetComponent<SwitchOff>());
             }
         }
         public void Inspect()

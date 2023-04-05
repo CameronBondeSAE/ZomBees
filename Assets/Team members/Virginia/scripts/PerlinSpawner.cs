@@ -8,26 +8,31 @@ using Virginia;
 
 namespace Virginia
 {
-    public class PerlinD1 : MonoBehaviour
+    public class PerlinSpawner : MonoBehaviour
     {
-        public GameObject Cube;
+        public GameObject BeeHive;
 
+      
         // Start is called before the first frame update
         void Start()
         {
-
+            
         }
 
         // Update is called once per frame
         [Button]
         void Spawn()
         {
-            for (int x = 0; x < 100; x++)
+            for (int x = 0; x < 100; x++ )
             {
-                Vector3 Cubes = new Vector3(x, 0, 0);
-                x = x;
-                Instantiate(Cube, Cubes, quaternion.identity);
+                Vector3 BeeHivepos = new Vector3();
+                BeeHivepos.x = x;
+                BeeHivepos.y = Mathf.PerlinNoise1D(x);
+                Instantiate(BeeHive, BeeHivepos, quaternion.identity);
+                
+               
             }
         }
+        
     }
 }

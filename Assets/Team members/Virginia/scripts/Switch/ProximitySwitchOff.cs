@@ -6,12 +6,13 @@ using Virginia;
 
 namespace Virginia
 {
+   
     public class ProximitySwitchOff : MonoBehaviour
     {
         private void OnTriggerExit(Collider other)
         {
             Debug.Log("off");
-
+            
         }
     }
 }

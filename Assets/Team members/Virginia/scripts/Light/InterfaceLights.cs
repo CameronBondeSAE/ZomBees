@@ -7,7 +7,7 @@ public class InterfaceLights : MonoBehaviour, ISwitchable
 {
     public Light light;
     public Virginia.Switch Vswitch;
-    
+
 
     public void TurnOn()
     {
@@ -17,6 +17,6 @@ public class InterfaceLights : MonoBehaviour, ISwitchable
     public void TurnOff()
     {
         light.enabled = false;
-    
+
     }
 }
