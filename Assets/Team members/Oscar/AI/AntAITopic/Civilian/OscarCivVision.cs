@@ -13,8 +13,7 @@ public class OscarCivVision : MonoBehaviour
     public List<GameObject> honeyInSight;
 
     public MemoryManger memoryManger;
-    public Memory memory;
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other != null)
@@ -27,12 +26,7 @@ public class OscarCivVision : MonoBehaviour
                 
                     beesInSight.Add(beeStuff);
                     
-                    memory.position = Vector2Int.RoundToInt(beeStuff.transform.position);
-                    memory.description = "Saw a bee";
-                    memory.timeStamp = Time.time;
-                    memory.theThing = beeStuff.GetComponent<DynamicObject>();
-                    
-                    memoryManger.memories.Add(memory);
+                    memoryManger.AddMemory(other.gameObject);
                 }
             }
             
