@@ -3,17 +3,17 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    public void Interact();
+    public void Interact(); // Works on ground and holding
     public void Inspect(); 
     
 }
 
 public interface IItem
 {
-    public void Consume(); 
+    public void Consume(); // Only works if holding
     public void Dispose(); 
     public string Description();
-    public void Pickup(GameObject gameObject); //pickup should have reference to a GameObject that its picking up.
+    public void Pickup(GameObject whoPickedMeUp); //pickup should have reference to a GameObject that its picking up.
 }
 
 public interface ISwitchable

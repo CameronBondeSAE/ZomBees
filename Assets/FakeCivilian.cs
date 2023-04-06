@@ -5,4 +5,7 @@ using UnityEngine;
 public class FakeCivilian : MonoBehaviour
 {
 	public string GPTInfo;
+	public string mainPrompt;
+	
+	
 }
