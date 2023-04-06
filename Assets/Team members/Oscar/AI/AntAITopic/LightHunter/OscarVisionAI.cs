@@ -52,9 +52,10 @@ public class OscarVisionAI : MonoBehaviour
                 }
             }
 
-            if (other.gameObject.GetComponent<Honey>().BeeObtained == false)
+            
+            if (other.GetComponent<Honey>() != null)
             {
-                if (other.GetComponent<Honey>() != null)
+                if (other.gameObject.GetComponent<Honey>().BeeObtained == false)
                 {
                     GameObject honeyStuff = other.gameObject;
 
@@ -108,43 +109,4 @@ public class OscarVisionAI : MonoBehaviour
             hivesInSight.Remove(hiveLoc);
         }
     }
-    // private void FixedUpdate()
-    // {
-    //     //for (int f = 0; f < feelerAmount; f++)
-    //     {
-    //         Vector3 direction = Quaternion.Euler(0f, 0f, 0f) * guy.transform.forward;
-    //         Physics.Raycast(guy.rb.transform.localPosition, direction, out RaycastHit hitInfo, distance, 255,
-    //             QueryTriggerInteraction.Collide);
-    //         if (hitInfo.collider != null)
-    //         {
-    //             if (hitInfo.collider.GetComponentInParent<LightLength>() != null)
-    //             {
-    //                 GameObject lightRay = hitInfo.collider.gameObject;
-    //                 
-    //                 if (!lightInSight.Contains(lightRay)) 
-    //                 { 
-    //                     lightInSight.Add(lightRay); 
-    //                 } 
-    //             }
-    //
-    //             if (hitInfo.collider.GetComponent<Honey>() != null)
-    //             {
-    //                 GameObject honeyStuff = hitInfo.collider.gameObject;
-    //
-    //                 if (!honeyInSight.Contains(honeyStuff))
-    //                 {
-    //                     honeyInSight.Add(honeyStuff);
-    //                 }
-    //             }
-    //             
-    //             //avoid walls coming to a script near you!
-    //             
-    //         }
-    //         else
-    //         { 
-    //             lightInSight.Clear();
-    //             honeyInSight.Clear();
-    //         }
-    //     }
-    // }
 }

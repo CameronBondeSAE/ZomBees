@@ -9,5 +9,8 @@ namespace Oscar
         //perception levels
         public bool isLit;
         public bool isMoving;
+
+        public float importance;
+        
     }
 }

@@ -14,13 +14,10 @@ namespace Oscar
         {
             if (collision.gameObject.GetComponent<LittleGuy>() != null)
             {
-                if (collision.gameObject.GetComponent<LittleGuy>().isBee)
+                if (!collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Contains(gameObject))
                 {
-                    if (!collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Contains(collision.gameObject))
-                    {
-                        collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Add(gameObject);
-                        Pickup(gameObject);
-                    }
+                    collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Add(gameObject);
+                    Pickup(gameObject);
                 }
             }
         }

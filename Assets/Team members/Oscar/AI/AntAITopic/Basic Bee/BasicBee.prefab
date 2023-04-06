@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &319571427
 Transform:
   m_ObjectHideFlags: 0
@@ -828,7 +828,7 @@ Transform:
   m_GameObject: {fileID: 498041809768793979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.5}
-  m_LocalScale: {x: 5, y: 5, z: 10}
+  m_LocalScale: {x: 5, y: 5, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5571471917264393360}
@@ -946,6 +946,7 @@ GameObject:
   - component: {fileID: 2293153713711874638}
   - component: {fileID: 580629843692700599}
   - component: {fileID: 107395901}
+  - component: {fileID: 1521932899624247435}
   - component: {fileID: 793378155189557603}
   m_Layer: 14
   m_Name: BasicBee
@@ -970,7 +971,7 @@ Transform:
   - {fileID: 2917227763960282982}
   - {fileID: 319571427}
   m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 4110.97, z: 0}
 --- !u!33 &5571471917264393363
 MeshFilter:
@@ -1084,14 +1085,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae14b77d76a23a499b6abe454a12762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLit: 0
-  isMoving: 0
+  collectedObjects: []
   isBee: 1
   rb: {fileID: 5571471917264393375}
   littleGuyModel: {fileID: 5571471917264393374}
   speed: 2
   turnSpeed: 0.05
-  collectedObjects: []
   myHome: {fileID: 0}
 --- !u!114 &4980646194317187398
 MonoBehaviour:
@@ -1163,6 +1162,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf7ddd136bea9854a8b94daa870d778e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1521932899624247435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5571471917264393374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593be3032bd709342bb2e83e64292c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!195 &793378155189557603

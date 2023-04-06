@@ -26,7 +26,7 @@ namespace Oscar
 
         public static void DisableAfterDelay(GameObject obj)
         {
-            obj.transform.position = new Vector3(myBase.transform.position.x - 3,20f,myBase.transform.position.z - 3)  /*new Vector3(40, 30, 30)*/;
+            obj.transform.position = new Vector3(myBase.transform.position.x + 13,20f,myBase.transform.position.z + 13)  /*new Vector3(40, 30, 30)*/;
 
             instance.StartCoroutine(DisableCoroutine(obj));
         }

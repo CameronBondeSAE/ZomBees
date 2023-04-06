@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace Oscar
 {
-    public class LittleGuy : DynamicObject
+    public class LittleGuy : LivingEntity
     {
         public bool isBee;
         public Rigidbody rb;
@@ -15,10 +15,10 @@ namespace Oscar
         public float speed;
         public float turnSpeed;
 
-        public List<GameObject> collectedObjects;
-
         public GameObject myHome;
 
+        public List<GameObject> collectedObjects;
+        
         private void Awake()
         {
             collectedObjects = new List<GameObject>();
