@@ -43,6 +43,10 @@ namespace Marcus
                 if (distanceFromPoint <= stoppingDistance)
                 {
                     pathCounter++;
+                    if (pathCounter >= path.corners.Length)
+                    {
+                        targetPoint = null;
+                    }
                 }
 
                 float turnSpeed = Vector3.Angle(transform.forward, nextPoint);

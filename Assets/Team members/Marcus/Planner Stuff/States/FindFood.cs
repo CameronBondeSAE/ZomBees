@@ -11,9 +11,11 @@ namespace Marcus
     {
         private TurnToFood foodSense;
 
-        private void OnEnable()
+        public override void Create(GameObject aGameObject)
         {
-            foodSense = GetComponentInParent<TurnToFood>();
+            base.Create(aGameObject);
+
+            foodSense = aGameObject.GetComponentInChildren<TurnToFood>();
         }
 
         public override void Enter()
@@ -22,15 +24,15 @@ namespace Marcus
 
             GetComponentInParent<AdvancedGuyDudeMovement>().MoveToPoint
                 (PatrolManager.singleton.resourcePoints[Random.Range(0,PatrolManager.singleton.resourcePoints.Count)]);
-            
-            foodSense.gameObject.SetActive(true);
+
+            foodSense.GetComponent<SphereCollider>().enabled = true;
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            foodSense.gameObject.SetActive(false);
+            foodSense.GetComponent<SphereCollider>().enabled = false;
         }
     }
 }

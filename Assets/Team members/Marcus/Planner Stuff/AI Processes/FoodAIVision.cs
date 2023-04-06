@@ -13,13 +13,13 @@ namespace Marcus
         private float spacing;
         private float offset;
         
-        public List<object> visableFood;
-        public List<object> visableObjects;
+        public List<GameObject> visableFood;
+        public List<GameObject> visableObjects;
 
         private void Start()
         {
-            visableFood = new List<object>();
-            visableObjects = new List<object>();
+            visableFood = new List<GameObject>();
+            visableObjects = new List<GameObject>();
             
             spacing = 20f / feelerAmount;
             offset = feelerAmount / 2f;
