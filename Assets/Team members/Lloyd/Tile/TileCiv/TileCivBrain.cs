@@ -23,8 +23,6 @@ public class TileCivBrain : MonoBehaviour
     
     private MonoBehaviour mouth;
 
-    private TileCivHead lookTowards;
-
     private PathFinder pathfinder;
 
     private void OnEnable()
@@ -37,7 +35,7 @@ public class TileCivBrain : MonoBehaviour
     {
         if (listening)
         {
-            lookTowards.SetTarget(heardSound.Source.transform.position);
+            //lookTowards.SetTarget(heardSound.Source.transform.position);
         }
 
         lastSound = heardSound;

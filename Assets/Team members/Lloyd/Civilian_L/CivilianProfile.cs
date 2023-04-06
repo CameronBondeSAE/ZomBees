@@ -20,7 +20,7 @@ public class CivilianProfile : MonoBehaviour
     public CivEventArgs.Personality myPersonality;
     public CivEventArgs.Character myCharType;
 
-    public CivCiv myCiv;
+    public CivCountryOfOrigin myCiv;
 
     Vector3 target;
 
