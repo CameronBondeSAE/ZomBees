@@ -10,7 +10,7 @@ public class TileTracker : MonoBehaviour
     
     public bool initialized=false;
     
-    public const float cubeSize = 10;
+    public const float cubeSize = 1;
 
     public float CubeSize()
     {

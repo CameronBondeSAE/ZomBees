@@ -6,8 +6,6 @@ using UnityEngine;
 public class CivStatComponent : MonoBehaviour
 {
     #region FloatStats
-
-    //
     [ShowInInspector]
     public float beenessDisplayed
     {
@@ -19,14 +17,23 @@ public class CivStatComponent : MonoBehaviour
         get => floatMap[CivFloats.beeness];
         set => floatMap[CivFloats.beeness] = value;
     }
-
-    public float beenessThresh;
+    [ShowInInspector]
+    public float beenessThreshDisplayed
+    {
+        get => BeenessThresh;
+        set => BeenessThresh = value;
+    }
     public float BeenessThresh
     {
         get => threshMap[CivFloats.beeness];
         set => threshMap[CivFloats.beeness] = value;
     }
-    public bool bee;
+    [ShowInInspector]
+    public bool beeDisplayed
+    {
+        get => Bee;
+        set => Bee = value;
+    }
     public bool Bee
     {
         get => boolMap[CivFloats.beeness];
@@ -44,34 +51,58 @@ public class CivStatComponent : MonoBehaviour
         get => floatMap[CivFloats.fear];
         set => floatMap[CivFloats.fear] = value;
     }
-
-    public float fearThresh; 
+    
+    [ShowInInspector]
+    public float fearThreshDisplayed
+    {
+        get => FearThresh;
+        set => FearThresh = value;
+    }
     public float FearThresh
     {
         get => threshMap[CivFloats.fear];
         set => threshMap[CivFloats.fear] = value;
     }
-    public bool feared;
+
+    [ShowInInspector]
+    public bool fearedDisplayed
+    {
+        get => Feared;
+        set => Feared = value;
+    }
     public bool Feared
     {
         get => boolMap[CivFloats.fear];
         set => boolMap[CivFloats.fear] = value;
     }
-
-    public float hunger;
+    [ShowInInspector]
+    public float hungerDisplayed
+    {
+        get => Hunger;
+        set => Hunger = value;
+    }
     public float Hunger
     {
         get => floatMap[CivFloats.hunger];
         set => floatMap[CivFloats.hunger] = value;
     }
-
-    public float hungerThresh;
+    [ShowInInspector]
+    public float hungerThreshDisplayed
+    {
+        get => HungerThresh;
+        set => HungerThresh = value;
+    }
     public float HungerThresh
     {
         get => threshMap[CivFloats.hunger];
         set => threshMap[CivFloats.hunger] = value;
     }
-    public bool hungry;
+    [ShowInInspector]
+    public bool hungry
+    {
+        get => Hungry;
+        set => Hungry = value;
+    }
     public bool Hungry
     {
         get => boolMap[CivFloats.hunger];
@@ -104,16 +135,16 @@ public class CivStatComponent : MonoBehaviour
 
     public void Start()
     {
-        //beeness = Beeness;
-        beenessThresh = BeenessThresh;
-        bee = Bee;
+        beenessDisplayed = Beeness;
+        beenessThreshDisplayed = BeenessThresh;
+        beeDisplayed = Bee;
+
+        fearDisplayed = Fear;
+        fearThreshDisplayed = FearThresh;
+        fearedDisplayed = Feared;
         
-        //fear = Fear;
-        fearThresh = FearThresh;
-        feared = Feared;
-        
-        hunger = Hunger;
-        hungerThresh = HungerThresh;
+        hungerDisplayed = Hunger;
+        hungerThreshDisplayed = HungerThresh;
         hungry = Hungry;
     }
 
@@ -131,7 +162,7 @@ public class CivStatComponent : MonoBehaviour
 
         OnChangeStatEvent();
     }
-
+    
     public event Action ChangeStatEvent;
 
     public void OnChangeStatEvent()
@@ -139,21 +170,29 @@ public class CivStatComponent : MonoBehaviour
         ChangeStatEvent?.Invoke();
     }
 
-    //
+    [Button]
+    public void ChangeStatThreshold(CivFloats floatType, float changeAmount)
+    {
+        float currentValue = threshMap[floatType];
+
+        float newValue = Mathf.Clamp(currentValue + changeAmount, minValue, maxValue);
+        threshMap[floatType] = newValue;
+        
+        OnChangeThreshEvent();
+    }
+
+    public event Action ChangeThreshEvent;
+
+    public void OnChangeThreshEvent()
+    {
+        ChangeThreshEvent?.Invoke();
+    }
 
     #endregion
 
-    public HearingComp hearingComp;
+    public string myName;
 
-    private void OnEnable()
-    {
-        hearingComp = GetComponent<HearingComp>();
-        hearingComp.SoundHeardEvent += OnHeardSound;
-    }
+    public CivCiv myCiv;
 
-    public void OnHeardSound(HearingEventArgs soundArgs)
-    {
-        ChangeStat(CivFloats.fear, soundArgs.Fear);
-        Debug.Log("AHHH");
-    }
+    public CivTraits myTraits;
 }

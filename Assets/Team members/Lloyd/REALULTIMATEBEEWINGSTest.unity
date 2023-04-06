@@ -323,6 +323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeeBody
       objectReference: {fileID: 0}
+    - target: {fileID: 8941825892375159523, guid: 16bc0fea96a3081458330f2efee5b051, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9195680800486118662, guid: 16bc0fea96a3081458330f2efee5b051, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -768,12 +772,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
       propertyPath: myWings.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
       propertyPath: myWings.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5055074893028088857, guid: dec5a9bcf9285794d8a5a097204677c3, type: 3}
     - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
       propertyPath: myWings.Array.data[3]
       value: 

@@ -28,7 +28,7 @@ public class Follower : MonoBehaviour, IFollower
 
     private float angleOffset;
 
-    private LookTowards lookTowards;
+   // private LookTowards lookTowards;
 
     private CircleMovement circleMovement;
 
@@ -46,7 +46,7 @@ public class Follower : MonoBehaviour, IFollower
 
         minDist = GetComponent<FollowerMinDist>();
 
-        lookTowards = GetComponent<LookTowards>();
+       // lookTowards = GetComponent<LookTowards>();
 
         rb = GetComponent<Rigidbody>();
 
@@ -86,7 +86,7 @@ public class Follower : MonoBehaviour, IFollower
         {
             //CircleMovement();
             MoveToTarget();
-            lookTowards.SetTarget(target);
+          //  lookTowards.SetTarget(target);
             circleMovement.SetCenterPoint(target);
             minDist.SetVector3(target.position);
         }

@@ -15,7 +15,6 @@ public class QueenEvent : MonoBehaviour
 
     public void OnMyEvent()
     {
-        myEvent?.Invoke(this, new QueenEventArgs());
     }
 
 

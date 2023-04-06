@@ -32,17 +32,17 @@ public class QueenAttack : AntAIState
 
         queenScene = GetComponent<QueenScenarioManager>();
 
-        queenScene.attacking = true;
+        //queenScene.attacking = true;
         StartCoroutine(AttackPeriodically());
     }
 
     private void FixedUpdate()
     {
-        playerTracked = queenScene.spottedHuman;
-        queenScene.attacking = true;
+        //playerTracked = queenScene.spottedHuman;
+        //queenScene.attacking = true;
     }
 
-    private IEnumerator AttackPeriodically()
+    private IEnumerator AttackPeriodically()    
     {
         while (attacking)
         {

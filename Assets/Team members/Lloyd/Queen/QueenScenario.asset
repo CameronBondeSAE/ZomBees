@@ -23,105 +23,86 @@ MonoBehaviour:
     - id: 3
       name: Seeking
     - id: 4
-      name: SpottedHuman
+      name: SpottedResource
     - id: 5
-      name: Attacking
+      name: MoveToHive
     - id: 6
-      name: Seeking
+      name: SpawnHive
     - id: 7
-      name: Thinking
+      name: DangerNearby
   actions:
-  - name: SeekingHuman
-    isDefault: 0
-    state: {fileID: 3902109862962598710, guid: 4478c3904b1a95a4e84350da529d950e, type: 3}
-    cost: 2
-    position: {x: 1406.5593, y: 503.56238}
-    pre:
-    - id: 2
-      value: 0
-    - id: 3
-      value: 1
-    - id: 1
-      value: 0
-    - id: 4
-      value: 0
-    - id: 5
-      value: 0
-    post: []
   - name: InvestigatingNoise
     isDefault: 0
     state: {fileID: 8080380390649088878, guid: f68d643976fddf040bf9779ae07d0f3d, type: 3}
     cost: 3
-    position: {x: 918.82623, y: 580.73926}
+    position: {x: 740, y: 620}
     pre:
-    - id: 2
-      value: 1
-    - id: 1
-      value: 0
-    - id: 4
-      value: 0
-    - id: 5
-      value: 0
-    post:
-    - id: 2
-      value: 1
     - id: 7
       value: 1
-  - name: AttackHuman
+    post: []
+  - name: HarvestResource
     isDefault: 0
     state: {fileID: 4596624490198139294, guid: 9e2d51e2070c0e242874aec0b26aa82e, type: 3}
     cost: 1
-    position: {x: 598.15936, y: 670.8551}
+    position: {x: 680, y: 20}
     pre:
-    - id: 4
-      value: 1
     - id: 1
       value: 0
-    - id: 5
+    - id: 4
+      value: 1
+    - id: 4
       value: 1
     post:
-    - id: 5
-      value: 0
+    - id: 1
+      value: 1
   - name: SpawningHive
     isDefault: 0
     state: {fileID: 5405125979471721382, guid: 8dafcfb6597e1e444a7a92f34f9e13bd, type: 3}
     cost: 0
-    position: {x: 206.6117, y: 229.26105}
+    position: {x: 260, y: 600}
     pre:
     - id: 1
       value: 1
     - id: 0
       value: 1
+    - id: 7
+      value: 0
     post:
-    - id: 1
-      value: 0
-  - name: MovingToHive
-    isDefault: 0
-    state: {fileID: 2029868940514393544, guid: b1f10f178d06cc247a930d0c985a5cbb, type: 3}
-    cost: 0
-    position: {x: 234.22113, y: 572.96625}
-    pre:
-    - id: 1
+    - id: 6
       value: 1
-    - id: 5
-      value: 0
-    - id: 0
-      value: 0
-    post: []
   - name: SeekingResources
-    isDefault: 0
+    isDefault: 1
     state: {fileID: 8080380390649088878, guid: f68d643976fddf040bf9779ae07d0f3d, type: 3}
     cost: 1
-    position: {x: 548.48505, y: 305.89603}
+    position: {x: 460, y: 20}
     pre:
     - id: 1
       value: 0
-    post: []
-  - name: Thinking
+    - id: 4
+      value: 0
+    post:
+    - id: 4
+      value: 1
+  - name: MoveToHive
     isDefault: 0
-    state: {fileID: 3072409714904257688, guid: 658c2fe85c8358042a234802b14d52fc, type: 3}
+    state: {fileID: 698925801472832170, guid: a9ab15841a267c84b906f7994d389ea9, type: 3}
     cost: 0
-    position: {x: 1498.0133, y: 85.90065}
+    position: {x: 900, y: 20}
+    pre:
+    - id: 1
+      value: 1
+    - id: 0
+      value: 0
+    post:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 1
+  - name: QueenAttack
+    isDefault: 0
+    state: {fileID: 4596624490198139294, guid: 9e2d51e2070c0e242874aec0b26aa82e, type: 3}
+    cost: 0
+    position: {x: 1120, y: 20}
     pre:
     - id: 7
       value: 1
@@ -131,24 +112,27 @@ MonoBehaviour:
   goals:
   - name: SpawnHive
     isDefault: 1
-    position: {x: 201.57965, y: 54.478165}
+    position: {x: 200, y: 20}
     conditions:
+    - id: 6
+      value: 1
+  worldStates:
+  - position: {x: 456, y: 334}
+    isAutoUpdate: 1
+    list:
     - id: 0
-      value: 1
+      value: 0
     - id: 1
-      value: 1
-    - id: 7
       value: 0
     - id: 2
       value: 0
-  - name: SeekResources
-    isDefault: 0
-    position: {x: 433.002, y: 77.35678}
-    conditions:
-    - id: 1
-      value: 1
-  - name: AttackHuman
-    isDefault: 0
-    position: {x: 855.1391, y: 77.30464}
-    conditions: []
-  worldStates: []
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0
+    - id: 5
+      value: 0
+    - id: 6
+      value: 0
+    - id: 7
+      value: 0

@@ -67,8 +67,6 @@ public class QueenLerpTowards : MonoBehaviour
     {
         curSpeed = rb.velocity.magnitude;
 
-        isMoving = queenScene.isMoving;
-
         if (isMoving)
         {
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -107,7 +105,7 @@ public class QueenLerpTowards : MonoBehaviour
             {
                 float distCovered = (Time.time - startTime) * flySpeed;
                 float fracJourney = distCovered / journeyLength;
-                Vector3 targetPosition = Vector3.Lerp(transform.position, currFlyPoint.transform.position, fracJourney);
+                Vector3 targetPosition = Vector3.Slerp(transform.position, currFlyPoint.transform.position, fracJourney);
 
                 // Calculate the direction and distance to the target position
                 Vector3 direction = (targetPosition - transform.position).normalized;
@@ -129,11 +127,6 @@ public class QueenLerpTowards : MonoBehaviour
                 int currIndex = flyPoints.IndexOf(currFlyPoint);
                 currFlyPoint = flyPoints[(currIndex + 1) % flyPoints.Count];
             }
-        }
-
-        if (flyPoints.Count == 0)
-        {
-            isMoving = false;
         }
     }
 }

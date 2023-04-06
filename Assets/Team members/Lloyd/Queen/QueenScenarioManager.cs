@@ -21,81 +21,45 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         Attack,
         SeekHive,
         SpawnHive,
-        
         Attacking
     }
 
     public QueenState myState;
 
-    public bool isMoving=false;
+    public bool arrived = false;
 
-    public bool hasArrived=false;
-
-    public bool hasResource=false;
-    public bool investigating=false;
-    public bool seeking=false;
-    public bool spottedHuman=false;
-    
-    public bool attacking=false;
-
-    private LookTowards lookTowards;
+    private LookAtTarget lookAtTarget;
 
     public List<GameObject> followers = new List<GameObject>();
 
     public List<GameObject> harvestTargets = new List<GameObject>();
 
-    public GameObject movePoint;
+    public Vector3 movePoint;
 
-    public GameObject lookPoint;
-
-    public float thinkTime;
+    public Vector3 lookPoint;
 
     public Rigidbody rb;
 
-    private void OnEnable()
-    {
-        rb = GetComponent<Rigidbody>();
-        queenEvent = GetComponent<QueenEvent>();
+    #region ANTAI
 
-        StartCoroutine(Decide());
-    }
+    public bool hasResource = false;
 
-    public void FixedUpdate()
-    {
-        if(rb!=null)
-        queenEvent.OnChangeSwarmPoint(rb.transform);
-    }
+    public bool isMoving = false;
 
-    private IEnumerator Decide()
-    {
-        //check for scent, heard sound, etc
-        yield return new WaitForSeconds(thinkTime);
+    public bool hasArrived = false;
 
-        if (hasResource)
-        {
-            myState = QueenState.SeekHive;
-        }
+    public bool investigatingNoise = false;
 
-        if (spottedHuman)
-        {
-            if (harvestTargets.Count > 0)
-            {
+    public bool seekingResource = true;
 
-            }
-        }
-    }
+    public bool spottedResource = false;
 
-    public void AddFollower(GameObject follower)
-    {
-        followers.Add(follower);
-    }
+    public bool moveToHiveSpot = false;
 
-    public void SetLookPoint(GameObject newLookPoint)
-    {
-        lookPoint = newLookPoint;
-        //lookTowards.SetTarget(lookPoint.transform);
-    }
-    
+    public bool spawnHive = false;
+
+    public bool dangerNearby = false;
+
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
         aWorldState.BeginUpdate(aAgent.planner);
@@ -104,14 +68,32 @@ public class QueenScenarioManager : MonoBehaviour, ISense
 
         aWorldState.Set("HasResource", hasResource);
 
-        aWorldState.Set("Investigating", investigating);
+        aWorldState.Set("InvestigatingNoise", investigatingNoise);
 
-        aWorldState.Set("Seeking", seeking);
+        aWorldState.Set("SeekingResource", seekingResource);
 
-        aWorldState.Set("SpottedHuman", spottedHuman);
+        aWorldState.Set("SpottedResource", spottedResource);
 
-        aWorldState.Set("Attacking", attacking);
+        aWorldState.Set("MoveToHive", moveToHiveSpot);
+
+        aWorldState.Set("SpawnHive", spawnHive);
+
+        aWorldState.Set("DangerNearby", dangerNearby);
 
         aWorldState.EndUpdate();
+    }
+
+    #endregion
+
+    private void StartQueen()
+    {
+        rb = GetComponent<Rigidbody>();
+        queenEvent = GetComponent<QueenEvent>();
+    }
+
+
+    public void AddFollower(GameObject follower)
+    {
+        followers.Add(follower);
     }
 }

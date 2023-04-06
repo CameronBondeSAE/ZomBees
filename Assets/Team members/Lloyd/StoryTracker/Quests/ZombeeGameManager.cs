@@ -70,7 +70,7 @@ namespace Team_members.Lloyd.StoryTracker.Quests
             {
                 yield return null;
             }
-            LoadLevel();
+            //LoadLevel();
             Debug.Log("tiles made");
             
             newCivSpawnerScript.StartGame(newTileTrackerScript);
@@ -81,7 +81,7 @@ namespace Team_members.Lloyd.StoryTracker.Quests
             Debug.Log("civs spawned");
         }
     
-        public void LoadLevel()
+        /*public void LoadLevel()
         {
             loadLevel = customLevels[0];
             board = loadLevel.Board();
@@ -92,7 +92,7 @@ namespace Team_members.Lloyd.StoryTracker.Quests
                     newTileTrackerScript.ChangeSquareType(x, y, board[x,y]);
                 }
             }
-        }
+        }*/
     
         //subscribe to events later
     
