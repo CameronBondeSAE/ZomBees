@@ -22,16 +22,18 @@ public class Eyebrows : MonoBehaviour
     [ShowInInspector] public Dictionary<(CivEmotions, CivEmotions), Quaternion> emotionQuaternions =
         new Dictionary<(CivEmotions, CivEmotions), Quaternion>();
 
+    private float waitTime;
+
     [Button]
-    public void StartGame()
+    public void StartGame(float newWaitTime)
     {
         emotionQuaternions[(CivEmotions.Neutral, CivEmotions.Neutral)] = neutralRotate;
         emotionQuaternions[(CivEmotions.Neutral, CivEmotions.Angry)] = angry;
         emotionQuaternions[(CivEmotions.Neutral, CivEmotions.Happy)] = happy;
         emotionQuaternions[(CivEmotions.Neutral, CivEmotions.Sad)] = sad;
         emotionQuaternions[(CivEmotions.Neutral, CivEmotions.Surprised)] = surprised;
-        
-        leftEyebrow.localRotation *= Quaternion.Euler(0f, 180f, 0f);
+
+        waitTime = newWaitTime;
     }
 
     [Button]
@@ -39,39 +41,53 @@ public class Eyebrows : MonoBehaviour
     {
         firstEmotion = newFirstEmote;
         secondEmotion = newSecondEmote;
-        Quaternion targetRotation = emotionQuaternions[(firstEmotion, secondEmotion)];
-        StartCoroutine(RotateLeftToEmotion(targetRotation));
-        StartCoroutine(RotateRightToEmotion(targetRotation));
 
+        if (newSecondEmote == CivEmotions.Happy || newSecondEmote == CivEmotions.Surprised)
+            return;
+
+        Quaternion targetQuaternion = emotionQuaternions[(firstEmotion, secondEmotion)];
+
+        StartCoroutine(TurnOff());
+        StartCoroutine(RotateLeftToEmotion(leftEyebrow, targetQuaternion));
+        StartCoroutine(RotateRightToEmotion(rightEyebrow, targetQuaternion));
     }
 
-    private IEnumerator RotateLeftToEmotion(Quaternion targetRotation)
+    private IEnumerator RotateLeftToEmotion(Transform targetTransform, Quaternion targetRotation)
     {
-        while (true)
+        if (targetRotation == neutralRotate)
         {
-            leftEyebrow.localRotation = targetRotation = 
-                Quaternion.RotateTowards(leftEyebrow.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
-            if (leftEyebrow.localRotation == targetRotation)
-            {
-                yield break;
-            }
-
+            targetRotation = Quaternion.identity;
+        }
+        Quaternion flipRotation = Quaternion.AngleAxis(180f, Vector3.up);
+        Quaternion targetRotationFlipped = flipRotation * targetRotation;
+        Quaternion currentRotation = targetTransform.localRotation;
+        while (Quaternion.Angle(currentRotation, targetRotationFlipped) > 0.1f)
+        {
+            currentRotation = Quaternion.RotateTowards(currentRotation, targetRotationFlipped,
+                rotationSpeed * Time.deltaTime);
+            targetTransform.localRotation = currentRotation;
             yield return null;
         }
     }
 
-    private IEnumerator RotateRightToEmotion(Quaternion targetRotation)
+    private IEnumerator RotateRightToEmotion(Transform targetTransform, Quaternion targetRotation)
     {
-        while (true)
+        Quaternion currentRotation = targetTransform.localRotation;
+        while (Quaternion.Angle(currentRotation, targetRotation) > 0.1f)
         {
-            rightEyebrow.localRotation = targetRotation = 
-                Quaternion.RotateTowards(rightEyebrow.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
-            if (rightEyebrow.localRotation == targetRotation)
-            {
-                yield break;
-            }
-
+            currentRotation = Quaternion.RotateTowards(currentRotation, targetRotation,
+                rotationSpeed * Time.deltaTime);
+            targetTransform.localRotation = currentRotation;
             yield return null;
         }
+    }
+
+    private IEnumerator TurnOff()
+    {
+        leftEyebrow.gameObject.SetActive(true);
+        rightEyebrow.gameObject.SetActive(true);
+        yield return new WaitForSeconds(waitTime);
+        leftEyebrow.gameObject.SetActive(false);
+        rightEyebrow.gameObject.SetActive(false);
     }
 }
