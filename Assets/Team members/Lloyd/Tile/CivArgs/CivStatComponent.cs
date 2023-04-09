@@ -6,34 +6,79 @@ using UnityEngine;
 public class CivStatComponent : MonoBehaviour
 {
     #region FloatStats
+
+    [ShowInInspector]
+    public float healthDisplayed
+    {
+        get => Health;
+        set => Health = value;
+    }
+
+    public float Health
+    {
+        get => floatMap[CivFloats.health];
+        set => floatMap[CivFloats.health] = value;
+    }
+
+    [ShowInInspector]
+    public float healthThreshDisplayed
+    {
+        get => HealthThresh;
+        set => HealthThresh = value;
+    }
+
+    public float HealthThresh
+    {
+        get => threshMap[CivFloats.health];
+        set => threshMap[CivFloats.health] = value;
+    }
+
+    [ShowInInspector]
+    public bool isAliveDisplayed
+    {
+        get => IsAlive;
+        set => IsAlive = value;
+    }
+
+    public bool IsAlive
+    {
+        get => boolMap[CivFloats.health];
+        set => boolMap[CivFloats.health] = value;
+    }
+
     [ShowInInspector]
     public float beenessDisplayed
     {
         get => Beeness;
         set => Beeness = value;
     }
+
     public float Beeness
     {
         get => floatMap[CivFloats.beeness];
         set => floatMap[CivFloats.beeness] = value;
     }
+
     [ShowInInspector]
     public float beenessThreshDisplayed
     {
         get => BeenessThresh;
         set => BeenessThresh = value;
     }
+
     public float BeenessThresh
     {
         get => threshMap[CivFloats.beeness];
         set => threshMap[CivFloats.beeness] = value;
     }
+
     [ShowInInspector]
     public bool beeDisplayed
     {
         get => Bee;
         set => Bee = value;
     }
+
     public bool Bee
     {
         get => boolMap[CivFloats.beeness];
@@ -46,18 +91,20 @@ public class CivStatComponent : MonoBehaviour
         get => Fear;
         set => Fear = value;
     }
+
     public float Fear
     {
         get => floatMap[CivFloats.fear];
         set => floatMap[CivFloats.fear] = value;
     }
-    
+
     [ShowInInspector]
     public float fearThreshDisplayed
     {
         get => FearThresh;
         set => FearThresh = value;
     }
+
     public float FearThresh
     {
         get => threshMap[CivFloats.fear];
@@ -70,39 +117,46 @@ public class CivStatComponent : MonoBehaviour
         get => Feared;
         set => Feared = value;
     }
+
     public bool Feared
     {
         get => boolMap[CivFloats.fear];
         set => boolMap[CivFloats.fear] = value;
     }
+
     [ShowInInspector]
     public float hungerDisplayed
     {
         get => Hunger;
         set => Hunger = value;
     }
+
     public float Hunger
     {
         get => floatMap[CivFloats.hunger];
         set => floatMap[CivFloats.hunger] = value;
     }
+
     [ShowInInspector]
     public float hungerThreshDisplayed
     {
         get => HungerThresh;
         set => HungerThresh = value;
     }
+
     public float HungerThresh
     {
         get => threshMap[CivFloats.hunger];
         set => threshMap[CivFloats.hunger] = value;
     }
+
     [ShowInInspector]
     public bool hungry
     {
         get => Hungry;
         set => Hungry = value;
     }
+
     public bool Hungry
     {
         get => boolMap[CivFloats.hunger];
@@ -114,20 +168,23 @@ public class CivStatComponent : MonoBehaviour
 
     public Dictionary<CivFloats, float> floatMap = new Dictionary<CivFloats, float>
     {
+        { CivFloats.health, 0.0f },
+        { CivFloats.hunger, 0.0f },
         { CivFloats.beeness, 0.0f },
-        { CivFloats.fear, 0.0f },
-        { CivFloats.hunger, 0.0f }
+        { CivFloats.fear, 0.0f }
     };
 
     public Dictionary<CivFloats, float> threshMap = new Dictionary<CivFloats, float>
     {
+        { CivFloats.health, 0.0f },
+        { CivFloats.hunger, 0.0f },
         { CivFloats.beeness, 0.0f },
-        { CivFloats.fear, 0.0f },
-        { CivFloats.hunger, 0.0f }
+        { CivFloats.fear, 0.0f }
     };
 
     public Dictionary<CivFloats, bool> boolMap = new Dictionary<CivFloats, bool>
     {
+        { CivFloats.health, true },
         { CivFloats.beeness, false },
         { CivFloats.fear, false },
         { CivFloats.hunger, false }
@@ -142,7 +199,7 @@ public class CivStatComponent : MonoBehaviour
         fearDisplayed = Fear;
         fearThreshDisplayed = FearThresh;
         fearedDisplayed = Feared;
-        
+
         hungerDisplayed = Hunger;
         hungerThreshDisplayed = HungerThresh;
         hungry = Hungry;
@@ -162,7 +219,7 @@ public class CivStatComponent : MonoBehaviour
 
         OnChangeStatEvent();
     }
-    
+
     public event Action ChangeStatEvent;
 
     public void OnChangeStatEvent()
@@ -177,7 +234,7 @@ public class CivStatComponent : MonoBehaviour
 
         float newValue = Mathf.Clamp(currentValue + changeAmount, minValue, maxValue);
         threshMap[floatType] = newValue;
-        
+
         OnChangeThreshEvent();
     }
 

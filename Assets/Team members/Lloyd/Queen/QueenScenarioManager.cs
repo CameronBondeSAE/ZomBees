@@ -5,42 +5,73 @@ using Anthill.AI;
 using Tanks;
 using UnityEngine;
 using Lloyd;
+using Sirenix.OdinInspector;
 
 public class QueenScenarioManager : MonoBehaviour, ISense
 {
+    #region BeeWings
+
+    public GameObject beeWings;
+    public int numWings;
+    
+    public float defaultFlapSpeed;
+
+    private void StartBeeWings()
+    {
+        GameObject instantiatedPrefab = Instantiate(beeWings);
+        BeeWingsManager beeWingManager = instantiatedPrefab.GetComponent<BeeWingsManager>();
+
+        //customise later
+        beeWingManager.xDistance = 0.3f;
+        beeWingManager.zDistance = 0.3f;
+
+        for (int wings = numWings; wings > 0; wings--)
+        {
+            beeWingManager.AddWing();
+        }
+        beeWingManager.SpawnWings();
+        
+        beeWingManager.OnChangeStatEvent(-90, defaultFlapSpeed, true);
+        
+        beeWingManager.wingParent.transform.SetParent(transform);
+    }
+    
+    #endregion
+    
+    
     private QueenEvent queenEvent;
 
-    private QueenLerpTowards lerpTowards;
+    private CivStatComponent stats;
 
-    private bool isAlive = true;
+    public List<GameObject> patrolPoints;
 
-    public enum QueenState
+    public HearingComp hearingComp;
+
+    public List<Transform> hiveSpots;
+
+    public List<HearingComp.SoundData> heardSoundsList;
+
+    public List<Transform> targetsList;
+
+    public enum QueenStates
     {
-        SeekHuman,
+        MoveToPoint,
+        Patrol,
         Investigate,
         Attack,
-        SeekHive,
         SpawnHive,
-        Attacking
+        Move
     }
 
-    public QueenState myState;
+    public QueenStates currState;
+    private QueenStates decidedOnThisState;
 
-    public bool arrived = false;
-
-    private LookAtTarget lookAtTarget;
-
-    public List<GameObject> followers = new List<GameObject>();
-
-    public List<GameObject> harvestTargets = new List<GameObject>();
-
-    public Vector3 movePoint;
-
-    public Vector3 lookPoint;
-
-    public Rigidbody rb;
+    public Vector3 queenVectorTarget;
+    public Transform queenTransformTarget;
 
     #region ANTAI
+
+    public float resourceCount;
 
     public bool hasResource = false;
 
@@ -60,6 +91,8 @@ public class QueenScenarioManager : MonoBehaviour, ISense
 
     public bool dangerNearby = false;
 
+    public bool initialised = false;
+
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
         aWorldState.BeginUpdate(aAgent.planner);
@@ -71,7 +104,7 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         aWorldState.Set("InvestigatingNoise", investigatingNoise);
 
         aWorldState.Set("SeekingResource", seekingResource);
-
+        
         aWorldState.Set("SpottedResource", spottedResource);
 
         aWorldState.Set("MoveToHive", moveToHiveSpot);
@@ -85,15 +118,81 @@ public class QueenScenarioManager : MonoBehaviour, ISense
 
     #endregion
 
-    private void StartQueen()
+    [Button]
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         queenEvent = GetComponent<QueenEvent>();
+        stats = GetComponent<CivStatComponent>();
+        hearingComp = GetComponent<HearingComp>();
+
+        initialised = true;
+        
+       // StartBeeWings();
+    }
+
+    public List<HearingComp.SoundData> GetSounds()
+    {
+        return hearingComp.soundsList;
+    }
+
+    public void Update()
+    {
+        if (initialised)
+        {
+            heardSoundsList = GetSounds();
+            resourceCount = stats.beenessDisplayed;
+
+            Decide();
+        }
+    }
+
+    public void Decide()
+    {/*
+        if (isMoving)
+            decidedOnThisState = QueenStates.MoveToPoint;*/
+        //return;
+        decidedOnThisState = QueenStates.Patrol;
+
+        if (resourceCount < 1)
+        {
+            if (!isMoving)
+            {
+                seekingResource = true;
+
+                if (targetsList.Count > 0)
+                {
+                    dangerNearby = true;
+                    spottedResource = true;
+                    decidedOnThisState = QueenStates.Attack;
+                }
+                else if (heardSoundsList.Count > 0)
+                {
+                    investigatingNoise = true;
+                    decidedOnThisState = QueenStates.Investigate;
+                }
+            }
+        }
+
+        else
+        {
+            seekingResource = false;
+            hasResource = true;
+            decidedOnThisState = QueenStates.SpawnHive;
+        }
+        
+
+        ChangeQueenState(decidedOnThisState);
+    }
+
+    public void ChangeQueenState(QueenStates newState)
+    {
+        if (newState != currState)
+            currState = newState;
     }
 
 
     public void AddFollower(GameObject follower)
     {
-        followers.Add(follower);
+        //followers.Add(follower);
     }
 }

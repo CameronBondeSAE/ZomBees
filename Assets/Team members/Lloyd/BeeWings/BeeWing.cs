@@ -15,6 +15,8 @@ public class BeeWing : MonoBehaviour
     
     //the bot wants rotationSpeed to be seperate but I can't tell what it does. so just leave it at 1
 
+    public Transform pivotTransform;
+
     public Transform beeWingTransform;
     public float flapToAngle;
     private float rotationSpeed=1;
@@ -31,7 +33,7 @@ public class BeeWing : MonoBehaviour
     public bool returning;
 
     public bool flapping;
-    
+
     //perlin for angle
 
     [SerializeField] private float perlinScale = 5f;
@@ -87,11 +89,15 @@ public class BeeWing : MonoBehaviour
                 lerpValue = 0f;
                 returning = !returning;
             }
+            
+            Vector3 pivotOffset = pivotTransform.InverseTransformDirection(Vector3.down * beeWingTransform.localScale.y / 2f) *
+                                  pivotTransform.localScale.y * 0.5f;
 
-            Vector3 pivotOffset = transform.TransformDirection(Vector3.down * beeWingTransform.localScale.y / 2f) *
-                                  transform.localScale.y * 0.5f;
-            beeWingTransform.RotateAround(transform.position + pivotOffset, transform.TransformDirection(Vector3.down),
-                Time.deltaTime * 1);
+            Vector3 pivotPoint = pivotTransform.position + pivotTransform.TransformDirection(pivotOffset);
+            
+            beeWingTransform.RotateAround(pivotPoint, pivotTransform.TransformDirection(Vector3.down), Time.deltaTime * rotationSpeed * Mathf.Sign(transform.localScale.x));
+
+            yield return new WaitForSeconds(flapWaitTime);
 
             yield return new WaitForSeconds(flapWaitTime);
         }

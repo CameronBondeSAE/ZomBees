@@ -35,16 +35,22 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 8080380390649088878, guid: f68d643976fddf040bf9779ae07d0f3d, type: 3}
     cost: 3
-    position: {x: 740, y: 620}
+    position: {x: 448.33344, y: 75.00003}
     pre:
     - id: 7
       value: 1
-    post: []
+    - id: 2
+      value: 1
+    - id: 1
+      value: 0
+    post:
+    - id: 2
+      value: 0
   - name: HarvestResource
     isDefault: 0
     state: {fileID: 4596624490198139294, guid: 9e2d51e2070c0e242874aec0b26aa82e, type: 3}
     cost: 1
-    position: {x: 680, y: 20}
+    position: {x: 680, y: 50}
     pre:
     - id: 1
       value: 0
@@ -59,7 +65,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5405125979471721382, guid: 8dafcfb6597e1e444a7a92f34f9e13bd, type: 3}
     cost: 0
-    position: {x: 260, y: 600}
+    position: {x: 1343.3333, y: 56.66671}
     pre:
     - id: 1
       value: 1
@@ -72,13 +78,15 @@ MonoBehaviour:
       value: 1
   - name: SeekingResources
     isDefault: 1
-    state: {fileID: 8080380390649088878, guid: f68d643976fddf040bf9779ae07d0f3d, type: 3}
+    state: {fileID: 119544246350518762, guid: 9667d82d0fdb48c4580e92d85b9f63b7, type: 3}
     cost: 1
-    position: {x: 460, y: 20}
+    position: {x: 208.33337, y: 184.99997}
     pre:
     - id: 1
       value: 0
     - id: 4
+      value: 0
+    - id: 2
       value: 0
     post:
     - id: 4
@@ -87,7 +95,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 698925801472832170, guid: a9ab15841a267c84b906f7994d389ea9, type: 3}
     cost: 0
-    position: {x: 900, y: 20}
+    position: {x: 900, y: 50}
     pre:
     - id: 1
       value: 1
@@ -102,22 +110,26 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4596624490198139294, guid: 9e2d51e2070c0e242874aec0b26aa82e, type: 3}
     cost: 0
-    position: {x: 1120, y: 20}
+    position: {x: 1120, y: 50}
     pre:
     - id: 7
       value: 1
+    - id: 2
+      value: 0
+    - id: 1
+      value: 0
     post:
     - id: 7
       value: 0
   goals:
   - name: SpawnHive
     isDefault: 1
-    position: {x: 200, y: 20}
+    position: {x: 200, y: 50}
     conditions:
     - id: 6
       value: 1
   worldStates:
-  - position: {x: 456, y: 334}
+  - position: {x: 456, y: 362.3333}
     isAutoUpdate: 1
     list:
     - id: 0

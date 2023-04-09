@@ -16,7 +16,7 @@ public class BeeWingsManager : MonoBehaviour
     //perlin offset is added to each pair
     
     public GameObject wing;
-    private GameObject wingParent;
+    public GameObject wingParent;
     private int numWings;
     public float xDistance;
     public float yDistance;
@@ -38,9 +38,12 @@ public class BeeWingsManager : MonoBehaviour
     }
 
     [Button]
-    void SpawnWings()
+    public void SpawnWings()
     {
-        wingParent = new GameObject("BeeWings Anchor");
+        wingParent = new GameObject("BeeWings Anchor") as GameObject;
+        
+        wingParent.transform.SetParent(transform);
+        wingParent.transform.rotation = transform.rotation;
         
         numWings = myWings.Count;
         int currentPair = -1;
@@ -72,9 +75,12 @@ public class BeeWingsManager : MonoBehaviour
             BeeWing wingScript = newWing.GetComponent<BeeWing>();
             wingScript.randomOffset = offset;
             ChangeStatEvent += wingScript.ChangeWingStats;
+
+            wingScript.pivotTransform = wingParent.transform;
+            
             wingScript.StartFlapping();
 
-            newWing.transform.SetParent(wingParent.transform);
+            newWing.transform.SetParent(wingParent.transform, false);
         }
     }
     
@@ -96,7 +102,7 @@ public class BeeWingsManager : MonoBehaviour
         wingPairs.Clear();
         if (wingParent != null)
         {
-            Destroy(wingParent);
+            DestroyImmediate(wingParent);
         }
     }
 
@@ -104,5 +110,6 @@ public class BeeWingsManager : MonoBehaviour
     public void OnChangeStatEvent(float newAngle, float newSpeed, bool isAlive)
     {
         ChangeStatEvent?.Invoke(newAngle, newSpeed, isAlive);
+        //Debug.Log("wingEvent");
     }
 }

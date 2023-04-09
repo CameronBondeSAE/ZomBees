@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class QueenThink : AntAIState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private CivStatComponent stats;
 
-    // Update is called once per frame
-    void Update()
+    public float resources;
+
+    public override void Enter()
     {
+        stats = GetComponentInParent<CivStatComponent>();
+
+        resources = stats.Beeness;
+        
         
     }
 }

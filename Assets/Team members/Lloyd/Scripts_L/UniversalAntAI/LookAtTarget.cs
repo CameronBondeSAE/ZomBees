@@ -21,10 +21,9 @@ public class LookAtTarget : MonoBehaviour
 
     public bool looking=false;
 
-    [Button]
-    public void StartGame(Rigidbody newRb)
+    public void OnEnable()
     {
-        rb = newRb; 
+        rb = GetComponent<Rigidbody>(); 
     }
 
     [Button]
@@ -63,7 +62,9 @@ public class LookAtTarget : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(targetDir, transform.up);
             Quaternion rotation =
                 Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * torqueSpeed);
+            
             rb.MoveRotation(rotation);
+            rb.transform.rotation = rotation;
         }
     }
 }

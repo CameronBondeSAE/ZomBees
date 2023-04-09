@@ -4,5 +4,6 @@ public enum CivFloats
     
     beeness,
     fear,
-    hunger
+    hunger,
+    health
 }

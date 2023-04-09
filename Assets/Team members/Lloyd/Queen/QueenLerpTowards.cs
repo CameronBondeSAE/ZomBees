@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using Lloyd;
+using Sirenix.OdinInspector;
+using Tanks;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class QueenLerpTowards : MonoBehaviour
+public class QueenLerpTowards : AntAIState
 {
     // Queen has a List of GameObjects flyPoints which is as large as numFlyPoints
     // Queen get s a reference to the next flyPoint and stores it as currentFlyPoint, and the old previousFlyPoint
@@ -14,112 +18,91 @@ public class QueenLerpTowards : MonoBehaviour
 
     // multiple Lists for variable paths?
 
+    private float flyTime;
+
     public List<GameObject> flyPoints;
-    
+
     public GameObject prevFlyPoint;
-    
+
     public GameObject currFlyPoint;
 
-    public bool patrol;
-
-    public float flySpeed;
-    
     public float curSpeed;
-    public float maxSpeed;
-    public float minDist;
-
-    public float turnSpeed;
-    public float maxTorque;
-
-    public bool isMoving;
-
-    private Rigidbody rb;
+    private float maxSpeed;
+    private float minDist;
+    [ReadOnly]
+    private bool isMoving=false;
 
     private QueenScenarioManager queenScene;
 
-    private void OnEnable()
+    private Rigidbody rb;
+
+    private LookAtTarget lookAt;
+
+    public bool interrupted=false;
+
+    public bool initialised = false;
+
+    private QueenScenarioManager.QueenStates currstate;
+
+    public override void Create(GameObject aGameObject)
     {
-        rb = GetComponent<Rigidbody>();
+        base.Create(aGameObject);
 
-        queenScene = GetComponent<QueenScenarioManager>();
-
-        if (patrol)
+        rb = aGameObject.GetComponent<Rigidbody>();
+        queenScene = aGameObject.GetComponent<QueenScenarioManager>();
+        currstate = queenScene.currState;
+        
+        foreach (GameObject points in queenScene.patrolPoints)
         {
-            Patrol();
-        }
-    }
-
-    public void Patrol()
-    {
-        currFlyPoint = flyPoints[0];
-        isMoving = true;
-        StartCoroutine(LerpTowards());
-    }
-
-    public void SetFlyPoint(GameObject lerpTarget)
-    {
-        currFlyPoint = lerpTarget;
-        isMoving = true;
-        StartCoroutine(LerpTowards());
-    }
-
-    private void FixedUpdate()
-    {
-        curSpeed = rb.velocity.magnitude;
-
-        if (isMoving)
-        {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            flyPoints.Add(points);
         }
 
-        else
-            rb.velocity = Vector3.zero;
-
-        //QueenTurn();
+        ChooseNewFlyPoint();
+        isMoving = true;
+        initialised = true;
+        StartCoroutine(MoveTowards());
     }
 
-    private void QueenTurn()
+    public override void Execute(float whoCares, float whoCares1)
     {
-        Vector3 targetDir = currFlyPoint.transform.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(targetDir, transform.up);
-        Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * turnSpeed);
-        rb.MoveRotation(rotation);
+        if (initialised)
+        {
+            curSpeed = rb.velocity.magnitude;
 
-        Vector3 rotationAxis = Vector3.Cross(transform.forward, targetDir);
-        float rotationDirection = Mathf.Sign(Vector3.Dot(rotationAxis, transform.up));
-        float rotationMagnitude = rotationDirection * Mathf.Min(rotationAxis.magnitude, maxTorque);
-        Vector3 rotationForce = rotationMagnitude * rotationAxis.normalized;
+            if (isMoving)
+            {
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            }
 
-        // Add the torque to the Rigidbody
-        rb.AddTorque(rotationForce, ForceMode.Force);
+            lookAt.SetTarget(currFlyPoint.transform);
+        }
+
+        if (interrupted)
+            isMoving = false;
     }
 
-    private IEnumerator LerpTowards()
+    private IEnumerator MoveTowards()
     {
         while (isMoving)
         {
-            prevFlyPoint = currFlyPoint;
-            float startTime = Time.time;
             float journeyLength = Vector3.Distance(transform.position, currFlyPoint.transform.position);
             while (!Mathf.Approximately(journeyLength, 0f) && journeyLength > minDist)
             {
-                float distCovered = (Time.time - startTime) * flySpeed;
-                float fracJourney = distCovered / journeyLength;
-                Vector3 targetPosition = Vector3.Slerp(transform.position, currFlyPoint.transform.position, fracJourney);
+                Vector3 direction = (currFlyPoint.transform.position - transform.position).normalized;
+                float distance = Vector3.Distance(transform.position, currFlyPoint.transform.position);
 
-                // Calculate the direction and distance to the target position
-                Vector3 direction = (targetPosition - transform.position).normalized;
-                float distance = Vector3.Distance(transform.position, targetPosition);
-
-                // Calculate the force to apply
-                float forceMagnitude = Mathf.Clamp(distance / Time.fixedDeltaTime, 0f, maxSpeed);
+                float forceMagnitude = Mathf.Clamp(distance / Time.fixedDeltaTime, flyTime, maxSpeed);
                 Vector3 force = direction * forceMagnitude;
 
-                // Apply the force to the rigidbody
                 rb.AddForce(force, ForceMode.VelocityChange);
 
                 yield return null;
                 journeyLength = Vector3.Distance(transform.position, currFlyPoint.transform.position);
+                
+                if (Vector3.Distance(transform.position, currFlyPoint.transform.position) < minDist)
+                {
+                    ChooseNewFlyPoint();
+                }
             }
 
             if (flyPoints.Count > 1)
@@ -128,5 +111,16 @@ public class QueenLerpTowards : MonoBehaviour
                 currFlyPoint = flyPoints[(currIndex + 1) % flyPoints.Count];
             }
         }
+    }
+    
+    private void ChooseNewFlyPoint()
+    {
+        int index = Random.Range(0, flyPoints.Count);
+        while (flyPoints[index] == prevFlyPoint)
+        {
+            index = Random.Range(0, flyPoints.Count);
+        }
+        prevFlyPoint = currFlyPoint;
+        currFlyPoint = flyPoints[index];
     }
 }

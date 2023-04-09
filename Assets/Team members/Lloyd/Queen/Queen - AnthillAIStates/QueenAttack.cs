@@ -46,8 +46,8 @@ public class QueenAttack : AntAIState
     {
         while (attacking)
         {
-            targets = queenScene.harvestTargets;
-            followers = queenScene.followers;
+           // targets = queenScene.harvestTargets;
+           // followers = queenScene.followers;
 
             for (int i = 0; i < targets.Count; i++)
             {

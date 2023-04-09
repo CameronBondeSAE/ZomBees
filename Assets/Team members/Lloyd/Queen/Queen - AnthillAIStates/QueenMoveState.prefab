@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679015891873452241}
-  - component: {fileID: 6832741284797455725}
+  - component: {fileID: -2213932775894024390}
   m_Layer: 0
-  m_Name: QueenMoveToHive
+  m_Name: QueenMoveState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,15 +32,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6832741284797455725
+--- !u!114 &-2213932775894024390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698925801472832170}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe34459ce85bc6499f7d961c7787aa1, type: 3}
+  m_Script: {fileID: 11500000, guid: 71d43d31f349ce645b9799a5e42c3ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flyTime: 0
+  flyPoints: []
+  prevFlyPoint: {fileID: 0}
+  currFlyPoint: {fileID: 0}
+  patrol: 0
+  curSpeed: 0
+  maxSpeed: 0
+  minDist: 0
+  isMoving: 0

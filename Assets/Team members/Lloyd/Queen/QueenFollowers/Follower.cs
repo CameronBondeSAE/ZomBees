@@ -28,7 +28,7 @@ public class Follower : MonoBehaviour, IFollower
 
     private float angleOffset;
 
-   // private LookTowards lookTowards;
+    private LookAtTarget lookAt;
 
     private CircleMovement circleMovement;
 
@@ -46,7 +46,7 @@ public class Follower : MonoBehaviour, IFollower
 
         minDist = GetComponent<FollowerMinDist>();
 
-       // lookTowards = GetComponent<LookTowards>();
+        lookAt = GetComponent<LookAtTarget>();
 
         rb = GetComponent<Rigidbody>();
 
@@ -84,59 +84,11 @@ public class Follower : MonoBehaviour, IFollower
         target = rotationTransform;
         if (rb != null)
         {
-            //CircleMovement();
             MoveToTarget();
-          //  lookTowards.SetTarget(target);
+            lookAt.SetTarget(target);
             circleMovement.SetCenterPoint(target);
             minDist.SetVector3(target.position);
         }
-    }
-
-    private void CircleMovement()
-    {
-        if (reverseDirection)
-        {
-            angle = Mathf.Repeat(angle - Time.deltaTime * speed + angleOffset, 360.0f);
-        }
-        else
-        {
-            angle = Mathf.Repeat(angle + Time.deltaTime * speed + angleOffset, 360.0f);
-        }
-
-        float x = rotationTransform.position.x;
-        float y = rotationTransform.position.y;
-        float z = rotationTransform.position.z;
-
-        if (moveInX)
-        {
-            x += Mathf.Cos(angle * Mathf.Deg2Rad) * circleSize;
-        }
-
-        if (moveInY)
-        {
-            y += Mathf.Sin(angle * Mathf.Deg2Rad) * circleSize;
-        }
-
-        if (moveInZ)
-        {
-            z += Mathf.Sin(angle * Mathf.Deg2Rad) * circleSize;
-        }
-
-        Vector3 targetPosition = new Vector3(x, y, z);
-        Vector3 direction = targetPosition - transform.position;
-        float distance = direction.magnitude;
-
-        float force = 0f;
-        if (distance > circleSize)
-        {
-            force = (distance - circleSize) * speed * Time.deltaTime;
-        }
-        else if (distance < circleSize)
-        {
-            force = (circleSize - distance) * speed * Time.deltaTime;
-        }
-
-        rb.AddForce(direction.normalized * force + direction.normalized * speed * Time.deltaTime, ForceMode.VelocityChange);
     }
 
     private void MoveToTarget()

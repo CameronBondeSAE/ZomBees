@@ -34,7 +34,7 @@ public class CircleMovement : MonoBehaviour
 
     public void SetCenterPoint(Transform target)
     {
-        centerPoint = target.localPosition;
+        centerPoint = target.position;
     }
 
     private void OnEnable()
