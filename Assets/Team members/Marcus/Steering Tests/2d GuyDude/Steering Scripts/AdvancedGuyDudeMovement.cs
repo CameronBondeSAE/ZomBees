@@ -17,6 +17,8 @@ namespace Marcus
         private NavMeshPath path;
         [ReadOnly] [SerializeField]
         private int pathCounter;
+        
+        float turnRoundRobbin;
 
         private void OnEnable()
         {
@@ -48,9 +50,16 @@ namespace Marcus
                         targetPoint = null;
                     }
                 }
+                
+                turnRoundRobbin += Time.deltaTime;
+                
+                if (turnRoundRobbin >= 3f)
+                {
+                    float turnSpeed = Vector3.Angle(transform.forward, nextPoint);
+                    TurnTowards(rb, nextPoint, turnSpeed);
 
-                float turnSpeed = Vector3.Angle(transform.forward, nextPoint);
-                TurnTowards(rb, nextPoint, turnSpeed);
+                    turnRoundRobbin = 0;
+                }
                 
                 rb.AddRelativeForce(Vector3.forward * speed);
             }
