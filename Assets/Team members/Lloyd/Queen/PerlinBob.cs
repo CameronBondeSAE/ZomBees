@@ -5,7 +5,8 @@ public class PerlinBob : MonoBehaviour
 {
     //bobs in a gentle perlin pattern
     // perlin picks random points within a sphere
-    
+
+    public QueenScenarioManager queenScene;
     public BeeWingsManager beeWings;
 
     public float forceMagnitude = 1f;
@@ -22,6 +23,8 @@ public class PerlinBob : MonoBehaviour
 
     private void Start()
     {
+        queenScene = GetComponent<QueenScenarioManager>();
+        beeWings = queenScene.beeWings.GetComponent<BeeWingsManager>();
         rigidbody = GetComponent<Rigidbody>();
     }
 

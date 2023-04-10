@@ -12,4 +12,6 @@ TO DO:
 
 -- bee wings
 
--- 
+-- how to set up AntAI states to access main state? lists of patrol points
+
+-- control shader w/code

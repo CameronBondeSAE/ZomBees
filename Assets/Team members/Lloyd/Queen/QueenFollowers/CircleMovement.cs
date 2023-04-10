@@ -57,45 +57,20 @@ public class CircleMovement : MonoBehaviour
 
         for (int i = 0; i < numVectors; i++)
         {
-            float angle = i * angleStep;
-            
+            float theta = i * Mathf.PI / numVectors;
+            float phi = Random.Range(0f, 2f * Mathf.PI);
+
             float perlinValue = Mathf.PerlinNoise(Time.time, Time.deltaTime);
             radius += perlinValue;
 
             if (negativeRadius)
                 radius *= -1;
-            
 
-            if (moveInX)
-                x = centerPoint.x + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
-            
-            if (moveInY)
-                y = centerPoint.y + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
+            float x = centerPoint.x + radius * Mathf.Sin(theta) * Mathf.Cos(phi);
+            float y = centerPoint.y + radius * Mathf.Sin(theta) * Mathf.Sin(phi);
+            float z = centerPoint.z + radius * Mathf.Cos(theta);
 
-            if (moveInZ)
-                z = centerPoint.z + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
-            
-            if (reverseDirectionX)
-                x *= -1;
-            
-            if(reverseDirectionY){
-                y *= -1;}
-            
-            if(reverseDirectionZ)
-                z *= -1;
-            
-            int count = (moveInX ? 1 : 0) + (moveInY ? 1 : 0) + (moveInZ ? 1 : 0);
-            if (count < 2) {
-                if (!moveInX) {
-                    moveInX = true;
-                } else if (!moveInY) {
-                    moveInY = true;
-                } else {
-                    moveInZ = true;
-                }
-            }
-
-            targetPoints.Add(new Vector3(centerPoint.x + x, centerPoint.y + y, centerPoint.z + z));
+            targetPoints.Add(new Vector3(x, y, z));
         }
     }
 

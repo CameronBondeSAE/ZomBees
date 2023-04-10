@@ -1,4 +1,4 @@
-using System;
+        using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
@@ -7,7 +7,8 @@ using Sirenix.OdinInspector;
 using Tanks;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-using Random = UnityEngine.Random;
+        using UnityEngine.Rendering;
+        using Random = UnityEngine.Random;
 
 public class QueenLerpTowards : AntAIState
 {
@@ -20,10 +21,11 @@ public class QueenLerpTowards : AntAIState
 
     private float flyTime;
 
-    public List<GameObject> flyPoints;
+    public List<GameObject> flyPoints = new List<GameObject>();
 
     public GameObject prevFlyPoint;
 
+    [ReadOnly]
     public GameObject currFlyPoint;
 
     public float curSpeed;
@@ -32,9 +34,9 @@ public class QueenLerpTowards : AntAIState
     [ReadOnly]
     private bool isMoving=false;
 
-    private QueenScenarioManager queenScene;
+    public QueenScenarioManager queenScene;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     private LookAtTarget lookAt;
 
@@ -47,24 +49,29 @@ public class QueenLerpTowards : AntAIState
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
-
-        rb = aGameObject.GetComponent<Rigidbody>();
         queenScene = aGameObject.GetComponent<QueenScenarioManager>();
-        currstate = queenScene.currState;
+
+        rb = queenScene.rb;
         
-        foreach (GameObject points in queenScene.patrolPoints)
+        currstate = queenScene.currState;
+
+        foreach (GameObject obj in queenScene.patrolPoints)
         {
-            flyPoints.Add(points);
+            GameObject clone = Instantiate(obj);
+            clone.transform.position = obj.transform.position;
+            flyPoints.Add(clone);
         }
 
+        currFlyPoint = flyPoints[0];
         ChooseNewFlyPoint();
         isMoving = true;
         initialised = true;
-        StartCoroutine(MoveTowards());
+        StartCoroutine(MoveTowards(currFlyPoint.transform.position));
     }
 
     public override void Execute(float whoCares, float whoCares1)
     {
+        base.Execute(whoCares, whoCares1);
         if (initialised)
         {
             curSpeed = rb.velocity.magnitude;
@@ -74,15 +81,16 @@ public class QueenLerpTowards : AntAIState
                 rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
             }
 
-            lookAt.SetTarget(currFlyPoint.transform);
+            lookAt.SetVectorTarget(currFlyPoint.transform.position);
         }
 
         if (interrupted)
             isMoving = false;
     }
 
-    private IEnumerator MoveTowards()
+    private IEnumerator MoveTowards(Vector3 newFlyPoint)
     {
+        currFlyPoint.transform.position = newFlyPoint;
         while (isMoving)
         {
             float journeyLength = Vector3.Distance(transform.position, currFlyPoint.transform.position);
@@ -122,5 +130,10 @@ public class QueenLerpTowards : AntAIState
         }
         prevFlyPoint = currFlyPoint;
         currFlyPoint = flyPoints[index];
+    }
+
+    public override void Exit()
+    {
+        flyPoints.Clear();
     }
 }

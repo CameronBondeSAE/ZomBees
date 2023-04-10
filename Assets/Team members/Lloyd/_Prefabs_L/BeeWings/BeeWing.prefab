@@ -77,9 +77,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b6250d3504ec247bd694befd2b4d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pivotTransform: {fileID: 0}
   beeWingTransform: {fileID: 5055074892963331025}
-  flapToAngle: -90
-  lerpFlapSpeed: 7
+  flapToAngle: -145
+  lerpFlapSpeed: 15
   flapWaitTime: 0
   customAxis: {x: 0, y: 0, z: 1}
   returning: 0

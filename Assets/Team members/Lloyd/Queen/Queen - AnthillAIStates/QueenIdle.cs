@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using Anthill.AI;
+using UnityEngine;
+
+public class QueenIdle : AntAIState
+{
+    private QueenScenarioManager queenScene;
+
+    public float minIdleTime;
+    public float maxIdleTime;
+
+    public float waitTime;
+
+    public override void Create(GameObject aGameObject)
+    {
+        base.Create(aGameObject);
+        
+        queenScene = aGameObject.GetComponent<QueenScenarioManager>();
+        
+        queenScene.FlipIdle();
+
+        minIdleTime = queenScene.minIdleTime;
+        maxIdleTime = queenScene.maxIdleTime;
+
+        float randomIdleTime = Random.Range(minIdleTime, maxIdleTime);
+        waitTime = randomIdleTime;
+
+        StartCoroutine(IdleWait());
+    }
+
+    public override void Execute(float aDeltaTime, float aTimeScale)
+    {
+        aDeltaTime = Time.deltaTime;
+        aTimeScale = 1;
+        base.Execute(aDeltaTime, aTimeScale);
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+    }
+
+    private IEnumerator IdleWait()
+    {
+        yield return new WaitForSeconds(waitTime);
+        Exit();
+    }
+
+    public override void Exit()
+    {
+        queenScene.FlipIdle();
+    }
+}

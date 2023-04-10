@@ -9,17 +9,94 @@ using Sirenix.OdinInspector;
 
 public class QueenScenarioManager : MonoBehaviour, ISense
 {
+    //big daddy queen brain
+
+    [ReadOnly]
+    public Rigidbody rb;
+    [ReadOnly]
+    public GameObject queenParent;
+    [ReadOnly]
+    public CivStatComponent stats;
+    public enum QueenStates
+    {
+        Idle,
+        MoveToPoint,
+        Patrol,
+        Investigate,
+        Attack,
+        SpawnHive,
+        Move
+    }
+    public QueenStates currState;
+    private QueenStates decidedOnThisState;
+    
+    [Button]
+    public void StartQueen()
+    {
+        rb = GetComponent<Rigidbody>();
+        queenEvent = GetComponent<QueenEvent>();
+        stats = GetComponent<CivStatComponent>();
+        hearingComp = GetComponent<HearingComp>();
+        
+        bob = GetComponent<PerlinBob>();
+        bob.enabled = false;
+        
+
+        StartBeeWings();
+        
+        ChangeQueenState(QueenStates.Idle);
+        
+        initialised = true;
+    }
+
+    #region Attack
+
+    public List<Transform> targetsList;
+
+    #endregion
+    
+    #region TraversalTargetPoints
+    
+    public List<GameObject> patrolPoints;
+    
+    
+    
+    public List<Transform> hiveSpots;
+    #endregion
+
+    #region Idle
+    
+    public bool idle=false;
+    
+    public PerlinBob bob;
+
+    public float minIdleTime=5f;
+    public float maxIdleTime=30f;
+
+    public void FlipIdle()
+    {
+        idle = !idle;
+    }
+
+    #endregion
+    
     #region BeeWings
 
+    public GameObject anchorPos;
     public GameObject beeWings;
     public int numWings;
     
     public float defaultFlapSpeed;
 
     private void StartBeeWings()
-    {
+    {   
+        queenParent = new GameObject("ZOMBEE QUEEN PARENT") as GameObject;
+
+        anchorPos.transform.rotation = new Quaternion(0, -90, 0, 1);
+        
         GameObject instantiatedPrefab = Instantiate(beeWings);
         BeeWingsManager beeWingManager = instantiatedPrefab.GetComponent<BeeWingsManager>();
+        beeWingManager.anchorPos = anchorPos;
 
         //customise later
         beeWingManager.xDistance = 0.3f;
@@ -33,38 +110,16 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         
         beeWingManager.OnChangeStatEvent(-90, defaultFlapSpeed, true);
         
-        beeWingManager.wingParent.transform.SetParent(transform);
+        beeWingManager.wingParent.transform.SetParent(queenParent.transform);
     }
     
     #endregion
     
-    
     private QueenEvent queenEvent;
-
-    private CivStatComponent stats;
-
-    public List<GameObject> patrolPoints;
-
+    
     public HearingComp hearingComp;
-
-    public List<Transform> hiveSpots;
-
+    
     public List<HearingComp.SoundData> heardSoundsList;
-
-    public List<Transform> targetsList;
-
-    public enum QueenStates
-    {
-        MoveToPoint,
-        Patrol,
-        Investigate,
-        Attack,
-        SpawnHive,
-        Move
-    }
-
-    public QueenStates currState;
-    private QueenStates decidedOnThisState;
 
     public Vector3 queenVectorTarget;
     public Transform queenTransformTarget;
@@ -113,35 +168,35 @@ public class QueenScenarioManager : MonoBehaviour, ISense
 
         aWorldState.Set("DangerNearby", dangerNearby);
 
+        aWorldState.Set("Idle", idle);
+
         aWorldState.EndUpdate();
     }
 
     #endregion
-
-    [Button]
-    private void Awake()
-    {
-        queenEvent = GetComponent<QueenEvent>();
-        stats = GetComponent<CivStatComponent>();
-        hearingComp = GetComponent<HearingComp>();
-
-        initialised = true;
-        
-       // StartBeeWings();
-    }
 
     public List<HearingComp.SoundData> GetSounds()
     {
         return hearingComp.soundsList;
     }
 
-    public void Update()
+    public void Execute(float adeltatime, float timescale)
     {
         if (initialised)
         {
             heardSoundsList = GetSounds();
             resourceCount = stats.beenessDisplayed;
 
+            if (currState == QueenStates.Idle)
+            {
+                bob.enabled = true;
+                return;
+            }
+            else
+            {
+                bob.enabled = false;
+            }
+            
             Decide();
         }
     }
@@ -151,35 +206,41 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         if (isMoving)
             decidedOnThisState = QueenStates.MoveToPoint;*/
         //return;
-        decidedOnThisState = QueenStates.Patrol;
-
-        if (resourceCount < 1)
+        if (idle)
         {
-            if (!isMoving)
-            {
-                seekingResource = true;
-
-                if (targetsList.Count > 0)
-                {
-                    dangerNearby = true;
-                    spottedResource = true;
-                    decidedOnThisState = QueenStates.Attack;
-                }
-                else if (heardSoundsList.Count > 0)
-                {
-                    investigatingNoise = true;
-                    decidedOnThisState = QueenStates.Investigate;
-                }
-            }
+            decidedOnThisState = QueenStates.Idle;
         }
-
         else
         {
-            seekingResource = false;
-            hasResource = true;
-            decidedOnThisState = QueenStates.SpawnHive;
+            decidedOnThisState = QueenStates.Patrol;
+
+            if (resourceCount < 1)
+            {
+                if (!isMoving)
+                {
+                    seekingResource = true;
+
+                    if (targetsList.Count > 0)
+                    {
+                        dangerNearby = true;
+                        spottedResource = true;
+                        decidedOnThisState = QueenStates.Attack;
+                    }
+                    else if (heardSoundsList.Count > 0)
+                    {
+                        investigatingNoise = true;
+                        decidedOnThisState = QueenStates.Investigate;
+                    }
+                }
+            }
+
+            else
+            {
+                seekingResource = false;
+                hasResource = true;
+                decidedOnThisState = QueenStates.SpawnHive;
+            }
         }
-        
 
         ChangeQueenState(decidedOnThisState);
     }

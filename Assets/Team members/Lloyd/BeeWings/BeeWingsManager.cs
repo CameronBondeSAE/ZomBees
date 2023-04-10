@@ -22,8 +22,21 @@ public class BeeWingsManager : MonoBehaviour
     public float yDistance;
     public float zDistance;
 
+    public GameObject anchorPos;
+
     public List<GameObject> myWings = new List<GameObject>();
     public List<List<GameObject>> wingPairs = new List<List<GameObject>>();
+
+    public bool spawned = false;
+
+    public void Update()
+    {
+        if (spawned && wingParent != null)
+        {
+            wingParent.transform.position = anchorPos.transform.position;
+            wingParent.transform.rotation = anchorPos.transform.rotation;
+        }
+    }
 
     [Button ("CHANGE ANGLE / SPEED / ISALIVE")]
     public void ChangeBeeWingStats(float newAngle, float newSpeed, bool isAlive)
@@ -41,9 +54,8 @@ public class BeeWingsManager : MonoBehaviour
     public void SpawnWings()
     {
         wingParent = new GameObject("BeeWings Anchor") as GameObject;
-        
-        wingParent.transform.SetParent(transform);
-        wingParent.transform.rotation = transform.rotation;
+        wingParent.transform.rotation = anchorPos.transform.rotation;
+        wingParent.transform.position = anchorPos.transform.position;
         
         numWings = myWings.Count;
         int currentPair = -1;
@@ -82,6 +94,10 @@ public class BeeWingsManager : MonoBehaviour
 
             newWing.transform.SetParent(wingParent.transform, false);
         }
+        
+        wingParent.transform.localScale = new Vector3(10f, 10f, 10f);
+        
+        spawned = true;
     }
     
     public float RandomOffset()
