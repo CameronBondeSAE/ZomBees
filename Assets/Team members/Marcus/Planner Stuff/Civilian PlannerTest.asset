@@ -141,7 +141,7 @@ MonoBehaviour:
   - name: Unscared
     isDefault: 0
     state: {fileID: 1874639598432770460, guid: c0ec2f7207c386e45bc29cf7b4d8cd4a, type: 3}
-    cost: -1
+    cost: 0
     position: {x: 310, y: 751}
     pre:
     - id: 3
