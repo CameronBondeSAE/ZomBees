@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
 using Oscar;
+using Random = UnityEngine.Random;
 
 public class FindFood : AntAIState
 {
@@ -13,7 +15,8 @@ public class FindFood : AntAIState
     
     public float perlin;
     public float sine;
-    
+
+    private BasicBeeEventsManager _basicBeeEventsManager;    
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
@@ -22,11 +25,15 @@ public class FindFood : AntAIState
         zoomZ = Random.Range(-0.5f, 0.5f);
         
         littleGuy = aGameObject.GetComponent<LittleGuy>();
+
+        _basicBeeEventsManager = aGameObject.GetComponent<BasicBeeEventsManager>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
+
+        _basicBeeEventsManager.SearchThingEvent();
         
         float x = zoomX + Time.time;
         float z = zoomZ + Time.time;

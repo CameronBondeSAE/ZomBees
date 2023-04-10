@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: 1067826574}
   - component: {fileID: 1067826573}
   m_Layer: 0
-  m_Name: UtilityManager
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -991,8 +991,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205435425}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 50, z: 0}
+  m_LocalRotation: {x: 0.16146564, y: 0.4908977, z: -0.09313634, w: 0.85104287}
+  m_LocalPosition: {x: -15.792648, y: 4.700066, z: 11.852064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2343,10 +2343,6 @@ PrefabInstance:
       propertyPath: m_AdditionalVertexStreams
       value: 
       objectReference: {fileID: 1712289325}
-    - target: {fileID: 1521932899624247435, guid: c095eae6352134c46b7528034bce46b1, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2256436266696984722, guid: c095eae6352134c46b7528034bce46b1, type: 3}
       propertyPath: myHome
       value: 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
@@ -9,6 +10,8 @@ public class CollectFood : AntAIState
     private LittleGuy littleGuy;
     private OscarVisionAI vision;
 
+    private BasicBeeEventsManager _basicBeeEventManager;
+
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
@@ -16,12 +19,16 @@ public class CollectFood : AntAIState
         littleGuy = aGameObject.GetComponent<LittleGuy>();
         
         vision = aGameObject.GetComponent<OscarVisionAI>();
+
+        _basicBeeEventManager = aGameObject.GetComponent<BasicBeeEventsManager>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
         
+        _basicBeeEventManager.attackThingEvent();
+
         if (vision.honeyInSight.Count > 0)
         {
             littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
