@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Tanks;
 using UnityEngine;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class BeeWingsManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class BeeWingsManager : MonoBehaviour
     //perlin offset is added to each pair
     
     public GameObject wing;
+
     public GameObject wingParent;
     private int numWings;
     public float xDistance;
@@ -25,7 +27,24 @@ public class BeeWingsManager : MonoBehaviour
     public GameObject anchorPos;
 
     public List<GameObject> myWings = new List<GameObject>();
-    public List<List<GameObject>> wingPairs = new List<List<GameObject>>();
+    
+    private List<GameObject> wingObjects;
+
+    private GameObject spawnedWing;
+    
+    public GameObject BeeWingRegular;
+    public GameObject BeeWingHoles;
+    public GameObject BeeWingDistorted;
+
+    public enum MyWingType
+    {
+        Random, 
+        Regular,
+        Holes,
+        Distorted
+    }
+
+    public MyWingType wingType;
 
     public bool spawned = false;
 
@@ -53,6 +72,11 @@ public class BeeWingsManager : MonoBehaviour
     [Button]
     public void SpawnWings()
     {
+        wingObjects = new List<GameObject>();
+        wingObjects.Add(BeeWingRegular);
+        wingObjects.Add(BeeWingHoles);
+        wingObjects.Add(BeeWingDistorted);
+        
         wingParent = new GameObject("BeeWings Anchor") as GameObject;
         wingParent.transform.rotation = anchorPos.transform.rotation;
         wingParent.transform.position = anchorPos.transform.position;
@@ -65,24 +89,9 @@ public class BeeWingsManager : MonoBehaviour
 
         for (int i = 0; i < numWings; i++)
         {
-            int pairIndex = i / 2;
+            GameObject newSpawnWing = PickWings();
 
-            if (i % 2 == 0)
-            {
-                if (pairIndex >= wingPairs.Count)
-                {
-                    wingPairs.Add(new List<GameObject>());
-                }
-
-                currentPair++;
-            }
-            if (i % 3 == 0)
-            {
-              //  offset = RandomOffset();
-            }
-
-            GameObject newWing = Instantiate(wing, startPosition + new Vector3((i % 2 == 0 ? 1 : -1) * xDistance, currentPair * yDistance, currentPair*zDistance), Quaternion.Euler(0, i % 2 == 0 ? 0 : 180, 0));
-            wingPairs[currentPair].Add(newWing);
+            GameObject newWing = Instantiate(newSpawnWing, startPosition + new Vector3((i % 2 == 0 ? 1 : -1) * xDistance, currentPair * yDistance, currentPair*zDistance), Quaternion.Euler(0, 0, 0));
 
             BeeWing wingScript = newWing.GetComponent<BeeWing>();
             wingScript.randomOffset = offset;
@@ -90,19 +99,51 @@ public class BeeWingsManager : MonoBehaviour
 
             wingScript.pivotTransform = wingParent.transform;
             
+            if (i % 2 == 0)
+            {
+                wingScript.SetAsSecondWing();
+            }
+            
             wingScript.StartFlapping();
 
             newWing.transform.SetParent(wingParent.transform, false);
+
+            newWing.transform.localScale = new Vector3(25, 25, 25);
+        }
+
+        spawned = true;
+    }
+
+    public GameObject PickWings()
+    {
+        GameObject wingsObj;
+        
+        if (wingType == MyWingType.Random)
+        {
+            int randomIndex = Random.Range(0, wingObjects.Count);
+            GameObject randomGameObject = wingObjects[randomIndex];
+            wingsObj = randomGameObject;
         }
         
-        wingParent.transform.localScale = new Vector3(10f, 10f, 10f);
+        else if (wingType == MyWingType.Regular)
+        {
+            wingsObj = BeeWingRegular;
+        }
         
-        spawned = true;
+        else if (wingType == MyWingType.Holes)
+        {
+            wingsObj = BeeWingHoles;
+        }
+
+        else
+            wingsObj = BeeWingDistorted;
+
+        return wingsObj;
     }
     
     public float RandomOffset()
     {
-        float newRand = UnityEngine.Random.Range(-1f, 1f);
+        float newRand = Random.Range(-1f, 1f);
         return newRand;
     }
 
@@ -115,7 +156,6 @@ public class BeeWingsManager : MonoBehaviour
             ChangeStatEvent -= wingScript.ChangeWingStats;
         }
         myWings.Clear();
-        wingPairs.Clear();
         if (wingParent != null)
         {
             DestroyImmediate(wingParent);

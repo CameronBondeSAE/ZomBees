@@ -40,13 +40,18 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         
         bob = GetComponent<PerlinBob>();
         bob.enabled = false;
-        
 
         StartBeeWings();
         
         ChangeQueenState(QueenStates.Idle);
         
         initialised = true;
+    }
+
+    [Button]
+    public void OnQueenChangeSwarmEvent()
+    {
+        queenEvent.OnChangeSwarmPoint(transform);
     }
 
     #region Attack
@@ -58,9 +63,7 @@ public class QueenScenarioManager : MonoBehaviour, ISense
     #region TraversalTargetPoints
     
     public List<GameObject> patrolPoints;
-    
-    
-    
+
     public List<Transform> hiveSpots;
     #endregion
 
@@ -82,35 +85,26 @@ public class QueenScenarioManager : MonoBehaviour, ISense
     
     #region BeeWings
 
-    public GameObject anchorPos;
-    public GameObject beeWings;
+    public BeeWingsManager beeWings;
+
     public int numWings;
     
     public float defaultFlapSpeed;
+    public float defaultFlapAngle;
 
     private void StartBeeWings()
     {   
         queenParent = new GameObject("ZOMBEE QUEEN PARENT") as GameObject;
 
-        anchorPos.transform.rotation = new Quaternion(0, -90, 0, 1);
-        
-        GameObject instantiatedPrefab = Instantiate(beeWings);
-        BeeWingsManager beeWingManager = instantiatedPrefab.GetComponent<BeeWingsManager>();
-        beeWingManager.anchorPos = anchorPos;
-
-        //customise later
-        beeWingManager.xDistance = 0.3f;
-        beeWingManager.zDistance = 0.3f;
+        beeWings = GetComponentInChildren<BeeWingsManager>();
 
         for (int wings = numWings; wings > 0; wings--)
         {
-            beeWingManager.AddWing();
+            beeWings.AddWing();
         }
-        beeWingManager.SpawnWings();
+        beeWings.SpawnWings();
         
-        beeWingManager.OnChangeStatEvent(-90, defaultFlapSpeed, true);
-        
-        beeWingManager.wingParent.transform.SetParent(queenParent.transform);
+        beeWings.wingParent.transform.SetParent(queenParent.transform);
     }
     
     #endregion
@@ -196,6 +190,9 @@ public class QueenScenarioManager : MonoBehaviour, ISense
             {
                 bob.enabled = false;
             }
+
+            queenParent.transform.position = transform.position;
+            queenParent.transform.rotation = transform.rotation;
             
             Decide();
         }

@@ -1,14 +1,11 @@
-        using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using Lloyd;
 using Sirenix.OdinInspector;
-using Tanks;
-using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-        using UnityEngine.Rendering;
-        using Random = UnityEngine.Random;
+using Random = UnityEngine.Random;
 
 public class QueenLerpTowards : AntAIState
 {
@@ -25,14 +22,12 @@ public class QueenLerpTowards : AntAIState
 
     public GameObject prevFlyPoint;
 
-    [ReadOnly]
-    public GameObject currFlyPoint;
+    [ReadOnly] public GameObject currFlyPoint;
 
     public float curSpeed;
     private float maxSpeed;
     private float minDist;
-    [ReadOnly]
-    private bool isMoving=false;
+    [ReadOnly] private bool isMoving = false;
 
     public QueenScenarioManager queenScene;
 
@@ -40,7 +35,7 @@ public class QueenLerpTowards : AntAIState
 
     private LookAtTarget lookAt;
 
-    public bool interrupted=false;
+    public bool interrupted = false;
 
     public bool initialised = false;
 
@@ -48,11 +43,11 @@ public class QueenLerpTowards : AntAIState
 
     public override void Create(GameObject aGameObject)
     {
-        base.Create(aGameObject);
+        //base.Create(aGameObject);
         queenScene = aGameObject.GetComponent<QueenScenarioManager>();
 
         rb = queenScene.rb;
-        
+
         currstate = queenScene.currState;
 
         foreach (GameObject obj in queenScene.patrolPoints)
@@ -106,7 +101,7 @@ public class QueenLerpTowards : AntAIState
 
                 yield return null;
                 journeyLength = Vector3.Distance(transform.position, currFlyPoint.transform.position);
-                
+
                 if (Vector3.Distance(transform.position, currFlyPoint.transform.position) < minDist)
                 {
                     ChooseNewFlyPoint();
@@ -120,7 +115,7 @@ public class QueenLerpTowards : AntAIState
             }
         }
     }
-    
+
     private void ChooseNewFlyPoint()
     {
         int index = Random.Range(0, flyPoints.Count);
@@ -128,6 +123,7 @@ public class QueenLerpTowards : AntAIState
         {
             index = Random.Range(0, flyPoints.Count);
         }
+
         prevFlyPoint = currFlyPoint;
         currFlyPoint = flyPoints[index];
     }

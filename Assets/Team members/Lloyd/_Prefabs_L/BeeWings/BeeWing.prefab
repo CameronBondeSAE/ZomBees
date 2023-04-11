@@ -79,9 +79,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivotTransform: {fileID: 0}
   beeWingTransform: {fileID: 5055074892963331025}
-  flapToAngle: -145
+  flapToAngle: -90
   lerpFlapSpeed: 15
   flapWaitTime: 0
+  secondWing: 0
   customAxis: {x: 0, y: 0, z: 1}
   returning: 0
   flapping: 0

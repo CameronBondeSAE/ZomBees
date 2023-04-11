@@ -25,13 +25,14 @@ public class Spawner : MonoBehaviour
 
     public Rigidbody rb;
 
-    private void Start()
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
         
         parent = new GameObject();
         parent.name = "Swarmer Parent";
-        parent.transform.parent = transform;
+        parent.transform.position = transform.position;
+        parent.transform.rotation = transform.rotation;
 
         queenEvent = GetComponent<QueenEvent>();
 
@@ -55,12 +56,12 @@ public class Spawner : MonoBehaviour
             Follower follower;
             follower = swarmerObj.GetComponent<Follower>();
             follower.SetRotationPoint(transform);
-            
+
             queenScene.AddFollower(swarmerObj);
 
             queenEvent.ChangeSwarmTransform += follower.SetRotationPoint;
             queenEvent.ChangeSwarmCircleSize += follower.SetCircleSize;
-            
+
             queenEvent.OnChangeSwarmPoint(swarmer.transform);
 
             follower.Begin();

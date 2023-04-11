@@ -34,8 +34,12 @@ public class Follower : MonoBehaviour, IFollower
 
     private FollowerMinDist minDist;
 
+    private BeeWingsManager beeWings;
+
     private void OnEnable()
     {
+        beeWings = GetComponentInChildren<BeeWingsManager>();
+        beeWings.SpawnWings();
         Begin();
     }
 
@@ -71,6 +75,8 @@ public class Follower : MonoBehaviour, IFollower
     public void SetRotationPoint(Transform swarmTransform)
     {
         rotationTransform = swarmTransform;
+        circleMovement.SetCenterPoint(swarmTransform);
+        lookAt.SetTarget(swarmTransform);
     }
 
     public void SetCircleSize(float newCircleSize)

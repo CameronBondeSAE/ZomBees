@@ -14,7 +14,7 @@ public class PerlinBob : MonoBehaviour
     public float scale = 1f;
     public float sphereRadius = 1f;
 
-    private Rigidbody rigidbody;
+    public Rigidbody rigidbody;
 
     private float previousYPosition;
 
@@ -25,7 +25,7 @@ public class PerlinBob : MonoBehaviour
     {
         queenScene = GetComponent<QueenScenarioManager>();
         beeWings = queenScene.beeWings.GetComponent<BeeWingsManager>();
-        rigidbody = GetComponent<Rigidbody>();
+        rigidbody = queenScene.GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()

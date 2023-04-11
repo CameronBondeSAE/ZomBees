@@ -23,6 +23,8 @@ public class BeeWing : MonoBehaviour
     public float lerpFlapSpeed;
     public float flapWaitTime;
 
+    public bool secondWing = false;
+
     private Quaternion targetRotation;
     private Quaternion initialRotation;
     private Quaternion prevTargetRotation;
@@ -44,10 +46,16 @@ public class BeeWing : MonoBehaviour
     public void StartFlapping()
     {
         initialRotation = beeWingTransform.localRotation;
+
         targetRotation = Quaternion.Euler(0f, 0, flapToAngle);
 
         flapping = true;
         StartCoroutine(FlapWings());
+    }
+
+    public void SetAsSecondWing()
+    {
+        secondWing = true;
     }
 
     private void Update()
@@ -125,6 +133,10 @@ public class BeeWing : MonoBehaviour
     public void ChangeWingStats(float newAngle, float newSpeed, bool isAlive)
     {
         flapToAngle = newAngle;
+
+        if (!secondWing)
+            newAngle = -newAngle;
+
         lerpFlapSpeed = newSpeed;
 
         targetRotation = Quaternion.Euler(0,0,newAngle);
