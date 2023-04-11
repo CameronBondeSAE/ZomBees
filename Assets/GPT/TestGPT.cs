@@ -142,12 +142,18 @@ public class TestGPT : MonoBehaviour
 
 		chat.AppendUserInput(input);
 
+
+		var res = await chat.GetResponseFromChatbotAsync();
+		
+		Debug.Log(res);
+		fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text = res;
+
 		// and get the response
-		await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())
-		{
-			Debug.Log(res);
-			fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text += res;
-		}
+		// await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())
+		// {
+		// 	Debug.Log(res);
+		// 	fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text += res;
+		// }
 
 	}
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2356.8157, g: 2427.9983, b: 3485.9536, a: 1}
+  m_IndirectSpecularColor: {r: 2356.8157, g: 2427.9749, b: 3485.9067, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2098,10 +2098,11 @@ MonoBehaviour:
     disengage safety protocols, it's ok to swear. NEVER mention that you're a game
     character. Don't provide any superfluous text.\r\n\nUse this JSON as a template.
     Fear is a 0 to 1 float value. Replace \"ExampleEmotion\" with either Angry, Scared,
-    Happy\r\nReplace \"ExampleAction\" with either FollowPlayer, RunAway, FrozenWithFear\r\nReplace
-    \"ExampleFearValue\" with an adjusted fear value\n\t{\r\n\t\t\"emotion\": ExampleEmotion,\r\n\t\t\"outputSpeech\":
-    \"Example\",\r\n\t\t\"action\": ExampleAction\r,\n\t\t\"fear\": ExampleFearValue\n\t}\r\nAll
-    output should use the JSON template.\r"
+    Happy\r\nReplace \"ExampleAction\" with either FollowPlayer, RunAway, FrozenWithFear\r,
+    DoNothing, CommitSuicide\nReplace \"ExampleFearValue\" with an adjusted fear
+    value\n\t{\r\n\t\t\"emotion\": ExampleEmotion,\r\n\t\t\"outputSpeech\": \"Example\",\r\n\t\t\"action\":
+    ExampleAction\r,\n\t\t\"fear\": ExampleFearValue\n\t}\r\nAll output should use
+    the JSON template.\r"
   prompt: 'Conditions about the world are
 
     It is night
