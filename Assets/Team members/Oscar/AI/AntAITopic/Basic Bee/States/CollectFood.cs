@@ -10,8 +10,6 @@ public class CollectFood : AntAIState
     private LittleGuy littleGuy;
     private OscarVisionAI vision;
 
-    private BasicBeeEventsManager _basicBeeEventManager;
-
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
@@ -19,15 +17,11 @@ public class CollectFood : AntAIState
         littleGuy = aGameObject.GetComponent<LittleGuy>();
         
         vision = aGameObject.GetComponent<OscarVisionAI>();
-
-        _basicBeeEventManager = aGameObject.GetComponent<BasicBeeEventsManager>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
-        
-        _basicBeeEventManager.attackThingEvent();
 
         if (vision.honeyInSight.Count > 0)
         {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 397.83795, g: 295.20316, b: 216.95169, a: 1}
+  m_IndirectSpecularColor: {r: 295.94974, g: 225.47025, b: 163.27809, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -54402,6 +54402,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 197440, guid: 812c9b36537fa8146bed44183a36cf7a, type: 3}
   m_PrefabInstance: {fileID: 1499521068}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1500946521 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5835989515854659689, guid: c095eae6352134c46b7528034bce46b1, type: 3}
+  m_PrefabInstance: {fileID: 793378155189557589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1501752806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84890,6 +84895,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 243362628, guid: c095eae6352134c46b7528034bce46b1, type: 3}
+      propertyPath: renderer
+      value: 
+      objectReference: {fileID: 1500946521}
+    - target: {fileID: 243362628, guid: c095eae6352134c46b7528034bce46b1, type: 3}
+      propertyPath: newCutOffHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 498041809768793980, guid: c095eae6352134c46b7528034bce46b1, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -84958,6 +84971,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicBee
       objectReference: {fileID: 0}
+    - target: {fileID: 5835989515854659689, guid: c095eae6352134c46b7528034bce46b1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d6a2b048834622c43bb7e0ae9206f71a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -7,14 +7,17 @@ public class OscarControllerAI : MonoBehaviour
 {
     public OscarVisionAI vision;
     public LittleGuy littleGuy;
+    public ColourChangeShader colourChanger;
     
     public bool seeTheFood()
     {
         if (vision.honeyInSight.Count > 0)
         {
+            colourChanger.attackPhase = true;
             return true;
         }
 
+        colourChanger.attackPhase = false;
         return false;
     }
 

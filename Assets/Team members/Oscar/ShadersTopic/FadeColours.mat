@@ -49,7 +49,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _CutOffHeight: 0.21
+    - _CutOffHeight: 0
     - _DoubleSidedNormalMode: 1
     - _GlowThickness: 0.01
     - _NoiseScale: 250
@@ -57,5 +57,5 @@ Material:
     - _ZTestDepthEqualForOpaque: 3
     m_Colors:
     - _Colour: {r: 0.9820674, g: 1, b: 0, a: 0}
-    - _GlowColor: {r: 1, g: 0.81374824, b: 0, a: 0}
+    - _GlowColor: {r: 0.09151816, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -975,7 +975,7 @@ Transform:
   - {fileID: 2917227763960282982}
   - {fileID: 319571427}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 4110.97, z: 0}
 --- !u!136 &5571471917264393373
 CapsuleCollider:
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newCutOffHeight: 1
-  mat: {fileID: 2100000, guid: d6a2b048834622c43bb7e0ae9206f71a, type: 2}
+  renderer: {fileID: 5835989515854659689}
 --- !u!1001 &2773183614391300990
 PrefabInstance:
   m_ObjectHideFlags: 0
