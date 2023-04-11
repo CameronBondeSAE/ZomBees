@@ -759,20 +759,32 @@ PrefabInstance:
       value: BeeWingsManager
       objectReference: {fileID: 0}
     - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
-      propertyPath: xDistance
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
-      propertyPath: yDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
-      propertyPath: zDistance
+      propertyPath: spawned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
+      propertyPath: anchorPos
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
+      propertyPath: xDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
+      propertyPath: yDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
+      propertyPath: zDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
+      propertyPath: wingParent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
       propertyPath: myWings.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
       propertyPath: myWings.Array.data[2]
@@ -781,7 +793,11 @@ PrefabInstance:
     - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
       propertyPath: myWings.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5055074893028088857, guid: dec5a9bcf9285794d8a5a097204677c3, type: 3}
+    - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
+      propertyPath: myWings.Array.data[4]
+      value: 
+      objectReference: {fileID: 5055074893028088857, guid: dec5a9bcf9285794d8a5a097204677c3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

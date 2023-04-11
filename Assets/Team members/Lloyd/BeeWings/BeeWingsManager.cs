@@ -102,6 +102,7 @@ public class BeeWingsManager : MonoBehaviour
             if (i % 2 == 0)
             {
                 wingScript.SetAsSecondWing();
+                currentPair++;
             }
             
             wingScript.StartFlapping();

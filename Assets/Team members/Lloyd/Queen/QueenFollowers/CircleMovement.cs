@@ -28,9 +28,9 @@ public class CircleMovement : MonoBehaviour
     public bool moveInY;
     public bool moveInZ;
 
-    private float x = 1;
-    private float y = 1;
-    private float z = 1;
+    private float x;
+    private float y;
+    private float z;
 
     public void SetCenterPoint(Transform target)
     {
@@ -66,9 +66,8 @@ public class CircleMovement : MonoBehaviour
             if (negativeRadius)
                 radius *= -1;
 
-            float x = centerPoint.x + radius * Mathf.Sin(theta) * Mathf.Cos(phi);
-            float y = centerPoint.y + radius * Mathf.Sin(theta) * Mathf.Sin(phi);
-            float z = centerPoint.z + radius * Mathf.Cos(theta);
+           x = centerPoint.x + radius * Mathf.Sin(theta) * Mathf.Cos(phi);
+           y = centerPoint.y + radius * Mathf.Sin(theta) * Mathf.Sin(phi); z = centerPoint.z + radius * Mathf.Cos(theta);
 
             targetPoints.Add(new Vector3(x, y, z));
         }
