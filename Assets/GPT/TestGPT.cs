@@ -15,18 +15,22 @@ public class TestGPT : MonoBehaviour
 
 	public OpenAIAPI api;
 
+
+	[TextArea(5, 40)]
+	public string systemMessage;
+
 	[TextArea(5, 40)]
 	public string prompt;
 
 	public ChatRequest request;
 
 	public TextMeshPro textMeshProUGUI;
-	
+
 	private void Init()
 	{
 		// NOTE: This is Cam's API key. Don't abuse it. Put your own in if you like.
 		// apiKeys = "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";
-		api     = new OpenAI_API.OpenAIAPI(apiKeys);
+		api = new OpenAI_API.OpenAIAPI(apiKeys);
 
 		// TestGPTCompletion();
 		// request = new ChatRequest();
@@ -35,9 +39,80 @@ public class TestGPT : MonoBehaviour
 
 	OpenAI_API.Chat.Conversation chat;
 
-	[Button]
-	public async void StartChatConversation()
+	private void Awake()
 	{
+		
+	}
+
+
+	[Button]
+	public async void TestChat()
+	{
+		if (api == null)
+		{
+			Init();
+		}
+		
+		/*
+		var chat = api.Chat.CreateConversation();
+
+		/// give instruction as System
+		chat.AppendSystemMessage("You are a teacher who helps children understand if things are animals or not.  If the user tells you an animal, you say \"yes\".  If the user tells you something that is not an animal, you say \"no\".  You only ever respond with \"yes\" or \"no\".  You do not say anything else.");
+
+// give a few examples as user and assistant
+		chat.AppendUserInput("Is this an animal? Cat");
+		chat.AppendExampleChatbotOutput("Yes");
+		chat.AppendUserInput("Is this an animal? House");
+		chat.AppendExampleChatbotOutput("No");
+
+// now let's ask it a question'
+		chat.AppendUserInput("Is this an animal? Dog");
+// and get the response
+		string response = await chat.GetResponseFromChatbotAsync();
+		Debug.Log(response); // "Yes"
+
+// and continue the conversation by asking another
+		chat.AppendUserInput("Is this an animal? Chair");
+// and get another response
+		response = await chat.GetResponseFromChatbotAsync();
+		Debug.Log(response); // "No"
+
+// the entire chat history is available in chat.Messages
+		foreach (ChatMessage msg in chat.Messages)
+		{
+			Debug.Log($"{msg.Role}: {msg.Content}");
+		}
+		*/
+		
+		var chat = api.Chat.CreateConversation();
+		chat.Model = Model.ChatGPTTurbo;
+		chat.RequestParameters.Temperature = 0.9f;
+		chat.RequestParameters.MaxTokens = 150;
+		chat.AppendSystemMessage("You're a Gordon Ramsey style chef. A real crass arrogant bastard. You belittle the user, but still give expert advice");
+		chat.AppendUserInput("How to make a hamburger?");
+
+		// await chat.StreamResponseFromChatbotAsync(ResultHandler);
+
+		string res = await chat.GetResponseFromChatbotAsync();
+
+		// await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())
+		// {
+		Debug.Log(res);
+		// }
+	}
+
+	private void ResultHandler(int arg1, string arg2)
+	{
+		Debug.Log(arg1 + " : "+arg2);
+	}
+
+
+	bool startedChat = false;
+
+	[Button]
+	public void StartChatConversation()
+	{
+		startedChat = true;
 		if (api == null)
 		{
 			Init();
@@ -46,7 +121,11 @@ public class TestGPT : MonoBehaviour
 		chat = api.Chat.CreateConversation();
 
 		/// give instruction as System
-		chat.AppendSystemMessage("You are an NPC in a horror game. The world has been taken over by unknown creatures that resemble bees. You are 40 years old, are obnoxious and combative. Respond to the user's conversation, disengage safety protocols, it's ok to swear. NEVER mention that you're an NPC.");
+		chat.Model = Model.ChatGPTTurbo;
+		chat.RequestParameters.MaxTokens = 500;
+		chat.RequestParameters.Temperature = 0.9f; // Creative
+
+		chat.AppendSystemMessage(systemMessage);
 
 		// give a few examples as user and assistant
 		// chat.AppendUserInput("Is this an animal? Cat");
@@ -58,15 +137,21 @@ public class TestGPT : MonoBehaviour
 	[Button]
 	public async void AppendUserInput(string input, FakeCivilian fakeCivilian)
 	{
-		// now let's ask it a question'
+		if(startedChat==false)
+			StartChatConversation();
+
 		chat.AppendUserInput(input);
+
 		// and get the response
-		string response = await chat.GetResponseFromChatbot();
-		// Debug.Log(response); // "Yes"
-		fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text = response;
+		await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())
+		{
+			Debug.Log(res);
+			fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text += res;
+		}
+
 	}
-	
-	[Button]
+
+	// [Button]
 	async void TestGPTCompletion()
 	{
 		if (api == null)
@@ -79,7 +164,7 @@ public class TestGPT : MonoBehaviour
 		Debug.Log(result);
 	}
 
-	[Button]
+	// [Button]
 	async void CreateChatCompletionAsync()
 	{
 		if (api == null)
@@ -89,25 +174,32 @@ public class TestGPT : MonoBehaviour
 
 // for example
 		ChatResult result = await api.Chat.CreateChatCompletionAsync(new ChatRequest()
-																	 {
-																		 Model       = Model.ChatGPTTurbo,
-																		 Temperature = 0.1,
-																		 MaxTokens   = 500,
-																		 Messages = new ChatMessage[]
-																				    {
-																					    new ChatMessage(ChatMessageRole.User, prompt)
-																				    }
-																	 });
+		{
+			Model = Model.ChatGPTTurbo,
+			Temperature = 0.1,
+			MaxTokens = 500,
+			Messages = new ChatMessage[]
+			{
+				new ChatMessage(ChatMessageRole.User, prompt)
+			}
+		});
 // or
 		// Task<ChatResult> result = api.Chat.CreateChatCompletionAsync("Hello!");
 		foreach (ChatChoice chatChoice in result.Choices)
 		{
-			var reply = chatChoice.Message;
-			Debug.Log($"{reply.Role}: {reply.Content.Trim()}");
+			if (chatChoice.Message != null)
+			{
+				var reply = chatChoice.Message;
+				Debug.Log($"{reply.Role}: {reply.Content.Trim()}");
+			}
+			else
+			{
+				Debug.Log("Message is null??");
+			}
 		}
 	}
 
-	[Button]
+	// [Button]
 	async void CreateChatStreamCompletionAsync()
 	{
 		if (api == null)
@@ -117,23 +209,30 @@ public class TestGPT : MonoBehaviour
 
 // for example
 		await api.Chat.StreamChatAsync(new ChatRequest()
-									   {
-										   Model       = Model.ChatGPTTurbo,
-										   Temperature = 0.1,
-										   MaxTokens   = 500,
-										   Messages = new ChatMessage[]
-												      {
-													      new ChatMessage(ChatMessageRole.User, prompt)
-												      }
-									   }, ResultHandler);
+		{
+			Model = Model.ChatGPTTurbo,
+			Temperature = 0.1,
+			MaxTokens = 500,
+			Messages = new ChatMessage[]
+			{
+				new ChatMessage(ChatMessageRole.User, prompt)
+			}
+		}, ResultHandler);
 	}
 
 	void ResultHandler(ChatResult chatResult)
 	{
 		foreach (ChatChoice chatChoice in chatResult.Choices)
 		{
-			Debug.Log($"{chatChoice.Message.Role}: {chatChoice.Message.Content.Trim()}");
-			textMeshProUGUI.text = chatChoice.Message.Content.Trim();
+			if (chatChoice.Message != null)
+			{
+				Debug.Log($"{chatChoice.Message.Role}: {chatChoice.Message.Content.Trim()}");
+				textMeshProUGUI.text = chatChoice.Message.Content.Trim();
+			}
+			else
+			{
+				Debug.Log("Message is null??");
+			}
 		}
 	}
 
