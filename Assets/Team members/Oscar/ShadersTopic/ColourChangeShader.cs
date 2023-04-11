@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.Effects;
+using DG.Tweening;
 using Oscar;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,6 +18,8 @@ namespace Oscar
         private BasicBeeEventsManager _basicBeeEventsManager;
 
         public bool attackPhase;
+        
+        public float transitionSpeed;
 
         private void Awake()
         {
@@ -38,27 +41,41 @@ namespace Oscar
 
         private void Search()
         {
-            newCutOffHeight += Time.deltaTime * 2;
-
+            //dotween stuff     dotween.too
+            //DOTween.To(Setter, -1f, 1.5f,transitionSpeed);
+            
+            //Manuel way to do it:
+            //
+            newCutOffHeight += Time.deltaTime * transitionSpeed;
+            
             if (newCutOffHeight >= 1.5f)
             {
                 newCutOffHeight = 1.5f;
             }
-
+            
             renderer.material.SetFloat("_OverTimeValue", newCutOffHeight);
         }
-
+        
         public void Attack()
         {
-            newCutOffHeight -= Time.deltaTime * 2;
+            //dotween stuff     dotween.too
+            //DOTween.To(Setter, 1.5f, -1f,transitionSpeed);
 
+            //Manuel way to do it:
+            //
+            newCutOffHeight -= Time.deltaTime * transitionSpeed;
+            
             if (newCutOffHeight <= -1f)
             {
                 newCutOffHeight = -1f;
             }
-
+            
             renderer.material.SetFloat("_OverTimeValue", newCutOffHeight);
         }
+        // void Setter(float newValue)
+        //  {
+        //      renderer.material.SetFloat("_OverTimeValue", newValue);
+        //  }
 
         public void NewColour(Color color)
         {

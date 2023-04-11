@@ -13,11 +13,11 @@ public class OscarControllerAI : MonoBehaviour
     {
         if (vision.honeyInSight.Count > 0)
         {
-            colourChanger.attackPhase = true;
+            //colourChanger.attackPhase = true;
             return true;
         }
 
-        colourChanger.attackPhase = false;
+        //colourChanger.attackPhase = false;
         return false;
     }
 

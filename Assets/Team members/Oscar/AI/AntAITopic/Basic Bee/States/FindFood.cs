@@ -17,6 +17,8 @@ public class FindFood : AntAIState
     public float sine;
 
     private bool attackBool;
+    
+    
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
@@ -27,11 +29,16 @@ public class FindFood : AntAIState
         littleGuy = aGameObject.GetComponent<LittleGuy>();
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        littleGuy.GetComponentInChildren<ColourChangeShader>().attackPhase = false;
+    }
+
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
-        
-        //change the colour
         
         float x = zoomX + Time.time;
         float z = zoomZ + Time.time;
