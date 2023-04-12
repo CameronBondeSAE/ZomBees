@@ -1,3 +1,4 @@
+using Sirenix.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,10 @@ namespace Marcus
         public FoodAIVision vision;
         public List<Memory> memories;
 
-        private int counter;
+        private bool alreadyExists;
+
+        
+        List<Memory> toRemove = new List<Memory>(20);
 
         private void OnEnable()
         {
@@ -19,21 +23,38 @@ namespace Marcus
 
         private void AddMemories(GameObject objectSeen)
         {
-            counter = 0;
+            alreadyExists = false;
 
             foreach (Memory memory in memories)
             {
                 if (memory.thingToRemember.gameObject == objectSeen)
                 {
-                    counter++;
+                    // Update time and position and another other info (description?)
+                    alreadyExists = true;
                 }
             }
 
-            if (counter <= 0)
+            if (!alreadyExists)
             {
-                var newMemory = gameObject.AddComponent<Memory>().CreateMemory(objectSeen.GetComponent<FakeDynamicObject>());
+                Memory newMemory = new Memory().CreateMemory(objectSeen.GetComponent<FakeDynamicObject>());
                 memories.Add(newMemory);
             }
+            
+            // Sort by importance in each memory
+            memories.Sort(Comparison);
+        }
+
+        int Comparison(Memory x, Memory y)
+        {
+            if (Math.Abs(x.thingToRemember.importance - y.thingToRemember.importance) < 0.01f)
+            {
+                return 0;
+            }
+
+            if (x.thingToRemember.importance > y.thingToRemember.importance)
+                return -1;
+            else
+                return 1;
         }
 
         private void FixedUpdate()
@@ -42,9 +63,20 @@ namespace Marcus
             {
                 if (Time.time - memory.timeStamp >= 75f)
                 {
-                    memories.Remove(memory);
-                    Destroy(memory);
+                    toRemove.Add(memory);
                 }
+            }
+
+            // Clear out old memories
+            if (toRemove.Count>0)
+            {
+                foreach (Memory memory in toRemove)
+                {
+                    // I'm removing from the main memories list
+                    memories.Remove(memory);
+                }
+            
+                toRemove.Clear();
             }
         }
     }

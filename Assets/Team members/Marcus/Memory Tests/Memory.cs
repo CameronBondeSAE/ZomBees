@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Marcus
 {
-    public class Memory : MonoBehaviour
+    [Serializable]
+    public class Memory
     {
         public Vector2Int location;
         public string description;

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2072177004840980636}
   - component: {fileID: 2072177004840980637}
+  - component: {fileID: 587475300}
+  - component: {fileID: 587475299}
   - component: {fileID: 2072177004840980638}
   - component: {fileID: 2072177004840980639}
   - component: {fileID: 2072177004840980632}
@@ -17,6 +19,7 @@ GameObject:
   - component: {fileID: 2018311179568459550}
   - component: {fileID: 2628806701806315655}
   - component: {fileID: 805523851910997187}
+  - component: {fileID: 587475310}
   m_Layer: 0
   m_Name: Fake Civilian
   m_TagString: Untagged
@@ -39,7 +42,7 @@ Transform:
   - {fileID: 2843158076734876656}
   - {fileID: 513068347}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2072177004840980637
 MeshFilter:
@@ -49,6 +52,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072177004840980634}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &587475300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072177004840980634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff57f109e404a75459847f54323273e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feelerAmount: 10
+  feelerLength: 10
+  visableFood: []
+  visableObjects: []
+--- !u!114 &587475299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072177004840980634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7728cfde9a72841ba6b2414274cacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vision: {fileID: 587475300}
+  memories: []
 --- !u!23 &2072177004840980638
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -121,7 +154,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072177004840980634}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -143,7 +176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072177004840980634}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a458ba36dc650364aa818d4d172efbb8, type: 3}
   m_Name: 
@@ -158,7 +191,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072177004840980634}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f51e00a4de074284791deacf38caf036, type: 3}
   m_Name: 
@@ -177,7 +210,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072177004840980634}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -296,6 +329,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8296700942121d4da1ea1a1fc1a1db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GPTInfo: 
+  mainPrompt: 
+--- !u!114 &587475310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072177004840980634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74618a5fbec3bb74bb70d61434a740ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4936938916019467185
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2843158076734876656
 Transform:
   m_ObjectHideFlags: 0

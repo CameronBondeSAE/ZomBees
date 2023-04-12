@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2356.8157, g: 2427.9749, b: 3485.9067, a: 1}
+  m_IndirectSpecularColor: {r: 2356.8079, g: 2427.9788, b: 3485.8755, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2101,8 +2101,8 @@ MonoBehaviour:
     Happy\r\nReplace \"ExampleAction\" with either FollowPlayer, RunAway, FrozenWithFear\r,
     DoNothing, CommitSuicide\nReplace \"ExampleFearValue\" with an adjusted fear
     value\n\t{\r\n\t\t\"emotion\": ExampleEmotion,\r\n\t\t\"outputSpeech\": \"Example\",\r\n\t\t\"action\":
-    ExampleAction\r,\n\t\t\"fear\": ExampleFearValue\n\t}\r\nAll output should use
-    the JSON template.\r"
+    ExampleAction\r,\n\t\t\"importance\": ExampleImportance,\n\t\t\"fear\": ExampleFearValue\n\t}\r\nAll
+    output should use the JSON template.\r"
   prompt: 'Conditions about the world are
 
     It is night

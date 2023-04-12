@@ -12,7 +12,7 @@ public class TestScriptableObjects : MonoBehaviour
     {
         foreach (Emotion emotionalCoreEmotion in emotionalCore._emotions)
         {
-            Debug.Log(emotionalCoreEmotion.description + " : "+emotionalCoreEmotion.strength);
+            Debug.Log(emotionalCoreEmotion.description);//"+emotionalCoreEmotion.strength);
         }
     }
 }

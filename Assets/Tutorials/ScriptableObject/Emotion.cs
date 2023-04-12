@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class Emotion
+
+[CreateAssetMenu(menuName = "Zombees/Emotion", order = 1)]
+public class Emotion : ScriptableObject
 {
 	public string description;
-	[Range(0f, 1f)]
-	public float strength;
 }
