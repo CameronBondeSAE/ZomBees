@@ -19,7 +19,7 @@ namespace Marcus
             Physics.Raycast(transform.position, transform.forward, out feelerInfo, feelerLength, Int32.MaxValue, QueryTriggerInteraction.Ignore);
             if (feelerInfo.collider)
             {
-                finalForce = (feelerLength - feelerInfo.distance) * 1.1f;
+                finalForce = (feelerLength - feelerInfo.distance) * 10.1f;
             }
             
             return finalForce;

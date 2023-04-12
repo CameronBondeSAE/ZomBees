@@ -21,7 +21,7 @@ namespace Marcus
         void FixedUpdate()
         {
             // Some are Torque, some are Force		
-            targetDirection = CalculateMove(neighbours.neighbourDudes);
+            targetDirection = CalculateMove();
 
             // Cross will take YOUR direction and the TARGET direction and turn it into a rotation force vector
             Vector3 cross = Vector3.Cross(transform.forward, targetDirection);
@@ -29,9 +29,9 @@ namespace Marcus
             rb.AddTorque(cross * force);
         }
 
-        public Vector3 CalculateMove(List<Transform> neighbours)
+        public Vector3 CalculateMove()
         {
-            if (neighbours.Count == 0)
+            if (neighbours.neighbourDudes.Count == 0)
             {
                 return Vector3.zero; 
             }
@@ -40,12 +40,18 @@ namespace Marcus
 
             // Average of all neighbours directions
             // I’m using a list of transforms in my neighbours script, you might be using GameObjects etc
-            foreach (Transform item in neighbours)
+            int neighbourDudesCount = neighbours.neighbourDudes.Count;
+            if (neighbourDudesCount > 5)
             {
-                alignmentMove += item.transform.forward;
+                neighbourDudesCount = 5; // CAM HACK: Limit neighbours when there's loads
+            }
+            
+            for (int index = 0; index < neighbourDudesCount; index++)
+            {
+                alignmentMove += neighbours.neighbourDudes[index].forward;
             }
 
-            alignmentMove /= neighbours.Count;
+            alignmentMove /= neighbours.neighbourDudes.Count;
             return alignmentMove;
         }
     }

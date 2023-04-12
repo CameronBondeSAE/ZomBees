@@ -159,7 +159,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7839674317255851118
 MonoBehaviour:
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e480eb2f9f9939946a817ed98fa5b7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 50
   feelerLength: 15
   bailDistance: 5
 --- !u!135 &5986660047206588509
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 7839674317255851118}
-  force: 1.2
+  force: 15
 --- !u!114 &5052201061878302551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 7839674317255851118}
-  force: 1
+  force: 15
 --- !u!114 &1400215020369864848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 7839674317255851118}
-  force: 1.5
+  force: 8
 --- !u!1 &6707109766622165894
 GameObject:
   m_ObjectHideFlags: 0

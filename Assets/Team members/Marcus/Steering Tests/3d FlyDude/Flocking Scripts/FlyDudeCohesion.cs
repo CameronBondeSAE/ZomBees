@@ -21,27 +21,32 @@ namespace Marcus
         // Update is called once per frame
         void FixedUpdate()
         {
-            targetPosition = CalculateMove(neighbours.neighbourDudes);
+            targetPosition = CalculateMove();
 
             Vector3 directionTowardsTarget = (targetPosition - transform.position).normalized;
             rb.AddForce(directionTowardsTarget * force);
         }
 
-        public Vector3 CalculateMove(List<Transform> neighbours)
+        public Vector3 CalculateMove()
         {
-            if (neighbours.Count == 0)
+            if (neighbours.neighbourDudes.Count == 0)
             {
                 return Vector3.zero; 
             }
 
-            Vector3 cohesionMove = Vector3.zero;
-            
-            foreach (Transform item in neighbours)
+            Vector3 cohesionMove        = Vector3.zero;
+            int     neighbourDudesCount = neighbours.neighbourDudes.Count;
+            if (neighbourDudesCount > 5)
             {
-                cohesionMove += item.position;
+                neighbourDudesCount = 5; // CAM HACK: Limit neighbours when there's loads
             }
 
-            cohesionMove /= neighbours.Count;
+            for (int index = 0; index < neighbourDudesCount; index++)
+            {
+                cohesionMove += neighbours.neighbourDudes[index].position;
+            }
+
+            cohesionMove /= neighbours.neighbourDudes.Count;
             return cohesionMove;
         }
     }

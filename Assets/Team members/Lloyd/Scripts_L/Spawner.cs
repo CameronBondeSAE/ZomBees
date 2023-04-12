@@ -57,7 +57,7 @@ public class Spawner : MonoBehaviour
             follower = swarmerObj.GetComponent<Follower>();
             follower.SetRotationPoint(transform);
 
-            queenScene.AddFollower(swarmerObj);
+            // queenScene.AddFollower(swarmerObj);
 
             queenEvent.ChangeSwarmTransform += follower.SetRotationPoint;
             queenEvent.ChangeSwarmCircleSize += follower.SetCircleSize;
