@@ -33,7 +33,7 @@ namespace Marcus
 
             foreach (Memory memory in memories)
             {
-                if (memory.thingToRemember.gameObject == objectSeen)
+                if (memory.thingToRemember.gameObject == objectSeen && memory.thingToRemember != null)
                 {
                     // Update time and position and another other info (description?)
                     UpdateMemory(memory);

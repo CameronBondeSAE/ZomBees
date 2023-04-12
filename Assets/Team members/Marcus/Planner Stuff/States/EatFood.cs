@@ -14,13 +14,18 @@ namespace Marcus
 
         private float waitTimer = 3f;
 
+        public override void Create(GameObject aGameObject)
+        {
+            base.Create(aGameObject);
+            
+            hand = aGameObject.GetComponentInChildren<FoodAIHolding>();
+            hunger = aGameObject.GetComponent<FoodAIHunger>();
+        }
+
         public override void Enter()
         {
             base.Enter();
-            
-            hand = GetComponentInParent<FoodAIHolding>();
-            hunger = GetComponentInParent<FoodAIHunger>();
-            
+
             //send event to bobble food and make eating noises
         }
 
