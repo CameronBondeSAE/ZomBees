@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Oscar;
 
 namespace Marcus
 {
@@ -37,7 +38,7 @@ namespace Marcus
 
             if (!alreadyExists)
             {
-                Memory newMemory = new Memory().CreateMemory(objectSeen.GetComponent<FakeDynamicObject>());
+                Memory newMemory = new Memory().CreateMemory(objectSeen.GetComponent<DynamicObject>());
                 memories.Add(newMemory);
             }
             

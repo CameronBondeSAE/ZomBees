@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Oscar;
 
 namespace Marcus
 {
@@ -43,7 +44,7 @@ namespace Marcus
                         visableFood.Add(hitInfo.collider.gameObject);
                     }
 
-                    if (hitInfo.collider.GetComponent<FakeDynamicObject>() &&
+                    if (hitInfo.collider.GetComponent<DynamicObject>() &&
                         !visableObjects.Contains(hitInfo.collider.gameObject))
                     {
                         visableObjects.Add(hitInfo.collider.gameObject);

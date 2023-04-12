@@ -157,8 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7abf5b09a20cd1489fa11439425b119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
   importance: 0.1
-  Description: Fake rock because why not
+  description: rock
 --- !u!64 &46381373
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1112,6 +1114,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2018311179568459550, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1220,8 +1226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a6bc749701c034eb50895b7e49d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
   importance: 0.5
-  Description: Fake test food
+  description: New and improved fake food; NOW INHERITS FROM DYNAMIC OBJECT
 --- !u!65 &759768394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1340,8 +1348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74617db6062a30d4ebb16085d44c9770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
   importance: 1
-  Description: Fake test bee
+  description: Better fake bee; ALSO A DYNAMIC OBJECT
 --- !u!135 &788811498
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1795,8 +1805,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a6bc749701c034eb50895b7e49d639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
   importance: 0.5
-  Description: Second piece of fake test food
+  description: Second new and improved fake food
 --- !u!65 &1757639883
 BoxCollider:
   m_ObjectHideFlags: 0
