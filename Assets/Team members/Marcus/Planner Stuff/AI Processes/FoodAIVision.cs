@@ -24,38 +24,45 @@ namespace Marcus
             
             spacing = 20f / feelerAmount;
             offset = feelerAmount / 2f;
+
+            StartCoroutine(UpdateVision());
         }
 
         public delegate void OnObjectSeen(GameObject thing);
         public event OnObjectSeen memoryEvent;
         
-        private void Update()
+        private IEnumerator UpdateVision()
         {
-            for (int i = 0; i < feelerAmount; i++)
+            while (true)
             {
-                Vector3 scanDir = Quaternion.Euler(0,  i * spacing - offset, 0) * transform.forward;
-                Ray visionLine = new Ray(transform.position, scanDir);
-                RaycastHit hitInfo;
-
-                if (Physics.Raycast(visionLine, out hitInfo, feelerLength))
+                for (int i = 0; i < feelerAmount; i++)
                 {
-                    if (hitInfo.collider.GetComponent<Food>() != null && !visableFood.Contains(hitInfo.collider.gameObject))
-                    {
-                        visableFood.Add(hitInfo.collider.gameObject);
-                    }
+                    Vector3 scanDir = Quaternion.Euler(0,  i * spacing - offset, 0) * transform.forward;
+                    Ray visionLine = new Ray(transform.position, scanDir);
+                    RaycastHit hitInfo;
 
-                    if (hitInfo.collider.GetComponent<DynamicObject>() &&
-                        !visableObjects.Contains(hitInfo.collider.gameObject))
+                    if (Physics.Raycast(visionLine, out hitInfo, feelerLength))
                     {
-                        visableObjects.Add(hitInfo.collider.gameObject);
-                        memoryEvent?.Invoke(hitInfo.collider.gameObject);
+                        if (hitInfo.collider.GetComponent<Food>() != null && !visableFood.Contains(hitInfo.collider.gameObject))
+                        {
+                            visableFood.Add(hitInfo.collider.gameObject);
+                        }
+
+                        if (hitInfo.collider.GetComponent<DynamicObject>() &&
+                            !visableObjects.Contains(hitInfo.collider.gameObject))
+                        {
+                            visableObjects.Add(hitInfo.collider.gameObject);
+                            memoryEvent?.Invoke(hitInfo.collider.gameObject);
+                        }
+                    }
+                    else
+                    {
+                        visableFood.Clear();
+                        visableObjects.Clear();
                     }
                 }
-                else
-                {
-                    visableFood.Clear();
-                    visableObjects.Clear();
-                }
+
+                yield return new WaitForSeconds(0.5f);
             }
         }
     }

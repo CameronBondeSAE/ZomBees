@@ -83,7 +83,7 @@ public class BeeWingsManager : MonoBehaviour
         
         numWings = myWings.Count;
         int currentPair = -1;
-        Vector3 startPosition = transform.position - new Vector3((numWings / 2) * xDistance, 0, (numWings / 2) * zDistance);
+        Vector3 startPosition = transform.position - new Vector3(((numWings / 2) - 1) * xDistance, 0, ((numWings / 2) - 1) * zDistance);
         
         float offset = RandomOffset();
 

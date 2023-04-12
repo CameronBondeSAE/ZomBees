@@ -80,7 +80,7 @@ MonoBehaviour:
       value: 1
   - name: SeekingResources
     isDefault: 1
-    state: {fileID: 7055940769440527892, guid: 53520952d82d4e64dae2987682aa7fb0, type: 3}
+    state: {fileID: 119544246350518762, guid: 9667d82d0fdb48c4580e92d85b9f63b7, type: 3}
     cost: 1
     position: {x: 394.33337, y: 159.99997}
     pre:

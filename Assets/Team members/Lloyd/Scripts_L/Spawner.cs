@@ -71,4 +71,10 @@ public class Spawner : MonoBehaviour
             FollowerList.Add(swarmerObj);
         }
     }
+
+    private void FixedUpdate()
+    {
+        parent.transform.position = rb.position;
+        parent.transform.rotation = rb.rotation;
+    }
 }
