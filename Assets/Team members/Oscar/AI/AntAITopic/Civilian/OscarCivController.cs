@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class OscarCivController : MonoBehaviour
 {
-    public OscarCivVision vision;
+    public OscarVision vision;
     public LittleGuy littleGuy;
     public HearingComp ears;
     private bool hearSounds;
-    
+    public bool playerTalkin;
+
     private void OnEnable()
     {
         ears.SoundHeardEvent += CreateFear;
@@ -21,7 +22,6 @@ public class OscarCivController : MonoBehaviour
         ears.SoundHeardEvent -= DecreaseFear;
     }
 
-    public bool playerTalkin;
     public bool SeeBeeBool()
     {
         return vision.beesInSight.Count >= 1;

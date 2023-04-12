@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class Honey : MonoBehaviour, IItem
+    public class Food : MonoBehaviour, IItem
     {
         [Sirenix.OdinInspector.ReadOnly]public bool BeeObtained;
         private void OnCollisionEnter(Collision collision)
@@ -33,7 +33,7 @@ namespace Oscar
         public string Description()
         {
             //its honey, idk what to place here
-            return "Honey";
+            return "Food";
         }
 
         public void Pickup(GameObject obj)

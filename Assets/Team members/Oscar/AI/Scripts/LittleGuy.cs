@@ -9,7 +9,6 @@ namespace Oscar
 {
     public class LittleGuy : LivingEntity
     {
-        public bool isBee;
         public Rigidbody rb;
         public GameObject littleGuyModel;
         public float speed;

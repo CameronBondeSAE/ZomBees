@@ -50,9 +50,9 @@ public class OscarVisionAI : MonoBehaviour
             }
 
             
-            if (other.GetComponent<Honey>() != null)
+            if (other.GetComponent<Food>() != null)
             {
-                if (other.gameObject.GetComponent<Honey>().BeeObtained == false)
+                if (other.gameObject.GetComponent<Food>().BeeObtained == false)
                 {
                     GameObject honeyStuff = other.gameObject;
 
@@ -83,7 +83,7 @@ public class OscarVisionAI : MonoBehaviour
             
             lightInSight.Remove(litObj);
         }
-        if (other.GetComponent<Honey>() != null)
+        if (other.GetComponent<Food>() != null)
         {
             GameObject honeyStuff = other.gameObject;
         

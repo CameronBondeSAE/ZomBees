@@ -138,7 +138,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
       propertyPath: m_LocalScale.x
@@ -162,7 +162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.810002
+      value: -5.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: fcc282541c95eaf41aeb6f64193421c9, type: 2}
     - target: {fileID: 919132149155446097, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
       propertyPath: m_Name
-      value: BasicBeeWithModel Variant
+      value: BasicBeeWithModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -262,8 +262,8 @@ MonoBehaviour:
   renderer: {fileID: 9206363950359614290}
   attackPhase: 0
   transitionSpeed: 2
-  glowColour: {r: 0, g: 0, b: 0, a: 0}
-  baseColour: {r: 0, g: 0, b: 0, a: 0}
+  glowColour: {r: 1, g: 0.98861307, b: 0.023584902, a: 0}
+  baseColour: {r: 0.8490566, g: 0.20425417, b: 0.20425417, a: 0}
 --- !u!1 &2469078837862233852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
@@ -303,7 +303,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2469078837862233852}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bb1b203c4f56a984eb0dce66d110c3fc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   isBee: 1
   rb: {fileID: 5686446248287303358}
   littleGuyModel: {fileID: 2469078837862233852}
-  speed: 20
+  speed: 5
   turnSpeed: 0.05
   myHome: {fileID: 0}
   collectedObjects: []

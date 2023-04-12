@@ -7,7 +7,7 @@ using UnityEngine;
 public class AttackBee : AntAIState
 {
     private LittleGuy littleGuy;
-    private OscarCivVision vision;
+    private OscarVision vision;
 
     public override void Create(GameObject aGameObject)
     {
@@ -15,7 +15,7 @@ public class AttackBee : AntAIState
 
         littleGuy = aGameObject.GetComponent<LittleGuy>();
 
-        vision = aGameObject.GetComponent<OscarCivVision>();
+        vision = aGameObject.GetComponent<OscarVision>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
