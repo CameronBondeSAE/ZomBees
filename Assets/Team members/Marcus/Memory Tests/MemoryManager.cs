@@ -17,6 +17,8 @@ namespace Marcus
         
         public List<Memory> memories;
 
+        private float baseLifetime = 75f;
+
         private bool alreadyExists;
 
         
@@ -73,7 +75,7 @@ namespace Marcus
             {
                 foreach (Memory memory in memories)
                 {
-                    if (Time.time - memory.timeStamp >= 75f)
+                    if (Time.time - memory.timeStamp >= baseLifetime * memory.thingToRemember.importance)
                     {
                         toRemove.Add(memory);
                     }
