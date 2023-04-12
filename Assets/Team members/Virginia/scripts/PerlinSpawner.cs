@@ -25,7 +25,7 @@ namespace Virginia
         {
             for (int z = 0; z < 100; z++)
             {
-                for (int x = 0; size.x; x = x+Cubesize)
+                for (int x = 0; //size.x; x = x+Cubesize)
                 {
                     Vector3 BeeHivepos = new Vector3();
                     BeeHivepos.x = x;
