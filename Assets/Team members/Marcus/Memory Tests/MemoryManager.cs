@@ -26,6 +26,8 @@ namespace Marcus
         {
             testVision.memoryEvent += AddMemories;
             finalVision.memoryEvent += AddMemories;
+
+            StartCoroutine(RemoveMemories());
         }
 
         private void AddMemories(GameObject objectSeen)
@@ -65,26 +67,31 @@ namespace Marcus
                 return 1;
         }
 
-        private void FixedUpdate()
+        private IEnumerator RemoveMemories()
         {
-            foreach (Memory memory in memories)
+            while (true)
             {
-                if (Time.time - memory.timeStamp >= 75f)
+                foreach (Memory memory in memories)
                 {
-                    toRemove.Add(memory);
+                    if (Time.time - memory.timeStamp >= 75f)
+                    {
+                        toRemove.Add(memory);
+                    }
                 }
-            }
 
-            // Clear out old memories
-            if (toRemove.Count>0)
-            {
-                foreach (Memory memory in toRemove)
+                // Clear out old memories
+                if (toRemove.Count>0)
                 {
-                    // I'm removing from the main memories list
-                    memories.Remove(memory);
-                }
+                    foreach (Memory memory in toRemove)
+                    {
+                        // I'm removing from the main memories list
+                        memories.Remove(memory);
+                    }
             
-                toRemove.Clear();
+                    toRemove.Clear();
+                }
+
+                yield return new WaitForSeconds(3.5f);
             }
         }
         
