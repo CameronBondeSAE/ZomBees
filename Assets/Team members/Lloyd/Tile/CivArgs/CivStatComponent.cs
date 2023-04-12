@@ -249,7 +249,7 @@ public class CivStatComponent : MonoBehaviour
 
     public string myName;
 
-    public CivCiv myCiv;
+    // public CivCiv myCiv;
 
-    public CivTraits myTraits;
+    // public CivTraits myTraits;
 }

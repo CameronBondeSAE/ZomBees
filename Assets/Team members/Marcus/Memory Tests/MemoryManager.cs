@@ -3,12 +3,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Oscar;
 
 namespace Marcus
 {
     public class MemoryManager : MonoBehaviour
     {
-        public FoodAIVision vision;
+        /// <summary>
+        /// Remove Test Vision on implementation to final project
+        /// </summary>
+        public FoodAIVision testVision;
+        public OscarVision finalVision;
+        
         public List<Memory> memories;
 
         private bool alreadyExists;
@@ -18,7 +24,8 @@ namespace Marcus
 
         private void OnEnable()
         {
-            vision.memoryEvent += AddMemories;
+            testVision.memoryEvent += AddMemories;
+            finalVision.memoryEvent += AddMemories;
         }
 
         private void AddMemories(GameObject objectSeen)
@@ -37,7 +44,7 @@ namespace Marcus
 
             if (!alreadyExists)
             {
-                Memory newMemory = new Memory().CreateMemory(objectSeen.GetComponent<FakeDynamicObject>());
+                Memory newMemory = new Memory().CreateMemory(objectSeen.GetComponent<DynamicObject>());
                 memories.Add(newMemory);
             }
             
