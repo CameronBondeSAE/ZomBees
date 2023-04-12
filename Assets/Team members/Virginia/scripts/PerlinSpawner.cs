@@ -23,14 +23,18 @@ namespace Virginia
         [Button]
         void Spawn()
         {
-            for (int x = 0; x < 100; x++ )
+            for (int z = 0; z < 100; z++)
             {
-                Vector3 BeeHivepos = new Vector3();
-                BeeHivepos.x = x;
-                BeeHivepos.y = Mathf.PerlinNoise1D(x);
-                Instantiate(BeeHive, BeeHivepos, quaternion.identity);
-                
-               
+                for (int x = 0; size.x; x = x+Cubesize)
+                {
+                    Vector3 BeeHivepos = new Vector3();
+                    BeeHivepos.x = x;
+                    BeeHivepos.z = z;
+                    //BeeHivepos.y = Mathf.PerlinNoise1D(x);
+                    Instantiate(BeeHive, BeeHivepos, quaternion.identity);
+
+
+                }
             }
         }
         

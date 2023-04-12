@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+
+
 using System;
 
 namespace Virginia
@@ -25,7 +27,6 @@ namespace Virginia
             //     
             // }
             StateManager.ChangeState(GetComponent<SwitchOn>());
-            
         }
 
         [Button] // cheat - plugin
