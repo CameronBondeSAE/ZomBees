@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CivilianTraits : MonoBehaviour
 {
-    [ShowInInspector] public Dictionary<string, TraitStats> floatDictionary;
+    [ShowInInspector] public Dictionary<string, TraitStats> traitsDictionary;
 
     // public void Awake()
     // {
@@ -16,9 +16,9 @@ public class CivilianTraits : MonoBehaviour
     // [Button]
     public void UpdateTrait(string key, float value)
     {
-        if (floatDictionary.ContainsKey(key))
+        if (traitsDictionary.ContainsKey(key))
         {
-            TraitStats traitStats = floatDictionary[key];
+            TraitStats traitStats = traitsDictionary[key];
             float oldValue = traitStats.value;
             float newValue = oldValue + value;
 
