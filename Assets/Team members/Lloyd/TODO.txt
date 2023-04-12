@@ -15,3 +15,9 @@ TO DO:
 -- how to set up AntAI states to access main state? lists of patrol points
 
 -- control shader w/code
+
+broad phase culling
+
+my position - your position sqrMagnitude
+
+start 10,000Hz. for each obstacle, decrease
