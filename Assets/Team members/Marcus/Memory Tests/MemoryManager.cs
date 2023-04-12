@@ -9,10 +9,6 @@ namespace Marcus
 {
     public class MemoryManager : MonoBehaviour
     {
-        /// <summary>
-        /// Remove Test Vision on implementation to final project
-        /// </summary>
-        public FoodAIVision testVision;
         public OscarVision finalVision;
         
         public List<Memory> memories;
@@ -26,7 +22,6 @@ namespace Marcus
 
         private void OnEnable()
         {
-            testVision.memoryEvent += AddMemories;
             finalVision.memoryEvent += AddMemories;
 
             StartCoroutine(RemoveMemories());

@@ -6,13 +6,13 @@ namespace Marcus
 {
     public class FoodAIController : MonoBehaviour
     {
-        public FoodAIVision vision;
+        public OscarVision vision;
         public FoodAIHolding hand;
         public FoodAIHunger hunger;
 
         public bool CanSeeFood()
         {
-            if (vision.visableFood.Count > 0)
+            if (vision.foodInSight.Count > 0)
             {
                 return true;
             }
