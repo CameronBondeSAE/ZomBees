@@ -13,7 +13,147 @@ MonoBehaviour:
   m_Name: CivilianChild
   m_EditorClassIdentifier: 
   conditions:
-    list: []
-  actions: []
-  goals: []
-  worldStates: []
+    list:
+    - id: 0
+      name: Idle
+    - id: 1
+      name: stayAlive
+    - id: 2
+      name: isFollowing
+    - id: 3
+      name: isConversing
+    - id: 4
+      name: deliveredRocks
+    - id: 5
+      name: isScared
+    - id: 6
+      name: seeRock
+    - id: 7
+      name: hasRock
+  actions:
+  - name: Follow
+    isDefault: 1
+    state: {fileID: 0}
+    cost: 1
+    position: {x: 297, y: 95}
+    pre:
+    - id: 2
+      value: 1
+    - id: 5
+      value: 1
+    post:
+    - id: 2
+      value: 0
+    - id: 5
+      value: 0
+  - name: FindRocks
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 2
+    position: {x: 490, y: 95}
+    pre:
+    - id: 6
+      value: 0
+    post:
+    - id: 6
+      value: 1
+    - id: 4
+      value: 0
+  - name: CollectRocks
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 2
+    position: {x: 681, y: 96}
+    pre:
+    - id: 6
+      value: 1
+    - id: 7
+      value: 0
+    post:
+    - id: 7
+      value: 1
+  - name: RunAway
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 1
+    position: {x: 874, y: 96}
+    pre:
+    - id: 5
+      value: 1
+    - id: 2
+      value: 0
+    post:
+    - id: 5
+      value: 0
+    - id: 1
+      value: 1
+  - name: Idle
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 875, y: 326}
+    pre:
+    - id: 0
+      value: 1
+    post:
+    - id: 0
+      value: 0
+  - name: Converse
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 1
+    position: {x: 683, y: 326}
+    pre:
+    - id: 3
+      value: 1
+    post:
+    - id: 3
+      value: 0
+  - name: DeliverRocks
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 1
+    position: {x: 489, y: 325}
+    pre:
+    - id: 7
+      value: 1
+    - id: 4
+      value: 0
+    post:
+    - id: 4
+      value: 1
+    - id: 1
+      value: 1
+    - id: 0
+      value: 1
+  goals:
+  - name: DeliverRocks
+    isDefault: 1
+    position: {x: 289, y: 334}
+    conditions:
+    - id: 4
+      value: 1
+    - id: 1
+      value: 1
+    - id: 0
+      value: 0
+  worldStates:
+  - position: {x: 282, y: 585}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 1
+    - id: 1
+      value: 1
+    - id: 2
+      value: 1
+    - id: 3
+      value: 1
+    - id: 4
+      value: 0
+    - id: 5
+      value: 1
+    - id: 6
+      value: 1
+    - id: 7
+      value: 0

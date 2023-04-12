@@ -7,9 +7,8 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class Food : MonoBehaviour, IItem
+    public class Food : DynamicObject, IItem
     {
-        [Sirenix.OdinInspector.ReadOnly]public bool BeeObtained;
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.GetComponent<LittleGuy>() != null)
@@ -19,14 +18,6 @@ namespace Oscar
                     collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Add(gameObject);
                     Pickup(gameObject);
                 }
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.GetComponent<Hive>() != null)
-            {
-                BeeObtained = true;
             }
         }
 

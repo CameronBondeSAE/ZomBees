@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Oscar;
@@ -8,6 +9,23 @@ public class LightLength : DynamicObject
     public float initialLength;
     public float distance;
     public GameObject lightCone;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<DynamicObject>() != null)
+        {
+            other.GetComponent<DynamicObject>().isLit = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<DynamicObject>() != null)
+        {
+            other.GetComponent<DynamicObject>().isLit = false;
+        }
+    }
+
     void Update()
     {
         RaycastHit hit;

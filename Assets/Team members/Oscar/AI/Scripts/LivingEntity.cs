@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using UnityEngine;
 
-public class LivingEntity : MonoBehaviour
+public class LivingEntity : DynamicObject
 {
     public bool isBee;
 }

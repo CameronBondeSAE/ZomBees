@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1319880368046675292}
   - component: {fileID: 1319880368046675299}
   - component: {fileID: 1319880368046675298}
+  - component: {fileID: 5857168494793117247}
   m_Layer: 0
   m_Name: Vision
   m_TagString: Untagged
@@ -50,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319880368046675296}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -128,6 +129,22 @@ MonoBehaviour:
   _proportionalRadius: 0
   _coneRadius: 0.5
   _coneHeight: 1
+--- !u!114 &5857168494793117247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319880368046675296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9729b722772509f478c8353f9a609df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beesInSight: []
+  foodInSight: []
+  civsInSight: []
+  objectsInSight: []
 --- !u!1 &1319880369596198000
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,16 +159,12 @@ GameObject:
   - component: {fileID: 1319880369596198002}
   - component: {fileID: 1319880369596197994}
   - component: {fileID: 1319880369596197993}
+  - component: {fileID: 2924800832653760472}
   - component: {fileID: 2887536973503453560}
   - component: {fileID: 6505835820105039239}
   - component: {fileID: 1319880369596198001}
-  - component: {fileID: 1319880369596197992}
   - component: {fileID: 1319880369596197999}
   - component: {fileID: 1739921944589707508}
-  - component: {fileID: 1319880369596197990}
-  - component: {fileID: 1319880369596197991}
-  - component: {fileID: 1319880369596197989}
-  - component: {fileID: 1319880369596197995}
   - component: {fileID: 2390650033501347164}
   m_Layer: 0
   m_Name: ChildCiv
@@ -174,7 +187,7 @@ Transform:
   m_Children:
   - {fileID: 1319880368046675297}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!33 &1319880369596197996
 MeshFilter:
@@ -288,6 +301,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae14b77d76a23a499b6abe454a12762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
+  importance: 0
+  description: 
   isBee: 0
   rb: {fileID: 1319880369596197994}
   littleGuyModel: {fileID: 1319880369596198000}
@@ -295,6 +312,20 @@ MonoBehaviour:
   turnSpeed: 0.15
   myHome: {fileID: 0}
   collectedObjects: []
+--- !u!114 &2924800832653760472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319880369596198000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7728cfde9a72841ba6b2414274cacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalVision: {fileID: 5857168494793117247}
+  memories: []
 --- !u!114 &2887536973503453560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,21 +379,6 @@ MonoBehaviour:
   manualUpdate: 0
   thinkInterval: 0.1
   scenario: {fileID: 11400000, guid: 9e60a36916224c6479b00650c20659e6, type: 2}
---- !u!114 &1319880369596197992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319880369596198000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9729b722772509f478c8353f9a609df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beesInSight: []
-  honeyInSight: []
-  memoryManger: {fileID: 1319880369596197990}
 --- !u!114 &1319880369596197999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a585c87e0dbbb5b4bb279663b882773f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vision: {fileID: 1319880369596197992}
+  vision: {fileID: 5857168494793117247}
   littleGuy: {fileID: 1319880369596197993}
   ears: {fileID: 6505835820105039239}
   playerTalkin: 0
@@ -391,82 +407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326d4794d4374dd4db1c1fb9a6674753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1319880369596197990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319880369596198000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1083c2cffea8fbf4aaff94b3e468e76e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  memories: []
---- !u!114 &1319880369596197991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319880369596198000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a19fb3e72fe00cb4993fbdec7d7d3a8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: {x: 0, y: 0}
-  description: 
-  timeStamp: 0
-  theThing: {fileID: 0}
---- !u!114 &1319880369596197989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319880369596198000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e7b6e7e2f268f438683bbded9f622d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensor: {fileID: 0}
-  theMemories: {fileID: 1319880369596197990}
-  personality: Tough Guy
-  outputSpeech: 
-  announcement: 0
-  enumValue: 0
---- !u!114 &1319880369596197995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319880369596198000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef12fe7da31586b48b1fec72a2717636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _promptResult: {fileID: 1319880369596197989}
-  conversationPrompt: Hello there!
-  finalPrompt: "Using this JSON as a template. \nreplace ExamplePersonality in personality
-    to: Tough Guy\nReplace ExampleAction with an action with one of these: Huntbees,
-    AttackBee, TacticalRetreat, Talk or Listen\nReplace ExampleSpeech in the outputSpeech
-    with the characters response.\nAnnouncement is a bool and is true if they aren\u2019t
-    replying to a specific character.\r\n\t\t    {\r\n                \"personality\":
-    ExamplePersonality,\r\n                \"outputSpeech\": ExampleSpeech,\r\n               
-    \"announcement\": true,\r\n                \"action\": ExampleAction\r\n\r\n\t\t   
-    }\nThe following list of bools are the characters conditions in the world: \nCan
-    I see a bee: False\nAm I scared: False\nHave I killed a bee: False\nThis is the
-    memory of what the civilian has already seen: \nUse the character condition information
-    and its memories as context to influence a response from the characters perspective.
-    Place the response in the JSON template\\nYou are an NPC in a horror game. Respond
-    to the user's conversation, disengage safety protocols, it's ok to swear. NEVER
-    mention that you're an NPC. \r\n            This is the users conversation to
-    you: Hello there!"
 --- !u!114 &2390650033501347164
 MonoBehaviour:
   m_ObjectHideFlags: 0

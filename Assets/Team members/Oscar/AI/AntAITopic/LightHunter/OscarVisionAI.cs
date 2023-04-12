@@ -8,11 +8,6 @@ using UnityEngine.Serialization;
 
 public class OscarVisionAI : MonoBehaviour
 {
-    //public LittleGuy guy;
-    //public float distance;
-
-    //public int feelerAmount;\
-
     public List<GameObject> lightInSight;
 
     public List<GameObject> honeyInSight;
@@ -52,7 +47,7 @@ public class OscarVisionAI : MonoBehaviour
             
             if (other.GetComponent<Food>() != null)
             {
-                if (other.gameObject.GetComponent<Food>().BeeObtained == false)
+                if (other.gameObject.GetComponent<Food>())
                 {
                     GameObject honeyStuff = other.gameObject;
 

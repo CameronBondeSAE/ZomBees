@@ -36,7 +36,7 @@ Material:
     - _DoubleSidedNormalMode: 1
     - _EnableBlendModePreserveSpecularLighting: 1
     - _GlowThickness: 0.01
-    - _OverTimeValue: 1
+    - _OverTimeValue: 0.57
     - _ZTestDepthEqualForOpaque: 3
     m_Colors:
     - _GlowColor: {r: 0.41568628, g: 0.091943845, b: 0.047058813, a: 0}

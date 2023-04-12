@@ -16,7 +16,7 @@ public class OscarVision : MonoBehaviour
     public List<GameObject> civsInSight;
 
     public List<GameObject> objectsInSight;
-
+    
     public delegate void OnObjectSeen(GameObject thing);
     public event OnObjectSeen memoryEvent;
     
@@ -79,6 +79,9 @@ public class OscarVision : MonoBehaviour
                     memoryEvent?.Invoke(objectStuff);
                 }
             }
+            
+            //is lit up, use this:
+            //*****************************************************************************************************************************************************
         }
     }
 
