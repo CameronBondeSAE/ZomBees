@@ -4,38 +4,48 @@ using Unity.Mathematics;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using TreeEditor;
 using Virginia;
 
 namespace Virginia
 {
     public class PerlinSpawner : MonoBehaviour
     {
-        public GameObject BeeHive;
-
-      
+        public GameObject BeeHive; // - can be set to any game object don't mind the name
         // Start is called before the first frame update
         void Start()
         {
             
         }
-
-        // Update is called once per frame
+        
         [Button]
-        void Spawn()
+        void Spawn() // - this spawns cubes alone the x and z axis
         {
-            for (int z = 0; z < 100; z++)
+            for (int x = 0; x < 100; x++)
             {
-                for (int x = 0; x < 100; x++)
+                for (int z = 0; z < 100; z++)
                 {
-                    Vector3 BeeHivepos = new Vector3();
-                    BeeHivepos.x = x;
-                    BeeHivepos.y = Mathf.PerlinNoise1D(x);
-                    BeeHivepos.z = z;
-                    Instantiate(BeeHive, BeeHivepos, quaternion.identity);
-
+                    if ( x < z)
+                    {
+                        Vector3 BeeHivepos = new Vector3();
+                        BeeHivepos.x = x;
+                        BeeHivepos.y = Mathf.PerlinNoise1D(x);
+                        BeeHivepos.z = z;
+                        
+                        RaycastHit hitInfo;
+                      
+                            if (Physics.Raycast(BeeHivepos, Vector3.down, out hitInfo))
+                            {
+                                Instantiate(BeeHive, BeeHivepos, quaternion.identity);
+                            }
+                        
+                    }
                 }
+                
             }
+            
         }
+
         
     }
 }
