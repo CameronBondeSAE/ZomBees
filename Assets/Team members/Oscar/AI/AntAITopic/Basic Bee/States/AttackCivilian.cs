@@ -20,6 +20,13 @@ public class AttackCivilian : AntAIState
         vision = aGameObject.GetComponent<OscarVisionAI>();
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+        
+        littleGuy.GetComponentInChildren<ColourChangeShader>().attackPhase = true;
+    }
+
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);

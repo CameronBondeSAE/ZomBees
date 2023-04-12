@@ -138,7 +138,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
       propertyPath: m_LocalScale.x
@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3368388013743744769, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: fcc282541c95eaf41aeb6f64193421c9, type: 2}
     - target: {fileID: 919132149155446097, guid: b66271b9b8c97754385972101d97ae4c, type: 3}
       propertyPath: m_Name
       value: BasicBeeWithModel Variant
@@ -258,6 +262,8 @@ MonoBehaviour:
   renderer: {fileID: 9206363950359614290}
   attackPhase: 0
   transitionSpeed: 2
+  glowColour: {r: 0, g: 0, b: 0, a: 0}
+  baseColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2469078837862233852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b66271b9b8c97754385972101d97ae4c, type: 3}

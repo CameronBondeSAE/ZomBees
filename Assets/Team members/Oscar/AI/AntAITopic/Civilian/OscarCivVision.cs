@@ -37,6 +37,8 @@ public class OscarCivVision : MonoBehaviour
                 if (!honeyInSight.Contains(honeyStuff))
                 {
                     honeyInSight.Add(honeyStuff);
+                    
+                    memoryManger.AddMemory(other.gameObject);
                 }
             }
         }

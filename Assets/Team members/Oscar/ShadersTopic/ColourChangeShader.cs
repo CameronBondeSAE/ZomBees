@@ -21,6 +21,10 @@ namespace Oscar
         
         public float transitionSpeed;
 
+        public Color glowColour;
+
+        public Color baseColour;
+
         private void Awake()
         {
             renderer = GetComponent<Renderer>();
@@ -41,11 +45,6 @@ namespace Oscar
 
         private void Search()
         {
-            //dotween stuff     dotween.too
-            //DOTween.To(Setter, -1f, 1.5f,transitionSpeed);
-            
-            //Manuel way to do it:
-            //
             newCutOffHeight += Time.deltaTime * transitionSpeed;
             
             if (newCutOffHeight >= 1.5f)
@@ -58,11 +57,6 @@ namespace Oscar
         
         public void Attack()
         {
-            //dotween stuff     dotween.too
-            //DOTween.To(Setter, 1.5f, -1f,transitionSpeed);
-
-            //Manuel way to do it:
-            //
             newCutOffHeight -= Time.deltaTime * transitionSpeed;
             
             if (newCutOffHeight <= -1f)
@@ -72,12 +66,8 @@ namespace Oscar
             
             renderer.material.SetFloat("_OverTimeValue", newCutOffHeight);
         }
-        // void Setter(float newValue)
-        //  {
-        //      renderer.material.SetFloat("_OverTimeValue", newValue);
-        //  }
 
-        public void NewColour(Color color)
+        public void NewGlowColour(Color color)
         {
             renderer.material.SetColor("_OverTimeValue", color);
         }

@@ -14,7 +14,7 @@ namespace Oscar
         {
             memory = gameObject.AddComponent<Memory>();
             memory.position = Vector2Int.RoundToInt(objSeen.transform.position);
-            memory.description = "Saw a bee";
+            memory.description = objSeen.GetComponent<DynamicObject>().description;
             memory.timeStamp = Time.time;
             memory.theThing = objSeen.GetComponent<DynamicObject>();
             

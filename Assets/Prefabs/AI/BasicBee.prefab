@@ -82,6 +82,7 @@ MonoBehaviour:
   flapToAngle: -90
   lerpFlapSpeed: 7
   flapWaitTime: 0
+  secondWing: 0
   customAxis: {x: 0, y: 0, z: 1}
   returning: 0
   flapping: 1
@@ -204,6 +205,7 @@ MonoBehaviour:
   flapToAngle: -90
   lerpFlapSpeed: 7
   flapWaitTime: 0
+  secondWing: 0
   customAxis: {x: 0, y: 0, z: 1}
   returning: 0
   flapping: 1
@@ -364,6 +366,7 @@ MonoBehaviour:
   flapToAngle: -90
   lerpFlapSpeed: 7
   flapWaitTime: 0
+  secondWing: 0
   customAxis: {x: 0, y: 0, z: 1}
   returning: 0
   flapping: 1
@@ -693,6 +696,7 @@ MonoBehaviour:
   flapToAngle: -90
   lerpFlapSpeed: 7
   flapWaitTime: 0
+  secondWing: 0
   customAxis: {x: 0, y: 0, z: 1}
   returning: 0
   flapping: 1
@@ -853,7 +857,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498041809768793979}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -975,7 +979,7 @@ Transform:
   - {fileID: 2917227763960282982}
   - {fileID: 319571427}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 4110.97, z: 0}
 --- !u!136 &5571471917264393373
 CapsuleCollider:
@@ -1106,6 +1110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vision: {fileID: 4980646194317187398}
   littleGuy: {fileID: 2256436266696984722}
+  colourChanger: {fileID: 243362628}
 --- !u!114 &107395901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,7 +1231,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d6a2b048834622c43bb7e0ae9206f71a, type: 2}
+  - {fileID: 2100000, guid: fcc282541c95eaf41aeb6f64193421c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1262,6 +1267,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newCutOffHeight: 1
   renderer: {fileID: 5835989515854659689}
+  attackPhase: 0
+  transitionSpeed: 2
 --- !u!1001 &2773183614391300990
 PrefabInstance:
   m_ObjectHideFlags: 0

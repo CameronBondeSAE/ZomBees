@@ -11,6 +11,7 @@ namespace Oscar
         public bool isMoving;
 
         public float importance;
+        public string description;
         
     }
 }
