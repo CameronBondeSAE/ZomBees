@@ -14,7 +14,7 @@ namespace Marcus
         private bool alreadyExists;
 
         
-        List<Memory> toRemove = new List<Memory>(20);
+        List<Memory> toRemove = new List<Memory> (20);
 
         private void OnEnable()
         {
@@ -30,6 +30,7 @@ namespace Marcus
                 if (memory.thingToRemember.gameObject == objectSeen)
                 {
                     // Update time and position and another other info (description?)
+                    UpdateMemory(memory);
                     alreadyExists = true;
                 }
             }
@@ -78,6 +79,14 @@ namespace Marcus
             
                 toRemove.Clear();
             }
+        }
+        
+        private void UpdateMemory(Memory memoryToUpdate)
+        {
+            memoryToUpdate.timeStamp = Time.time;
+
+            Vector3 pos = memoryToUpdate.thingToRemember.gameObject.transform.position;
+            memoryToUpdate.location = new Vector2Int((int)pos.x, (int)pos.z);
         }
     }
 }
