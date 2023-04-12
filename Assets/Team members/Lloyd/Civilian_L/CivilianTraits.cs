@@ -4,16 +4,10 @@ using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class CivilianTraits : MonoBehaviour
+public class CivilianTraits : SerializedMonoBehaviour
 {
     [ShowInInspector] public Dictionary<string, TraitStats> traitsDictionary;
 
-    // public void Awake()
-    // {
-        // floatDictionary = new Dictionary<string, TraitStats>();
-    // }
-
-    // [Button]
     public void UpdateTrait(string key, float value)
     {
         if (traitsDictionary.ContainsKey(key))
@@ -39,8 +33,6 @@ public class CivilianTraits : MonoBehaviour
             {
                 traitStats.thresholdHit = false;
             }
-
-            // floatDictionary[key] = new TraitStats(newValue, traitStats.threshold);
         }
     }
 }
@@ -54,10 +46,4 @@ public class TraitStats
 
     [ReadOnly]
     public bool thresholdHit;
-
-    // public TraitStats(float first, float second)
-    // {
-        // this.value = first;
-        // this.threshold = second;
-    // }
 }

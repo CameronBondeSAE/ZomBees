@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 408.2022, g: 309.49564, b: 233.05814, a: 1}
+  m_IndirectSpecularColor: {r: 400.003, g: 298.00784, b: 220.02786, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -60689,6 +60689,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 778148290908108449, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
+      propertyPath: baseHunger
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5661392993011220153, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -63842,6 +63846,10 @@ PrefabInstance:
     - target: {fileID: 5860060659983799258, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_Name
       value: AI Guy Man (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5860060659983799258, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6352044589181877563, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_IsKinematic
@@ -67554,6 +67562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI Guy Man
       objectReference: {fileID: 0}
+    - target: {fileID: 5860060659983799258, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6352044589181877563, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_IsKinematic
       value: 0
@@ -69927,7 +69939,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 513068326, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
 --- !u!4 &1845664869 stripped
 Transform:

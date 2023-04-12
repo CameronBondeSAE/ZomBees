@@ -1184,49 +1184,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 587475300}
-    - targetCorrespondingSourceObject: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 587475299}
     - targetCorrespondingSourceObject: {fileID: 513068326, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
---- !u!1 &587475298 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
-  m_PrefabInstance: {fileID: 587475297}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &587475299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587475298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac7728cfde9a72841ba6b2414274cacf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vision: {fileID: 587475300}
-  memories: []
---- !u!114 &587475300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587475298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff57f109e404a75459847f54323273e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  feelerAmount: 10
-  feelerLength: 10
 --- !u!1 &759768392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,7 +1604,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh39422
+  m_Name: pb_Mesh47438
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
