@@ -40,7 +40,7 @@ namespace Oscar
         [Button]
         public void CreatePrompt()
         {
-            OscarCivController civConditions = GetComponent<OscarCivController>();
+            OscarBruteCivController bruteCivConditions = GetComponent<OscarBruteCivController>();
             memoryManger = GetComponent<MemoryManger>();
             
             Emotions emotions = new Emotions
@@ -65,9 +65,9 @@ namespace Oscar
 
 		    }";
             finalPrompt += "\nThe following list of bools are the characters conditions in the world: ";
-            finalPrompt += "\nCan I see a bee: " + civConditions.SeeBeeBool();
-            finalPrompt += "\nAm I scared: " + civConditions.IsScaredBool();
-            finalPrompt += "\nHave I killed a bee: " + civConditions.KilledBeeBool();
+            finalPrompt += "\nCan I see a bee: " + bruteCivConditions.SeeBeeBool();
+            finalPrompt += "\nAm I scared: " + bruteCivConditions.IsScaredBool();
+            finalPrompt += "\nHave I killed a bee: " + bruteCivConditions.KilledBeeBool();
             
             finalPrompt += "\nThis is the memory of what the civilian has already seen: ";
             foreach (var memory in memoryManger.memories)

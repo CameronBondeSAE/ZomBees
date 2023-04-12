@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Oscar;
 using UnityEngine;
 
-public class OscarCivController : MonoBehaviour
+public class OscarBruteCivController : MonoBehaviour
 {
     public OscarVision vision;
     public LittleGuy littleGuy;

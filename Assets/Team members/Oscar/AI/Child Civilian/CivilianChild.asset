@@ -33,7 +33,7 @@ MonoBehaviour:
   actions:
   - name: Follow
     isDefault: 1
-    state: {fileID: 0}
+    state: {fileID: 2978812013294736355, guid: 49d93846284182f4d9f44bc3d8b5ca2f, type: 3}
     cost: 1
     position: {x: 297, y: 95}
     pre:
@@ -48,7 +48,7 @@ MonoBehaviour:
       value: 0
   - name: FindRocks
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2978812013294736355, guid: 4795898c4a97d824aac91c1f28d0c607, type: 3}
     cost: 2
     position: {x: 490, y: 95}
     pre:
@@ -61,7 +61,7 @@ MonoBehaviour:
       value: 0
   - name: CollectRocks
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2978812013294736355, guid: 222ac4e73e5ba2947bbb6355db56c828, type: 3}
     cost: 2
     position: {x: 681, y: 96}
     pre:
@@ -74,7 +74,7 @@ MonoBehaviour:
       value: 1
   - name: RunAway
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2978812013294736355, guid: f039d7608773793488c3717b7a7ce928, type: 3}
     cost: 1
     position: {x: 874, y: 96}
     pre:
@@ -89,7 +89,7 @@ MonoBehaviour:
       value: 1
   - name: Idle
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2978812013294736355, guid: 7042c22c6c375404daa67a79a60b3807, type: 3}
     cost: 0
     position: {x: 875, y: 326}
     pre:
@@ -100,7 +100,7 @@ MonoBehaviour:
       value: 0
   - name: Converse
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2978812013294736355, guid: a2fff09906114e54db054ef34d5fd402, type: 3}
     cost: 1
     position: {x: 683, y: 326}
     pre:
@@ -111,7 +111,7 @@ MonoBehaviour:
       value: 0
   - name: DeliverRocks
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2978812013294736355, guid: eda9dd9c6a2d34b45ad49da1de807885, type: 3}
     cost: 1
     position: {x: 489, y: 325}
     pre:

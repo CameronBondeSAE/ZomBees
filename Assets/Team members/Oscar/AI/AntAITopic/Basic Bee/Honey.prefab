@@ -121,9 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLit: 0
   isMoving: 0
+  isFood: 1
   importance: 0.2
   description: hONEY
-  BeeObtained: 0
 --- !u!54 &346717653718050094
 Rigidbody:
   m_ObjectHideFlags: 0

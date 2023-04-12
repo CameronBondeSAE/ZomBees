@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class OscarCivSensor : MonoBehaviour, ISense
 {
-    public OscarCivController civController;
+    [FormerlySerializedAs("civController")] public OscarBruteCivController bruteCivController;
     
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
         aWorldState.BeginUpdate(aAgent.planner);
 
-        aWorldState.Set(OscarCivilian.seeBee, civController.SeeBeeBool());
-        aWorldState.Set(OscarCivilian.isScared, civController.IsScaredBool());
-        aWorldState.Set(OscarCivilian.stayAlive, civController.StayAliveBool());
-        aWorldState.Set(OscarCivilian.killBee, civController.KilledBeeBool());
-        aWorldState.Set(OscarCivilian.isPlayerTalking, civController.PlayerIsTalking());
-        aWorldState.Set(OscarCivilian.PrioritisePlayer, civController.PrioritiseThePlayer());
+        aWorldState.Set(OscarCivilian.seeBee, bruteCivController.SeeBeeBool());
+        aWorldState.Set(OscarCivilian.isScared, bruteCivController.IsScaredBool());
+        aWorldState.Set(OscarCivilian.stayAlive, bruteCivController.StayAliveBool());
+        aWorldState.Set(OscarCivilian.killBee, bruteCivController.KilledBeeBool());
+        aWorldState.Set(OscarCivilian.isPlayerTalking, bruteCivController.PlayerIsTalking());
+        aWorldState.Set(OscarCivilian.PrioritisePlayer, bruteCivController.PrioritiseThePlayer());
         
         aWorldState.EndUpdate();
     }

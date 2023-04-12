@@ -1,14 +1,11 @@
-using System;
-using System.Buffers;
-using System.Collections;
 using System.Collections.Generic;
 using Oscar;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class OscarVision : MonoBehaviour
 {
+    #region Variables
+    
     public List<GameObject> beesInSight;
 
     public List<GameObject> foodInSight;
@@ -16,10 +13,15 @@ public class OscarVision : MonoBehaviour
     public List<GameObject> civsInSight;
 
     public List<GameObject> objectsInSight;
+
+    public List<GameObject> lightInSight;
     
     public delegate void OnObjectSeen(GameObject thing);
     public event OnObjectSeen memoryEvent;
     
+    #endregion
+
+    #region OnTriggerEnter
     private void OnTriggerEnter(Collider other)
     {
         //everything vision for anyone's use :D
@@ -39,7 +41,6 @@ public class OscarVision : MonoBehaviour
                         memoryEvent?.Invoke(beeStuff);
                     }
                 }
-                
                 //are they a Civ, use this:
                 if (other.GetComponent<LivingEntity>().isBee == false)
                 {
@@ -53,38 +54,48 @@ public class OscarVision : MonoBehaviour
                     }
                 }
             }
-            
-            //is it food, use this:
-            if (other.GetComponent<Food>() != null)
-            {
-                GameObject foodStuff = other.gameObject;
-                
-                if (!foodInSight.Contains(foodStuff))
-                {
-                    foodInSight.Add(foodStuff);
-                    
-                    memoryEvent?.Invoke(foodStuff);
-                }
-            }
-            
-            //is it a dynamicObject, use this:
             if (other.GetComponent<DynamicObject>() != null)
             {
-                GameObject objectStuff = other.gameObject;
-
-                if (!objectsInSight.Contains(objectStuff))
+                //is it food, use this:
+                if (other.GetComponent<DynamicObject>().isFood == true)
                 {
-                    objectsInSight.Add(objectStuff);
+                    GameObject foodStuff = other.gameObject;
+
+                    if (!foodInSight.Contains(foodStuff))
+                    {
+                        foodInSight.Add(foodStuff);
+
+                        memoryEvent?.Invoke(foodStuff);
+                    }
+                }
+                //if its an Object (not Food), use this:
+                if (other.GetComponent<DynamicObject>().isFood == false)
+                {
+                    GameObject objectStuff = other.gameObject;
                     
-                    memoryEvent?.Invoke(objectStuff);
+                    if (!objectsInSight.Contains(objectStuff))
+                    {
+                        objectsInSight.Add(objectStuff);
+                        
+                        memoryEvent?.Invoke(objectStuff);
+                    }
+                }
+                //is lit up, use this:
+                if (other.GetComponent<DynamicObject>().isLit == true)
+                {
+                    GameObject litObj = other.gameObject;
+                    
+                    if (!lightInSight.Contains(litObj)) 
+                    { 
+                        lightInSight.Add(litObj); 
+                    }
                 }
             }
-            
-            //is lit up, use this:
-            //*****************************************************************************************************************************************************
         }
     }
+    #endregion
 
+    #region OnTriggerStay
     private void OnTriggerStay(Collider other)
     {
         //everything vision for anyone's use :D
@@ -108,25 +119,29 @@ public class OscarVision : MonoBehaviour
                     memoryEvent?.Invoke(civStuff);
                 }
             }
-            
-            //is it food, use this:
-            if (other.GetComponent<Food>() != null)
-            {
-                GameObject foodStuff = other.gameObject;
-                
-                memoryEvent?.Invoke(foodStuff);
-            }
-            
-            //is it a dynamicObject, use this:
+
             if (other.GetComponent<DynamicObject>() != null)
             {
-                GameObject objectStuff = other.gameObject;
+                //is it a food, use this:
+                if (other.GetComponent<DynamicObject>().isFood == true)
+                {
+                    GameObject foodStuff = other.gameObject;
 
-                memoryEvent?.Invoke(objectStuff);
+                    memoryEvent?.Invoke(foodStuff);
+                }
+                //is it a Object, use this:
+                if (other.GetComponent<DynamicObject>().isFood == false)
+                {
+                    GameObject objectStuff = other.gameObject;
+
+                    memoryEvent?.Invoke(objectStuff);
+                }
             }
         }
     }
+    #endregion
 
+    #region OnTriggerExit
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<LivingEntity>() != null)
@@ -146,19 +161,23 @@ public class OscarVision : MonoBehaviour
                 civsInSight.Remove(civStuff);
             }
         }
-        //removes Food from current vision list
-        if (other.GetComponent<Food>() != null)
-        {
-            GameObject honeyStuff = other.gameObject;
-        
-            foodInSight.Remove(honeyStuff);
-        }
-        //removes Objects from current vision list
         if (other.GetComponent<DynamicObject>() != null)
         {
-            GameObject honeyStuff = other.gameObject;
+            //removes Food from current vision list
+            if (other.GetComponent<DynamicObject>().isFood == true)
+            {
+                GameObject honeyStuff = other.gameObject;
+                        
+                foodInSight.Remove(honeyStuff);
+            }
+            //removes Objects from current vision list
+            if (other.GetComponent<DynamicObject>().isFood == false)
+            {
+                GameObject honeyStuff = other.gameObject;
 
-            foodInSight.Remove(honeyStuff);
+                foodInSight.Remove(honeyStuff);
+            }
         }
-    }
+    }    
+    #endregion
 }
