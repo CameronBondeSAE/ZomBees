@@ -33,7 +33,7 @@ public class QueenLerpTowards : AntAIState
 
     public Rigidbody rb;
 
-    private LookAtTarget lookAt;
+    public LookAtTarget lookAt;
 
     public bool interrupted = false;
 
@@ -43,10 +43,11 @@ public class QueenLerpTowards : AntAIState
 
     public override void Create(GameObject aGameObject)
     {
-        //base.Create(aGameObject);
+        base.Create(aGameObject);
         queenScene = aGameObject.GetComponent<QueenScenarioManager>();
-
+        lookAt = queenScene.lookAt;
         rb = queenScene.rb;
+        maxSpeed = queenScene.defaultFlapSpeed;
 
         currstate = queenScene.currState;
 
@@ -64,9 +65,10 @@ public class QueenLerpTowards : AntAIState
         StartCoroutine(MoveTowards(currFlyPoint.transform.position));
     }
 
-    public override void Execute(float whoCares, float whoCares1)
+    public override void Execute(float aDeltaTime, float aTimeScale)
     {
-        base.Execute(whoCares, whoCares1);
+        base.Execute(aDeltaTime, aTimeScale);
+        
         if (initialised)
         {
             curSpeed = rb.velocity.magnitude;

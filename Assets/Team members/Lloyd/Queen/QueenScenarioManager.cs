@@ -11,7 +11,8 @@ public class QueenScenarioManager : MonoBehaviour, ISense
 {
     //big daddy queen brain
 
-    [ReadOnly]
+    public LookAtTarget lookAt;
+    
     public Rigidbody rb;
     [ReadOnly]
     public GameObject queenParent;
@@ -29,11 +30,18 @@ public class QueenScenarioManager : MonoBehaviour, ISense
     }
     public QueenStates currState;
     private QueenStates decidedOnThisState;
-    
+
+    private void Awake()
+    {
+        StartQueen();
+    }
+
+
     [Button]
     public void StartQueen()
     {
         rb = GetComponent<Rigidbody>();
+        lookAt = GetComponent<LookAtTarget>();
         queenEvent = GetComponent<QueenEvent>();
         stats = GetComponent<CivStatComponent>();
         hearingComp = GetComponent<HearingComp>();
@@ -248,9 +256,18 @@ public class QueenScenarioManager : MonoBehaviour, ISense
             currState = newState;
     }
 
+    #region Spawner
 
-    public void AddFollower(GameObject follower)
+    public void AddFollower(Follower foll)
     {
-        //followers.Add(follower);
+        followers.Add(foll);
     }
+
+    public List<Follower> followers;
+
+    private Spawner spawner;
+
+    private int numSwarmers;
+
+    #endregion
 }

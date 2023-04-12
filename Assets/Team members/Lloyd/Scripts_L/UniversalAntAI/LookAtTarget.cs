@@ -75,7 +75,7 @@ public class LookAtTarget : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*if (looking)
+        if (looking)
         {
             if (lookingAtTransform)
             {
@@ -85,19 +85,24 @@ public class LookAtTarget : MonoBehaviour
             {
                 targetDir = vectorTarget - transform.position;
             }
-
+            
             Quaternion targetRotation = Quaternion.LookRotation(targetDir, transform.up);
-            Quaternion rotation =
-                Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * torqueSpeed);
+            
+            targetRotation.x = 0;
 
+            // Rotate towards world up vector
+            Quaternion upRotation = Quaternion.FromToRotation(transform.up, Vector3.up);
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation * upRotation, Time.fixedDeltaTime * torqueSpeed);
+            rotation.Normalize();
+            
             rb.MoveRotation(rotation);
             rb.transform.rotation = rotation;
-        }*/
+        }
     }
 
     private Quaternion targetRotation;
 
-    private void Update()
+    /*private void Update()
     {
         if (looking)
         {
@@ -138,9 +143,9 @@ public class LookAtTarget : MonoBehaviour
         }
         
         torqueApplied = false;
+        */
 
         /*
         One thing to note is that you might want to adjust the requiredForceMagnitude calculation to take into account the mass of the rigidbody. Currently, it assumes a mass of 1, so the opposite force might be too weak or too strong depending on the mass of the rigidbody. You could multiply requiredForceMagnitude by rb.mass to adjust for this.
-    }*/
-    }
+    }}*/
 }

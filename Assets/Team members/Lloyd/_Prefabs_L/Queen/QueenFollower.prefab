@@ -191,7 +191,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889221432442366976}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82193a8b06de18d47ae03c06c0bf21c5, type: 3}
   m_Name: 
@@ -212,11 +212,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformTarget: {fileID: 0}
   vectorTarget: {x: 0, y: 0, z: 0}
-  torqueSpeed: 0.1
+  torqueSpeed: 5
   rb: {fileID: 0}
   lookingAtPoint: 0
   lookingAtTransform: 0
   looking: 0
+  minAngle: 0
+  minAngularVelocity: 0
+  torqueApplied: 0
 --- !u!114 &6965517448354199428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd2edcb2cfe48144975c76d12f0030c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
   centerPoint: {x: 0, y: 0, z: 0}
   radius: 50
   numVectors: 32
@@ -242,6 +246,8 @@ MonoBehaviour:
   moveInX: 0
   moveInY: 0
   moveInZ: 0
+  torqueSpeed: 0
+  following: 0
 --- !u!114 &5860857128426339124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,8 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe5dbf48b01ba74a911d954576706f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
   minDistance: 200
   targetPos: {x: 0, y: 0, z: 0}
+  following: 0
 --- !u!1 &910629661688541710
 GameObject:
   m_ObjectHideFlags: 0
