@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 7131769920120445918}
   - component: {fileID: 7131769920120445919}
   - component: {fileID: 7131769920120445917}
-  - component: {fileID: 2948514807887216151}
   - component: {fileID: 8968735598950974766}
+  - component: {fileID: 2948514807887216151}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -247,6 +247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generatorRunning: {fileID: 8300000, guid: f49d3d7d1a59ace428635608f48c58d7, type: 3}
+  isEnabled: 0
+  audioClipTimer: 0
 --- !u!114 &7131769920120445917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,20 +263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generatorShuttingDown: {fileID: 8300000, guid: ca7d171cbf0a77748ad357e00048409e, type: 3}
   stateSwapTimer: 5
---- !u!114 &2948514807887216151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7131769920120445895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2409eb1408294674b7e308f01ca2d742, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLit: 0
-  isMoving: 0
 --- !u!114 &8968735598950974766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,3 +277,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingState: {fileID: 8968735598950974764}
   currentState: {fileID: 0}
+--- !u!114 &2948514807887216151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131769920120445895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2409eb1408294674b7e308f01ca2d742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
+  importance: 0
