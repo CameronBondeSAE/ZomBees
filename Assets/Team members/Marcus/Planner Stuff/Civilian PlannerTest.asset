@@ -34,7 +34,7 @@ MonoBehaviour:
   - name: Find Food
     isDefault: 0
     state: {fileID: 7819847402425102426, guid: 0b2f22a9956c18c479f87ede19246a3d, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 316, y: 277}
     pre:
     - id: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   - name: Eat Food
     isDefault: 0
     state: {fileID: 242594687593455450, guid: 3a478a1aebebc2643839fb820ca38aec, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 722, y: 279}
     pre:
     - id: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
   - name: Get Food
     isDefault: 0
     state: {fileID: 8722729060447549500, guid: f70046e295812d449b52c18e9b2d3a7d, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 519, y: 280}
     pre:
     - id: 1
@@ -125,6 +125,8 @@ MonoBehaviour:
     post:
     - id: 4
       value: 0
+    - id: 3
+      value: 0
   - name: Leave Hiding
     isDefault: 0
     state: {fileID: 2877110659774664227, guid: 0038c0f600c38ba459e6ba6a3834093f, type: 3}
@@ -138,15 +140,6 @@ MonoBehaviour:
     post:
     - id: 6
       value: 0
-  - name: Unscared
-    isDefault: 0
-    state: {fileID: 1874639598432770460, guid: c0ec2f7207c386e45bc29cf7b4d8cd4a, type: 3}
-    cost: 0
-    position: {x: 310, y: 751}
-    pre:
-    - id: 3
-      value: 1
-    post:
     - id: 3
       value: 0
   goals:
@@ -165,7 +158,7 @@ MonoBehaviour:
     - id: 6
       value: 0
   worldStates:
-  - position: {x: 238, y: 999}
+  - position: {x: 230, y: 835}
     isAutoUpdate: 1
     list:
     - id: 0
