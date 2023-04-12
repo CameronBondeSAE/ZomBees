@@ -21,7 +21,9 @@ public class PerlinBob : MonoBehaviour
     public float upFlapSpeed;
     public float downFlapSpeed;
 
-    private void Start()
+    private Vector3 randomOffset;
+
+    private void OnEnable()
     {
         queenScene = GetComponent<QueenScenarioManager>();
         beeWings = queenScene.beeWings.GetComponent<BeeWingsManager>();
@@ -34,21 +36,17 @@ public class PerlinBob : MonoBehaviour
         float perlinValue = Mathf.PerlinNoise(Time.time * frequency, 0f) * 2f - 1f;
         Vector3 forceDirection = randomDirection * perlinValue * forceMagnitude;
         rigidbody.AddForce(forceDirection, ForceMode.Force);
-    }
 
-    private void Update()
-    {
-        Vector3 randomOffset = new Vector3(
+        // Calculate random offset
+        randomOffset = new Vector3(
             Mathf.PerlinNoise(Time.time * frequency, 1f) * 2f - 1f,
             Mathf.PerlinNoise(Time.time * frequency, 2f) * 2f - 1f,
             Mathf.PerlinNoise(Time.time * frequency, 3f) * 2f - 1f
         ) * scale;
-        transform.position = transform.position + randomOffset + sphereRadius * new Vector3(
-            Mathf.Cos(Time.time),
-            0f,
-            Mathf.Sin(Time.time)
-        );
+    }
 
+    private void Update()
+    {
         float currentYPosition = transform.position.y;
         if (currentYPosition > previousYPosition)
         {
@@ -61,5 +59,16 @@ public class PerlinBob : MonoBehaviour
             //Debug.Log("going down");
         }
 
+        previousYPosition = currentYPosition;
+    }
+
+    private void LateUpdate()
+    {
+        // Move rigidbody using random offset
+        rigidbody.MovePosition(transform.position + randomOffset + sphereRadius * new Vector3(
+            Mathf.Cos(Time.time),
+            0f,
+            Mathf.Sin(Time.time)
+        ));
     }
 }

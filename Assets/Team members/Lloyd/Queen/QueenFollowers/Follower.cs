@@ -93,7 +93,7 @@ public class Follower : MonoBehaviour, IFollower
             MoveToTarget();
             lookAt.SetTarget(target);
             circleMovement.SetCenterPoint(target);
-            minDist.SetVector3(target.position);
+            minDist.SetTarget(target);
         }
     }
 

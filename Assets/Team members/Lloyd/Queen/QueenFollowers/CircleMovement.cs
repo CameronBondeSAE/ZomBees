@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CircleMovement : MonoBehaviour
 {
+    public Transform targetTransform;
     public Vector3 centerPoint;
     public float radius;
     public int numVectors;
@@ -32,9 +33,14 @@ public class CircleMovement : MonoBehaviour
     private float y;
     private float z;
 
+    public float torqueSpeed;
+
+    public bool following = false;
+
     public void SetCenterPoint(Transform target)
     {
-        centerPoint = target.position;
+        targetTransform = target;
+        following = true;
     }
 
     private void OnEnable()
@@ -75,8 +81,12 @@ public class CircleMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        distance = Vector3.Distance(transform.position, targetPoints[currentVector]);
-        MoveAroundCircle();
+        if (following)
+        {
+            centerPoint = targetTransform.position;
+            distance = Vector3.Distance(transform.position, targetPoints[currentVector]);
+            MoveAroundCircle();
+        }
     }
 
     private void MoveAroundCircle()
@@ -88,6 +98,11 @@ public class CircleMovement : MonoBehaviour
             rb.velocity = direction * moveSpeed;
 
             StartCoroutine(WaitForDistance(targetPoint));
+            
+            Quaternion targetRotation = Quaternion.LookRotation(Vector3.up, transform.up);
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * torqueSpeed);
+            rb.MoveRotation(rotation);
+            rb.transform.rotation = rotation;
         }
     }
 

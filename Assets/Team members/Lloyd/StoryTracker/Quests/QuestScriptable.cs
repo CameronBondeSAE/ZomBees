@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-[CreateAssetMenu(fileName = "New Quest Data", menuName = "Quest Data")]
+[CreateAssetMenu(fileName = "Zombees/New Quest Data", menuName = "Quest Data")]
 [Serializable]
 public class QuestScriptable : ScriptableObject
 {  
