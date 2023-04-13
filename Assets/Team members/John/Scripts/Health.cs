@@ -6,12 +6,12 @@ using UnityEngine.UIElements;
 
 public class Health : MonoBehaviour
 {
-    public delegate void Death();
-    public static event Death HealthReducedToZero;
+    public delegate void DeathDelegate();
+    public static event DeathDelegate HealthReducedToZeroEvent;
 
-    public delegate void HealthChange();
+    public delegate void HealthChangeDelegate(float changeAmount);
 
-    public static event HealthChange HealthChanged;
+    public static event HealthChangeDelegate HealthChangedEvent;
 
 
     public float maxHealth;
@@ -26,17 +26,22 @@ public class Health : MonoBehaviour
 
     public void Change(float changeAmount)
     {
-        if (HealthChanged != null)
+        if (HealthChangedEvent != null)
         {
-            HealthChanged();
+            HealthChangedEvent(changeAmount);
         }
         currHealth += changeAmount;
 
+        if (currHealth >= maxHealth)
+        {
+            currHealth = maxHealth;
+        }
+
         if (currHealth <= 0)
         {
-            if (HealthReducedToZero != null)
+            if (HealthReducedToZeroEvent != null)
             {
-                HealthReducedToZero();
+                HealthReducedToZeroEvent();
             }
             currHealth = 0;
         }
