@@ -10,6 +10,7 @@ namespace Oscar
         public bool isLit;
         public bool isMoving;
         public bool isFood;
+        public bool isObject;
 
         public float importance;
         public string description;

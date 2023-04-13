@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9729b722772509f478c8353f9a609df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visionCone: {fileID: 1319880368046675299}
   beesInSight: []
   foodInSight: []
   civsInSight: []
@@ -160,6 +161,8 @@ GameObject:
   - component: {fileID: 1319880369596198002}
   - component: {fileID: 1319880369596197994}
   - component: {fileID: 1319880369596197993}
+  - component: {fileID: 546276029}
+  - component: {fileID: 546276028}
   - component: {fileID: 2924800832653760472}
   - component: {fileID: 2887536973503453560}
   - component: {fileID: 6505835820105039239}
@@ -188,7 +191,7 @@ Transform:
   m_Children:
   - {fileID: 1319880368046675297}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!33 &1319880369596197996
 MeshFilter:
@@ -305,6 +308,7 @@ MonoBehaviour:
   isLit: 0
   isMoving: 0
   isFood: 0
+  isObject: 0
   importance: 0
   description: 
   isBee: 0
@@ -314,6 +318,33 @@ MonoBehaviour:
   turnSpeed: 0.15
   myHome: {fileID: 0}
   collectedObjects: []
+--- !u!114 &546276029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319880369596198000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e066fcc5d4ea80741a41c44a087dc275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currHealth: 100
+--- !u!114 &546276028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319880369596198000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a62520824fe2a41865318d22df0800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 50
 --- !u!114 &2924800832653760472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e682e82d8d603439e761463715ff96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  littleGuy: {fileID: 1319880369596197993}
   vision: {fileID: 5857168494793117247}
   ears: {fileID: 6505835820105039239}
 --- !u!114 &2390650033501347164

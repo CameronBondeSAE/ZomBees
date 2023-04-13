@@ -5,7 +5,7 @@ using UnityEngine;
 public class OscarVision : MonoBehaviour
 {
     #region Variables
-    
+
     public List<GameObject> beesInSight;
 
     public List<GameObject> foodInSight;
@@ -29,8 +29,10 @@ public class OscarVision : MonoBehaviour
         {
             if (other.GetComponent<LivingEntity>() != null)
             {
+                LivingEntity livingThing = other.GetComponent<LivingEntity>();
+
                 //are they a Bee, use this:
-                if (other.GetComponent<LivingEntity>().isBee == true)
+                if (livingThing.isBee == true)
                 {
                     GameObject beeStuff = other.gameObject;
                     
@@ -42,7 +44,7 @@ public class OscarVision : MonoBehaviour
                     }
                 }
                 //are they a Civ, use this:
-                if (other.GetComponent<LivingEntity>().isBee == false)
+                if (livingThing.isBee == false)
                 {
                     GameObject civStuff = other.gameObject;
 
@@ -56,8 +58,10 @@ public class OscarVision : MonoBehaviour
             }
             if (other.GetComponent<DynamicObject>() != null)
             {
+                DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
+
                 //is it food, use this:
-                if (other.GetComponent<DynamicObject>().isFood == true)
+                if (dynamicObj.isFood == true)
                 {
                     GameObject foodStuff = other.gameObject;
 
@@ -69,7 +73,7 @@ public class OscarVision : MonoBehaviour
                     }
                 }
                 //if its an Object (not Food), use this:
-                if (other.GetComponent<DynamicObject>().isFood == false)
+                if (dynamicObj.isObject == true)
                 {
                     GameObject objectStuff = other.gameObject;
                     
@@ -81,7 +85,7 @@ public class OscarVision : MonoBehaviour
                     }
                 }
                 //is lit up, use this:
-                if (other.GetComponent<DynamicObject>().isLit == true)
+                if (dynamicObj.isLit == true)
                 {
                     GameObject litObj = other.gameObject;
                     
@@ -103,38 +107,47 @@ public class OscarVision : MonoBehaviour
         {
             if (other.GetComponent<LivingEntity>() != null)
             {
+                LivingEntity livingThing = other.GetComponent<LivingEntity>();
+
                 //are they a Bee, use this:
-                if (other.GetComponent<LivingEntity>().isBee == true)
+                if (livingThing.isBee == true)
                 {
                     GameObject beeStuff = other.gameObject;
                     
                     memoryEvent?.Invoke(beeStuff);
                 }
-                
                 //are they a Civ, use this:
-                if (other.GetComponent<LivingEntity>().isBee == false)
+                if (livingThing.isBee == false)
                 {
                     GameObject civStuff = other.gameObject;
                     
                     memoryEvent?.Invoke(civStuff);
                 }
             }
-
             if (other.GetComponent<DynamicObject>() != null)
             {
+                DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
+
                 //is it a food, use this:
-                if (other.GetComponent<DynamicObject>().isFood == true)
+                if (dynamicObj.isFood == true)
                 {
                     GameObject foodStuff = other.gameObject;
 
                     memoryEvent?.Invoke(foodStuff);
                 }
                 //is it a Object, use this:
-                if (other.GetComponent<DynamicObject>().isFood == false)
+                if (dynamicObj.isObject == true)
                 {
                     GameObject objectStuff = other.gameObject;
 
                     memoryEvent?.Invoke(objectStuff);
+                }
+                //is lit up, use this:
+                if (dynamicObj.isLit == true)
+                {
+                    GameObject litObj = other.gameObject;
+                    
+                    memoryEvent?.Invoke(litObj);
                 }
             }
         }
@@ -146,15 +159,17 @@ public class OscarVision : MonoBehaviour
     {
         if (other.GetComponent<LivingEntity>() != null)
         {
+            LivingEntity livingThing = other.GetComponent<LivingEntity>();
+            
             //removes Bees from current vision list
-            if (other.GetComponent<LivingEntity>().isBee == true)
+            if (livingThing.isBee == true)
             {
                 GameObject beeStuff = other.gameObject;
                 
                 beesInSight.Remove(beeStuff);
             }
             //removes Civs from current vision list
-            if (other.GetComponent<LivingEntity>().isBee == false)
+            if (livingThing.isBee == false)
             {
                 GameObject civStuff = other.gameObject;
 
@@ -163,19 +178,28 @@ public class OscarVision : MonoBehaviour
         }
         if (other.GetComponent<DynamicObject>() != null)
         {
+            DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
+            
             //removes Food from current vision list
-            if (other.GetComponent<DynamicObject>().isFood == true)
+            if (dynamicObj.isFood == true)
             {
                 GameObject honeyStuff = other.gameObject;
                         
                 foodInSight.Remove(honeyStuff);
             }
             //removes Objects from current vision list
-            if (other.GetComponent<DynamicObject>().isFood == false)
+            if (dynamicObj.isObject == true)
             {
                 GameObject honeyStuff = other.gameObject;
 
                 foodInSight.Remove(honeyStuff);
+            }
+            //removes lit objects from current version list
+            if (dynamicObj.isLit == true)
+            {
+                GameObject litObj = other.gameObject;
+
+                lightInSight.Remove(litObj);
             }
         }
     }    

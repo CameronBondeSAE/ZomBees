@@ -175,10 +175,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae14b77d76a23a499b6abe454a12762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
+  isFood: 0
+  importance: 0
+  description: 
+  isBee: 1
   rb: {fileID: 5456320216544290733}
   littleGuyModel: {fileID: 5456320216544290732}
   speed: 3
   turnSpeed: 0.5
+  myHome: {fileID: 0}
+  collectedObjects: []
 --- !u!114 &2618092197398739709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,13 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c449362f1f21d4aad8bb34c51ff949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guy: {fileID: 1853546493801413536}
-  distance: 15
-  feelerAmount: 1
-  spacing: 1
-  offset: 0
   lightInSight: []
   honeyInSight: []
+  civiliansVisible: []
+  hivesInSight: []
 --- !u!114 &924000894343828957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db007a32b4c24f4a88ae6dc7a8618f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightController: {fileID: 1074013572422905989}
+  oscarController: {fileID: 0}
 --- !u!114 &1074013572422905989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,3 +257,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vision: {fileID: 4897569144944274036}
+  littleGuy: {fileID: 0}
+  colourChanger: {fileID: 0}

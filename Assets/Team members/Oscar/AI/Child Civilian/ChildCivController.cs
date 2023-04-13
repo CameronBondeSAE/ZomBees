@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,12 @@ using UnityEngine;
 namespace Oscar
 {
     public class ChildCivController : MonoBehaviour
-    {
+    {        
+        public LittleGuy littleGuy;
         public OscarVision vision;
         
         public HearingComp ears;
-        private bool hearSounds;
+        public bool iAmScared;
         
         //public bool playerTalking;
 
@@ -23,6 +25,11 @@ namespace Oscar
         }
         public bool AmIFollowing()
         {
+            if (AmIScared() && vision.civsInSight.Count >= 1)
+            {
+                return true;
+            }
+
             return false;
         }
         public bool DeliverTheRocks()
@@ -35,15 +42,25 @@ namespace Oscar
         }
         public bool AmIScared()
         {
-            return false;
+            if (ears.heardSound)
+            {
+                iAmScared = true;
+            }
+            
+            if (vision.beesInSight.Count >= 1)
+            {
+                iAmScared = true;
+            }
+            
+            return iAmScared;
         }
         public bool CanISeeRocks()
         {
-            return false;
+            return vision.objectsInSight.Count >= 1;
         }
         public bool DoIHaveRocks()
         {
-            return false;
+            return littleGuy.collectedObjects.Count >= 3;
         }
     }
 }
