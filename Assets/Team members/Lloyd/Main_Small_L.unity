@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 400.60065, g: 295.55862, b: 215.96463, a: 1}
+  m_IndirectSpecularColor: {r: 398.41412, g: 295.9639, b: 217.81033, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -20640,6 +20640,67 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!1001 &588278788
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_RootOrder
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 427.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 18.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 476.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702223, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2935034912273702229, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_Name
+      value: CivilianPrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
 --- !u!4 &589193710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 420674, guid: 53ac28d4b9ad6684181c2de777dc2f4f, type: 3}

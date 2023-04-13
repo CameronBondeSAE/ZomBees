@@ -16,15 +16,22 @@ namespace Team_members.Lloyd.Civilian_L.Civ___AnthillAIStates
 
         public float minDist;
 
+        private CivilianBrain civBrain;
+
+        public override void Create(GameObject aGameObject)
+        {
+            base.Create(aGameObject);
+            civBrain = gameObject.GetComponent<CivilianBrain>();
+        }
+
         public override void Enter()
         {
-            base.Enter();
+            target = civBrain.target;
 
             moveSpeed = stats.moveSpeed;
             maxSpeed = stats.maxMoveSpeed;
             minDist = stats.minDist;
 
-            target = civBrain.target;
         }
 
         public override void Execute(float aDeltaTime, float aTimeScale)

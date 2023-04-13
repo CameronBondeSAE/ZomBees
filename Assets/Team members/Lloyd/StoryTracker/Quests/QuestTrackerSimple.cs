@@ -13,30 +13,33 @@ public class QuestTrackerSimple : MonoBehaviour
     public float checkInterval = 1.0f;
 
     private WorldTime worldTime;
-    
-    private void Start()
-    {
-        worldTime = GetComponent<WorldTime>();
-        StartCoroutine(CheckObjectTimes());
-    }
+
+    private int currentIndexInt = 0;
 
     private void Update()
     {
         time = worldTime.time;
     }
 
-    private IEnumerator CheckObjectTimes()
+    private void Start()
     {
-        while (true)
+        StartCoroutine(CheckTime());
+        worldTime = GetComponent<WorldTime>();
+    }
+
+    private IEnumerator CheckTime()
+    {
+        while (currentIndexInt < eventsList.Count)
         {
-            foreach (CharacterQuestEvent scriptableObject in eventsList)
+            float currentTime = worldTime.time;
+
+            if (currentTime >= eventsList[currentIndexInt].time)
             {
-                if (Math.Abs(scriptableObject.time - time) < .1f)
-                {
-                    Debug.Log(scriptableObject.descriptionForGPT);
-                    eventsList.Remove(scriptableObject);
-                }
+                //logic goes here
+                Debug.Log(eventsList[currentIndexInt].descriptionForGPT);
+                currentIndexInt++;
             }
+
             yield return new WaitForSeconds(checkInterval);
         }
     }
