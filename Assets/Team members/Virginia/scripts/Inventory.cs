@@ -6,24 +6,28 @@ using UnityEngine;
 
 namespace Virginia
 {
-    public class Inventory : MonoBehaviour
+    public class Inventory : SerializedMonoBehaviour
     {
         public IItem heldItem;
+        public float radius;
         [Button] 
-        public void Pickup(Vector3 center, float radius)
+        public void Pickup()
         {
-            Collider[] ItemFound = Physics.OverlapSphere(center, radius);
-            foreach (var Itemsfound in ItemFound)
-            { 
-                GetComponent<IItem>();   
-                Debug.Log(message: "pick up");
+            Collider[] ItemsFound = Physics.OverlapSphere(transform.position, radius);
+            foreach (var ItemFound in ItemsFound)
+            {
+                if (GetComponent<IItem>() != null )
+                {
+                    Debug.Log(message: "pick up");
+                }
+                
             }
 
 
         }
         
         [Button] 
-        public void Consume()
+        public void Consume() 
         {
             Debug.Log("conumsed yummy");
         } 
