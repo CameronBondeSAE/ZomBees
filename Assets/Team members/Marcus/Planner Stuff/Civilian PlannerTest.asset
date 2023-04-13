@@ -30,6 +30,8 @@ MonoBehaviour:
       name: IsHidden
     - id: 7
       name: CanHearBees
+    - id: 8
+      name: HasItem
   actions:
   - name: Find Food
     isDefault: 0
@@ -50,16 +52,20 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 242594687593455450, guid: 3a478a1aebebc2643839fb820ca38aec, type: 3}
     cost: 1
-    position: {x: 722, y: 279}
+    position: {x: 718, y: 259}
     pre:
     - id: 0
       value: 1
     - id: 2
       value: 1
+    - id: 8
+      value: 1
     post:
     - id: 0
       value: 0
     - id: 2
+      value: 0
+    - id: 8
       value: 0
   - name: SPEEEEEEN
     isDefault: 1
@@ -76,10 +82,14 @@ MonoBehaviour:
     pre:
     - id: 1
       value: 1
+    - id: 8
+      value: 0
     post:
     - id: 1
       value: 0
     - id: 2
+      value: 1
+    - id: 8
       value: 1
   - name: Wander
     isDefault: 0
@@ -130,7 +140,7 @@ MonoBehaviour:
   - name: Leave Hiding
     isDefault: 0
     state: {fileID: 2877110659774664227, guid: 0038c0f600c38ba459e6ba6a3834093f, type: 3}
-    cost: 0
+    cost: 3
     position: {x: 907, y: 538}
     pre:
     - id: 6
@@ -141,6 +151,17 @@ MonoBehaviour:
     - id: 6
       value: 0
     - id: 3
+      value: 0
+  - name: Drop Holding
+    isDefault: 0
+    state: {fileID: 3385663683014684733, guid: d3add5da06be15c409d3c2ed728dae1d, type: 3}
+    cost: 2
+    position: {x: 1255, y: 420}
+    pre:
+    - id: 8
+      value: 1
+    post:
+    - id: 8
       value: 0
   goals:
   - name: Goal
@@ -162,18 +183,20 @@ MonoBehaviour:
     isAutoUpdate: 1
     list:
     - id: 0
-      value: 0
+      value: 1
     - id: 1
       value: 0
     - id: 2
-      value: 0
+      value: 1
     - id: 3
-      value: 0
+      value: 1
     - id: 4
-      value: 0
+      value: 1
     - id: 5
       value: 0
     - id: 6
-      value: 0
+      value: 1
     - id: 7
       value: 0
+    - id: 8
+      value: 1
