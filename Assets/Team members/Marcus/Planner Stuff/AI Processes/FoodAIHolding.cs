@@ -10,28 +10,56 @@ namespace Marcus
     {
         public GameObject food;
         public bool holdingFood;
+
+        // Create references to any items we can pick up
+        public GameObject otherItem;
+        private bool holdingItem;
         
         public OscarVision vision;
 
-        private GameObject myFood;
+        private GameObject myItem;
 
         private void OnTriggerEnter(Collider collider)
         {
-            if (collider.gameObject.GetComponent<Food>() && !holdingFood)
+            if (collider.gameObject.GetComponent<IItem>() != null && !holdingItem)
             {
-                vision.foodInSight.Remove(collider.gameObject);
-                UtilityManager.DeleteAfterDelay(collider.gameObject);
+                //Call Pickup on IItem
+                PickUpItem(collider.gameObject);
+            }
+        }
+
+        public void PickUpItem(GameObject item)
+        {
+            vision.objectsInSight.Remove(item);
+
+            if (item.GetComponent<DynamicObject>().isFood)
+            {
+                vision.foodInSight.Remove(item);
                 
-                myFood = Instantiate(food, gameObject.transform);
-                myFood.transform.localPosition += new Vector3(-0.1f, -1f, 0.1f);
+                myItem = Instantiate(food, gameObject.transform);
 
                 holdingFood = true;
             }
+            else
+            {
+                myItem = Instantiate(otherItem, gameObject.transform);
+            }
+            myItem.transform.localPosition += new Vector3(-0.1f, -1f, 0.1f);
+            
+            holdingItem = true;
+        }
+        
+        public void DropItem()
+        {
+            //Call Dispose
+            holdingItem = false;
+            holdingFood = false;
         }
 
         public void AteFood()
         {
-            Destroy(myFood);
+            //Call Consume
+            holdingItem = false;
             holdingFood = false;
         }
     }

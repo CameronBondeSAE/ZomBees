@@ -96,3 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c6cc6040e55cd41bb143e678528ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
+  isFood: 1
+  importance: 0
+  description: fake food in inventory
+  realFood: {fileID: 3229676320155578576, guid: 2a1c5446d2e35714aaab1c1cfc268dd0, type: 3}
+  heldFood: {fileID: 4824920774586090150}
