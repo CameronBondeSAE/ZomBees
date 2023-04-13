@@ -101,5 +101,4 @@ MonoBehaviour:
   isFood: 1
   importance: 0
   description: fake food in inventory
-  realFood: {fileID: 3229676320155578576, guid: 2a1c5446d2e35714aaab1c1cfc268dd0, type: 3}
-  heldFood: {fileID: 4824920774586090150}
+  food: {fileID: 3229676320155578576, guid: 2a1c5446d2e35714aaab1c1cfc268dd0, type: 3}

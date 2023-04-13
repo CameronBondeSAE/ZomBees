@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using Anthill.AI;
 using Oscar;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Marcus
 {
     public class Food : DynamicObject, IItem
     {
-        public GameObject realFood;
-        public GameObject heldFood;
+        public GameObject food;
         
         public void Consume()
         {
@@ -19,7 +19,7 @@ namespace Marcus
 
         public void Dispose()
         {
-            Instantiate(realFood, transform.position + Vector3.forward, Quaternion.identity);
+            Instantiate(food, transform.position + Vector3.forward, Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -30,6 +30,11 @@ namespace Marcus
 
         public void Pickup(GameObject whoPickedMeUp)
         {
+            if (whoPickedMeUp.GetComponent<FoodAIHolding>())
+            {
+                whoPickedMeUp.GetComponent<FoodAIHolding>().otherItem = food;
+            }
+            
             UtilityManager.DeleteAfterDelay(gameObject);
         }
     }

@@ -103,8 +103,7 @@ MonoBehaviour:
   isFood: 1
   importance: 0.5
   description: FOOD
-  realFood: {fileID: 3229676320155578576}
-  heldFood: {fileID: 4824920774586090150, guid: 019b6dd58af5e094ea46d56c79b7e9c8, type: 3}
+  food: {fileID: 3229676320155578576}
 --- !u!65 &9042113471705841000
 BoxCollider:
   m_ObjectHideFlags: 0

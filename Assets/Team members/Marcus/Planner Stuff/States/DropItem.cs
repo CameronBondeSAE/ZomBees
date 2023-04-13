@@ -7,16 +7,20 @@ namespace Marcus
 {
     public class DropItem : AntAIState
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        private FoodAIHolding hand;
 
+        public override void Create(GameObject aGameObject)
+        {
+            base.Create(aGameObject);
+            
+            hand = aGameObject.GetComponentInChildren<FoodAIHolding>();
         }
 
-        // Update is called once per frame
-        void Update()
+        public override void Enter()
         {
-
+            base.Enter();
+            
+            hand.DropItem();
         }
     }
 }

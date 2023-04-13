@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Oscar;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Marcus
 {
     public class FoodAIHolding : MonoBehaviour
     {
-        public GameObject food;
         public bool holdingFood;
 
         // Create references to any items we can pick up
@@ -35,16 +35,12 @@ namespace Marcus
             if (item.GetComponent<DynamicObject>().isFood)
             {
                 vision.foodInSight.Remove(item);
-                
-                myItem = Instantiate(food, gameObject.transform);
-
                 holdingFood = true;
             }
-            else
-            {
-                myItem = Instantiate(otherItem, gameObject.transform);
-            }
+            myItem = Instantiate(otherItem, gameObject.transform);
             myItem.transform.localPosition += new Vector3(-0.1f, -1f, 0.1f);
+            myItem.transform.localScale = Vector3.one / 2;
+            myItem.transform.Rotate(0, 45, 0);
             
             holdingItem = true;
         }
