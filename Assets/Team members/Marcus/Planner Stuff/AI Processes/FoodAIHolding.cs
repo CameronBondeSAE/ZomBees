@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Oscar;
+using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -21,10 +22,12 @@ namespace Marcus
 
         private void OnTriggerEnter(Collider collider)
         {
-            if (collider.gameObject.GetComponent<IItem>() != null && !holdingItem)
+            GameObject triggeredObject = collider.gameObject;
+            
+            if (triggeredObject.GetComponent<IItem>() != null && !holdingItem)
             {
-                //Call Pickup on IItem
-                PickUpItem(collider.gameObject);
+                triggeredObject.GetComponent<IItem>().Pickup(gameObject);
+                PickUpItem(triggeredObject);
             }
         }
 
@@ -37,24 +40,31 @@ namespace Marcus
                 vision.foodInSight.Remove(item);
                 holdingFood = true;
             }
-            myItem = Instantiate(otherItem, gameObject.transform);
+            myItem = Instantiate(otherItem, transform);
+            
+            myItem.GetComponent<Rigidbody>().isKinematic = true;
+            myItem.GetComponent<Collider>().enabled = false;
+            
             myItem.transform.localPosition += new Vector3(-0.1f, -1f, 0.1f);
             myItem.transform.localScale = Vector3.one / 2;
             myItem.transform.Rotate(0, 45, 0);
-            
+
             holdingItem = true;
         }
         
+        [Button]
         public void DropItem()
         {
-            //Call Dispose
+            otherItem.GetComponent<IItem>().Dispose();
+            
             holdingItem = false;
             holdingFood = false;
         }
 
         public void AteFood()
         {
-            //Call Consume
+            otherItem.GetComponent<IItem>().Consume();
+            
             holdingItem = false;
             holdingFood = false;
         }
