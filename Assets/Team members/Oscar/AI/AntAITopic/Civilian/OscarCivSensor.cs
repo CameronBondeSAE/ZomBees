@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class OscarCivSensor : MonoBehaviour, ISense
 {
-    [FormerlySerializedAs("civController")] public OscarBruteCivController bruteCivController;
+    public OscarBruteCivController bruteCivController;
     
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
