@@ -10,15 +10,17 @@ namespace Virginia
     {
         public IItem heldItem;
         public float radius;
+        public object hand;
         [Button] 
         public void Pickup()
         {
             Collider[] ItemsFound = Physics.OverlapSphere(transform.position, radius);
-            foreach (var ItemFound in ItemsFound)
+            foreach (IItem ItemFound in ItemsFound)
             {
                 if (ItemFound.GetComponent<IItem>() != null )
                 {
                     Debug.Log(message: "pick up");
+                    //heldItem = ItemFound;
                 }
                 
             }
