@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class WorldTime : MonoBehaviour
@@ -14,6 +15,8 @@ public class WorldTime : MonoBehaviour
     public float timeScale;
     
     public bool ticking;
+    
+    public bool isDay=false;
 
     public enum currentDay
     {
@@ -39,6 +42,7 @@ public class WorldTime : MonoBehaviour
     private const float HoursPerDay = 24;
     private const float MinutesPerDay = MinutesPerHour * HoursPerDay;
 
+    [Button]
     public void StartGame()
     {
         time = 0;

@@ -29,6 +29,7 @@ public class QuestTracker : MonoBehaviour
 
     private WorldTime time;
 
+    [Button]
     public void StartGame(WorldTime worldTime)
     {
         time = worldTime;
@@ -46,6 +47,7 @@ public class QuestTracker : MonoBehaviour
         foreach (QuestScriptable scriptable in quests)
         {
             scriptable.Begin(this, time);
+            MoveQuest(0, scriptable,1);
         }
             
         initialized = true;

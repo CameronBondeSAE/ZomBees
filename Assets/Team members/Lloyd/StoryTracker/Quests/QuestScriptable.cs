@@ -44,6 +44,8 @@ public class QuestScriptable : ScriptableObject
         [SerializeField]
         public float endTime;
 
+        public bool active = false;
+
         private int listLength;
 
         private QuestTracker questTracker;
@@ -76,7 +78,11 @@ public class QuestScriptable : ScriptableObject
 
         public void Update()
         {
-                time = worldTime.time;
+                if (active)
+                {
+                        time = worldTime.time;
+                        Debug.Log(questName);
+                        Debug.Log(time);
 
                         foreach (QuestRequirements requirement in requirements)
                         {
@@ -97,6 +103,7 @@ public class QuestScriptable : ScriptableObject
                                                 fulfilledCount++;
                                         }
                                 }
+
                                 if (fulfilledCount >= minRequirements)
                                 {
                                         ChangeQuestStatus(QuestStatus.Completed);
@@ -106,18 +113,19 @@ public class QuestScriptable : ScriptableObject
                                         ChangeQuestStatus(QuestStatus.Failed);
                                 }
                         }
-                
-                if(time >= startTime)
-                        ChangeQuestStatus(QuestStatus.Began);
 
-                if (time >= endTime)
-                {
-                        if(fulfilled.Length >= minRequirements)
-                                ChangeQuestStatus(QuestStatus.Completed);
+                        if (time >= startTime)
+                                ChangeQuestStatus(QuestStatus.Began);
 
-                        else
+                        if (time >= endTime)
                         {
-                                ChangeQuestStatus(QuestStatus.Failed);
+                                if (fulfilled.Length >= minRequirements)
+                                        ChangeQuestStatus(QuestStatus.Completed);
+
+                                else
+                                {
+                                        ChangeQuestStatus(QuestStatus.Failed);
+                                }
                         }
                 }
         }

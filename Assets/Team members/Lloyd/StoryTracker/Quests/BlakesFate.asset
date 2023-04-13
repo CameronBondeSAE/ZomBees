@@ -17,8 +17,8 @@ MonoBehaviour:
   questDescription: A kid shows up and seems to have a grasp on the basics. They
     fuckin' die.
   time: 0
-  startTime: 0
-  endTime: 10
+  startTime: 2
+  endTime: 0
   minRequirements: 0
   requirements:
   - requirementFulfilled: 0
@@ -32,5 +32,4 @@ MonoBehaviour:
     requirementStartTime: 0
     requirementEndTime: 0
   fulfilled: []
-  QuestPrompt: 
   questStatus: 0
