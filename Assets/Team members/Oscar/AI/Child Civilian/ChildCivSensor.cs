@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
@@ -8,7 +9,19 @@ namespace Oscar
     public class ChildCivSensor : MonoBehaviour, ISense
     {
         public ChildCivController controller;
+
+        public AntAIAgent aiAgent;
         
+        private void Awake()
+        {
+            aiAgent = GetComponent<AntAIAgent>();
+        }
+
+        public void DefaultState()
+        {
+            
+        }
+
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
         {
             aWorldState.BeginUpdate(aAgent.planner);
@@ -21,6 +34,9 @@ namespace Oscar
             aWorldState.Set(CivilianChild.isScared, controller.AmIScared());
             aWorldState.Set(CivilianChild.seeRock, controller.CanISeeRocks());
             aWorldState.Set(CivilianChild.hasRock, controller.DoIHaveRocks());
+            aWorldState.Set(CivilianChild.getStuff, controller.GetTheStuff());
+            aWorldState.Set(CivilianChild.hasStuff, controller.DoIHaveStuff());
+            aWorldState.Set(CivilianChild.returnedStuff, controller.StuffDelivered());
 
             aWorldState.EndUpdate();
         }
@@ -34,7 +50,10 @@ namespace Oscar
             deliveredRocks = 4,
             isScared = 5,
             seeRock = 6,
-            hasRock = 7
+            hasRock = 7,
+            getStuff = 8,
+            hasStuff = 9,
+            returnedStuff = 10
         }
     }
 }

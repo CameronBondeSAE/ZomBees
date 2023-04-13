@@ -62,5 +62,20 @@ namespace Oscar
         {
             return littleGuy.collectedObjects.Count >= 3;
         }
+
+        public bool GetTheStuff()
+        {
+            return false;
+        }
+
+        public bool DoIHaveStuff()
+        {
+            return false;
+        }
+
+        public bool StuffDelivered()
+        {
+            return false;
+        }
     }
 }

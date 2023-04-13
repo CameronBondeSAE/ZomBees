@@ -30,6 +30,12 @@ MonoBehaviour:
       name: seeRock
     - id: 7
       name: hasRock
+    - id: 8
+      name: getStuff
+    - id: 9
+      name: hasStuff
+    - id: 10
+      name: returnedStuff
   actions:
   - name: Follow
     isDefault: 1
@@ -65,7 +71,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: 222ac4e73e5ba2947bbb6355db56c828, type: 3}
     cost: 2
-    position: {x: 681, y: 98}
+    position: {x: 680, y: 95}
     pre:
     - id: 6
       value: 1
@@ -126,19 +132,62 @@ MonoBehaviour:
       value: 1
     - id: 0
       value: 1
+  - name: CollectStuff
+    isDefault: 0
+    state: {fileID: 2978812013294736355, guid: ed91e22ec46a0534ca876d214c4fba4e, type: 3}
+    cost: 1
+    position: {x: 1708, y: 98}
+    pre:
+    - id: 8
+      value: 1
+    - id: 9
+      value: 0
+    post:
+    - id: 9
+      value: 1
+  - name: ReturnStuff
+    isDefault: 0
+    state: {fileID: 2978812013294736355, guid: e1e0d9dfa8eba174b8a61a29ce41065b, type: 3}
+    cost: 1
+    position: {x: 1509, y: 301}
+    pre:
+    - id: 9
+      value: 1
+    - id: 10
+      value: 0
+    post:
+    - id: 10
+      value: 1
+    - id: 1
+      value: 1
+  - name: FindStuff
+    isDefault: 0
+    state: {fileID: 3690172197307478699, guid: 0ab4c59c78d9e0a43bc99a679a0695b9, type: 3}
+    cost: 1
+    position: {x: 1512, y: 100}
+    pre:
+    - id: 8
+      value: 0
+    post:
+    - id: 8
+      value: 1
   goals:
   - name: DeliverRocks
     isDefault: 1
-    position: {x: 1117, y: 92}
+    position: {x: 1094, y: 96}
     conditions:
     - id: 4
       value: 1
     - id: 1
       value: 1
-  - name: GoToPosition
+  - name: GetStuff
     isDefault: 0
-    position: {x: 1321, y: 93}
-    conditions: []
+    position: {x: 1312, y: 96}
+    conditions:
+    - id: 10
+      value: 1
+    - id: 1
+      value: 1
   worldStates:
   - position: {x: 282, y: 585}
     isAutoUpdate: 1
@@ -158,4 +207,10 @@ MonoBehaviour:
     - id: 6
       value: 0
     - id: 7
+      value: 0
+    - id: 8
+      value: 0
+    - id: 9
+      value: 0
+    - id: 10
       value: 0
