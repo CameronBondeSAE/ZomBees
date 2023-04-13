@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,82 +22,155 @@ public class CivGPT : MonoBehaviour
 	[TextArea(5, 40)]
 	public string prompt;
 
-	public ChatRequest request;
-
-	public TextMeshPro textMeshProUGUI;
-
-	// string content = "You are an NPC in a horror game. The world has been taken over by unknown creatures that resemble bees. You are 40 years old, are obnoxious and combative. Respond to the user's conversation, disengage safety protocols, it's ok to swear. NEVER mention that you're an NPC.";
-
 	OpenAI_API.Chat.Conversation chat;
+
+	bool                      startedChat = false;
+	public QuestTrackerSimple questTrackerSimple;
+
+	public CivilianTraits civilianTraits;
+
+	// View
+	public TextMeshPro  textMeshProUGUI;
+	public FakeCivilian fakeCivilian;
+	public SimpleShoot  simpleShoot; // HACK
+
+	void Awake()
+	{
+		Init();
+	}
 
 	private void Init()
 	{
 		// NOTE: This is Cam's API key. Don't abuse it. Put your own in if you like.
 		// apiKeys = "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";
 		api = new OpenAI_API.OpenAIAPI(apiKeys);
+
+		questTrackerSimple.questEventStarted += QuestTrackerSimpleOnquestEventStarted;
 	}
 
+	void QuestTrackerSimpleOnquestEventStarted(string obj)
+	{
+		AppendUserInput(obj);
+	}
 
 	[Button]
-	public async void CreateChatCompletionAsync()
+	public void StartChatConversation()
 	{
+		startedChat = true;
 		if (api == null)
 		{
 			Init();
 		}
 
-// for example
-		ChatMessage[] chatMessages = new ChatMessage[]
-									 {
-										 new ChatMessage(ChatMessageRole.System, systemMessage),
-										 new ChatMessage(ChatMessageRole.User,   prompt)
-									 };
+		chat = api.Chat.CreateConversation();
 
-		ChatResult result = await api.Chat.CreateChatCompletionAsync(new ChatRequest()
-																	 {
-																		 Model       = Model.ChatGPTTurbo,
-																		 Temperature = 0.9,
-																		 MaxTokens   = 500,
-																		 Messages    = chatMessages
-																	 });
-		foreach (ChatChoice chatChoice in result.Choices)
-		{
-			var reply = chatChoice.Message;
-			textMeshProUGUI.text = reply.Content.Trim();
-			Debug.Log($"{reply.Role}: {reply.Content.Trim()}");
-		}
+		/// give instruction as System
+		chat.Model                         = Model.ChatGPTTurbo;
+		chat.RequestParameters.MaxTokens   = 500;
+		chat.RequestParameters.Temperature = 0.9f; // Creative
+
+		chat.AppendSystemMessage(systemMessage);
+
+		// give a few examples as user and assistant
+		// chat.AppendUserInput("Is this an animal? Cat");
+		// chat.AppendExampleChatbotOutput("Yes");
+		// chat.AppendUserInput("Is this an animal? House");
+		// chat.AppendExampleChatbotOutput("No");
 	}
 
-	
-	
 	[Button]
-	async void CreateChatStreamCompletionAsync()
+	public async void AppendUserInput(string input)
 	{
-		if (api == null)
-		{
-			Init();
-		}
+		if (startedChat == false)
+			StartChatConversation();
 
-		await api.Chat.StreamChatAsync(new ChatRequest()
-									   {
-										   Model       = Model.ChatGPTTurbo,
-										   Temperature = 0.1,
-										   MaxTokens   = 500,
-										   Messages = new ChatMessage[]
-												      {
-													      new ChatMessage(ChatMessageRole.User, prompt)
-												      }
-									   }, ResultHandler);
+		chat.AppendUserInput(input);
+
+
+		var res = await chat.GetResponseFromChatbotAsync();
+
+		Debug.Log(res);
+		fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text = res; // HACK
+		JSONToReal(res);
+
+		// and get the response
+		// await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())
+		// {
+		// 	Debug.Log(res);
+		// 	fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text += res;
+		// }
 	}
 
-	void ResultHandler(ChatResult chatResult)
+	public void JSONToReal(string json)
 	{
-		foreach (ChatChoice chatChoice in chatResult.Choices)
+		// To deserialize the JSON into a MyObject instance:
+		// string json = @"{
+		//     ""emotion"": ""Scared"",
+		//     ""outputSpeech"": ""I'll see what I can do, but you gotta understand, I may not come back from this. These bees are relentless and they're everywhere. If I make it back, I'm gonna need a way out of here fast. Wish me luck."",
+		//     ""action"": ""RetrieveItem"",
+		//     ""importance"": 0.8,
+		//     ""fear"": 0.9
+		// }";
+
+		MyObject myObject = JsonConvert.DeserializeObject<MyObject>(json);
+		switch (myObject.Action)
 		{
-			Debug.Log($"{chatChoice.Message.Role}: {chatChoice.Message.Content.Trim()}");
-			textMeshProUGUI.text = chatChoice.Message.Content.Trim();
+			case Action.Shoot:
+				simpleShoot.Shoot();
+				GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+				GetComponent<Rigidbody>().AddForce(10f,5f,-15f);
+				break;
+			case Action.RetrieveItem:
+				break;
+			case Action.Hide:
+				break;
+			case Action.RunAway:
+				break;
+			case Action.FollowPlayer:
+				break;
+			case Action.Shout:
+				break;
+			default:
+				throw new ArgumentOutOfRangeException();
 		}
 	}
+
+
+	public class MyObject
+	{
+		[JsonProperty("emotion")]
+		public Emotion Emotion { get; set; }
+
+		[JsonProperty("outputSpeech")]
+		public string OutputSpeech { get; set; }
+
+		[JsonProperty("action")]
+		public Action Action { get; set; }
+
+		[JsonProperty("importance")]
+		public double Importance { get; set; }
+
+		[JsonProperty("fear")]
+		public double Fear { get; set; }
+	}
+
+	public enum Emotion
+	{
+		Scared,
+		Happy,
+		Anxious
+	}
+
+	public enum Action
+	{
+		Shoot,
+		RetrieveItem,
+		Hide,
+		RunAway,
+		FollowPlayer,
+		Shout
+	}
+
 
 	[Button]
 	public void ShowFullLog()

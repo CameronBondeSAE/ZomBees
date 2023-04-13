@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StoryTimeTests : MonoBehaviour
 {
-    public List<StoryEventActionTest> actions;
+    public List<CharacterQuestEvent> actions;
     
     // Start is called before the first frame update
     void Start()

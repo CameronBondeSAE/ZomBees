@@ -2,17 +2,19 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TestScriptableObjects : MonoBehaviour
 {
-    public EmotionalCore emotionalCore;
+    [FormerlySerializedAs("traitsScriptableObject")]
+    public TraitsListScriptableObject traitsListScriptableObject;
     
     [Button]
-    public void ShowAllEmotions()
+    public void ShowAllTraits()
     {
-        foreach (Emotion emotionalCoreEmotion in emotionalCore._emotions)
+        foreach (TraitScriptableObject emotionalCoreEmotion in traitsListScriptableObject.traits)
         {
-            Debug.Log(emotionalCoreEmotion.description);//"+emotionalCoreEmotion.strength);
+            Debug.Log(emotionalCoreEmotion.ToString());
         }
     }
 }

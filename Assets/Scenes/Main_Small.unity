@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 398.35358, g: 295.92435, b: 217.84134, a: 1}
+  m_IndirectSpecularColor: {r: 397.79987, g: 295.21927, b: 217.07693, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -29907,6 +29907,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 197440, guid: 812c9b36537fa8146bed44183a36cf7a, type: 3}
   m_PrefabInstance: {fileID: 839090933}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &842965083 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2362193386544757571, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+  m_PrefabInstance: {fileID: 1061997384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be84e4d7829855419c06b94e56bd135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &843067075 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 438588, guid: 715fd63a46fbdbe4aaa1d6f63749e896, type: 3}
@@ -37424,9 +37435,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 196498555299401825, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: simpleShoot
+      value: 
+      objectReference: {fileID: 842965083}
     - target: {fileID: 1517980231522023464, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
       propertyPath: m_Name
       value: Civ bomb guy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517980231522023464, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1517980231522023470, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
       propertyPath: m_RootOrder
@@ -37476,6 +37495,58 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 2879795656094471918, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6032161
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7861231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.10685509
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.08199309
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -111.427
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 44.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933375476226614745, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -46.94098
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570327565950548498, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: eventsList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570327565950548498, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: eventsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 654fa41f15303fa40aeb74be4fc9c209, type: 2}
+    - target: {fileID: 6570327565950548498, guid: 32d345397d0395b4b807803811fd2f60, type: 3}
+      propertyPath: eventsList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d506b57815c9bc409fb785ee2b98856, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -72901,6 +72972,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8099583209665070652, guid: d52da034399be3345ab8d8b11466e210, type: 3}
+      propertyPath: timeScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8099583209665070653, guid: d52da034399be3345ab8d8b11466e210, type: 3}
       propertyPath: m_Name
       value: TimeOfDay
@@ -83344,6 +83419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Civ queen info guy
       objectReference: {fileID: 0}
+    - target: {fileID: 1517980231522023464, guid: 0b4d10f0cf32f04498913dad27c29ab6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1517980231522023470, guid: 0b4d10f0cf32f04498913dad27c29ab6, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -83392,11 +83471,24 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 2879795656094471918, guid: 0b4d10f0cf32f04498913dad27c29ab6, type: 3}
+    - target: {fileID: 6570327565950548498, guid: 0b4d10f0cf32f04498913dad27c29ab6, type: 3}
+      propertyPath: eventsList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570327565950548498, guid: 0b4d10f0cf32f04498913dad27c29ab6, type: 3}
+      propertyPath: eventsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 660006375f55c2e4dbabded956bcfcff, type: 2}
+    - target: {fileID: 6570327565950548498, guid: 0b4d10f0cf32f04498913dad27c29ab6, type: 3}
+      propertyPath: eventsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570327565950548498, guid: 0b4d10f0cf32f04498913dad27c29ab6, type: 3}
+      propertyPath: eventsList.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 707391677261424020, guid: 0b4d10f0cf32f04498913dad27c29ab6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b4d10f0cf32f04498913dad27c29ab6, type: 3}

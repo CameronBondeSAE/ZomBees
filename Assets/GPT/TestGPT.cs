@@ -97,7 +97,7 @@ public class TestGPT : MonoBehaviour
 
 		// await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())
 		// {
-		Debug.Log(res);
+			// Debug.Log(res);
 		// }
 	}
 
