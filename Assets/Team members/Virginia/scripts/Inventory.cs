@@ -16,7 +16,7 @@ namespace Virginia
             Collider[] ItemsFound = Physics.OverlapSphere(transform.position, radius);
             foreach (var ItemFound in ItemsFound)
             {
-                if (GetComponent<IItem>() != null )
+                if (ItemFound.GetComponent<IItem>() != null )
                 {
                     Debug.Log(message: "pick up");
                 }
