@@ -19,8 +19,8 @@ namespace Marcus
 
         public void Dispose()
         {
-            Instantiate(food, transform.position + Vector3.forward, Quaternion.identity);
-            Destroy(gameObject);
+            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Collider>().enabled = true;
         }
 
         public string Description()
@@ -35,7 +35,8 @@ namespace Marcus
                 whoPickedMeUp.GetComponent<FoodAIHolding>().otherItem = food;
             }
             
-            UtilityManager.DeleteAfterDelay(gameObject);
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

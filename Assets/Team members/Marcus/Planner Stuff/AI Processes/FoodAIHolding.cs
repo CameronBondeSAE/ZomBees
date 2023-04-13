@@ -18,8 +18,6 @@ namespace Marcus
         
         public OscarVision vision;
 
-        private GameObject myItem;
-
         private void OnTriggerEnter(Collider collider)
         {
             GameObject triggeredObject = collider.gameObject;
@@ -40,14 +38,9 @@ namespace Marcus
                 vision.foodInSight.Remove(item);
                 holdingFood = true;
             }
-            myItem = Instantiate(otherItem, transform);
-            
-            myItem.GetComponent<Rigidbody>().isKinematic = true;
-            myItem.GetComponent<Collider>().enabled = false;
-            
-            myItem.transform.localPosition += new Vector3(-0.1f, -1f, 0.1f);
-            myItem.transform.localScale = Vector3.one / 2;
-            myItem.transform.Rotate(0, 45, 0);
+            otherItem.transform.localPosition = transform.position + new Vector3(-0.1f, 0, 0.1f);
+            otherItem.transform.localScale = Vector3.one / 2;
+            otherItem.transform.Rotate(0, 45, 0);
 
             holdingItem = true;
         }
@@ -55,6 +48,9 @@ namespace Marcus
         [Button]
         public void DropItem()
         {
+            otherItem.transform.position = transform.position + transform.forward;
+            otherItem.transform.localScale = Vector3.one;
+
             otherItem.GetComponent<IItem>().Dispose();
             
             holdingItem = false;
