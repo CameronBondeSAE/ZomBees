@@ -6,18 +6,23 @@ namespace Team_members.Lloyd.Civilian_L
 {
     public class CivilianBrain : AntAIAgent, ISense
     {
+        public FaceManager faceManager;
+        
         public GameObject rightHand;
         
         private StatsComp stats;
         public enum CivStates
         {
             Idle,
+            RunAway,
             Talk,
             Move,
             Interact
         }
 
         public CivStates myState;
+
+        public bool dangerNearby;
 
         public bool wantToActivate;
 
@@ -109,12 +114,20 @@ namespace Team_members.Lloyd.Civilian_L
                 idle = false;
                 interacting = true;
             }
+
+            if (myState == CivStates.RunAway)
+            {
+                dangerNearby = true;
+                faceManager.OnChangeEmotion(CivEmotions.Neutral, CivEmotions.Surprised);
+            }
         }
 
         public void FixedUpdate()
         {
-            if(hearingComp)
-                hearingSomething = hearingComp.heardSound;
+            if (dangerNearby)
+                myState = CivStates.RunAway;
+
+            else myState = CivStates.Idle;
         }
 
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
@@ -136,6 +149,8 @@ namespace Team_members.Lloyd.Civilian_L
             aWorldState.Set("InRange", inRange);
 
             aWorldState.Set("WantToInteract", wantToActivate);
+            
+            aWorldState.Set("DangerNearby", dangerNearby);
 
             aWorldState.EndUpdate();
         }
