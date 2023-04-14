@@ -8,25 +8,48 @@ public class WorldTime : MonoBehaviour
 {
     //cowritten with ChatGPT
 
+    private static WorldTime instance;
+
+    public static WorldTime Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<WorldTime>();
+
+                if (instance == null)
+                {
+                    GameObject go = new GameObject("WorldTime");
+                    instance = go.AddComponent<WorldTime>();
+                    DontDestroyOnLoad(go);
+                }
+            }
+            return instance;
+        }
+    }
+
     public bool initialized = false;
 
     public float time;
 
     public float timeScale;
-    
+
     public bool ticking;
-    
-    public bool isDay=false;
+
+    public bool isDay = false;
 
     public enum currentDay
     {
         Day1,
+        
         Day2,
+        
         Day3,
-        Night1,
-        Night2,
-        Night3
+        
+        TheEnd
     }
+
     public currentDay currentDayTracker;
 
     public enum TimeOfDay
@@ -36,6 +59,7 @@ public class WorldTime : MonoBehaviour
         Evening,
         Night
     }
+
     public TimeOfDay currentTimeOfDay;
 
     private const float MinutesPerHour = 60;
@@ -82,9 +106,16 @@ public class WorldTime : MonoBehaviour
             if (time % 1440 == 0)
             {
                 currentDayTracker++;
+                if (currentDayTracker == currentDay.TheEnd)
+                {
+                    ticking = false;
+                    
+                    Debug.Log("Times up!");
+                    //time stop event here
+                }
             }
 
-            yield return new WaitForSeconds(1*timeScale);
+            yield return new WaitForSeconds(1 * timeScale);
         }
     }
 
@@ -93,8 +124,8 @@ public class WorldTime : MonoBehaviour
         float realTime = time;
         int hours = Mathf.FloorToInt(time / MinutesPerHour);
         int minutes = Mathf.FloorToInt(time % MinutesPerHour);
-        
+
         //cool
-        return string.Format("{0:00}:{1:00}", hours, minutes+" ("+realTime+")");
+        return string.Format("{0:00}:{1:00}", hours, minutes + " (" + realTime + ")");
     }
 }

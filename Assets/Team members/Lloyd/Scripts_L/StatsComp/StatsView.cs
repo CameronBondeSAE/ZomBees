@@ -6,7 +6,7 @@ namespace Team_members.Lloyd.Scripts_L.StatsComp
 {
     public class StatsView : MonoBehaviour
     {
-        private StatsModelView modelView = new StatsModelView();
+        /*private StatsModelView modelView = new StatsModelView();
 
         private Dictionary<string, float> floats;
 
@@ -31,5 +31,6 @@ namespace Team_members.Lloyd.Scripts_L.StatsComp
             modelView.ChangeFloat -= ChangeFloat;
             modelView.SetDictionary -= SetDictionary;;
         }
+    */
     }
 }

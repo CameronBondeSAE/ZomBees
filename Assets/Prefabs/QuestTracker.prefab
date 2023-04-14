@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524397953849350245}
-  - component: {fileID: 2348398044828425012}
+  - component: {fileID: 9218600566536006982}
   m_Layer: 0
-  m_Name: QuestsTracker
+  m_Name: QuestTracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2348398044828425012
+--- !u!114 &9218600566536006982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4610916517720961256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9425b993b9e23e45bec7580983f6af2, type: 3}
+  m_Script: {fileID: 11500000, guid: 61546f205c28b404ab81b6b1d841a4e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialized: 0
-  quests: []
-  questsBegan: []
-  questsCompleted: []
-  questsFailed: []
-  questText: {fileID: 0}
-  fadeSpeed: 0.25
-  textColor: {r: 0, g: 0, b: 0, a: 0}
+  eventsList: []
+  checkInterval: 1
