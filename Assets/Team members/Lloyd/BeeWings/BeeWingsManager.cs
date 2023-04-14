@@ -34,6 +34,7 @@ public class BeeWingsManager : MonoBehaviour
     
     public GameObject BeeWingRegular;
     public GameObject BeeWingHoles;
+    public GameObject BeeWingHolesLarge;
     public GameObject BeeWingDistorted;
 
     public enum MyWingType
@@ -41,6 +42,7 @@ public class BeeWingsManager : MonoBehaviour
         Random, 
         Regular,
         Holes,
+        HolesLarge,
         Distorted
     }
 

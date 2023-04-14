@@ -666,14 +666,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618844812894864199}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.452, y: 0.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5982856373356565980}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &996445085214038077
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +684,6 @@ GameObject:
   m_Component:
   - component: {fileID: 996445085214038079}
   - component: {fileID: 996445085214038078}
-  - component: {fileID: 996445085214038073}
   - component: {fileID: 996445085214038075}
   - component: {fileID: 1554903795873965021}
   - component: {fileID: 1399967279988117161}
@@ -693,7 +692,6 @@ GameObject:
   - component: {fileID: 996445086221822400}
   - component: {fileID: 2729999422442196854}
   - component: {fileID: 979250854948631658}
-  - component: {fileID: 8989879699439127798}
   m_Layer: 0
   m_Name: QueenBee
   m_TagString: Untagged
@@ -746,25 +744,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &996445085214038073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996445085214038077}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aea3d6b7dfd2534eae58f294949b151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numSwarmers: 250
-  swarmer: {fileID: 889221432442366976, guid: 13d0de7039ab2004bbf10a88764026c1, type: 3}
-  waitTime: 0.1
-  FollowerList: []
-  queenEvent: {fileID: 0}
-  queenScene: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!114 &996445085214038075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,17 +871,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a54f2eff20938144b192da50499bf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookAt: {fileID: 0}
   rb: {fileID: 0}
   queenParent: {fileID: 0}
   stats: {fileID: 0}
   currState: 0
   targetsList: []
+  fullFollowers: 0
+  followers: []
+  numSwarmers: 0
   patrolPoints: []
   hiveSpots: []
-  idle: 0
-  bob: {fileID: 0}
-  minIdleTime: 5
-  maxIdleTime: 30
+  flySpeed: 0
   beeWings: {fileID: 1008877768134904858, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
   numWings: 4
   defaultFlapSpeed: 55
@@ -910,29 +890,17 @@ MonoBehaviour:
   hearingComp: {fileID: 0}
   queenVectorTarget: {x: 0, y: 0, z: 0}
   queenTransformTarget: {fileID: 0}
-  resourceCount: 0
-  hasResource: 0
-  isMoving: 0
+  dangerNearby: 0
   hasArrived: 0
+  hasResource: 0
+  idle: 0
   investigatingNoise: 0
-  seekingResource: 1
-  spottedResource: 0
   moveToHiveSpot: 0
   spawnHive: 0
-  dangerNearby: 0
+  seekingResource: 1
+  spottedResource: 0
   initialised: 0
---- !u!114 &8989879699439127798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996445085214038077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d97ab585e7de34bbb7a8d3f6d2e860, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  resourceCount: 0
 --- !u!1 &1453099542823454742
 GameObject:
   m_ObjectHideFlags: 0

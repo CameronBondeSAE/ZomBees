@@ -32,12 +32,16 @@ MonoBehaviour:
       name: Idle
     - id: 8
       name: SeekingResource
+    - id: 9
+      name: FullFollowers
+    - id: 10
+      name: MaxHivesSpawned
   actions:
   - name: InvestigatingNoise
     isDefault: 0
     state: {fileID: 8080380390649088878, guid: f68d643976fddf040bf9779ae07d0f3d, type: 3}
     cost: 3
-    position: {x: 604.33344, y: 175.00003}
+    position: {x: 854.3335, y: 405}
     pre:
     - id: 6
       value: 1
@@ -52,7 +56,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4596624490198139294, guid: 9e2d51e2070c0e242874aec0b26aa82e, type: 3}
     cost: 1
-    position: {x: 880, y: 80}
+    position: {x: 880, y: 140}
     pre:
     - id: 1
       value: 0
@@ -67,7 +71,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5405125979471721382, guid: 8dafcfb6597e1e444a7a92f34f9e13bd, type: 3}
     cost: 0
-    position: {x: 1543.3333, y: 86.66671}
+    position: {x: 1543.3333, y: 146.66672}
     pre:
     - id: 1
       value: 1
@@ -78,11 +82,13 @@ MonoBehaviour:
     post:
     - id: 5
       value: 1
+    - id: 9
+      value: 1
   - name: SeekingResources
-    isDefault: 1
+    isDefault: 0
     state: {fileID: 119544246350518762, guid: 9667d82d0fdb48c4580e92d85b9f63b7, type: 3}
     cost: 1
-    position: {x: 394.33337, y: 159.99997}
+    position: {x: 581.00006, y: 324.99997}
     pre:
     - id: 1
       value: 0
@@ -99,7 +105,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 698925801472832170, guid: a9ab15841a267c84b906f7994d389ea9, type: 3}
     cost: 0
-    position: {x: 1100, y: 80}
+    position: {x: 1100, y: 140}
     pre:
     - id: 1
       value: 1
@@ -114,7 +120,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4596624490198139294, guid: 9e2d51e2070c0e242874aec0b26aa82e, type: 3}
     cost: 0
-    position: {x: 1320, y: 80}
+    position: {x: 1320, y: 140}
     pre:
     - id: 6
       value: 1
@@ -122,14 +128,18 @@ MonoBehaviour:
       value: 0
     - id: 1
       value: 0
+    - id: 0
+      value: 1
     post:
     - id: 6
+      value: 0
+    - id: 9
       value: 0
   - name: QueenIdle
     isDefault: 0
     state: {fileID: 7055940769440527892, guid: 53520952d82d4e64dae2987682aa7fb0, type: 3}
     cost: 0
-    position: {x: 394.6666, y: 413.66663}
+    position: {x: 206.33328, y: 683.66656}
     pre:
     - id: 1
       value: 0
@@ -146,15 +156,32 @@ MonoBehaviour:
       value: 0
     - id: 8
       value: 1
+  - name: SpawnFollowers
+    isDefault: 1
+    state: {fileID: 7261669116242591358, guid: 4bff549cf13a99c4eb864d9d2b48615b, type: 3}
+    cost: 0
+    position: {x: 406.66672, y: 60.000084}
+    pre:
+    - id: 9
+      value: 0
+    - id: 0
+      value: 0
+    post:
+    - id: 9
+      value: 1
+    - id: 0
+      value: 1
   goals:
   - name: SpawnHive
     isDefault: 1
-    position: {x: 395, y: 50}
+    position: {x: 208.33331, y: 56.66668}
     conditions:
     - id: 5
       value: 1
+    - id: 10
+      value: 1
   worldStates:
-  - position: {x: 652, y: 416.3333}
+  - position: {x: 558.6666, y: 681.33325}
     isAutoUpdate: 1
     list:
     - id: 0
@@ -170,8 +197,12 @@ MonoBehaviour:
     - id: 5
       value: 0
     - id: 6
-      value: 0
-    - id: 7
       value: 1
+    - id: 7
+      value: 0
     - id: 8
+      value: 0
+    - id: 9
+      value: 0
+    - id: 10
       value: 0

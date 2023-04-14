@@ -17,11 +17,6 @@ public class QueenIdle : AntAIState
         base.Create(aGameObject);
         
         queenScene = aGameObject.GetComponent<QueenScenarioManager>();
-        
-        queenScene.FlipIdle();
-
-        minIdleTime = queenScene.minIdleTime;
-        maxIdleTime = queenScene.maxIdleTime;
 
         float randomIdleTime = Random.Range(minIdleTime, maxIdleTime);
         waitTime = randomIdleTime;
@@ -49,6 +44,6 @@ public class QueenIdle : AntAIState
 
     public override void Exit()
     {
-        queenScene.FlipIdle();
+        queenScene.idle = false;
     }
 }

@@ -53,6 +53,7 @@ MonoBehaviour:
   myWings: []
   BeeWingRegular: {fileID: 5055074893028088857, guid: dec5a9bcf9285794d8a5a097204677c3, type: 3}
   BeeWingHoles: {fileID: 6209883267528151480, guid: 3c4640503ec80444591eec54db307474, type: 3}
+  BeeWingHolesLarge: {fileID: 6209883267528151480, guid: c753c1c62e7cfe64ebeb148f8e05f2dd, type: 3}
   BeeWingDistorted: {fileID: 7661064535709151610, guid: 8bbdd2b57d9a1e049b78ec8fa0803f3f, type: 3}
   wingType: 2
   spawned: 0

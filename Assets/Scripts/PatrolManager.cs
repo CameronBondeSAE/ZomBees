@@ -16,7 +16,6 @@ public class PatrolManager : MonoBehaviour
 
 	public static PatrolManager singleton;
 
-
 	// [FormerlySerializedAs("networkTransport")]
 	// public UnityTransport unityTransport;
 

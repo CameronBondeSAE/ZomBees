@@ -18,15 +18,15 @@ public class QueenLerpTowards : AntAIState
 
     private float flyTime;
 
-    public List<GameObject> flyPoints = new List<GameObject>();
+    public List<GameObject> flyPoints;
 
     public GameObject prevFlyPoint;
 
     [ReadOnly] public GameObject currFlyPoint;
 
     public float curSpeed;
-    private float maxSpeed;
-    private float minDist;
+    [ReadOnly] public float maxSpeed;
+    private float minDist = 1f;
     [ReadOnly] private bool isMoving = false;
 
     public QueenScenarioManager queenScene;
@@ -37,8 +37,6 @@ public class QueenLerpTowards : AntAIState
 
     public bool interrupted = false;
 
-    public bool initialised = false;
-
     private QueenScenarioManager.QueenStates currstate;
 
     public override void Create(GameObject aGameObject)
@@ -47,39 +45,31 @@ public class QueenLerpTowards : AntAIState
         queenScene = aGameObject.GetComponent<QueenScenarioManager>();
         lookAt = queenScene.lookAt;
         rb = queenScene.rb;
-        maxSpeed = queenScene.defaultFlapSpeed;
-
         currstate = queenScene.currState;
+        maxSpeed = queenScene.flySpeed;
+    }
 
-        foreach (GameObject obj in queenScene.patrolPoints)
-        {
-            GameObject clone = Instantiate(obj);
-            clone.transform.position = obj.transform.position;
-            flyPoints.Add(clone);
-        }
-
+    public override void Enter()
+    {
+        flyPoints = new List<GameObject>(queenScene.patrolPoints);
         currFlyPoint = flyPoints[0];
-        ChooseNewFlyPoint();
+        
+        //ChooseNewFlyPoint();
+        
         isMoving = true;
-        initialised = true;
         StartCoroutine(MoveTowards(currFlyPoint.transform.position));
+        
+        lookAt.SetTarget(currFlyPoint.transform);
+
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
-        
-        if (initialised)
-        {
-            curSpeed = rb.velocity.magnitude;
 
-            if (isMoving)
-            {
-                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-            }
+        curSpeed = rb.velocity.magnitude;
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 
-            lookAt.SetVectorTarget(currFlyPoint.transform.position);
-        }
 
         if (interrupted)
             isMoving = false;
@@ -87,27 +77,21 @@ public class QueenLerpTowards : AntAIState
 
     private IEnumerator MoveTowards(Vector3 newFlyPoint)
     {
-        currFlyPoint.transform.position = newFlyPoint;
         while (isMoving)
         {
-            float journeyLength = Vector3.Distance(transform.position, currFlyPoint.transform.position);
+            float journeyLength = Vector3.Distance(transform.position, newFlyPoint);
             while (!Mathf.Approximately(journeyLength, 0f) && journeyLength > minDist)
             {
-                Vector3 direction = (currFlyPoint.transform.position - transform.position).normalized;
-                float distance = Vector3.Distance(transform.position, currFlyPoint.transform.position);
+                Vector3 direction = (newFlyPoint - transform.position).normalized;
+                float distance = Vector3.Distance(transform.position, newFlyPoint);
 
-                float forceMagnitude = Mathf.Clamp(distance / Time.fixedDeltaTime, flyTime, maxSpeed);
+                float forceMagnitude = Mathf.Clamp(distance / Time.deltaTime, flyTime, maxSpeed);
                 Vector3 force = direction * forceMagnitude;
 
                 rb.AddForce(force, ForceMode.VelocityChange);
 
                 yield return null;
-                journeyLength = Vector3.Distance(transform.position, currFlyPoint.transform.position);
-
-                if (Vector3.Distance(transform.position, currFlyPoint.transform.position) < minDist)
-                {
-                    ChooseNewFlyPoint();
-                }
+                journeyLength = Vector3.Distance(transform.position, newFlyPoint);
             }
 
             if (flyPoints.Count > 1)
@@ -116,6 +100,8 @@ public class QueenLerpTowards : AntAIState
                 currFlyPoint = flyPoints[(currIndex + 1) % flyPoints.Count];
             }
         }
+        
+        queenScene.hasArrived = true;
     }
 
     private void ChooseNewFlyPoint()

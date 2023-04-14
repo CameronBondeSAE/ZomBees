@@ -21,3 +21,9 @@ broad phase culling
 my position - your position sqrMagnitude
 
 start 10,000Hz. for each obstacle, decrease
+
+-- sun and moon
+
+-- zombee civ
+
+-- queen states

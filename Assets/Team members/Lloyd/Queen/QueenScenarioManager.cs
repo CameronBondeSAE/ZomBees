@@ -12,24 +12,21 @@ public class QueenScenarioManager : MonoBehaviour, ISense
     //big daddy queen brain
 
     public LookAtTarget lookAt;
-    
+
     public Rigidbody rb;
-    [ReadOnly]
-    public GameObject queenParent;
-    [ReadOnly]
-    public CivStatComponent stats;
+    [ReadOnly] public GameObject queenParent;
+    [ReadOnly] public CivStatComponent stats;
+
     public enum QueenStates
     {
         Idle,
-        MoveToPoint,
         Patrol,
         Investigate,
         Attack,
-        SpawnHive,
-        Move
+        SpawnHive
     }
+
     public QueenStates currState;
-    private QueenStates decidedOnThisState;
 
     private void Awake()
     {
@@ -46,15 +43,11 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         stats = GetComponent<CivStatComponent>();
         hearingComp = GetComponent<HearingComp>();
         
-        bob = GetComponent<PerlinBob>();
-        bob.enabled = false;
-
         StartBeeWings();
-        
-        ChangeQueenState(QueenStates.Idle);
         
         initialised = true;
     }
+
 
     [Button]
     public void OnQueenChangeSwarmEvent()
@@ -67,41 +60,45 @@ public class QueenScenarioManager : MonoBehaviour, ISense
     public List<Transform> targetsList;
 
     #endregion
+
+    #region Followers
+    [Header("Followers")]
     
-    #region TraversalTargetPoints
+    public bool fullFollowers;
+
+    public List<Follower> followers;
+
+    public void AddFollower(Follower foll)
+    {
+        followers.Add(foll);
+    }
+
+    public int numSwarmers;
+
+    #endregion
+
+    #region Movement
+    [Header("Movement")]
     
     public List<GameObject> patrolPoints;
 
-    public List<Transform> hiveSpots;
+    public List<GameObject> hiveSpots;
+
+    public float flySpeed;
+    
     #endregion
 
-    #region Idle
-    
-    public bool idle=false;
-    
-    public PerlinBob bob;
-
-    public float minIdleTime=5f;
-    public float maxIdleTime=30f;
-
-    public void FlipIdle()
-    {
-        idle = !idle;
-    }
-
-    #endregion
-    
     #region BeeWings
 
     public BeeWingsManager beeWings;
 
     public int numWings;
-    
+
     public float defaultFlapSpeed;
     public float defaultFlapAngle;
 
     private void StartBeeWings()
-    {   
+    {
         queenParent = new GameObject("ZOMBEE QUEEN PARENT") as GameObject;
 
         beeWings = GetComponentInChildren<BeeWingsManager>();
@@ -110,46 +107,46 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         {
             beeWings.AddWing();
         }
+
         beeWings.SpawnWings();
-        
+
         beeWings.wingParent.transform.SetParent(queenParent.transform);
     }
-    
+
     #endregion
-    
+
     private QueenEvent queenEvent;
-    
+
     public HearingComp hearingComp;
-    
+
     public List<HearingComp.SoundData> heardSoundsList;
 
     public Vector3 queenVectorTarget;
     public Transform queenTransformTarget;
 
     #region ANTAI
+    
+    public bool dangerNearby;
 
-    public float resourceCount;
+    public bool hasArrived;
+    
+    public bool hasResource;
+    
+    public bool idle;
+    
+    public bool investigatingNoise;
+    
+    public bool moveToHiveSpot;
+    public bool spawnHive;
+    
+    public bool seekingResource;
 
-    public bool hasResource = false;
-
-    public bool isMoving = false;
-
-    public bool hasArrived = false;
-
-    public bool investigatingNoise = false;
-
-    public bool seekingResource = true;
-
-    public bool spottedResource = false;
-
-    public bool moveToHiveSpot = false;
-
-    public bool spawnHive = false;
-
-    public bool dangerNearby = false;
-
+    public bool spottedResource;
+    
     public bool initialised = false;
-
+    
+    public float resourceCount;
+    
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
         aWorldState.BeginUpdate(aAgent.planner);
@@ -161,7 +158,7 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         aWorldState.Set("InvestigatingNoise", investigatingNoise);
 
         aWorldState.Set("SeekingResource", seekingResource);
-        
+
         aWorldState.Set("SpottedResource", spottedResource);
 
         aWorldState.Set("MoveToHive", moveToHiveSpot);
@@ -171,6 +168,8 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         aWorldState.Set("DangerNearby", dangerNearby);
 
         aWorldState.Set("Idle", idle);
+
+        aWorldState.Set("FullFollowers", fullFollowers);
 
         aWorldState.EndUpdate();
     }
@@ -189,85 +188,9 @@ public class QueenScenarioManager : MonoBehaviour, ISense
             heardSoundsList = GetSounds();
             resourceCount = stats.beenessDisplayed;
 
-            if (currState == QueenStates.Idle)
-            {
-                bob.enabled = true;
-                return;
-            }
-            else
-            {
-                bob.enabled = false;
-            }
-
             queenParent.transform.position = transform.position;
             queenParent.transform.rotation = transform.rotation;
-            
-            Decide();
+
         }
     }
-
-    public void Decide()
-    {/*
-        if (isMoving)
-            decidedOnThisState = QueenStates.MoveToPoint;*/
-        //return;
-        if (idle)
-        {
-            decidedOnThisState = QueenStates.Idle;
-        }
-        else
-        {
-            decidedOnThisState = QueenStates.Patrol;
-
-            if (resourceCount < 1)
-            {
-                if (!isMoving)
-                {
-                    seekingResource = true;
-
-                    if (targetsList.Count > 0)
-                    {
-                        dangerNearby = true;
-                        spottedResource = true;
-                        decidedOnThisState = QueenStates.Attack;
-                    }
-                    else if (heardSoundsList.Count > 0)
-                    {
-                        investigatingNoise = true;
-                        decidedOnThisState = QueenStates.Investigate;
-                    }
-                }
-            }
-
-            else
-            {
-                seekingResource = false;
-                hasResource = true;
-                decidedOnThisState = QueenStates.SpawnHive;
-            }
-        }
-
-        ChangeQueenState(decidedOnThisState);
-    }
-
-    public void ChangeQueenState(QueenStates newState)
-    {
-        if (newState != currState)
-            currState = newState;
-    }
-
-    #region Spawner
-
-    public void AddFollower(Follower foll)
-    {
-        followers.Add(foll);
-    }
-
-    public List<Follower> followers;
-
-    private Spawner spawner;
-
-    private int numSwarmers;
-
-    #endregion
 }

@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Anthill.AI;
 using Lloyd;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Spawner : MonoBehaviour
+public class Spawner : AntAIState
 {
     // Spawner instantiates GameObject at random 360 direction
     // for amount numSwarmers every second waitTime
-    // 
-    public int numSwarmers;
+    // ChatGPT was here
+    
+    private int defaultSwarmers;
     public GameObject swarmer;
 
     public float waitTime;
@@ -25,39 +27,52 @@ public class Spawner : MonoBehaviour
 
     public Rigidbody rb;
 
-    private void OnEnable()
+    public override void Create(GameObject aGameObject)
     {
-        rb = GetComponent<Rigidbody>();
+        base.Create(aGameObject);
+        queenScene = aGameObject.GetComponent<QueenScenarioManager>();
         
+        rb = queenScene.GetComponent<Rigidbody>();
+
         parent = new GameObject();
         parent.name = "Swarmer Parent";
-        parent.transform.position = transform.position;
-        parent.transform.rotation = transform.rotation;
+        parent.transform.position = queenScene.transform.position;
+        parent.transform.rotation = queenScene.transform.rotation;
 
-        queenEvent = GetComponent<QueenEvent>();
+        queenEvent = GetComponentInParent<QueenEvent>();
 
-        queenScene = GetComponent<QueenScenarioManager>();
-
-        StartCoroutine(SpawnSwarmer());
+        defaultSwarmers = queenScene.numSwarmers;
     }
 
-    private IEnumerator SpawnSwarmer()
+    public override void Enter()
     {
-        for (int i = 0; i < numSwarmers; i++)
+        RefillFollowers();
+    }
+    
+    public void StartSpawner(int numFollowers)
+    {
+        defaultSwarmers = numFollowers;
+        StartCoroutine(SpawnFollower(numFollowers));
+    }
+
+    private IEnumerator SpawnFollower(int numberOfFollowersToSpawn)
+    {
+        for (int i = 0; i < numberOfFollowersToSpawn; i++)
         {
             yield return new WaitForSeconds(waitTime);
-            
+
             Vector3 position = transform.position;
             int randomAngle = Random.Range(0, 360);
             randomAngle = Mathf.RoundToInt(randomAngle);
-            Quaternion rotation = Quaternion.Euler(transform.rotation.x + randomAngle,transform.rotation.y + randomAngle,transform.rotation.z + randomAngle);
+            Quaternion rotation = Quaternion.Euler(transform.rotation.x + randomAngle,
+                transform.rotation.y + randomAngle, transform.rotation.z + randomAngle);
             GameObject swarmerObj = Instantiate(swarmer, position, rotation) as GameObject;
 
             Follower follower;
             follower = swarmerObj.GetComponent<Follower>();
             follower.SetRotationPoint(transform);
 
-            // queenScene.AddFollower(swarmerObj);
+            queenScene.AddFollower(follower);
 
             queenEvent.ChangeSwarmTransform += follower.SetRotationPoint;
             queenEvent.ChangeSwarmCircleSize += follower.SetCircleSize;
@@ -70,6 +85,20 @@ public class Spawner : MonoBehaviour
 
             FollowerList.Add(swarmerObj);
         }
+        queenScene.fullFollowers = true;
+        queenScene.hasArrived = false;
+    }
+
+    public void RefillFollowers()
+    {
+        queenScene.fullFollowers = false;
+        int newAmount = defaultSwarmers - FollowerList.Count;
+        StartCoroutine(SpawnFollower(newAmount));
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 
     private void FixedUpdate()

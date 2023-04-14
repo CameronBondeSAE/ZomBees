@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2029868940514393544
+--- !u!1 &5405125979471721382
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2029868940514393545}
-  - component: {fileID: 7436156576544434751}
+  - component: {fileID: 4306090724657768418}
+  - component: {fileID: 5791649417364874076}
   m_Layer: 0
-  m_Name: QueenSeekHive
+  m_Name: QueenSpawnHive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2029868940514393545
+--- !u!4 &4306090724657768418
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029868940514393544}
+  m_GameObject: {fileID: 5405125979471721382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 165.85799, y: 528.0434, z: -10.5877495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7436156576544434751
+--- !u!114 &5791649417364874076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029868940514393544}
+  m_GameObject: {fileID: 5405125979471721382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdff8303cf6785b47a8d4baceea94073, type: 3}
+  m_Script: {fileID: 11500000, guid: e85263d5dc1c73548a6442aeaf88e9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
