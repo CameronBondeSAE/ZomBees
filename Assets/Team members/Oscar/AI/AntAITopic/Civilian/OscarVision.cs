@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using KevinCastejon.ConeMesh;
 using Oscar;
 using UnityEngine;
 
@@ -30,7 +32,7 @@ public class OscarVision : MonoBehaviour
             if (other.GetComponent<LivingEntity>() != null)
             {
                 LivingEntity livingThing = other.GetComponent<LivingEntity>();
-
+                
                 //are they a Bee, use this:
                 if (livingThing.isBee == true)
                 {

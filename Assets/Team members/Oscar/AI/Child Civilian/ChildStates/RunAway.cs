@@ -10,6 +10,7 @@ public class RunAway : AntAIState
     private HearingComp ears;
     private LittleGuy guy;
     private OscarVision vision;
+    private ChildCivController childControl;
     
     private Vector3 runAwayFromPos;
     private Vector3 directionToRun;
@@ -23,6 +24,7 @@ public class RunAway : AntAIState
         guy = aGameObject.GetComponent<LittleGuy>();
         ears = aGameObject.GetComponent<HearingComp>();
         vision = aGameObject.GetComponentInChildren<OscarVision>();
+        childControl = aGameObject.GetComponent<ChildCivController>();
     }
 
     public override void Enter()
@@ -49,7 +51,7 @@ public class RunAway : AntAIState
         
         elapsedTime += Time.deltaTime;
         
-        if (elapsedTime <= 2)
+        if (elapsedTime <= 5)
         {
             guy.rb.AddRelativeTorque(0,Vector3.SignedAngle(guy.transform.forward,
                     directionToRun, Vector3.up),0);
@@ -58,7 +60,8 @@ public class RunAway : AntAIState
         }
         else
         {
-            Finish();
+            childControl.iAmScared = false;
+            Finish();        
         }
     }
 }
