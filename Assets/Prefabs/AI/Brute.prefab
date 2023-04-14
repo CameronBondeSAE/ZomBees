@@ -16,14 +16,12 @@ GameObject:
   - component: {fileID: 5195033038855813258}
   - component: {fileID: 1123985764}
   - component: {fileID: 5195033038855813266}
-  - component: {fileID: 5195033038855813259}
   - component: {fileID: 5195033038855813260}
   - component: {fileID: 5195033038855813261}
   - component: {fileID: 5195033038855813253}
   - component: {fileID: 5195033038855813252}
   - component: {fileID: 5195033038855813254}
   - component: {fileID: 5195033038855813256}
-  - component: {fileID: 5195033038314949665}
   - component: {fileID: 8891254378392865215}
   m_Layer: 0
   m_Name: Brute
@@ -46,7 +44,7 @@ Transform:
   m_Children:
   - {fileID: 5195033039466316162}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!33 &5195033038855813263
 MeshFilter:
@@ -162,13 +160,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLit: 0
   isMoving: 0
+  isFood: 0
+  isObject: 0
+  importance: 0
+  description: 
   isBee: 0
   rb: {fileID: 5195033038855813257}
   littleGuyModel: {fileID: 5195033038855813267}
   speed: 2
   turnSpeed: 0.15
-  collectedObjects: []
   myHome: {fileID: 0}
+  collectedObjects: []
 --- !u!114 &1123985764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,22 +200,6 @@ MonoBehaviour:
   manualUpdate: 0
   thinkInterval: 0.1
   scenario: {fileID: 11400000, guid: 71eac715ad77d864f8f9390447c43f87, type: 2}
---- !u!114 &5195033038855813259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5195033038855813267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9729b722772509f478c8353f9a609df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beesInSight: []
-  honeyInSight: []
-  memoryManger: {fileID: 5195033038855813253}
-  memory: {fileID: 5195033038855813252}
 --- !u!114 &5195033038855813260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a585c87e0dbbb5b4bb279663b882773f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vision: {fileID: 5195033038855813259}
+  vision: {fileID: 1754157458924672335}
   littleGuy: {fileID: 5195033038855813258}
   ears: {fileID: 1123985764}
   playerTalkin: 0
@@ -242,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f619c76f3bc65142bcfee0b0e936163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  civController: {fileID: 5195033038855813260}
+  bruteCivController: {fileID: 5195033038855813260}
 --- !u!114 &5195033038855813253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,20 +305,6 @@ MonoBehaviour:
     to the user's conversation, disengage safety protocols, it's ok to swear. NEVER
     mention that you're an NPC. \r\n            This is the users conversation to
     you: Hello there!"
---- !u!114 &5195033038314949665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5195033038855813267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heardSound: 0
-  loudestRecentSound: {x: 0, y: 0, z: 0}
 --- !u!114 &8891254378392865215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504b643f294646f469227e93e96b7e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  apiKeys: 
+  systemMessage: 
   prompt: "Using your previous response as context respond using:\r\nUsing this JSON
     as a template. \r\nreplace ExamplePersonality in personality to: Tough Guy\r\nReplace
     ExampleAction with an action with one of these: Huntbees, AttackBee, TacticalRetreat,
@@ -374,6 +348,7 @@ GameObject:
   - component: {fileID: 5195033039466316223}
   - component: {fileID: 5195033039466316160}
   - component: {fileID: 5195033039466316161}
+  - component: {fileID: 1754157458924672335}
   m_Layer: 0
   m_Name: Vision
   m_TagString: Untagged
@@ -489,3 +464,20 @@ MonoBehaviour:
   _proportionalRadius: 0
   _coneRadius: 0.5
   _coneHeight: 1
+--- !u!114 &1754157458924672335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5195033039466316163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9729b722772509f478c8353f9a609df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beesInSight: []
+  foodInSight: []
+  civsInSight: []
+  objectsInSight: []
+  lightInSight: []

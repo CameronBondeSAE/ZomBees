@@ -25,7 +25,7 @@ namespace Oscar
         }
         public bool AmIFollowing()
         {
-            if (AmIScared() && vision.civsInSight.Count >= 1)
+            if (iAmScared == true && vision.civsInSight.Count >= 1)
             {
                 return true;
             }
@@ -42,18 +42,14 @@ namespace Oscar
         }
         public bool AmIScared()
         {
-            if (ears.heardSound)
+            if (ears.heardSound || vision.beesInSight.Count >= 1)
             {
                 iAmScared = true;
             }
-            
-            if (vision.beesInSight.Count >= 1)
-            {
-                iAmScared = true;
-            }
-            
+
             return iAmScared;
         }
+
         public bool CanISeeRocks()
         {
             return vision.objectsInSight.Count >= 1;
