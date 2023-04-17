@@ -14,20 +14,25 @@ namespace Virginia
         [Button] 
         public void Pickup()
         {
-            Collider[] ItemsFound = Physics.OverlapSphere(transform.position, radius);
-            foreach (IItem ItemFound in ItemsFound)
+            Collider[]  ItemsFound = Physics.OverlapSphere(transform.position, radius);
+            foreach (Collider ItemFound in  ItemsFound)
             {
-                if (ItemFound.GetComponent<IItem>() != null )
+                if (ItemFound.GetComponent<Collider>() != null )
                 {
+                   // heldItem = ItemFound.GetComponent<IItem>();
                     Debug.Log(message: "pick up");
-                    //heldItem = ItemFound;
+                    
+
+
                 }
                 
             }
 
 
         }
-        
+
+       
+
         [Button] 
         public void Consume() 
         {
@@ -37,10 +42,13 @@ namespace Virginia
         public void Dispose()
         {
             Debug.Log("disposed item didn't need it");
+         //transform.parent = null;
 
         }
         
         
 
     }
+
+  
 }
