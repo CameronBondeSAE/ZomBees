@@ -337,6 +337,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &741793972
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.30269814
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1724186
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.0049095
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184233, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284147551008184243, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
+      propertyPath: m_Name
+      value: HealthSupply
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 714b502b8d0367e42b52cdbb806a41d1, type: 3}
 --- !u!1001 &923812536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -495,6 +556,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7859320011857362365, guid: 820d7e84d8548b143b0128b4fbcfcf6c, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7859320011857362365, guid: 820d7e84d8548b143b0128b4fbcfcf6c, type: 3}
+    - target: {fileID: 7859320011857362365, guid: 820d7e84d8548b143b0128b4fbcfcf6c, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859320011857362365, guid: 820d7e84d8548b143b0128b4fbcfcf6c, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"hand","value":$eref:0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859320011857362365, guid: 820d7e84d8548b143b0128b4fbcfcf6c, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859320011857362365, guid: 820d7e84d8548b143b0128b4fbcfcf6c, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 2146715400}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1038,3 +1119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 2001393246}
   Vswitch: {fileID: 470922523}
+--- !u!1 &2146715400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5774430351746379521, guid: 820d7e84d8548b143b0128b4fbcfcf6c, type: 3}
+  m_PrefabInstance: {fileID: 1425743574}
+  m_PrefabAsset: {fileID: 0}
