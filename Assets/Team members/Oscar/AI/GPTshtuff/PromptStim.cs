@@ -18,7 +18,7 @@ namespace Oscar
 
         private void Awake()
         {
-            enumValue = GetComponent<OscarCivSensor.OscarCivilian>();
+            //enumValue = GetComponent<OscarCivSensor.OscarCivilian>();
         }
     }
 }

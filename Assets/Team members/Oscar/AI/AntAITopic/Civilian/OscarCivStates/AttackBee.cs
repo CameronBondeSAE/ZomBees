@@ -15,7 +15,7 @@ public class AttackBee : AntAIState
 
         littleGuy = aGameObject.GetComponent<LittleGuy>();
 
-        vision = aGameObject.GetComponent<OscarVision>();
+        vision = aGameObject.GetComponentInChildren<OscarVision>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)

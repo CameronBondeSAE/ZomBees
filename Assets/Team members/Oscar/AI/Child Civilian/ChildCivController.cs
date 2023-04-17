@@ -11,7 +11,9 @@ namespace Oscar
         public OscarVision vision;
         
         public HearingComp ears;
+        
         public bool iAmScared;
+        public bool iAmFollowing;
         
         //public bool playerTalking;
 
@@ -25,12 +27,19 @@ namespace Oscar
         }
         public bool AmIFollowing()
         {
-            if (iAmScared == true && vision.civsInSight.Count >= 1)
+            if (vision.civsInSight.Count >= 1 && iAmScared == true)
+            {
+                iAmFollowing = true;
+            }
+
+            if (iAmScared == true && iAmFollowing == true)
             {
                 return true;
             }
-
-            return false;
+            else
+            {
+                return false;
+            }
         }
         public bool DeliverTheRocks()
         {
