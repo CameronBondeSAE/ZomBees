@@ -11,24 +11,22 @@ namespace Team_members.Lloyd.Civilian_L
 
         public StatsComp stats;
 
-        private void Awake()
+        public override void Create(GameObject aGameObject)
         {
-            civBrain = GetComponent<CivilianBrain>();
-            rb = GetComponent<Rigidbody>();
-            stats = GetComponent<StatsComp>();
+            base.Create(aGameObject);
+            civBrain = aGameObject.GetComponent<CivilianBrain>();
+            stats = aGameObject.GetComponent<StatsComp>();  
+            rb = aGameObject.GetComponent<Rigidbody>();
         }
 
-        public override void Enter()
+        /*public override void Enter()
         {
-            if (civBrain == null)
-                civBrain = GetComponentInParent<CivilianBrain>();
-
-            if (rb == null)
-                rb = GetComponentInParent<Rigidbody>();
-            
-            
-            if (stats == null)
-                stats = GetComponentInParent<StatsComp>();
+            base.Enter();
         }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }*/
     }
 }

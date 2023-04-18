@@ -6,42 +6,60 @@ namespace Team_members.Lloyd.Civilian_L.Civ___AnthillAIStates
 {
     public class CivMoveState : CivModelAIState
     {
-        public bool moving = true;
-
         public Transform target;
-
-        public float moveSpeed;
-
-        public float maxSpeed;
-
-        public float minDist;
-
-        private CivilianBrain civBrain;
-
-        public override void Create(GameObject aGameObject)
-        {
-            base.Create(aGameObject);
-            civBrain = gameObject.GetComponent<CivilianBrain>();
-        }
+        
+        //get from stats
+        public float moveSpeed = 25f;
+        public float stopDistance = 1f;
+        public float decelerationDistance;
+        
+        public bool inRange = false;
 
         public override void Enter()
         {
+            base.Enter();
+            decelerationDistance = stopDistance * 3;
+
+            civBrain.inRange = inRange;
+        }
+
+        private void FixedUpdate()
+        {
             target = civBrain.target;
 
-            moveSpeed = stats.moveSpeed;
-            maxSpeed = stats.maxMoveSpeed;
-            minDist = stats.minDist;
+            if (target == null) return;
 
+            Vector3 direction = target.position - transform.position;
+            float distance = direction.magnitude;
+
+            if (distance <= stopDistance)
+            {
+                Stop();
+            }
+            
+            else if (distance <= decelerationDistance)
+            {
+                float decelerationFactor = Mathf.Clamp01((distance - stopDistance) / (decelerationDistance - stopDistance));
+                rb.AddForce(direction.normalized * moveSpeed * decelerationFactor, ForceMode.Acceleration);
+            }
+            else
+            {
+                rb.AddForce(direction.normalized * moveSpeed, ForceMode.Acceleration);
+            }
         }
 
-        public override void Execute(float aDeltaTime, float aTimeScale)
+        private void Stop()
         {
-            Vector3 direction = target.position - rb.position;
-
-            Vector3 force = direction * moveSpeed;
-
-            rb.AddRelativeForce(force);
+            rb.velocity = Vector3.zero;
+            inRange = true;
+            civBrain.inRange = inRange;
+            Finish();
         }
 
+        public override void Exit()
+        {
+            base.Exit();
+            inRange = false; 
+        }
     }
 }

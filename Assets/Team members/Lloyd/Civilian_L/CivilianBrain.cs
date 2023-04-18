@@ -6,25 +6,44 @@ namespace Team_members.Lloyd.Civilian_L
 {
     public class CivilianBrain : AntAIAgent, ISense
     {
-        public FaceManager faceManager;
-        
-        public GameObject rightHand;
-        
-        private StatsComp stats;
-        public enum CivStates
+        public Team myTeam = Team.Human;
+
+        #region Vision
+
+        private CivVision civVision;
+
+        public bool seesBee;
+
+        public bool seesCiv;
+
+        public bool seesInteract;
+
+        public bool seesPickup;
+
+        public bool seesResource;
+
+        private void StartVision()
         {
-            Idle,
-            RunAway,
-            Talk,
-            Move,
-            Interact
+            civVision = GetComponent<CivVision>();
+
+            civVision.LastSeenInteractableObj += SetLastSeenInteractableObject;
         }
 
-        public CivStates myState;
+        #endregion
+
+        #region Interact
+
+        public bool wantsToInteract;
+
+        #endregion
+
+        public FaceManager faceManager;
+
+        public GameObject rightHand;
+
+        private StatsComp stats;
 
         public bool dangerNearby;
-
-        public bool wantToActivate;
 
         public bool wantToPickup;
 
@@ -38,96 +57,60 @@ namespace Team_members.Lloyd.Civilian_L
 
         public bool moving;
 
-        public bool interacting;
-
         public bool looking;
 
         public bool hasResource;
-    
+
         private HearingComp hearingComp;
-    
+
         public bool hearingSomething;
-
-        public Transform target;
-        public Vector3 targetPos;
-
-        public GameObject movingTarget;
-
-        public GameObject talkTarget;
 
         public bool listening;
 
+
+        public Transform target;
+
         private void OnEnable()
         {
+            StartVision();
             hearingComp = GetComponent<HearingComp>();
             stats = GetComponent<StatsComp>();
 
             pickupRadius = stats.pickupRadius;
         }
 
-        [Button("CHANGE STATE")]
-        public void ChangeState(CivStates newState)
+        public void Update()
         {
-            if (myState == newState)
-            {
-                Debug.Log("Same state");
-                return;
-            }
+            seesBee = civVision.seesBees;
 
-            idle = false;
-            talking = false;
-            moving = false;
-            interacting = false;
+            seesCiv = civVision.seesCivs;
 
-            myState = newState;
+            seesPickup = civVision.seesResource;
 
-            if (myState == CivStates.Idle)
-            {
-                idle = true;
+            seesInteract = civVision.seesInteract;
 
-                target = movingTarget.transform;
-
-                if (hearingSomething)
-                {
-                    Vector3 loudestSound = hearingComp.loudestRecentSound;
-                    targetPos = loudestSound;
-                }
-            }
-
-            if (myState == CivStates.Talk)
-            {
-                talking = true;
-                //target = talkingTarget
-            }
-
-            if (myState == CivStates.Move)
-            {
-                moving = true;
-                target = movingTarget.transform;
-                //target = moving target   
-            }
-
-            if (myState == CivStates.Interact)
-            {
-                moving = false;
-                talking = false;
-                idle = false;
-                interacting = true;
-            }
-
-            if (myState == CivStates.RunAway)
-            {
-                dangerNearby = true;
-                faceManager.OnChangeEmotion(CivEmotions.Neutral, CivEmotions.Surprised);
-            }
+            DecideMoveTarget();
         }
 
-        public void FixedUpdate()
-        {
-            if (dangerNearby)
-                myState = CivStates.RunAway;
+        public GameObject moveTarget;
 
-            else myState = CivStates.Idle;
+        public GameObject interactTarget;
+
+        private void SetLastSeenInteractableObject(GameObject lastSeenObj)
+        {
+            interactTarget = lastSeenObj;
+        }
+
+        private void DecideMoveTarget()
+        {
+            if (wantsToInteract)
+            {
+                if (interactTarget != null)
+                {
+                    moveTarget = interactTarget;
+                    target = interactTarget.transform;
+                }
+            }
         }
 
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
@@ -135,21 +118,19 @@ namespace Team_members.Lloyd.Civilian_L
             aWorldState.BeginUpdate(aAgent.planner);
 
             aWorldState.Set("Idle", idle);
-        
+
             aWorldState.Set("Talking", talking);
-        
+
             aWorldState.Set("Moving", moving);
-        
+
             aWorldState.Set("Looking", looking);
-        
+
             aWorldState.Set("HasResource", hasResource);
 
-            aWorldState.Set("Interacting", interacting);
-        
             aWorldState.Set("InRange", inRange);
 
-            aWorldState.Set("WantToInteract", wantToActivate);
-            
+            aWorldState.Set("NeedToInteract", wantsToInteract);
+
             aWorldState.Set("DangerNearby", dangerNearby);
 
             aWorldState.EndUpdate();
