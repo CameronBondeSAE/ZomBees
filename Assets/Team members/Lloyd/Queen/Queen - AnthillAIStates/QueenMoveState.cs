@@ -26,7 +26,6 @@ public class QueenMoveState : AntAIState
         distances = new List<Tuple<float, GameObject>>();
 
         DecideOnTarget();
-
     }
     
     private List<Tuple<float, GameObject>> distances;

@@ -25,9 +25,13 @@ public class PerlinBob : MonoBehaviour
 
     private void OnEnable()
     {
-        queenScene = GetComponent<QueenScenarioManager>();
-        beeWings = queenScene.beeWings.GetComponent<BeeWingsManager>();
-        rigidbody = queenScene.GetComponent<Rigidbody>();
+        //queenScene = GetComponent<QueenScenarioManager>();
+        //beeWings = GetComponentInChildren<BeeWingsManager>();
+        rigidbody = GetComponent<Rigidbody>();
+        
+        //beeWings.SpawnWings();
+        
+        //beeWings.ChangeBeeWingStats(-90, 15, true);
     }
 
     private void FixedUpdate()
@@ -35,7 +39,7 @@ public class PerlinBob : MonoBehaviour
         Vector3 randomDirection = Random.insideUnitSphere.normalized;
         float perlinValue = Mathf.PerlinNoise(Time.time * frequency, 0f) * 2f - 1f;
         Vector3 forceDirection = randomDirection * perlinValue * forceMagnitude;
-        rigidbody.AddForce(forceDirection, ForceMode.Force);
+        rigidbody.AddForce(forceDirection, ForceMode.Acceleration);
 
         // Calculate random offset
         randomOffset = new Vector3(
@@ -50,12 +54,12 @@ public class PerlinBob : MonoBehaviour
         float currentYPosition = transform.position.y;
         if (currentYPosition > previousYPosition)
         {
-            beeWings.OnChangeStatEvent(-90, upFlapSpeed, true);
+//            beeWings.OnChangeStatEvent(-90, upFlapSpeed, true);
             //Debug.Log("going up");
         }
         else if (currentYPosition < previousYPosition)
         {
-            beeWings.OnChangeStatEvent(-90, downFlapSpeed, true);
+  //          beeWings.OnChangeStatEvent(-90, downFlapSpeed, true);
             //Debug.Log("going down");
         }
 

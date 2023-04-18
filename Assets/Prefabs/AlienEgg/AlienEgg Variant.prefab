@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: closedEgg
       value: 
       objectReference: {fileID: 1421432791611431106}
+    - target: {fileID: 5535101366206446098, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
+      propertyPath: timeUntilHatch
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5535101366206446102, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
       propertyPath: m_RootOrder
       value: 0

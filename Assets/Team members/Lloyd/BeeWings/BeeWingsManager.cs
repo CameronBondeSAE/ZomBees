@@ -82,7 +82,7 @@ public class BeeWingsManager : MonoBehaviour
         wingParent = new GameObject("BeeWings Anchor") as GameObject;
         wingParent.transform.rotation = anchorPos.transform.rotation;
         wingParent.transform.position = anchorPos.transform.position;
-        
+
         numWings = myWings.Count;
         int currentPair = -1;
         Vector3 startPosition = transform.position - new Vector3(((numWings / 2) - 1) * xDistance, 0, ((numWings / 2) - 1) * zDistance);
@@ -110,13 +110,12 @@ public class BeeWingsManager : MonoBehaviour
             wingScript.StartFlapping();
 
             newWing.transform.SetParent(wingParent.transform, false);
-
-            newWing.transform.localScale = new Vector3(25, 25, 25);
         }
 
         spawned = true;
     }
 
+    [Button]
     public GameObject PickWings()
     {
         GameObject wingsObj;

@@ -17,13 +17,13 @@ public class FaceManager : MonoBehaviour
     [Button]
     public void StartGame()
     {
-        mouth = GetComponentInChildren<Mouth>();
+        //mouth = GetComponentInChildren<Mouth>();
         eyebrows = GetComponent<Eyebrows>();
 
-        mouth.StartGame(waitTime);
+        //mouth.StartGame(waitTime);
         eyebrows.StartGame(waitTime);
 
-        ChangeEmotionEvent += mouth.ChangeMouth;
+        //ChangeEmotionEvent += mouth.ChangeMouth;
         ChangeEmotionEvent += eyebrows.ChangeEmotion;
 
         Neutral(CivEmotions.Angry, CivEmotions.Angry);

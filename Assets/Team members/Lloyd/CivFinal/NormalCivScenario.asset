@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: NormalCivScenario
+  m_EditorClassIdentifier: 
+  conditions:
+    list:
+    - id: 0
+      name: InRange
+    - id: 1
+      name: HasInteractTarget
+    - id: 2
+      name: WantsToInteract
+    - id: 3
+      name: HasMovementTarget
+    - id: 4
+      name: HasResource
+    - id: 5
+      name: Idle
+  actions:
+  - name: MoveToTarget
+    isDefault: 0
+    state: {fileID: 5239649772975906097, guid: 6efc4e04759b5074388b39738a3bbdcd, type: 3}
+    cost: 0
+    position: {x: 270.84482, y: 42.301712}
+    pre:
+    - id: 0
+      value: 0
+    - id: 5
+      value: 0
+    post:
+    - id: 0
+      value: 1
+  - name: InteractWIth
+    isDefault: 0
+    state: {fileID: 3780533911756111980, guid: ba17d0c6dd6054f499d91b4fc2edcf8a, type: 3}
+    cost: 0
+    position: {x: 587.6896, y: 49.37931}
+    pre:
+    - id: 0
+      value: 1
+    - id: 2
+      value: 1
+    post:
+    - id: 2
+      value: 0
+    - id: 4
+      value: 1
+  - name: Idle
+    isDefault: 1
+    state: {fileID: 127724997045392640, guid: b7b31f1250a37b14d844483fa9f31a51, type: 3}
+    cost: 0
+    position: {x: 1265.1926, y: 66.67639}
+    pre:
+    - id: 5
+      value: 1
+    post:
+    - id: 2
+      value: 1
+    - id: 5
+      value: 0
+  - name: Harvest
+    isDefault: 0
+    state: {fileID: 5107319036506221467, guid: b59dbd4034dae914bbef97af347443b2, type: 3}
+    cost: 0
+    position: {x: 791.66675, y: 61.666656}
+    pre:
+    - id: 0
+      value: 1
+    post:
+    - id: 4
+      value: 1
+  goals:
+  - name: Survive
+    isDefault: 1
+    position: {x: 1003.89, y: 64.4017}
+    conditions:
+    - id: 2
+      value: 0
+    - id: 4
+      value: 1
+  worldStates:
+  - position: {x: 224.00467, y: 291.70963}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
+    - id: 2
+      value: 0
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0
+    - id: 5
+      value: 0

@@ -82,6 +82,12 @@ public class QueenScenarioManager : MonoBehaviour, ISense
     
     public List<GameObject> patrolPoints;
 
+    public Transform GetMovePoint()
+    {
+        GameObject point = patrolPoints[0];
+        return point.transform;
+    }
+
     public List<GameObject> hiveSpots;
 
     public float flySpeed;

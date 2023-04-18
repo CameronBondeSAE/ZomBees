@@ -11,19 +11,19 @@ public class CivRotateTo : MonoBehaviour
     public float decelerationAngle = 15f;
     public bool inRange = false;
 
-    private CivilianBrain civBrain;
+    private CivSensor civBrain;
     
     private Rigidbody rb;
 
     private void Start()
     {
-        civBrain = GetComponent<CivilianBrain>();
+        civBrain = GetComponent<CivSensor>();
         rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        target = civBrain.target;
+        target = civBrain.RotateToTarget;
         if (target == null) return;
 
         Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position, transform.right);

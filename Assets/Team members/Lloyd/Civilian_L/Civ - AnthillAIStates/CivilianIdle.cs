@@ -12,4 +12,6 @@ public class CivilianIdleState : CivModelAIState
         if(!idle)
             Finish();
     }
+    
+    
 }

@@ -46,6 +46,7 @@ public class Spawner : AntAIState
 
     public override void Enter()
     {
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         RefillFollowers();
     }
     
@@ -87,6 +88,7 @@ public class Spawner : AntAIState
         }
         queenScene.fullFollowers = true;
         queenScene.hasArrived = false;
+        Finish();
     }
 
     public void RefillFollowers()
@@ -98,7 +100,7 @@ public class Spawner : AntAIState
 
     public override void Exit()
     {
-        base.Exit();
+        rb.constraints = RigidbodyConstraints.None;
     }
 
     private void FixedUpdate()

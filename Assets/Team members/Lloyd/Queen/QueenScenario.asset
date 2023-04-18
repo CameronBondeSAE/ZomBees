@@ -187,7 +187,7 @@ MonoBehaviour:
     - id: 0
       value: 0
     - id: 1
-      value: 0
+      value: 1
     - id: 2
       value: 0
     - id: 3
@@ -197,7 +197,7 @@ MonoBehaviour:
     - id: 5
       value: 0
     - id: 6
-      value: 1
+      value: 0
     - id: 7
       value: 0
     - id: 8

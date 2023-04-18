@@ -18,15 +18,31 @@ public class EggManager : MonoBehaviour
     public GameObject zombeeCiv;
 
     public List<Vector3> eggList;
+    
+    public static EggManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     [Button]
-    private void StartEgg()
+    public void StartEgg(GameObject newOriginalCiv)
     {
+        originalCiv = newOriginalCiv;
         DisableObject(originalCiv);
 
-        GameObject instantiatEgg = Instantiate(eggObjectPrefab, transform.position, Quaternion.identity);
+        GameObject instantiateEgg = Instantiate(eggObjectPrefab, originalCiv.transform.position, Quaternion.identity);
 
-        eggLogic = instantiatEgg.GetComponent<AlienEggPulse>();
+        eggLogic = instantiateEgg.GetComponent<AlienEggPulse>();
 
         SubscribeToEggEvents();
     }
@@ -53,13 +69,7 @@ public class EggManager : MonoBehaviour
 
     public void SpawnBee()
     {
-        if (originalCiv != null)
-        {
-            Destroy(originalCiv);
-            Destroy(eggObjectPrefab);
-        }
-
-        Instantiate(zombeeCiv, transform.position, Quaternion.identity);
+        Instantiate(zombeeCiv, originalCiv.transform.position, Quaternion.identity);
     }
 
     private void OnDisable()

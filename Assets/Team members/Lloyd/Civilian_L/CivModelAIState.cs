@@ -19,7 +19,7 @@ namespace Team_members.Lloyd.Civilian_L
             rb = aGameObject.GetComponent<Rigidbody>();
         }
 
-        /*public override void Enter()
+        public override void Enter()
         {
             base.Enter();
         }
@@ -27,6 +27,6 @@ namespace Team_members.Lloyd.Civilian_L
         public override void Exit()
         {
             base.Exit();
-        }*/
+        }
     }
 }
