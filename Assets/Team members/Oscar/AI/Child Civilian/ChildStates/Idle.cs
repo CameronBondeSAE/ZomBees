@@ -21,6 +21,6 @@ public class Idle : AntAIState
         base.Execute(aDeltaTime, aTimeScale);
         
         littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
-            new Vector3(0, Time.deltaTime/2, 0), Vector3.up) * littleGuy.turnSpeed,0);
+            new Vector3(0, Time.deltaTime, 0), Vector3.up) * littleGuy.turnSpeed,0);
     }
 }
