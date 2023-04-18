@@ -22,6 +22,9 @@ public class AlienEggPulse : MonoBehaviour, IInteractable
     public GameObject Guy;
     public GameObject Bee;
 
+    public GameObject closedEgg;
+    public GameObject openEgg;
+
     [Button]
     public void DestroyEgg()
     {
@@ -53,6 +56,7 @@ public class AlienEggPulse : MonoBehaviour, IInteractable
 
     private void OnEnable()
     {
+        openEgg.SetActive(false);
         HP = maxHP;
         time = timeUntilHatch;
         ticking = true;
@@ -98,10 +102,12 @@ public class AlienEggPulse : MonoBehaviour, IInteractable
         ticking = tocking;
     }
     
-    public event Action SafeEvent;
+    public event Action SafeEvent;  
 
     public void OnSafe()
     {
+        openEgg.SetActive(true);
+        closedEgg.SetActive(false);
         SafeEvent?.Invoke();
         Debug.Log("SAFE!");
         ticking = false;
@@ -113,6 +119,10 @@ public class AlienEggPulse : MonoBehaviour, IInteractable
     public void OnTimesUp()
     {
         TimesUpEvent?.Invoke();
+        
+        openEgg.SetActive(true);
+        closedEgg.SetActive(false);
+        
         Debug.Log("TIMES UP!");
         ticking = false;
         pulsing = false;

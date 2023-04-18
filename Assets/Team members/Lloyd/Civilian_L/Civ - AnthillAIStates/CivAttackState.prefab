@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &835345909184254382
+--- !u!1 &4573697525940018288
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 835345909184254369}
-  - component: {fileID: 406398651265001112}
+  - component: {fileID: 4573697525940018289}
+  - component: {fileID: 4573697525940018290}
   m_Layer: 0
-  m_Name: CivInteractState
+  m_Name: CivAttackState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &835345909184254369
+--- !u!4 &4573697525940018289
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835345909184254382}
+  m_GameObject: {fileID: 4573697525940018288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 96.4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &406398651265001112
+--- !u!114 &4573697525940018290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835345909184254382}
+  m_GameObject: {fileID: 4573697525940018288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea1899fff45cb74b953642ca715b88d, type: 3}
+  m_Script: {fileID: 11500000, guid: d5bff3bbbc2f6764f9b1bec04e88de93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  civBrain: {fileID: 0}
-  rb: {fileID: 0}
-  stats: {fileID: 0}
-  radius: 5
+  hitObjects: []
+  punchBoxOffset: {x: -1, y: 2, z: 0}
+  punchBoxSize: {x: 2, y: 5, z: 1}
+  punchDamage: 1
+  myAttack: 0
+  hasGun: 0
+  hasExplosive: 0
+  attacking: 0

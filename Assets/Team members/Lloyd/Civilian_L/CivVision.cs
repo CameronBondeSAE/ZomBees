@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Team_members.Lloyd.Civilian_L;
 using UnityEngine;
 
 public class CivVision : MonoBehaviour
@@ -10,8 +13,22 @@ public class CivVision : MonoBehaviour
 
     public List<GameObject> visibleObjects = new List<GameObject>();
 
+    public List<GameObject> beeObjects = new List<GameObject>();
+    public bool seesBees;
+
+    public List<GameObject> civObjects = new List<GameObject>();
+    public bool seesCivs;
+
+    public List<GameObject> interactables = new List<GameObject>();
+    public bool seesInteract;
+
+    public List<GameObject> resources = new List<GameObject>();
+    public bool seesResource;
+ 
     private Collider[] colliders = new Collider[100];
-    
+
+    public GameObject interactTarget;
+
     private void OnEnable()
     {
         StartCoroutine(VisionCoroutine());
@@ -22,9 +39,12 @@ public class CivVision : MonoBehaviour
         while (true)
         {
             visibleObjects.Clear();
+            beeObjects.Clear();
+            interactables.Clear();
+            resources.Clear();
             
-            Vector3 boxCenter = transform.position + boxOffset;
-            int numColliders = Physics.OverlapBoxNonAlloc(boxCenter, boxSize * 0.5f, colliders);
+            Vector3 boxCenter = transform.TransformPoint(boxOffset);
+            int numColliders = Physics.OverlapBoxNonAlloc(boxCenter, boxSize * 0.5f, colliders, transform.rotation);
 
             for (int i = 0; i < numColliders; i++)
             {
@@ -33,7 +53,7 @@ public class CivVision : MonoBehaviour
                     Vector3 directionToCollider = (collider.transform.position - transform.position).normalized;
                     
                     RaycastHit hit;
-                        if (Physics.Raycast(transform.position, directionToCollider, out hit, boxSize.z))
+                        if (Physics.Raycast(transform.position, directionToCollider, out hit, boxSize.x))
                         {
                             if (hit.collider == collider)
                             {
@@ -44,13 +64,51 @@ public class CivVision : MonoBehaviour
                             }
                         }
             }
-
+            
+            CheckList();
             yield return new WaitForSeconds(0.6f);
+        }
+    }
+
+    public void Update()
+    {
+        seesBees = beeObjects.Any();
+        seesCivs = civObjects.Any();
+        seesResource = resources.Any();
+
+        if (interactables.Any())
+        {
+            seesInteract = true;
+            OnSetLastSeenInteractObj(interactables[0]);
+        }
+    }
+
+    private void CheckList()
+    {
+        foreach (GameObject obj in visibleObjects)
+        {
+            if (obj.GetComponent<IInteractable>() != null)
+            {
+                interactables.Add(obj);
+            }
+            
+            //bee or human
+            /*if (obj.GetComponent<Team>() !=null)
+            {
+            }*/ 
         }
     }
 
     private void OnDisable()
     {
         StopAllCoroutines();
+    }
+
+    public event Action<GameObject> LastSeenInteractableObj;
+
+    public void OnSetLastSeenInteractObj(GameObject obj)
+    {
+        interactTarget = obj;
+        LastSeenInteractableObj?.Invoke(obj);
     }
 }
