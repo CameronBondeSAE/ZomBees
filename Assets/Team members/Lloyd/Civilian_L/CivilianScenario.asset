@@ -32,12 +32,18 @@ MonoBehaviour:
       name: DangerNearby
     - id: 8
       name: Bogus
+    - id: 9
+      name: NeedToAttack
+    - id: 10
+      name: HasGun
+    - id: 11
+      name: NeedToInteract
   actions:
   - name: Talk
     isDefault: 0
     state: {fileID: 5874405294486384567, guid: 3cfabb8b928b2a34faad8c79fa90ca40, type: 3}
     cost: 0
-    position: {x: 394.46912, y: 48.234573}
+    position: {x: 437.46912, y: 28.234573}
     pre:
     - id: 1
       value: 1
@@ -46,7 +52,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5253148898078404268, guid: 3aa8c8867b14ad9458214c4d598b0e61, type: 3}
     cost: 1
-    position: {x: 615.34326, y: 248.87836}
+    position: {x: 635.28784, y: 145.18619}
     pre:
     - id: 4
       value: 0
@@ -61,7 +67,7 @@ MonoBehaviour:
     isDefault: 1
     state: {fileID: 2953068733267188434, guid: 52ca1e766581d7e45a214e1aa5e97876, type: 3}
     cost: 1
-    position: {x: 325.52676, y: 289.8172}
+    position: {x: 210.52676, y: 40.8172}
     pre:
     - id: 2
       value: 1
@@ -76,7 +82,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 835345909184254382, guid: 29b324b727946334e93f803585a54773, type: 3}
     cost: 1
-    position: {x: 820.01245, y: 228.03714}
+    position: {x: 1035.1177, y: 98.974045}
     pre:
     - id: 0
       value: 1
@@ -93,19 +99,42 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 2039138450185095615, guid: 0fb6ea8f770cff24a8418cd6959f2a22, type: 3}
     cost: 0
-    position: {x: 1589.9998, y: 380.00006}
+    position: {x: 448.333, y: 418.33337}
     pre: []
     post:
     - id: 7
       value: 0
+  - name: ShootTarget
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 915.1051, y: 425.5736}
+    pre:
+    - id: 9
+      value: 1
+    - id: 7
+      value: 1
+    - id: 10
+      value: 1
+    post:
+    - id: 9
+      value: 0
   goals:
   - name: Survive
-    isDefault: 0
-    position: {x: 609.6666, y: 126.66666}
-    conditions: []
-  - name: GainResources
     isDefault: 1
-    position: {x: 1433.6667, y: 663.00006}
+    position: {x: 1426.6666, y: 109.99998}
+    conditions:
+    - id: 4
+      value: 1
+    - id: 7
+      value: 0
+    - id: 9
+      value: 0
+    - id: 11
+      value: 0
+  - name: GainResources
+    isDefault: 0
+    position: {x: 225.33334, y: 434.6668}
     conditions:
     - id: 7
       value: 0
@@ -115,10 +144,10 @@ MonoBehaviour:
       value: 0
   - name: Survive
     isDefault: 0
-    position: {x: 1266.667, y: 38.333336}
+    position: {x: 230.00043, y: 293.33334}
     conditions: []
   worldStates:
-  - position: {x: 412.9629, y: 633.8272}
+  - position: {x: 225.96289, y: 635.8272}
     isAutoUpdate: 1
     list:
     - id: 0

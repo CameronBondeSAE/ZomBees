@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 393.99713, g: 292.51907, b: 215.1885, a: 1}
+  m_IndirectSpecularColor: {r: 393.99713, g: 292.5269, b: 215.18655, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -1624,6 +1624,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy (1)
@@ -5674,6 +5678,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy (2)
@@ -17930,6 +17938,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy (4)
@@ -20590,6 +20602,10 @@ PrefabInstance:
     - target: {fileID: 2935034912273702229, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
       propertyPath: m_Name
       value: CivilianPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258889161666550719, guid: 7645f4336ef12a84e962433f64e7c935, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33313,13 +33329,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy (3)
       objectReference: {fileID: 0}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2072177004840980636, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_RootOrder
@@ -33368,7 +33388,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 513068326, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
 --- !u!4 &929344010 stripped
 Transform:
@@ -34532,6 +34555,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy (6)
@@ -37563,6 +37590,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy (7)
@@ -38552,6 +38583,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy (8)
@@ -80249,6 +80284,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy (5)
@@ -84631,6 +84670,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy
