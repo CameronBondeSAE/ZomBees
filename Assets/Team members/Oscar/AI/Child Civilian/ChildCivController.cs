@@ -14,16 +14,19 @@ namespace Oscar
         
         public bool iAmScared;
         public bool iAmFollowing;
+        public bool iDeliveredStuff;
+        public bool iAmIdle;
+        public bool iAmAlive;
         
         //public bool playerTalking;
 
         public bool AmIIdle()
         {
-            return false;
+            return iAmIdle;
         }
         public bool AmIAlive()
         {
-            return false;
+            return iAmAlive;
         }
         public bool AmIFollowing()
         {
@@ -75,7 +78,7 @@ namespace Oscar
 
         public bool DoIHaveStuff()
         {
-            return false;
+            return littleGuy.collectedObjects.Count >= 3;
         }
 
         public bool StuffDelivered()

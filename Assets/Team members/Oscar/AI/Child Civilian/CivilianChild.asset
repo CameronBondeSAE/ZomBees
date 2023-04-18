@@ -96,7 +96,7 @@ MonoBehaviour:
   - name: Idle
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: 7042c22c6c375404daa67a79a60b3807, type: 3}
-    cost: -5
+    cost: -1
     position: {x: 877, y: 325}
     pre:
     - id: 0

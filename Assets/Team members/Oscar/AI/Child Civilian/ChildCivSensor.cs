@@ -19,7 +19,12 @@ namespace Oscar
 
         public void DefaultState()
         {
-            
+            //set goal to the default one.
+        }
+
+        public void CollectState()
+        {
+            //set goal to the collection one.
         }
 
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
