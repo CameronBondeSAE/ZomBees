@@ -7,8 +7,10 @@ using OpenAI_API.Chat;
 using OpenAI_API.Models;
 using Sirenix.OdinInspector;
 using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CivGPT : MonoBehaviour
 {
@@ -24,19 +26,47 @@ public class CivGPT : MonoBehaviour
 
 	OpenAI_API.Chat.Conversation chat;
 
-	bool                      startedChat = false;
+	bool startedChat = false;
 	public QuestTrackerSimple questTrackerSimple;
 
 	public CivilianTraits civilianTraits;
 
 	// View
-	public TextMeshPro  textMeshProUGUI;
+	public AudioClip clip;
+	public TextMeshPro textMeshProUGUI;
 	public FakeCivilian fakeCivilian;
-	public SimpleShoot  simpleShoot; // HACK
+	public SimpleShoot simpleShoot; // HACK
+	
+	public Transform gun;
+
+	public Transform head;
+	public List<GameObject> decals;
+	[SerializeField]
+	private float gunForce = 10f;
+
+	[SerializeField]
+	private ParticleSystem bloodParticles;
+	TextMeshPro textMeshPro;
 
 	void Awake()
 	{
 		Init();
+		
+		// HACK
+		textMeshPro = fakeCivilian.transform.GetComponentInChildren<TextMeshPro>();
+		GetComponent<AudioSource>().clip = clip;
+
+		if (gun != null)
+		{
+			gun.GetComponent<Rigidbody>().isKinematic = true;
+			gun.GetComponent<Collider>().enabled = false;
+		}
+
+		foreach (var decal in decals)
+		{
+			decal.SetActive(false);
+		}
+
 	}
 
 	private void Init()
@@ -45,7 +75,7 @@ public class CivGPT : MonoBehaviour
 		// apiKeys = "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";
 		api = new OpenAI_API.OpenAIAPI(apiKeys);
 
-		questTrackerSimple.QuestEventStarted += QuestTrackerSimpleOnquestEventStarted;
+		questTrackerSimple.questEventStarted += QuestTrackerSimpleOnquestEventStarted;
 	}
 
 	void QuestTrackerSimpleOnquestEventStarted(string obj)
@@ -65,8 +95,8 @@ public class CivGPT : MonoBehaviour
 		chat = api.Chat.CreateConversation();
 
 		/// give instruction as System
-		chat.Model                         = Model.ChatGPTTurbo;
-		chat.RequestParameters.MaxTokens   = 500;
+		chat.Model = Model.ChatGPTTurbo;
+		chat.RequestParameters.MaxTokens = 500;
 		chat.RequestParameters.Temperature = 0.9f; // Creative
 
 		chat.AppendSystemMessage(systemMessage);
@@ -81,6 +111,18 @@ public class CivGPT : MonoBehaviour
 	[Button]
 	public async void AppendUserInput(string input)
 	{
+		string json = @"{
+            ""emotion"": ""Angry"",
+            ""outputSpeech"": ""Insane? No, I'm perfectly sane. These fucking bee creatures are everywhere! I'm not gonna sit here and wait to be stung to death!"",
+            ""action"": ""Shoot"",
+            ""importance"": 1,
+            ""fear"": 0.8
+        }";
+
+		JSONToReal(json);
+
+		return;
+
 		if (startedChat == false)
 			StartChatConversation();
 
@@ -90,7 +132,7 @@ public class CivGPT : MonoBehaviour
 		var res = await chat.GetResponseFromChatbotAsync();
 
 		Debug.Log(res);
-		fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text = res; // HACK
+
 		JSONToReal(res);
 
 		// and get the response
@@ -101,7 +143,7 @@ public class CivGPT : MonoBehaviour
 		// }
 	}
 
-	public void JSONToReal(string json)
+	public async void JSONToReal(string json)
 	{
 		// To deserialize the JSON into a MyObject instance:
 		// string json = @"{
@@ -112,21 +154,55 @@ public class CivGPT : MonoBehaviour
 		//     ""fear"": 0.9
 		// }";
 
+		// textMeshPro.text = myObject.OutputSpeech; // HACK
+		// GetComponent<AudioSource>().clip = clip;
+		GetComponent<AudioSource>().Play();
+
+		Sequence sequence = DOTween.Sequence();
+		sequence.AppendInterval(7.7f);
+		sequence.Append(gun.transform.DORotate(new Vector3(-109.594f, 0, 0), 0.3f, RotateMode.LocalAxisAdd).SetEase(Ease.InOutQuad));
+		sequence.Play();
+
+		await Task.Delay(8000);
+		// Wait for action to happen
+
 		MyObject myObject = JsonConvert.DeserializeObject<MyObject>(json);
+
 		switch (myObject.Action)
 		{
 			case Action.Shoot:
+				textMeshPro.enabled = false;
 				simpleShoot.Shoot();
+
+				gun.transform.parent = null;
+				gun.GetComponent<Rigidbody>().isKinematic = false;
+				gun.GetComponent<Collider>().enabled = true;
+
+				GetComponent<NavMeshAgent>().enabled = false;
 				GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-				GetComponent<Rigidbody>().AddForce(10f,5f,-15f);
+				head.GetComponent<Rigidbody>()
+					.AddForceAtPosition(transform.InverseTransformVector(new Vector3(-30f, 50f, -150f)) * gunForce,
+						transform.position + new Vector3(0, 0, 0));
+
+				foreach (var decal in decals)
+				{
+					decal.SetActive(true);
+				}
+
+				bloodParticles.Emit(150);
+
 				break;
 			case Action.RetrieveItem:
 				break;
-			case Action.Hide:
+			case Action.FollowPlayer:
 				break;
 			case Action.RunAway:
 				break;
-			case Action.FollowPlayer:
+			case Action.FrozenWithFear:
+				break;
+			case Action.DoNothing:
+				break;
+			case Action.CommitSuicide:
 				break;
 			case Action.Shout:
 				break;
@@ -156,18 +232,21 @@ public class CivGPT : MonoBehaviour
 
 	public enum Emotion
 	{
+		Angry,
 		Scared,
 		Happy,
-		Anxious
+		Curious
 	}
 
 	public enum Action
 	{
 		Shoot,
 		RetrieveItem,
-		Hide,
-		RunAway,
 		FollowPlayer,
+		RunAway,
+		FrozenWithFear,
+		DoNothing,
+		CommitSuicide,
 		Shout
 	}
 

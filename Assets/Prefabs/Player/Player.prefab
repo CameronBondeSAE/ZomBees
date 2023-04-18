@@ -506,7 +506,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &580642317967517823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,8 +566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd17a6b5c1f1aa4fa6634359bf01827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 0.1
-  invert: 0
+  mouseSensitivity: 0.05
+  invert: 1
   camera: {fileID: 6271187259181377452}
   playerbody: {fileID: 6271187260368080563}
   pitch: 0
@@ -581,7 +581,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6271187260368080590}
-  m_Material: {fileID: 13400000, guid: 2b44a5cf64d015643b0069a71faf751e, type: 2}
+  m_Material: {fileID: 13400000, guid: 02bef0325ea8c3344a794c197d6d5fe2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -593,7 +593,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

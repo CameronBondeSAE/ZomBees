@@ -36,17 +36,18 @@ public class SimpleShoot : MonoBehaviour
     void Update()
     {
         //If you want a different input, change it here
-        if (Input.GetButtonDown("Fire1"))
-        {
-            //Calls animation on the gun that has the relevant animation events that will fire
-            gunAnimator.SetTrigger("Fire");
-        }
+        // if (Input.GetButtonDown("Fire1"))
+        // {
+            // Calls animation on the gun that has the relevant animation events that will fire
+            // gunAnimator.SetTrigger("Fire");
+        // }
     }
 
 
     //This function creates the bullet behavior
     public void Shoot()
     {
+	    gunAnimator.SetTrigger("Fire");
         if (muzzleFlashPrefab)
         {
             //Create the muzzle flash

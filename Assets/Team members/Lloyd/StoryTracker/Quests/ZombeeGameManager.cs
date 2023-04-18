@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -9,42 +10,53 @@ namespace Team_members.Lloyd.StoryTracker.Quests
     {
         public static ZombeeGameManager Instance { get; private set; }
 
-        public GameObject worldTime; 
-        public GameObject newWorldTime;
-        private WorldTime newWorldTimeScript;
 
-        public GameObject questTracker;
-        public GameObject newQuestTracker;
-        public QuestTracker newQuestTrackerScript;
+        public bool autoStart;
 
-        public GameObject tileTracker;
-        public GameObject newTileTracker;
-        private TileTracker newTileTrackerScript;
+        // public GameObject worldTime; 
+        // public GameObject newWorldTime;
+        public WorldTime newWorldTimeScript;
 
-        public GameObject civSpawner;
-        public GameObject newCivSpawner;
-        private CivSpawner newCivSpawnerScript;
+        // public GameObject questTracker;
+        // public GameObject newQuestTracker;
+        // public QuestTracker newQuestTrackerScript;
+        //
+        // public GameObject tileTracker;
+        // public GameObject newTileTracker;
+        // private TileTracker newTileTrackerScript;
+        //
+        // public GameObject civSpawner;
+        // public GameObject newCivSpawner;
+        // private CivSpawner newCivSpawnerScript;
+        //
+        // public List<TileLevelMaker> customLevels;
+        // private TileLevelMaker loadLevel;
+        // private TileTracker.SquareType[,] board;
 
-        public List<TileLevelMaker> customLevels;
-        private TileLevelMaker loadLevel;
-        private TileTracker.SquareType[,] board;
-    
+        private void Awake()
+        {
+	        if (autoStart)
+	        {
+		        StartGame();
+	        }
+        }
+
         [Button]
         public void StartGame()
         {
-            Vector3 position = transform.position;
-        
-            newWorldTime = Instantiate(worldTime, position, Quaternion.identity) as GameObject;
-            newWorldTimeScript = newWorldTime.GetComponent<WorldTime>();
-
-            newQuestTracker = Instantiate(questTracker, position, Quaternion.identity) as GameObject;
-            newQuestTrackerScript = newQuestTracker.GetComponent<QuestTracker>();
-
-            newTileTracker = Instantiate(tileTracker, position, Quaternion.identity) as GameObject;
-            newTileTrackerScript = newTileTracker.GetComponent<TileTracker>();
-
-            newCivSpawner = Instantiate(civSpawner, position, Quaternion.identity) as GameObject;
-            newCivSpawnerScript = newCivSpawner.GetComponent<CivSpawner>();
+            // Vector3 position = transform.position;
+            //
+            // newWorldTime = Instantiate(worldTime, position, Quaternion.identity) as GameObject;
+            // newWorldTimeScript = newWorldTime.GetComponent<WorldTime>();
+            //
+            // newQuestTracker = Instantiate(questTracker, position, Quaternion.identity) as GameObject;
+            // newQuestTrackerScript = newQuestTracker.GetComponent<QuestTracker>();
+            //
+            // newTileTracker = Instantiate(tileTracker, position, Quaternion.identity) as GameObject;
+            // newTileTrackerScript = newTileTracker.GetComponent<TileTracker>();
+            //
+            // newCivSpawner = Instantiate(civSpawner, position, Quaternion.identity) as GameObject;
+            // newCivSpawnerScript = newCivSpawner.GetComponent<CivSpawner>();
         
             StartCoroutine(Begin());
         }
@@ -58,27 +70,27 @@ namespace Team_members.Lloyd.StoryTracker.Quests
             }
             Debug.Log("timer started"); 
         
-            newQuestTrackerScript.StartGame(newWorldTimeScript);
-            while (!newQuestTrackerScript.initialized)
-            {
-                yield return null;
-            }
-            Debug.Log("quests set"); 
-        
-            newTileTrackerScript.StartGame();
-            while (!newTileTrackerScript.initialized)
-            {
-                yield return null;
-            }
-            //LoadLevel();
-            Debug.Log("tiles made");
-            
-            newCivSpawnerScript.StartGame(newTileTrackerScript);
-            while (!newCivSpawnerScript.initialized)
-            {
-                yield return null;
-            }
-            Debug.Log("civs spawned");
+            // newQuestTrackerScript.StartGame(newWorldTimeScript);
+            // while (!newQuestTrackerScript.initialized)
+            // {
+            //     yield return null;
+            // }
+            // Debug.Log("quests set"); 
+            //
+            // newTileTrackerScript.StartGame();
+            // while (!newTileTrackerScript.initialized)
+            // {
+            //     yield return null;
+            // }
+            // //LoadLevel();
+            // Debug.Log("tiles made");
+            //
+            // newCivSpawnerScript.StartGame(newTileTrackerScript);
+            // while (!newCivSpawnerScript.initialized)
+            // {
+            //     yield return null;
+            // }
+            // Debug.Log("civs spawned");
         }
     
         /*public void LoadLevel()

@@ -16,7 +16,7 @@ public class FlyDudeMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.AddRelativeForce(Vector3.forward * moveSpeed);
     }

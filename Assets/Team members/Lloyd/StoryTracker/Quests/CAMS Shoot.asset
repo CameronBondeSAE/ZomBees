@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ffb6e0fbf8f5c42b4f725940a92626, type: 3}
   m_Name: CAMS Shoot
   m_EditorClassIdentifier: 
-  time: 20
-  descriptionForGPT: The character has gone insane. He starts shooting.
+  time: 15
+  descriptionForGPT: You have gone insane. You start shooting.
