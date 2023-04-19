@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Virginia;
 
 namespace Oscar
 {
@@ -10,7 +11,8 @@ namespace Oscar
         public LittleGuy littleGuy;
         public OscarVision vision;
         public OscarCivProfile civProfile;
-        
+
+        public Inventory inventory;
         public Hearing ears;
         
         public bool iAmScared;
@@ -56,7 +58,7 @@ namespace Oscar
         }
         public bool AmIScared()
         {
-            if (ears.heardSound || vision.beesInSight.Count >= 1)
+            if (ears.heardSound || vision.beesInSight.Count > 0 || civProfile.fearLevel >= .6f)
             {
                 iAmScared = true;
             }
@@ -66,11 +68,22 @@ namespace Oscar
 
         public bool CanISeeRocks()
         {
-            return vision.objectsInSight.Count >= 1;
+            return vision.objectsInSight.Count > 0;
         }
         public bool DoIHaveRocks()
         {
-            return littleGuy.collectedObjects.Count >= 3;
+            if (inventory.hand != null)
+            {
+                if (inventory.hand.GetComponent<DynamicObject>().isObject)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
 
         public bool GetTheStuff()
@@ -95,12 +108,23 @@ namespace Oscar
 
         public bool DoIHaveFood()
         {
+            if (inventory.hand != null)
+            {
+                if (inventory.hand.GetComponent<DynamicObject>().isFood)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
             return false;
         }
 
         public bool ISeeFood()
         {
-            return false;
+            return vision.foodInSight.Count > 0;
         }
 
         public bool ShouldIHide()

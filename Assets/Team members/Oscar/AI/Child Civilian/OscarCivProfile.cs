@@ -23,12 +23,17 @@ public class OscarCivProfile : MonoBehaviour
     public float suicideLevel;
     public float suicideThresh;
 
+    public bool scared;
+    public float fearLevel;
+    public float fearThresh;
+
     private void Start()
     {
         sensor = GetComponent<CivSensor>();
         
         emoteDictionary = new Dictionary<string, TraitStats>();
         
+        emoteDictionary.Add("Fear", new TraitStats());
         emoteDictionary.Add("Beeness", new TraitStats());
         emoteDictionary.Add("Hunger", new TraitStats());
         emoteDictionary.Add("Depression", new TraitStats());
@@ -70,6 +75,11 @@ public class OscarCivProfile : MonoBehaviour
             if (key == "Beeness")
             {
                 beeness = newValue;
+            }
+
+            if (key == "Fear")
+            {
+                fearLevel = newValue;
             }
         }
     }
@@ -120,10 +130,31 @@ public class OscarCivProfile : MonoBehaviour
             {
                 sensor.BecomeEgg();
             }
+        }
+    }
 
+    [Button]
+    public void OnIncreaseFear()
+    {
+        StartCoroutine(IncreaseFear());
+    }
+
+    private IEnumerator IncreaseFear()
+    {
+        while (true)
+        {
+            UpdateTrait("Fear", .4f);
+            
+            yield return new WaitForSeconds(1);
+            Debug.Log("Getting more bee-like");
+            
+            if (fearLevel > fearThresh)
+            {
+                scared = true;
+            }
             else
             {
-                
+                scared = false;
             }
         }
     }

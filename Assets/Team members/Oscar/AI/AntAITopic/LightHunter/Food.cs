@@ -4,6 +4,7 @@ using Oscar;
 using Sirenix.OdinInspector;
 using Unity.Collections;
 using UnityEngine;
+using Virginia;
 
 namespace Oscar
 {
@@ -11,12 +12,12 @@ namespace Oscar
     {
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.GetComponent<LittleGuy>() != null)
+            if (collision.gameObject.GetComponent<Inventory>() != null)
             {
-                if (!collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Contains(gameObject))
+                Inventory inventory = collision.gameObject.GetComponent<Inventory>();
+                if (inventory.hand != null)
                 {
-                    collision.gameObject.GetComponent<LittleGuy>().collectedObjects.Add(gameObject);
-                    Pickup(gameObject);
+                    inventory.Pickup();
                 }
             }
         }
