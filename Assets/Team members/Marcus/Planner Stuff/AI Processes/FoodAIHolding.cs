@@ -14,7 +14,7 @@ namespace Marcus
 
         // Create references to any items we can pick up
         public GameObject otherItem;
-        private bool holdingItem;
+        public bool holdingItem;
         
         public OscarVision vision;
 

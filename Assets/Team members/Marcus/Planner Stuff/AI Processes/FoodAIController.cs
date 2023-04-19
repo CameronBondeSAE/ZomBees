@@ -9,35 +9,42 @@ namespace Marcus
         public OscarVision vision;
         public FoodAIHolding hand;
         public FoodAIHunger hunger;
+        public HearingComp ears;
 
         public bool CanSeeFood()
         {
-            if (vision.foodInSight.Count > 0)
-            {
-                return true;
-            }
-            
-            return false;
+            return vision.foodInSight.Count > 0;
         }
 
         public bool HasFood()
         {
-            if (hand.holdingFood)
-            {
-                return true;
-            }
-
-            return false;
+            return hand.holdingFood;
         }
 
         public bool IsHungry()
         {
-            if (hunger.isHungy)
-            {
-                return true;
-            }
-            
-            return false;
+            return hunger.isHungy;
         }
+
+        public bool HasItem()
+        {
+            return hand.holdingItem;
+        }
+
+        public bool CanSeeBee()
+        {
+            return vision.beesInSight.Count > 0;
+        }
+
+        public bool Day()
+        {
+            return WorldTime.Instance.isDay;
+        }
+
+        /*public bool CanHearBee()
+        {
+            // Return if I can hear a bee sound
+            
+        }*/
     }
 }

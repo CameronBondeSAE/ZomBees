@@ -111,6 +111,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2d5747910e7fb40a9692665fd54c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &835875870049932205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2116964504013679646}
+  - component: {fileID: 7666311663208114672}
+  m_Layer: 14
+  m_Name: Ears
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2116964504013679646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835875870049932205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3765656164223006910}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7666311663208114672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835875870049932205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heardSound: 0
+  loudestRecentSound: {x: 0, y: 0, z: 0}
 --- !u!1 &1545986284851747083
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +435,7 @@ Transform:
   - {fileID: 1981487541907872892}
   - {fileID: 6681633213140163217}
   - {fileID: 1420396445197445311}
+  - {fileID: 2116964504013679646}
   m_Father: {fileID: 8053649277983958044}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -642,7 +689,7 @@ Transform:
   - {fileID: 3765656164223006910}
   - {fileID: 5233947389087070155}
   m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8055998312902322576
 CapsuleCollider:
@@ -833,6 +880,7 @@ MonoBehaviour:
   foodInSight: []
   civsInSight: []
   objectsInSight: []
+  lightInSight: []
 --- !u!33 &4578368188344167707
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -971,8 +1019,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00abb12e18952747a656df6b9a8c544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: {fileID: 4824920774586090150, guid: 019b6dd58af5e094ea46d56c79b7e9c8, type: 3}
   holdingFood: 0
+  otherItem: {fileID: 0}
+  holdingItem: 0
   vision: {fileID: 7025054006657017379}
 --- !u!65 &4484991338645957138
 BoxCollider:
