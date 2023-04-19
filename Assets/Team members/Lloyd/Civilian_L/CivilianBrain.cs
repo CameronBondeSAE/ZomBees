@@ -26,7 +26,7 @@ namespace Team_members.Lloyd.Civilian_L
         {
             civVision = GetComponent<CivVision>();
 
-            civVision.LastSeenInteractableObj += SetLastSeenInteractableObject;
+           // civVision.LastSeenInteractableObj += SetLastSeenInteractableObject;
         }
 
         #endregion

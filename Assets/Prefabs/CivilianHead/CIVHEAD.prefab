@@ -826,7 +826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1547956375257982260
 Transform:
   m_ObjectHideFlags: 0
@@ -993,14 +993,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 436280741595664310, guid: c9c7d39b28f21f44a9603930ac2af44b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85ff91831bc06664a911e2ea74797f34, type: 2}
     - target: {fileID: 919132149155446097, guid: c9c7d39b28f21f44a9603930ac2af44b, type: 3}
       propertyPath: m_Name
       value: Mandibles
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c9c7d39b28f21f44a9603930ac2af44b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4882385890474499892, guid: c9c7d39b28f21f44a9603930ac2af44b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85ff91831bc06664a911e2ea74797f34, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1086,8 +1094,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5cc56b234e109b742a9f7e7d7ef31887, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7413998046543477002, guid: 5cc56b234e109b742a9f7e7d7ef31887, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85ff91831bc06664a911e2ea74797f34, type: 2}
+    - target: {fileID: 8494062038235774701, guid: 5cc56b234e109b742a9f7e7d7ef31887, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85ff91831bc06664a911e2ea74797f34, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1167,13 +1183,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4137042975492822719, guid: 228802928599c444f9d8e213af39cd51, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64fadaf8dfa51bf4ca2f12cbb8e92b3c, type: 2}
+    - target: {fileID: -516619514930945665, guid: 228802928599c444f9d8e213af39cd51, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64fadaf8dfa51bf4ca2f12cbb8e92b3c, type: 2}
     - target: {fileID: 919132149155446097, guid: 228802928599c444f9d8e213af39cd51, type: 3}
       propertyPath: m_Name
       value: BeeEyes
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 228802928599c444f9d8e213af39cd51, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

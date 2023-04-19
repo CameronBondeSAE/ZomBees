@@ -27,3 +27,6 @@ start 10,000Hz. for each obstacle, decrease
 -- zombee civ
 
 -- queen states
+
+-- follow player state / hide state / tactical movement state
+

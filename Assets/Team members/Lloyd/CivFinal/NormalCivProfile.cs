@@ -73,6 +73,38 @@ public class NormalCivProfile : MonoBehaviour
             {
                 beeness = newValue;
             }
+
+            if (key == "Suicidal")
+            {
+                suicideLevel = newValue;
+            }
+        }
+    }
+    
+    [Button]
+    public void OnIncreaseSuicidal()
+    {
+        StartCoroutine(IncreaseSuicidal());
+    }
+
+    private IEnumerator IncreaseSuicidal()
+    {
+        while (true)
+        {
+            UpdateTrait("Suicidal", .0025f);
+            
+            yield return new WaitForSeconds(1);
+            Debug.Log("Getting more suicidal");
+            
+            if (suicideLevel > suicideThresh)
+            {
+                readyToDie = true;
+            }
+
+            else
+            {
+                readyToDie = false;
+            }
         }
     }
     

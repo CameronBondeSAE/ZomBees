@@ -10,10 +10,16 @@ public class CivSensor : MonoBehaviour, ISense
 
     public bool idle = false;
 
-    public bool inRange          = false;
-    public bool hasInteractTarget        = false;
+    public bool inRange = false;
+
+    public bool hasInteractTarget = false;
     public bool wantsToInteract = false;
-    
+
+    public bool hungry;
+    public bool hasResourceTarget;
+
+    public bool feared;
+
     public Transform moveTarget;
 
     public bool hasAttackTarget = false;
@@ -21,6 +27,55 @@ public class CivSensor : MonoBehaviour, ISense
     public bool wantsToAttack = false;
 
     public Transform RotateToTarget;
+
+    public enum MoveType
+    {
+        Idle,
+        WalkToNearestInteract,
+        WalkToNearestSafePoint,
+        WalkToNearestAttackPoint,
+        Searching
+    }
+
+    public MoveType myMoveType;
+
+    private void Awake()
+    {
+        StartBeeParts();
+    }
+
+    public void Update()
+    {
+        if (idle)
+        {
+            myMoveType = MoveType.Idle;
+        }
+
+        else if (wantsToInteract && !hasInteractTarget)
+        {
+            myMoveType = MoveType.Searching;
+        }
+
+        else if (wantsToInteract)
+        {
+            myMoveType = MoveType.WalkToNearestInteract;
+        }
+
+        else if (hungry && !hasResourceTarget)
+        {
+            myMoveType = MoveType.Searching;
+        }
+
+        else if (feared)
+        {
+            myMoveType = MoveType.WalkToNearestSafePoint;
+        }
+
+        else if (hasAttackTarget && wantsToAttack)
+        {
+            myMoveType = MoveType.WalkToNearestAttackPoint;
+        }
+    }
 
     public void ChangeRotateTarget(Transform newTarget)
     {
@@ -32,17 +87,16 @@ public class CivSensor : MonoBehaviour, ISense
         aWorldState.BeginUpdate(aAgent.planner);
         {
             aWorldState.Set(NormalCivScenario.InRange, inRange);
-            
+
             aWorldState.Set(NormalCivScenario.HasInteractTarget, hasInteractTarget);
             aWorldState.Set(NormalCivScenario.WantsToInteract, wantsToInteract);
 
             aWorldState.Set(NormalCivScenario.HasAttackTarget, hasAttackTarget);
             aWorldState.Set(NormalCivScenario.WantsToAttack, wantsToAttack);
-            
+
             aWorldState.Set(NormalCivScenario.Idle, idle);
         }
         aWorldState.EndUpdate();
-
     }
 
     public void DesireToInteract()
@@ -54,4 +108,19 @@ public class CivSensor : MonoBehaviour, ISense
     {
         EggManager.instance.StartEgg(gameObject);
     }
+
+    #region Head
+
+    private BeePartsManager beeparts;
+
+    private void StartBeeParts()
+    {
+        beeparts = GetComponentInChildren<BeePartsManager>();
+
+        beeparts.HumanEyes();
+        beeparts.LoseAntannae();
+        beeparts.LoseMandibles();
+    }
+
+    #endregion
 }

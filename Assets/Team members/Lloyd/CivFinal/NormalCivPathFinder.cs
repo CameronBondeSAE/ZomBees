@@ -13,26 +13,15 @@ public class NormalCivPathFinder : MonoBehaviour
     public List<GameObject> resourcePoints;
 
     public List<GameObject> interactPoints;
+    public Transform nearestInteractPoint;
 
     public List<GameObject> civPoints;
 
-    [Button]
-    public void OnCalculatePoints(string key)
-    {
-        List<GameObject> targetList;
-        if (key == "safePoints")
-        {
-            targetList = safePoints;
-        }
-
-        CalculateDist(safePoints);
-    }
-
-    public void CalculateDist(List<GameObject> listToSort)
+    public Transform CalculateNearestSafePoint()
     {
         float minDistance = float.MaxValue;
 
-        foreach (GameObject obj in listToSort)
+        foreach (GameObject obj in safePoints)
         {
             float distance = Vector3.Distance(transform.position, obj.transform.position);
             if (distance < minDistance)
@@ -41,5 +30,29 @@ public class NormalCivPathFinder : MonoBehaviour
                 nearestSafePoint = obj.transform;
             }
         }
+        return nearestSafePoint;
+    }
+
+    public Transform CalculateRandomSafePoint()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, safePoints.Count);
+        GameObject randomGameObject = safePoints[randomIndex];
+        return randomGameObject.transform;
+    }
+    
+    public Transform CalculateNearestInteractPoint()
+    {
+        float minDistance = float.MaxValue;
+
+        foreach (GameObject obj in interactPoints)
+        {
+            float distance = Vector3.Distance(transform.position, obj.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearestInteractPoint = obj.transform;
+            }
+        }
+        return nearestInteractPoint;
     }
 }

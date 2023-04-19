@@ -27,8 +27,6 @@ public class CivVision : MonoBehaviour
  
     private Collider[] colliders = new Collider[100];
 
-    public GameObject interactTarget;
-
     private void OnEnable()
     {
         StartCoroutine(VisionCoroutine());
@@ -79,7 +77,6 @@ public class CivVision : MonoBehaviour
         if (interactables.Any())
         {
             seesInteract = true;
-            OnSetLastSeenInteractObj(interactables[0]);
         }
     }
 
@@ -91,11 +88,6 @@ public class CivVision : MonoBehaviour
             {
                 interactables.Add(obj);
             }
-            
-            //bee or human
-            /*if (obj.GetComponent<Team>() !=null)
-            {
-            }*/ 
         }
     }
 
@@ -103,12 +95,5 @@ public class CivVision : MonoBehaviour
     {
         StopAllCoroutines();
     }
-
-    public event Action<GameObject> LastSeenInteractableObj;
-
-    public void OnSetLastSeenInteractObj(GameObject obj)
-    {
-        interactTarget = obj;
-        LastSeenInteractableObj?.Invoke(obj);
-    }
+    
 }

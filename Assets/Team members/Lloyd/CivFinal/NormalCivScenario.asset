@@ -23,9 +23,13 @@ MonoBehaviour:
     - id: 3
       name: HasMovementTarget
     - id: 4
-      name: HasResource
-    - id: 5
       name: Idle
+    - id: 5
+      name: Hungry
+    - id: 6
+      name: DangerNearby
+    - id: 7
+      name: WantsToDie
   actions:
   - name: MoveToTarget
     isDefault: 0
@@ -35,7 +39,7 @@ MonoBehaviour:
     pre:
     - id: 0
       value: 0
-    - id: 5
+    - id: 4
       value: 0
     post:
     - id: 0
@@ -53,20 +57,18 @@ MonoBehaviour:
     post:
     - id: 2
       value: 0
-    - id: 4
-      value: 1
   - name: Idle
     isDefault: 1
     state: {fileID: 127724997045392640, guid: b7b31f1250a37b14d844483fa9f31a51, type: 3}
     cost: 0
     position: {x: 1265.1926, y: 66.67639}
     pre:
-    - id: 5
+    - id: 4
       value: 1
     post:
     - id: 2
       value: 1
-    - id: 5
+    - id: 4
       value: 0
   - name: Harvest
     isDefault: 0
@@ -76,9 +78,27 @@ MonoBehaviour:
     pre:
     - id: 0
       value: 1
-    post:
-    - id: 4
+    post: []
+  - name: Attack
+    isDefault: 0
+    state: {fileID: 7818661264342355379, guid: ef6c2e9488af1014a845c0311f9997b2, type: 3}
+    cost: 0
+    position: {x: 808.33325, y: 676.6667}
+    pre: []
+    post: []
+  - name: Suicide
+    isDefault: 0
+    state: {fileID: 2135355543676964654, guid: 7eca9a782aa26544a8f8ce684ac5609c, type: 3}
+    cost: 0
+    position: {x: 1026.6667, y: 518.3333}
+    pre:
+    - id: 7
       value: 1
+    - id: 0
+      value: 1
+    post:
+    - id: 7
+      value: 0
   goals:
   - name: Survive
     isDefault: 1
@@ -86,8 +106,10 @@ MonoBehaviour:
     conditions:
     - id: 2
       value: 0
-    - id: 4
-      value: 1
+    - id: 5
+      value: 0
+    - id: 7
+      value: 0
   worldStates:
   - position: {x: 224.00467, y: 291.70963}
     isAutoUpdate: 1
@@ -103,4 +125,8 @@ MonoBehaviour:
     - id: 4
       value: 0
     - id: 5
+      value: 0
+    - id: 6
+      value: 0
+    - id: 7
       value: 0
