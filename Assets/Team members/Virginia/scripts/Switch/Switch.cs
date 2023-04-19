@@ -20,12 +20,6 @@ namespace Virginia
         [Button]  // cheat - plugin
         public void TurnOn()
         {
-            // foreach (ISwitchable item in SwitchableList)
-            // {
-            //     item.TurnOn();
-            //     item.TurnOff();
-            //     
-            // }
             StateManager.ChangeState(GetComponent<SwitchOn>());
         }
 

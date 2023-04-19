@@ -3,31 +3,24 @@ using System.Collections.Generic;
 using Johns;
 using UnityEngine;
 
-public class GeneratorIdleOffState : MonoBehaviour
+public class GeneratorIdleOffState : MonoBehaviour, ISwitchable
 {
-    private bool componentActive = true;
     
-    
+    public void TurnOn()
+    {
+        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorStartingState>());
+    }
+
+    public void TurnOff()
+    {
+        
+    }
+
     public void OnEnable()
     {
     }
     
     public void OnDisable()
     {
-    }
-    
-    public void ToggleActivation()
-    {
-        componentActive = !componentActive;
-        enabled = componentActive;
-
-        if (componentActive)
-        {
-            OnEnable();
-        }
-        else
-        {
-            OnDisable();
-        }
     }
 }

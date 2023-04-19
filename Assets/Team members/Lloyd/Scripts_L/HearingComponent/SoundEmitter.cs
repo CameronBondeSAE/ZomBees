@@ -60,7 +60,8 @@ public class SoundEmitter : SerializedMonoBehaviour //MonoBehaviour
 		Bee,
 		Environment,
 		GunShot,
-		BombExplosion
+		BombExplosion,
+		CreatureRepellant
 	}
 
 	[Button]

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace AlexM
 {
@@ -20,11 +21,23 @@ namespace AlexM
 
 		[SerializeField]
 		private float groundAngle, groundAngleOffset;
+
+		public Health health;
 		
 		private void Awake()
 		{
 			GetReferences();
 			originalSpeed = maxSpeed;
+			
+			health.HealthReducedToZeroEvent += HealthOnHealthReducedToZeroEvent;
+		}
+
+		void HealthOnHealthReducedToZeroEvent()
+		{
+			Debug.Log("PLAYER DIED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			
+			// HACK
+			SceneManager.LoadScene("Main");
 		}
 
 		public void Start()

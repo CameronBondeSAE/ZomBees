@@ -17,6 +17,9 @@ namespace AlexM
 		// [HideInInspector]
 		public Vector2 moveDirection;
 
+		public Inventory leftHand;
+		public Inventory rightHand;
+
 		#endregion
 
 		private void GetReferences()

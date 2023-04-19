@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Nokobot/Modern Guns/Simple Shoot")]
-public class SimpleShoot : MonoBehaviour
+public class Pistol : MonoBehaviour, IItem, IInteractable
 {
     [Header("Prefab Refrences")]
     public GameObject bulletPrefab;
@@ -67,6 +66,7 @@ public class SimpleShoot : MonoBehaviour
         // Create a bullet and add force on it in direction of the barrel
         Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
 
+        CasingRelease();
     }
 
     //This function creates a casing at the ejection slot
@@ -88,4 +88,30 @@ public class SimpleShoot : MonoBehaviour
         Destroy(tempCasing, destroyTimer);
     }
 
+    public void   Consume()
+    {
+        
+    }
+
+    public void   Dispose()
+    {
+    }
+
+    public string Description()
+    {
+        return "Pistol";
+    }
+
+    public void   Pickup(GameObject whoPickedMeUp)
+    {
+    }
+
+    public void Interact()
+    {
+        Shoot();
+    }
+
+    public void Inspect()
+    {
+    }
 }

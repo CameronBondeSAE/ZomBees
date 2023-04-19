@@ -11,6 +11,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class CivGPT : MonoBehaviour, IInteractable
 {
@@ -35,7 +36,8 @@ public class CivGPT : MonoBehaviour, IInteractable
 	public AudioClip clip;
 	public TextMeshPro textMeshProUGUI;
 	public FakeCivilian fakeCivilian;
-	public SimpleShoot simpleShoot; // HACK
+	[FormerlySerializedAs("simpleShoot")]
+	public Pistol pistol; // HACK
 	
 	public Transform gun;
 
@@ -172,7 +174,7 @@ public class CivGPT : MonoBehaviour, IInteractable
 		{
 			case Action.Shoot:
 				textMeshPro.enabled = false;
-				simpleShoot.Shoot();
+				pistol.Shoot();
 
 				gun.transform.parent = null;
 				gun.GetComponent<Rigidbody>().isKinematic = false;

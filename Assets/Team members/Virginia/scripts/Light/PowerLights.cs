@@ -5,7 +5,7 @@ using Virginia;
 
 namespace Virginia
 {
-    public class PowerLights : MonoBehaviour
+    public class PowerLights : MonoBehaviour, ISwitchable
     {
         public Light light;
 
@@ -21,12 +21,12 @@ namespace Virginia
             }
         }
 
-        private void TurnOn()
+        public void TurnOn()
         {
             light.enabled = true;
         }
 
-        private void TurnOff()
+        public void TurnOff()
         {
             light.enabled = false;
         }

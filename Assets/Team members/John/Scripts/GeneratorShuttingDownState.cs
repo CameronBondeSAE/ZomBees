@@ -5,30 +5,25 @@ using Johns;
 using UnityEngine;
 public class GeneratorShuttingDownState : MonoBehaviour
 {
-    public AudioClip generatorShuttingDown;
-    private AudioSource generatorAudio;
-    private bool componentActive = true;
-    public float stateSwapTimer;
+    public AudioClip   generatorShuttingDown;
+    public AudioSource generatorAudio;
 
     private void OnEnable()
     {
-        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorShuttingDownState>());
-        generatorAudio = GetComponent<AudioSource>();
         generatorAudio.clip = generatorShuttingDown;
         generatorAudio.Play();
-        StartCoroutine(DelayCoroutine(stateSwapTimer));
+        StartCoroutine(DelayCoroutine());
     }
 
     private void OnDisable()
     {
-        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorIdleOffState>());
         generatorAudio.Stop();
     }
     
-    IEnumerator DelayCoroutine(float amount)
+    IEnumerator DelayCoroutine()
     {
         Debug.Log("Coroutine Ran Succesfully");
-        yield return new WaitForSeconds(amount);
-        OnDisable();
+        yield return new WaitForSeconds(generatorShuttingDown.length);
+        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorIdleOffState>());
     }
 }

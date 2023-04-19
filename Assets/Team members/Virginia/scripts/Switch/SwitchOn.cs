@@ -8,14 +8,22 @@ namespace Virginia
     public class SwitchOn : VStateBase
     {
         public Switch Switch;
-    
+
+        public SoundProperties soundProperties;
+        
         void OnEnable()
         {
             
+            // foreach (ISwitchable item in SwitchableList)
+            // {
+            //     item.TurnOn();
+            // }
             //TurnOnEvent?.Invoke();
             Switch.ThingToSwitch?.TurnOn();
        
             GetComponent<Renderer>().material.color = Color.green;
+            
+            GetComponent<SoundEmitter>().EmitSound(soundProperties);
         }
 
       

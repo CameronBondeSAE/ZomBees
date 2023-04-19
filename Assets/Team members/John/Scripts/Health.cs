@@ -7,11 +7,11 @@ using UnityEngine.UIElements;
 public class Health : MonoBehaviour
 {
     public delegate void DeathDelegate();
-    public static event DeathDelegate HealthReducedToZeroEvent;
+    public event DeathDelegate HealthReducedToZeroEvent;
 
     public delegate void HealthChangeDelegate(float changeAmount);
 
-    public static event HealthChangeDelegate HealthChangedEvent;
+    public event HealthChangeDelegate HealthChangedEvent;
 
 
     public float maxHealth;
