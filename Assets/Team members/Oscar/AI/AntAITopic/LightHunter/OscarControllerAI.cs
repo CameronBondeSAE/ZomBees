@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class OscarControllerAI : MonoBehaviour
 {
-    public OscarVisionAI vision;
+    public OscarVision vision;
     public LittleGuy littleGuy;
     public ColourChangeShader colourChanger;
     
     public bool seeTheFood()
     {
-        if (vision.honeyInSight.Count > 0)
+        if (vision.foodInSight.Count > 0)
         {
-            //colourChanger.attackPhase = true;
+            colourChanger.attackPhase = true;
             return true;
         }
 
-        //colourChanger.attackPhase = false;
+        colourChanger.attackPhase = false;
         return false;
     }
 
@@ -51,11 +51,13 @@ public class OscarControllerAI : MonoBehaviour
 
     public bool seeCivilians()
     {
-        if (vision.civiliansVisible.Count > 0)
+        if (vision.civsInSight.Count > 0)
         {
+            colourChanger.attackPhase = true;
             return true;
         }
-
+        
+        colourChanger.attackPhase = false;
         return false;
     }
     
