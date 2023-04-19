@@ -75,7 +75,7 @@ public class CivGPT : MonoBehaviour
 		// apiKeys = "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";
 		api = new OpenAI_API.OpenAIAPI(apiKeys);
 
-		questTrackerSimple.questEventStarted += QuestTrackerSimpleOnquestEventStarted;
+		questTrackerSimple.QuestEventStarted += QuestTrackerSimpleOnquestEventStarted;
 	}
 
 	void QuestTrackerSimpleOnquestEventStarted(string obj)
