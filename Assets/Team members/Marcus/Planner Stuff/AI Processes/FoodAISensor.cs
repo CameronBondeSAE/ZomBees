@@ -17,6 +17,9 @@ namespace Marcus
             aWorldState.Set(CivilianPlannerTest.IsHungry, controller.IsHungry());
             aWorldState.Set(CivilianPlannerTest.CanSeeFood, controller.CanSeeFood());
             aWorldState.Set(CivilianPlannerTest.HasFood, controller.HasFood());
+            aWorldState.Set(CivilianPlannerTest.HasItem, controller.HasItem());
+            aWorldState.Set(CivilianPlannerTest.CanSeeBees, controller.CanSeeBee());
+            aWorldState.Set(CivilianPlannerTest.IsDaytime, controller.Day());
 
             aWorldState.EndUpdate();
         }
@@ -25,7 +28,14 @@ namespace Marcus
         {
             IsHungry = 0,
             CanSeeFood = 1,
-            HasFood = 2
+            HasFood = 2,
+            IsScared = 3,
+            CanSeeBees = 4,
+            IsDaytime = 5,
+            IsHidden = 6,
+            CanHearBees = 7,
+            HasItem = 8,
+            TorchOn = 9
         }
     }
 }
