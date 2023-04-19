@@ -18,7 +18,7 @@ namespace Virginia
 
         public string Description()
         {
-            throw new System.NotImplementedException(); // it chucks a fit if I remove line 21
+            return ("healthy");
         }
 
         public void Pickup(GameObject whoPickedMeUp)
