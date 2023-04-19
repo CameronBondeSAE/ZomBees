@@ -10,7 +10,7 @@ public class RunAway : AntAIState
     //forloop through a list of patrol points and go to the closest one with navmesh.
     
     
-    private HearingComp ears;
+    private Hearing ears;
     private LittleGuy guy;
     private OscarVision vision;
     private ChildCivController childControl;
@@ -25,7 +25,7 @@ public class RunAway : AntAIState
         base.Create(aGameObject);
 
         guy = aGameObject.GetComponent<LittleGuy>();
-        ears = aGameObject.GetComponent<HearingComp>();
+        ears = aGameObject.GetComponent<Hearing>();
         vision = aGameObject.GetComponentInChildren<OscarVision>();
         childControl = aGameObject.GetComponent<ChildCivController>();
     }

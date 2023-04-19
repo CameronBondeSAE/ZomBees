@@ -449,6 +449,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brute
       objectReference: {fileID: 0}
+    - target: {fileID: 5195033038855813267, guid: 7649e10b4a3678146996791d965e04ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -654,6 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heardSound: 0
   loudestRecentSound: {x: 0, y: 0, z: 0}
+  soundsList: []
 --- !u!54 &607401433
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -785,7 +790,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &616276490
 Transform:
   m_ObjectHideFlags: 0
@@ -817,6 +822,7 @@ MonoBehaviour:
   eggLogic: {fileID: 0}
   originalCiv: {fileID: 1903309641}
   zombeeCiv: {fileID: 8941825892375159523, guid: 16bc0fea96a3081458330f2efee5b051, type: 3}
+  eggList: []
 --- !u!43 &701937828
 Mesh:
   m_ObjectHideFlags: 0
@@ -1176,12 +1182,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 50
-  fear: 2
-  beeness: 0
-  team: 1
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   maxListeners: 50
-  mySoundType: 0
 --- !u!4 &871936407
 Transform:
   m_ObjectHideFlags: 0
@@ -2393,6 +2403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heardSound: 0
   loudestRecentSound: {x: 0, y: 0, z: 0}
+  soundsList: []
 --- !u!54 &1492402402
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2520,14 +2531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc7f4f6c72da1140b7de4643425c511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beenessThresh: 0
-  bee: 0
-  fearThresh: 1
-  feared: 0
-  hunger: 0
-  hungerThresh: 0
-  hungry: 0
-  hearingComp: {fileID: 0}
+  myName: 
 --- !u!1 &1516105603
 GameObject:
   m_ObjectHideFlags: 0
@@ -11383,6 +11387,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 997757739615261146, guid: 8ec96b4cc2d9fa4459c9739f323bb06f, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 997757739615261146, guid: 8ec96b4cc2d9fa4459c9739f323bb06f, type: 3}
     - target: {fileID: 1896500793946836590, guid: 8ec96b4cc2d9fa4459c9739f323bb06f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -11711,12 +11719,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 50
-  fear: 1
-  beeness: 0
-  team: 0
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   maxListeners: 10
-  mySoundType: 0
 --- !u!114 &1769009816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12167,6 +12179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heardSound: 0
   loudestRecentSound: {x: 0, y: 0, z: 0}
+  soundsList: []
 --- !u!54 &2013376351
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12294,14 +12307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc7f4f6c72da1140b7de4643425c511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beenessThresh: 0.7
-  bee: 0
-  fearThresh: 0.7
-  feared: 0
-  hunger: 0
-  hungerThresh: 0.7
-  hungry: 0
-  hearingComp: {fileID: 0}
+  myName: 
 --- !u!1 &2019867081
 GameObject:
   m_ObjectHideFlags: 0
@@ -12418,6 +12424,10 @@ PrefabInstance:
     - target: {fileID: 3072409714904257688, guid: 658c2fe85c8358042a234802b14d52fc, type: 3}
       propertyPath: m_Name
       value: QueenThink
+      objectReference: {fileID: 0}
+    - target: {fileID: 3072409714904257688, guid: 658c2fe85c8358042a234802b14d52fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3072409714904257695, guid: 658c2fe85c8358042a234802b14d52fc, type: 3}
       propertyPath: m_RootOrder

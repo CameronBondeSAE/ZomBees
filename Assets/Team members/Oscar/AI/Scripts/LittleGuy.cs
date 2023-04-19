@@ -23,7 +23,7 @@ namespace Oscar
             collectedObjects = new List<GameObject>();
         }
 
-        public void SoundHeard(GameObject source, SoundEmitter.SoundType soundType, float volume, float fear, float beeness, Team team)
+        public void SoundHeard(SoundProperties soundProperties)
         {
             
         }

@@ -8,18 +8,18 @@ public class OscarBruteCivController : MonoBehaviour
 {
     public OscarVision vision;
     public LittleGuy littleGuy;
-    public HearingComp ears;
+    public Hearing ears;
     private bool hearSounds;
     public bool playerTalkin;
 
     private void OnEnable()
     {
-        ears.SoundHeardEvent += CreateFear;
+        // ears.SoundHeardEvent += CreateFear;
     }
 
     private void OnDisable()
     {
-        ears.SoundHeardEvent -= DecreaseFear;
+        // ears.SoundHeardEvent -= DecreaseFear;
     }
 
     public bool SeeBeeBool()

@@ -11,7 +11,7 @@ namespace Oscar
         public OscarVision vision;
         public OscarCivProfile civProfile;
         
-        public HearingComp ears;
+        public Hearing ears;
         
         public bool iAmScared;
         public bool iAmFollowing;

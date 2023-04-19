@@ -12,7 +12,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CivGPT : MonoBehaviour
+public class CivGPT : MonoBehaviour, IInteractable
 {
 	public string apiKeys;
 
@@ -259,5 +259,15 @@ public class CivGPT : MonoBehaviour
 		{
 			Debug.Log($"{msg.Role}: {msg.Content}");
 		}
+	}
+
+	public void Interact()
+	{
+		
+	}
+
+	public void Inspect()
+	{
+		
 	}
 }

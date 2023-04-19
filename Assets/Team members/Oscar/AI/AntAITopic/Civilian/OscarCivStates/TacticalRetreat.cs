@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TacticalRetreat : AntAIState
 {
-    private HearingComp ears;
+    private Hearing ears;
     private LittleGuy guy;
     
     public override void Create(GameObject aGameObject)
@@ -14,7 +14,7 @@ public class TacticalRetreat : AntAIState
         base.Create(aGameObject);
 
         guy = aGameObject.GetComponent<LittleGuy>();
-        ears = aGameObject.GetComponent<HearingComp>();
+        ears = aGameObject.GetComponent<Hearing>();
 
     }
 

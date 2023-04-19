@@ -6,6 +6,7 @@ using Tanks;
 using UnityEngine;
 using Lloyd;
 using Sirenix.OdinInspector;
+using UnityEngine.Serialization;
 
 public class QueenScenarioManager : MonoBehaviour, ISense
 {
@@ -41,7 +42,7 @@ public class QueenScenarioManager : MonoBehaviour, ISense
         lookAt = GetComponent<LookAtTarget>();
         queenEvent = GetComponent<QueenEvent>();
         stats = GetComponent<CivStatComponent>();
-        hearingComp = GetComponent<HearingComp>();
+        hearing = GetComponent<Hearing>();
         
         StartBeeWings();
         
@@ -123,9 +124,10 @@ public class QueenScenarioManager : MonoBehaviour, ISense
 
     private QueenEvent queenEvent;
 
-    public HearingComp hearingComp;
+    [FormerlySerializedAs("hearingComp")]
+    public Hearing hearing;
 
-    public List<HearingComp.SoundData> heardSoundsList;
+    // public List<HearingComp.SoundData> heardSoundsList;
 
     public Vector3 queenVectorTarget;
     public Transform queenTransformTarget;
@@ -182,16 +184,16 @@ public class QueenScenarioManager : MonoBehaviour, ISense
 
     #endregion
 
-    public List<HearingComp.SoundData> GetSounds()
-    {
-        return hearingComp.soundsList;
-    }
+    // public List<HearingComp.SoundData> GetSounds()
+    // {
+    //     return hearingComp.soundsList;
+    // }
 
     public void Execute(float adeltatime, float timescale)
     {
         if (initialised)
         {
-            heardSoundsList = GetSounds();
+            // heardSoundsList = GetSounds();
             resourceCount = stats.beenessDisplayed;
 
             queenParent.transform.position = transform.position;

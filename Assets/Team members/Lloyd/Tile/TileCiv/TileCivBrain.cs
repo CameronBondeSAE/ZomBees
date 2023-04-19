@@ -14,7 +14,7 @@ public class TileCivBrain : MonoBehaviour
         
     }
 
-    private HearingComp ears;
+    private Hearing ears;
     public bool listening;
     public float hearingThreshold;
     private HearingEventArgs lastSound;
@@ -27,27 +27,27 @@ public class TileCivBrain : MonoBehaviour
 
     private void OnEnable()
     {
-        ears = GetComponent<HearingComp>();
-        ears.SoundHeardEvent += HeardSomething;
+        // ears = GetComponent<HearingComp>();
+        // ears.SoundHeardEvent += HeardSomething;
     }
 
-    public void HeardSomething(HearingEventArgs heardSound)
-    {
-        if (listening)
-        {
-            //lookTowards.SetTarget(heardSound.Source.transform.position);
-        }
-
-        lastSound = heardSound;
-    }
+    // public void HeardSomething(HearingEventArgs heardSound)
+    // {
+    //     if (listening)
+    //     {
+    //         //lookTowards.SetTarget(heardSound.Source.transform.position);
+    //     }
+    //
+    //     lastSound = heardSound;
+    // }
 
     public void SawSomething()
     {
         
     }
 
-    private void OnDisable()
-    {
-        ears.SoundHeardEvent -= HeardSomething;
-    }
+    // private void OnDisable()
+    // {
+    //     ears.SoundHeardEvent -= HeardSomething;
+    // }
 }

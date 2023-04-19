@@ -61,7 +61,7 @@ namespace Team_members.Lloyd.Civilian_L
 
         public bool hasResource;
 
-        private HearingComp hearingComp;
+        private Hearing _hearing;
 
         public bool hearingSomething;
 
@@ -73,7 +73,7 @@ namespace Team_members.Lloyd.Civilian_L
         private void OnEnable()
         {
             StartVision();
-            hearingComp = GetComponent<HearingComp>();
+            _hearing = GetComponent<Hearing>();
             stats = GetComponent<StatsComp>();
 
             pickupRadius = stats.pickupRadius;

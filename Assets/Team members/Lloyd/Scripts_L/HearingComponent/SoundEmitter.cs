@@ -6,63 +6,79 @@ using UnityEngine;
 using Lloyd;
 using Sirenix.OdinInspector;
 
-public class SoundEmitter : MonoBehaviour
+[Serializable]
+public class SoundProperties
 {
-    // sound emitter uses EmitSound to create a nonAllocSphere as big as radius
-    // the sphere detects everything within it with IHear and tells them they heard the sound
-    // EmitSound transmits the gameObject.transform.position of itself as origin
-    // EmitSound transmits the float fear for how much fear level is changed
-    // EmitSound transmits the float team to communicate what team origin is (Human / Bee)
+	public SoundProperties(GameObject source, SoundEmitter.SoundType soundType, float radius, float distance, float fear, float beeness, Team team, int obstaclesBetween)
+	{
+		Source           = source;
+		SoundType        = soundType;
+		Radius           = radius;
+		Distance         = distance;
+		Fear             = fear;
+		Beeness          = beeness;
+		Team             = team;
+		ObstaclesBetween = obstaclesBetween;
+	}
 
-    private List<IHear> listenerList = new List<IHear>();
+	public GameObject             Source           ;//{ get; set; }
+	public SoundEmitter.SoundType SoundType        ;//{ get; set; }
+	public float                  Radius           ;//{ get; set; }
+	public float                  Distance         ;//{ get; set; }
+	public float                  Fear             ;//{ get; set; }
+	public float                  Beeness          ;//{ get; set; }
+	public Team                   Team             ;//{ get; set; }
+	public int                    ObstaclesBetween ;//{ get; set; }
+}
 
-    private IHear listener;
+public class SoundEmitter : SerializedMonoBehaviour //MonoBehaviour
+{
+	// sound emitter uses EmitSound to create a nonAllocSphere as big as radius
+	// the sphere detects everything within it with IHear and tells them they heard the sound
+	// EmitSound transmits the gameObject.transform.position of itself as origin
+	// EmitSound transmits the float fear for how much fear level is changed
+	// EmitSound transmits the float team to communicate what team origin is (Human / Bee)
+	Collider[] hitColliders;
 
-    [Header("SIZE OF NOISE RADIUS")] public float radius;
+	[SerializeField]
+	int maxListeners = 20;
 
-    //[Header("VOLUME OF SOUND")] public float volume;
-    
-    [Header("INCREASE/DECREASE FEAR")] public float fear;
+	IHear listener;
 
-    [Header("HOW MUCH LIKE A BEE")] public float beeness;
+	void Awake()
+	{
+		hitColliders = new Collider[maxListeners];
+	}
 
-    [Header("TEAM?")] public Team team;
+	// enum :)
+	// ordered in whatever of importance
+	public enum SoundType
+	{
+		Unknown,
+		PlayerTalk,
+		CivTalk,
+		Bee,
+		Environment,
+		GunShot,
+		BombExplosion
+	}
 
-    [Header("THE MAX NUMBER OF LISTENERS (lower for performance?)")]
-    public int maxListeners;
+	[Button]
+	public void EmitSound(SoundProperties soundProperties)
+	{
+		int numColliders = Physics.OverlapSphereNonAlloc(gameObject.transform.position, soundProperties.Radius, hitColliders);
 
-    // enum :)
-    // ordered in whatever of importance
-    public enum SoundType
-    {
-        PlayerTalk,
-        CivTalk,
-        Bee,
-        Environment
-    }
+		for (int i = 0; i < numColliders; i++)
+		{
+			Collider collider = hitColliders[i];
 
-    public SoundType mySoundType;
-
-    [Button]
-    public void EmitInspectorSound()
-    {
-        EmitSound(gameObject, mySoundType, radius, fear, beeness, team);
-    }
-    public void EmitSound(GameObject origin, SoundType soundType, float volume, float fear, float beeness, Team team)
-    {
-        Collider[] hitColliders = new Collider[maxListeners];
-        int numColliders = Physics.OverlapSphereNonAlloc(gameObject.transform.position, radius, hitColliders);
-
-        for (int i = 0; i < numColliders; i++)
-        {
-            Collider collider = hitColliders[i];
-
-            listener = collider.GetComponent<IHear>();
-            if (listener != null)
-            {
-                listener.SoundHeard(origin, soundType, volume, fear, beeness, team);
-                listenerList.Add(listener);
-            }
-        }
-    }
+			listener = collider.GetComponent<IHear>();
+			if (listener != null)
+			{
+				soundProperties.Source = gameObject;
+				listener.SoundHeard(soundProperties);
+				// listenerList.Add(listener);
+			}
+		}
+	}
 }

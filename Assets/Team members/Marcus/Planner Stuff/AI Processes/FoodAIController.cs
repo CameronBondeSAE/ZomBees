@@ -9,7 +9,7 @@ namespace Marcus
         public OscarVision vision;
         public FoodAIHolding hand;
         public FoodAIHunger hunger;
-        public HearingComp ears;
+        public Hearing ears;
 
         public bool CanSeeFood()
         {
