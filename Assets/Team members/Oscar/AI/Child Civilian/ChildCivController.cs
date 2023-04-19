@@ -9,6 +9,7 @@ namespace Oscar
     {        
         public LittleGuy littleGuy;
         public OscarVision vision;
+        public OscarCivProfile civProfile;
         
         public HearingComp ears;
         
@@ -17,6 +18,7 @@ namespace Oscar
         public bool iDeliveredStuff;
         public bool iAmIdle;
         public bool iAmAlive;
+        public bool iAmHiding;
         
         //public bool playerTalking;
 
@@ -84,6 +86,26 @@ namespace Oscar
         public bool StuffDelivered()
         {
             return false;
+        }
+
+        public bool ImHungry()
+        {
+            return civProfile.hungerLevel >= 0.6f;
+        }
+
+        public bool DoIHaveFood()
+        {
+            return false;
+        }
+
+        public bool ISeeFood()
+        {
+            return false;
+        }
+
+        public bool ShouldIHide()
+        {
+            return iAmHiding;
         }
     }
 }

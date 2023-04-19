@@ -8,11 +8,10 @@ public class FindRocks : AntAIState
 {
     private LittleGuy littleGuy;
 
-    public float zoomX;
-    public float zoomZ;
+    private float zoomX;
+    private float zoomZ;
     
-    public float perlin;
-    public float sine;
+    private float perlin;
     
     public override void Create(GameObject aGameObject)
     {
@@ -32,9 +31,8 @@ public class FindRocks : AntAIState
         float z = zoomZ + Time.time;
 
         perlin = Mathf.PerlinNoise(x, z) * 2 - 1;
-        sine = Mathf.Sin(x*z);
         
         littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed,ForceMode.Acceleration);
-        littleGuy.rb.AddRelativeTorque(sine,perlin,0);
+        littleGuy.rb.AddRelativeTorque(0,perlin,0);
     }
 }

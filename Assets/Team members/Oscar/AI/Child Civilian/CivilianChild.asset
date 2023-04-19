@@ -36,6 +36,14 @@ MonoBehaviour:
       name: hasStuff
     - id: 10
       name: returnedStuff
+    - id: 11
+      name: isHungry
+    - id: 12
+      name: hasFood
+    - id: 13
+      name: seeFood
+    - id: 14
+      name: Hide
   actions:
   - name: Follow
     isDefault: 1
@@ -57,7 +65,7 @@ MonoBehaviour:
   - name: FindRocks
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: 4795898c4a97d824aac91c1f28d0c607, type: 3}
-    cost: 2
+    cost: 3
     position: {x: 490, y: 95}
     pre:
     - id: 6
@@ -70,7 +78,7 @@ MonoBehaviour:
   - name: CollectRocks
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: 222ac4e73e5ba2947bbb6355db56c828, type: 3}
-    cost: 2
+    cost: 3
     position: {x: 680, y: 95}
     pre:
     - id: 6
@@ -89,9 +97,7 @@ MonoBehaviour:
     - id: 5
       value: 1
     post:
-    - id: 5
-      value: 0
-    - id: 1
+    - id: 14
       value: 1
   - name: Idle
     isDefault: 0
@@ -107,8 +113,8 @@ MonoBehaviour:
   - name: Converse
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: a2fff09906114e54db054ef34d5fd402, type: 3}
-    cost: 1
-    position: {x: 683, y: 326}
+    cost: -1
+    position: {x: 683, y: 325}
     pre:
     - id: 3
       value: 1
@@ -136,7 +142,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: ed91e22ec46a0534ca876d214c4fba4e, type: 3}
     cost: 1
-    position: {x: 1708, y: 98}
+    position: {x: 1991, y: 103}
     pre:
     - id: 8
       value: 1
@@ -149,7 +155,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: e1e0d9dfa8eba174b8a61a29ce41065b, type: 3}
     cost: 1
-    position: {x: 1509, y: 301}
+    position: {x: 1791, y: 302}
     pre:
     - id: 9
       value: 1
@@ -164,32 +170,94 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 3690172197307478699, guid: 0ab4c59c78d9e0a43bc99a679a0695b9, type: 3}
     cost: 1
-    position: {x: 1512, y: 100}
+    position: {x: 1793, y: 105}
     pre:
     - id: 8
       value: 0
     post:
     - id: 8
       value: 1
+  - name: FindFood
+    isDefault: 0
+    state: {fileID: 7819847402425102426, guid: 0b2f22a9956c18c479f87ede19246a3d, type: 3}
+    cost: 0
+    position: {x: 1167, y: 333}
+    pre:
+    - id: 11
+      value: 1
+    - id: 13
+      value: 0
+    - id: 12
+      value: 0
+    post:
+    - id: 13
+      value: 1
+  - name: GetFood
+    isDefault: 0
+    state: {fileID: 8722729060447549500, guid: f70046e295812d449b52c18e9b2d3a7d, type: 3}
+    cost: 0
+    position: {x: 1362, y: 333}
+    pre:
+    - id: 13
+      value: 1
+    - id: 12
+      value: 0
+    post:
+    - id: 13
+      value: 0
+    - id: 12
+      value: 1
+  - name: EatFood
+    isDefault: 0
+    state: {fileID: 242594687593455450, guid: 3a478a1aebebc2643839fb820ca38aec, type: 3}
+    cost: 0
+    position: {x: 1556, y: 333}
+    pre:
+    - id: 12
+      value: 1
+    - id: 11
+      value: 1
+    post:
+    - id: 11
+      value: 0
+    - id: 12
+      value: 0
+  - name: Hide
+    isDefault: 0
+    state: {fileID: 7911756724678263161, guid: 4c1d57c0cd00dc149a50843a7ae9ecbf, type: 3}
+    cost: 0
+    position: {x: 1069, y: 97}
+    pre:
+    - id: 14
+      value: 1
+    post:
+    - id: 1
+      value: 1
+    - id: 5
+      value: 0
+    - id: 14
+      value: 0
   goals:
   - name: DeliverRocks
     isDefault: 1
-    position: {x: 1094, y: 96}
+    position: {x: 1314, y: 95}
     conditions:
     - id: 4
       value: 1
     - id: 1
       value: 1
+    - id: 11
+      value: 0
   - name: GetStuff
     isDefault: 0
-    position: {x: 1312, y: 96}
+    position: {x: 1596, y: 107}
     conditions:
     - id: 10
       value: 1
     - id: 1
       value: 1
   worldStates:
-  - position: {x: 282, y: 585}
+  - position: {x: 281, y: 585}
     isAutoUpdate: 1
     list:
     - id: 0
@@ -213,4 +281,12 @@ MonoBehaviour:
     - id: 9
       value: 0
     - id: 10
+      value: 0
+    - id: 11
+      value: 0
+    - id: 12
+      value: 0
+    - id: 13
+      value: 0
+    - id: 14
       value: 0

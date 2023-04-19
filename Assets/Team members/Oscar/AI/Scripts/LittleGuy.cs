@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace Oscar
 {
-    public class LittleGuy : LivingEntity
+    public class LittleGuy : LivingEntity, IHear
     {
         public Rigidbody rb;
         public GameObject littleGuyModel;
@@ -21,6 +21,11 @@ namespace Oscar
         private void Awake()
         {
             collectedObjects = new List<GameObject>();
+        }
+
+        public void SoundHeard(GameObject source, SoundEmitter.SoundType soundType, float volume, float fear, float beeness, Team team)
+        {
+            
         }
     }
 }

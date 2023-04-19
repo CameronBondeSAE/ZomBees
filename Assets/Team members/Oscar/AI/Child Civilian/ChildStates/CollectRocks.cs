@@ -22,7 +22,7 @@ public class CollectRocks : AntAIState
     {
         base.Execute(aDeltaTime, aTimeScale);
 
-        if (vision.beesInSight.Count > 0)
+        if (vision.objectsInSight.Count > 0)
         {
             littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
                 vision.objectsInSight[0].transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed,0);

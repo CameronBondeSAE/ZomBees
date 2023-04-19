@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class RunAway : AntAIState
 {
+    //forloop through a list of patrol points and go to the closest one with navmesh.
+    
+    
     private HearingComp ears;
     private LittleGuy guy;
     private OscarVision vision;

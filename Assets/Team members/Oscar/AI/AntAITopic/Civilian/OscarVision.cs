@@ -194,7 +194,7 @@ public class OscarVision : MonoBehaviour
             {
                 GameObject honeyStuff = other.gameObject;
 
-                foodInSight.Remove(honeyStuff);
+                objectsInSight.Remove(honeyStuff);
             }
             //removes lit objects from current version list
             if (dynamicObj.isLit == true)

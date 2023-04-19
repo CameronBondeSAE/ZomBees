@@ -42,6 +42,11 @@ namespace Oscar
             aWorldState.Set(CivilianChild.getStuff, controller.GetTheStuff());
             aWorldState.Set(CivilianChild.hasStuff, controller.DoIHaveStuff());
             aWorldState.Set(CivilianChild.returnedStuff, controller.StuffDelivered());
+            aWorldState.Set(CivilianChild.isHungry, controller.ImHungry());
+            aWorldState.Set(CivilianChild.hasFood, controller.DoIHaveFood());
+            aWorldState.Set(CivilianChild.seeFood, controller.ISeeFood());
+            aWorldState.Set(CivilianChild.Hide, controller.ShouldIHide());
+
 
             aWorldState.EndUpdate();
         }
@@ -58,7 +63,11 @@ namespace Oscar
             hasRock = 7,
             getStuff = 8,
             hasStuff = 9,
-            returnedStuff = 10
+            returnedStuff = 10,
+            isHungry = 11,
+            hasFood = 12,
+            seeFood = 13,
+            Hide = 14
         }
     }
 }
