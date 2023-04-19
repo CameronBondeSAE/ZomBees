@@ -8,7 +8,7 @@ namespace Marcus
     {
         public OscarVision vision;
         public FoodAIHolding hand;
-        public FoodAIHunger hunger;
+        public NormalCivProfile hunger;
         public Hearing ears;
 
         public bool CanSeeFood()
@@ -23,7 +23,7 @@ namespace Marcus
 
         public bool IsHungry()
         {
-            return hunger.isHungy;
+            return hunger.hungry;
         }
 
         public bool HasItem()

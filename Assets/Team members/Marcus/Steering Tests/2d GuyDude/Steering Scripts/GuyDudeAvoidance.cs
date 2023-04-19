@@ -19,7 +19,7 @@ namespace Marcus
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             float bailForce = bailFeeler.CalculateForce();
             float leftForce = leftFeeler.TurnForce();

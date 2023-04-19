@@ -28,7 +28,7 @@ namespace Marcus
             targetPoint = destination;
             pathCounter = 0;
             
-            path.ClearCorners();
+            // path.ClearCorners();
             NavMesh.CalculatePath(transform.position, targetPoint.transform.position, NavMesh.AllAreas, path);
         }
 

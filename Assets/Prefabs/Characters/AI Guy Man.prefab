@@ -482,7 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vision: {fileID: 7025054006657017379}
   hand: {fileID: 4784546211133223649}
-  hunger: {fileID: 0}
+  hunger: {fileID: 1738758673372165944}
   ears: {fileID: 7666311663208114672}
 --- !u!114 &5905745458562283158
 MonoBehaviour:
@@ -542,7 +542,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4163470155064568175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.206692, y: 6.7841845, z: 3.6929288}
+  m_LocalPosition: {x: -21.206692, y: 6.87, z: 3.6929288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6352044589181877563}
   speed: 10
-  stoppingDistance: 5
+  stoppingDistance: 1
   targetPoint: {fileID: 0}
   pathCounter: 0
 --- !u!114 &5661392993011220153
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860060659983799258}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c27f02b902239814db5dbadeeabc3e92, type: 3}
   m_Name: 
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860060659983799258}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40e18e0c2c493544a9b4657976dc6138, type: 3}
   m_Name: 
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860060659983799258}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 121b158228e3ea842b54c330ad258a29, type: 3}
   m_Name: 

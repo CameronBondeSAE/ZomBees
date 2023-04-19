@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 296.03275, g: 225.36575, b: 163.07802, a: 1}
+  m_IndirectSpecularColor: {r: 399.59186, g: 297.31497, b: 219.27176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -61235,18 +61235,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 778148290908108449, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420924924716081631, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4380904934306938065, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4578368188344167707, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -61266,18 +61254,6 @@ PrefabInstance:
     - target: {fileID: 5860060659983799258, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_Name
       value: AI Guy Man (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5948709708726302596, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 5948709708726302596, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-    - target: {fileID: 6018393821343957203, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357213602106278246, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8053649277983958044, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_RootOrder
