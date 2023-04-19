@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Anthill.Pool;
 using Sirenix.OdinInspector;
 using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
@@ -10,18 +11,25 @@ namespace Virginia
     {
         public IItem heldItem;
         public float radius;
-        public object hand;
-        [Button] 
+        public Transform hand; 
+        
+            [Button] 
         public void Pickup()
         {
-            Collider[]  ItemsFound = Physics.OverlapSphere(transform.position, radius);
-            foreach (Collider ItemFound in  ItemsFound)
+            Collider[]  CollidersFound = Physics.OverlapSphere(transform.position, radius);
+            foreach (Collider colliderFound in  CollidersFound)
             {
-                if (ItemFound.GetComponent<Collider>() != null )
+                
+                if (colliderFound.GetComponent<IItem>() != null ) // checking if its an IItem 
                 {
-                   // heldItem = ItemFound.GetComponent<IItem>();
-                    Debug.Log(message: "pick up");
-                    
+                    heldItem = colliderFound.GetComponent<IItem>();
+                    (heldItem as MonoBehaviour).transform.parent = hand;  
+                   // setting the IItem object to the player's hand, casting it to a monobehaviour
+                   
+                   (heldItem as MonoBehaviour).transform.localPosition = Vector3.zero;
+                   //Debug.Log(message: "pick up");
+
+
 
 
                 }
@@ -31,7 +39,8 @@ namespace Virginia
 
         }
 
-       
+        
+
 
         [Button] 
         public void Consume() 
@@ -40,9 +49,10 @@ namespace Virginia
         } 
         [Button] 
         public void Dispose()
-        {
+        { 
+            (heldItem as MonoBehaviour).transform.parent = null;
+            heldItem = null; // clears the object from the held Item slot (I forgot the name)
             Debug.Log("disposed item didn't need it");
-         //transform.parent = null;
 
         }
         
