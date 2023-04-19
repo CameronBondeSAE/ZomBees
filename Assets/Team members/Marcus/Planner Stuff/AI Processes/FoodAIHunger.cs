@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Marcus
 {
+    /// <summary>
+    /// OBSOLETE SCRIPT!!!!! USING LLOYD'S CIV PROFILE
+    /// </summary>
     public class FoodAIHunger : MonoBehaviour
     {
         public float baseHunger;

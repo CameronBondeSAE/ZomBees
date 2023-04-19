@@ -157,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heardSound: 0
   loudestRecentSound: {x: 0, y: 0, z: 0}
+  soundsList: []
 --- !u!1 &1545986284851747083
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,8 +412,8 @@ GameObject:
   - component: {fileID: 3765656164223006905}
   - component: {fileID: 6504962030028823563}
   - component: {fileID: 1862596662496953627}
-  - component: {fileID: 778148290908108449}
   - component: {fileID: 5905745458562283158}
+  - component: {fileID: 1738758673372165944}
   m_Layer: 14
   m_Name: AI Brain
   m_TagString: Untagged
@@ -481,22 +482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vision: {fileID: 7025054006657017379}
   hand: {fileID: 4784546211133223649}
-  hunger: {fileID: 778148290908108449}
---- !u!114 &778148290908108449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3765656164223006911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06fc62375f9e73043b413a502351c0b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseHunger: 4
-  hunger: 0
-  isHungy: 0
+  hunger: {fileID: 0}
+  ears: {fileID: 7666311663208114672}
 --- !u!114 &5905745458562283158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +498,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalVision: {fileID: 7025054006657017379}
   memories: []
+--- !u!114 &1738758673372165944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765656164223006911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d8f4d25e498c94e98c1592d4b44bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungry: 0
+  hungerLevel: 0
+  hungerThresh: 0.6
+  beeness: 0
+  beenessThresh: 0.7
+  readyToDie: 0
+  suicideLevel: 0
+  suicideThresh: 0.9
 --- !u!1 &4163470155064568175
 GameObject:
   m_ObjectHideFlags: 0

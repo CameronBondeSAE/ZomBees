@@ -41,10 +41,18 @@ namespace Marcus
             return WorldTime.Instance.isDay;
         }
 
-        /*public bool CanHearBee()
+        public bool CanHearBee()
         {
-            // Return if I can hear a bee sound
-            
-        }*/
+            if (ears.heardSound)
+            {
+                foreach (SoundProperties sound in ears.soundsList)
+                {
+                    if (sound.Team == Team.Bee)
+                        return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

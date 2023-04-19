@@ -32,12 +32,14 @@ MonoBehaviour:
       name: CanHearBees
     - id: 8
       name: HasItem
+    - id: 9
+      name: TorchOn
   actions:
   - name: Find Food
     isDefault: 0
     state: {fileID: 7819847402425102426, guid: 0b2f22a9956c18c479f87ede19246a3d, type: 3}
     cost: 1
-    position: {x: 316, y: 277}
+    position: {x: 316, y: 307}
     pre:
     - id: 0
       value: 1
@@ -52,7 +54,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 242594687593455450, guid: 3a478a1aebebc2643839fb820ca38aec, type: 3}
     cost: 1
-    position: {x: 718, y: 259}
+    position: {x: 718, y: 289}
     pre:
     - id: 0
       value: 1
@@ -71,18 +73,18 @@ MonoBehaviour:
     isDefault: 1
     state: {fileID: 1874639598432770460, guid: c0ec2f7207c386e45bc29cf7b4d8cd4a, type: 3}
     cost: 0
-    position: {x: 205, y: 52}
+    position: {x: 214, y: 58}
     pre: []
     post: []
   - name: Get Food
     isDefault: 0
     state: {fileID: 8722729060447549500, guid: f70046e295812d449b52c18e9b2d3a7d, type: 3}
     cost: 1
-    position: {x: 519, y: 280}
+    position: {x: 512, y: 289}
     pre:
     - id: 1
       value: 1
-    - id: 8
+    - id: 2
       value: 0
     post:
     - id: 1
@@ -95,7 +97,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 1018751149673479226, guid: 2129152edd50d254da010407eb500cc7, type: 3}
     cost: 0
-    position: {x: 1229, y: 40}
+    position: {x: 1229, y: 70}
     pre:
     - id: 5
       value: 1
@@ -104,7 +106,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5939613662183716017, guid: 0c35d060137636f42a5675c7af86bc3e, type: 3}
     cost: 0
-    position: {x: 709, y: 538}
+    position: {x: 709, y: 568}
     pre:
     - id: 6
       value: 1
@@ -115,7 +117,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4938375913519877200, guid: 5505eca6116aeea4cba44d504c80b181, type: 3}
     cost: 0
-    position: {x: 513, y: 536}
+    position: {x: 513, y: 566}
     pre:
     - id: 6
       value: 0
@@ -124,24 +126,30 @@ MonoBehaviour:
     post:
     - id: 6
       value: 1
+    - id: 9
+      value: 0
   - name: Run
     isDefault: 0
     state: {fileID: 5591337468728248698, guid: c2591cd6f91d3ce4287efa2986ae26d3, type: 3}
     cost: 0
-    position: {x: 316, y: 532}
+    position: {x: 316, y: 562}
     pre:
     - id: 4
       value: 1
+    - id: 6
+      value: 0
     post:
     - id: 4
       value: 0
     - id: 3
+      value: 0
+    - id: 7
       value: 0
   - name: Leave Hiding
     isDefault: 0
     state: {fileID: 2877110659774664227, guid: 0038c0f600c38ba459e6ba6a3834093f, type: 3}
     cost: 3
-    position: {x: 907, y: 538}
+    position: {x: 907, y: 568}
     pre:
     - id: 6
       value: 1
@@ -152,21 +160,39 @@ MonoBehaviour:
       value: 0
     - id: 3
       value: 0
+    - id: 9
+      value: 1
   - name: Drop Holding
     isDefault: 0
     state: {fileID: 3385663683014684733, guid: d3add5da06be15c409d3c2ed728dae1d, type: 3}
     cost: 2
-    position: {x: 1255, y: 420}
+    position: {x: 1390, y: 455}
     pre:
     - id: 8
       value: 1
     post:
     - id: 8
       value: 0
+  - name: Interact
+    isDefault: 0
+    state: {fileID: 7457479992736773353, guid: c89c90a718b68dd4da6a1afb8888b4aa, type: 3}
+    cost: 0
+    position: {x: 1304, y: 648}
+    pre: []
+    post: []
+  - name: Use Holding
+    isDefault: 0
+    state: {fileID: 7824803749920375140, guid: 80fb50022b91c4b4cba23c0e5974feef, type: 3}
+    cost: 0
+    position: {x: 1193, y: 455}
+    pre:
+    - id: 8
+      value: 1
+    post: []
   goals:
   - name: Goal
     isDefault: 1
-    position: {x: 400, y: 51}
+    position: {x: 409, y: 55}
     conditions:
     - id: 0
       value: 0
@@ -178,8 +204,10 @@ MonoBehaviour:
       value: 0
     - id: 6
       value: 0
+    - id: 9
+      value: 1
   worldStates:
-  - position: {x: 230, y: 835}
+  - position: {x: 230, y: 865}
     isAutoUpdate: 1
     list:
     - id: 0
@@ -199,4 +227,6 @@ MonoBehaviour:
     - id: 7
       value: 0
     - id: 8
+      value: 1
+    - id: 9
       value: 1

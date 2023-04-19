@@ -20,6 +20,7 @@ namespace Marcus
             aWorldState.Set(CivilianPlannerTest.HasItem, controller.HasItem());
             aWorldState.Set(CivilianPlannerTest.CanSeeBees, controller.CanSeeBee());
             aWorldState.Set(CivilianPlannerTest.IsDaytime, controller.Day());
+            aWorldState.Set(CivilianPlannerTest.CanHearBees, controller.CanHearBee());
 
             aWorldState.EndUpdate();
         }

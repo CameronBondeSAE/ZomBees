@@ -10,7 +10,7 @@ namespace Marcus
     public class EatFood : AntAIState
     {
         private FoodAIHolding hand;
-        private FoodAIHunger hunger;
+        private NormalCivProfile hunger;
 
         private float waitTimer = 3f;
 
@@ -19,7 +19,7 @@ namespace Marcus
             base.Create(aGameObject);
             
             hand = aGameObject.GetComponentInChildren<FoodAIHolding>();
-            hunger = aGameObject.GetComponent<FoodAIHunger>();
+            hunger = aGameObject.GetComponent<NormalCivProfile>();
         }
 
         public override void Enter()
@@ -37,7 +37,7 @@ namespace Marcus
             if (waitTimer <= 0)
             {
                 hand.AteFood();
-                hunger.AteFood();
+                hunger.UpdateTrait("Hunger", 0);
             }
         }
     }
