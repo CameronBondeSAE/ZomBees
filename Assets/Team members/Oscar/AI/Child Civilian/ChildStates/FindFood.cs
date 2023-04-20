@@ -6,6 +6,13 @@ namespace Oscar
 {
     public class FindFood : OscarsLittleGuyMovement
     {
+        public override void Enter()
+        {
+            base.Enter();
+            
+            NavmeshEnabled();
+        }
+
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
