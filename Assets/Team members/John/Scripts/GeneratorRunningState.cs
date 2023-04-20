@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
 
-public class GeneratorRunningState : MonoBehaviour, ISwitchable
+public class GeneratorRunningState : MonoBehaviour
 {
     public AudioClip   generatorRunning;
     public AudioSource generatorAudio;
@@ -23,18 +23,7 @@ public class GeneratorRunningState : MonoBehaviour, ISwitchable
         generatorAudio.Stop();
         generatorAudio.loop = false;
     }
-
-
-    public void TurnOn()
-    {
-        
-    }
-
-    public void TurnOff()
-    {
-        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorShuttingDownState>());
-    }
-
+    
     public void PlaySound()
     {
         generatorAudio.clip = generatorRunning;

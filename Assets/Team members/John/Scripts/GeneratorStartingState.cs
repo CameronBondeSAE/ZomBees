@@ -3,23 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using Johns;
 using Sirenix.OdinInspector;
+using System.Threading.Tasks;
 using UnityEngine;
 public class GeneratorStartingState : MonoBehaviour
 {
     public  AudioClip   generatorStartUp;
     public  AudioSource generatorAudio;
 
+    public IEnumerator coroutine;
+    
     [Button]
     public void OnEnable()
     {
-        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorStartingState>());
         generatorAudio.clip = generatorStartUp;
         generatorAudio.Play();
-        StartCoroutine(DelayCoroutine());
+
+        coroutine = DelayCoroutine();
+        StartCoroutine(coroutine);
     }
 
     public void OnDisable()
     {
+        StopCoroutine(coroutine);
         generatorAudio.Stop();
     }
 
