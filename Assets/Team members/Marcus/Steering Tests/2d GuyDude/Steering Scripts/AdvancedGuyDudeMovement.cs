@@ -9,10 +9,14 @@ namespace Marcus
 {
     public class AdvancedGuyDudeMovement : TurnFunction
     {
+        public bool usingRigidbodyMovement;
+        
         public Rigidbody rb;
         public float speed;
         public float stoppingDistance;
         public PatrolPoint targetPoint;
+
+        public NavMeshAgent navMeshAgent;
         
         private NavMeshPath path;
         [ReadOnly] [SerializeField]
@@ -21,42 +25,83 @@ namespace Marcus
         private void OnEnable()
         {
             path = new NavMeshPath();
+
+            if (usingRigidbodyMovement)
+            {
+                rb.isKinematic = false;
+                navMeshAgent.enabled = false;
+            }
+            else
+            {
+                rb.isKinematic = true;
+                navMeshAgent.enabled = true;
+            }
         }
 
         public void MoveToPoint(PatrolPoint destination)
         {
-            targetPoint = destination;
-            pathCounter = 0;
+            if (usingRigidbodyMovement)
+                targetPoint = destination;
+            else
+                navMeshAgent.SetDestination(destination.transform.position);
             
-            // path.ClearCorners();
+            pathCounter = 0;
             NavMesh.CalculatePath(transform.position, targetPoint.transform.position, NavMesh.AllAreas, path);
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (targetPoint)
+            if (usingRigidbodyMovement)
             {
-                Vector3 nextPoint = path.corners[pathCounter];
-                float distanceFromPoint = Vector3.Distance(transform.position, nextPoint);
-                
-                if (distanceFromPoint <= stoppingDistance)
+                if (targetPoint)
                 {
-                    pathCounter++;
-                    if (pathCounter >= path.corners.Length)
+                    Vector3 nextPoint = path.corners[pathCounter];
+                    float distanceFromPoint = Vector3.Distance(transform.position, nextPoint);
+                
+                    if (distanceFromPoint <= stoppingDistance)
                     {
-                        targetPoint = null;
+                        pathCounter++;
+                        if (pathCounter >= path.corners.Length)
+                        {
+                            targetPoint = null;
+                        }
                     }
+                
+                    float turnSpeed = Vector3.Angle(transform.forward, nextPoint)/3f;
+                    TurnTowards(rb, nextPoint, turnSpeed);
+                
+                    rb.AddRelativeForce(Vector3.forward * speed);
+                }
+            }
+            else
+            {
+                if (ReachedDestinationOrGaveUp())
+                {
+                    targetPoint = null;    
                 }
                 
-                float turnSpeed = Vector3.Angle(transform.forward, nextPoint)/3f;
-                TurnTowards(rb, nextPoint, turnSpeed);
-                
-                rb.AddRelativeForce(Vector3.forward * speed);
             }
             
             for (int i = 0; i < path.corners.Length - 1; i++)
                 Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
+        }
+        
+        public bool ReachedDestinationOrGaveUp()
+        {
+
+            if (!navMeshAgent.pathPending)
+            {
+                if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance + stoppingDistance)
+                {
+                    if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }
