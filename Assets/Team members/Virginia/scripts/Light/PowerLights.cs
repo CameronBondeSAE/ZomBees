@@ -5,10 +5,10 @@ using Virginia;
 
 namespace Virginia
 {
-    public class PowerLights : MonoBehaviour, ISwitchable
+    public class PowerLights : MonoBehaviour, ISwitchable, IItem
     {
         public Light light;
-        public Light Light;
+        public Light2 Light;
         
 
         public Virginia.Switch Vswitch;
@@ -26,11 +26,12 @@ namespace Virginia
         public void TurnOn()
         {
             light.enabled = true;
+            light2.enabled = true;
         }
 
         public void TurnOff()
         {
-            light.enabled = false;
+            light.enabled = false;  light2.enabled = false;
         }
 
     }
