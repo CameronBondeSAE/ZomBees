@@ -21,10 +21,11 @@ namespace Marcus
             return hand.holdingFood;
         }
 
-        /*public bool IsHungry()
+        public bool IsHungry()
         {
-            return hunger.thresholdHit;
-        }*/
+            return false;
+            //return hunger.thresholdHit;
+        }
 
         public bool HasItem()
         {
