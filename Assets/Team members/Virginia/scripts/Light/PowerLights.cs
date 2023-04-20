@@ -8,6 +8,8 @@ namespace Virginia
     public class PowerLights : MonoBehaviour, ISwitchable
     {
         public Light light;
+        public Light Light;
+        
 
         public Virginia.Switch Vswitch;
 

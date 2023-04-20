@@ -9,9 +9,9 @@ namespace Virginia
 {
     public class Inventory : SerializedMonoBehaviour
     {
-        public IItem heldItem;
+        public IItem heldItem; //Item that is/ Isn't in the player's hand
         public float radius;
-        public Transform hand;
+        public Transform hand; //where we want the heldItem to be
         
             [Button] 
         public void Pickup()
@@ -43,7 +43,7 @@ namespace Virginia
             (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = false; 
             (heldItem as MonoBehaviour).transform.parent = null; //unparents the child aka child becomes an orphan 
             heldItem = null; // clears the object from the held Item slot (I forgot the name)
-            Debug.Log("disposed item didn't need it");
+            //Debug.Log("disposed item didn't need it");
 
         }
         
