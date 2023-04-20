@@ -22,8 +22,6 @@ namespace Virginia
             Switch.ThingToSwitch?.TurnOn();
        
             GetComponent<Renderer>().material.color = Color.green;
-            
-            GetComponent<SoundEmitter>().EmitSound(soundProperties);
         }
 
       

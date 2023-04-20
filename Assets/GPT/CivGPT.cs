@@ -13,7 +13,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
-public class CivGPT : MonoBehaviour, IInteractable
+public class CivGPT : MonoBehaviour
 {
 	public string apiKeys;
 
@@ -261,15 +261,5 @@ public class CivGPT : MonoBehaviour, IInteractable
 		{
 			Debug.Log($"{msg.Role}: {msg.Content}");
 		}
-	}
-
-	public void Interact()
-	{
-		
-	}
-
-	public void Inspect()
-	{
-		
 	}
 }

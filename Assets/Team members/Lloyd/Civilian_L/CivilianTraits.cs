@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CivilianTraits : SerializedMonoBehaviour
 {
-    [ShowInInspector] public Dictionary<TraitScriptableObject, TraitStats> traitsDictionary;
+    // [ShowInInspector] public Dictionary<TraitScriptableObject, TraitStats> traitsDictionary;
     [ShowInInspector] public List<TraitStats> traits;
 
     public event Action<TraitStats> HitThresholdEvent;
@@ -56,6 +56,7 @@ public class CivilianTraits : SerializedMonoBehaviour
     }
 }
 
+[Serializable]
 public class TraitStats
 {
     public TraitScriptableObject traitScriptableObject;

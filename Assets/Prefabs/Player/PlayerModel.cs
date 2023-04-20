@@ -23,19 +23,19 @@ namespace AlexM
 		private float groundAngle, groundAngleOffset;
 
 		public Health health;
-		
+
 		private void Awake()
 		{
 			GetReferences();
 			originalSpeed = maxSpeed;
-			
+
 			health.HealthReducedToZeroEvent += HealthOnHealthReducedToZeroEvent;
 		}
 
 		void HealthOnHealthReducedToZeroEvent()
 		{
 			Debug.Log("PLAYER DIED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			
+
 			// HACK
 			SceneManager.LoadScene("Main");
 		}
@@ -45,18 +45,6 @@ namespace AlexM
 			GetComponentInChildren<AudioListener>().enabled = true;
 		}
 
-
-		private void OnEnable()
-		{
-			controls = new Inputs();
-			controls.Movement.Enable();
-			controls.Movement.Move.performed += ctx => _movementInput = controls.Movement.Move.ReadValue<Vector2>();
-		}
-
-		private void OnDisable()
-		{
-			controls.Movement.Disable();
-		}
 
 		void GetReferences()
 		{
@@ -183,18 +171,9 @@ namespace AlexM
 
 		public void JumpInput(InputAction.CallbackContext obj)
 		{
-			if (obj.performed)
+			if (_isGrounded)
 			{
-				//Debug.LogWarning("JumpInput Performed.");
-				if (_isGrounded)
-				{
-					Jump();
-				}
-			}
-
-			if (obj.canceled)
-			{
-				//Debug.LogWarning("JumpInput Cancelled.");
+				Jump();
 			}
 		}
 
@@ -210,23 +189,11 @@ namespace AlexM
 			_movement = (_inputManager.moveDirection.y * _fwdDirection) + (_inputManager.moveDirection.x * _rightDirection);
 
 
-			
-			
-			
 			// ISwitchable switchable;
 			// switchable.TurnOn();
 		}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		private void ApplyMovement()
 		{
 			if (GetSpeed() < maxSpeed)

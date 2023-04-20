@@ -9,7 +9,7 @@ using Sirenix.OdinInspector;
 [Serializable]
 public class SoundProperties
 {
-	public SoundProperties(GameObject source, SoundEmitter.SoundType soundType, float radius, float distance, float fear, float beeness, Team team, int obstaclesBetween)
+	public SoundProperties(GameObject source, SoundEmitter.SoundType soundType, float radius, float distance, float fear, float beeness, Team team, int obstaclesBetween, string dialogue = "")
 	{
 		Source           = source;
 		SoundType        = soundType;
@@ -19,16 +19,18 @@ public class SoundProperties
 		Beeness          = beeness;
 		Team             = team;
 		ObstaclesBetween = obstaclesBetween;
+		Dialogue         = dialogue;
 	}
 
-	public GameObject             Source           ;//{ get; set; }
-	public SoundEmitter.SoundType SoundType        ;//{ get; set; }
-	public float                  Radius           ;//{ get; set; }
-	public float                  Distance         ;//{ get; set; }
-	public float                  Fear             ;//{ get; set; }
-	public float                  Beeness          ;//{ get; set; }
-	public Team                   Team             ;//{ get; set; }
-	public int                    ObstaclesBetween ;//{ get; set; }
+	public GameObject             Source;           //{ get; set; }
+	public SoundEmitter.SoundType SoundType;        //{ get; set; }
+	public float                  Radius;           //{ get; set; }
+	public float                  Distance;         //{ get; set; }
+	public float                  Fear;             //{ get; set; }
+	public float                  Beeness;          //{ get; set; }
+	public Team                   Team;             //{ get; set; }
+	public int                    ObstaclesBetween; //{ get; set; }
+	public string                 Dialogue;
 }
 
 public class SoundEmitter : SerializedMonoBehaviour //MonoBehaviour

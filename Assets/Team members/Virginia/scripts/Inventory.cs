@@ -16,7 +16,7 @@ namespace Virginia
             [Button] 
         public void Pickup()
         {
-            Collider[]  CollidersFound = Physics.OverlapSphere(transform.position, radius);
+            Collider[]  CollidersFound = Physics.OverlapSphere(hand.transform.position, radius);
             foreach (Collider colliderFound in  CollidersFound)
             {
 
@@ -29,6 +29,8 @@ namespace Virginia
                     (heldItem as MonoBehaviour).transform.localPosition = Vector3.zero;
                     //moves it to the position of the "hand"
                     //Debug.Log(message: "pick up");
+                    
+                    break;
                 }
             }
         }

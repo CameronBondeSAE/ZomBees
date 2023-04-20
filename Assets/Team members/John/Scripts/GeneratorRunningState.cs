@@ -15,6 +15,8 @@ public class GeneratorRunningState : MonoBehaviour
     {
         PlaySound();
         GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
+        
+        GetComponent<GeneratorModel>()?.thingToGivePowerTo.TurnOn();
     }
     
     [Button]
@@ -22,6 +24,7 @@ public class GeneratorRunningState : MonoBehaviour
     {
         generatorAudio.Stop();
         generatorAudio.loop = false;
+        GetComponent<GeneratorModel>().thingToGivePowerTo.TurnOff();
     }
     
     public void PlaySound()

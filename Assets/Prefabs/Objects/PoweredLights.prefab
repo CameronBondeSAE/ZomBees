@@ -252,7 +252,7 @@ Transform:
   - {fileID: 4978553423245208269}
   - {fileID: 3830340344197892215}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8684709104479223725
 MonoBehaviour:
@@ -267,7 +267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 1899606229622944648}
-  Light: {fileID: 4528577670327840585}
   Vswitch: {fileID: 0}
 --- !u!136 &7100310783023511618
 CapsuleCollider:
@@ -284,12 +283,12 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2569728
-  m_Height: 1.6949639
+  m_Height: 2.29
   m_Direction: 1
   m_Center: {x: 0, y: -0.21794963, z: 0}
 --- !u!54 &3456710147069226140
@@ -300,7 +299,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6587990613259552473}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 40
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -317,7 +316,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &8260050875830825581
 GameObject:

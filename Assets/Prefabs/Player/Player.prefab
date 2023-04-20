@@ -141,6 +141,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be7595dfe38c284599c598296f1343c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   isLit: 1
   isMoving: 0
   isFood: 0
@@ -150,6 +159,37 @@ MonoBehaviour:
   initialLength: 10
   distance: 10
   lightCone: {fileID: 2115877263}
+--- !u!1 &4472908712102883956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5912210111916281160}
+  m_Layer: 0
+  m_Name: Right Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5912210111916281160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4472908712102883956}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3399979, y: -0.515, z: 0.9700007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6271187259181377449}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6271187259181377446
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +222,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 271114681989653612}
+  - {fileID: 4459827645430392477}
+  - {fileID: 5912210111916281160}
   m_Father: {fileID: 6271187260368080563}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -451,9 +493,13 @@ GameObject:
   - component: {fileID: 2228857321506447193}
   - component: {fileID: 3411472063979927375}
   - component: {fileID: 1392068196}
-  - component: {fileID: 1578378641}
   - component: {fileID: 839573392}
   - component: {fileID: 2524734214732923673}
+  - component: {fileID: 6989164079533549418}
+  - component: {fileID: 2339750691361325411}
+  - component: {fileID: 1813740189}
+  - component: {fileID: 1578378641}
+  - component: {fileID: 6912916101788770974}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -477,7 +523,6 @@ Transform:
   - {fileID: 6271187260610386038}
   - {fileID: 4604193975535477227}
   - {fileID: 6271187259283767327}
-  - {fileID: 4459827645430392477}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -522,8 +567,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interaction: {fileID: 1392068196}
   moveDirection: {x: 0, y: 0}
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
+  leftHandInventory: {fileID: 1578378641}
+  rightHandInventory: {fileID: 6912916101788770974}
+  talking: {fileID: 1813740189}
 --- !u!114 &4344033232605556001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,32 +671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d383c0fcdf8bfe94bb2b32624c37cd95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1578378641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6271187260368080590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 699c4d06c9767d648a2b83dcb4982110, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: heldItem
-      Entry: 6
-      Data: 
-  radius: 3
-  hand: {fileID: 4459827645430392477}
 --- !u!114 &839573392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,136 +700,134 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: a7b0073751aff784d975994f810239c9, type: 2}
-    - {fileID: 11400000, guid: ca72b4631b3b6d04ab91364ae2a0e190, type: 2}
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  traits:
+  - traitScriptableObject: {fileID: 11400000, guid: ca72b4631b3b6d04ab91364ae2a0e190, type: 2}
+    value: 0.814
+    threshold: 1
+    thresholdHit: 0
+  - traitScriptableObject: {fileID: 11400000, guid: a7b0073751aff784d975994f810239c9, type: 2}
+    value: 0.255
+    threshold: 1
+    thresholdHit: 0
+--- !u!114 &6989164079533549418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6271187260368080590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  maxListeners: 20
+--- !u!114 &2339750691361325411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6271187260368080590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heardSound: 0
+  loudestRecentSound:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
+  soundsList: []
+--- !u!114 &1813740189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6271187260368080590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cfc085901cb664b8a0a78e2ffa6e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: 
+  radius: 5
+  soundEmitter: {fileID: 6989164079533549418}
+--- !u!114 &1578378641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6271187260368080590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699c4d06c9767d648a2b83dcb4982110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: traitsDictionary
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[TraitScriptableObject, Assembly-CSharp],[TraitStats,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[TraitScriptableObject,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 2|TraitStats, Assembly-CSharp
-    - Name: traitScriptableObject
+    - Name: heldItem
       Entry: 6
       Data: 
-    - Name: value
-      Entry: 4
-      Data: 0.232
-    - Name: threshold
-      Entry: 4
-      Data: 1
-    - Name: thresholdHit
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 10
-      Data: 1
-    - Name: $v
-      Entry: 7
-      Data: 3|TraitStats, Assembly-CSharp
-    - Name: traitScriptableObject
+  radius: 0.75
+  hand: {fileID: 4459827645430392477}
+--- !u!114 &6912916101788770974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6271187260368080590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699c4d06c9767d648a2b83dcb4982110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: heldItem
       Entry: 6
       Data: 
-    - Name: value
-      Entry: 4
-      Data: 0.807
-    - Name: threshold
-      Entry: 4
-      Data: 1
-    - Name: thresholdHit
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: traits
-      Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[TraitStats, Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 5|TraitStats, Assembly-CSharp
-    - Name: traitScriptableObject
-      Entry: 10
-      Data: 1
-    - Name: value
-      Entry: 4
-      Data: 0.814
-    - Name: threshold
-      Entry: 4
-      Data: 1
-    - Name: thresholdHit
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|TraitStats, Assembly-CSharp
-    - Name: traitScriptableObject
-      Entry: 10
-      Data: 0
-    - Name: value
-      Entry: 4
-      Data: 0.255
-    - Name: threshold
-      Entry: 4
-      Data: 1
-    - Name: thresholdHit
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+  radius: 0.75
+  hand: {fileID: 5912210111916281160}
 --- !u!1 &6271187260610386039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4459827645430392477}
   m_Layer: 0
-  m_Name: Hand
+  m_Name: Left Hand
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1300,11 +1318,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7524519435191800825}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34, y: 0, z: 0.97}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.3399948, y: -0.515, z: 0.97000176}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6271187260368080563}
-  m_RootOrder: 5
+  m_Father: {fileID: 6271187259181377449}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

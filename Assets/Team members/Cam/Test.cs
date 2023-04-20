@@ -59,7 +59,7 @@ public class Test : SerializedMonoBehaviour
 		{
 			Debug.Log("Fear Dick = " + civilianTraits.GetValueOfTrait(fear).value);
 			
-			Debug.Log("Fear Dick = " + civilianTraits.traitsDictionary[fear].value);
+			// Debug.Log("Fear Dick = " + civilianTraits.traitsDictionary[fear].value);
 		}
 	}
 }

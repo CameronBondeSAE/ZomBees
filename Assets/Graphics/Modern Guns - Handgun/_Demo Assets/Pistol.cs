@@ -15,6 +15,8 @@ public class Pistol : MonoBehaviour, IItem, IInteractable
     [SerializeField] private Transform casingExitLocation;
 
     [SerializeField] private AudioSource sound;
+    [SerializeField] private SoundEmitter soundEmitter;
+    
     
     
     [Header("Settings")]
@@ -54,6 +56,7 @@ public class Pistol : MonoBehaviour, IItem, IInteractable
             tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
 
             sound.Play();
+            soundEmitter.EmitSound(new SoundProperties(gameObject, SoundEmitter.SoundType.GunShot, 50f, 0, 0.8f, 0, Team.Human, 0, ""));
             
             //Destroy the muzzle flash effect
             Destroy(tempFlash, destroyTimer);
@@ -90,7 +93,6 @@ public class Pistol : MonoBehaviour, IItem, IInteractable
 
     public void   Consume()
     {
-        
     }
 
     public void   Dispose()

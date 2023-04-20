@@ -126,10 +126,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 982409139806748098, guid: a78a725941312494b930d664f3b315d0, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 982409139806748098, guid: a78a725941312494b930d664f3b315d0, type: 3}
     - target: {fileID: 1792479375520978528, guid: a78a725941312494b930d664f3b315d0, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 03d1fe4e93c9d4445b3a611df2ee5713, type: 2}
+    - target: {fileID: 5600231328598908697, guid: a78a725941312494b930d664f3b315d0, type: 3}
+      propertyPath: destroyTimer
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8807204533817979089, guid: a78a725941312494b930d664f3b315d0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -178,12 +186,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 50
-  fear: 0.5
-  beeness: 0
-  team: 0
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   maxListeners: 0
-  mySoundType: 0
 --- !u!4 &7938099945078752762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6071559261934024155, guid: a78a725941312494b930d664f3b315d0, type: 3}

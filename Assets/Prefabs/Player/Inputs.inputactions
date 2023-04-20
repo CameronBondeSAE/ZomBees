@@ -2,7 +2,7 @@
     "name": "Inputs",
     "maps": [
         {
-            "name": "Movement",
+            "name": "In game",
             "id": "887f7068-c3bb-457c-af72-bebced30ab2b",
             "actions": [
                 {
@@ -42,25 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Menu",
-                    "type": "Button",
-                    "id": "3686b974-3f70-44e7-8dcd-f6fc11fa2747",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Torch",
-                    "type": "Button",
-                    "id": "78d02e40-e2ab-4294-a1df-0d71907db1cc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Use",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "80d81a3d-f0c3-4042-bbc1-b843e33e5245",
                     "expectedControlType": "Button",
@@ -69,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pick up",
+                    "name": "Pick up left",
                     "type": "Button",
                     "id": "1dd4407e-d0e0-4343-a28d-a692b3c1ab48",
                     "expectedControlType": "Button",
@@ -78,9 +60,54 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Drop",
+                    "name": "Pick up right",
+                    "type": "Button",
+                    "id": "5e007964-eba9-4f0e-ab03-f5df88b192fa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Drop left",
                     "type": "Button",
                     "id": "b82b30f3-d224-4742-acf1-2a64eebae668",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Drop right",
+                    "type": "Button",
+                    "id": "56af3bbc-d1d1-4906-b5c1-e1c20669dce5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Use left hand",
+                    "type": "Button",
+                    "id": "2bb37450-769c-467a-aebf-402a9c2c4ee1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Use right hand",
+                    "type": "Button",
+                    "id": "210e66ec-a14d-453f-ad32-d459769d5849",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "3686b974-3f70-44e7-8dcd-f6fc11fa2747",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -123,34 +150,12 @@
                 },
                 {
                     "name": "",
-                    "id": "5a4c5071-6359-4536-8d78-cad8506946d5",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "aef1d80d-ad82-47d0-b71f-d33682a87244",
+                    "id": "c515249d-f2d6-4707-9fc9-76f15da047dc",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Torch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c515249d-f2d6-4707-9fc9-76f15da047dc",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Use",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -161,51 +166,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Use",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "83405e54-b9be-443c-993c-306a93fe42ac",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pick up",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a82ff763-62cc-4a8e-af49-115614ca21ab",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pick up",
+                    "action": "Pick up left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "f42ca147-5c97-49ae-be4c-fef192a8c739",
-                    "path": "<Keyboard>/v",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Drop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "018832cf-2aab-4ac3-91b3-6e45395447ff",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Drop",
+                    "action": "Drop left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -263,6 +246,109 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "b9520662-2e3a-472e-a9a7-4d15c5cbea70",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use left hand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d787c0e-295b-4d3f-837e-f45c0bf3dc40",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use right hand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5a4c5071-6359-4536-8d78-cad8506946d5",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3bce5a59-43c4-4a58-92c4-f0d37529125b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pick up right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f3555acf-80e3-4947-b1cb-d41dc92c2470",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drop right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "In game talking",
+            "id": "e0934669-687b-4926-8a94-323021e0f2b5",
+            "actions": [
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "5419faff-0705-43de-ac8a-e7b2f10965cc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Send message",
+                    "type": "Button",
+                    "id": "e36312e7-d5e0-4fd6-a126-045a13c51c5e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8d5cde95-5fa4-4555-9d43-acaa29351086",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afcc7ec3-5635-4c29-a334-eeb0fa78a5dd",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Send message",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

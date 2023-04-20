@@ -1,10 +1,11 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Oscar
 {
-    public class DynamicObject : MonoBehaviour
+    public class DynamicObject : SerializedMonoBehaviour
     {
         //perception levels
         public bool isLit;
