@@ -10,7 +10,7 @@ public class Coroutine : MonoBehaviour
     [Button]
     void Go()
     {
-        coroutine = AFunction();
+        coroutine = AFunction(); // 
         
         StartCoroutine(coroutine);
     }

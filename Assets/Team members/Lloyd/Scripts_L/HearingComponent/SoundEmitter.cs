@@ -64,7 +64,6 @@ public class SoundEmitter : SerializedMonoBehaviour //MonoBehaviour
 		CreatureRepellant
 	}
 
-	[Button]
 	public void EmitSound(SoundProperties soundProperties)
 	{
 		int numColliders = Physics.OverlapSphereNonAlloc(gameObject.transform.position, soundProperties.Radius, hitColliders);

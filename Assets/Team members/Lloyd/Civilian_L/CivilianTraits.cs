@@ -1,38 +1,56 @@
-using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 public class CivilianTraits : SerializedMonoBehaviour
 {
-    [ShowInInspector] public Dictionary<string, TraitStats> traitsDictionary;
+    [ShowInInspector] public Dictionary<TraitScriptableObject, TraitStats> traitsDictionary;
     [ShowInInspector] public List<TraitStats> traits;
 
-    public void UpdateTrait(string key, float value)
+    public event Action<TraitStats> HitThresholdEvent;
+
+    public TraitStats GetValueOfTrait(TraitScriptableObject traitScriptableObject)
     {
-        if (traitsDictionary.ContainsKey(key))
+
+        foreach (TraitStats civilianTraitsTrait in traits)
         {
-            TraitStats traitStats = traitsDictionary[key];
-            float oldValue = traitStats.value;
-            float newValue = oldValue + value;
+            if (civilianTraitsTrait.traitScriptableObject == traitScriptableObject)
+            {
+                // Found it
+                return civilianTraitsTrait;
+            }
+        }
 
-            if (newValue > 1.0f)
-            {
-                newValue = 1.0f;
-            }
-            else if (newValue < 0.0f)
-            {
-                newValue = 0.0f;
-            }
+        return null;
+    }
 
-            if (newValue >= traitStats.threshold)
+    public void UpdateTrait(TraitScriptableObject key, float newValue)
+    {
+        foreach (TraitStats civilianTraitsTrait in traits)
+        {
+            if (civilianTraitsTrait.traitScriptableObject == key)
             {
-                traitStats.thresholdHit = true;
-            }
-            else if (newValue < traitStats.threshold)
-            {
-                traitStats.thresholdHit = false;
+                if (newValue > 1.0f)
+                {
+                    newValue = 1.0f;
+                }
+                else if (newValue < 0.0f)
+                {
+                    newValue = 0.0f;
+                }
+    
+                if (newValue >= civilianTraitsTrait.threshold)
+                {
+                    civilianTraitsTrait.thresholdHit = true;
+                    HitThresholdEvent?.Invoke(civilianTraitsTrait);
+                }
+                else if (newValue < civilianTraitsTrait.threshold)
+                {
+                    civilianTraitsTrait.thresholdHit = false;
+                }
+                
+                civilianTraitsTrait.value = newValue;
             }
         }
     }
@@ -42,6 +60,8 @@ public class TraitStats
 {
     public TraitScriptableObject traitScriptableObject;
 
+    [Header("Don't update in play mode")]
+    // TODO tell ODIN to do ReadOnlyInPlay/Edit [ReadOnly]
     [Range(0f, 1f)] public float value = 0.5f;
     [Range(0f, 1f)] public float threshold = 1.0f;
 

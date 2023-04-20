@@ -8,12 +8,14 @@ using UnityEngine;
 
 public class Test : SerializedMonoBehaviour
 {
+	public CivilianTraits civilianTraits;
+
 	public string thing;
 
-	public bool  panicked;
+	public bool panicked;
 
 	public Stat<float> amountOfGoo = new Stat<float>();
-	public Stat<int>   anxiety = new Stat<int>();
+	public Stat<int>   anxiety     = new Stat<int>();
 
 
 	public Dictionary<string, Stat<float>> testStatsDic;
@@ -31,7 +33,7 @@ public class Test : SerializedMonoBehaviour
 			if (value > 100)
 				Debug.LogError("STOP IT ARTIST");
 			beeness.Value =  value;
-			anxiety.Value += (int)(beeness.Value / 10f);
+			anxiety.Value += (int) (beeness.Value / 10f);
 			// Fire event
 		}
 	}
@@ -47,8 +49,17 @@ public class Test : SerializedMonoBehaviour
 		anxiety.Value = 5;
 	}
 
+
+	public TraitScriptableObject fear;
+
 	// Update is called once per frame
 	void Update()
 	{
+		if (civilianTraits != null)
+		{
+			Debug.Log("Fear Dick = " + civilianTraits.GetValueOfTrait(fear).value);
+			
+			Debug.Log("Fear Dick = " + civilianTraits.traitsDictionary[fear].value);
+		}
 	}
 }
