@@ -41,11 +41,15 @@ namespace Marcus
         public void MoveToPoint(PatrolPoint destination)
         {
             if (usingRigidbodyMovement)
+            {
                 targetPoint = destination;
+                pathCounter = 0;
+            }
             else
+            {
                 navMeshAgent.SetDestination(destination.transform.position);
+            }
             
-            pathCounter = 0;
             NavMesh.CalculatePath(transform.position, targetPoint.transform.position, NavMesh.AllAreas, path);
         }
 

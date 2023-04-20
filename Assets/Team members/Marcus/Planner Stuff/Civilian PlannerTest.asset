@@ -38,7 +38,7 @@ MonoBehaviour:
   - name: Find Food
     isDefault: 0
     state: {fileID: 7819847402425102426, guid: 0b2f22a9956c18c479f87ede19246a3d, type: 3}
-    cost: 1
+    cost: 2
     position: {x: 316, y: 307}
     pre:
     - id: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   - name: Eat Food
     isDefault: 0
     state: {fileID: 242594687593455450, guid: 3a478a1aebebc2643839fb820ca38aec, type: 3}
-    cost: 1
+    cost: 2
     position: {x: 718, y: 289}
     pre:
     - id: 0
@@ -79,12 +79,14 @@ MonoBehaviour:
   - name: Get Food
     isDefault: 0
     state: {fileID: 8722729060447549500, guid: f70046e295812d449b52c18e9b2d3a7d, type: 3}
-    cost: 1
+    cost: 2
     position: {x: 512, y: 289}
     pre:
     - id: 1
       value: 1
     - id: 2
+      value: 0
+    - id: 8
       value: 0
     post:
     - id: 1
@@ -148,7 +150,7 @@ MonoBehaviour:
   - name: Leave Hiding
     isDefault: 0
     state: {fileID: 2877110659774664227, guid: 0038c0f600c38ba459e6ba6a3834093f, type: 3}
-    cost: 3
+    cost: 1
     position: {x: 907, y: 568}
     pre:
     - id: 6
@@ -160,8 +162,6 @@ MonoBehaviour:
       value: 0
     - id: 3
       value: 0
-    - id: 9
-      value: 1
   - name: Drop Holding
     isDefault: 0
     state: {fileID: 3385663683014684733, guid: d3add5da06be15c409d3c2ed728dae1d, type: 3}
@@ -189,6 +189,28 @@ MonoBehaviour:
     - id: 8
       value: 1
     post: []
+  - name: Turn On Torch
+    isDefault: 0
+    state: {fileID: 5629122522613570257, guid: 5aa2dd7178558374b98a0cc48e2d0a9a, type: 3}
+    cost: 2
+    position: {x: 1200, y: 860}
+    pre:
+    - id: 9
+      value: 0
+    post:
+    - id: 9
+      value: 1
+  - name: Turn Off Torch
+    isDefault: 0
+    state: {fileID: 5629122522613570257, guid: 5aa2dd7178558374b98a0cc48e2d0a9a, type: 3}
+    cost: 0
+    position: {x: 1400, y: 860}
+    pre:
+    - id: 9
+      value: 1
+    post:
+    - id: 9
+      value: 0
   goals:
   - name: Goal
     isDefault: 1
@@ -207,26 +229,26 @@ MonoBehaviour:
     - id: 9
       value: 1
   worldStates:
-  - position: {x: 230, y: 865}
+  - position: {x: 243, y: 1101}
     isAutoUpdate: 1
     list:
     - id: 0
-      value: 1
-    - id: 1
       value: 0
-    - id: 2
+    - id: 1
       value: 1
+    - id: 2
+      value: 0
     - id: 3
       value: 1
     - id: 4
       value: 1
     - id: 5
-      value: 0
+      value: 1
     - id: 6
       value: 1
     - id: 7
-      value: 0
-    - id: 8
       value: 1
+    - id: 8
+      value: 0
     - id: 9
       value: 1
