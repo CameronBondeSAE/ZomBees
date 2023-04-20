@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace AlexM
 {
-	public class PlayerMovement : PlayerBase
+	public class PlayerModel : PlayerBase
 	{
 		public Inputs controls;
 		public float  maxSpeed         = 100f;

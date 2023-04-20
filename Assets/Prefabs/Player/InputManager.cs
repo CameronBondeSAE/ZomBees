@@ -9,7 +9,7 @@ namespace AlexM
 	#region Variables
 
 		private Inputs          _controls;
-		private PlayerMovement  _pMovement;
+		private PlayerModel  _pModel;
 		private CamMouseLook    _camScript;
 
 		public InteractScript interaction;
@@ -24,7 +24,7 @@ namespace AlexM
 
 		private void GetReferences()
 		{
-			_pMovement = GetComponent<PlayerMovement>();
+			_pModel = GetComponent<PlayerModel>();
 			_camScript = GetComponentInChildren<CamMouseLook>();
 		}
 
@@ -32,14 +32,14 @@ namespace AlexM
 		{
 			_controls = new Inputs();
 			_controls.Enable();
-			_controls.Movement.Move.performed   += _pMovement.MovementInput;
-			_controls.Movement.Move.canceled    += _pMovement.MovementInput;
-			_controls.Movement.Jump.performed   += _pMovement.JumpInput;
-			_controls.Movement.Jump.canceled    += _pMovement.JumpInput;
-			_controls.Movement.Sprint.performed += _pMovement.Sprint;
-			_controls.Movement.Sprint.canceled  += _pMovement.Sprint;
-			_controls.Movement.Crouch.performed += _pMovement.CrouchInput;
-			_controls.Movement.Crouch.canceled  += _pMovement.CrouchInput;
+			_controls.Movement.Move.performed   += _pModel.MovementInput;
+			_controls.Movement.Move.canceled    += _pModel.MovementInput;
+			_controls.Movement.Jump.performed   += _pModel.JumpInput;
+			_controls.Movement.Jump.canceled    += _pModel.JumpInput;
+			_controls.Movement.Sprint.performed += _pModel.Sprint;
+			_controls.Movement.Sprint.canceled  += _pModel.Sprint;
+			_controls.Movement.Crouch.performed += _pModel.CrouchInput;
+			_controls.Movement.Crouch.canceled  += _pModel.CrouchInput;
 			_controls.Movement.Use.performed    += UseOnperformed;
 		}
 

@@ -41,7 +41,7 @@ public class DealDamageScript : MonoBehaviour
     private IEnumerator MyCoroutine()
     {
         isCoroutineRunning = false;
-        health.Change(-damage);
+        health?.Change(-damage);
         yield return new WaitForSeconds(2);
         Debug.Log("2 seconds have passed");
         
