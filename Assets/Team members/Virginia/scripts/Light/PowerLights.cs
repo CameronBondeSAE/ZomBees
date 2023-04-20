@@ -8,7 +8,7 @@ namespace Virginia
     public class PowerLights : MonoBehaviour, ISwitchable, IItem
     {
         public Light light;
-        public Light2 Light;
+        //public Light Light;
         
 
         public Virginia.Switch Vswitch;
@@ -26,13 +26,33 @@ namespace Virginia
         public void TurnOn()
         {
             light.enabled = true;
-            light2.enabled = true;
+            //Light.enabled = true;
         }
 
         public void TurnOff()
         {
-            light.enabled = false;  light2.enabled = false;
+            light.enabled = false;  
+            //Light.enabled = false;
         }
 
+        public void Consume()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string Description()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Pickup(GameObject whoPickedMeUp)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
