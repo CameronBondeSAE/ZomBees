@@ -46,9 +46,9 @@ public class OscarNavMeshMovement : MonoBehaviour
             {
                 FinishUp();
             }
-            littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed);
-            littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
-                finalDestination.transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed,0);
+            // littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed);
+            // littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
+            //     finalDestination.transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed,0);
         }
     }
 

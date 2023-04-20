@@ -103,7 +103,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5195033038855813267}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bb1b203c4f56a984eb0dce66d110c3fc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heardSound: 0
   loudestRecentSound: {x: 0, y: 0, z: 0}
+  soundsList: []
 --- !u!114 &5195033038855813266
 MonoBehaviour:
   m_ObjectHideFlags: 0

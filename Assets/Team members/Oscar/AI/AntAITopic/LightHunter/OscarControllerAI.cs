@@ -13,11 +13,11 @@ public class OscarControllerAI : MonoBehaviour
     {
         if (vision.foodInSight.Count > 0)
         {
-            colourChanger.attackPhase = true;
+            //colourChanger.attackPhase = true;
             return true;
         }
 
-        colourChanger.attackPhase = false;
+        //colourChanger.attackPhase = false;
         return false;
     }
 
@@ -53,11 +53,11 @@ public class OscarControllerAI : MonoBehaviour
     {
         if (vision.civsInSight.Count > 0)
         {
-            colourChanger.attackPhase = true;
+            //colourChanger.attackPhase = true;
             return true;
         }
         
-        colourChanger.attackPhase = false;
+        //colourChanger.attackPhase = false;
         return false;
     }
     

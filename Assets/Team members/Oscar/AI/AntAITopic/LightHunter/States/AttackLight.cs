@@ -4,18 +4,15 @@ using Anthill.AI;
 using Oscar;
 using UnityEngine;
 
-public class AttackLight : AntAIState
+public class AttackLight : OscarsLittleGuyMovement
 {
-    private LittleGuy littleGuy;
-    private OscarVisionAI vision;
+    private OscarVision vision;
 
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
         
-        littleGuy = aGameObject.GetComponent<LittleGuy>();
-        
-        vision = aGameObject.GetComponent<OscarVisionAI>();
+        vision = aGameObject.GetComponent<OscarVision>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
@@ -24,9 +21,9 @@ public class AttackLight : AntAIState
         
         if (vision.lightInSight.Count > 0)
         {
-            littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
-                vision.lightInSight[0].transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed,0);
-            littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 2), ForceMode.Acceleration);
+            TurnTowards(vision.lightInSight[0].transform.position);
+            
+            BasicMovement(4f);
         }
         else
         {

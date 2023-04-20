@@ -4,18 +4,13 @@ using Anthill.AI;
 using Oscar;
 using UnityEngine;
 
-public class AttackCivilian : AntAIState
+public class AttackCivilian : OscarsLittleGuyMovement
 {
-    private LittleGuy littleGuy;
     private OscarVision vision;
-
-    private GameObject target;
     
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
-        
-        littleGuy = aGameObject.GetComponent<LittleGuy>();
         
         vision = aGameObject.GetComponentInChildren<OscarVision>();
     }
@@ -24,9 +19,7 @@ public class AttackCivilian : AntAIState
     {
         base.Enter();
         
-        
-        
-        littleGuy.GetComponentInChildren<ColourChangeShader>().attackPhase = true;
+        GetComponentInChildren<ColourChangeShader>().attackPhase = true;
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
@@ -35,9 +28,9 @@ public class AttackCivilian : AntAIState
         
         if (vision.civsInSight.Count >= 1)
         {
-            littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
-                vision.civsInSight[0].transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed,0);
-            littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 2), ForceMode.Acceleration);
+            TurnTowards(vision.civsInSight[0].transform.position);
+            
+            BasicMovement(2f);
         }
         else
         {

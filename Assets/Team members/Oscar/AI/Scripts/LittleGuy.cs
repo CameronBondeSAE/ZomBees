@@ -9,8 +9,9 @@ namespace Oscar
 {
     public class LittleGuy : LivingEntity, IHear
     {
-        public Rigidbody rb;
+        
         public GameObject littleGuyModel;
+        public Rigidbody rb;
         public float speed;
         public float turnSpeed;
 

@@ -15,7 +15,7 @@ public class Hive : MonoBehaviour
             {
                 for (int i = 0; i < littleGuy.collectedObjects.Count; i++)
                 {
-                    UtilityManager.EnableAfterDelay(littleGuy.collectedObjects[i]);
+                    //UtilityManager.EnableAfterDelay(littleGuy.collectedObjects[i]);
                 }
                 littleGuy.collectedObjects.Clear();
             }

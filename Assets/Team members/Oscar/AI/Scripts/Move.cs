@@ -6,12 +6,11 @@ using UnityEngine.Serialization;
 
 namespace Oscar
 {
-    public class Move : MonoBehaviour
+    public class Move : OscarsLittleGuyMovement
     {
-        public LittleGuy littleGuy;
         void Update()
         {
-            littleGuy.rb.AddRelativeForce(Vector3.forward * littleGuy.speed,ForceMode.Acceleration);
+            BasicMovement(1f);
         }
     }
 }

@@ -179,7 +179,7 @@ MonoBehaviour:
       value: 1
   - name: FindFood
     isDefault: 0
-    state: {fileID: 7819847402425102426, guid: 0b2f22a9956c18c479f87ede19246a3d, type: 3}
+    state: {fileID: 3979326832935926586, guid: 7a9ac15fb178a60499bd9507f2a56136, type: 3}
     cost: 0
     position: {x: 1167, y: 333}
     pre:
@@ -194,7 +194,7 @@ MonoBehaviour:
       value: 1
   - name: GetFood
     isDefault: 0
-    state: {fileID: 8722729060447549500, guid: f70046e295812d449b52c18e9b2d3a7d, type: 3}
+    state: {fileID: 3979326832935926586, guid: 20f35949bda897a428421216c8a6eaf9, type: 3}
     cost: 0
     position: {x: 1362, y: 333}
     pre:
@@ -209,7 +209,7 @@ MonoBehaviour:
       value: 1
   - name: EatFood
     isDefault: 0
-    state: {fileID: 242594687593455450, guid: 3a478a1aebebc2643839fb820ca38aec, type: 3}
+    state: {fileID: 3979326832935926586, guid: 37c1ecbdfbf839042b34c2f38996551c, type: 3}
     cost: 0
     position: {x: 1556, y: 333}
     pre:

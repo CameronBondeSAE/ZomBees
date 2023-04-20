@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class Hide : AntAIState
+    public class Hide : OscarsLittleGuyMovement
     {
         
     }

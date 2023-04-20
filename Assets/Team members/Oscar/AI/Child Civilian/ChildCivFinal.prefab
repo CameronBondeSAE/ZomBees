@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 3766555885203436555}
   - component: {fileID: 7553392581998968432}
   - component: {fileID: 4373097535868285947}
+  - component: {fileID: 107376084}
+  - component: {fileID: 107376083}
   m_Layer: 0
   m_Name: ChildCivFinal
   m_TagString: Untagged
@@ -37,7 +39,7 @@ Transform:
   m_Children:
   - {fileID: 7164411692719033350}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!136 &7405988188930513079
 CapsuleCollider:
@@ -72,7 +74,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 2
-  m_AngularDrag: 3
+  m_AngularDrag: 20
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -290,6 +292,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 50
+--- !u!114 &107376084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481231920541928607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae14b77d76a23a499b6abe454a12762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
+  isFood: 0
+  isObject: 0
+  importance: 0
+  description: 
+  isBee: 0
+  littleGuyModel: {fileID: 7164411692719033371}
+  rb: {fileID: 3978504168813315633}
+  speed: 10
+  turnSpeed: 0.15
+  myHome: {fileID: 0}
+  collectedObjects: []
+--- !u!114 &107376083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481231920541928607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0d1af749cb9e047bb4032a317768ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  littleGuy: {fileID: 107376084}
 --- !u!1 &3521713356428858229
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,8 +656,8 @@ MonoBehaviour:
   importance: 0
   description: 
   isBee: 0
-  rb: {fileID: 3978504168813315633}
   littleGuyModel: {fileID: 7164411692719033371}
+  rb: {fileID: 3978504168813315633}
   speed: 2
   turnSpeed: 15
   myHome: {fileID: 0}
@@ -695,7 +735,7 @@ MonoBehaviour:
   littleGuy: {fileID: 7164411692719033346}
   vision: {fileID: 2338746979408309844}
   civProfile: {fileID: 9201919707044816528}
-  inventory: {fileID: 0}
+  inventory: {fileID: 3766555885203436555}
   ears: {fileID: 3131529511065738732}
   iAmScared: 0
   iAmFollowing: 0
@@ -740,7 +780,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7164411692719033371}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5

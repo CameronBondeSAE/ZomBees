@@ -5,26 +5,22 @@ using Anthill.AI;
 using Oscar;
 using UnityEngine;
 
-public class RunAway : AntAIState
+public class RunAway : OscarsLittleGuyMovement
 {
     //forloop through a list of patrol points and go to the closest one with navmesh.
-    
+    //investigate navmesh for points to run to.
     
     private Hearing ears;
-    private LittleGuy guy;
     private OscarVision vision;
     private ChildCivController childControl;
     
-    private Vector3 runAwayFromPos;
-    private Vector3 directionToRun;
-    
+    private Vector3 targetPos;
     float elapsedTime;
 
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
 
-        guy = aGameObject.GetComponent<LittleGuy>();
         ears = aGameObject.GetComponent<Hearing>();
         vision = aGameObject.GetComponentInChildren<OscarVision>();
         childControl = aGameObject.GetComponent<ChildCivController>();
@@ -40,26 +36,24 @@ public class RunAway : AntAIState
     {
         base.Execute(aDeltaTime, aTimeScale);
         
+        
         if (ears.heardSound)
         {
-            runAwayFromPos = ears.loudestRecentSound;
-            directionToRun = guy.transform.position - runAwayFromPos;
+            targetPos = ears.loudestRecentSound.Source.transform.position;
         }
 
         if (vision.beesInSight.Count >= 1)
         {
-            runAwayFromPos = vision.beesInSight[0].transform.position;
-            directionToRun = guy.transform.position - runAwayFromPos;
+            targetPos = vision.beesInSight[0].transform.position;
         }
         
         elapsedTime += Time.deltaTime;
         
         if (elapsedTime <= 5)
         {
-            guy.rb.AddRelativeTorque(0,Vector3.SignedAngle(guy.transform.forward,
-                    directionToRun, Vector3.up),0);
+            TurnAway(targetPos);
                     
-            guy.rb.AddRelativeForce(Vector3.forward * (guy.speed * 3), ForceMode.Acceleration);
+            BasicMovement(5f);        
         }
         else
         {

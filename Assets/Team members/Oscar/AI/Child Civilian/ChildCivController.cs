@@ -72,17 +72,17 @@ namespace Oscar
         }
         public bool DoIHaveRocks()
         {
-            if (inventory.hand != null)
-            {
-                if (inventory.hand.GetComponent<DynamicObject>().isObject)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            // if (inventory.hand != null)
+            // {
+            //     if (inventory.hand.GetComponent<DynamicObject>().isObject)
+            //     {
+            //         return true;
+            //     }
+            //     else
+            //     {
+            //         return false;
+            //     }
+            // }
             return false;
         }
 

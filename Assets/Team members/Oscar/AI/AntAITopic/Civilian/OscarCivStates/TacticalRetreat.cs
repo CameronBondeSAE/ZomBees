@@ -4,28 +4,46 @@ using Anthill.AI;
 using Oscar;
 using UnityEngine;
 
-public class TacticalRetreat : AntAIState
+public class TacticalRetreat : OscarsLittleGuyMovement
 {
     private Hearing ears;
-    private LittleGuy guy;
     
+    private Vector3 targetPos;
+    float elapsedTime;
+
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
 
-        guy = aGameObject.GetComponent<LittleGuy>();
         ears = aGameObject.GetComponent<Hearing>();
+    }
 
+    public override void Enter()
+    {
+        base.Enter();
+        elapsedTime = 0f;
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
 
-        Vector3 runAwayFromLoc = ears.loudestRecentSound;
+        if (ears.heardSound)
+        {
+            targetPos = ears.loudestRecentSound.Source.transform.position;
+        }
+
+        elapsedTime += Time.deltaTime;
         
-        guy.rb.AddRelativeTorque(0,Vector3.SignedAngle(guy.transform.forward,new Vector3(-runAwayFromLoc.x, runAwayFromLoc.y, -runAwayFromLoc.z), Vector3.up),0);
-        guy.rb.AddRelativeForce(Vector3.forward * (guy.speed * 12), ForceMode.Acceleration);
-        
+        if (elapsedTime <= 5)
+        {
+            TurnAway(targetPos);
+                    
+            BasicMovement(3f);        
+        }
+        else
+        {
+            Finish();        
+        }
     }
 }

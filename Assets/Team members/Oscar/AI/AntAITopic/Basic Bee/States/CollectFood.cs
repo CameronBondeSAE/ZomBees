@@ -5,16 +5,13 @@ using Anthill.AI;
 using Oscar;
 using UnityEngine;
 
-public class CollectFood : AntAIState
+public class CollectFood : OscarsLittleGuyMovement
 {
-    private LittleGuy littleGuy;
     private OscarVision vision;
 
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
-        
-        littleGuy = aGameObject.GetComponent<LittleGuy>();
         
         vision = aGameObject.GetComponentInChildren<OscarVision>();
     }
@@ -23,7 +20,7 @@ public class CollectFood : AntAIState
     {
         base.Enter();
         
-        littleGuy.GetComponentInChildren<ColourChangeShader>().attackPhase = true;
+        //GetComponentInChildren<ColourChangeShader>().attackPhase = true;
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
@@ -32,9 +29,9 @@ public class CollectFood : AntAIState
 
         if (vision.foodInSight.Count > 0)
         {
-            littleGuy.rb.AddRelativeTorque(0,Vector3.SignedAngle(transform.forward, 
-                vision.foodInSight[0].transform.position - transform.position, Vector3.up) * littleGuy.turnSpeed,0);
-            littleGuy.rb.AddRelativeForce(Vector3.forward * (littleGuy.speed * 4), ForceMode.Acceleration);
+            TurnTowards(vision.foodInSight[0].transform.position);
+            
+            BasicMovement(4f);
         }
         else
         {

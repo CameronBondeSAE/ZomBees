@@ -225,7 +225,7 @@ Transform:
   m_Children:
   - {fileID: 9016264153824953344}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!33 &1319880369596197996
 MeshFilter:
@@ -600,6 +600,7 @@ MonoBehaviour:
   littleGuy: {fileID: 1319880369596197993}
   vision: {fileID: 5857168494793117247}
   civProfile: {fileID: 765777349}
+  inventory: {fileID: 0}
   ears: {fileID: 6505835820105039239}
   iAmScared: 0
   iAmFollowing: 0

@@ -820,8 +820,9 @@ GameObject:
   - component: {fileID: 498041809768793983}
   - component: {fileID: 498041809768793982}
   - component: {fileID: 498041809768793977}
+  - component: {fileID: 1712142973424685343}
   m_Layer: 0
-  m_Name: Cone
+  m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -935,6 +936,23 @@ MonoBehaviour:
   _proportionalRadius: 0
   _coneRadius: 0.5
   _coneHeight: 1
+--- !u!114 &1712142973424685343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498041809768793979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9729b722772509f478c8353f9a609df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beesInSight: []
+  foodInSight: []
+  civsInSight: []
+  objectsInSight: []
+  lightInSight: []
 --- !u!1 &5571471917264393374
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +997,7 @@ Transform:
   - {fileID: 2917227763960282982}
   - {fileID: 319571427}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 4110.97, z: 0}
 --- !u!136 &5571471917264393373
 CapsuleCollider:
@@ -1014,7 +1032,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 2
-  m_AngularDrag: 3
+  m_AngularDrag: 20
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1043,11 +1061,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae14b77d76a23a499b6abe454a12762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLit: 0
+  isMoving: 0
+  isFood: 0
+  isObject: 0
+  importance: 0
+  description: 
   isBee: 1
-  rb: {fileID: 5571471917264393375}
   littleGuyModel: {fileID: 5571471917264393374}
+  rb: {fileID: 5571471917264393375}
   speed: 2
-  turnSpeed: 0.05
+  turnSpeed: 0.15
   myHome: {fileID: 0}
   collectedObjects: []
 --- !u!114 &4980646194317187398
@@ -1108,7 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09036150dc5dc1e4cb0fbc902662314f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vision: {fileID: 4980646194317187398}
+  vision: {fileID: 1712142973424685343}
   littleGuy: {fileID: 2256436266696984722}
   colourChanger: {fileID: 243362628}
 --- !u!114 &107395901
@@ -1269,6 +1293,8 @@ MonoBehaviour:
   renderer: {fileID: 5835989515854659689}
   attackPhase: 0
   transitionSpeed: 2
+  glowColour: {r: 0, g: 0, b: 0, a: 0}
+  baseColour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &2773183614391300990
 PrefabInstance:
   m_ObjectHideFlags: 0
