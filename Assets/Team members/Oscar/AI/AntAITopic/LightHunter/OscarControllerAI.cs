@@ -1,14 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Oscar;
 using UnityEngine;
+using Virginia;
 
 public class OscarControllerAI : MonoBehaviour
 {
     public OscarVision vision;
     public LittleGuy littleGuy;
     public ColourChangeShader colourChanger;
-    
+    public Inventory inventory;
+
+    private void Awake()
+    {
+        inventory = GetComponent<Inventory>();
+    }
+
     public bool seeTheFood()
     {
         if (vision.foodInSight.Count > 0)
@@ -31,14 +39,18 @@ public class OscarControllerAI : MonoBehaviour
         return false;
     }
 
-    /*public bool DeliverTheFood()
+    public bool DeliverTheFood()
     {
-        if (GetComponentInChildren<DeliverFood>().IveDelivered)
+        if (inventory.hand != null)
         {
-            return true;
+            if (inventory.hand.GetComponent<DynamicObject>().isFood)
+            {
+                return true;
+            }
+            return false;
         }
         return false;
-    }*/
+    }
 
     public bool seeTheLight()
     {
