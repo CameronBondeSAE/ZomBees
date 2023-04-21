@@ -136,6 +136,11 @@ public class BeeWingsManager : MonoBehaviour
         {
             wingsObj = BeeWingHoles;
         }
+        
+        else if (wingType == MyWingType.HolesLarge)
+        {
+            wingsObj = BeeWingHolesLarge;
+        }
 
         else
             wingsObj = BeeWingDistorted;

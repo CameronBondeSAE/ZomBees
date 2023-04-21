@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
-public class CivilianTraits : SerializedMonoBehaviour
+public class CivilianTraits : SerializedMonoBehaviour, ICiv
 {
     // [ShowInInspector] public Dictionary<TraitScriptableObject, TraitStats> traitsDictionary;
     [ShowInInspector] public List<TraitStats> traits;

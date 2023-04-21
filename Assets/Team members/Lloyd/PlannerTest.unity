@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.33694, g: 325.04984, b: 430.2193, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f7ec06d794efd409092520f5ef70ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  howHidden: 0
+  radius: 1
 --- !u!4 &184272616
 Transform:
   m_ObjectHideFlags: 0
@@ -196,6 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f7ec06d794efd409092520f5ef70ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  howHidden: 0
+  radius: 1
 --- !u!4 &380429113
 Transform:
   m_ObjectHideFlags: 0
@@ -904,6 +908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f7ec06d794efd409092520f5ef70ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  howHidden: 0
+  radius: 1
 --- !u!4 &1669747298
 Transform:
   m_ObjectHideFlags: 0
@@ -953,6 +959,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f7ec06d794efd409092520f5ef70ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  howHidden: 0
+  radius: 1
 --- !u!4 &2137497428
 Transform:
   m_ObjectHideFlags: 0
@@ -1045,6 +1053,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6753631246208365862, guid: 5182eef4c81bf2f4294100d8e57e019e, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6753631246208365862, guid: 5182eef4c81bf2f4294100d8e57e019e, type: 3}
     - target: {fileID: 6753631248038535432, guid: 5182eef4c81bf2f4294100d8e57e019e, type: 3}
       propertyPath: nearestSafePoint
       value: 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class CivStatComponent : MonoBehaviour
+public class CivStatComponent : MonoBehaviour, ICiv
 {
     #region FloatStats
 
