@@ -27,6 +27,8 @@ public class CivVision : MonoBehaviour
  
     private Collider[] colliders = new Collider[100];
 
+    private float distanceBetween;
+
     private void OnEnable()
     {
         StartCoroutine(VisionCoroutine());
@@ -40,6 +42,7 @@ public class CivVision : MonoBehaviour
             beeObjects.Clear();
             interactables.Clear();
             resources.Clear();
+            civObjects.Clear();
             
             Vector3 boxCenter = transform.TransformPoint(boxOffset);
             int numColliders = Physics.OverlapBoxNonAlloc(boxCenter, boxSize * 0.5f, colliders, transform.rotation);
@@ -51,7 +54,10 @@ public class CivVision : MonoBehaviour
                     Vector3 directionToCollider = (collider.transform.position - transform.position).normalized;
                     
                     RaycastHit hit;
-                        if (Physics.Raycast(transform.position, directionToCollider, out hit, boxSize.x))
+                    
+                    //boxSize.z needs fixing!!! URGENT!!
+                    //
+                    if (Physics.Raycast(transform.position, directionToCollider, out hit, boxSize.z))
                         {
                             if (hit.collider == collider)
                             {
@@ -88,7 +94,30 @@ public class CivVision : MonoBehaviour
             {
                 interactables.Add(obj);
             }
+
+            if (obj.GetComponent<ICiv>() != null)
+            {
+                civObjects.Add(obj);
+            }
         }
+    }
+
+    public Transform ReturnNearestCiv()
+    {
+        if (civObjects.Any())
+        {
+            List<(float, Transform)> distanceAndTransformList = new List<(float, Transform)>();
+            foreach (GameObject civ in civObjects)
+            {
+                float distance = Vector3.Distance(transform.position, civ.transform.position);
+                distanceAndTransformList.Add((distance, civ.transform));
+            }
+
+            distanceAndTransformList.Sort((a, b) => a.Item1.CompareTo(b.Item1));
+
+            return distanceAndTransformList[0].Item2;
+        }
+        return null;
     }
 
     private void OnDisable()

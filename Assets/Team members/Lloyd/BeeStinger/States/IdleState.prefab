@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8184552582070858342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8184552582070858343}
+  - component: {fileID: 5345164062300485062}
+  - component: {fileID: 1719335082512515404}
+  - component: {fileID: 6253999687824950254}
+  m_Layer: 0
+  m_Name: IdleState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8184552582070858343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184552582070858342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5345164062300485062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184552582070858342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa071af67e0d1949ae1be21885d19ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stingSensor: {fileID: 0}
+  heardSound: 0
+  seesTarget: 0
+  homePoint: {x: 0, y: 0, z: 0}
+  forceMagnitude: 0
+  rb: {fileID: 0}
+  stingerRandom: {fileID: 0}
+  rotate: {fileID: 0}
+  civVision: {fileID: 0}
+--- !u!114 &1719335082512515404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184552582070858342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd28be45ee0c96d4e883c86c672a5c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxOffset: {x: 0, y: 0, z: 10}
+  boxSize: {x: 5, y: 5, z: 25}
+  visibleObjects: []
+  beeObjects: []
+  seesBees: 0
+  civObjects: []
+  seesCivs: 0
+  interactables: []
+  seesInteract: 0
+  resources: []
+  seesResource: 0
+--- !u!114 &6253999687824950254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8184552582070858342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heardSound: 0
+  loudestRecentSound:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
+  soundsList: []

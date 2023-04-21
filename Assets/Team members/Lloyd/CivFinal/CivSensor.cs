@@ -31,6 +31,7 @@ public class CivSensor : MonoBehaviour, ISense
     public enum MoveType
     {
         Idle,
+        FollowingPlayer,
         WalkToNearestInteract,
         WalkToNearestSafePoint,
         WalkToNearestAttackPoint,
@@ -50,7 +51,12 @@ public class CivSensor : MonoBehaviour, ISense
         {
             myMoveType = MoveType.Idle;
         }
-
+        
+        //else if (followingCharacter)
+        //{
+//            myMoveType = MoveType.FollowingCharacter;
+        //}
+        
         else if (wantsToInteract && !hasInteractTarget)
         {
             myMoveType = MoveType.Searching;

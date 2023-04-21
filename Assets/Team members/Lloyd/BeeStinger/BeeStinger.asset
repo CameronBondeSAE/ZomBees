@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: BeeStinger
+  m_EditorClassIdentifier: 
+  conditions:
+    list:
+    - id: 0
+      name: Idle
+    - id: 1
+      name: SeesTarget
+    - id: 2
+      name: HeardSound
+    - id: 3
+      name: Sting
+    - id: 4
+      name: Dead
+  actions:
+  - name: Idle
+    isDefault: 1
+    state: {fileID: 8184552582070858342, guid: 9897a67e0290d33449583660ec4b1d1e, type: 3}
+    cost: 0
+    position: {x: 320, y: 120}
+    pre:
+    - id: 0
+      value: 1
+    - id: 2
+      value: 0
+    - id: 1
+      value: 0
+    post:
+    - id: 1
+      value: 1
+    - id: 2
+      value: 1
+  - name: Attack
+    isDefault: 0
+    state: {fileID: 2406657578189581101, guid: e8f913ae2a8a3b647b9f1a27c3541be0, type: 3}
+    cost: 0
+    position: {x: 1100, y: 100}
+    pre:
+    - id: 1
+      value: 1
+    - id: 0
+      value: 0
+    post:
+    - id: 3
+      value: 1
+  - name: InvestigateSound
+    isDefault: 0
+    state: {fileID: 2872699318133610492, guid: c5cdf947a2c11d84b9de489862203f98, type: 3}
+    cost: 0
+    position: {x: 840, y: 60}
+    pre:
+    - id: 2
+      value: 1
+    post:
+    - id: 2
+      value: 0
+  - name: Dead
+    isDefault: 0
+    state: {fileID: 8299097200152521241, guid: 2a7ebf9889412a94c857901620661873, type: 3}
+    cost: 0
+    position: {x: 520, y: 580}
+    pre:
+    - id: 4
+      value: 1
+    post: []
+  - name: PrepareToAttack
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 620, y: 260}
+    pre: []
+    post: []
+  goals:
+  - name: Sting
+    isDefault: 1
+    position: {x: 600, y: 100}
+    conditions:
+    - id: 3
+      value: 1
+    - id: 4
+      value: 0
+  worldStates:
+  - position: {x: 230.76929, y: 412.17963}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
+    - id: 2
+      value: 0
+    - id: 3
+      value: 0

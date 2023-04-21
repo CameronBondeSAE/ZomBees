@@ -6,8 +6,6 @@ using UnityEngine;
 
 namespace Lloyd
 {
-
-
     public class ShaderScript : MonoBehaviour
     {
         private Renderer rend;
