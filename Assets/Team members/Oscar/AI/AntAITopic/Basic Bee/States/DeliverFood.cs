@@ -28,7 +28,7 @@ public class DeliverFood : OscarsLittleGuyMovement
     {
 	    base.Execute(aDeltaTime, aTimeScale);
 
-	    if (inventory.hand.GetComponent<DynamicObject>().isFood)
+	    if (inventory.heldItem != null)
 	    {
 		    NavmeshFindLocation(littleGuy.myHome.transform.position);
 	    }

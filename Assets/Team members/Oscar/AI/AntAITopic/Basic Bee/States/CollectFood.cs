@@ -31,10 +31,14 @@ public class CollectFood : OscarsLittleGuyMovement
     {
         base.Execute(aDeltaTime, aTimeScale);
 
-        inventory.Pickup();
-        if (inventory.hand != null)
+        if (inventory.heldItem == null)
+        {        
+            inventory.Pickup();
+        }
+        
+        if (inventory.heldItem != null)
         {
-            if (inventory.hand.GetComponent<DynamicObject>().isFood)
+            if (inventory.heldItem.Description() == "Food")
             {
                 Finish();
             }
@@ -43,7 +47,7 @@ public class CollectFood : OscarsLittleGuyMovement
                 inventory.Dispose();
             }
         }
-
+        
         if (vision.foodInSight.Count > 0)
         {
             TurnTowards(vision.foodInSight[0].transform.position);

@@ -12,11 +12,6 @@ public class OscarControllerAI : MonoBehaviour
     public ColourChangeShader colourChanger;
     public Inventory inventory;
 
-    private void Awake()
-    {
-        inventory = GetComponent<Inventory>();
-    }
-
     public bool seeTheFood()
     {
         if (vision.foodInSight.Count > 0)
@@ -31,7 +26,7 @@ public class OscarControllerAI : MonoBehaviour
 
     public bool hasTheFood()
     {
-        if(littleGuy.collectedObjects.Count == 3)
+        if(inventory.heldItem != null)
         {
             return true;
         }
@@ -41,14 +36,6 @@ public class OscarControllerAI : MonoBehaviour
 
     public bool DeliverTheFood()
     {
-        if (inventory.hand != null)
-        {
-            if (inventory.hand.GetComponent<DynamicObject>().isFood)
-            {
-                return true;
-            }
-            return false;
-        }
         return false;
     }
 
