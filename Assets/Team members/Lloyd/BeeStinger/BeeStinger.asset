@@ -21,78 +21,116 @@ MonoBehaviour:
     - id: 2
       name: HeardSound
     - id: 3
-      name: Sting
-    - id: 4
       name: Dead
+    - id: 4
+      name: Attack
+    - id: 5
+      name: HasResources
+    - id: 6
+      name: DeliveredResources
   actions:
   - name: Idle
     isDefault: 1
     state: {fileID: 8184552582070858342, guid: 9897a67e0290d33449583660ec4b1d1e, type: 3}
-    cost: 0
-    position: {x: 320, y: 120}
+    cost: 2
+    position: {x: 220.00006, y: 238.33334}
     pre:
-    - id: 0
-      value: 1
-    - id: 2
+    - id: 4
+      value: 0
+    - id: 5
       value: 0
     - id: 1
+      value: 0
+    - id: 6
       value: 0
     post:
     - id: 1
-      value: 1
-    - id: 2
       value: 1
   - name: Attack
     isDefault: 0
-    state: {fileID: 2406657578189581101, guid: e8f913ae2a8a3b647b9f1a27c3541be0, type: 3}
+    state: {fileID: 80594319827432503, guid: 5ab1532bd934f754e81e1a4a421636e4, type: 3}
     cost: 0
-    position: {x: 1100, y: 100}
+    position: {x: 918.3335, y: 321.6667}
     pre:
-    - id: 1
+    - id: 4
       value: 1
-    - id: 0
-      value: 0
     post:
-    - id: 3
+    - id: 0
+      value: 1
+    - id: 5
       value: 1
   - name: InvestigateSound
     isDefault: 0
     state: {fileID: 2872699318133610492, guid: c5cdf947a2c11d84b9de489862203f98, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 840, y: 60}
     pre:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
     - id: 2
       value: 1
-    post:
-    - id: 2
-      value: 0
+    post: []
   - name: Dead
     isDefault: 0
     state: {fileID: 8299097200152521241, guid: 2a7ebf9889412a94c857901620661873, type: 3}
     cost: 0
-    position: {x: 520, y: 580}
+    position: {x: 1831.6666, y: 50.00006}
     pre:
-    - id: 4
+    - id: 3
       value: 1
     post: []
   - name: PrepareToAttack
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 458864613938612627, guid: e8f913ae2a8a3b647b9f1a27c3541be0, type: 3}
     cost: 0
-    position: {x: 620, y: 260}
-    pre: []
-    post: []
-  goals:
-  - name: Sting
-    isDefault: 1
-    position: {x: 600, y: 100}
-    conditions:
-    - id: 3
+    position: {x: 618.3333, y: 260}
+    pre:
+    - id: 1
       value: 1
-    - id: 4
+    - id: 0
       value: 0
+    post:
+    - id: 4
+      value: 1
+  - name: ReturnToHive
+    isDefault: 0
+    state: {fileID: 6795779636834657353, guid: abe69c12f8890af43b09e67c13988550, type: 3}
+    cost: -1
+    position: {x: 1250.0002, y: 336.66663}
+    pre:
+    - id: 5
+      value: 1
+    - id: 6
+      value: 0
+    post:
+    - id: 6
+      value: 1
+  - name: ReturnToStart
+    isDefault: 0
+    state: {fileID: 6795779636834657353, guid: abe69c12f8890af43b09e67c13988550, type: 3}
+    cost: 0
+    position: {x: 561.66656, y: 41.666687}
+    pre:
+    - id: 5
+      value: 1
+    post:
+    - id: 6
+      value: 1
+  goals:
+  - name: GiveResourcesToHive
+    isDefault: 1
+    position: {x: 1555, y: 318.33344}
+    conditions:
+    - id: 5
+      value: 1
+    - id: 3
+      value: 0
+    - id: 6
+      value: 1
   worldStates:
-  - position: {x: 230.76929, y: 412.17963}
+  - position: {x: 239.10263, y: 643.8463}
     isAutoUpdate: 1
     list:
     - id: 0
@@ -102,4 +140,10 @@ MonoBehaviour:
     - id: 2
       value: 0
     - id: 3
+      value: 0
+    - id: 4
+      value: 0
+    - id: 5
+      value: 0
+    - id: 6
       value: 0

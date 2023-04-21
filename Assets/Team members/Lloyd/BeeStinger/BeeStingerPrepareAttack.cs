@@ -5,7 +5,7 @@ using Oscar;
 using UnityEngine;
 using UnityEngine.Analytics;
 
-public class StingerAttackState : AntAIState
+public class StingerPrepareAttack : AntAIState
 {
     public float timer;
     public float timerThresh;
@@ -13,8 +13,8 @@ public class StingerAttackState : AntAIState
     
     public BeeStingerSensor sensor;
 
-    public float raycastLength = 10f;
-    public float forceMagnitude = 10f;
+    public float raycastLength;
+    public float forceMagnitude;
 
     public Rigidbody rb;
 
@@ -35,17 +35,19 @@ public class StingerAttackState : AntAIState
 
     public override void Enter()
     {
-        base.Enter();
+        base.Enter(); 
+        
+        pissedOffFloat = 0;
+        pissedOff = false;
 
         timer = 0;
         ticking = true;
         StartCoroutine(Ticking());
-
-        pissedOffFloat = 0;
-        pissedOff = false;
-
+        
         attackTarget = sensor.attackTarget;
         rb = sensor.rb;
+        
+        sensor.ChangeWings(-125,45,true);
 
         viewTransform = sensor.viewTransform;
 
@@ -62,6 +64,7 @@ public class StingerAttackState : AntAIState
             if (timer > timerThresh)
             {
                 sensor.seesTarget = false;
+                sensor.idle = true;
                 ticking = false;
                 Finish();
             }
@@ -70,10 +73,17 @@ public class StingerAttackState : AntAIState
 
     private void MoveToSpot()
     {
-        Quaternion targetRotation = Quaternion.LookRotation(attackTarget.transform.position);
-        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation,
-            5 * Time.fixedDeltaTime));
-        shooting = true;
+        if (attackTarget)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(attackTarget.transform.position);
+            rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation,
+                5 * Time.fixedDeltaTime));
+            shooting = true;
+        }
+        else
+        {
+            sensor.seesTarget = false;
+        }
     }
 
 
@@ -83,48 +93,46 @@ public class StingerAttackState : AntAIState
 
         if (shooting)
         {
-            
             Vector3 targetDirection = attackTarget.position - transform.position;
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 5 * Time.fixedDeltaTime));
-            
-            Ray ray = new Ray(transform.position, attackTarget.position - transform.position);
-            RaycastHit hitInfo;
+                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+                rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 5 * Time.fixedDeltaTime));
 
-            if (Physics.Raycast(ray, out hitInfo, raycastLength))
-            {
-                if (hitInfo.collider != attackTarget.GetComponent<Collider>())
+                Ray ray = new Ray(transform.position, attackTarget.position - transform.position);
+                RaycastHit hitInfo;
+
+                if (Physics.Raycast(ray, out hitInfo, raycastLength))
                 {
-                    Debug.Log("hit something");
-                    return;
+                    if (hitInfo.collider != attackTarget.GetComponent<Collider>())
+                    {
+                        return;
+                    }
+
+                    ICiv civ = hitInfo.collider.gameObject.GetComponent<ICiv>();
+                    if (civ != null)
+                    {
+                        pissedOffFloat++;
+                    }
                 }
 
-                ICiv civ = hitInfo.collider.gameObject.GetComponent<ICiv>();
-                if (civ != null)
+                if (pissedOffFloat > pissedOffThresh)
                 {
-                    Debug.Log("target Sighted");
-                    pissedOffFloat++;
+                    pissedOff = true;
+                    ticking = false;
+                    StartCoroutine(LerpRotation(-70f, 3f));
                 }
-            }
-
-            if (pissedOffFloat > pissedOffThresh)
-            {
-                pissedOff = true;
-                ticking = false;
-                StartCoroutine(LerpRotation(-70f, 3f));
-            }
         }
     }
 
     public IEnumerator LerpRotation(float targetRotation, float duration)
     {
+        shooting = false;
         float elapsedTime = 0;
         float startRotation = rb.rotation.eulerAngles.x;
 
         while (elapsedTime < duration)
         {
             float rotation = Mathf.Lerp(startRotation, targetRotation, elapsedTime / duration);
-            viewTransform.rotation = Quaternion.Euler(rotation, 0f, 0f);
+            viewTransform.localRotation = Quaternion.Euler(rotation, rb.rotation.y, rb.rotation.z);
 
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -134,6 +142,10 @@ public class StingerAttackState : AntAIState
 
     private void Kamikaze()
     {
-        rb.AddForce(transform.forward * forceMagnitude, ForceMode.Impulse);
+        Vector3 direction = attackTarget.position - transform.position;
+        rb.AddForce(direction.normalized * forceMagnitude, ForceMode.Impulse);
+        
+        sensor.sting = true;
+        Finish();
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &458864613938612627
+--- !u!1 &6795779636834657353
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 458864613938612637}
-  - component: {fileID: 458864613938612626}
+  - component: {fileID: 3518485441484803328}
+  - component: {fileID: 2596462352075638159}
   m_Layer: 0
-  m_Name: PrepareToAttack
+  m_Name: ReturnToHive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &458864613938612637
+--- !u!4 &3518485441484803328
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458864613938612627}
+  m_GameObject: {fileID: 6795779636834657353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,25 +32,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &458864613938612626
+--- !u!114 &2596462352075638159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458864613938612627}
+  m_GameObject: {fileID: 6795779636834657353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31ba6ea6d7e2c954b8c9fdfa6b046404, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d70f81fb6c280b4fa8d54d0f5e5c98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  timerThresh: 3
-  sensor: {fileID: 0}
-  raycastLength: 100
-  forceMagnitude: 10
-  rb: {fileID: 0}
-  pissedOffFloat: 0
-  pissedOffThresh: 200
-  attackTarget: {fileID: 0}
-  viewTransform: {fileID: 0}

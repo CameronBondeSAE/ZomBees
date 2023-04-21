@@ -19,7 +19,11 @@ public class StingerIdleState : AntAIState
     public StingerRandom stingerRandom;
     public RotateAway rotate;
 
+    public Tether tether;
+
     public CivVision civVision;
+
+    public IdleRotate idleRotate;
 
     public override void Create(GameObject aGameObject)
     {
@@ -32,6 +36,8 @@ public class StingerIdleState : AntAIState
         base.Enter();
         homePoint = stingSensor.homePoint;
         rb = stingSensor.rb;
+        
+        stingSensor.ChangeWings(-90, 15,true);
 
       //  rotate = GetComponent<RotateAway>();
       //  rotate.StartSpin(rb, homePoint);
@@ -39,7 +45,13 @@ public class StingerIdleState : AntAIState
       //  stingerRandom = GetComponent<StingerRandom>();
       //  stingerRandom.StartRandom(rb);
 
-        civVision = GetComponent<CivVision>();
+      idleRotate = GetComponent<IdleRotate>();
+      idleRotate.StartRotate(homePoint, rb);
+
+      tether = GetComponent<Tether>();
+      tether.StartTether(rb, homePoint);
+
+      civVision = GetComponent<CivVision>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
@@ -52,8 +64,9 @@ public class StingerIdleState : AntAIState
         if (heardSound || seesTarget)
         {
             stingSensor.SetAttackTarget(civVision.ReturnNearestCiv());
-            Debug.Log("Saw target: " + stingSensor.attackTarget);
+            Debug.Log(civVision.ReturnNearestCiv());
             stingSensor.seesTarget = true;
+            stingSensor.idle = false;
             Finish();
         }
     }

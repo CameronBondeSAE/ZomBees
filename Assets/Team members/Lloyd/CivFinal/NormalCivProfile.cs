@@ -5,7 +5,7 @@ using Marcus;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class NormalCivProfile : MonoBehaviour
+public class NormalCivProfile : MonoBehaviour, ICiv
 {
     private CivSensor sensor;
     

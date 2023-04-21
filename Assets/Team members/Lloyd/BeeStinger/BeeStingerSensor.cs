@@ -9,6 +9,7 @@ public class BeeStingerSensor : MonoBehaviour, ISense
     public Rigidbody rb;
 
     public Vector3 homePoint;
+    public Vector3 originalHomepoint;
 
     public Transform viewTransform;
 
@@ -16,15 +17,21 @@ public class BeeStingerSensor : MonoBehaviour, ISense
     {
         rb = GetComponent<Rigidbody>();
         homePoint = transform.position;
+        originalHomepoint = homePoint;
         StartWings();
     }
 
     #region AntAI
+    
+    public bool attacking = false;
     public bool idle          = false;
     public bool seesTarget        = false;
     public bool heardSound = false;
     public bool sting = false;
     public bool dead = false;
+
+    public bool hasResource;
+    public bool deliveredResource;
 	
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
@@ -34,7 +41,11 @@ public class BeeStingerSensor : MonoBehaviour, ISense
             aWorldState.Set(BeeStingerScenario.SeesTarget, seesTarget);
             aWorldState.Set(BeeStingerScenario.HeardSound, heardSound);
             aWorldState.Set(BeeStingerScenario.Sting, sting);
-            aWorldState.Set(BeeStingerScenario.Dead, dead);
+            aWorldState.Set(BeeStingerScenario.Dead, dead);    
+            aWorldState.Set(BeeStingerScenario.Attack, attacking);
+
+            aWorldState.Set(BeeStingerScenario.HasResource, hasResource);
+            aWorldState.Set(BeeStingerScenario.DeliveredResource, deliveredResource);
         }
         aWorldState.EndUpdate();
     }
@@ -50,12 +61,12 @@ public class BeeStingerSensor : MonoBehaviour, ISense
         beeWings.AddWing();
         beeWings.AddWing();
         beeWings.SpawnWings();
-        ChangeWings();
+        beeWings.OnChangeStatEvent(-90, 15, true);
     }
 
-    public void ChangeWings()
+    public void ChangeWings(float angle, float speed, bool alive)
     {
-        beeWings.OnChangeStatEvent(-90, 15, true);
+        beeWings.OnChangeStatEvent(angle, speed, alive);
     }
 
     #endregion
@@ -67,6 +78,37 @@ public class BeeStingerSensor : MonoBehaviour, ISense
     public void SetAttackTarget(Transform newTarget)
     {
         attackTarget = newTarget;
+    }
+
+    #endregion
+
+    #region Resources
+
+    public int maxResources;
+
+    public int currentResources;
+
+    public void ChangeResources(int amount)
+    {
+        currentResources += amount;
+
+        hasResource = false;
+
+        if (currentResources <= 0)
+        {
+            currentResources = 0;
+        }
+        
+        if (currentResources >= maxResources)
+        {
+            hasResource = true;
+            currentResources = maxResources;
+
+           PatrolPoint hivePoint = PatrolManager.singleton.paths[0];
+           homePoint = hivePoint.transform.position;
+           sting = true;
+        }
+            
     }
 
     #endregion

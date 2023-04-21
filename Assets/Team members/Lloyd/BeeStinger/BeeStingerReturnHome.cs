@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
 
-public class BeeStingerReturnToHive : AntAIState
+public class BeeStingerReturnHome : AntAIState
 {
     public BeeStingerSensor sensor;
     
@@ -23,15 +23,15 @@ public class BeeStingerReturnToHive : AntAIState
     public override void Enter()
     {
         base.Enter();
+        target = sensor.originalHomepoint;
         rb = sensor.rb;
-        target = sensor.homePoint;
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
-
-    Vector3 direction = target - transform.position;
+        
+        Vector3 direction = target - transform.position;
         float distance = direction.magnitude;
 
         if (distance > maxDistance)
@@ -47,34 +47,12 @@ public class BeeStingerReturnToHive : AntAIState
         else
         {
             rb.velocity = Vector3.zero;
-            HiveInteract();
+            sensor.idle = true;
         }
         
         if (rb.velocity.magnitude < stopSpeedThreshold)
         {
             rb.velocity = Vector3.zero;
-        }
-    }
-
-    public BeeHive beehive;
-
-    private void HiveInteract()
-    {
-        Vector3 direction = target - transform.position;
-        RaycastHit hit;
-
-        int depositAmount = sensor.currentResources;
-
-        if (Physics.Raycast(transform.position, direction, out hit, 100))
-        {
-            beehive = hit.collider.gameObject.GetComponent<BeeHive>();
-            if (beehive)
-            {
-                beehive.ChangeFloat(depositAmount);
-                sensor.ChangeResources(-depositAmount);
-                sensor.hasResource = false;
-                sensor.sting = false;
-            }
         }
     }
 }

@@ -29,6 +29,8 @@ public class NormalCivMoveToTarget : AntAIState
     private NormalCivPathFinder pathFinder;
 
     private CivSensor.MoveType myMoveType;
+    
+    
 
     public override void Create(GameObject aGameObject)
     {
