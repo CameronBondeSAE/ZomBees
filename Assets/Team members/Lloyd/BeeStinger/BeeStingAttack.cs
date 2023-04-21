@@ -33,8 +33,8 @@ public class BeeStingAttack : AntAIState
     public override void Enter()
     {
         base.Enter();
-        
-        
+
+        stingSensor.seesTarget = false;
         
         sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.isTrigger = true;
@@ -84,15 +84,17 @@ public class BeeStingAttack : AntAIState
 
     private void EndAttack()
     {
-        stingSensor.attacking = false;
-        stingSensor.seesTarget = false;
-        stingSensor.sting = false;
         
         stingSensor.viewTransform.rotation = stingSensor.rb.rotation;
 
         stingSensor.rb.velocity = Vector3.zero;
         
         Debug.Log("Finish Attack");
+
+        if (stingSensor.currentResources >= stingSensor.maxResources)
+            stingSensor.hasResource = true;
+        
+        stingSensor.attacking = false;
         Finish();
     }
 }

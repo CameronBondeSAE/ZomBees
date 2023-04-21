@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stingSensor: {fileID: 0}
-  timeActive: 5
+  timeActive: 2
   radius: 3
   myType: 0
 --- !u!135 &641771764665262803

@@ -10,18 +10,23 @@ public class BeeHive : MonoBehaviour, IInteractable
 
     public Transform me;
 
+    public void Start()
+    {
+        me = transform;
+    }
+
     public void ScaleByPercentage(float percentage)
     {
-        float scale = percentage / 100f;
+        float scale = percentage * 100f;
 
-        transform.localScale = Vector3.one * scale;
+        me.localScale = Vector3.one * scale;
     }
 
     public void ChangeFloat(int amount)
     {
         resources += amount;
         
-        ScaleByPercentage(amount);
+        ScaleByPercentage(1 * amount);
     }
 
     public void Interact()

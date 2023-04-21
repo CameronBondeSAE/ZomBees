@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
+using Lloyd;
 using Oscar;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -12,6 +13,7 @@ public class StingerPrepareAttack : AntAIState
     private bool ticking;
     
     public BeeStingerSensor sensor;
+    public ShaderScript shaderScript;
 
     public float raycastLength;
     public float forceMagnitude;
@@ -26,16 +28,18 @@ public class StingerPrepareAttack : AntAIState
     public Transform attackTarget;
 
     public Transform viewTransform;
-
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
         sensor = aGameObject.GetComponent<BeeStingerSensor>();
+        shaderScript = aGameObject.GetComponentInChildren<ShaderScript>();
     }
 
     public override void Enter()
     {
         base.Enter(); 
+        
+        shaderScript.ChangeColorRed();
         
         pissedOffFloat = 0;
         pissedOff = false;
@@ -79,10 +83,6 @@ public class StingerPrepareAttack : AntAIState
             rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation,
                 5 * Time.fixedDeltaTime));
             shooting = true;
-        }
-        else
-        {
-            sensor.seesTarget = false;
         }
     }
 
@@ -144,8 +144,8 @@ public class StingerPrepareAttack : AntAIState
     {
         Vector3 direction = attackTarget.position - transform.position;
         rb.AddForce(direction.normalized * forceMagnitude, ForceMode.Impulse);
-        
-        sensor.sting = true;
+
+        sensor.attacking = true;
         Finish();
     }
 }

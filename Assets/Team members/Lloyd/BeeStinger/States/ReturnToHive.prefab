@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d70f81fb6c280b4fa8d54d0f5e5c98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensor: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
+  forceMultiplier: 0.3
+  maxDistance: 0.1
+  minDistance: 1
+  beehive: {fileID: 0}

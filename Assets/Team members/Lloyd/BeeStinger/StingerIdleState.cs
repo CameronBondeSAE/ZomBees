@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
+using Lloyd;
 using Team_members.Lloyd.BeeStinger;
 using UnityEngine;
 
 public class StingerIdleState : AntAIState
 {
     public BeeStingerSensor stingSensor;
+    public ShaderScript shader;
 
     public bool heardSound;
     public bool seesTarget;
@@ -29,11 +31,16 @@ public class StingerIdleState : AntAIState
     {
         base.Create(aGameObject);
         stingSensor = aGameObject.GetComponent<BeeStingerSensor>();
+        shader = aGameObject.GetComponentInChildren<ShaderScript>();
     }
 
     public override void Enter()
     {
         base.Enter();
+        seesTarget = false;
+        
+        shader.ChangeColorGreen();
+        
         homePoint = stingSensor.homePoint;
         rb = stingSensor.rb;
         

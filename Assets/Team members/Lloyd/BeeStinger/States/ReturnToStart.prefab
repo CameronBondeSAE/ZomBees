@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4292867235881131656
 MonoBehaviour:
@@ -47,7 +47,7 @@ MonoBehaviour:
   sensor: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
-  forceMultiplier: 10
-  maxDistance: 10
+  forceMultiplier: 0.3
+  maxDistance: 0.1
   minDistance: 1
-  stopSpeedThreshold: 0.1
+  stopSpeedThreshold: 3

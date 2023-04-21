@@ -9,10 +9,10 @@ public class BeeStingerReturnHome : AntAIState
     
     public Vector3 target;
     public Rigidbody rb;
-    public float forceMultiplier = 10f;
-    public float maxDistance = 10f;
-    public float minDistance = 1f;
-    public float stopSpeedThreshold = 0.1f;
+    public float forceMultiplier;
+    public float maxDistance;
+    public float minDistance;
+    public float stopSpeedThreshold;
 
     public override void Create(GameObject aGameObject)
     {
@@ -25,12 +25,17 @@ public class BeeStingerReturnHome : AntAIState
         base.Enter();
         target = sensor.originalHomepoint;
         rb = sensor.rb;
+        
+        Quaternion targetRotation = Quaternion.LookRotation(target);
+        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation,
+            5 * Time.fixedDeltaTime));
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
-        
+        target = sensor.originalHomepoint;
+
         Vector3 direction = target - transform.position;
         float distance = direction.magnitude;
 
@@ -47,12 +52,10 @@ public class BeeStingerReturnHome : AntAIState
         else
         {
             rb.velocity = Vector3.zero;
+            sensor.backToOrigin = false;
+            sensor.seesTarget = false;
             sensor.idle = true;
-        }
-        
-        if (rb.velocity.magnitude < stopSpeedThreshold)
-        {
-            rb.velocity = Vector3.zero;
+            Finish();
         }
     }
 }

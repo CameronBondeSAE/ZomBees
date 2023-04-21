@@ -122,6 +122,12 @@ public class CivVision : MonoBehaviour
 
     private void OnDisable()
     {
+        visibleObjects.Clear();
+        beeObjects.Clear();
+        interactables.Clear();
+        resources.Clear();
+        civObjects.Clear();
+        seesCivs = false;
         StopAllCoroutines();
     }
     

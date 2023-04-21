@@ -11,6 +11,8 @@ public class BeeStingerSensor : MonoBehaviour, ISense
     public Vector3 homePoint;
     public Vector3 originalHomepoint;
 
+    public PatrolPoint hivePoint;
+
     public Transform viewTransform;
 
     private void Start()
@@ -31,7 +33,7 @@ public class BeeStingerSensor : MonoBehaviour, ISense
     public bool dead = false;
 
     public bool hasResource;
-    public bool deliveredResource;
+    public bool backToOrigin;
 	
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
@@ -40,12 +42,11 @@ public class BeeStingerSensor : MonoBehaviour, ISense
             aWorldState.Set(BeeStingerScenario.Idle, idle);
             aWorldState.Set(BeeStingerScenario.SeesTarget, seesTarget);
             aWorldState.Set(BeeStingerScenario.HeardSound, heardSound);
-            aWorldState.Set(BeeStingerScenario.Sting, sting);
             aWorldState.Set(BeeStingerScenario.Dead, dead);    
             aWorldState.Set(BeeStingerScenario.Attack, attacking);
 
             aWorldState.Set(BeeStingerScenario.HasResource, hasResource);
-            aWorldState.Set(BeeStingerScenario.DeliveredResource, deliveredResource);
+            aWorldState.Set(BeeStingerScenario.BackToOrigin, backToOrigin);
         }
         aWorldState.EndUpdate();
     }
@@ -92,8 +93,6 @@ public class BeeStingerSensor : MonoBehaviour, ISense
     {
         currentResources += amount;
 
-        hasResource = false;
-
         if (currentResources <= 0)
         {
             currentResources = 0;
@@ -101,14 +100,12 @@ public class BeeStingerSensor : MonoBehaviour, ISense
         
         if (currentResources >= maxResources)
         {
-            hasResource = true;
             currentResources = maxResources;
 
-           PatrolPoint hivePoint = PatrolManager.singleton.paths[0];
+           hivePoint = PatrolManager.singleton.paths[0];
            homePoint = hivePoint.transform.position;
-           sting = true;
         }
-            
+        
     }
 
     #endregion

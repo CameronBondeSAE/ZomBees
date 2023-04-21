@@ -9,10 +9,9 @@ public class BeeStingerReturnToHive : AntAIState
     
     public Vector3 target;
     public Rigidbody rb;
-    public float forceMultiplier = 10f;
-    public float maxDistance = 10f;
-    public float minDistance = 1f;
-    public float stopSpeedThreshold = 0.1f;
+    public float forceMultiplier;
+    public float maxDistance;
+    public float minDistance;
 
     public override void Create(GameObject aGameObject)
     {
@@ -25,6 +24,12 @@ public class BeeStingerReturnToHive : AntAIState
         base.Enter();
         rb = sensor.rb;
         target = sensor.homePoint;
+        
+        sensor.ChangeWings(-175, 12,true);
+        
+        Quaternion targetRotation = Quaternion.LookRotation(target);
+        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation,
+            5 * Time.fixedDeltaTime));
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
@@ -49,32 +54,18 @@ public class BeeStingerReturnToHive : AntAIState
             rb.velocity = Vector3.zero;
             HiveInteract();
         }
-        
-        if (rb.velocity.magnitude < stopSpeedThreshold)
-        {
-            rb.velocity = Vector3.zero;
-        }
     }
 
     public BeeHive beehive;
 
     private void HiveInteract()
     {
-        Vector3 direction = target - transform.position;
-        RaycastHit hit;
-
         int depositAmount = sensor.currentResources;
-
-        if (Physics.Raycast(transform.position, direction, out hit, 100))
-        {
-            beehive = hit.collider.gameObject.GetComponent<BeeHive>();
-            if (beehive)
-            {
+        beehive = sensor.hivePoint.GetComponent<BeeHive>();
                 beehive.ChangeFloat(depositAmount);
                 sensor.ChangeResources(-depositAmount);
                 sensor.hasResource = false;
-                sensor.sting = false;
-            }
-        }
+                sensor.backToOrigin = true;
+                Finish();
     }
 }
