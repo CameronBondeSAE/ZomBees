@@ -8,8 +8,7 @@ namespace Johns
     {
         public AudioClip   generatorRunning;
         public AudioSource generatorAudio;
-
-<<<<<<< Updated upstream
+        
     private void OnEnable()
     {
         PlaySound();
@@ -25,22 +24,8 @@ namespace Johns
         generatorAudio.loop = false;
         GetComponent<GeneratorModel>().thingToGivePowerTo.TurnOff();
     }
-=======
-        private void OnEnable()
-        {
-            PlaySound();
-            GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
-        }
-    
-        [Button]
-        private void OnDisable()
-        {
-            generatorAudio.Stop();
-            generatorAudio.loop = false;
-        }
->>>>>>> Stashed changes
-    
-        public void PlaySound()
+
+    public void PlaySound()
         {
             generatorAudio.clip = generatorRunning;
             generatorAudio.loop = true;
