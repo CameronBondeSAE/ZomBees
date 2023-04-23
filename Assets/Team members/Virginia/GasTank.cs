@@ -9,7 +9,12 @@ namespace Virginia
 
     public class GasTank : MonoBehaviour, IItem
     {
-        
+        public int FuelAmount = 0;
+        public void Awake()
+        {
+        FuelAmount = random.range(0,51);
+        }
+       
 
         public void OnTriggerEnter(Collider other)
         {
@@ -31,7 +36,7 @@ namespace Virginia
 
         public string Description()
         {
-            throw new NotImplementedException();
+            return ("fuel");
         }
 
         public void Pickup(GameObject whoPickedMeUp)
