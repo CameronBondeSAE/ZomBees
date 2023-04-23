@@ -38,13 +38,14 @@ public class EggManager : MonoBehaviour
     public void StartEgg(GameObject newOriginalCiv)
     {
         originalCiv = newOriginalCiv;
-        DisableObject(originalCiv);
 
         GameObject instantiateEgg = Instantiate(eggObjectPrefab, originalCiv.transform.position, Quaternion.identity);
 
         eggLogic = instantiateEgg.GetComponent<AlienEggPulse>();
 
         SubscribeToEggEvents();
+        
+        originalCiv.SetActive(false);
     }
     
     private void SubscribeToEggEvents()
@@ -53,18 +54,9 @@ public class EggManager : MonoBehaviour
             eggLogic.TimesUpEvent += SpawnBee;
     }
 
-    public void DisableObject(GameObject gameObjectToDisable)
-    {
-        gameObjectToDisable.SetActive(false);
-    }
-
     public void FreeCiv()
     {
-        if (originalCiv != null)
-        {
             originalCiv.SetActive(true);
-            originalCiv = null;
-        }
     }
 
     public void SpawnBee()

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
+using Lloyd;
 using UnityEngine;
 
 public class BeeStingerReturnToHive : AntAIState
 {
     public BeeStingerSensor sensor;
+
+    public ShaderGraphChangeColor shader;
     
     public Vector3 target;
     public Rigidbody rb;
@@ -17,6 +20,7 @@ public class BeeStingerReturnToHive : AntAIState
     {
         base.Create(aGameObject);
         sensor = aGameObject.GetComponent<BeeStingerSensor>();
+        shader = aGameObject.GetComponentInChildren<ShaderGraphChangeColor>();
     }
 
     public override void Enter()
@@ -26,6 +30,8 @@ public class BeeStingerReturnToHive : AntAIState
         target = sensor.homePoint;
         
         sensor.ChangeWings(-175, 12,true);
+        
+        shader.ChangeColorOrange();
         
         Quaternion targetRotation = Quaternion.LookRotation(target);
         rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation,

@@ -25,6 +25,16 @@ public class AlienEggPulse : MonoBehaviour, IInteractable
     public GameObject closedEgg;
     public GameObject openEgg;
 
+    public int maxHP;
+    public int HP;
+    
+    public float scaledByAmount;
+    public float timePulsing;
+
+    public int timeUntilHatch;
+    public int time;
+    private bool ticking;
+
     [Button]
     public void DestroyEgg()
     {
@@ -43,16 +53,6 @@ public class AlienEggPulse : MonoBehaviour, IInteractable
     {
         Debug.Log("OhMyGodItsACreepyEgg");
     }
-    
-    public int maxHP;
-    public int HP;
-    
-    public float scaledByAmount;
-    public float timePulsing;
-
-    public int timeUntilHatch;
-    public int time;
-    private bool ticking;
 
     private void OnEnable()
     {

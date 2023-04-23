@@ -8,7 +8,7 @@ using UnityEngine;
 public class StingerIdleState : AntAIState
 {
     public BeeStingerSensor stingSensor;
-    public ShaderScript shader;
+    public ShaderGraphChangeColor shader;
 
     public bool heardSound;
     public bool seesTarget;
@@ -31,7 +31,7 @@ public class StingerIdleState : AntAIState
     {
         base.Create(aGameObject);
         stingSensor = aGameObject.GetComponent<BeeStingerSensor>();
-        shader = aGameObject.GetComponentInChildren<ShaderScript>();
+        shader = aGameObject.GetComponentInChildren<ShaderGraphChangeColor>();
     }
 
     public override void Enter()

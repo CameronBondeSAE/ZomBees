@@ -13,7 +13,7 @@ public class StingerPrepareAttack : AntAIState
     private bool ticking;
     
     public BeeStingerSensor sensor;
-    public ShaderScript shaderScript;
+    public ShaderGraphChangeColor shaderScript;
 
     public float raycastLength;
     public float forceMagnitude;
@@ -32,7 +32,7 @@ public class StingerPrepareAttack : AntAIState
     {
         base.Create(aGameObject);
         sensor = aGameObject.GetComponent<BeeStingerSensor>();
-        shaderScript = aGameObject.GetComponentInChildren<ShaderScript>();
+        shaderScript = aGameObject.GetComponentInChildren<ShaderGraphChangeColor>();
     }
 
     public override void Enter()

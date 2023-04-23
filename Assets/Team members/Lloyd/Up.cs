@@ -7,9 +7,13 @@ public class Up : MonoBehaviour
 {
     private Rigidbody rb;
 
+    private BeeWingsManager wings;
+
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
+        wings = GetComponentInChildren<BeeWingsManager>();
+        wings.SetWings();
     }
 
     private void FixedUpdate()

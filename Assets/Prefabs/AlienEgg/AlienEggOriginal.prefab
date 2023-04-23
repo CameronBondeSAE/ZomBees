@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 2360624854886292036}
   - component: {fileID: 5565166100956226162}
   m_Layer: 0
-  m_Name: AlienEgg
+  m_Name: AlienEggOriginal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

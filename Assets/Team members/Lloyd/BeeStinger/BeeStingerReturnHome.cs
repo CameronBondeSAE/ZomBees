@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
+using Lloyd;
 using UnityEngine;
 
 public class BeeStingerReturnHome : AntAIState
 {
     public BeeStingerSensor sensor;
+
+    public ShaderGraphChangeColor shader;
     
     public Vector3 target;
     public Rigidbody rb;
@@ -18,11 +21,15 @@ public class BeeStingerReturnHome : AntAIState
     {
         base.Create(aGameObject);
         sensor = aGameObject.GetComponent<BeeStingerSensor>();
+        shader = aGameObject.GetComponentInChildren<ShaderGraphChangeColor>();
     }
 
     public override void Enter()
     {
         base.Enter();
+        
+        shader.ChangeColorGreen();
+        
         target = sensor.originalHomepoint;
         rb = sensor.rb;
         

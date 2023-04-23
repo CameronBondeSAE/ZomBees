@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stingSensor: {fileID: 0}
   timeActive: 2
+  attackAmount: 1
   radius: 3
+  rb: {fileID: 0}
   myType: 0
 --- !u!135 &641771764665262803
 SphereCollider:

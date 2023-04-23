@@ -17,6 +17,8 @@ public class NormalCivProfile : MonoBehaviour, ICiv
     public float hungerLevel;
     public float hungerThresh;
 
+    public bool bee;
+
     public float beeness;
     public float beenessThresh;
 
@@ -35,6 +37,22 @@ public class NormalCivProfile : MonoBehaviour, ICiv
         emoteDictionary.Add("Hunger", new TraitStats());
         emoteDictionary.Add("Suicidal", new TraitStats());
     }
+    
+    
+    public void HitByBee(BeeStingAttack.BeeStingType attackType, float amount)
+    {
+        if (attackType == BeeStingAttack.BeeStingType.BeenessIncreaser)
+        {
+            UpdateTrait("Beeness", amount);
+        }
+        
+        else if (attackType == BeeStingAttack.BeeStingType.Attack)
+        {
+            Health health = GetComponent<Health>();
+            health.Change(-amount);
+        }
+    }
+    
     [Button]
     public void UpdateTrait(string key, float value)
     {
@@ -67,11 +85,18 @@ public class NormalCivProfile : MonoBehaviour, ICiv
             if (key == "Hunger")
             {
                 hungerLevel = newValue;
+                hungry = traitStats.thresholdHit;
             }
 
             if (key == "Beeness")
             {
                 beeness = newValue;
+                bee = traitStats.thresholdHit;
+                
+                if (beeness > beenessThresh)
+                {
+                    sensor.BecomeEgg();
+                }
             }
 
             if (key == "Suicidal")
@@ -145,7 +170,7 @@ public class NormalCivProfile : MonoBehaviour, ICiv
     {
         while (true)
         {
-            UpdateTrait("Beeness", .1f);
+            UpdateTrait("Beeness", 1f);
             
             yield return new WaitForSeconds(1);
             Debug.Log("Getting more bee-like");

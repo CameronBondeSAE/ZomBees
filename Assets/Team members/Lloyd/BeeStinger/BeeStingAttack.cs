@@ -6,12 +6,22 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class BeeStingAttack : AntAIState
 {
+    //Attack state rotates the "view" of the bee into an attack state
+    //activates a OnTriggerEnter sphere that detect civs thru ICiv
+    //as big as radius and lasts for timeActive
+    //any civs that collide with the attack sphere have either their HP decreased or Beeness increased depending on the BeeStingType
+    //changed by attack amount
+
     public BeeStingerSensor stingSensor;
-    
+
     public float timeActive;
 
+    public float attackAmount;
+
     public float radius;
-    
+
+    public Rigidbody rb;
+
     public enum BeeStingType
     {
         Attack,
@@ -19,7 +29,7 @@ public class BeeStingAttack : AntAIState
     }
 
     public BeeStingType myType;
-    
+
     private SphereCollider sphereCollider;
     private List<ICiv> civs = new List<ICiv>();
 
@@ -33,9 +43,12 @@ public class BeeStingAttack : AntAIState
     public override void Enter()
     {
         base.Enter();
+        rb = stingSensor.rb;
 
         stingSensor.seesTarget = false;
-        
+
+        myType = stingSensor.myType;
+
         sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.isTrigger = true;
         sphereCollider.radius = radius;
@@ -46,7 +59,7 @@ public class BeeStingAttack : AntAIState
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
-        sphereCollider.center = transform.position;
+        sphereCollider.center = rb.position;
         stingSensor.viewTransform.position = transform.position;
     }
 
@@ -69,10 +82,12 @@ public class BeeStingAttack : AntAIState
 
     private void RunFunctionForCiv(ICiv civ)
     {
-        Debug.Log("Hit "+civ);
+        civ.HitByBee(myType, attackAmount);
+        Debug.Log("Hit " + civ + " with " + myType + " for " + attackAmount + "!");
+
         stingSensor.ChangeResources(101);
     }
-    
+
     private void OnDrawGizmos()
     {
         if (sphereCollider)
@@ -84,16 +99,15 @@ public class BeeStingAttack : AntAIState
 
     private void EndAttack()
     {
-        
         stingSensor.viewTransform.rotation = stingSensor.rb.rotation;
 
         stingSensor.rb.velocity = Vector3.zero;
-        
+
         Debug.Log("Finish Attack");
 
         if (stingSensor.currentResources >= stingSensor.maxResources)
             stingSensor.hasResource = true;
-        
+
         stingSensor.attacking = false;
         Finish();
     }

@@ -110,14 +110,7 @@ public class QueenScenarioManager : MonoBehaviour, ISense
 
         beeWings = GetComponentInChildren<BeeWingsManager>();
 
-        for (int wings = numWings; wings > 0; wings--)
-        {
-            beeWings.AddWing();
-        }
-
-        beeWings.SpawnWings();
-
-        beeWings.wingParent.transform.SetParent(queenParent.transform);
+        //beeWings.wingParent.transform.SetParent(queenParent.transform);
     }
 
     #endregion
