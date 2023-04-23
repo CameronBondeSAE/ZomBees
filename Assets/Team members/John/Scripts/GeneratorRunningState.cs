@@ -1,16 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Johns;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
 
-public class GeneratorRunningState : MonoBehaviour
+
+namespace Johns
 {
-    public AudioClip   generatorRunning;
-    public AudioSource generatorAudio;
+    public class GeneratorRunningState : StateBase
+    {
+        public AudioClip   generatorRunning;
+        public AudioSource generatorAudio;
 
+<<<<<<< Updated upstream
     private void OnEnable()
     {
         PlaySound();
@@ -26,11 +25,27 @@ public class GeneratorRunningState : MonoBehaviour
         generatorAudio.loop = false;
         GetComponent<GeneratorModel>().thingToGivePowerTo.TurnOff();
     }
+=======
+        private void OnEnable()
+        {
+            PlaySound();
+            GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
+        }
     
-    public void PlaySound()
-    {
-        generatorAudio.clip = generatorRunning;
-        generatorAudio.loop = true;
-        generatorAudio.Play();
-    }
+        [Button]
+        private void OnDisable()
+        {
+            generatorAudio.Stop();
+            generatorAudio.loop = false;
+        }
+>>>>>>> Stashed changes
+    
+        public void PlaySound()
+        {
+            generatorAudio.clip = generatorRunning;
+            generatorAudio.loop = true;
+            generatorAudio.Play();
+        }
+    } 
 }
+

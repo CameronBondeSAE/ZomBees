@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Johns
 {
     public class StateManager : MonoBehaviour
     {
-        public MonoBehaviour startingState;
-        public MonoBehaviour currentState;
+        public StateBase startingState;
+        public StateBase currentState;
  
         // Set a default state
         private void Start()
@@ -16,7 +14,7 @@ namespace Johns
         }
 
         // This works for ANY STATE
-        public void ChangeState(MonoBehaviour newState)
+        public void ChangeState(StateBase newState)
         {
             // Check if the state is the same and DON'T swap
             if (newState == null || newState == currentState)

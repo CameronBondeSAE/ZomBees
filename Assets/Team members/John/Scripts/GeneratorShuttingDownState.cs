@@ -1,29 +1,34 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Johns;
 using UnityEngine;
-public class GeneratorShuttingDownState : MonoBehaviour
+
+namespace Johns
 {
-    public AudioClip   generatorShuttingDown;
-    public AudioSource generatorAudio;
-
-    private void OnEnable()
+    public class GeneratorShuttingDownState : StateBase
     {
-        generatorAudio.clip = generatorShuttingDown;
-        generatorAudio.Play();
-        StartCoroutine(DelayCoroutine());
-    }
+        public AudioClip   generatorShuttingDown;
+        public AudioSource generatorAudio;
+        public IEnumerator delayCoroutine;
 
-    private void OnDisable()
-    {
-        generatorAudio.Stop();
-    }
+        private void OnEnable()
+        {
+            generatorAudio.clip = generatorShuttingDown;
+            generatorAudio.Play();
+            delayCoroutine = DelayCoroutine();
+            StartCoroutine(delayCoroutine);
+        }
+
+        private void OnDisable()
+        {
+            StopCoroutine(delayCoroutine);
+            generatorAudio.Stop();
+        }
     
-    IEnumerator DelayCoroutine()
-    {
-        Debug.Log("Coroutine Ran Succesfully");
-        yield return new WaitForSeconds(generatorShuttingDown.length);
-        GetComponent<StateManager>().ChangeState(GetComponent<GeneratorIdleOffState>());
+        IEnumerator DelayCoroutine()
+        {
+            Debug.Log("Coroutine Ran Succesfully");
+            yield return new WaitForSeconds(generatorShuttingDown.length);
+            GetComponent<StateManager>().ChangeState(GetComponent<GeneratorIdleOffState>());
+        }
     }
 }
+

@@ -1,15 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using Johns;
-using UnityEngine;
-
-public class GeneratorIdleOffState : MonoBehaviour
+namespace Johns
 {
-    public void OnEnable()
-    {
-    }
-    
-    public void OnDisable()
+    public class GeneratorIdleOffState : StateBase
     {
     }
 }
+
