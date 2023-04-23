@@ -600,6 +600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fuel
       objectReference: {fileID: 0}
+    - target: {fileID: 3835048634710118368, guid: fbd4c7e997370dd42919855c56390339, type: 3}
+      propertyPath: m_TagString
+      value: Fuel
+      objectReference: {fileID: 0}
     - target: {fileID: 5023902842795352373, guid: fbd4c7e997370dd42919855c56390339, type: 3}
       propertyPath: m_RootOrder
       value: 5

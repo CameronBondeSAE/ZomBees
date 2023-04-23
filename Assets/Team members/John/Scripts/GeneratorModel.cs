@@ -54,8 +54,10 @@ namespace Johns
 		{
 			if (other.tag == "Fuel")
 			{
+				Debug.Log("this works");
 				EnteredTrigger = true;
-				//currFuel += other.gameObject.GetComponent<GasTank>().fuelAmount;
+				currFuel += other.gameObject.GetComponent<GasTank>().FuelAmount;
+				print(currFuel);
 				if (currFuel > maxFuel)
 				{
 					currFuel = maxFuel;
