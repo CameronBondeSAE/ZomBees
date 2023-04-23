@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using Oscar;
 using SplineMesh;
 using UnityEngine;
+using Virginia;
 
 namespace Johns
 {
@@ -10,11 +12,17 @@ namespace Johns
 		public bool EnteredTrigger;
 		public int currFuel = 0;
 		public int maxFuel = 100;
+		public int rateOfConsumption;
 		public ISwitchable thingToGivePowerTo;
 
+		
 		public void TurnOn()
 		{
-			GetComponent<StateManager>().ChangeState(GetComponent<GeneratorStartingState>());
+			if (currFuel > 0)
+			{
+				GetComponent<StateManager>().ChangeState(GetComponent<GeneratorStartingState>());
+				StartCoroutine(FuelDrainCoroutine());
+			}
 		}
 
 		public void TurnOff()
@@ -47,7 +55,24 @@ namespace Johns
 			if (other.tag == "Fuel")
 			{
 				EnteredTrigger = true;
+				//currFuel += other.gameObject.GetComponent<GasTank>().fuelAmount;
+				if (currFuel > maxFuel)
+				{
+					currFuel = maxFuel;
+				}
+
+				if (currFuel <= 0)
+				{
+					currFuel = 0;
+				}
+				
 			}
+		}
+
+		IEnumerator FuelDrainCoroutine()
+		{
+			yield return new WaitForSeconds(1);
+			currFuel -= rateOfConsumption;
 		}
 	}
 }
