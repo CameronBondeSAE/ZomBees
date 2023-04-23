@@ -3,27 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Johns;
 using UnityEngine;
-using Random = System.Random;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
+
 
 namespace Virginia
 {
 
     public class GasTank : MonoBehaviour, IItem
     {
-        public int FuelAmount = 0;
-
+        public int fuelAmount;
+        public GameObject fuelcan;
         public void Awake()
         {
-           // FuelAmount = Random.Range(0, 51);
-            
+            fuelAmount = Random.Range(1, 51);
+           
         }
        
 
         public void OnTriggerEnter(Collider other)
         {
-            
-                Debug.Log("fuel taken");
-          
+            if (other.GetComponent<GeneratorModel>() != null)
+            {
+               // Debug.Log("fuel taken");
+               Destroy(fuelcan);
+            }
         }
 
         public void Consume()
