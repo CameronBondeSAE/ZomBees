@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1749125039482884605}
   m_Layer: 0
   m_Name: Fuel
-  m_TagString: Untagged
+  m_TagString: Fuel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8758498003543617049
 MeshFilter:
@@ -118,3 +118,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e66f5b16a46eb749b182f788d4802dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuelAmount: 0
+  fuelcan: {fileID: 3835048634710118368}

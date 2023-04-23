@@ -10,17 +10,17 @@ namespace Johns
 	public class GeneratorModel : DynamicObject, IItem, ISwitchable
 	{
 		public bool EnteredTrigger;
-		public int currFuel = 0;
+		public int currFuel = 100;
 		public int maxFuel = 100;
-		public int rateOfConsumption;
+		public int rateOfConsumption = -1;
 		public ISwitchable thingToGivePowerTo;
 
 		
 		public void TurnOn()
 		{
+			GetComponent<StateManager>().ChangeState(GetComponent<GeneratorStartingState>());
 			if (currFuel > 0)
 			{
-				GetComponent<StateManager>().ChangeState(GetComponent<GeneratorStartingState>());
 				StartCoroutine(FuelDrainCoroutine());
 			}
 		}
@@ -56,7 +56,7 @@ namespace Johns
 			{
 				Debug.Log("this works");
 				EnteredTrigger = true;
-				currFuel += other.gameObject.GetComponent<GasTank>().FuelAmount;
+				currFuel += other.gameObject.GetComponent<GasTank>().fuelAmount;
 				print(currFuel);
 				if (currFuel > maxFuel)
 				{
@@ -75,6 +75,7 @@ namespace Johns
 		{
 			yield return new WaitForSeconds(1);
 			currFuel -= rateOfConsumption;
+			Debug.Log(currFuel);
 		}
 	}
 }

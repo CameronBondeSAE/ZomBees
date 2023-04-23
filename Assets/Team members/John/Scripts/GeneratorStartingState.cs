@@ -9,7 +9,6 @@ namespace Johns
     {
         public  AudioClip   generatorStartUp;
         public  AudioSource generatorAudio;
-
         public IEnumerator coroutine;
     
         [Button]
@@ -17,7 +16,6 @@ namespace Johns
         {
             generatorAudio.clip = generatorStartUp;
             generatorAudio.Play();
-
             coroutine = DelayCoroutine();
             StartCoroutine(coroutine);
         }
