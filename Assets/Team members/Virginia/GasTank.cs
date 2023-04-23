@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Johns;
 using UnityEngine;
+using Random = System.Random;
 
 namespace Virginia
 {
@@ -10,19 +11,20 @@ namespace Virginia
     public class GasTank : MonoBehaviour, IItem
     {
         public int FuelAmount = 0;
+
         public void Awake()
         {
-        FuelAmount = random.range(0,51);
+           // FuelAmount = Random.Range(0, 51);
+            
         }
        
 
         public void OnTriggerEnter(Collider other)
         {
-            if(GetComponent<GeneratorModel>()!= null)
-            {
+            
                 Debug.Log("fuel taken");
-            }
-            }
+          
+        }
 
         public void Consume()
         {
