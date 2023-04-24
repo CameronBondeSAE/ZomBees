@@ -15,7 +15,7 @@ namespace Oscar
             if (collision.gameObject.GetComponent<Inventory>() != null)
             {
                 Inventory inventory = collision.gameObject.GetComponent<Inventory>();
-                if (inventory.hand != null)
+                if (inventory.heldItem == null)
                 {
                     inventory.Pickup();
                 }
@@ -31,7 +31,8 @@ namespace Oscar
         public void Pickup(GameObject obj)
         {
             //just disable the object until needed later
-            UtilityManager.DisableAfterDelay(obj);
+            GetComponent<Collider>().enabled = false;
+            //UtilityManager.DisableAfterDelay(obj);
         }
 
         public void Consume()
@@ -41,7 +42,7 @@ namespace Oscar
 
         public void Dispose()
         {
-            
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

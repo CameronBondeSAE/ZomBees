@@ -3,21 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using Oscar;
 using UnityEngine;
+using Virginia;
 
 public class Hive : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.GetComponent<LittleGuy>() != null)
+        if (other.gameObject.GetComponent<Inventory>() != null)
         {
-            LittleGuy littleGuy = other.gameObject.GetComponent<LittleGuy>();
-            if (littleGuy.collectedObjects.Count >= 1)
+            Inventory inventory = other.gameObject.GetComponent<Inventory>();
+            if (inventory.heldItem != null)
             {
-                for (int i = 0; i < littleGuy.collectedObjects.Count; i++)
-                {
-                    //UtilityManager.EnableAfterDelay(littleGuy.collectedObjects[i]);
-                }
-                littleGuy.collectedObjects.Clear();
+                //inventory.heldItem.Dispose();
+                inventory.Dispose();
             }
         }
     }

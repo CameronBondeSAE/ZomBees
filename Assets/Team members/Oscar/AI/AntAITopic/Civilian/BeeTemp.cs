@@ -16,8 +16,8 @@ public class BeeTemp : MonoBehaviour
 
     private void StartWings()
     {   
-        beeWings = GetComponentInChildren<BeeWingsManager>();
-        beeWings.SetWings();
+        // beeWings = GetComponentInChildren<BeeWingsManager>();
+        // beeWings.SetWings();
     }
 
     //change wing angles (eg depending on state)

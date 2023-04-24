@@ -12,6 +12,8 @@ namespace Virginia
         public IItem heldItem; //Item that is/ Isn't in the player's hand
         public float radius;
         public Transform hand; //where we want the heldItem to be
+
+        public float placeDistance; //how far forward to place it
         
             [Button] 
         public void Pickup()
@@ -26,8 +28,13 @@ namespace Virginia
                     (heldItem as MonoBehaviour).transform.parent = hand;
                     // setting the IItem object to the player's hand, casting it to a monobehaviour
                     (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = true; //I forget I need GetComponent sometimes.
-                    (heldItem as MonoBehaviour).transform.localPosition = Vector3.zero;
-                    //moves it to the position of the "hand"
+                    (heldItem as MonoBehaviour).transform.localPosition = Vector3.zero; //moves it to the position of the "hand"
+
+                    if ((heldItem as MonoBehaviour).GetComponent<Collider>() != null) //Oscar added
+                    {
+                        (heldItem as MonoBehaviour).GetComponent<Collider>().enabled = false; 
+                    }
+
                     //Debug.Log(message: "pick up");
                     
                     break;
@@ -41,17 +48,21 @@ namespace Virginia
         } 
         [Button] 
         public void Dispose()
-        { 
+        {
+            Vector3 playerDirection = (heldItem as MonoBehaviour).transform.forward; //Oscar added
+            Vector3 objectPosition = (heldItem as MonoBehaviour).transform.position + (playerDirection * placeDistance); //Oscar added
+            (heldItem as MonoBehaviour).transform.position = objectPosition; //Oscar added
+            
             (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = false; 
             (heldItem as MonoBehaviour).transform.parent = null; //unparents the child aka child becomes an orphan 
+            
+            if ((heldItem as MonoBehaviour).GetComponent<Collider>() != null) //Oscar added
+            {
+                (heldItem as MonoBehaviour).GetComponent<Collider>().enabled = true; 
+            }
+
             heldItem = null; // clears the object from the held Item slot (I forgot the name)
             //Debug.Log("disposed item didn't need it");
-
         }
-        
-        
-
     }
-
-  
 }
