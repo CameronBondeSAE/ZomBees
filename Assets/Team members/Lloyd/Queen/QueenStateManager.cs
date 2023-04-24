@@ -34,9 +34,9 @@ public class QueenStateManager : MonoBehaviour
 
         queenEvent = GetComponent<QueenEvent>();
         
-        queenEvent.ChangeQueenState += FlipState;
+       // queenEvent.ChangeQueenState += FlipState;
         
-        queenEvent.OnChangeQueenState(queenPatrol, true);
+       // queenEvent.OnChangeQueenState(queenPatrol, true);
     }
 
     public void FlipState(MonoBehaviour incomingState, bool activated)
@@ -55,6 +55,6 @@ public class QueenStateManager : MonoBehaviour
 
     private void OnDisable()
     {
-        queenEvent.ChangeQueenState -= FlipState;
+      //  queenEvent.ChangeQueenState -= FlipState;
     }
 }

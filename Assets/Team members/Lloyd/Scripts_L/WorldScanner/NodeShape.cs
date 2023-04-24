@@ -1,3 +1,4 @@
+/*
 using System;
 using Shapes;
 using Sirenix.OdinInspector;
@@ -49,4 +50,5 @@ public class NodeShape : ImmediateModeShapeDrawer
         }
     }
 }
+*/
 

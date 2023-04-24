@@ -2,6 +2,7 @@ using Anthill.AI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Team_members.Lloyd.BeeWings;
 using UnityEngine;
 
 public class BeeStingerSensor : MonoBehaviour, ISense
@@ -54,8 +55,7 @@ public class BeeStingerSensor : MonoBehaviour, ISense
     }
 
     #endregion
-
-
+    
     #region Attack
 
     public Transform attackTarget;
