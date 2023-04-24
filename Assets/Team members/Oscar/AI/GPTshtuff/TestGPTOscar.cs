@@ -124,14 +124,14 @@ public class TestGPTOscar : MonoBehaviour
 	}
 
 	[Button]
-	public async void AppendUserInput(string input, FakeCivilian fakeCivilian)
+	public async void AppendUserInput(string input, CivilianModel civilianModel)
 	{
 		// now let's ask it a question'
 		chat.AppendUserInput(input);
 		// and get the response
 		string response = await chat.GetResponseFromChatbot();
 		// Debug.Log(response); // "Yes"
-		fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text = response;
+		civilianModel.transform.GetComponentInChildren<TextMeshPro>().text = response;
 	}
 
 	[Button]

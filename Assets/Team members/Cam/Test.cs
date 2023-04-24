@@ -57,7 +57,7 @@ public class Test : SerializedMonoBehaviour
 	{
 		if (civilianTraits != null)
 		{
-			Debug.Log("Fear Dick = " + civilianTraits.GetValueOfTrait(fear).value);
+			Debug.Log("Fear Dick = " + civilianTraits.GetTrait(fear).value);
 			
 			// Debug.Log("Fear Dick = " + civilianTraits.traitsDictionary[fear].value);
 		}

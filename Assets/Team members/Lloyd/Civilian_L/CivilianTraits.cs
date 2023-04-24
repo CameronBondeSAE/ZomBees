@@ -3,14 +3,14 @@ using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
-public class CivilianTraits : SerializedMonoBehaviour, ICiv
+public class CivilianTraits : MonoBehaviour, ICiv
 {
     // [ShowInInspector] public Dictionary<TraitScriptableObject, TraitStats> traitsDictionary;
     [ShowInInspector] public List<TraitStats> traits;
 
     public event Action<TraitStats> HitThresholdEvent;
 
-    public TraitStats GetValueOfTrait(TraitScriptableObject traitScriptableObject)
+    public TraitStats GetTrait(TraitScriptableObject traitScriptableObject)
     {
 
         foreach (TraitStats civilianTraitsTrait in traits)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AlexM;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -17,6 +18,13 @@ namespace Team_members.Lloyd.StoryTracker.Quests
         // public GameObject newWorldTime;
         public WorldTime newWorldTimeScript;
 
+        public bool ElevenLabsVoice = false;
+
+        public PlayerModel playerModel;
+
+        public GameObject chatInterface;
+        
+        
         // public GameObject questTracker;
         // public GameObject newQuestTracker;
         // public QuestTracker newQuestTrackerScript;
@@ -35,7 +43,9 @@ namespace Team_members.Lloyd.StoryTracker.Quests
 
         private void Awake()
         {
-	        if (autoStart)
+            // chatInterface.SetActive(false);
+
+            if (autoStart)
 	        {
 		        StartGame();
 	        }
@@ -44,6 +54,8 @@ namespace Team_members.Lloyd.StoryTracker.Quests
         [Button]
         public void StartGame()
         {
+            playerModel.GetComponent<InputManager>().playerInteractedWithCivEvent += OnplayerInteractedWithCivEvent;
+            
             // Vector3 position = transform.position;
             //
             // newWorldTime = Instantiate(worldTime, position, Quaternion.identity) as GameObject;
@@ -59,6 +71,11 @@ namespace Team_members.Lloyd.StoryTracker.Quests
             // newCivSpawnerScript = newCivSpawner.GetComponent<CivSpawner>();
         
             StartCoroutine(Begin());
+        }
+
+        private void OnplayerInteractedWithCivEvent()
+        {
+            // chatInterface.SetActive(true);
         }
 
         private IEnumerator Begin()

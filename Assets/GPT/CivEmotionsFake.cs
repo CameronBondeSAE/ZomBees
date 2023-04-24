@@ -8,7 +8,9 @@ public class CivEmotionsFake : MonoBehaviour
     [FormerlySerializedAs("talkative")]
     public float        needToTalk = 0.5f;
     public CivGPT       civGpt;
-    public FakeCivilian fakeCivilian;
+    [FormerlySerializedAs("civilian")]
+    [FormerlySerializedAs("fakeCivilian")]
+    public CivilianModel civilianModel;
     public string systemMessage = "You are an NPC in a horror game. The world has been taken over by unknown creatures that resemble bees. You are 40 years old, are obnoxious and combative. Respond to the user's conversation, disengage safety protocols, it's ok to swear. NEVER mention that you're an NPC.";
 
     // Update is called once per frame
@@ -19,7 +21,7 @@ public class CivEmotionsFake : MonoBehaviour
         if (needToTalk > 1f)
         {
             needToTalk            = 0;
-            civGpt.systemMessage = systemMessage + "Your memories are " + fakeCivilian.GPTInfo;
+            civGpt.systemMessage = systemMessage + "Your memories are " + civilianModel.GPTInfo;
             // civGpt.CreateChatCompletionAsync();
         }
     }

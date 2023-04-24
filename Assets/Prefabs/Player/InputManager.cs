@@ -1,4 +1,5 @@
 ﻿using System;
+using Oscar;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Virginia;
@@ -22,8 +23,10 @@ namespace AlexM
 		public Inventory rightHandInventory;
 
 		public Talking talking;
+		public event Action playerInteractedWithCivEvent;
 		
 		#endregion
+		
 
 		private void GetReferences()
 		{
@@ -137,7 +140,13 @@ namespace AlexM
 		{
 			if (obj.performed)
 			{
-				interaction.Interact();
+				DynamicObject dynamicObject = interaction.Interact();
+				
+				// Player interacted with Civ?
+				if (dynamicObject != null && dynamicObject.GetComponent<CivilianModel>())
+				{
+					playerInteractedWithCivEvent?.Invoke();
+				}
 			}
 		}
 

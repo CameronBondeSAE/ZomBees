@@ -135,7 +135,7 @@ public class TestGPT : MonoBehaviour
 	}
 
 	[Button]
-	public async void AppendUserInput(string input, FakeCivilian fakeCivilian)
+	public async void AppendUserInput(string input, CivilianModel civilianModel)
 	{
 		if(startedChat==false)
 			StartChatConversation();
@@ -146,7 +146,7 @@ public class TestGPT : MonoBehaviour
 		var res = await chat.GetResponseFromChatbotAsync();
 		
 		Debug.Log(res);
-		fakeCivilian.transform.GetComponentInChildren<TextMeshPro>().text = res;
+		civilianModel.transform.GetComponentInChildren<TextMeshPro>().text = res;
 
 		// and get the response
 		// await foreach (var res in chat.StreamResponseEnumerableFromChatbotAsync())

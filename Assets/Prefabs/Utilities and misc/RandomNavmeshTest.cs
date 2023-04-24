@@ -20,7 +20,7 @@ public class RandomNavmeshTest : MonoBehaviour
 		elapsed = 0.0f;
 		
 		
-		FindRandomSpot();
+		// FindRandomSpot();
 	}
 
 	
@@ -48,44 +48,45 @@ public class RandomNavmeshTest : MonoBehaviour
 	}
 	
 	
+	// CHECK: Does this do everything here? NavMeshPathStatus.PathComplete
 	
-	public bool ReachedDestinationOrGaveUp()
-	{
-
-		if (!navMeshAgent.pathPending)
-		{
-			if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance + arrivedDistance)
-			{
-				if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
-				{
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
+	// public bool ReachedDestinationOrGaveUp()
+	// {
+	//
+	// 	if (!navMeshAgent.pathPending)
+	// 	{
+	// 		if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance + arrivedDistance)
+	// 		{
+	// 			if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
+	// 			{
+	// 				return true;
+	// 			}
+	// 		}
+	// 	}
+	//
+	// 	return false;
+	// }
 
 	// Update is called once per frame
 	void Update()
 	{
-		Vector3 randomSpot = Vector3.zero;
-		if (ReachedDestinationOrGaveUp())
-		{
-			randomSpot = FindRandomSpot();
-		}	
-		
+	// 	Vector3 randomSpot = Vector3.zero;
+	// 	if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+	// 	{
+	// 		randomSpot = FindRandomSpot();
+	// 	}	
+	// 	
 		
 		// Debugging
 		// Update the way to the goal every second.
-		elapsed += Time.deltaTime;
-		if (elapsed > 1.0f)
-		{
-			elapsed -= 1.0f;
-			NavMesh.CalculatePath(transform.position, randomSpot, NavMesh.AllAreas, path);
-		}
-		for (int i = 0; i < path.corners.Length - 1; i++)
-			Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red, 1f);
+		// elapsed += Time.deltaTime;
+		// if (elapsed > 1.0f)
+		// {
+		// 	elapsed -= 1.0f;
+		// 	NavMesh.CalculatePath(transform.position, randomSpot, NavMesh.AllAreas, path);
+		// }
+		// for (int i = 0; i < path.corners.Length - 1; i++)
+		// 	Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red, 1f);
 	}
 	
 }
