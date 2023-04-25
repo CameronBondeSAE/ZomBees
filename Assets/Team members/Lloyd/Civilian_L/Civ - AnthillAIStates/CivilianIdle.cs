@@ -1,6 +1,5 @@
 using System;
-using Team_members.Lloyd.Civilian_L;
-
+using Lloyd;
 public class CivilianIdleState : CivModelAIState
 {
     public bool idle;

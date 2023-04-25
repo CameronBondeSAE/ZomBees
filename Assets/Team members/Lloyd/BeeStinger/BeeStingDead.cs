@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using Anthill.AI;
-using UnityEngine;
 
-public class BeeStingDead : AntAIState
+namespace Lloyd
 {
+    public class BeeStingDead : AntAIState
+    {
+    }
 }

@@ -4,6 +4,10 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
+namespace Lloyd
+{
+
     public class BeeWingsManager : MonoBehaviour
     {
         //ChatGPT cowritten
@@ -35,7 +39,7 @@ using Random = UnityEngine.Random;
         private List<GameObject> wingObjects;
 
         private GameObject spawnedWing;
-    
+
         public GameObject BeeWingRegular;
         public GameObject BeeWingHoles;
         public GameObject BeeWingHolesLarge;
@@ -181,7 +185,7 @@ using Random = UnityEngine.Random;
 
             if (myWings.Any())
                 myWings.Clear();
-        
+
             if (wingParent != null)
             {
                 DestroyImmediate(wingParent);
@@ -201,3 +205,4 @@ using Random = UnityEngine.Random;
             //Debug.Log("wingEvent");
         }
     }
+}

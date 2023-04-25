@@ -1,43 +1,45 @@
 using System.Collections;
-using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
 
-public class StingerMoveTo : AntAIState
+namespace Lloyd
 {
-    public BeeStingerSensor sensor;
+    public class StingerMoveTo : AntAIState
+    {
+        public BeeStingerSensor sensor;
     
-    public Vector3 moveToTarget;
-    public Rigidbody rb;
-    public float maxForce = 10f;
-    public float minDistance = 1f;
-    public float checkInterval = 0.1f;
+        public Vector3 moveToTarget;
+        public Rigidbody rb;
+        public float maxForce = 10f;
+        public float minDistance = 1f;
+        public float checkInterval = 0.1f;
 
-    public bool minDistReached;
+        public bool minDistReached;
 
-    public override void Create(GameObject aGameObject)
-    {
-        base.Create(aGameObject);
-        sensor = aGameObject.GetComponent<BeeStingerSensor>();
-    }
-
-    private IEnumerator Start()
-    {
-        while (true)
+        public override void Create(GameObject aGameObject)
         {
-            float distance = Vector3.Distance(transform.position, moveToTarget);
-            if (distance < minDistance)
+            base.Create(aGameObject);
+            sensor = aGameObject.GetComponent<BeeStingerSensor>();
+        }
+
+        private IEnumerator Start()
+        {
+            while (true)
             {
-                rb.velocity = Vector3.zero;
-                yield break;
+                float distance = Vector3.Distance(transform.position, moveToTarget);
+                if (distance < minDistance)
+                {
+                    rb.velocity = Vector3.zero;
+                    yield break;
+                }
+                else
+                {
+                    float force = Mathf.Lerp(0f, maxForce, distance / minDistance);
+                    Vector3 direction = (moveToTarget - transform.position).normalized;
+                    rb.AddForce(direction * force, ForceMode.Acceleration);
+                }
+                yield return new WaitForSeconds(checkInterval);
             }
-            else
-            {
-                float force = Mathf.Lerp(0f, maxForce, distance / minDistance);
-                Vector3 direction = (moveToTarget - transform.position).normalized;
-                rb.AddForce(direction * force, ForceMode.Acceleration);
-            }
-            yield return new WaitForSeconds(checkInterval);
         }
     }
 }

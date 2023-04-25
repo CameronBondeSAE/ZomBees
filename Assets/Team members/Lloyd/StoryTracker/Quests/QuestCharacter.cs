@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Marcus;
 using UnityEngine;
-
+using Lloyd;
 public class QuestCharacter
 {
     public string name;

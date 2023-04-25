@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using Anthill.AI;
 using UnityEngine;
 
-public class LesserQueenDead : MonoBehaviour
+namespace Lloyd
 {
-    // Start is called before the first frame update
-    void Start()
+    public class LesserQueenDead : AntAIState
     {
+        // Start is called before the first frame update
+        void Start()
+        {
         
-    }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
         
+        }
     }
 }

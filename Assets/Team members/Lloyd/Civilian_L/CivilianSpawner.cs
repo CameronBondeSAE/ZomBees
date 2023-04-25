@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Team_members.Lloyd.Civilian_L
+namespace Lloyd
 {
     public class CivilianSpawner : MonoBehaviour
     {

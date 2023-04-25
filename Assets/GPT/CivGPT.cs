@@ -6,6 +6,7 @@ using OpenAI_API.Chat;
 using OpenAI_API.Models;
 using Sirenix.OdinInspector;
 using System.Threading.Tasks;
+using Lloyd;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;

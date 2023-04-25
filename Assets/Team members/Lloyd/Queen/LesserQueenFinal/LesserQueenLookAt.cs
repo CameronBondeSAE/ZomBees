@@ -1,4 +1,7 @@
 using UnityEngine;
+
+namespace Lloyd
+{
     public class LesserQueenLookAt : MonoBehaviour
     {
         public Transform target;
@@ -7,6 +10,7 @@ using UnityEngine;
         private void Update()
         {
             if(target!=null)
-            transform.LookAt(target);
+                transform.LookAt(target);
         }
     }
+}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Team_members.Lloyd.Queen.QueenFinal
+namespace Lloyd
 {
     public class SharedMaterialChanger : MonoBehaviour
     {

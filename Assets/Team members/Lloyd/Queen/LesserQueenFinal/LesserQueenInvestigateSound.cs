@@ -1,6 +1,6 @@
 using Anthill.AI;
 
-namespace Team_members.Lloyd.Queen.QueenFinal
+namespace Lloyd
 {
     public class LesserQueenInvestigateSound : AntAIState
     {

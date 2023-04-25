@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Team_members.Lloyd.Scripts_L.Editor
+namespace Lloyd
 {
     [CustomEditor(typeof(QueenEvent))]
     public class QueenEditor : UnityEditor.Editor

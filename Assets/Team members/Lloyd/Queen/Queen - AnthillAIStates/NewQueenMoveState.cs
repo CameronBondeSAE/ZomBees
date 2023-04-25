@@ -1,103 +1,107 @@
 using Anthill.AI;
 using System.Collections;
 using System.Collections.Generic;
-using Team_members.Lloyd.CivFinal;
-using Team_members.Lloyd.Civilian_L;
 using UnityEngine;
 using UnityEngine.AI;
-public class NewQueenMoveState : AntAIState
+
+namespace Lloyd
 {
-    //swiped from tutorial folder
-    
-    public GameObject owner;
-    //NavMeshAgent      navMeshAgent;
 
-    public Rigidbody rb;
-    
-    public Transform target;
-            
-    //get from stats
-    public float moveSpeed = 25f;
-    public float stopDistance = 1f;
-    public float decelerationDistance;
-            
-    public bool inRange;
-
-    private QueenScenarioManager queenScene;
-
-    public override void Create(GameObject aGameObject)
+    public class NewQueenMoveState : AntAIState
     {
-        base.Create(aGameObject);
+        //swiped from tutorial folder
 
-        owner        = aGameObject;
-        //navMeshAgent = owner.GetComponent<NavMeshAgent>();
+        public GameObject owner;
+        //NavMeshAgent      navMeshAgent;
 
-        rb = owner.GetComponent<Rigidbody>();
+        public Rigidbody rb;
 
-        queenScene = owner.GetComponent<QueenScenarioManager>();
-    }
+        public Transform target;
 
-    public override void Enter()
-    {
-        base.Enter();
+        //get from stats
+        public float moveSpeed = 25f;
+        public float stopDistance = 1f;
+        public float decelerationDistance;
 
-        // navMeshAgent.SetDestination(owner.GetComponent<NormalCivBrain>().moveTarget.transform.position);
-       decelerationDistance = stopDistance * 3;
+        public bool inRange;
 
-       inRange = false;
-       
-       target = queenScene.GetMovePoint();
+        private QueenScenarioManager queenScene;
 
-       LookAtTarget look = queenScene.GetComponent<LookAtTarget>();
-       look.SetTarget(target);
-    }
+        public override void Create(GameObject aGameObject)
+        {
+            base.Create(aGameObject);
 
-    private void FixedUpdate()
+            owner = aGameObject;
+            //navMeshAgent = owner.GetComponent<NavMeshAgent>();
+
+            rb = owner.GetComponent<Rigidbody>();
+
+            queenScene = owner.GetComponent<QueenScenarioManager>();
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
+
+            // navMeshAgent.SetDestination(owner.GetComponent<NormalCivBrain>().moveTarget.transform.position);
+            decelerationDistance = stopDistance * 3;
+
+            inRange = false;
+
+            target = queenScene.GetMovePoint();
+
+            LookAtTarget look = queenScene.GetComponent<LookAtTarget>();
+            look.SetTarget(target);
+        }
+
+        private void FixedUpdate()
+        {
+
+            if (target == null) return;
+
+            Vector3 direction = target.position - transform.position;
+            float distance = direction.magnitude;
+
+            if (distance <= stopDistance)
             {
-    
-                if (target == null) return;
-    
-                Vector3 direction = target.position - transform.position;
-                float distance = direction.magnitude;
-    
-                if (distance <= stopDistance)
-                {
-                    Stop();
-                }
-                
-                else if (distance <= decelerationDistance)
-                {
-                    float decelerationFactor = Mathf.Clamp01((distance - stopDistance) / (decelerationDistance - stopDistance));
-                    rb.AddForce(direction.normalized * moveSpeed * decelerationFactor, ForceMode.Acceleration);
-                }
-                else
-                {
-                    rb.AddForce(direction.normalized * moveSpeed, ForceMode.Acceleration);
-                }
+                Stop();
             }
-    
-            private void Stop()
+
+            else if (distance <= decelerationDistance)
             {
-                rb.velocity = Vector3.zero;
-                inRange = true;
-                owner.GetComponent<CivSensor>().inRange = inRange;
+                float decelerationFactor =
+                    Mathf.Clamp01((distance - stopDistance) / (decelerationDistance - stopDistance));
+                rb.AddForce(direction.normalized * moveSpeed * decelerationFactor, ForceMode.Acceleration);
+            }
+            else
+            {
+                rb.AddForce(direction.normalized * moveSpeed, ForceMode.Acceleration);
+            }
+        }
+
+        private void Stop()
+        {
+            rb.velocity = Vector3.zero;
+            inRange = true;
+            owner.GetComponent<CivSensor>().inRange = inRange;
+            Finish();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            inRange = false;
+        }
+
+        public override void Execute(float aDeltaTime, float aTimeScale)
+        {
+            base.Execute(aDeltaTime, aTimeScale);
+
+            //if (navMeshAgent.remainingDistance < 1f)
+            {
+                //  owner.GetComponent<NormalCivBrain>().moveTarget = null;
                 Finish();
             }
-    
-            public override void Exit()
-            {
-                base.Exit();
-                inRange = false; 
-            }
-
-    public override void Execute(float aDeltaTime, float aTimeScale)
-    {
-        base.Execute(aDeltaTime, aTimeScale);
-
-        //if (navMeshAgent.remainingDistance < 1f)
-        {
-          //  owner.GetComponent<NormalCivBrain>().moveTarget = null;
-            Finish();
         }
     }
 }

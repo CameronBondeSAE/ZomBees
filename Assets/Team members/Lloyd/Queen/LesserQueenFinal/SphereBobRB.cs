@@ -1,6 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
+namespace Lloyd
+{
+
+
+
     public class SphereBobRB : MonoBehaviour
     {
         private Vector3 origPos;
@@ -9,7 +14,7 @@ using UnityEngine;
         public float hangTime;
 
         public bool movingUp;
-        
+
         public BeeWingsManager beeWings;
 
         public Rigidbody rb;
@@ -26,6 +31,7 @@ using UnityEngine;
             bobbing = true;
             StartCoroutine(Bob());
         }
+
         private void Update()
         {
             if (bobbing)
@@ -42,10 +48,10 @@ using UnityEngine;
                     beeWings.OnChangeStatEvent(-145, 2, true);
                     movingUp = false;
                 }
-                
+
             }
         }
-    
+
         private IEnumerator Bob()
         {
             Rigidbody rb = GetComponent<Rigidbody>();
@@ -84,3 +90,4 @@ using UnityEngine;
             }
         }
     }
+}

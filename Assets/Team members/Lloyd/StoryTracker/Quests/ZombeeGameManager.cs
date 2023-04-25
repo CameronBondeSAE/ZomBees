@@ -5,7 +5,7 @@ using AlexM;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Team_members.Lloyd.StoryTracker.Quests
+namespace Lloyd
 {
     public class ZombeeGameManager : MonoBehaviour
     {

@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-[Serializable]
+	[Serializable]
 	public class SoundProperties
 	{
 		public SoundProperties(GameObject source, SoundEmitter.SoundType soundType, float radius, float distance, float fear, float beeness, Team team, int obstaclesBetween, string dialogue = "")

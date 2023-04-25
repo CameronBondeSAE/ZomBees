@@ -1,13 +1,16 @@
 using Anthill.AI;
 using UnityEngine;
 
+namespace Lloyd
+{
+
     public class LesserQueenPatrol : AntAIState
     {
         public LesserQueenSensor queenSensor;
         public Hearing hearingComp;
         public QueenEvent queenEvent;
         public SphereBob bob;
-        
+
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
@@ -20,13 +23,13 @@ using UnityEngine;
         {
             base.Enter();
             bob.enabled = true;
-            hearingComp.SoundHeardEvent += HeardSomething; 
+            hearingComp.SoundHeardEvent += HeardSomething;
             queenEvent.OnChangeQueenState(LesserQueenState.Green);
         }
 
         public void HeardSomething(SoundProperties properties)
         {
-            
+
         }
 
         public override void Exit()
@@ -35,3 +38,4 @@ using UnityEngine;
             hearingComp.SoundHeardEvent -= HeardSomething;
         }
     }
+}

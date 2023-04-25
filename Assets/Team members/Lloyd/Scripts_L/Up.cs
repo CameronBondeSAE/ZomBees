@@ -3,21 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Up : MonoBehaviour
+namespace Lloyd
 {
-    private Rigidbody rb;
 
-    private BeeWingsManager wings;
 
-    private void OnEnable()
+    public class Up : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-        wings = GetComponentInChildren<BeeWingsManager>();
-        wings.SetWings();
-    }
+        private Rigidbody rb;
 
-    private void FixedUpdate()
-    {
-        rb.AddForce(Vector3.up);
+        private BeeWingsManager wings;
+
+        private void OnEnable()
+        {
+            rb = GetComponent<Rigidbody>();
+            wings = GetComponentInChildren<BeeWingsManager>();
+            wings.SetWings();
+        }
+
+        private void FixedUpdate()
+        {
+            rb.AddForce(Vector3.up);
+        }
     }
 }

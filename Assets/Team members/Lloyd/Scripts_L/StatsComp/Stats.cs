@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
-using Team_members.Lloyd.Scripts_L.StatsComp;
 
 public class StatsComp : MonoBehaviour
 {

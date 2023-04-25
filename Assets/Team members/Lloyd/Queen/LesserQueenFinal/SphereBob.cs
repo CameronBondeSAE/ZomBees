@@ -2,6 +2,10 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+namespace Lloyd
+{
+
+
     public class SphereBob : MonoBehaviour
     {
         private Vector3 origPos;
@@ -10,7 +14,7 @@ using Random = UnityEngine.Random;
         public float hangTime;
 
         public bool movingUp;
-        
+
         public BeeWingsManager beeWings;
 
         public Rigidbody rb;
@@ -31,7 +35,7 @@ using Random = UnityEngine.Random;
         private IEnumerator Bob()
         {
             Vector3 prevPosition = transform.position;
-    
+
             while (true)
             {
                 Vector3 randomPoint = Random.onUnitSphere * moveDist + origPos;
@@ -39,11 +43,11 @@ using Random = UnityEngine.Random;
                 float elapsedTime = 0f;
                 while (elapsedTime < moveTime)
                 {
-                    
+
                     transform.position = Vector3.Slerp(transform.position, randomPoint, elapsedTime / moveTime);
                     elapsedTime += Time.deltaTime;
 
-                    
+
 
                     prevPosition = transform.position;
                     yield return null;
@@ -54,7 +58,7 @@ using Random = UnityEngine.Random;
                 elapsedTime = 0f;
                 while (elapsedTime < moveTime)
                 {
-               
+
                     transform.position = Vector3.Slerp(transform.position, origPos, elapsedTime / moveTime);
                     elapsedTime += Time.deltaTime;
 
@@ -72,3 +76,4 @@ using Random = UnityEngine.Random;
             StopCoroutine(Bob());
         }
     }
+}

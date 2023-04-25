@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
 
-namespace Team_members.Lloyd.Queen.QueenFinal
+namespace Lloyd
 {
     public class LesserQueenAttack : AntAIState
     {
