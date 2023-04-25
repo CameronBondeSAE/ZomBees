@@ -17,8 +17,8 @@ public class LesserQueenGetMovePoint : MonoBehaviour
     {
         patrolManager = PatrolManager.singleton;
 
-        flyPoints = new List<PatrolPoint>(patrolManager.flyPoints);
-        hivePoints = new List<PatrolPoint>(patrolManager.hivePoints);
+        flyPoints = new List<PatrolPoint>(patrolManager.paths);
+        hivePoints = new List<PatrolPoint>(patrolManager.pathsWithIndoors);
     }
 
     public void CalculateNearestPoint(List<PatrolPoint> inputList)

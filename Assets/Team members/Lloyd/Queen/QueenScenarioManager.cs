@@ -6,8 +6,6 @@ using Tanks;
 using UnityEngine;
 using Lloyd;
 using Sirenix.OdinInspector;
-using Team_members.Lloyd.BeeWings;
-using Team_members.Lloyd.Scripts_L.HearingComponent;
 using UnityEngine.Serialization;
 
 public class QueenScenarioManager : MonoBehaviour, ISense

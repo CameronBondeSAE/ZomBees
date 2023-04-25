@@ -2,10 +2,7 @@ using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-
-namespace Team_members.Lloyd.Scripts_L.HearingComponent
-{
-	[Serializable]
+[Serializable]
 	public class SoundProperties
 	{
 		public SoundProperties(GameObject source, SoundEmitter.SoundType soundType, float radius, float distance, float fear, float beeness, Team team, int obstaclesBetween, string dialogue = "")
@@ -92,4 +89,3 @@ namespace Team_members.Lloyd.Scripts_L.HearingComponent
 			Debug.Log(testProperties);
 		}
 	}
-}

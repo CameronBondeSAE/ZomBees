@@ -1,9 +1,6 @@
 using System.Collections;
-using Team_members.Lloyd.BeeWings;
 using UnityEngine;
 
-namespace Team_members.Lloyd.Queen.LesserQueenFinal
-{
     public class SphereBobRB : MonoBehaviour
     {
         private Vector3 origPos;
@@ -87,4 +84,3 @@ namespace Team_members.Lloyd.Queen.LesserQueenFinal
             }
         }
     }
-}

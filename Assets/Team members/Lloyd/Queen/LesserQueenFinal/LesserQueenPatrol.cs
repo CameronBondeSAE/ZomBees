@@ -1,10 +1,6 @@
 using Anthill.AI;
-using Team_members.Lloyd.Queen.LesserQueenFinal;
-using Team_members.Lloyd.Scripts_L.HearingComponent;
 using UnityEngine;
 
-namespace Team_members.Lloyd.Queen.QueenFinal
-{
     public class LesserQueenPatrol : AntAIState
     {
         public LesserQueenSensor queenSensor;
@@ -39,4 +35,3 @@ namespace Team_members.Lloyd.Queen.QueenFinal
             hearingComp.SoundHeardEvent -= HeardSomething;
         }
     }
-}

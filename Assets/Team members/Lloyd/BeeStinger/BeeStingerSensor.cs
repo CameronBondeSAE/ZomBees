@@ -2,7 +2,6 @@ using Anthill.AI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Team_members.Lloyd.BeeWings;
 using UnityEngine;
 
 public class BeeStingerSensor : MonoBehaviour, ISense

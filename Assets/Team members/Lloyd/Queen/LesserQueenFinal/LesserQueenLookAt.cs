@@ -1,7 +1,4 @@
 using UnityEngine;
-
-namespace Team_members.Lloyd.Queen.QueenFinal
-{
     public class LesserQueenLookAt : MonoBehaviour
     {
         public Transform target;
@@ -13,4 +10,3 @@ namespace Team_members.Lloyd.Queen.QueenFinal
             transform.LookAt(target);
         }
     }
-}
