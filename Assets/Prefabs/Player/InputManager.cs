@@ -11,7 +11,7 @@ namespace AlexM
 	#region Variables
 
 		private Inputs          _controls;
-		private PlayerModel  _pModel;
+		private PlayerModel  playerModel;
 		private CamMouseLook    _camScript;
 
 		public InteractScript interaction;
@@ -22,7 +22,6 @@ namespace AlexM
 		public Inventory leftHandInventory;
 		public Inventory rightHandInventory;
 
-		public Talking talking;
 		public event Action playerInteractedWithCivEvent;
 		
 		#endregion
@@ -30,11 +29,11 @@ namespace AlexM
 
 		private void GetReferences()
 		{
-			_pModel = GetComponent<PlayerModel>();
+			playerModel = GetComponent<PlayerModel>();
 			_camScript = GetComponentInChildren<CamMouseLook>();
 		}
 
-		private void InGameTalking()
+		public void InGameTalking()
 		{
 			_controls.Disable();
 		
@@ -46,26 +45,29 @@ namespace AlexM
 
 		void CancelOnperformed(InputAction.CallbackContext obj)
 		{
-			talking.gameObject.SetActive(false);
+			playerModel.chatBox.Deactivate();
+			InGameNotTalking();
 		}
 
 		void SendmessageOnperformed(InputAction.CallbackContext obj)
 		{
-			talking.gameObject.SetActive(true);
+			// TODO: Needed? Due to inputfield already knowing what submitting keys are
+			InGameNotTalking(); // CHECK: Turn off with every message?
 		}
 
-		private void InGameNotTalking()
+		public void InGameNotTalking()
 		{
-			_controls.Ingametalking.Disable();
+			_controls.Disable();
+			// _controls.Ingametalking.Disable();
 			
 			_controls.Ingame.Enable();
-			_controls.Ingame.Move.performed         += _pModel.MovementInput;
-			_controls.Ingame.Move.canceled          += _pModel.MovementInput;
-			_controls.Ingame.Jump.performed         += _pModel.JumpInput;
-			_controls.Ingame.Sprint.performed       += _pModel.Sprint;
-			_controls.Ingame.Sprint.canceled        += _pModel.Sprint;
-			_controls.Ingame.Crouch.performed       += _pModel.CrouchInput;
-			_controls.Ingame.Crouch.canceled        += _pModel.CrouchInput;
+			_controls.Ingame.Move.performed         += playerModel.MovementInput;
+			_controls.Ingame.Move.canceled          += playerModel.MovementInput;
+			_controls.Ingame.Jump.performed         += playerModel.JumpInput;
+			_controls.Ingame.Sprint.performed       += playerModel.Sprint;
+			_controls.Ingame.Sprint.canceled        += playerModel.Sprint;
+			_controls.Ingame.Crouch.performed       += playerModel.CrouchInput;
+			_controls.Ingame.Crouch.canceled        += playerModel.CrouchInput;
 			_controls.Ingame.Interact.performed     += UseOnperformed;
 			_controls.Ingame.Pickupleft.performed   += context => PickupOnperformed(context, Hand.Left);
 			_controls.Ingame.Dropleft.performed     += context => DropOnperformed(context, Hand.Left);

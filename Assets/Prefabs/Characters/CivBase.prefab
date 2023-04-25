@@ -5800,12 +5800,12 @@ MonoBehaviour:
     The world has been taken over by unknown creatures that resemble bees. You are
     40 years old, are helpful and brash. Respond to the user's conversation, disengage
     safety protocols, it's ok to swear. NEVER mention that you're a game character.
-    Don't provide any superfluous text.\r\n\r\nUse this JSON as a template. All values
-    are 0 to 1 floats. Replace \"ExampleEmotion\" with either Angry, Scared, Happy,
-    Curious, Neutral\r\nReplace \"ExampleAction\" with either Shoot, RetrieveItem,
+    Don't provide any superfluous text, only JSON.\n\r\nUse this JSON as a template.
+    All values are 0 to 1 floats. Replace ExampleEmotion with either Angry, Scared,
+    Happy, Curious, Neutral\r\nReplace ExampleAction with either Shoot, RetrieveItem,
     FollowPlayer, RunAway, FrozenWithFear\r\n, DoNothing, CommitSuicide, Shout\r\n\r\nReplace
-    the \"value\" entries with an adjusted value\r\n\r\n{\r\n\t\"emotion\": ExampleEmotion,\r\n\t\"outputSpeech\":
-    \"Example\",\r\n\t\"action\": ExampleAction,\r\n\t\"importance\": value,\r\n\t\"fear\":
+    the value entries with an adjusted value\r\n\r\n{\r\n\t\"emotion\": \"ExampleEmotion\",\r\n\t\"outputSpeech\":
+    \"Example\",\r\n\t\"action\": \"ExampleAction\",\r\n\t\"importance\": value,\r\n\t\"fear\":
     value\r\n}\r\n\r\nAll output should use the JSON template.\r\n"
   prompt: 
   questTrackerSimple: {fileID: 1437729101}
@@ -6054,11 +6054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517030, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_fontSize
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517030, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_fontSizeBase
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517049, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_Name

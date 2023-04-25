@@ -24,13 +24,23 @@ namespace AlexM
 
 		public Health health;
 
+		public InputManager inputManager;
+		public ChatBox chatBox;
+		
 		private void Awake()
 		{
 			GetReferences();
 			originalSpeed = maxSpeed;
 
 			health.HealthReducedToZeroEvent += HealthOnHealthReducedToZeroEvent;
+			
+			inputManager.playerInteractedWithCivEvent += OnplayerInteractedWithCivEvent;
 		}
+		public void Start()
+		{
+			GetComponentInChildren<AudioListener>().enabled = true;
+		}
+
 
 		void HealthOnHealthReducedToZeroEvent()
 		{
@@ -39,11 +49,13 @@ namespace AlexM
 			// HACK
 			SceneManager.LoadScene("Main");
 		}
-
-		public void Start()
+		private void OnplayerInteractedWithCivEvent()
 		{
-			GetComponentInChildren<AudioListener>().enabled = true;
+			// TUrn on chat view
+			chatBox.Activate();
+			inputManager.InGameTalking();
 		}
+
 
 
 		void GetReferences()

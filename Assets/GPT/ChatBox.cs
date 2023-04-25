@@ -17,19 +17,26 @@ public class ChatBox : MonoBehaviour
 
 	public TMP_InputField tmpInputField;
 
+	public GameObject view;
+
 	private void Awake()
 	{
-		tmpInputField.onEndEdit.AddListener(NewInput);
+		tmpInputField.onSubmit.AddListener(NewInput);
 		tmpInputField.text = "";
+		// tmpInputField.ActivateInputField();
+		Deactivate();
+	}
+
+	public void Activate()
+	{
+		view.SetActive(true);
 		tmpInputField.ActivateInputField();
 	}
 
-	private void OnEnable()
+	public void Deactivate()
 	{
-	}
-
-	private void OnDisable()
-	{
+		tmpInputField.DeactivateInputField();
+		view.SetActive(false);
 	}
 
 	public void NewInput(string input)
@@ -39,14 +46,16 @@ public class ChatBox : MonoBehaviour
 		if (trait != null)
 		{
 			float beeness = trait.value;
+
+			Debug.Log("Beeness = "+beeness);
 			soundEmitter.EmitSound(new SoundProperties(gameObject, SoundEmitter.SoundType.CivTalk, talkRadius, 0, 0,
 				beeness, Team.Human, 0, input));
 		}
-		
+
 		// Turn myself off
-		// gameObject.SetActive(false);
-		tmpInputField.text = "";
-		tmpInputField.ActivateInputField();
+		// tmpInputField.text = "";
+		Deactivate();
+		// tmpInputField.ActivateInputField();
 		// tmpInputField.DeactivateInputField();
 
 		// RaycastHit hitInfo;

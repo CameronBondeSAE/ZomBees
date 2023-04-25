@@ -54,8 +54,6 @@ namespace Lloyd
         [Button]
         public void StartGame()
         {
-            playerModel.GetComponent<InputManager>().playerInteractedWithCivEvent += OnplayerInteractedWithCivEvent;
-            
             // Vector3 position = transform.position;
             //
             // newWorldTime = Instantiate(worldTime, position, Quaternion.identity) as GameObject;
@@ -72,11 +70,7 @@ namespace Lloyd
         
             StartCoroutine(Begin());
         }
-
-        private void OnplayerInteractedWithCivEvent()
-        {
-            // chatInterface.SetActive(true);
-        }
+        
 
         private IEnumerator Begin()
         {

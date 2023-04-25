@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 0.02114177, g: 0.020406457, b: 0.019398184, a: 1}
+  m_IndirectSpecularColor: {r: 0.020943763, g: 0.02009532, b: 0.01901781, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -27211,14 +27211,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1612036827}
+    - target: {fileID: 3616768922255790148, guid: 17a9d4a3d42c62746ac18cc3322a8043, type: 3}
+      propertyPath: m_isRichText
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4344033232605556001, guid: 17a9d4a3d42c62746ac18cc3322a8043, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 4344033232605556001, guid: 17a9d4a3d42c62746ac18cc3322a8043, type: 3}
-    - target: {fileID: 6271187259181377452, guid: 17a9d4a3d42c62746ac18cc3322a8043, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 261431
-      objectReference: {fileID: 0}
     - target: {fileID: 6271187260368080563, guid: 17a9d4a3d42c62746ac18cc3322a8043, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -33130,7 +33130,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-17872
+  m_Name: pb_Mesh-230548
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -71188,6 +71188,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   maxListeners: 0
+  testProperties:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
 --- !u!4 &1854750926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 494626, guid: 812c9b36537fa8146bed44183a36cf7a, type: 3}
