@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Anthill.AI;
 using Oscar;
 using UnityEngine;
+using Lloyd;
 
 public class RunAway : OscarsLittleGuyMovement
 {

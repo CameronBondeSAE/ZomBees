@@ -5,6 +5,7 @@ using Anthill.AI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using Lloyd;
 
 namespace Oscar
 {
