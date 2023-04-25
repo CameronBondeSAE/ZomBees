@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
+using Team_members.Lloyd.BeeWings;
 using UnityEngine.VFX;
 using Random = System.Random;
 
@@ -36,11 +37,29 @@ public class Follower : MonoBehaviour, IFollower
 
     private BeeWingsManager beeWings;
 
+    public ShaderGraphChangeColor shader;
+
     private void OnEnable()
     {
         beeWings = GetComponentInChildren<BeeWingsManager>();
         beeWings.SpawnWings();
+
+        shader = GetComponent<ShaderGraphChangeColor>();
+        shader.ChangeColorPurple();
+        
         Begin();
+    }
+
+    public void ChangeQueenState(LesserQueenState state)
+    {
+        if(state == LesserQueenState.Green)
+            shader.ChangeColorGreen();
+        
+        if(state == LesserQueenState.Red)
+            shader.ChangeColorRed();
+        
+        if(state == LesserQueenState.Purple)
+            shader.ChangeColorPurple();
     }
 
     public void Begin()

@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5398443304142197064}
   - component: {fileID: 6965517448354199428}
   - component: {fileID: 5860857128426339124}
+  - component: {fileID: 5983828896177150590}
   m_Layer: 14
   m_Name: QueenFollower
   m_TagString: Untagged
@@ -157,6 +158,7 @@ MonoBehaviour:
   followerLayer:
     serializedVersion: 2
     m_Bits: 16384
+  shader: {fileID: 0}
 --- !u!54 &889221432442366977
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -264,6 +266,20 @@ MonoBehaviour:
   minDistance: 200
   targetPos: {x: 0, y: 0, z: 0}
   following: 0
+--- !u!114 &5983828896177150590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889221432442366976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1357e1d34ed8c2e44b188888a01e8937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 1446041565427765789}
+  myMaterial: {fileID: 2100000, guid: 64fadaf8dfa51bf4ca2f12cbb8e92b3c, type: 2}
 --- !u!1 &910629661688541710
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910629661688541710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.55, z: 0.04}
+  m_LocalPosition: {x: 0, y: 1.27, z: -0.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1218,11 +1234,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bee Flying Textured 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6053179226023022972, guid: 61fd19c493765aa4f9b936bc39626ebe, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64fadaf8dfa51bf4ca2f12cbb8e92b3c, type: 2}
+    - target: {fileID: 6053179226023022972, guid: 61fd19c493765aa4f9b936bc39626ebe, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85ff91831bc06664a911e2ea74797f34, type: 2}
+    - target: {fileID: 6053179226023022972, guid: 61fd19c493765aa4f9b936bc39626ebe, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a81909fe055d174a9af5db030c51ebb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61fd19c493765aa4f9b936bc39626ebe, type: 3}
+--- !u!23 &1446041565427765789 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6053179226023022972, guid: 61fd19c493765aa4f9b936bc39626ebe, type: 3}
+  m_PrefabInstance: {fileID: 4616305389789889377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5159665254721430666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 61fd19c493765aa4f9b936bc39626ebe, type: 3}

@@ -1,3 +1,4 @@
+using Team_members.Lloyd.Scripts_L.HearingComponent;
 using UnityEngine;
 
 public interface IHear

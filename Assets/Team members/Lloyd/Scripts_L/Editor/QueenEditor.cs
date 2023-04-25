@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using Lloyd;
 
-[CustomEditor(typeof(QueenEvent))]
-public class QueenEditor : Editor
+namespace Team_members.Lloyd.Scripts_L.Editor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(QueenEvent))]
+    public class QueenEditor : UnityEditor.Editor
     {
-        base.OnInspectorGUI();
-
-        if (GUILayout.Button("QUEEN ATTACK"))
+        public override void OnInspectorGUI()
         {
-          //  (target as QueenEvent)?.OnChangeSwarmPoint();
-        }
+            base.OnInspectorGUI();
 
+            if (GUILayout.Button("QUEEN ATTACK"))
+            {
+                //  (target as QueenEvent)?.OnChangeSwarmPoint();
+            }
+
+        }
     }
 }

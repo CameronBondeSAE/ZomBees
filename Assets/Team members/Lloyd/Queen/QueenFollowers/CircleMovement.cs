@@ -52,7 +52,7 @@ public class CircleMovement : MonoBehaviour
         
         negativeRadius = (UnityEngine.Random.value > 0.5f);
 
-            moveInX = (UnityEngine.Random.value > 0.5f);
+        moveInX = (UnityEngine.Random.value > 0.5f);
         reverseDirectionX = (UnityEngine.Random.value > 0.5f);
         
         moveInY = (UnityEngine.Random.value > 0.5f);
@@ -72,8 +72,9 @@ public class CircleMovement : MonoBehaviour
             if (negativeRadius)
                 radius *= -1;
 
-           x = centerPoint.x + radius * Mathf.Sin(theta) * Mathf.Cos(phi);
-           y = centerPoint.y + radius * Mathf.Sin(theta) * Mathf.Sin(phi); z = centerPoint.z + radius * Mathf.Cos(theta);
+            x = centerPoint.x + radius * Mathf.Sin(theta) * Mathf.Cos(phi);
+            y = centerPoint.y + radius * Mathf.Sin(theta) * Mathf.Sin(phi);
+            z = centerPoint.z + radius * Mathf.Cos(theta);
 
             targetPoints.Add(new Vector3(x, y, z));
         }
@@ -114,13 +115,36 @@ public class CircleMovement : MonoBehaviour
             distance = Vector3.Distance(transform.position, targetPoint);
         }
 
-        if (distance <= minDistance)
+        if (targetPoints.Count == 0)
+        {
+            targetPoints.Clear();
+            for (int i = 0; i < numVectors; i++)
+            {
+                float theta = i * Mathf.PI / numVectors;
+                float phi = Random.Range(0f, 2f * Mathf.PI);
+
+                float perlinValue = Mathf.PerlinNoise(Time.time, Time.deltaTime);
+                radius += perlinValue;
+
+                if (negativeRadius)
+                    radius *= -1;
+
+                x = centerPoint.x + radius * Mathf.Sin(theta) * Mathf.Cos(phi);
+                y = centerPoint.y + radius * Mathf.Sin(theta) * Mathf.Sin(phi);
+                z = centerPoint.z + radius * Mathf.Cos(theta);
+
+                targetPoints.Add(new Vector3(x, y, z));
+            }
+            currentVector = 0;
+        }
+        else
         {
             Vector3 removedTarget = targetPoints[0];
             targetPoints.RemoveAt(0);
             targetPoints.Add(removedTarget);
             currentVector = (currentVector + 1) % targetPoints.Count;
-            isWaiting = false;
         }
+
+        isWaiting = false;
     }
 }

@@ -1,5 +1,6 @@
 using Anthill.AI;
 using Sirenix.OdinInspector;
+using Team_members.Lloyd.Scripts_L.HearingComponent;
 using UnityEngine;
 
 namespace Team_members.Lloyd.Civilian_L

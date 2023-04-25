@@ -40,10 +40,10 @@ public class QueenEvent : MonoBehaviour
         ChangeSwarmCircleSize?.Invoke(circleSize);
     }
 
-    public Action<MonoBehaviour, bool> ChangeQueenState;
+    public event Action<LesserQueenState> ChangeQueenStateEvent;
 
-    public void OnChangeQueenState(MonoBehaviour state, bool activated)
+    public void OnChangeQueenState(LesserQueenState state)
     {
-        ChangeQueenState?.Invoke(state, activated);
+        ChangeQueenStateEvent?.Invoke(state);
     }   
 }
