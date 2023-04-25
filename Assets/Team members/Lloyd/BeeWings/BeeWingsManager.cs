@@ -4,9 +4,6 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-namespace Team_members.Lloyd.BeeWings
-{
     public class BeeWingsManager : MonoBehaviour
     {
         //ChatGPT cowritten
@@ -204,4 +201,3 @@ namespace Team_members.Lloyd.BeeWings
             //Debug.Log("wingEvent");
         }
     }
-}

@@ -1,5 +1,4 @@
 using System;
-using Team_members.Lloyd.Scripts_L.HearingComponent;
 using UnityEngine;
 
 public class HearingEventArgs : EventArgs

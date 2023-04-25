@@ -1,12 +1,7 @@
 using System.Collections.Generic;
 using Anthill.AI;
-using Team_members.Lloyd.BeeWings;
-using Team_members.Lloyd.Queen.QueenFinal;
-using Team_members.Lloyd.Scripts_L.HearingComponent;
 using UnityEngine;
 
-namespace Team_members.Lloyd.Queen.LesserQueenFinal
-{
     public class LesserQueenSensor : MonoBehaviour, ISense
     {
         #region ANTAI
@@ -116,4 +111,3 @@ namespace Team_members.Lloyd.Queen.LesserQueenFinal
             SetWings();
         }
     }
-}
