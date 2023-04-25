@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Team_members.Lloyd.BeeStinger
+namespace Lloyd
 {
     public class StingerRandom : MonoBehaviour
     {

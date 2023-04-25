@@ -1,7 +1,10 @@
-public enum LesserQueenState
+namespace Lloyd
 {
-    Purple,
-    Orange,
-    Red,
-    Green
+    public enum LesserQueenState
+    {
+        Purple,
+        Orange,
+        Red,
+        Green
+    }
 }

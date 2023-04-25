@@ -3,68 +3,75 @@ using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
-public class CivilianTraits : MonoBehaviour, ICiv
+namespace Lloyd
 {
-    // [ShowInInspector] public Dictionary<TraitScriptableObject, TraitStats> traitsDictionary;
-    [ShowInInspector] public List<TraitStats> traits;
 
-    public event Action<TraitStats> HitThresholdEvent;
 
-    public TraitStats GetTrait(TraitScriptableObject traitScriptableObject)
+    public class CivilianTraits : MonoBehaviour, ICiv
     {
+        // [ShowInInspector] public Dictionary<TraitScriptableObject, TraitStats> traitsDictionary;
+        [ShowInInspector] public List<TraitStats> traits;
 
-        foreach (TraitStats civilianTraitsTrait in traits)
+        public event Action<TraitStats> HitThresholdEvent;
+
+        public TraitStats GetTrait(TraitScriptableObject traitScriptableObject)
         {
-            if (civilianTraitsTrait.traitScriptableObject == traitScriptableObject)
+
+            foreach (TraitStats civilianTraitsTrait in traits)
             {
-                // Found it
-                return civilianTraitsTrait;
+                if (civilianTraitsTrait.traitScriptableObject == traitScriptableObject)
+                {
+                    // Found it
+                    return civilianTraitsTrait;
+                }
             }
+
+            return null;
         }
 
-        return null;
-    }
-
-    public void UpdateTrait(TraitScriptableObject key, float newValue)
-    {
-        foreach (TraitStats civilianTraitsTrait in traits)
+        public void UpdateTrait(TraitScriptableObject key, float newValue)
         {
-            if (civilianTraitsTrait.traitScriptableObject == key)
+            foreach (TraitStats civilianTraitsTrait in traits)
             {
-                if (newValue > 1.0f)
+                if (civilianTraitsTrait.traitScriptableObject == key)
                 {
-                    newValue = 1.0f;
+                    if (newValue > 1.0f)
+                    {
+                        newValue = 1.0f;
+                    }
+                    else if (newValue < 0.0f)
+                    {
+                        newValue = 0.0f;
+                    }
+
+                    if (newValue >= civilianTraitsTrait.threshold)
+                    {
+                        civilianTraitsTrait.thresholdHit = true;
+                        HitThresholdEvent?.Invoke(civilianTraitsTrait);
+                    }
+                    else if (newValue < civilianTraitsTrait.threshold)
+                    {
+                        civilianTraitsTrait.thresholdHit = false;
+                    }
+
+                    civilianTraitsTrait.value = newValue;
                 }
-                else if (newValue < 0.0f)
-                {
-                    newValue = 0.0f;
-                }
-    
-                if (newValue >= civilianTraitsTrait.threshold)
-                {
-                    civilianTraitsTrait.thresholdHit = true;
-                    HitThresholdEvent?.Invoke(civilianTraitsTrait);
-                }
-                else if (newValue < civilianTraitsTrait.threshold)
-                {
-                    civilianTraitsTrait.thresholdHit = false;
-                }
-                
-                civilianTraitsTrait.value = newValue;
             }
         }
     }
-}
 
-[Serializable]
-public class TraitStats
-{
-    public TraitScriptableObject traitScriptableObject;
+    [Serializable]
+    public class TraitStats
+    {
+        public TraitScriptableObject traitScriptableObject;
 
-    [Header("Don't update in play mode")]
-    // TODO tell ODIN to do ReadOnlyInPlay/Edit [ReadOnly]
-    [Range(0f, 1f)] public float value = 0.5f;
-    [Range(0f, 1f)] public float threshold = 1.0f;
+        [Header("Don't update in play mode")]
+        // TODO tell ODIN to do ReadOnlyInPlay/Edit [ReadOnly]
+        [Range(0f, 1f)]
+        public float value = 0.5f;
 
-    [ReadOnly] public bool thresholdHit;
+        [Range(0f, 1f)] public float threshold = 1.0f;
+
+        [ReadOnly] public bool thresholdHit;
+    }
 }

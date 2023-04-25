@@ -1,7 +1,7 @@
 using Anthill.AI;
 using UnityEngine;
 
-namespace Team_members.Lloyd.CivFinal
+namespace Lloyd
 {
     public class NormalCivBrain : MonoBehaviour
     {

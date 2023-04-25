@@ -1,6 +1,6 @@
 using Anthill.AI;
 
-namespace Team_members.Lloyd.CivFinal
+namespace Lloyd
 {
     public class NormalCivHarvest : AntAIState
     {

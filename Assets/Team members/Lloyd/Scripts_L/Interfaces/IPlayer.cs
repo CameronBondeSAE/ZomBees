@@ -1,11 +1,16 @@
-public interface IPlayer
-{
-}
 
-public interface ICiv
+namespace Lloyd
 {
-    public void HitByBee(BeeStingAttack.BeeStingType attackType, float amount)
+
+    public interface IPlayer
     {
-        
+    }
+
+    public interface ICiv
+    {
+        public void HitByBee(BeeStingAttack.BeeStingType attackType, float amount)
+        {
+
+        }
     }
 }

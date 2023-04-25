@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
-namespace Team_members.Lloyd.Torch
+namespace Lloyd
 {
     public class PickupTorch : MonoBehaviour
     {

@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using Anthill.AI;
-using UnityEngine;
 
-public class BeeStingAttackRecover : AntAIState
+namespace Lloyd
 {
+    public class BeeStingAttackRecover : AntAIState
+    {
     
+    }
 }

@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Team_members.Lloyd.Civilian_L;
 using UnityEngine;
-
+using Lloyd;
 public class CivVision : MonoBehaviour
 {
     //chat GPT was here

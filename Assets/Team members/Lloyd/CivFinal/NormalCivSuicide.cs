@@ -1,27 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
 
-public class NormalCivSuicide : AntAIState
+namespace Lloyd
 {
-    public Transform target;
-
-    public bool hasGun;
-
-    public bool hasExplosive;
-
-    public override void Enter()
+    public class NormalCivSuicide : AntAIState
     {
-        base.Enter();
+        public Transform target;
+
+        public bool hasGun;
+
+        public bool hasExplosive;
+
+        public override void Enter()
+        {
+            base.Enter();
         
-        if(hasGun)
-            Debug.Log("Bang!");
+            if(hasGun)
+                Debug.Log("Bang!");
         
-        if(hasExplosive)
-            Debug.Log("Boom!");
+            if(hasExplosive)
+                Debug.Log("Boom!");
         
-        else
-            Debug.Log("Punch!");
+            else
+                Debug.Log("Punch!");
+        }
     }
 }

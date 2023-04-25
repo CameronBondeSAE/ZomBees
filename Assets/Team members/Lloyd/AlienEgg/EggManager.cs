@@ -1,72 +1,70 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class EggManager : MonoBehaviour
+namespace Lloyd
 {
-    public GameObject eggObjectPrefab;
+    public class EggManager : MonoBehaviour
+    {
+        public GameObject eggObjectPrefab;
 
-    public AlienEggPulse eggLogic;
+        public AlienEggPulse eggLogic;
 
-    public GameObject originalCiv;
+        public GameObject originalCiv;
 
-    public GameObject zombeeCiv;
+        public GameObject zombeeCiv;
 
-    public List<Vector3> eggList;
+        public List<Vector3> eggList;
     
-    public static EggManager instance;
+        public static EggManager instance;
 
-    private void Awake()
-    {
-        if (instance == null)
+        private void Awake()
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
+
+        [Button]
+        public void StartEgg(GameObject newOriginalCiv)
         {
-            Destroy(gameObject);
-        }
-    }
+            originalCiv = newOriginalCiv;
 
-    [Button]
-    public void StartEgg(GameObject newOriginalCiv)
-    {
-        originalCiv = newOriginalCiv;
+            GameObject instantiateEgg = Instantiate(eggObjectPrefab, originalCiv.transform.position, Quaternion.identity);
 
-        GameObject instantiateEgg = Instantiate(eggObjectPrefab, originalCiv.transform.position, Quaternion.identity);
+            eggLogic = instantiateEgg.GetComponent<AlienEggPulse>();
 
-        eggLogic = instantiateEgg.GetComponent<AlienEggPulse>();
-
-        SubscribeToEggEvents();
+            SubscribeToEggEvents();
         
-        originalCiv.SetActive(false);
-    }
+            originalCiv.SetActive(false);
+        }
     
-    private void SubscribeToEggEvents()
-    {
+        private void SubscribeToEggEvents()
+        {
             eggLogic.SafeEvent += FreeCiv;
             eggLogic.TimesUpEvent += SpawnBee;
-    }
+        }
 
-    public void FreeCiv()
-    {
+        public void FreeCiv()
+        {
             originalCiv.SetActive(true);
-    }
+        }
 
-    public void SpawnBee()
-    {
-        Instantiate(zombeeCiv, originalCiv.transform.position, Quaternion.identity);
-    }
+        public void SpawnBee()
+        {
+            Instantiate(zombeeCiv, originalCiv.transform.position, Quaternion.identity);
+        }
 
-    private void OnDisable()
-    {
-        eggLogic.SafeEvent -= FreeCiv;
-        eggLogic.TimesUpEvent -= SpawnBee;
+        private void OnDisable()
+        {
+            eggLogic.SafeEvent -= FreeCiv;
+            eggLogic.TimesUpEvent -= SpawnBee;
+        }
     }
 }

@@ -1,132 +1,132 @@
 using Anthill.AI;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CivSensor : MonoBehaviour, ISense
+namespace Lloyd
 {
-    public AntAIAgent antAIAgent;
-
-    public bool idle = false;
-
-    public bool inRange = false;
-
-    public bool hasInteractTarget = false;
-    public bool wantsToInteract = false;
-
-    public bool hungry;
-    public bool hasResourceTarget;
-
-    public bool feared;
-
-    public Transform moveTarget;
-
-    public bool hasAttackTarget = false;
-    public Transform attackTarget;
-    public bool wantsToAttack = false;
-
-    public Transform RotateToTarget;
-
-    public enum MoveType
+    public class CivSensor : MonoBehaviour, ISense
     {
-        Idle,
-        FollowingPlayer,
-        WalkToNearestInteract,
-        WalkToNearestSafePoint,
-        WalkToNearestAttackPoint,
-        Searching
-    }
+        public AntAIAgent antAIAgent;
 
-    public MoveType myMoveType;
+        public bool idle = false;
 
-    private void Awake()
-    {
-        StartBeeParts();
-    }
+        public bool inRange = false;
 
-    public void Update()
-    {
-        if (idle)
+        public bool hasInteractTarget = false;
+        public bool wantsToInteract = false;
+
+        public bool hungry;
+        public bool hasResourceTarget;
+
+        public bool feared;
+
+        public Transform moveTarget;
+
+        public bool hasAttackTarget = false;
+        public Transform attackTarget;
+        public bool wantsToAttack = false;
+
+        public Transform RotateToTarget;
+
+        public enum MoveType
         {
-            myMoveType = MoveType.Idle;
+            Idle,
+            FollowingPlayer,
+            WalkToNearestInteract,
+            WalkToNearestSafePoint,
+            WalkToNearestAttackPoint,
+            Searching
         }
+
+        public MoveType myMoveType;
+
+        private void Awake()
+        {
+            StartBeeParts();
+        }
+
+        public void Update()
+        {
+            if (idle)
+            {
+                myMoveType = MoveType.Idle;
+            }
         
-        //else if (followingCharacter)
-        //{
+            //else if (followingCharacter)
+            //{
 //            myMoveType = MoveType.FollowingCharacter;
-        //}
+            //}
         
-        else if (wantsToInteract && !hasInteractTarget)
-        {
-            myMoveType = MoveType.Searching;
+            else if (wantsToInteract && !hasInteractTarget)
+            {
+                myMoveType = MoveType.Searching;
+            }
+
+            else if (wantsToInteract)
+            {
+                myMoveType = MoveType.WalkToNearestInteract;
+            }
+
+            else if (hungry && !hasResourceTarget)
+            {
+                myMoveType = MoveType.Searching;
+            }
+
+            else if (feared)
+            {
+                myMoveType = MoveType.WalkToNearestSafePoint;
+            }
+
+            else if (hasAttackTarget && wantsToAttack)
+            {
+                myMoveType = MoveType.WalkToNearestAttackPoint;
+            }
         }
 
-        else if (wantsToInteract)
+        public void ChangeRotateTarget(Transform newTarget)
         {
-            myMoveType = MoveType.WalkToNearestInteract;
+            RotateToTarget = newTarget;
         }
 
-        else if (hungry && !hasResourceTarget)
+        public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
         {
-            myMoveType = MoveType.Searching;
+            aWorldState.BeginUpdate(aAgent.planner);
+            {
+                aWorldState.Set(NormalCivScenario.InRange, inRange);
+
+                aWorldState.Set(NormalCivScenario.HasInteractTarget, hasInteractTarget);
+                aWorldState.Set(NormalCivScenario.WantsToInteract, wantsToInteract);
+
+                aWorldState.Set(NormalCivScenario.HasAttackTarget, hasAttackTarget);
+                aWorldState.Set(NormalCivScenario.WantsToAttack, wantsToAttack);
+
+                aWorldState.Set(NormalCivScenario.Idle, idle);
+            }
+            aWorldState.EndUpdate();
         }
 
-        else if (feared)
+        public void DesireToInteract()
         {
-            myMoveType = MoveType.WalkToNearestSafePoint;
+            wantsToInteract = true;
         }
 
-        else if (hasAttackTarget && wantsToAttack)
+        public void BecomeEgg()
         {
-            myMoveType = MoveType.WalkToNearestAttackPoint;
+            EggManager.instance.StartEgg(gameObject);
         }
-    }
 
-    public void ChangeRotateTarget(Transform newTarget)
-    {
-        RotateToTarget = newTarget;
-    }
+        #region Head
 
-    public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
-    {
-        aWorldState.BeginUpdate(aAgent.planner);
+        private BeePartsManager beeparts;
+
+        private void StartBeeParts()
         {
-            aWorldState.Set(NormalCivScenario.InRange, inRange);
+            beeparts = GetComponentInChildren<BeePartsManager>();
 
-            aWorldState.Set(NormalCivScenario.HasInteractTarget, hasInteractTarget);
-            aWorldState.Set(NormalCivScenario.WantsToInteract, wantsToInteract);
-
-            aWorldState.Set(NormalCivScenario.HasAttackTarget, hasAttackTarget);
-            aWorldState.Set(NormalCivScenario.WantsToAttack, wantsToAttack);
-
-            aWorldState.Set(NormalCivScenario.Idle, idle);
+            beeparts.HumanEyes();
+            beeparts.LoseAntannae();
+            beeparts.LoseMandibles();
         }
-        aWorldState.EndUpdate();
+
+        #endregion
     }
-
-    public void DesireToInteract()
-    {
-        wantsToInteract = true;
-    }
-
-    public void BecomeEgg()
-    {
-        EggManager.instance.StartEgg(gameObject);
-    }
-
-    #region Head
-
-    private BeePartsManager beeparts;
-
-    private void StartBeeParts()
-    {
-        beeparts = GetComponentInChildren<BeePartsManager>();
-
-        beeparts.HumanEyes();
-        beeparts.LoseAntannae();
-        beeparts.LoseMandibles();
-    }
-
-    #endregion
 }

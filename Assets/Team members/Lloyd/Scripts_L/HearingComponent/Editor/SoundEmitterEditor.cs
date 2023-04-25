@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Team_members.Lloyd.Scripts_L.HearingComponent.Editor
+namespace Lloyd
 {
     [CustomEditor(typeof(SoundEmitter))]
     public class SoundEmitterEditor : UnityEditor.Editor

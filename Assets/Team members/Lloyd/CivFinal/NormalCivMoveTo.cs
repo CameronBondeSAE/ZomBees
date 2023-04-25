@@ -1,127 +1,125 @@
 using Anthill.AI;
-using System.Collections;
-using System.Collections.Generic;
-using Team_members.Lloyd.CivFinal;
-using Team_members.Lloyd.Civilian_L;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class NormalCivMoveToTarget : AntAIState
+namespace Lloyd
 {
-    //swiped from tutorial folder
+    public class NormalCivMoveToTarget : AntAIState
+    {
+        //swiped from tutorial folder
 
-    public GameObject owner;
-    //NavMeshAgent      navMeshAgent;
+        public GameObject owner;
+        //NavMeshAgent      navMeshAgent;
 
-    public Rigidbody rb;
+        public Rigidbody rb;
 
-    public Transform target;
+        public Transform target;
 
-    //get from stats
-    public float moveSpeed;
-    public float stopDistance;
-    public float decelerationDistance;
+        //get from stats
+        public float moveSpeed;
+        public float stopDistance;
+        public float decelerationDistance;
 
-    public bool inRange;
+        public bool inRange;
 
-    private CivSensor sensor;
+        private CivSensor sensor;
 
-    private NormalCivPathFinder pathFinder;
+        private NormalCivPathFinder pathFinder;
 
-    private CivSensor.MoveType myMoveType;
+        private CivSensor.MoveType myMoveType;
     
     
 
-    public override void Create(GameObject aGameObject)
-    {
-        base.Create(aGameObject);
-
-        owner = aGameObject;
-        //navMeshAgent = owner.GetComponent<NavMeshAgent>();
-
-        rb = owner.GetComponent<Rigidbody>();
-
-        sensor = owner.GetComponent<CivSensor>();
-
-        pathFinder = owner.GetComponent<NormalCivPathFinder>();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-
-        // navMeshAgent.SetDestination(owner.GetComponent<NormalCivBrain>().moveTarget.transform.position);
-        decelerationDistance = stopDistance * 3;
-
-        inRange = false;
-
-        CalculateTarget();
-    }
-
-    private void CalculateTarget()
-    {
-        myMoveType = sensor.myMoveType;
-
-        if (myMoveType == CivSensor.MoveType.Searching)
+        public override void Create(GameObject aGameObject)
         {
-            target = pathFinder.CalculateRandomSafePoint();
+            base.Create(aGameObject);
+
+            owner = aGameObject;
+            //navMeshAgent = owner.GetComponent<NavMeshAgent>();
+
+            rb = owner.GetComponent<Rigidbody>();
+
+            sensor = owner.GetComponent<CivSensor>();
+
+            pathFinder = owner.GetComponent<NormalCivPathFinder>();
         }
 
-        else if (myMoveType == CivSensor.MoveType.WalkToNearestSafePoint)
+        public override void Enter()
         {
-            target = pathFinder.CalculateNearestSafePoint();
+            base.Enter();
+
+            // navMeshAgent.SetDestination(owner.GetComponent<NormalCivBrain>().moveTarget.transform.position);
+            decelerationDistance = stopDistance * 3;
+
+            inRange = false;
+
+            CalculateTarget();
         }
 
-        else if (myMoveType == CivSensor.MoveType.WalkToNearestInteract)
+        private void CalculateTarget()
         {
-            target = pathFinder.CalculateNearestInteractPoint();
+            myMoveType = sensor.myMoveType;
+
+            if (myMoveType == CivSensor.MoveType.Searching)
+            {
+                target = pathFinder.CalculateRandomSafePoint();
+            }
+
+            else if (myMoveType == CivSensor.MoveType.WalkToNearestSafePoint)
+            {
+                target = pathFinder.CalculateNearestSafePoint();
+            }
+
+            else if (myMoveType == CivSensor.MoveType.WalkToNearestInteract)
+            {
+                target = pathFinder.CalculateNearestInteractPoint();
+            }
+
+            sensor.ChangeRotateTarget(target);
         }
 
-        sensor.ChangeRotateTarget(target);
-    }
-
-    private void Stop()
-    {
-        rb.velocity = Vector3.zero;
-        inRange = true;
-        owner.GetComponent<CivSensor>().inRange = inRange;
-        Finish();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-        inRange = false;
-    }
-
-    public override void Execute(float aDeltaTime, float aTimeScale)
-    {
-        base.Execute(aDeltaTime, aTimeScale);
-
-        if (target == null) return;
-
-        Vector3 direction = target.position - transform.position;
-        float distance = direction.magnitude;
-
-        if (distance <= stopDistance)
+        private void Stop()
         {
-            Stop();
-        }
-
-        else if (distance <= decelerationDistance)
-        {
-            float decelerationFactor = Mathf.Clamp01((distance - stopDistance) / (decelerationDistance - stopDistance));
-            rb.AddForce(direction.normalized * moveSpeed * decelerationFactor, ForceMode.Acceleration);
-        }
-        else
-        {
-            rb.AddForce(direction.normalized * moveSpeed, ForceMode.Acceleration);
-        }
-
-        //if (navMeshAgent.remainingDistance < 1f)
-        {
-            //  owner.GetComponent<NormalCivBrain>().moveTarget = null;
+            rb.velocity = Vector3.zero;
+            inRange = true;
+            owner.GetComponent<CivSensor>().inRange = inRange;
             Finish();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            inRange = false;
+        }
+
+        public override void Execute(float aDeltaTime, float aTimeScale)
+        {
+            base.Execute(aDeltaTime, aTimeScale);
+
+            if (target == null) return;
+
+            Vector3 direction = target.position - transform.position;
+            float distance = direction.magnitude;
+
+            if (distance <= stopDistance)
+            {
+                Stop();
+            }
+
+            else if (distance <= decelerationDistance)
+            {
+                float decelerationFactor = Mathf.Clamp01((distance - stopDistance) / (decelerationDistance - stopDistance));
+                rb.AddForce(direction.normalized * moveSpeed * decelerationFactor, ForceMode.Acceleration);
+            }
+            else
+            {
+                rb.AddForce(direction.normalized * moveSpeed, ForceMode.Acceleration);
+            }
+
+            //if (navMeshAgent.remainingDistance < 1f)
+            {
+                //  owner.GetComponent<NormalCivBrain>().moveTarget = null;
+                Finish();
+            }
         }
     }
 }

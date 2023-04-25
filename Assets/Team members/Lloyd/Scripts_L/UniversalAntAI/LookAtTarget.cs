@@ -4,7 +4,6 @@ using Anthill.AI;
 using UnityEngine;
 using Lloyd;
 using Sirenix.OdinInspector;
-using Team_members.Lloyd.Civilian_L;
 
 public class LookAtTarget : MonoBehaviour
 {

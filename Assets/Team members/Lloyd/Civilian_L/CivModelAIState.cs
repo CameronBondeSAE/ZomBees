@@ -1,7 +1,7 @@
 using Anthill.AI;
 using UnityEngine;
 
-namespace Team_members.Lloyd.Civilian_L
+namespace Lloyd
 {
     public class CivModelAIState : AntAIState
     {

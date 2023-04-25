@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+
+namespace Lloyd
+{
 	public class Hearing : MonoBehaviour, IHear
 	{
 		// Hearing Component uses IHear takes the gameObject Sound Emitter as source
@@ -92,3 +95,4 @@ using UnityEngine;
 		// point.z += noiseZ;
 		//public float perlionScale = 1f;
 	}
+}

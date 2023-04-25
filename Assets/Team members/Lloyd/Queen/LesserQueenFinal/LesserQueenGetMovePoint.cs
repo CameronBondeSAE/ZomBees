@@ -1,41 +1,42 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LesserQueenGetMovePoint : MonoBehaviour
+namespace Lloyd
 {
-    public PatrolManager patrolManager;
-
-    public List<PatrolPoint> flyPoints;
-
-    public List<PatrolPoint> hivePoints;
-
-    public Transform nearestPoint;
-
-    private void Start()
+    public class LesserQueenGetMovePoint : MonoBehaviour
     {
-        patrolManager = PatrolManager.singleton;
+        public PatrolManager patrolManager;
 
-        flyPoints = new List<PatrolPoint>(patrolManager.paths);
-        hivePoints = new List<PatrolPoint>(patrolManager.pathsWithIndoors);
-    }
+        public List<PatrolPoint> flyPoints;
 
-    public void CalculateNearestPoint(List<PatrolPoint> inputList)
-    {
-        List<KeyValuePair<float, GameObject>> distances = new List<KeyValuePair<float, GameObject>>();
-        
-        foreach (PatrolPoint point in inputList)
+        public List<PatrolPoint> hivePoints;
+
+        public Transform nearestPoint;
+
+        private void Start()
         {
-            float distance = Vector3.Distance(transform.position, point.transform.position);
-            distances.Add(new KeyValuePair<float, GameObject>(distance, point.gameObject));
+            patrolManager = PatrolManager.singleton;
+
+            flyPoints = new List<PatrolPoint>(patrolManager.paths);
+            hivePoints = new List<PatrolPoint>(patrolManager.pathsWithIndoors);
         }
 
-        distances.Sort((a, b) => a.Key.CompareTo(b.Key));
-
-        if (distances.Count > 0)
+        public void CalculateNearestPoint(List<PatrolPoint> inputList)
         {
-            nearestPoint = distances[0].Value.transform;
+            List<KeyValuePair<float, GameObject>> distances = new List<KeyValuePair<float, GameObject>>();
+        
+            foreach (PatrolPoint point in inputList)
+            {
+                float distance = Vector3.Distance(transform.position, point.transform.position);
+                distances.Add(new KeyValuePair<float, GameObject>(distance, point.gameObject));
+            }
+
+            distances.Sort((a, b) => a.Key.CompareTo(b.Key));
+
+            if (distances.Count > 0)
+            {
+                nearestPoint = distances[0].Value.transform;
+            }
         }
     }
 }

@@ -1,3 +1,6 @@
-public interface IFollower
+namespace Lloyd
 {
+    public interface IFollower
+    {
+    }
 }

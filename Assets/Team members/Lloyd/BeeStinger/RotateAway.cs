@@ -3,7 +3,7 @@ using System.Collections;
 using Marcus;
 using UnityEngine;
 
-namespace Team_members.Lloyd.BeeStinger
+namespace Lloyd
 {
     public class RotateAway : MonoBehaviour
     {

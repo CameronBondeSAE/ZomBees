@@ -2,7 +2,7 @@ using Anthill.AI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Team_members.Lloyd.Civilian_L
+namespace Lloyd
 {
     public class CivilianBrain : AntAIAgent, ISense
     {
