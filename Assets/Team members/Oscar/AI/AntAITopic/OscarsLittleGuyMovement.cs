@@ -70,6 +70,11 @@ namespace Oscar
 
         #region Stearing
 
+        public void Turning(float turnDirectionForce)
+        {
+            rb.AddRelativeTorque(Vector3.up * turnDirectionForce);
+        }
+        
         public void Wondering()
         {
             float x = zoomX + Time.time;

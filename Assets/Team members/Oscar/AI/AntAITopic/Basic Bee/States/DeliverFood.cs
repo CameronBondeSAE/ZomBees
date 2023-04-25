@@ -7,6 +7,7 @@ using Oscar;
 using UnityEngine;
 using UnityEngine.AI;
 using Virginia;
+using Random = UnityEngine.Random;
 
 public class DeliverFood : OscarsLittleGuyMovement
 {
@@ -30,7 +31,8 @@ public class DeliverFood : OscarsLittleGuyMovement
 
 	    if (inventory.heldItem != null)
 	    {
-		    NavmeshFindLocation(littleGuy.myHome.transform.position);
+		    NavmeshFindLocation(
+			    PatrolManager.singleton.hivePoints[Random.Range(0, PatrolManager.singleton.hivePoints.Count)].transform.position);
 	    }
     }
 

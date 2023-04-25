@@ -13,6 +13,7 @@ public class PatrolManager : MonoBehaviour
 	public List<PatrolPoint> sneaky;
 	public List<PatrolPoint> waterTargets;
 	public List<PatrolPoint> resourcePoints;
+	public List<PatrolPoint> hivePoints;
 
 	public static PatrolManager singleton;
 

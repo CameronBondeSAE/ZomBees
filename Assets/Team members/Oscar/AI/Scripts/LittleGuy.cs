@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Oscar
 {
@@ -14,15 +15,6 @@ namespace Oscar
         public Rigidbody rb;
         public float speed;
         public float turnSpeed;
-
-        public GameObject myHome;
-
-        public List<GameObject> collectedObjects;
-        
-        private void Awake()
-        {
-            collectedObjects = new List<GameObject>();
-        }
 
         public void SoundHeard(SoundProperties soundProperties)
         {

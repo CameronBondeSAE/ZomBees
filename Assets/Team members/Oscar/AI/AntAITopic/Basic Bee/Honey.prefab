@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8947468989066665900
 MeshFilter:
@@ -119,12 +119,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3a3238f9c281449ada1026b6157a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   isLit: 0
   isMoving: 0
   isFood: 1
   isObject: 0
   importance: 0.2
-  description: hONEY
+  description: Food
 --- !u!54 &346717653718050094
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -72,17 +72,17 @@ namespace Oscar
         }
         public bool DoIHaveRocks()
         {
-            // if (inventory.hand != null)
-            // {
-            //     if (inventory.hand.GetComponent<DynamicObject>().isObject)
-            //     {
-            //         return true;
-            //     }
-            //     else
-            //     {
-            //         return false;
-            //     }
-            // }
+            if (inventory.heldItem != null)
+            {
+                if (inventory.heldItem.Description() == "Rock")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
             return false;
         }
 
@@ -93,7 +93,18 @@ namespace Oscar
 
         public bool DoIHaveStuff()
         {
-            return littleGuy.collectedObjects.Count >= 3;
+            if (inventory.heldItem != null)
+            {
+                if (inventory.heldItem.Description() == "Collected Item")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
 
         public bool StuffDelivered()
@@ -108,9 +119,9 @@ namespace Oscar
 
         public bool DoIHaveFood()
         {
-            if (inventory.hand != null)
+            if (inventory.heldItem != null)
             {
-                if (inventory.hand.GetComponent<DynamicObject>().isFood)
+                if (inventory.heldItem.Description() == "Food")
                 {
                     return true;
                 }
