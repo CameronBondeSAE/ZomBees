@@ -19,7 +19,7 @@ public class AttackCivilian : OscarsLittleGuyMovement
     {
         base.Enter();
         
-        GetComponentInChildren<ColourChangeShader>().attackPhase = true;
+        //GetComponentInChildren<ColourChangeShader>().attackPhase = true;
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)

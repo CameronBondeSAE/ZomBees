@@ -8,20 +8,24 @@ using Random = UnityEngine.Random;
 
 public class FindFood : OscarsLittleGuyMovement
 {
-    private LittleGuy littleGuy;
-
     public override void Enter()
     {
         base.Enter();
-
-        //GetComponentInChildren<ColourChangeShader>().attackPhase = false;
+            
+        NavmeshEnabled();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
-        
-        BasicMovement(1f);
-        Wondering();
+            
+        NavmeshFindLocation(PatrolManager.singleton.resourcePoints[Random.Range(0,PatrolManager.singleton.resourcePoints.Count)].transform.position);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+            
+        NavMeshFinish();
     }
 }

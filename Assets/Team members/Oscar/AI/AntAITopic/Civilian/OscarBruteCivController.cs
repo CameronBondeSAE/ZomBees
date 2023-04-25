@@ -28,19 +28,19 @@ public class OscarBruteCivController : MonoBehaviour
         return vision.beesInSight.Count >= 1;
     }
 
-    void CreateFear(HearingEventArgs eventArgs)
-    {
-        hearSounds = true;
-    }
-
-    void DecreaseFear(HearingEventArgs eventArgs)
-    {
-        hearSounds = false;
-    }
+    // void CreateFear(HearingEventArgs eventArgs)
+    // {
+    //     hearSounds = true;
+    // }
+    //
+    // void DecreaseFear(HearingEventArgs eventArgs)
+    // {
+    //     hearSounds = false;
+    // }
     
     public bool IsScaredBool()
     {
-        if (hearSounds)
+        if (ears.heardSound)
         {
             return true;
         }
