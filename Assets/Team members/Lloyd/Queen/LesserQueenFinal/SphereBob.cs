@@ -4,8 +4,6 @@ using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
-
-
     public class SphereBob : MonoBehaviour
     {
         private Vector3 origPos;
@@ -19,7 +17,7 @@ namespace Lloyd
 
         public Rigidbody rb;
 
-        private bool bobbing;
+        public bool bobbing;
 
         private Vector3 previousPosition;
 
@@ -36,7 +34,7 @@ namespace Lloyd
         {
             Vector3 prevPosition = transform.position;
 
-            while (true)
+            while (bobbing)
             {
                 Vector3 randomPoint = Random.onUnitSphere * moveDist + origPos;
 
@@ -46,9 +44,7 @@ namespace Lloyd
 
                     transform.position = Vector3.Slerp(transform.position, randomPoint, elapsedTime / moveTime);
                     elapsedTime += Time.deltaTime;
-
-
-
+                    
                     prevPosition = transform.position;
                     yield return null;
                 }
@@ -72,6 +68,8 @@ namespace Lloyd
 
         private void OnDisable()
         {
+            transform.position = origPos;
+            rb.velocity = Vector3.zero;
             bobbing = false;
             StopCoroutine(Bob());
         }

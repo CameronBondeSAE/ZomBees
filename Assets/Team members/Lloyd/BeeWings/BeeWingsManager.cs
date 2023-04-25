@@ -69,6 +69,7 @@ namespace Lloyd
 
         public void SetWings()
         {
+            myWings = new List<GameObject>();
             for (int i = 0; i < numberOfWings; i++)
             {
                 myWings.Add(wing);

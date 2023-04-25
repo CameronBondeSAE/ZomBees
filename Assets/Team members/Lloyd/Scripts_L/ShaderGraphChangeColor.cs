@@ -15,6 +15,9 @@ namespace Lloyd
         private void Awake()
         {
             rend = GetComponent<Renderer>();
+            if (rend == null)
+                rend = GetComponentInChildren<Renderer>();
+            
             myMaterial = rend.materials[2];
         }
 

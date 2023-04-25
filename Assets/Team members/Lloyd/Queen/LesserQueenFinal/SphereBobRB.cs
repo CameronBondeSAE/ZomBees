@@ -3,9 +3,6 @@ using UnityEngine;
 
 namespace Lloyd
 {
-
-
-
     public class SphereBobRB : MonoBehaviour
     {
         private Vector3 origPos;
@@ -40,15 +37,14 @@ namespace Lloyd
 
                 if (velocity.y > 0)
                 {
-                    beeWings.OnChangeStatEvent(-125, 50, true);
+                    beeWings.ChangeBeeWingStats(-45, 15, true);
                     movingUp = true;
                 }
                 else
                 {
-                    beeWings.OnChangeStatEvent(-145, 2, true);
                     movingUp = false;
+                    beeWings.ChangeBeeWingStats(-90, 55, true);
                 }
-
             }
         }
 
@@ -58,7 +54,7 @@ namespace Lloyd
             Vector3 origPos = rb.position;
             Vector3 prevPosition = rb.position;
 
-            while (true)
+            while (bobbing)
             {
                 Vector3 randomPoint = Random.onUnitSphere * moveDist + origPos;
 

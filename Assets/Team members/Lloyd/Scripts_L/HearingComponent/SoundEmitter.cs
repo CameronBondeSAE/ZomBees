@@ -75,6 +75,7 @@ using UnityEngine;
 					soundProperties.Source = gameObject;
 					listener.SoundHeard(soundProperties);
 					// listenerList.Add(listener);
+					Debug.Log(listener);
 				}
 			}
 		}
@@ -85,6 +86,6 @@ using UnityEngine;
 		{
 			testProperties.Source = gameObject;
 			EmitSound(testProperties);
-			Debug.Log(testProperties);
+			//Debug.Log(testProperties);
 		}
 	}

@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace Lloyd
 {
-
-
     public class LesserQueenSensor : MonoBehaviour, ISense
     {
         #region ANTAI
@@ -79,21 +77,9 @@ namespace Lloyd
 
         #endregion
 
-        #region Hearing
+        #region Idle
 
-        private Hearing hearing;
-
-        public void SetEars()
-        {
-            hearing = GetComponent<Hearing>();
-            hearing.SoundHeardEvent += HeardSound;
-        }
-
-        public void HeardSound(SoundProperties heardProperties)
-        {
-            look.target = heardProperties.Source.transform;
-            heardSound = true;
-        }
+        public SphereBob bob;
 
         #endregion
 
@@ -111,8 +97,8 @@ namespace Lloyd
 
         public void Start()
         {
-            SetEyes();
-            SetEars();
+            bob = GetComponent<SphereBob>();
+            SetEyes(); 
             SetWings();
         }
     }

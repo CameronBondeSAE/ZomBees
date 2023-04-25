@@ -7,35 +7,47 @@ namespace Lloyd
     public class LesserQueenPatrol : AntAIState
     {
         public LesserQueenSensor queenSensor;
-        public Hearing hearingComp;
-        public QueenEvent queenEvent;
         public SphereBob bob;
+        public QueenEvent queenEvent;
+
+        public bool hearSomething;
+        public bool seeSomething;
 
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
-            hearingComp = aGameObject.GetComponent<Hearing>();
             queenEvent = aGameObject.GetComponent<QueenEvent>();
-            bob = aGameObject.GetComponent<SphereBob>();
+            queenSensor = aGameObject.GetComponent<LesserQueenSensor>();
+
+            hearSomething = false;
+            seeSomething = false;
         }
 
         public override void Enter()
         {
             base.Enter();
+            bob = queenSensor.bob;
             bob.enabled = true;
-            hearingComp.SoundHeardEvent += HeardSomething;
             queenEvent.OnChangeQueenState(LesserQueenState.Green);
         }
 
-        public void HeardSomething(SoundProperties properties)
+        public override void Execute(float aDeltaTime, float aTimeScale)
         {
+            base.Execute(aDeltaTime, aTimeScale);
 
+            hearSomething = queenSensor.heardSound;
+            seeSomething = queenSensor.seesTarget;
+            
+            if (hearSomething || seeSomething)
+            {
+                queenSensor.patrol = false;
+                Finish();
+            }
         }
 
         public override void Exit()
         {
-            bob.enabled = false;
-            hearingComp.SoundHeardEvent -= HeardSomething;
+          //  bob.enabled = false;
         }
     }
 }
