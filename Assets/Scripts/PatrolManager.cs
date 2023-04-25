@@ -14,6 +14,7 @@ public class PatrolManager : MonoBehaviour
 	public List<PatrolPoint> waterTargets;
 	public List<PatrolPoint> resourcePoints;
 	public List<PatrolPoint> hivePoints;
+	public List<PatrolPoint> flyPoints;
 
 	public static PatrolManager singleton;
 

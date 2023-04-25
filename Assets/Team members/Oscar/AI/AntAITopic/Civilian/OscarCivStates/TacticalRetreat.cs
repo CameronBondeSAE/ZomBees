@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using Oscar;
+using Team_members.Lloyd.Scripts_L.HearingComponent;
 using UnityEngine;
 
 public class TacticalRetreat : OscarsLittleGuyMovement
