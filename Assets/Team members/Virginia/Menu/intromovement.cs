@@ -9,6 +9,7 @@ public class intromovement : MonoBehaviour
 {
    
     void Start()
+   {
    // DOTween.
     }
 
