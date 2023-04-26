@@ -18,7 +18,7 @@ namespace Virginia
             [Button] 
         public void Pickup()
         {
-            heldItem.Pickup(gameObject);
+            
             
             Collider[]  CollidersFound = Physics.OverlapSphere(hand.transform.position, radius);
             foreach (Collider colliderFound in  CollidersFound)
