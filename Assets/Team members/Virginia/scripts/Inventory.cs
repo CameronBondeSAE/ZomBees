@@ -18,10 +18,12 @@ namespace Virginia
             [Button] 
         public void Pickup()
         {
+            heldItem.Pickup(gameObject);
+            
             Collider[]  CollidersFound = Physics.OverlapSphere(hand.transform.position, radius);
             foreach (Collider colliderFound in  CollidersFound)
             {
-
+                
                 if (colliderFound.GetComponent<IItem>() != null) // checking if its an IItem 
                 {
                     heldItem = colliderFound.GetComponent<IItem>();
@@ -40,20 +42,23 @@ namespace Virginia
                     break;
                 }
             }
+            
         }
         [Button] 
-        public void Consume() 
+        public void Consume()
         {
-            Debug.Log("conumsed yummy");
+            heldItem.Consume();
+            
         } 
         [Button] 
         public void Dispose()
         {
+            heldItem.Dispose();
             Vector3 playerDirection = (heldItem as MonoBehaviour).transform.forward; //Oscar added
             Vector3 objectPosition = (heldItem as MonoBehaviour).transform.position + (playerDirection * placeDistance); //Oscar added
             (heldItem as MonoBehaviour).transform.position = objectPosition; //Oscar added
             
-            (heldItem as MonoBehaviour).transform.rotation = Quaternion.identity; // allows for the object not fall in weird postion 
+            (heldItem as MonoBehaviour).transform.rotation = Quaternion.identity; // allows for the object not fall in weird position 
             (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = false; 
             (heldItem as MonoBehaviour).transform.parent = null; //unparents the child aka child becomes an orphan 
             
