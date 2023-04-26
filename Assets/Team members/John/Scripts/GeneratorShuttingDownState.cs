@@ -25,7 +25,6 @@ namespace Johns
     
         IEnumerator DelayCoroutine()
         {
-            Debug.Log("Coroutine Ran Succesfully");
             yield return new WaitForSeconds(generatorShuttingDown.length);
             GetComponent<StateManager>().ChangeState(GetComponent<GeneratorIdleOffState>());
         }

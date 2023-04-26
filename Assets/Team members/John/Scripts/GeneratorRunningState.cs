@@ -13,8 +13,7 @@ namespace Johns
     {
         PlaySound();
         GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
-        
-        GetComponent<GeneratorModel>()?.thingToGivePowerTo.TurnOn();
+        GetComponent<GeneratorModel>()?.thingToGivePowerTo?.TurnOn();
     }
     
     [Button]
@@ -22,7 +21,7 @@ namespace Johns
     {
         generatorAudio.Stop();
         generatorAudio.loop = false;
-        GetComponent<GeneratorModel>().thingToGivePowerTo.TurnOff();
+        GetComponent<GeneratorModel>()?.thingToGivePowerTo?.TurnOff();
     }
 
     public void PlaySound()

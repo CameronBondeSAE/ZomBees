@@ -14,9 +14,9 @@ public class Health : MonoBehaviour
     public event HealthChangeDelegate HealthChangedEvent;
 
 
-    public float maxHealth = 100f;
-    private float minHealth = 0;
-    [SerializeField]private float currHealth = 100f;
+    public float maxHealth;
+    private float minHealth = 0f;
+    [SerializeField]private float currHealth;
     private float amount;
 
     public void Change(float changeAmount)
