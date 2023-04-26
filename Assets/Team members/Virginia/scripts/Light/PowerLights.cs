@@ -8,8 +8,6 @@ namespace Virginia
     public class PowerLights : MonoBehaviour, ISwitchable, IItem
     {
         public Light light;
-        //public Light Light;
-        
 
         public Virginia.Switch Vswitch;
 
@@ -26,13 +24,13 @@ namespace Virginia
         public void TurnOn()
         {
             light.enabled = true;
-            //Light.enabled = true;
+     
         }
 
         public void TurnOff()
         {
             light.enabled = false;  
-            //Light.enabled = false;
+            
         }
 
         public void Consume()

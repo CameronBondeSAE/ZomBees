@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6071465422392772906}
   - component: {fileID: 1074616536}
   - component: {fileID: 1074616535}
+  - component: {fileID: 1074616530}
+  - component: {fileID: 1074616529}
   m_Layer: 0
   m_Name: ProxcimertySwitch
   m_TagString: Untagged
@@ -34,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6071465422392772904
 MeshFilter:
@@ -121,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6ec75a909b09e4384cc2388dae9df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Switch: {fileID: 1074616530}
 --- !u!114 &1074616535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,3 +136,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15dbe64dde76d542b601a9718343b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Switch: {fileID: 1074616530}
+--- !u!114 &1074616530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071465422392772885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a48ea98c162614b8c9dad996f8c1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: ThingToSwitch
+      Entry: 6
+      Data: 
+    - Name: SwitchableList
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[ISwitchable, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  StateManager: {fileID: 1074616529}
+--- !u!114 &1074616529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6071465422392772885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3805b6a514a16bc429de1ec77dcc6990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingState: {fileID: 0}
+  currentState: {fileID: 0}

@@ -29,7 +29,7 @@ namespace Virginia
                     // setting the IItem object to the player's hand, casting it to a monobehaviour
                     (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = true; //I forget I need GetComponent sometimes.
                     (heldItem as MonoBehaviour).transform.localPosition = Vector3.zero; //moves it to the position of the "hand"
-
+                    
                     if ((heldItem as MonoBehaviour).GetComponent<Collider>() != null) //Oscar added
                     {
                         (heldItem as MonoBehaviour).GetComponent<Collider>().enabled = false; 
@@ -53,6 +53,7 @@ namespace Virginia
             Vector3 objectPosition = (heldItem as MonoBehaviour).transform.position + (playerDirection * placeDistance); //Oscar added
             (heldItem as MonoBehaviour).transform.position = objectPosition; //Oscar added
             
+            (heldItem as MonoBehaviour).transform.rotation = Quaternion.identity; // allows for the object not fall in weird postion 
             (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = false; 
             (heldItem as MonoBehaviour).transform.parent = null; //unparents the child aka child becomes an orphan 
             
