@@ -38,7 +38,7 @@ namespace Virginia
                     }
 
                     //Debug.Log(message: "pick up");
-                    
+                    heldItem.Pickup(gameObject);
                     break;
                 }
             }
