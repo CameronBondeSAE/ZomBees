@@ -11,6 +11,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
+public class CivGPTEventArgs : EventArgs
+{
+}
+
 public class CivGPT : MonoBehaviour, IHear
 {
 	public string apiKeys;
@@ -25,16 +29,26 @@ public class CivGPT : MonoBehaviour, IHear
 
 	// TODO one per Civ pair
 	public OpenAI_API.Chat.Conversation chat;
-	bool startedChat = false;
-	
+	bool                                startedChat = false;
+
 	public QuestTrackerSimple questTrackerSimple;
 
 	public CivilianTraits civilianTraits;
 
 	public RandomNavmeshTest randomNavmeshTest;
 
-	public event Action<string> GPTOutputDialogueEvent;
-	public event Action GPTPerformingActionEvent;
+	public event EventHandler<string>    GPTOutputDialogueEvent;
+	public event EventHandler<CivAction> GPTPerformingActionEvent;
+
+
+	public class TestEventArgs : EventArgs
+	{
+		public CivAction civAction;
+		public string    thing;
+		public bool      yes;
+	}
+
+	public event EventHandler<TestEventArgs> TestEventWithArgs;
 
 
 	/// <summary>
@@ -51,7 +65,7 @@ public class CivGPT : MonoBehaviour, IHear
 
 	public Transform gun;
 
-	public Transform head;
+	public Transform        head;
 	public List<GameObject> decals;
 
 	[SerializeField]
@@ -61,17 +75,17 @@ public class CivGPT : MonoBehaviour, IHear
 	{
 		Init();
 
-		
+
 		// HACK
 		// if (gun != null)
 		// {
-			// gun.GetComponent<Rigidbody>().isKinematic = true;
-			// gun.GetComponent<Collider>().enabled = false;
+		// gun.GetComponent<Rigidbody>().isKinematic = true;
+		// gun.GetComponent<Collider>().enabled = false;
 		// }
 
 		// foreach (var decal in decals)
 		// {
-			// decal.SetActive(false);
+		// decal.SetActive(false);
 		// }
 	}
 
@@ -101,8 +115,8 @@ public class CivGPT : MonoBehaviour, IHear
 		chat = api.Chat.CreateConversation();
 
 		/// give instruction as System
-		chat.Model = Model.ChatGPTTurbo;
-		chat.RequestParameters.MaxTokens = 500;
+		chat.Model                         = Model.ChatGPTTurbo;
+		chat.RequestParameters.MaxTokens   = 500;
 		chat.RequestParameters.Temperature = 0.9f; // Creative
 
 		chat.AppendSystemMessage(systemMessage);
@@ -163,7 +177,6 @@ public class CivGPT : MonoBehaviour, IHear
 		// }";
 
 
-
 		// HACK: Demo suicide sequence
 		// Sequence sequence = DOTween.Sequence();
 		// sequence.AppendInterval(7.7f);
@@ -173,40 +186,50 @@ public class CivGPT : MonoBehaviour, IHear
 
 		MyObject myObject = JsonConvert.DeserializeObject<MyObject>(json);
 
-		GPTOutputDialogueEvent?.Invoke(myObject.OutputSpeech);
+		GPTOutputDialogueEvent?.Invoke(this, myObject.OutputSpeech);
 
 		// Wait for action to happen after talking
-		await Task.Delay(myObject.OutputSpeech.Length * 150);
+		await Task.Delay(myObject.OutputSpeech.Length * 100);
 
-		
-		GPTPerformingActionEvent?.Invoke();
-		
-		
-		switch (myObject.ExampleAction)
+
+		GPTPerformingActionEvent?.Invoke(this, myObject.CivAction);
+
+		TestEventWithArgs?.Invoke(this, new TestEventArgs
+										{
+											civAction = CivAction.Shoot,
+											thing     = "THIS",
+											yes       = false
+										});
+
+
+		switch (myObject.CivAction)
 		{
-			case ExampleAction.Shoot:
+			case CivAction.Shoot:
 				pistol.Shoot();
 				break;
-			case ExampleAction.RetrieveItem:
+			case CivAction.GatherFood:
+				// Check memories for food, else go to resource points
+
+
 				break;
-			case ExampleAction.FollowPlayer:
+			case CivAction.FollowPlayer:
 				break;
-			case ExampleAction.RunAway:
+			case CivAction.RunAway:
 				randomNavmeshTest.FindRandomSpot();
 				break;
-			case ExampleAction.FrozenWithFear:
+			case CivAction.FrozenWithFear:
 				break;
-			case ExampleAction.DoNothing:
+			case CivAction.DoNothing:
 				break;
-			case ExampleAction.CommitSuicide:
+			case CivAction.CommitSuicide:
 				pistol.Shoot();
 
 				// HACK move to model for general death
-				gun.transform.parent = null;
+				gun.transform.parent                      = null;
 				gun.GetComponent<Rigidbody>().isKinematic = false;
-				gun.GetComponent<Collider>().enabled = true;
+				gun.GetComponent<Collider>().enabled      = true;
 
-				GetComponent<NavMeshAgent>().enabled = false;
+				GetComponent<NavMeshAgent>().enabled  = false;
 				GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 				foreach (var decal in decals)
 				{
@@ -218,10 +241,10 @@ public class CivGPT : MonoBehaviour, IHear
 				// HACK move to gun itself
 				head.GetComponent<Rigidbody>()
 					.AddForceAtPosition(transform.InverseTransformVector(new Vector3(-30f, 50f, -150f)) * gunForce,
-						transform.position + new Vector3(0, 0, 0));
+										transform.position + new Vector3(0, 0, 0));
 
 				break;
-			case ExampleAction.Shout:
+			case CivAction.Shout:
 				break;
 			default:
 				throw new ArgumentOutOfRangeException();
@@ -238,7 +261,7 @@ public class CivGPT : MonoBehaviour, IHear
 		public string OutputSpeech { get; set; }
 
 		[JsonProperty("action")]
-		public ExampleAction ExampleAction { get; set; }
+		public CivAction CivAction { get; set; }
 
 		[JsonProperty("importance")]
 		public double Importance { get; set; }
@@ -256,10 +279,10 @@ public class CivGPT : MonoBehaviour, IHear
 		Neutral
 	}
 
-	public enum ExampleAction
+	public enum CivAction
 	{
 		Shoot,
-		RetrieveItem,
+		GatherFood,
 		FollowPlayer,
 		RunAway,
 		FrozenWithFear,
