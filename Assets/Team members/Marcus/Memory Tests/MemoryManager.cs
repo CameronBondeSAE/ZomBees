@@ -22,7 +22,7 @@ namespace Marcus
 
         private void OnEnable()
         {
-            if (finalVision != null) finalVision.memoryEvent += AddMemories;
+            if (finalVision != null) finalVision.objectSeenEvent += AddMemories;
 
             StartCoroutine(RemoveMemories());
         }
