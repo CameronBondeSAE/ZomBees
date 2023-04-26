@@ -60,6 +60,8 @@ public class Test : SerializedMonoBehaviour
 			Debug.Log("Fear Dick = " + civilianTraits.GetTrait(fear).value);
 			
 			// Debug.Log("Fear Dick = " + civilianTraits.traitsDictionary[fear].value);
+			
+			Debug.Log(civilianTraits.GetTrait(fear).thresholdHit);
 		}
 	}
 }

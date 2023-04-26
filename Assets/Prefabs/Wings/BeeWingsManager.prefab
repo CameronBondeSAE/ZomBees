@@ -28,10 +28,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 466919573971418172}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1008877768134904859
 MonoBehaviour:
@@ -45,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2359bfb9d4e5ce4cbb2ca71b5c76e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfWings: 6
   wing: {fileID: 5055074893028088857, guid: dec5a9bcf9285794d8a5a097204677c3, type: 3}
   wingParent: {fileID: 0}
   xDistance: 0.1
   yDistance: 0
-  zDistance: 0.1
+  zDistance: 0.7
   anchorPos: {fileID: 0}
   myWings: []
   BeeWingRegular: {fileID: 5055074893028088857, guid: dec5a9bcf9285794d8a5a097204677c3, type: 3}
@@ -58,34 +58,3 @@ MonoBehaviour:
   BeeWingDistorted: {fileID: 7661064535709151610, guid: 8bbdd2b57d9a1e049b78ec8fa0803f3f, type: 3}
   wingType: 2
   spawned: 0
---- !u!1 &2735619491277516286
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 466919573971418172}
-  m_Layer: 0
-  m_Name: BeeWingsAnchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &466919573971418172
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2735619491277516286}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1008877768134904856}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

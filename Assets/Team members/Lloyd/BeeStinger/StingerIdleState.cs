@@ -42,7 +42,7 @@ namespace Lloyd
             homePoint = stingSensor.homePoint;
             rb = stingSensor.rb;
         
-            stingSensor.ChangeWings(-90, 15,true);
+            stingSensor.GetComponent<BeenessIncreaserModel>().ChangeWings(-90, 15,true);
 
             //  rotate = GetComponent<RotateAway>();
             //  rotate.StartSpin(rb, homePoint);

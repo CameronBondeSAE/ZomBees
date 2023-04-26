@@ -16,6 +16,5 @@ namespace Oscar
 
         public float importance;
         public string description;
-        
     }
 }

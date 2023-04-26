@@ -1,5 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Lloyd
@@ -44,7 +45,7 @@ namespace Lloyd
 
 		[SerializeField] int maxListeners = 20;
 
-		IHear listener;
+		IHear[] listeners;
 
 		void Awake()
 		{
@@ -74,13 +75,15 @@ namespace Lloyd
 			{
 				Collider collider = hitColliders[i];
 
-				listener = collider.GetComponent<IHear>();
-				if (listener != null)
+				listeners = collider.GetComponents<IHear>();
+
+				foreach (var item in listeners)
 				{
-					soundProperties.Source = gameObject;
-					listener.SoundHeard(soundProperties);
-					// listenerList.Add(listener);
-					Debug.Log(listener);
+					if (item != null)
+					{
+						soundProperties.Source = gameObject;
+						item.SoundHeard(soundProperties);
+					}
 				}
 			}
 		}

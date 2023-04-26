@@ -49,9 +49,9 @@ namespace Lloyd
             attackTarget = sensor.attackTarget;
             rb = sensor.rb;
         
-            sensor.ChangeWings(-125,45,true);
+            sensor.GetComponent<BeenessIncreaserModel>().ChangeWings(-125,45,true);
 
-            viewTransform = sensor.viewTransform;
+            viewTransform = sensor.GetComponent<BeenessIncreaserModel>().viewTransform;
 
             MoveToSpot();
         }
