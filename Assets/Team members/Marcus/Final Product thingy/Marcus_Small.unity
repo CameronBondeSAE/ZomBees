@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 402.58795, g: 301.37357, b: 223.70877, a: 1}
+  m_IndirectSpecularColor: {r: 406.89362, g: 307.38675, b: 230.3804, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -20154,7 +20154,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.03, y: 0.05, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &579846257
 MeshRenderer:
@@ -20176,7 +20176,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 373b91d20d0fcb248bba53199c8089cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20205,7 +20205,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579846254}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 7689560155386282111, guid: 68ad5c147edd4b94e9bdf851a3bb9dfc, type: 3}
 --- !u!4 &579846259
 Transform:
   m_ObjectHideFlags: 0
@@ -20215,7 +20215,7 @@ Transform:
   m_GameObject: {fileID: 579846254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 448.03, y: 17.77, z: 462.77}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 25, y: 25, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -20243,6 +20243,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   maxListeners: 20
+  testProperties:
+    Source: {fileID: 579846254}
+    SoundType: 3
+    Radius: 10
+    Distance: 0
+    Fear: 0
+    Beeness: 0
+    Team: 1
+    ObstaclesBetween: 0
+    Dialogue: 
 --- !u!114 &579846261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20255,6 +20265,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae153541363f1924d9ce34678959c8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   isLit: 0
   isMoving: 0
   isFood: 0
@@ -20262,6 +20281,7 @@ MonoBehaviour:
   importance: 1
   description: BBBBEEEEEEE
   isBee: 1
+  beeness: 0
 --- !u!1001 &582154716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61395,10 +61415,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1862596662496953627, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
-      propertyPath: hunger
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3513444304104845913, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -61441,6 +61457,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357213602106278246, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7357213602106278246, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}
+      propertyPath: usingRigidbodyMovement
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8053649277983958044, guid: 2433f413dbba93d4caf41f24f3c0d850, type: 3}

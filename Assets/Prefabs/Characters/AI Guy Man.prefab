@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2116964504013679646}
   - component: {fileID: 7666311663208114672}
+  - component: {fileID: 1260243664842217014}
   m_Layer: 14
   m_Name: Ears
   m_TagString: Untagged
@@ -156,8 +157,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heardSound: 0
-  loudestRecentSound: {x: 0, y: 0, z: 0}
+  loudestRecentSound:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
   soundsList: []
+--- !u!65 &1260243664842217014
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835875870049932205}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1545986284851747083
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,8 +746,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vision: {fileID: 7025054006657017379}
   hand: {fileID: 4784546211133223649}
-  hunger: {fileID: 0}
   ears: {fileID: 7666311663208114672}
+  traits: {fileID: 3962739196863838041}
+  fear: {fileID: 11400000, guid: a7b0073751aff784d975994f810239c9, type: 2}
+  hunger: {fileID: 11400000, guid: a5f76bf83e00c2e4c9d82b562f9c1b4e, type: 2}
 --- !u!114 &5905745458562283158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,47 +776,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74618a5fbec3bb74bb70d61434a740ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: traitsDictionary
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[TraitStats,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: traits
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[TraitStats, Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+  traits:
+  - traitScriptableObject: {fileID: 11400000, guid: a7b0073751aff784d975994f810239c9, type: 2}
+    value: 0.2
+    threshold: 0.8
+    thresholdHit: 0
+  - traitScriptableObject: {fileID: 11400000, guid: 304b019197703c34a939d77c9c91ef71, type: 2}
+    value: 0
+    threshold: 0.9
+    thresholdHit: 0
+  - traitScriptableObject: {fileID: 11400000, guid: a5f76bf83e00c2e4c9d82b562f9c1b4e, type: 2}
+    value: 0
+    threshold: 1
+    thresholdHit: 0
 --- !u!1 &4163470155064568175
 GameObject:
   m_ObjectHideFlags: 0

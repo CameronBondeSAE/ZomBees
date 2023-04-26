@@ -42,7 +42,6 @@ namespace Marcus
         {
             if (usingRigidbodyMovement)
             {
-                targetPoint = destination;
                 pathCounter = 0;
             }
             else
@@ -50,6 +49,7 @@ namespace Marcus
                 navMeshAgent.SetDestination(destination.transform.position);
             }
             
+            targetPoint = destination;
             NavMesh.CalculatePath(transform.position, targetPoint.transform.position, NavMesh.AllAreas, path);
         }
 

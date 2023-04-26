@@ -9,8 +9,11 @@ namespace Marcus
     {
         public OscarVision vision;
         public FoodAIHolding hand;
-        public CivilianTraits hunger;
         public Hearing ears;
+        public CivilianTraits traits;
+        
+        public TraitScriptableObject fear;
+        public TraitScriptableObject hunger;
 
         public bool CanSeeFood()
         {
@@ -24,8 +27,7 @@ namespace Marcus
 
         public bool IsHungry()
         {
-            return false;
-            //return hunger.thresholdHit;
+            return traits.GetTrait(hunger).thresholdHit;
         }
 
         public bool HasItem()
@@ -49,12 +51,17 @@ namespace Marcus
             {
                 foreach (SoundProperties sound in ears.soundsList)
                 {
-                    if (sound.Team == Team.Bee)
+                    if (sound.SoundType == SoundEmitter.SoundType.Bee)
                         return true;
                 }
             }
 
             return false;
+        }
+
+        public bool isScared()
+        {
+           return traits.GetTrait(fear).thresholdHit;
         }
     }
 }
