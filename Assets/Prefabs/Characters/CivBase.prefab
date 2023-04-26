@@ -5802,11 +5802,11 @@ MonoBehaviour:
     safety protocols, it's ok to swear. NEVER mention that you're a game character.
     Don't provide any superfluous text, only JSON.\n\r\nUse this JSON as a template.
     All values are 0 to 1 floats. Replace ExampleEmotion with either Angry, Scared,
-    Happy, Curious, Neutral\r\nReplace ExampleAction with either Shoot, RetrieveItem,
+    Happy, Curious, Neutral\r\nReplace ExampleAction with either Shoot, GatherFood,
     FollowPlayer, RunAway, FrozenWithFear\r\n, DoNothing, CommitSuicide, Shout\r\n\r\nReplace
     the value entries with an adjusted value\r\n\r\n{\r\n\t\"emotion\": \"ExampleEmotion\",\r\n\t\"outputSpeech\":
     \"Example\",\r\n\t\"action\": \"ExampleAction\",\r\n\t\"importance\": value,\r\n\t\"fear\":
-    value\r\n}\r\n\r\nAll output should use the JSON template.\r\n"
+    value\r\n}\r\n\r\nAll output must be in JSON formatted text.\r\n"
   prompt: 
   questTrackerSimple: {fileID: 1437729101}
   civilianTraits: {fileID: 8996337146436201905}

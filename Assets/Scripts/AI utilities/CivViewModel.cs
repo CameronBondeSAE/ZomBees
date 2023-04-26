@@ -22,15 +22,22 @@ public class CivViewModel : MonoBehaviour
         civGpt.GPTOutputDialogueEvent += CivGptOnGPTOutputDialogueEvent;
         civGpt.GPTPerformingActionEvent += CivGptOnGPTPerformingActionEvent;
         
+        civGpt.TestEventWithArgs += CivGptOnTestEventWithArgs;
+        
     }
 
-    private void CivGptOnGPTPerformingActionEvent()
+    void CivGptOnTestEventWithArgs(object sender, CivGPT.TestEventArgs e)
+    {
+        // e.civAction
+    }
+
+    private void CivGptOnGPTPerformingActionEvent(object sender, CivGPT.CivAction civAction)
     {
         Debug.Log("Probably remove the text now?");
-        // textMeshProUGUI.text = "";
+        textMeshProUGUI.text = "";
     }
 
-    private void CivGptOnGPTOutputDialogueEvent(string input)
+    private void CivGptOnGPTOutputDialogueEvent(object sender, string input)
     {
         textMeshProUGUI.text = input; // HACK
         // GetComponent<AudioSource>().clip = clip;
