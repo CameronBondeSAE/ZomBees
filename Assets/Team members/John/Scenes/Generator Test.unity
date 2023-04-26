@@ -431,6 +431,17 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &217295703 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2925474553551602961, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
+  m_PrefabInstance: {fileID: 8936615563348358271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217295685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2409eb1408294674b7e308f01ca2d742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &959155430
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +785,22 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: -7428574510256755813, guid: f389d2c98f6f9ba429348e9ae12dd27d, type: 3}
+    - target: {fileID: -7428574510256755813, guid: f389d2c98f6f9ba429348e9ae12dd27d, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7428574510256755813, guid: f389d2c98f6f9ba429348e9ae12dd27d, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"ThingToSwitch","value":$eref:0'
+      objectReference: {fileID: 0}
+    - target: {fileID: -7428574510256755813, guid: f389d2c98f6f9ba429348e9ae12dd27d, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7428574510256755813, guid: f389d2c98f6f9ba429348e9ae12dd27d, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 217295703}
     - target: {fileID: 51181126692320928, guid: f389d2c98f6f9ba429348e9ae12dd27d, type: 3}
       propertyPath: m_Name
       value: switch
@@ -942,9 +969,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2925474553551602961, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
+      propertyPath: currFuel
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925474553551602961, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
+      propertyPath: rateOfConsumption
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925474553551602961, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 2925474553551602961, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7100848364272722113, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
       propertyPath: m_Name
       value: Generator
