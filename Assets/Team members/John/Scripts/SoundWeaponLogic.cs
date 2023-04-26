@@ -5,16 +5,51 @@ using Sirenix.OdinInspector;
 
 namespace Johns
 {
-    public class SoundWeaponLogic : MonoBehaviour, IItem, ISwitchable
+    public class SoundWeaponLogic : MonoBehaviour, IItem, IPowered, IInteractable, ISwitchable
     {
         public AudioClip sonicShot;
         public AudioSource audioSource;
+        public bool poweredOn;
+        
 
         private void OnEnable()
         {
             audioSource.clip = sonicShot;
         }
 
+        
+        [Button]
+        public void PoweredOn()
+        {
+            poweredOn = true;
+        }
+
+        [Button]
+        public void PoweredOff()
+        {
+            poweredOn = false;
+        }
+
+        [Button]
+        public void TurnOn()
+        {
+            if (poweredOn)
+            {
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+
+        [Button]
+        public void TurnOff()
+        {
+            if (poweredOn == false)
+            {
+                audioSource.loop = false;
+                audioSource.Stop();
+            }
+        }
+        
         public void Consume()
         {
             throw new System.NotImplementedException();
@@ -34,20 +69,18 @@ namespace Johns
         {
             throw new System.NotImplementedException();
         }
-
-        [Button]
-        public void TurnOn()
+        
+        public void Interact()
         {
-            audioSource.loop = true;
-            audioSource.Play(); 
+            throw new NotImplementedException();
         }
 
-        [Button]
-        public void TurnOff()
+        public void Inspect()
         {
-            audioSource.loop = false;
-            audioSource.Stop();
+            throw new NotImplementedException();
         }
+
+
     } 
 }
 
