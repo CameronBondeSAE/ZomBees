@@ -2,16 +2,14 @@ namespace Lloyd
 {
     public enum NormalCivScenario
     {
-        InRange = 0,
-        HasInteractTarget = 1,
-        WantsToInteract = 2,
-    
-        HasAttackTarget = 3,
-        WantsToAttack = 4,
-    
-        Idle = 5,
-    
-        HasMovementTarget = 6,
-        HasResource = 7
+     Hungry= 0,
+     HasFood=1,
+     SafePlace=2,
+     HasTarget=3,
+     WantsToInteract=4,
+     WantsToAttack=5,
+     WantsToTalk=6,
+     WantsToPickUpItem=7,
+     WantsToFollow=8
     }
 }

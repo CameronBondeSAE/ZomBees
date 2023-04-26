@@ -8,6 +8,7 @@ namespace Lloyd
         Dead              = 3, 
         Attack            = 4,
         HasResource       = 5,
-        BackToOrigin =6
+        BackToOrigin =6,
+        Sting=7
     }
 }

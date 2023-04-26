@@ -1,6 +1,11 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+
+namespace Lloyd
+{
+	
+
 	[Serializable]
 	public class SoundProperties
 	{
@@ -88,4 +93,5 @@ using UnityEngine;
 			EmitSound(testProperties);
 			//Debug.Log(testProperties);
 		}
+	}
 	}

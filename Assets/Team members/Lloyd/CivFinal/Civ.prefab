@@ -254,7 +254,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7865894610603269137}
-  - component: {fileID: 7865894610603269138}
   - component: {fileID: 7865894610603269136}
   - component: {fileID: 7865894610603269151}
   - component: {fileID: 7865894610603269149}
@@ -262,6 +261,11 @@ GameObject:
   - component: {fileID: 2631410042438406423}
   - component: {fileID: 6753631248038535432}
   - component: {fileID: 2552010154253635957}
+  - component: {fileID: 3224720049087555730}
+  - component: {fileID: 7265679440533428721}
+  - component: {fileID: 8401200073409427172}
+  - component: {fileID: 5378627965331130709}
+  - component: {fileID: 3622229877471858043}
   m_Layer: 0
   m_Name: Civ
   m_TagString: Untagged
@@ -289,21 +293,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7865894610603269138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7865894610603269139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e724e36405834fa192b36cd6a4e6059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manualUpdate: 0
-  thinkInterval: 0.1
-  scenario: {fileID: 11400000, guid: d4cd2e3735a084c4f8b1756cbf84ad7a, type: 2}
 --- !u!114 &7865894610603269136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,15 +306,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   antAIAgent: {fileID: 0}
-  idle: 1
-  inRange: 0
-  hasInteractTarget: 0
+  hungry: 0
+  hasFood: 0
+  safePlace: 0
+  hasTarget: 0
   wantsToInteract: 0
-  moveTarget: {fileID: 0}
-  hasAttackTarget: 0
-  attackTarget: {fileID: 0}
   wantsToAttack: 0
-  RotateToTarget: {fileID: 0}
+  wantsToTalk: 0
+  wantsToFollow: 0
+  wantsToPickUpItem: 0
+  look: {fileID: 0}
 --- !u!195 &7865894610603269151
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -407,6 +397,7 @@ MonoBehaviour:
   hungry: 0
   hungerLevel: 0
   hungerThresh: 0
+  bee: 0
   beeness: 0
   beenessThresh: 0
   readyToDie: 0
@@ -434,7 +425,9 @@ MonoBehaviour:
   resourcePoints: []
   interactPoints:
   - {fileID: 0}
+  nearestInteractPoint: {fileID: 0}
   civPoints: []
+  patrolPoints: []
 --- !u!114 &2552010154253635957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +451,114 @@ MonoBehaviour:
   seesInteract: 0
   resources: []
   seesResource: 0
-  interactTarget: {fileID: 0}
+--- !u!114 &3224720049087555730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865894610603269139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e724e36405834fa192b36cd6a4e6059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manualUpdate: 0
+  thinkInterval: 0.1
+  scenario: {fileID: 11400000, guid: d4cd2e3735a084c4f8b1756cbf84ad7a, type: 2}
+--- !u!114 &7265679440533428721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865894610603269139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e066fcc5d4ea80741a41c44a087dc275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currHealth: 0
+--- !u!114 &8401200073409427172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865894610603269139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  maxListeners: 20
+  testProperties:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
+--- !u!114 &5378627965331130709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865894610603269139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heardSound: 0
+  loudestRecentSound:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
+  soundsList: []
+--- !u!114 &3622229877471858043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865894610603269139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd28be45ee0c96d4e883c86c672a5c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxOffset: {x: 0, y: 0, z: 0}
+  boxSize: {x: 0, y: 0, z: 0}
+  visibleObjects: []
+  beeObjects: []
+  seesBees: 0
+  civObjects: []
+  seesCivs: 0
+  interactables: []
+  seesInteract: 0
+  resources: []
+  seesResource: 0
 --- !u!1001 &6753631246230390205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -569,12 +669,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  fear: 0
-  beeness: 0
-  team: 0
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   maxListeners: 0
-  mySoundType: 0
+  testProperties:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
 --- !u!1001 &6753631247350857896
 PrefabInstance:
   m_ObjectHideFlags: 0

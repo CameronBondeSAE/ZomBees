@@ -110,6 +110,7 @@ namespace Lloyd
                 stingSensor.hasResource = true;
 
             stingSensor.attacking = false;
+            stingSensor.sting = false;
             Finish();
         }
     }

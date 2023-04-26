@@ -5,9 +5,7 @@ using UnityEngine;
 
 namespace Lloyd
 {
-
-    public class NormalCivTalk : AntAIState
+    public class NormalCivFollowState : AntAIState
     {
-        
     }
 }

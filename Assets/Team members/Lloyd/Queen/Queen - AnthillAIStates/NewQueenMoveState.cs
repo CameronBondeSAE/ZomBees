@@ -83,7 +83,6 @@ namespace Lloyd
         {
             rb.velocity = Vector3.zero;
             inRange = true;
-            owner.GetComponent<CivSensor>().inRange = inRange;
             Finish();
         }
 

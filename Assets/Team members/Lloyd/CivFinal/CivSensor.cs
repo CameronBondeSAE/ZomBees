@@ -7,106 +7,59 @@ namespace Lloyd
     {
         public AntAIAgent antAIAgent;
 
-        public bool idle = false;
-
-        public bool inRange = false;
-
-        public bool hasInteractTarget = false;
-        public bool wantsToInteract = false;
-
         public bool hungry;
-        public bool hasResourceTarget;
 
-        public bool feared;
+        public bool hasFood;
 
-        public Transform moveTarget;
+        public bool safePlace;
 
-        public bool hasAttackTarget = false;
-        public Transform attackTarget;
-        public bool wantsToAttack = false;
+        public bool hasTarget;
 
-        public Transform RotateToTarget;
+        public bool wantsToAttack;
 
-        public enum MoveType
-        {
-            Idle,
-            FollowingPlayer,
-            WalkToNearestInteract,
-            WalkToNearestSafePoint,
-            WalkToNearestAttackPoint,
-            Searching
-        }
+        public bool wantsToInteract;
 
-        public MoveType myMoveType;
+        public bool wantsToTalk;
+
+        public bool wantsToPickUpItem;
+
+        public bool wantsToFollow;
+
+        public LesserQueenLookAt look;
 
         private void Awake()
         {
             StartBeeParts();
         }
 
-        public void Update()
-        {
-            if (idle)
-            {
-                myMoveType = MoveType.Idle;
-            }
-        
-            //else if (followingCharacter)
-            //{
-//            myMoveType = MoveType.FollowingCharacter;
-            //}
-        
-            else if (wantsToInteract && !hasInteractTarget)
-            {
-                myMoveType = MoveType.Searching;
-            }
-
-            else if (wantsToInteract)
-            {
-                myMoveType = MoveType.WalkToNearestInteract;
-            }
-
-            else if (hungry && !hasResourceTarget)
-            {
-                myMoveType = MoveType.Searching;
-            }
-
-            else if (feared)
-            {
-                myMoveType = MoveType.WalkToNearestSafePoint;
-            }
-
-            else if (hasAttackTarget && wantsToAttack)
-            {
-                myMoveType = MoveType.WalkToNearestAttackPoint;
-            }
-        }
-
         public void ChangeRotateTarget(Transform newTarget)
         {
-            RotateToTarget = newTarget;
+            look.target = newTarget;
         }
 
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
         {
             aWorldState.BeginUpdate(aAgent.planner);
             {
-                aWorldState.Set(NormalCivScenario.InRange, inRange);
+                aWorldState.Set(NormalCivScenario.Hungry, hungry);
+                aWorldState.Set(NormalCivScenario.HasFood, hasFood);
 
-                aWorldState.Set(NormalCivScenario.HasInteractTarget, hasInteractTarget);
+                aWorldState.Set(NormalCivScenario.SafePlace, safePlace);
+
+                aWorldState.Set(NormalCivScenario.HasTarget, hasTarget);
+
                 aWorldState.Set(NormalCivScenario.WantsToInteract, wantsToInteract);
 
-                aWorldState.Set(NormalCivScenario.HasAttackTarget, hasAttackTarget);
-                aWorldState.Set(NormalCivScenario.WantsToAttack, wantsToAttack);
+                aWorldState.Set(NormalCivScenario.WantsToAttack, wantsToAttack);    
+                
+                aWorldState.Set(NormalCivScenario.WantsToTalk, wantsToTalk);
 
-                aWorldState.Set(NormalCivScenario.Idle, idle);
+                aWorldState.Set(NormalCivScenario.WantsToPickUpItem, wantsToPickUpItem);
+                
+                aWorldState.Set(NormalCivScenario.WantsToFollow, wantsToFollow);
+                
             }
             aWorldState.EndUpdate();
-        }
-
-        public void DesireToInteract()
-        {
-            wantsToInteract = true;
         }
 
         public void BecomeEgg()

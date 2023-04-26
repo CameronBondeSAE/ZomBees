@@ -6,7 +6,9 @@ using UnityEngine;
 namespace Lloyd
 {
 
-    public class NormalCivTalk : AntAIState
+
+
+    public class NormalCivEatFood : AntAIState
     {
         
     }

@@ -25,9 +25,6 @@ namespace Lloyd
 
         private NormalCivPathFinder pathFinder;
 
-        private CivSensor.MoveType myMoveType;
-    
-    
 
         public override void Create(GameObject aGameObject)
         {
@@ -51,37 +48,12 @@ namespace Lloyd
             decelerationDistance = stopDistance * 3;
 
             inRange = false;
-
-            CalculateTarget();
-        }
-
-        private void CalculateTarget()
-        {
-            myMoveType = sensor.myMoveType;
-
-            if (myMoveType == CivSensor.MoveType.Searching)
-            {
-                target = pathFinder.CalculateRandomSafePoint();
-            }
-
-            else if (myMoveType == CivSensor.MoveType.WalkToNearestSafePoint)
-            {
-                target = pathFinder.CalculateNearestSafePoint();
-            }
-
-            else if (myMoveType == CivSensor.MoveType.WalkToNearestInteract)
-            {
-                target = pathFinder.CalculateNearestInteractPoint();
-            }
-
-            sensor.ChangeRotateTarget(target);
         }
 
         private void Stop()
         {
             rb.velocity = Vector3.zero;
             inRange = true;
-            owner.GetComponent<CivSensor>().inRange = inRange;
             Finish();
         }
 
@@ -115,11 +87,7 @@ namespace Lloyd
                 rb.AddForce(direction.normalized * moveSpeed, ForceMode.Acceleration);
             }
 
-            //if (navMeshAgent.remainingDistance < 1f)
-            {
-                //  owner.GetComponent<NormalCivBrain>().moveTarget = null;
                 Finish();
-            }
         }
     }
 }

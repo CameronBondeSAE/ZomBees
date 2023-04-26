@@ -89,16 +89,18 @@ namespace Lloyd
 
         private void SetWings()
         {
-            //beeWings.GetComponent<BeeWingsManager>();
+           // beeWings.GetComponentInChildren<BeeWingsManager>();
             beeWings.SetWings();
+            Debug.Log("WINGS");
         }
 
         #endregion
 
-        public void Start()
+        public void OnEnable()
         {
             bob = GetComponent<SphereBob>();
-            SetEyes(); 
+            SetEyes();
+            Debug.Log("SET");
             SetWings();
         }
     }

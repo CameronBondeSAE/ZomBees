@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9240d0f00fb4384580769ad91f046b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emoting: 0
+  emoting: 1
   waitTime: 2
 --- !u!114 &1633854345031244567
 MonoBehaviour:
