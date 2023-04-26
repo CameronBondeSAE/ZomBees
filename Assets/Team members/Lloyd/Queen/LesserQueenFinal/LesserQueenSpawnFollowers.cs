@@ -39,18 +39,23 @@ namespace Lloyd
 
             parent = new GameObject();
             parent.name = "Swarmer Parent";
-            parent.transform.position = queenSensor.transform.position;
-            parent.transform.rotation = queenSensor.transform.rotation;
-
         }
 
         public override void Enter()
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
+            
+            parent.transform.position = queenSensor.transform.position;
+            parent.transform.rotation = queenSensor.transform.rotation;
 
             defaultSwarmers = queenSensor.numSwarmers;
 
             RefillFollowers();
+        }
+
+        public override void Execute(float aDeltaTime, float aTimeScale)
+        {
+            base.Execute(aDeltaTime, aTimeScale);
         }
 
         private IEnumerator SpawnFollower(int numberOfFollowersToSpawn)

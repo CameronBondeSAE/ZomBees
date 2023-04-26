@@ -49,9 +49,9 @@ namespace Lloyd
             attackTarget = sensor.attackTarget;
             rb = sensor.rb;
         
-            sensor.ChangeWings(-125,45,true);
+            sensor.GetComponent<BeenessIncreaserModel>().ChangeWings(-125,45,true);
 
-            viewTransform = sensor.viewTransform;
+            viewTransform = sensor.GetComponent<BeenessIncreaserModel>().viewTransform;
 
             MoveToSpot();
         }
@@ -63,6 +63,8 @@ namespace Lloyd
                 timer++;
                 yield return new WaitForSeconds(1);
 
+                if(!pissedOff){
+
                 if (timer > timerThresh)
                 {
                     sensor.seesTarget = false;
@@ -70,6 +72,7 @@ namespace Lloyd
                     ticking = false;
                     Finish();
                 }
+            }
             }
         }
 
@@ -115,6 +118,7 @@ namespace Lloyd
                 if (pissedOffFloat > pissedOffThresh)
                 {
                     pissedOff = true;
+                    sensor.sting = true;
                     ticking = false;
                     StartCoroutine(LerpRotation(-70f, 3f));
                 }

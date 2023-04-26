@@ -175,21 +175,24 @@ namespace Lloyd
         [Button]
         public void DeleteWings()
         {
-            foreach (GameObject deletedWing in myWings)
-            {
-                BeeWing wingScript = deletedWing.GetComponent<BeeWing>();
-                ChangeStatEvent -= wingScript.ChangeWingStats;
-            }
-
-            if (wingObjects.Any())
-                wingObjects.Clear();
-
             if (myWings.Any())
-                myWings.Clear();
-
-            if (wingParent != null)
             {
-                DestroyImmediate(wingParent);
+                foreach (GameObject deletedWing in myWings)
+                {
+                    BeeWing wingScript = deletedWing.GetComponent<BeeWing>();
+                    ChangeStatEvent -= wingScript.ChangeWingStats;
+                }
+
+                if (wingObjects.Any())
+                    wingObjects.Clear();
+
+                if (myWings.Any())
+                    myWings.Clear();
+
+                if (wingParent != null)
+                {
+                    DestroyImmediate(wingParent);
+                }
             }
         }
 

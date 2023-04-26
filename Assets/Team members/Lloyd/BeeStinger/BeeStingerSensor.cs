@@ -5,6 +5,8 @@ namespace Lloyd
 {
     public class BeeStingerSensor : MonoBehaviour, ISense
     {
+        LesserQueenLookAt look;
+        
         public Rigidbody rb;
 
         public Vector3 homePoint;
@@ -16,11 +18,12 @@ namespace Lloyd
 
         public BeeStingAttack.BeeStingType myType;
 
-        private void Start()
+        private void OnEnable()
         {
             rb = GetComponent<Rigidbody>();
             homePoint = transform.position;
             originalHomepoint = homePoint;
+            look = GetComponent<LesserQueenLookAt>();
             StartWings();
         }
 
@@ -48,6 +51,8 @@ namespace Lloyd
 
                 aWorldState.Set(BeeStingerScenario.HasResource, hasResource);
                 aWorldState.Set(BeeStingerScenario.BackToOrigin, backToOrigin);
+
+                aWorldState.Set(BeeStingerScenario.Sting, sting);
             }
             aWorldState.EndUpdate();
         }
@@ -93,11 +98,18 @@ namespace Lloyd
 
         #region Wings
 
-        private BeeWingsManager beeWings;
+        public BeeWingsManager beeWings;
 
         private void StartWings()
         {
             beeWings = GetComponentInChildren<BeeWingsManager>();
+            
+            if (myType == BeeStingAttack.BeeStingType.Attack)
+                beeWings.numberOfWings = 2;
+
+            else
+                beeWings.numberOfWings = 6;
+            
             beeWings.SetWings();
         }
 

@@ -186,9 +186,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.381
       objectReference: {fileID: 0}
+    - target: {fileID: 5535101366018481354, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535101366018481356, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5535101366206446097, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
       propertyPath: m_Name
-      value: AlienEgg Variant
+      value: AlienEggFinal
       objectReference: {fileID: 0}
     - target: {fileID: 5535101366206446098, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
       propertyPath: HP

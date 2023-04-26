@@ -21,7 +21,7 @@ public class CivEmotionsFake : MonoBehaviour
         if (needToTalk > 1f)
         {
             needToTalk            = 0;
-            civGpt.systemMessage = systemMessage + "Your memories are " + civilianModel.GPTInfo;
+            // civGpt.systemMessage = systemMessage + "Your memories are " + civilianModel.GPTInfo;
             // civGpt.CreateChatCompletionAsync();
         }
     }

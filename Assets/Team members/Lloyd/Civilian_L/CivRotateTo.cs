@@ -23,7 +23,7 @@ public class CivRotateTo : MonoBehaviour
 
     private void FixedUpdate()
     {
-        target = civBrain.RotateToTarget;
+        //target = civBrain.RotateToTarget;
         if (target == null) return;
 
         Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position, transform.right);

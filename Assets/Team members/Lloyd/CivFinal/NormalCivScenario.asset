@@ -15,86 +15,115 @@ MonoBehaviour:
   conditions:
     list:
     - id: 0
-      name: InRange
-    - id: 1
-      name: HasInteractTarget
-    - id: 2
-      name: WantsToInteract
-    - id: 3
-      name: HasMovementTarget
-    - id: 4
-      name: Idle
-    - id: 5
       name: Hungry
-    - id: 6
-      name: DangerNearby
-    - id: 7
-      name: WantsToDie
-  actions:
-  - name: MoveToTarget
-    isDefault: 0
-    state: {fileID: 5239649772975906097, guid: 6efc4e04759b5074388b39738a3bbdcd, type: 3}
-    cost: 0
-    position: {x: 270.84482, y: 42.301712}
-    pre:
-    - id: 0
-      value: 0
+    - id: 1
+      name: HasFood
+    - id: 2
+      name: SafePlace
+    - id: 3
+      name: WantsToInteract
     - id: 4
-      value: 0
-    post:
-    - id: 0
-      value: 1
-  - name: InteractWIth
-    isDefault: 0
-    state: {fileID: 3780533911756111980, guid: ba17d0c6dd6054f499d91b4fc2edcf8a, type: 3}
-    cost: 0
-    position: {x: 587.6896, y: 49.37931}
-    pre:
-    - id: 0
-      value: 1
-    - id: 2
-      value: 1
-    post:
-    - id: 2
-      value: 0
+      name: WantsToAttack
+    - id: 5
+      name: WantsToTalk
+    - id: 6
+      name: WantsToFollow
+    - id: 7
+      name: WantsToPickUpItem
+  actions:
   - name: Idle
     isDefault: 1
     state: {fileID: 127724997045392640, guid: b7b31f1250a37b14d844483fa9f31a51, type: 3}
     cost: 0
-    position: {x: 1265.1926, y: 66.67639}
+    position: {x: 209.66669, y: 53.33333}
+    pre:
+    - id: 0
+      value: 0
+    - id: 2
+      value: 1
+    post: []
+  - name: FindFood
+    isDefault: 0
+    state: {fileID: 4147447698428702050, guid: f8997db36af78894db3ddaa5158fbbbc, type: 3}
+    cost: 2
+    position: {x: 819.99994, y: 49.999977}
+    pre:
+    - id: 0
+      value: 1
+    post:
+    - id: 1
+      value: 1
+  - name: EatFood
+    isDefault: 0
+    state: {fileID: 3105053243357609321, guid: 7710705cea844514cac41ae30c22fc24, type: 3}
+    cost: 0
+    position: {x: 1010, y: 49.999977}
+    pre:
+    - id: 1
+      value: 1
+    post:
+    - id: 0
+      value: 0
+  - name: MoveTo
+    isDefault: 0
+    state: {fileID: 5239649772975906097, guid: 6efc4e04759b5074388b39738a3bbdcd, type: 3}
+    cost: 1
+    position: {x: 626.66675, y: 49.999985}
+    pre: []
+    post:
+    - id: 2
+      value: 1
+  - name: Interact
+    isDefault: 0
+    state: {fileID: 3780533911756111980, guid: ba17d0c6dd6054f499d91b4fc2edcf8a, type: 3}
+    cost: 0
+    position: {x: 579.99994, y: 673.3333}
+    pre:
+    - id: 3
+      value: 1
+    post:
+    - id: 3
+      value: 0
+  - name: Attack
+    isDefault: 0
+    state: {fileID: 7818661264342355379, guid: ef6c2e9488af1014a845c0311f9997b2, type: 3}
+    cost: 1
+    position: {x: 1173.3335, y: 681.6667}
     pre:
     - id: 4
       value: 1
     post:
-    - id: 2
-      value: 1
     - id: 4
       value: 0
-  - name: Harvest
+  - name: Talk
     isDefault: 0
-    state: {fileID: 5107319036506221467, guid: b59dbd4034dae914bbef97af347443b2, type: 3}
+    state: {fileID: 3692116723179535504, guid: 670782eeb35b85249bea7e90f16d9d8b, type: 3}
     cost: 0
-    position: {x: 791.66675, y: 61.666656}
+    position: {x: 235.00006, y: 666.6666}
     pre:
-    - id: 0
+    - id: 5
       value: 1
-    post: []
-  - name: Attack
+    post:
+    - id: 5
+      value: 0
+  - name: FollowTarget
     isDefault: 0
-    state: {fileID: 7818661264342355379, guid: ef6c2e9488af1014a845c0311f9997b2, type: 3}
+    state: {fileID: 1484860654172535018, guid: e84f3887adcf80a4e9e5dd95005f1548, type: 3}
     cost: 0
-    position: {x: 808.33325, y: 676.6667}
-    pre: []
-    post: []
-  - name: Suicide
+    position: {x: 1436.6667, y: 688.66675}
+    pre:
+    - id: 6
+      value: 1
+    post:
+    - id: 6
+      value: 0
+  - name: PickUpItem
     isDefault: 0
-    state: {fileID: 2135355543676964654, guid: 7eca9a782aa26544a8f8ce684ac5609c, type: 3}
+    state: {fileID: 6962699956405388499, guid: a8e57dc2cef3c494da2da61a2179bc41, type: 3}
     cost: 0
-    position: {x: 1026.6667, y: 518.3333}
+    position: {x: 885, y: 684.99994}
     pre:
     - id: 7
-      value: 1
-    - id: 0
       value: 1
     post:
     - id: 7
@@ -102,16 +131,24 @@ MonoBehaviour:
   goals:
   - name: Survive
     isDefault: 1
-    position: {x: 1003.89, y: 64.4017}
+    position: {x: 1218.3333, y: 50}
     conditions:
+    - id: 0
+      value: 0
     - id: 2
       value: 0
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0
     - id: 5
+      value: 0
+    - id: 6
       value: 0
     - id: 7
       value: 0
   worldStates:
-  - position: {x: 224.00467, y: 291.70963}
+  - position: {x: 406.3333, y: 285.66666}
     isAutoUpdate: 1
     list:
     - id: 0

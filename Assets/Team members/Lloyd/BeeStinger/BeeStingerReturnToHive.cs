@@ -28,7 +28,7 @@ namespace Lloyd
             rb = sensor.rb;
             target = sensor.homePoint;
         
-            sensor.ChangeWings(-175, 12,true);
+            sensor.GetComponent<BeenessIncreaserModel>().ChangeWings(-175, 12,true);
         
             shader.ChangeColorOrange();
         

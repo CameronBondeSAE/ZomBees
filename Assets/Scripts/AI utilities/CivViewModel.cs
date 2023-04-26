@@ -21,15 +21,8 @@ public class CivViewModel : MonoBehaviour
     {
         civGpt.GPTOutputDialogueEvent += CivGptOnGPTOutputDialogueEvent;
         civGpt.GPTPerformingActionEvent += CivGptOnGPTPerformingActionEvent;
-        
-        civGpt.TestEventWithArgs += CivGptOnTestEventWithArgs;
-        
     }
 
-    void CivGptOnTestEventWithArgs(object sender, CivGPT.TestEventArgs e)
-    {
-        // e.civAction
-    }
 
     private void CivGptOnGPTPerformingActionEvent(object sender, CivGPT.CivAction civAction)
     {

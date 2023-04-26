@@ -47,10 +47,11 @@ MonoBehaviour:
   timer: 0
   timerThresh: 3
   sensor: {fileID: 0}
+  shaderScript: {fileID: 0}
   raycastLength: 100
   forceMagnitude: 10
   rb: {fileID: 0}
   pissedOffFloat: 0
-  pissedOffThresh: 200
+  pissedOffThresh: 50
   attackTarget: {fileID: 0}
   viewTransform: {fileID: 0}

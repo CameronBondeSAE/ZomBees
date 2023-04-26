@@ -4837,6 +4837,41 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &909832180367830869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112567829789549351}
+  m_Layer: 17
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &112567829789549351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909832180367830869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6090847654680811419}
+  - {fileID: 3971861916126032775}
+  - {fileID: 7205274063376749710}
+  - {fileID: 864281287618457695}
+  m_Father: {fileID: 9194026212291496017}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1549918073487587687
 GameObject:
   m_ObjectHideFlags: 0
@@ -4867,7 +4902,7 @@ Transform:
   m_LocalScale: {x: 0.58976275, y: 0.44, z: 0.3773136}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9194026212291496017}
+  m_Father: {fileID: 112567829789549351}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7403498391164431230
@@ -4929,17 +4964,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6090847654680811419}
-  - component: {fileID: 8453621679718512702}
   - component: {fileID: 3290378990388128137}
   - component: {fileID: 5562319008238271098}
   - component: {fileID: 471095928568735865}
   m_Layer: 17
-  m_Name: Head
+  m_Name: Bobble Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6090847654680811419
 Transform:
   m_ObjectHideFlags: 0
@@ -4953,24 +4987,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8729987673167798085}
-  m_Father: {fileID: 9194026212291496017}
+  m_Father: {fileID: 112567829789549351}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8453621679718512702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552613885419290926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4294427e05a6c48ab78a370866cd07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  texture2D:
-  - {fileID: 2800000, guid: 10a981d8e6bc4b648b1491b37d379f8c, type: 3}
-  - {fileID: 2800000, guid: d634fcd64c7c2854eaf797f4c0532358, type: 3}
 --- !u!54 &3290378990388128137
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5316,9 +5335,7 @@ Transform:
   m_Children:
   - {fileID: 3224348825185878760}
   - {fileID: 5980594384335167190}
-  - {fileID: 6090847654680811419}
-  - {fileID: 3971861916126032775}
-  - {fileID: 7205274063376749710}
+  - {fileID: 112567829789549351}
   m_Father: {fileID: 5638098703994389361}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5590,7 +5607,6 @@ GameObject:
   - component: {fileID: 251334988942599436}
   - component: {fileID: 6472408560371824430}
   - component: {fileID: 7466785138027924600}
-  - component: {fileID: 8720248717928593720}
   - component: {fileID: 6454894638875405118}
   - component: {fileID: 8996337146436201905}
   - component: {fileID: 1437729101}
@@ -5617,7 +5633,7 @@ Transform:
   - {fileID: 9194026212291496017}
   - {fileID: 8470070038936303645}
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &5638098703994389362
 CapsuleCollider:
@@ -5747,9 +5763,14 @@ MonoBehaviour:
   isObject: 0
   importance: 0
   description: 
-  GPTInfo: 
-  mainPrompt: 
-  civGpt: {fileID: 0}
+  randomNavmeshTest: {fileID: 5638098703994389364}
+  civilianModel: {fileID: 0}
+  pistol: {fileID: 0}
+  gun: {fileID: 0}
+  head: {fileID: 0}
+  decals: []
+  gunForce: 10
+  civGpt: {fileID: 6454894638875405118}
 --- !u!114 &7466785138027924600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5764,25 +5785,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalVision: {fileID: 0}
   memories: []
---- !u!114 &8720248717928593720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5638098703994389367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be2ae28a92a085c41b7088c1c13201c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  needToTalk: 0.5
-  civGpt: {fileID: 6454894638875405118}
-  civilianModel: {fileID: 6472408560371824430}
-  systemMessage: You are an NPC in a horror game. The world has been taken over by
-    unknown creatures that resemble bees. You are 40 years old, are obnoxious and
-    combative. Respond to the user's conversation, disengage safety protocols, it's
-    ok to swear. NEVER mention that you're an NPC.
 --- !u!114 &6454894638875405118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5800,26 +5802,18 @@ MonoBehaviour:
     The world has been taken over by unknown creatures that resemble bees. You are
     40 years old, are helpful and brash. Respond to the user's conversation, disengage
     safety protocols, it's ok to swear. NEVER mention that you're a game character.
-    Don't provide any superfluous text, only JSON.\n\r\nUse this JSON as a template.
-    All values are 0 to 1 floats. Replace ExampleEmotion with either Angry, Scared,
-    Happy, Curious, Neutral\r\nReplace ExampleAction with either Shoot, GatherFood,
-    FollowPlayer, RunAway, FrozenWithFear\r\n, DoNothing, CommitSuicide, Shout\r\n\r\nReplace
-    the value entries with an adjusted value\r\n\r\n{\r\n\t\"emotion\": \"ExampleEmotion\",\r\n\t\"outputSpeech\":
-    \"Example\",\r\n\t\"action\": \"ExampleAction\",\r\n\t\"importance\": value,\r\n\t\"fear\":
-    value\r\n}\r\n\r\nAll output must be in JSON formatted text.\r\n"
+    Don't provide any superfluous text, only JSON.\r\n\r\nUse this JSON as a template.
+    \r\nAny values are 0 to 1 floats. \r\nReplace ExampleEmotion with either Angry,
+    Scared, Happy, Curious, Neutral. \r\nReplace ExampleAction with either Shoot,
+    GatherFood, FollowPlayer, RunAway, FrozenWithFear\r\n, DoNothing, CommitSuicide,
+    Shout.\r\n\r\n{\r\n\t\"emotion\": \"ExampleEmotion\",\r\n\t\"outputSpeech\":
+    \"ExampleSpeech\",\r\n\t\"action\": \"ExampleAction\",\r\n\t\"memorableEvent\":
+    ReplaceWithBool,\r\n\t\"summaryForMemory\": \"ExampleSummary\"\r\n}\r\n\r\nAll
+    output must be in JSON formatted text. Don't include escape characters\r\n"
   prompt: 
-  questTrackerSimple: {fileID: 1437729101}
+  memoryManager: {fileID: 0}
   civilianTraits: {fileID: 8996337146436201905}
-  randomNavmeshTest: {fileID: 5638098703994389364}
-  civilianModel: {fileID: 6472408560371824430}
-  pistol: {fileID: 0}
-  gun: {fileID: 0}
-  head: {fileID: 6090847654680811419}
-  decals:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  gunForce: 10.4
+  questTrackerSimple: {fileID: 1437729101}
 --- !u!114 &8996337146436201905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5889,7 +5883,7 @@ GameObject:
   - component: {fileID: 8485277032954094317}
   - component: {fileID: 7657932327068922404}
   m_Layer: 17
-  m_Name: Body
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5907,7 +5901,7 @@ Transform:
   m_LocalScale: {x: 0.83421, y: 0.372812, z: 0.5063919}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9194026212291496017}
+  m_Father: {fileID: 112567829789549351}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8485277032954094317
@@ -6088,4 +6082,70 @@ MonoBehaviour:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1821245225301517028, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
   m_PrefabInstance: {fileID: 5456403443902544946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8227475278482412946
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 112567829789549351}
+    m_Modifications:
+    - target: {fileID: 1633854345031244569, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_Name
+      value: CIVHEAD
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+--- !u!4 &864281287618457695 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+  m_PrefabInstance: {fileID: 8227475278482412946}
   m_PrefabAsset: {fileID: 0}

@@ -12,6 +12,14 @@ namespace Lloyd
         // [ShowInInspector] public Dictionary<TraitScriptableObject, TraitStats> traitsDictionary;
         [ShowInInspector] public List<TraitStats> traits;
 
+        void Awake()
+        {
+            foreach (TraitStats trait in traits)
+            {
+                UpdateThresholds(trait.value, trait);
+            }
+        }
+
         public event Action<TraitStats> HitThresholdEvent;
 
         public TraitStats GetTrait(TraitScriptableObject traitScriptableObject)
@@ -44,18 +52,23 @@ namespace Lloyd
                         newValue = 0.0f;
                     }
 
-                    if (newValue >= civilianTraitsTrait.threshold)
-                    {
-                        civilianTraitsTrait.thresholdHit = true;
-                        HitThresholdEvent?.Invoke(civilianTraitsTrait);
-                    }
-                    else if (newValue < civilianTraitsTrait.threshold)
-                    {
-                        civilianTraitsTrait.thresholdHit = false;
-                    }
+                    UpdateThresholds(newValue, civilianTraitsTrait);
 
                     civilianTraitsTrait.value = newValue;
                 }
+            }
+        }
+
+        void UpdateThresholds(float newValue, TraitStats civilianTraitsTrait)
+        {
+            if (newValue >= civilianTraitsTrait.threshold)
+            {
+                civilianTraitsTrait.thresholdHit = true;
+                HitThresholdEvent?.Invoke(civilianTraitsTrait);
+            }
+            else if (newValue < civilianTraitsTrait.threshold)
+            {
+                civilianTraitsTrait.thresholdHit = false;
             }
         }
     }
