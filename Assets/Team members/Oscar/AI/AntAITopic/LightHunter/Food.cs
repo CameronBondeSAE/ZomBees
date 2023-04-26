@@ -10,22 +10,10 @@ namespace Oscar
 {
     public class Food : DynamicObject, IItem
     {
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.GetComponent<Inventory>() != null)
-            {
-                Inventory inventory = collision.gameObject.GetComponent<Inventory>();
-                if (inventory.heldItem == null)
-                {
-                    inventory.Pickup();
-                }
-            }
-        }
-
         public string Description()
         {
             //its honey, idk what to place here
-            return "Food";
+            return description;
         }
 
         public void Pickup(GameObject obj)

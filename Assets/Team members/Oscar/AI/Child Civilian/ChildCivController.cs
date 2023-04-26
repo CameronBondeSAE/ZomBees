@@ -11,8 +11,12 @@ namespace Oscar
     {        
         public LittleGuy littleGuy;
         public OscarVision vision;
-        public OscarCivProfile civProfile;
-
+        public CivGPT civGPT;
+        public CivilianModel civMod;
+        public CivilianTraits civTraits;
+        public TraitScriptableObject fear;
+        public TraitScriptableObject hunger;
+        
         public Inventory inventory;
         public Hearing ears;
         
@@ -22,8 +26,20 @@ namespace Oscar
         public bool iAmIdle;
         public bool iAmAlive;
         public bool iAmHiding;
+        public bool iAmConversing;
+
+        private void OnEnable()
+        {
+            civGPT.GPTPerformingActionEvent += GPTPerformingAction;
+        }
         
-        //public bool playerTalking;
+        private void GPTPerformingAction(object sender, CivGPT.CivAction actionFromCiv)
+        {
+            if (actionFromCiv == CivGPT.CivAction.RunAway)
+            {
+                civTraits.GetTrait(fear).value = civTraits.GetTrait(fear).threshold;
+            }
+        }
 
         public bool AmIIdle()
         {
@@ -35,12 +51,12 @@ namespace Oscar
         }
         public bool AmIFollowing()
         {
-            if (vision.civsInSight.Count >= 1 && iAmScared == true)
+            if (vision.civsInSight.Count >= 1 && civTraits.GetTrait(fear).thresholdHit)
             {
                 iAmFollowing = true;
             }
 
-            if (iAmScared == true && iAmFollowing == true)
+            if (iAmFollowing == true)
             {
                 return true;
             }
@@ -55,18 +71,16 @@ namespace Oscar
         }
         public bool AmIConversing()
         {
-            return false;
+            return iAmConversing;
         }
         public bool AmIScared()
         {
-            if (ears.heardSound || vision.beesInSight.Count > 0 || civProfile.fearLevel >= .6f)
-            {
-                iAmScared = true;
-            }
-
-            return iAmScared;
+            return civTraits.GetTrait(fear).thresholdHit;
         }
-
+        public bool ShouldIHide()
+        {
+            return iAmHiding;
+        }
         public bool CanISeeRocks()
         {
             return vision.objectsInSight.Count > 0;
@@ -115,7 +129,7 @@ namespace Oscar
 
         public bool ImHungry()
         {
-            return civProfile.hungerLevel >= 0.6f;
+            return civTraits.GetTrait(hunger).thresholdHit;
         }
 
         public bool DoIHaveFood()
@@ -137,11 +151,6 @@ namespace Oscar
         public bool ISeeFood()
         {
             return vision.foodInSight.Count > 0;
-        }
-
-        public bool ShouldIHide()
-        {
-            return iAmHiding;
         }
     }
 }

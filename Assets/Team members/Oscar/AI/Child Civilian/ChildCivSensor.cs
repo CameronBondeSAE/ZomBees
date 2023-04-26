@@ -21,7 +21,6 @@ namespace Oscar
         {
             //set goal to the default one.
         }
-
         public void CollectState()
         {
             //set goal to the collection one.
@@ -46,8 +45,7 @@ namespace Oscar
             aWorldState.Set(CivilianChild.hasFood, controller.DoIHaveFood());
             aWorldState.Set(CivilianChild.seeFood, controller.ISeeFood());
             aWorldState.Set(CivilianChild.Hide, controller.ShouldIHide());
-
-
+            
             aWorldState.EndUpdate();
         }
 

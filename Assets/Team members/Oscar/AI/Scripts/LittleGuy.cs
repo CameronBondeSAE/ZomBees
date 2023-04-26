@@ -9,15 +9,23 @@ using Lloyd;
 
 namespace Oscar
 {
-    public class LittleGuy : LivingEntity, IHear
+    public class LittleGuy : LivingEntity, IHear, IInteractable
     {
-        
-        public GameObject littleGuyModel;
         public Rigidbody rb;
         public float speed;
         public float turnSpeed;
 
         public void SoundHeard(SoundProperties soundProperties)
+        {
+            
+        }
+
+        public void Interact()
+        {
+            
+        }
+
+        public void Inspect()
         {
             throw new NotImplementedException();
         }

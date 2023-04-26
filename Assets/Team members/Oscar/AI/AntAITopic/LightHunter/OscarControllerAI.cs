@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Lloyd;
 using Oscar;
 using UnityEngine;
 using Virginia;
@@ -11,6 +12,11 @@ public class OscarControllerAI : MonoBehaviour
     public LittleGuy littleGuy;
     public ColourChangeShader colourChanger;
     public Inventory inventory;
+
+    private void Awake()
+    {
+        //GetComponent<BeeWingsManager>().SetWings();
+    }
 
     public bool seeTheFood()
     {

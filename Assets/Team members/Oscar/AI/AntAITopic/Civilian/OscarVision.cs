@@ -19,7 +19,7 @@ public class OscarVision : MonoBehaviour
     public List<GameObject> lightInSight;
     
     public delegate void OnObjectSeen(GameObject thing);
-    public event OnObjectSeen memoryEvent;
+    public event OnObjectSeen objectSeenEvent;
     
     #endregion
 
@@ -42,7 +42,7 @@ public class OscarVision : MonoBehaviour
                     {
                         beesInSight.Add(beeStuff);                    
                         
-                        memoryEvent?.Invoke(beeStuff);
+                        objectSeenEvent?.Invoke(beeStuff);
                     }
                 }
                 //are they a Civ, use this:
@@ -54,7 +54,7 @@ public class OscarVision : MonoBehaviour
                     {
                         civsInSight.Add(civStuff);
 
-                        memoryEvent?.Invoke(civStuff);
+                        objectSeenEvent?.Invoke(civStuff);
                     }
                 }
             }
@@ -71,7 +71,7 @@ public class OscarVision : MonoBehaviour
                     {
                         foodInSight.Add(foodStuff);
 
-                        memoryEvent?.Invoke(foodStuff);
+                        objectSeenEvent?.Invoke(foodStuff);
                     }
                 }
                 //if its an Object (not Food), use this:
@@ -83,7 +83,7 @@ public class OscarVision : MonoBehaviour
                     {
                         objectsInSight.Add(objectStuff);
                         
-                        memoryEvent?.Invoke(objectStuff);
+                        objectSeenEvent?.Invoke(objectStuff);
                     }
                 }
                 //is lit up, use this:
@@ -116,14 +116,14 @@ public class OscarVision : MonoBehaviour
                 {
                     GameObject beeStuff = other.gameObject;
                     
-                    memoryEvent?.Invoke(beeStuff);
+                    objectSeenEvent?.Invoke(beeStuff);
                 }
                 //are they a Civ, use this:
                 if (livingThing.isBee == false)
                 {
                     GameObject civStuff = other.gameObject;
                     
-                    memoryEvent?.Invoke(civStuff);
+                    objectSeenEvent?.Invoke(civStuff);
                 }
             }
             if (other.GetComponent<DynamicObject>() != null)
@@ -135,21 +135,21 @@ public class OscarVision : MonoBehaviour
                 {
                     GameObject foodStuff = other.gameObject;
 
-                    memoryEvent?.Invoke(foodStuff);
+                    objectSeenEvent?.Invoke(foodStuff);
                 }
                 //is it a Object, use this:
                 if (dynamicObj.isObject == true)
                 {
                     GameObject objectStuff = other.gameObject;
 
-                    memoryEvent?.Invoke(objectStuff);
+                    objectSeenEvent?.Invoke(objectStuff);
                 }
                 //is lit up, use this:
                 if (dynamicObj.isLit == true)
                 {
                     GameObject litObj = other.gameObject;
                     
-                    memoryEvent?.Invoke(litObj);
+                    objectSeenEvent?.Invoke(litObj);
                 }
             }
         }

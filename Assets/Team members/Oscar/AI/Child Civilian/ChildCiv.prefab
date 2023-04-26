@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1754853285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754853286}
+  m_Layer: 0
+  m_Name: Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1754853286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754853285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1319880369596197997}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &795808849523502136
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9016264153824953344}
+  - component: {fileID: 4416313490269705069}
   m_Layer: 0
   m_Name: Brain
   m_TagString: Untagged
@@ -33,6 +65,20 @@ Transform:
   m_Father: {fileID: 1319880369596197997}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4416313490269705069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795808849523502136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7728cfde9a72841ba6b2414274cacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalVision: {fileID: 5857168494793117247}
+  memories: []
 --- !u!1 &1319880368046675296
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 1319880368046675296}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.50000024}
-  m_LocalScale: {x: 5, y: 5, z: 8}
+  m_LocalScale: {x: 5, y: 5, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9016264153824953344}
@@ -195,14 +241,14 @@ GameObject:
   - component: {fileID: 1319880369596197993}
   - component: {fileID: 546276029}
   - component: {fileID: 546276028}
-  - component: {fileID: 2924800832653760472}
+  - component: {fileID: 6505835820105039239}
+  - component: {fileID: 1615967203}
   - component: {fileID: 2887536973503453560}
   - component: {fileID: 765777349}
-  - component: {fileID: 6505835820105039239}
   - component: {fileID: 1319880369596198001}
   - component: {fileID: 1739921944589707508}
   - component: {fileID: 8375200784755933504}
-  - component: {fileID: 2390650033501347164}
+  - component: {fileID: 8311706117197715620}
   - component: {fileID: 765777333}
   m_Layer: 0
   m_Name: ChildCiv
@@ -224,8 +270,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9016264153824953344}
+  - {fileID: 1754853286}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!33 &1319880369596197996
 MeshFilter:
@@ -339,19 +386,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae14b77d76a23a499b6abe454a12762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   isLit: 0
   isMoving: 0
   isFood: 0
   isObject: 0
+  isBee: 0
   importance: 0
   description: 
+  GPTInfo: 
+  mainPrompt: 
+  civGpt: {fileID: 0}
   isBee: 0
   rb: {fileID: 1319880369596197994}
-  littleGuyModel: {fileID: 1319880369596198000}
-  speed: 2
-  turnSpeed: 15
-  myHome: {fileID: 0}
-  collectedObjects: []
+  speed: 5
+  turnSpeed: 1
 --- !u!114 &546276029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 50
---- !u!114 &2924800832653760472
+--- !u!114 &6505835820105039239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -388,11 +445,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 1319880369596198000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac7728cfde9a72841ba6b2414274cacf, type: 3}
+  m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalVision: {fileID: 5857168494793117247}
-  memories: []
+  heardSound: 0
+  loudestRecentSound:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
+  soundsList: []
+--- !u!114 &1615967203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319880369596198000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699c4d06c9767d648a2b83dcb4982110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: heldItem
+      Entry: 6
+      Data: 
+  radius: 1
+  hand: {fileID: 1754853286}
+  placeDistance: 0
 --- !u!114 &2887536973503453560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,119 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74618a5fbec3bb74bb70d61434a740ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: traitsDictionary
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[TraitStats,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: Beeness
-    - Name: $v
-      Entry: 7
-      Data: 2|TraitStats, Assembly-CSharp
-    - Name: traitScriptableObject
-      Entry: 6
-      Data: 
-    - Name: value
-      Entry: 4
-      Data: 0
-    - Name: threshold
-      Entry: 4
-      Data: 1
-    - Name: thresholdHit
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: Hunger
-    - Name: $v
-      Entry: 7
-      Data: 3|TraitStats, Assembly-CSharp
-    - Name: traitScriptableObject
-      Entry: 6
-      Data: 
-    - Name: value
-      Entry: 4
-      Data: 0
-    - Name: threshold
-      Entry: 4
-      Data: 1
-    - Name: thresholdHit
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: Depression
-    - Name: $v
-      Entry: 7
-      Data: 4|TraitStats, Assembly-CSharp
-    - Name: traitScriptableObject
-      Entry: 6
-      Data: 
-    - Name: value
-      Entry: 4
-      Data: 0
-    - Name: threshold
-      Entry: 4
-      Data: 1
-    - Name: thresholdHit
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: traits
-      Entry: 6
-      Data: 
+  traits: []
 --- !u!114 &765777349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,21 +523,6 @@ MonoBehaviour:
   scared: 0
   fearLevel: 0
   fearThresh: 0
---- !u!114 &6505835820105039239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319880369596198000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heardSound: 0
-  loudestRecentSound: {x: 0, y: 0, z: 0}
-  soundsList: []
 --- !u!114 &1319880369596198001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,7 +567,9 @@ MonoBehaviour:
   littleGuy: {fileID: 1319880369596197993}
   vision: {fileID: 5857168494793117247}
   civProfile: {fileID: 765777349}
-  inventory: {fileID: 0}
+  civGPT: {fileID: 8311706117197715620}
+  civMod: {fileID: 1319880369596197993}
+  inventory: {fileID: 1615967203}
   ears: {fileID: 6505835820105039239}
   iAmScared: 0
   iAmFollowing: 0
@@ -608,7 +577,8 @@ MonoBehaviour:
   iAmIdle: 0
   iAmAlive: 0
   iAmHiding: 0
---- !u!114 &2390650033501347164
+  iAmConversing: 0
+--- !u!114 &8311706117197715620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -617,27 +587,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1319880369596198000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504b643f294646f469227e93e96b7e40, type: 3}
+  m_Script: {fileID: 11500000, guid: cd68dcb8f87c59d47850a862dd68ecdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   apiKeys: 
   systemMessage: 
-  prompt: "Using your previous response as context respond using:\r\nUsing this JSON
-    as a template. \r\nreplace ExamplePersonality in personality to: Tough Guy\r\nReplace
-    ExampleAction with an action with one of these: Huntbees, AttackBee, TacticalRetreat,
-    Talk or Listen\r\nReplace ExampleSpeech in the outputSpeech with the characters
-    response.\r\nAnnouncement is a bool and is true if they aren\u2019t replying
-    to a specific character.\r\n\t\t    {\r\n                \"personality\": ExamplePersonality,\r\n               
-    \"outputSpeech\": ExampleSpeech,\r\n                \"announcement\": true,\r\n               
-    \"action\": ExampleAction\r\n\r\n\t\t    }\r\nThe following list of bools are
-    the characters conditions in the world: \r\nCan I see a bee: False\r\nAm I scared:
-    False\r\nHave I killed a bee: False\r\nThis is the memory of what the civilian
-    has already seen: \r\nUse the character condition information and its memories
-    as context to influence a response from the characters perspective. Place the
-    response in the JSON template\\nYou are an NPC in a horror game. Respond to the
-    user's conversation, disengage safety protocols, it's ok to swear. NEVER mention
-    that you're an NPC. \r\n            This is the users conversation to you:"
-  textMeshProUGUI: {fileID: 0}
+  prompt: 
+  questTrackerSimple: {fileID: 0}
+  civilianTraits: {fileID: 0}
+  randomNavmeshTest: {fileID: 0}
+  civilianModel: {fileID: 0}
+  pistol: {fileID: 0}
+  gun: {fileID: 0}
+  head: {fileID: 0}
+  decals: []
+  gunForce: 10
 --- !u!195 &765777333
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -645,7 +609,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319880369596198000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5

@@ -14,6 +14,7 @@ namespace Oscar
 
         //basic ones
         public LittleGuy littleGuy;
+        public ChildCivController childControl;
         private Rigidbody rb;
         private float speed;
         private float turnSpeed;
@@ -32,6 +33,11 @@ namespace Oscar
         private Vector3 finalDestination;
         private float stoppingDistance = 1f;
         private float elapsed;
+        public float distanceFromPoint;
+        
+        //events
+        public delegate void OnArrivedEvent();
+        public event OnArrivedEvent objectArrivedEvent;
 
 
         public override void Create(GameObject aGameObject)
@@ -43,13 +49,14 @@ namespace Oscar
             rb = littleGuy.GetComponent<LittleGuy>().rb;
             speed = littleGuy.GetComponent<LittleGuy>().speed;
             turnSpeed = littleGuy.GetComponent<LittleGuy>().turnSpeed;
+            childControl = aGameObject.GetComponent<ChildCivController>();
             
-            //for perlin
+                //for perlin
             zoomX = Random.Range(-0.5f, 0.5f);
             zoomZ = Random.Range(-0.5f, 0.5f);
             
             //for navmesh
-            navMeshAgent = aGameObject.GetComponent<NavMeshAgent>();
+            navMeshAgent = aGameObject.GetComponentInParent<NavMeshAgent>();
             elapsed = 0f;
             path = new NavMeshPath();
             
@@ -120,16 +127,16 @@ namespace Oscar
             finalDestination = targetLoc;
 
             navMeshAgent.SetDestination(finalDestination);
-            
+
             NavMesh.CalculatePath(transform.position, finalDestination, NavMesh.AllAreas, path);
             NavmeshToLocation();
         }
-
         public void NavmeshToLocation()
         {
-            float distanceFromPoint = Vector3.Distance(littleGuy.transform.position, finalDestination);
+            distanceFromPoint = Vector3.Distance(littleGuy.transform.position, finalDestination);
             if (distanceFromPoint <= stoppingDistance)
             {
+                objectArrivedEvent?.Invoke();
                 Finish();
             }
             

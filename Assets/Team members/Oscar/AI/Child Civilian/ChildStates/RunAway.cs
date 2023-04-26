@@ -5,61 +5,37 @@ using Anthill.AI;
 using Oscar;
 using UnityEngine;
 using Lloyd;
+using Random = UnityEngine.Random;
 
 public class RunAway : OscarsLittleGuyMovement
 {
     //forloop through a list of patrol points and go to the closest one with navmesh.
     //investigate navmesh for points to run to.
     
-    private Hearing ears;
-    private OscarVision vision;
-    private ChildCivController childControl;
-    
     private Vector3 targetPos;
     float elapsedTime;
-
-    public override void Create(GameObject aGameObject)
-    {
-        base.Create(aGameObject);
-
-        ears = aGameObject.GetComponent<Hearing>();
-        vision = aGameObject.GetComponentInChildren<OscarVision>();
-        childControl = aGameObject.GetComponent<ChildCivController>();
-    }
 
     public override void Enter()
     {
         base.Enter();
-        elapsedTime = 0f;
+        
+        targetPos = PatrolManager.singleton
+                .pathsWithIndoors[Random.Range(0, PatrolManager.singleton.pathsWithIndoors.Count)].transform.position;
+        
+        NavmeshFindLocation(targetPos);
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
         
-        
-        if (ears.heardSound)
-        {
-            targetPos = ears.loudestRecentSound.Source.transform.position;
-        }
+        NavmeshToLocation();
+    }
 
-        if (vision.beesInSight.Count >= 1)
-        {
-            targetPos = vision.beesInSight[0].transform.position;
-        }
+    public override void Exit()
+    {
+        base.Exit();
         
-        elapsedTime += Time.deltaTime;
-        
-        if (elapsedTime <= 5)
-        {
-            TurnAway(targetPos);
-                    
-            BasicMovement(5f);        
-        }
-        else
-        {
-            childControl.iAmScared = false;
-            Finish();        
-        }
+        NavMeshFinish();
     }
 }

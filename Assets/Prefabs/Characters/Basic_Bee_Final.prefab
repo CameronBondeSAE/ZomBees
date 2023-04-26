@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &962016944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 962016945}
+  m_Layer: 0
+  m_Name: WingPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &962016945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962016944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.667, z: 0.626}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1364515369399511705}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140316185
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,19 +682,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 452.50674
+      value: 449.53
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.588428
+      value: 19.37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 540.2641
+      value: 542.93
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -721,6 +752,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 962016945}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1364515369942192534}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
@@ -760,6 +794,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 905967992}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2123579029368186486}
     - targetCorrespondingSourceObject: {fileID: 1148539174630159290, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 430862047}
@@ -848,6 +885,7 @@ MonoBehaviour:
   isMoving: 0
   isFood: 0
   isObject: 0
+  isBee: 1
   importance: 0
   description: 
   isBee: 1
@@ -920,7 +958,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &4272741660416390129
@@ -947,7 +985,7 @@ MonoBehaviour:
     - Name: heldItem
       Entry: 6
       Data: 
-  radius: 5
+  radius: 1
   hand: {fileID: 8232467675256235750}
   placeDistance: 10
 --- !u!114 &905967992
@@ -965,6 +1003,32 @@ MonoBehaviour:
   leftFeeler: {fileID: 1140316187}
   rightFeeler: {fileID: 1315796754}
   bailFeeler: {fileID: 1265415480}
+--- !u!114 &2123579029368186486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847720301667692579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2359bfb9d4e5ce4cbb2ca71b5c76e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfWings: 2
+  wing: {fileID: 5055074893028088857, guid: dec5a9bcf9285794d8a5a097204677c3, type: 3}
+  wingParent: {fileID: 0}
+  xDistance: 0.1
+  yDistance: 1
+  zDistance: 0
+  anchorPos: {fileID: 962016944}
+  myWings: []
+  BeeWingRegular: {fileID: 5055074893028088857, guid: dec5a9bcf9285794d8a5a097204677c3, type: 3}
+  BeeWingHoles: {fileID: 6209883267528151480, guid: 3c4640503ec80444591eec54db307474, type: 3}
+  BeeWingHolesLarge: {fileID: 6209883267528151480, guid: c753c1c62e7cfe64ebeb148f8e05f2dd, type: 3}
+  BeeWingDistorted: {fileID: 7661064535709151610, guid: 8bbdd2b57d9a1e049b78ec8fa0803f3f, type: 3}
+  wingType: 1
+  spawned: 1
 --- !u!1 &1915556279708843720 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1148539174630159290, guid: 85b119cca8126db498b3994eae33a2ab, type: 3}
