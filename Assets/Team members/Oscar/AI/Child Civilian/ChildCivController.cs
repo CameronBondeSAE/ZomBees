@@ -8,149 +8,263 @@ using Lloyd;
 namespace Oscar
 {
     public class ChildCivController : MonoBehaviour
-    {        
+    {
+        #region Variables
+        
         public LittleGuy littleGuy;
         public OscarVision vision;
         public CivGPT civGPT;
-        public CivilianModel civMod;
         public CivilianTraits civTraits;
         public TraitScriptableObject fear;
         public TraitScriptableObject hunger;
         
         public Inventory inventory;
         public Hearing ears;
-        
-        public bool iAmScared;
-        public bool iAmFollowing;
-        public bool iDeliveredStuff;
-        public bool iAmIdle;
-        public bool iAmAlive;
-        public bool iAmHiding;
-        public bool iAmConversing;
 
-        private void OnEnable()
+        private bool iAmIdle;
+        private bool iAmAlive;
+        private bool iAmFollowing;
+        private bool iAmConversing;
+        private bool iAmScared;
+        private bool iAmHungry;
+        private bool iAmHiding;
+        private bool seeRocks;
+        private bool hasRocks;
+        private bool deliverRocks;
+        private bool getStuff;                        
+        private bool hasStuff;
+        private bool iDeliveredStuff;
+        private bool seeFood;
+        private bool hasFood;
+                
+        #endregion
+
+        private void Awake()
         {
-            civGPT.GPTPerformingActionEvent += GPTPerformingAction;
+            civGPT.GPTPerformingActionEvent += GPTPerformingAction;        
         }
-        
+
         private void GPTPerformingAction(object sender, CivGPT.CivAction actionFromCiv)
         {
-            if (actionFromCiv == CivGPT.CivAction.RunAway)
+            switch (actionFromCiv)
             {
-                civTraits.GetTrait(fear).value = civTraits.GetTrait(fear).threshold;
+                case CivGPT.CivAction.Shoot:
+                    // pistol.Shoot();
+                    break;
+                case CivGPT.CivAction.GatherFood:
+                    // Check memories for food, else go to resource points
+                    break;
+                case CivGPT.CivAction.FollowPlayer:
+                    break;
+                case CivGPT.CivAction.RunAway:
+                    AmIScared = true;
+                    break;
+                case CivGPT.CivAction.FrozenWithFear:
+                    break;
+                case CivGPT.CivAction.DoNothing:
+                    break;
+                case CivGPT.CivAction.CommitSuicide:
+                    break;
+                case CivGPT.CivAction.Shout:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
-        public bool AmIIdle()
+        public bool AmIIdle
         {
-            return iAmIdle;
+            get { return iAmIdle; }
+            set { iAmIdle = value; }
         }
-        public bool AmIAlive()
+        public bool AmIAlive
         {
-            return iAmAlive;
+            get { return iAmAlive; }
+            set { iAmAlive = value; }
         }
-        public bool AmIFollowing()
-        {
-            if (vision.civsInSight.Count >= 1 && civTraits.GetTrait(fear).thresholdHit)
-            {
-                iAmFollowing = true;
-            }
 
-            if (iAmFollowing == true)
+        public bool AmIFollowing
+        {
+            get { return iAmScared; }
+            set { iAmScared = value; }
+        }
+        public bool AmIConversing
+        {
+            get { return iAmConversing; }
+            set { iAmConversing = value; }
+        }
+        public bool AmIScared
+        {
+            get { return iAmScared; }
+            set { iAmScared = value; }
+        }
+        public bool ImHungry
+        {
+            get { return iAmHungry; }
+            set { iAmHungry = value; }
+        }
+        public bool ShouldIHide
+        {
+            get { return iAmHiding; }
+            set { iAmHiding = value; }
+        }
+        public bool CanISeeRocks
+        {
+            get { return seeRocks; }
+            set { seeRocks = value; }
+        }
+        public bool DoIHaveRocks
+        {
+            get { return hasRocks; }
+            set { hasRocks = value; }
+        }
+        public bool DeliverTheRocks
+        {
+            get { return deliverRocks; }
+            set { deliverRocks = value; }
+        }
+        public bool GetTheStuff
+        {
+            get { return getStuff; }
+            set { getStuff = value; }
+        }
+        public bool DoIHaveStuff
+        {
+            get { return hasStuff; }
+            set { hasStuff = value; }
+        }
+        public bool StuffDelivered
+        {
+            get { return iDeliveredStuff; }
+            set { iDeliveredStuff = value; }
+        }
+        public bool ISeeFood
+        {
+            get { return seeFood; }
+            set { seeFood = value; }
+        }
+        public bool DoIHaveFood
+        {
+            get { return hasFood; }
+            set { hasFood = value; }
+        }
+        
+        
+        private void FixedUpdate()
+        {
+            //IDLE |
+            
+            
+            //ALIVE |
+            
+            
+            //FOLLOWING |
+            if (vision.civsInSight.Count >= 1 && iAmScared == true)
             {
-                return true;
+                AmIFollowing = true;
             }
             else
             {
-                return false;
+                AmIFollowing = false;
             }
-        }
-        public bool DeliverTheRocks()
-        {
-            return false;
-        }
-        public bool AmIConversing()
-        {
-            return iAmConversing;
-        }
-        public bool AmIScared()
-        {
-            return civTraits.GetTrait(fear).thresholdHit;
-        }
-        public bool ShouldIHide()
-        {
-            return iAmHiding;
-        }
-        public bool CanISeeRocks()
-        {
-            return vision.objectsInSight.Count > 0;
-        }
-        public bool DoIHaveRocks()
-        {
+            
+            //Conversing |
+            
+            
+            //Scared |
+            
+                        
+            //Hungry |
+            if (civTraits.GetTrait(hunger).thresholdHit)
+            {
+                ImHungry = true;
+            }
+            else
+            {
+                ImHungry = false;
+            }
+            
+            //Hide |
+            
+            
+            //SeeRocks |
+            if (vision.objectsInSight.Count > 0)
+            {
+                CanISeeRocks = true;
+            }
+            else
+            {
+                CanISeeRocks = false;
+            }
+            
+            //HaveRocks |
             if (inventory.heldItem != null)
             {
                 if (inventory.heldItem.Description() == "Rock")
                 {
-                    return true;
+                    DoIHaveRocks = true;
                 }
                 else
                 {
-                    return false;
+                    DoIHaveRocks = false;
                 }
             }
-            return false;
-        }
+            else
+            {
+                DoIHaveRocks = false;
+            }
 
-        public bool GetTheStuff()
-        {
-            return false;
-        }
+            //DeliverRocks |
+            
 
-        public bool DoIHaveStuff()
-        {
+            //GetStuff |
+            
+            
+            //HaveStuff |
             if (inventory.heldItem != null)
             {
                 if (inventory.heldItem.Description() == "Collected Item")
                 {
-                    return true;
+                    DoIHaveStuff = true;
                 }
                 else
                 {
-                    return false;
+                    DoIHaveStuff = false;
                 }
             }
-            return false;
-        }
+            else
+            {
+                DoIHaveStuff = false;
+            }
 
-        public bool StuffDelivered()
-        {
-            return false;
-        }
-
-        public bool ImHungry()
-        {
-            return civTraits.GetTrait(hunger).thresholdHit;
-        }
-
-        public bool DoIHaveFood()
-        {
+            //DeliverStuff |
+            
+            //SeeFood
+            if (vision.foodInSight.Count > 0)
+            {
+                ISeeFood = true;
+            }
+            else
+            {
+                ISeeFood = false;
+            }
+            
+            //HaveFood
             if (inventory.heldItem != null)
             {
                 if (inventory.heldItem.Description() == "Food")
                 {
-                    return true;
+                    DoIHaveFood = true;
                 }
                 else
                 {
-                    return false;
+                    DoIHaveFood = false;
                 }
             }
-            return false;
-        }
-
-        public bool ISeeFood()
-        {
-            return vision.foodInSight.Count > 0;
+            else
+            {
+                DoIHaveFood = false;
+            }
         }
     }
 }

@@ -28,7 +28,8 @@ namespace Oscar
             }
             else
             {
-                childControl.iAmScared = false;
+                childControl.AmIScared = false;
+                childControl.ShouldIHide = false;
                 Finish();        
             }
         }

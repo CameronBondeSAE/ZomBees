@@ -43,8 +43,8 @@ public class Follow : OscarsLittleGuyMovement
         }
         else
         {
-            childControl.iAmFollowing = false;
-            childControl.iAmScared = false;
+            childControl.AmIFollowing = false;
+            childControl.AmIScared = false;
             Finish();
         }
     }

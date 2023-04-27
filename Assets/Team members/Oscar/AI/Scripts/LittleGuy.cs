@@ -9,7 +9,7 @@ using Lloyd;
 
 namespace Oscar
 {
-    public class LittleGuy : LivingEntity, IHear, IInteractable
+    public class LittleGuy : CharacterBase, IHear, IInteractable
     {
         public Rigidbody rb;
         public float speed;

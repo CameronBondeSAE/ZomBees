@@ -48,8 +48,8 @@ public class DeliverRocks : OscarsLittleGuyMovement
     {
         if (childControl != null)
         {
-            childControl.iAmHiding = true;
-            childControl.iAmScared = false;
+            childControl.ShouldIHide = true;
+            childControl.AmIScared = false;
         }
     }
 
