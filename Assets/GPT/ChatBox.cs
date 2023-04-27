@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class ChatBox : MonoBehaviour
 {
 	[SerializeField]
-	private float talkRadius = 5f;
+	private float talkRadius = 1f;
+	
+	[SerializeField] private float talkDistance = 5f;
 
 	public SoundEmitter soundEmitter;
 
@@ -48,7 +50,7 @@ public class ChatBox : MonoBehaviour
 			float beeness = trait.value;
 
 			Debug.Log("Beeness = "+beeness);
-			soundEmitter.EmitSound(new SoundProperties(gameObject, SoundEmitter.SoundType.CivTalk, talkRadius, 0, 0,
+			soundEmitter.EmitSound(new SoundProperties(gameObject, SoundEmitter.SoundType.CivTalk, talkRadius, talkDistance, true, 0,
 				beeness, Team.Human, 0, input));
 		}
 

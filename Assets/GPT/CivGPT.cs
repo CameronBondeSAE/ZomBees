@@ -25,7 +25,9 @@ public class CivGPT : MonoBehaviour, IHear
 	public string prompt;
 
 	// TODO one per Civ pair
-	public OpenAI_API.Chat.Conversation chat;
+	public Conversation currentChat;
+
+	public Dictionary<CharacterBase, Conversation> chats;
 
 	bool startedChat = false;
 
@@ -65,14 +67,14 @@ public class CivGPT : MonoBehaviour, IHear
 			Init();
 		}
 
-		chat = api.Chat.CreateConversation();
+		currentChat = api.Chat.CreateConversation();
 
 		/// give instruction as System
-		chat.Model                         = Model.ChatGPTTurbo;
-		chat.RequestParameters.MaxTokens   = 500;
-		chat.RequestParameters.Temperature = 0.9f; // Creative
+		currentChat.Model                         = Model.ChatGPTTurbo;
+		currentChat.RequestParameters.MaxTokens   = 500;
+		currentChat.RequestParameters.Temperature = 0.9f; // Creative
 
-		chat.AppendSystemMessage(systemMessage);
+		currentChat.AppendSystemMessage(systemMessage);
 
 		// give a few examples as user and assistant
 		// chat.AppendUserInput("Is this an animal? Cat");
@@ -101,10 +103,10 @@ public class CivGPT : MonoBehaviour, IHear
 		if (startedChat == false)
 			StartChatConversation();
 
-		chat.AppendUserInput(input);
+		currentChat.AppendUserInput(input);
 
 
-		var res = await chat.GetResponseFromChatbotAsync();
+		var res = await currentChat.GetResponseFromChatbotAsync();
 
 		Debug.Log(res);
 
@@ -192,7 +194,7 @@ public class CivGPT : MonoBehaviour, IHear
 	public void ShowFullLog()
 	{
 		// the entire chat history is available in chat.Messages
-		foreach (ChatMessage msg in chat.Messages)
+		foreach (ChatMessage msg in currentChat.Messages)
 		{
 			Debug.Log($"{msg.Role}: {msg.Content}");
 		}
@@ -202,6 +204,16 @@ public class CivGPT : MonoBehaviour, IHear
 	{
 		if (soundProperties.SoundType == SoundEmitter.SoundType.CivTalk)
 		{
+			// Retrieve specific chat log with this guy 
+			
+			// Does this chat combo exist? No? Create it
+			Conversation value;
+			// if(chats.TryGetValue(soundProperties.Source.GetComponent<CharacterBase>(), out value)
+			// {
+			// 	
+			// }
+			currentChat = chats[soundProperties.Source.GetComponent<CharacterBase>()];
+			
 			AppendUserInput(soundProperties.Dialogue);
 		}
 	}

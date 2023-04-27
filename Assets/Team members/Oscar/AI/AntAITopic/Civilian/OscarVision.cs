@@ -2,193 +2,137 @@ using System;
 using System.Collections.Generic;
 using KevinCastejon.ConeMesh;
 using Oscar;
+using System.Collections;
 using UnityEngine;
 
 public class OscarVision : MonoBehaviour
 {
-    #region Variables
+	#region Variables
 
-    public List<GameObject> beesInSight;
+	public List<GameObject> beesInSight;
 
-    public List<GameObject> foodInSight;
+	public List<GameObject> foodInSight;
 
-    public List<GameObject> civsInSight;
+	public List<GameObject> civsInSight;
 
-    public List<GameObject> objectsInSight;
+	public List<GameObject> objectsInSight;
 
-    public List<GameObject> lightInSight;
-    
-    public delegate void OnObjectSeen(GameObject thing);
-    public event OnObjectSeen objectSeenEvent;
-    
-    #endregion
+	public List<GameObject> lightInSight;
 
-    #region OnTriggerEnter
-    private void OnTriggerEnter(Collider other)
-    {
-        //everything vision for anyone's use :D
-        if (other != null)
-        {
-            if (other.GetComponent<DynamicObject>() != null)
-            {
-                DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
-                
-                //are they a Bee, use this:
-                if (dynamicObj.isBee == true)
-                {
-                    GameObject beeStuff = other.gameObject;
-                    
-                    if (!beesInSight.Contains(beeStuff))
-                    {
-                        beesInSight.Add(beeStuff);                    
-                        
-                        objectSeenEvent?.Invoke(beeStuff);
-                    }
-                }
-                //are they a Civ, use this:
-                if (dynamicObj.isBee == false)
-                {
-                    GameObject civStuff = other.gameObject;
 
-                    if (!civsInSight.Contains(civStuff))
-                    {
-                        civsInSight.Add(civStuff);
+	public List<DynamicObject> allInSight;
 
-                        objectSeenEvent?.Invoke(civStuff);
-                    }
-                }
-                //is it food, use this:
-                if (dynamicObj.isFood == true)
-                {
-                    GameObject foodStuff = other.gameObject;
+	public delegate void OnObjectSeen(GameObject thing);
 
-                    if (!foodInSight.Contains(foodStuff))
-                    {
-                        foodInSight.Add(foodStuff);
+	public event OnObjectSeen objectSeenEvent;
 
-                        objectSeenEvent?.Invoke(foodStuff);
-                    }
-                }
-                //if its an Object (not Food), use this:
-                if (dynamicObj.isObject == true)
-                {
-                    GameObject objectStuff = other.gameObject;
-                    
-                    if (!objectsInSight.Contains(objectStuff))
-                    {
-                        objectsInSight.Add(objectStuff);
-                        
-                        objectSeenEvent?.Invoke(objectStuff);
-                    }
-                }
-                //is lit up, use this:
-                if (dynamicObj.isLit == true)
-                {
-                    GameObject litObj = other.gameObject;
-                    
-                    if (!lightInSight.Contains(litObj)) 
-                    { 
-                        lightInSight.Add(litObj); 
-                    }
-                }
-            }
-        }
-    }
-    #endregion
+	#endregion
 
-    #region OnTriggerStay
-    private void OnTriggerStay(Collider other)
-    {
-        //everything vision for anyone's use :D
-        if (other != null)
-        {
-            if (other.GetComponent<DynamicObject>() != null)
-            {
-                DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
+	void Start()
+	{
+		StartCoroutine(CheckStillVisible());
+	}
 
-                //are they a Bee, use this:
-                if (dynamicObj.isBee == true)
-                {
-                    GameObject beeStuff = other.gameObject;
-                    
-                    objectSeenEvent?.Invoke(beeStuff);
-                }
-                //are they a Civ, use this:
-                if (dynamicObj.isBee == false)
-                {
-                    GameObject civStuff = other.gameObject;
-                    
-                    objectSeenEvent?.Invoke(civStuff);
-                }
-                //is it a food, use this:
-                if (dynamicObj.isFood == true)
-                {
-                    GameObject foodStuff = other.gameObject;
+	#region OnTriggerEnter
 
-                    objectSeenEvent?.Invoke(foodStuff);
-                }
-                //is it a Object, use this:
-                if (dynamicObj.isObject == true)
-                {
-                    GameObject objectStuff = other.gameObject;
+	private void OnTriggerEnter(Collider other)
+	{
+		//everything vision for anyone's use :D
+		if (other != null)
+		{
+			if (other.GetComponent<DynamicObject>() != null)
+			{
+				DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
 
-                    objectSeenEvent?.Invoke(objectStuff);
-                }
-                //is lit up, use this:
-                if (dynamicObj.isLit == true)
-                {
-                    GameObject litObj = other.gameObject;
-                    
-                    objectSeenEvent?.Invoke(litObj);
-                }
-            }
-        }
-    }
-    #endregion
+				allInSight.Add(dynamicObj);
+			}
+		}
+	}
 
-    #region OnTriggerExit
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<DynamicObject>() != null)
-        {
-            DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
-            
-            //removes Bees from current vision list
-            if (dynamicObj.isBee == true)
-            {
-                GameObject beeStuff = other.gameObject;
-                
-                beesInSight.Remove(beeStuff);
-            }
-            //removes Civs from current vision list
-            if (dynamicObj.isBee == false)
-            {
-                GameObject civStuff = other.gameObject;
+	#endregion
 
-                civsInSight.Remove(civStuff);
-            }
-            //removes Food from current vision list
-            if (dynamicObj.isFood == true)
-            {
-                GameObject honeyStuff = other.gameObject;
-                        
-                foodInSight.Remove(honeyStuff);
-            }
-            //removes Objects from current vision list
-            if (dynamicObj.isObject == true)
-            {
-                GameObject honeyStuff = other.gameObject;
+	#region OnTriggerStay
 
-                objectsInSight.Remove(honeyStuff);
-            }
-            //removes lit objects from current version list
-            if (dynamicObj.isLit == true)
-            {
-                GameObject litObj = other.gameObject;
+	private IEnumerator CheckStillVisible()
+	{
+		while (true)
+		{
+			beesInSight.Clear();
+			// CLEAR ALL OTHERS
 
-                lightInSight.Remove(litObj);
-            }
-        }
-    }    
-    #endregion
+			foreach (DynamicObject dynamicObj in allInSight)
+			{
+				//everything vision for anyone's use :D
+				if (dynamicObj != null)
+				{
+					// TODO: LINECAST HERE. If false, continue (next in list)
+					
+					
+					//are they a Bee, use this:
+					if (dynamicObj.isBee == true)
+					{
+						GameObject beeStuff = other.gameObject;
+						// TODO: Add to list here
+						
+						
+						objectSeenEvent?.Invoke(beeStuff);
+					}
+
+					//are they a Civ, use this:
+					if (dynamicObj.isBee == false)
+					{
+						GameObject civStuff = other.gameObject;
+						// TODO: Add to list here
+
+						objectSeenEvent?.Invoke(civStuff);
+					}
+
+					//is it a food, use this:
+					if (dynamicObj.isFood == true)
+					{
+						GameObject foodStuff = other.gameObject;
+						// TODO: Add to list here
+
+						objectSeenEvent?.Invoke(foodStuff);
+					}
+
+					//is it a Object, use this:
+					if (dynamicObj.isObject == true)
+					{
+						GameObject objectStuff = other.gameObject;
+						// TODO: Add to list here
+
+						objectSeenEvent?.Invoke(objectStuff);
+					}
+
+					//is lit up, use this:
+					if (dynamicObj.isLit == true)
+					{
+						GameObject litObj = other.gameObject;
+						// TODO: Add to list here
+
+						objectSeenEvent?.Invoke(litObj);
+					}
+				}
+			}
+
+			yield return new WaitForSeconds(3f); // TODO: Variable
+		}
+	}
+
+	#endregion
+
+	#region OnTriggerExit
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.GetComponent<DynamicObject>() != null)
+		{
+			DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
+
+			allInSight.Remove(dynamicObj);
+		}
+	}
+
+	#endregion
 }

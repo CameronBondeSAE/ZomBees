@@ -13,6 +13,7 @@ namespace Oscar
         public bool isFood;
         public bool isObject;
         public bool isBee;
+        public bool isCiv;
 
         public float importance;
         public string description;

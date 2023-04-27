@@ -5,17 +5,16 @@ using UnityEngine;
 
 namespace Lloyd
 {
-	
-
 	[Serializable]
 	public class SoundProperties
 	{
-		public SoundProperties(GameObject source, SoundEmitter.SoundType soundType, float radius, float distance, float fear, float beeness, Team team, int obstaclesBetween, string dialogue = "")
+		public SoundProperties(GameObject source, SoundEmitter.SoundType soundType, float radius, float distance, bool Directional, float fear, float beeness, Team team, int obstaclesBetween, string dialogue = "")
 		{
 			Source           = source;
 			SoundType        = soundType;
 			Radius           = radius;
 			Distance         = distance;
+			Directional      = false;
 			Fear             = fear;
 			Beeness          = beeness;
 			Team             = team;
@@ -23,10 +22,11 @@ namespace Lloyd
 			Dialogue         = dialogue;
 		}
 
-		public GameObject             Source;           //{ get; set; }
-		public SoundEmitter.SoundType SoundType;        //{ get; set; }
-		public float                  Radius;           //{ get; set; }
-		public float                  Distance;         //{ get; set; }
+		public GameObject             Source;    //{ get; set; }
+		public SoundEmitter.SoundType SoundType; //{ get; set; }
+		public float                  Radius;    //{ get; set; }
+		public float                  Distance;  //{ get; set; }
+		public bool                   Directional = false;
 		public float                  Fear;             //{ get; set; }
 		public float                  Beeness;          //{ get; set; }
 		public Team                   Team;             //{ get; set; }
@@ -43,7 +43,8 @@ namespace Lloyd
 		// EmitSound transmits the float team to communicate what team origin is (Human / Bee)
 		Collider[] hitColliders;
 
-		[SerializeField] int maxListeners = 20;
+		[SerializeField]
+		int maxListeners = 20;
 
 		IHear[] listeners;
 
@@ -68,8 +69,16 @@ namespace Lloyd
 
 		public void EmitSound(SoundProperties soundProperties)
 		{
-			int numColliders =
-				Physics.OverlapSphereNonAlloc(gameObject.transform.position, soundProperties.Radius, hitColliders);
+			int numColliders;
+
+			if (soundProperties.Directional)
+			{
+				numColliders = Physics.OverlapSphereNonAlloc(gameObject.transform.position, soundProperties.Radius, hitColliders);
+			}
+			else
+			{
+				numColliders = Physics.OverlapBoxNonAlloc(gameObject.transform.position, transform.TransformDirection(new Vector3(soundProperties.Radius / 4f, soundProperties.Radius / 4f, soundProperties.Radius)), hitColliders);
+			}
 
 			for (int i = 0; i < numColliders; i++)
 			{
@@ -97,4 +106,4 @@ namespace Lloyd
 			//Debug.Log(testProperties);
 		}
 	}
-	}
+}

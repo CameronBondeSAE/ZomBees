@@ -13,11 +13,11 @@ public enum Personality
 }
 
 [Serializable]
-public class Conversation
+public class MultiConversationTest
 {
     public List<CivilianStats> conversationList;
 
-    public Conversation()
+    public MultiConversationTest()
     {
         conversationList = new List<CivilianStats>();
     }
@@ -56,12 +56,12 @@ public class JSONTests : MonoBehaviour
                                           speechVolume  = 0.5f
                                       };
 
-        Conversation conversation = new Conversation();
-        conversation.conversationList.Add(civilianStats);
-        conversation.conversationList.Add(civilianStats2);
+        MultiConversationTest multiConversationTest = new MultiConversationTest();
+        multiConversationTest.conversationList.Add(civilianStats);
+        multiConversationTest.conversationList.Add(civilianStats2);
 
 
-        string json = JsonUtility.ToJson(conversation, true);
+        string json = JsonUtility.ToJson(multiConversationTest, true);
         Debug.Log(json);
         
     }

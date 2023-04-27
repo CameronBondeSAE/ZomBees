@@ -57,7 +57,7 @@ public class Pistol : MonoBehaviour, IItem, IInteractable
             tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
 
             sound.Play();
-            soundEmitter.EmitSound(new SoundProperties(gameObject, SoundEmitter.SoundType.GunShot, 50f, 0, 0.8f, 0, Team.Human, 0, ""));
+            soundEmitter.EmitSound(new SoundProperties(gameObject, SoundEmitter.SoundType.GunShot, 50f, 0, false, 0.8f, 0, Team.Human, 0, ""));
             
             //Destroy the muzzle flash effect
             Destroy(tempFlash, destroyTimer);
