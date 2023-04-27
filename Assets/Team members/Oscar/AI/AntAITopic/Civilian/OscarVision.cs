@@ -9,18 +9,19 @@ public class OscarVision : MonoBehaviour
 {
 	#region Variables
 
-	public List<GameObject> beesInSight;
+	public float sightRefreshTime;
+	
+	public List<DynamicObject> beesInSight = new List<DynamicObject>();	
 
-	public List<GameObject> foodInSight;
+	public List<DynamicObject> foodInSight = new List<DynamicObject>();
 
-	public List<GameObject> civsInSight;
+	public List<DynamicObject> civsInSight = new List<DynamicObject>();
 
-	public List<GameObject> objectsInSight;
+	public List<DynamicObject> objectsInSight = new List<DynamicObject>();
 
-	public List<GameObject> lightInSight;
-
-
-	public List<DynamicObject> allInSight;
+	public List<DynamicObject> lightInSight = new List<DynamicObject>();
+	
+	public List<DynamicObject> allInSight = new List<DynamicObject>();
 
 	public delegate void OnObjectSeen(GameObject thing);
 
@@ -31,6 +32,12 @@ public class OscarVision : MonoBehaviour
 	void Start()
 	{
 		StartCoroutine(CheckStillVisible());
+		
+		beesInSight.Clear();
+		civsInSight.Clear();
+		foodInSight.Clear();
+		lightInSight.Clear();
+		objectsInSight.Clear();
 	}
 
 	#region OnTriggerEnter
@@ -56,67 +63,66 @@ public class OscarVision : MonoBehaviour
 	private IEnumerator CheckStillVisible()
 	{
 		while (true)
-		{
-			beesInSight.Clear();
+		{			
 			// CLEAR ALL OTHERS
+			beesInSight.Clear();
+			civsInSight.Clear();
+			foodInSight.Clear();
+			lightInSight.Clear();
+			objectsInSight.Clear();
 
 			foreach (DynamicObject dynamicObj in allInSight)
 			{
 				//everything vision for anyone's use :D
 				if (dynamicObj != null)
 				{
-					// TODO: LINECAST HERE. If false, continue (next in list)
-					
-					
-					//are they a Bee, use this:
-					if (dynamicObj.isBee == true)
+					//LINECAST HERE. If false, continue (next in list)
+					// Perform linecast
+					bool hit = Physics.Linecast(transform.position, dynamicObj.transform.position);
+
+					if (hit)
 					{
-						GameObject beeStuff = other.gameObject;
-						// TODO: Add to list here
-						
-						
-						objectSeenEvent?.Invoke(beeStuff);
-					}
-
-					//are they a Civ, use this:
-					if (dynamicObj.isBee == false)
-					{
-						GameObject civStuff = other.gameObject;
-						// TODO: Add to list here
-
-						objectSeenEvent?.Invoke(civStuff);
-					}
-
-					//is it a food, use this:
-					if (dynamicObj.isFood == true)
-					{
-						GameObject foodStuff = other.gameObject;
-						// TODO: Add to list here
-
-						objectSeenEvent?.Invoke(foodStuff);
-					}
-
-					//is it a Object, use this:
-					if (dynamicObj.isObject == true)
-					{
-						GameObject objectStuff = other.gameObject;
-						// TODO: Add to list here
-
-						objectSeenEvent?.Invoke(objectStuff);
-					}
-
-					//is lit up, use this:
-					if (dynamicObj.isLit == true)
-					{
-						GameObject litObj = other.gameObject;
-						// TODO: Add to list here
-
-						objectSeenEvent?.Invoke(litObj);
+						//are they a Bee, use this:
+                     	if (dynamicObj.isBee == true)
+                     	{
+                     		//Add to list here
+                            beesInSight.Add(dynamicObj);
+                        }
+     
+                     	//are they a Civ, use this:
+                     	if (dynamicObj.isCiv == true)
+                     	{
+                     		//Add to list here
+                            civsInSight.Add(dynamicObj);
+                        }
+     
+                     	//is it a food, use this:
+                     	if (dynamicObj.isFood == true)
+                     	{
+                     		//Add to list here
+                            foodInSight.Add(dynamicObj);
+                        }
+     
+                     	//is it a Object, use this:
+                     	if (dynamicObj.isObject == true)
+                     	{
+                     		//Add to list here
+                            objectsInSight.Add(dynamicObj);
+                        }
+     
+                     	//is lit up, use this:
+                     	if (dynamicObj.isLit == true)
+                     	{
+                     		//Add to list here
+                            lightInSight.Add(dynamicObj);
+                        }
+                        // Invoke objectSeenEvent
+						objectSeenEvent?.Invoke(dynamicObj.gameObject);
 					}
 				}
 			}
 
-			yield return new WaitForSeconds(3f); // TODO: Variable
+			yield return new WaitForSeconds(sightRefreshTime);
 		}
 	}
 
