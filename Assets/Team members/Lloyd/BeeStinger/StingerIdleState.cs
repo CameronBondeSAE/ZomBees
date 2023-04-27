@@ -8,6 +8,8 @@ namespace Lloyd
         public BeeStingerSensor stingSensor;
         public ShaderGraphChangeColor shader;
 
+        private SphereBob bob;
+
         public Vector3 homePoint;
         //public float forceMagnitude;
 
@@ -24,6 +26,7 @@ namespace Lloyd
             base.Create(aGameObject);
             stingSensor = aGameObject.GetComponent<BeeStingerSensor>();
             shader = aGameObject.GetComponentInChildren<ShaderGraphChangeColor>();
+            bob = aGameObject.GetComponent<SphereBob>();
         }
 
         public override void Enter()
@@ -43,6 +46,7 @@ namespace Lloyd
             tether = GetComponent<Tether>();
             tether.StartTether(rb, homePoint);
 
+            bob.enabled = true;
         }
 
         public override void Execute(float aDeltaTime, float aTimeScale)
@@ -50,6 +54,7 @@ namespace Lloyd
             if (stingSensor.seesTarget || stingSensor.heardSound)
             {
                 stingSensor.idle = false;
+                bob.enabled = false;    
                 Finish();
             }
         }

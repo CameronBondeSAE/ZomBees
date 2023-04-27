@@ -45,7 +45,11 @@ namespace Lloyd
         {
             seesTarget = brain.seesCiv;
             if (seesTarget)
-                attackTarget = brain.nearestCiv;
+                attackTarget = brain.ReturnNearestCiv();
+
+            heardSound = brain.heardSound;
+            if (heardSound)
+                attackTarget = brain.ReturnNearestSound();
         }
 
         #region AntAI

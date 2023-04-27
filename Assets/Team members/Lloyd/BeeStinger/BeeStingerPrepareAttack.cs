@@ -54,7 +54,7 @@ namespace Lloyd
             attackTarget = sensor.attackTarget;
             rb = sensor.rb;
         
-            sensor.beeWings.ChangeBeeWingStats(-125,45,true);
+            sensor.beeWings.ChangeBeeWingStats(-125,125,true);
 
             viewTransform = sensor.viewTransform;
 

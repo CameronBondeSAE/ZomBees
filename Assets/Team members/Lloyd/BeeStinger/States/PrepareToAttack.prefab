@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ba6ea6d7e2c954b8c9fdfa6b046404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  look: {fileID: 0}
   timer: 0
   timerThresh: 3
   sensor: {fileID: 0}
   shaderScript: {fileID: 0}
-  raycastLength: 100
-  forceMagnitude: 10
+  raycastLength: 200
+  forceMagnitude: 25
   rb: {fileID: 0}
   pissedOffFloat: 0
   pissedOffThresh: 50

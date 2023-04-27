@@ -15,6 +15,8 @@ namespace Lloyd
 
         public BeeStingerSensor stingSensor;
 
+        public SphereCollider bodySphere;
+
         public float timeActive;
 
         public float attackAmount;
@@ -46,11 +48,15 @@ namespace Lloyd
             base.Enter();
             rb = stingSensor.rb;
 
+            bodySphere = stingSensor.GetComponent<SphereCollider>();
+            bodySphere.enabled = false;
+
             stingSensor.seesTarget = false;
 
             myType = stingSensor.myType;
 
             sphereCollider = GetComponent<SphereCollider>();
+            sphereCollider.center = transform.position;
             sphereCollider.isTrigger = true;
             sphereCollider.radius = radius;
 
@@ -60,8 +66,9 @@ namespace Lloyd
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
-            sphereCollider.center = rb.position;
+            sphereCollider.center = transform.position;
             stingSensor.viewTransform.position = transform.position;
+            stingSensor.viewTransform.rotation = transform.rotation;
         }
 
         private IEnumerator Ticking()
@@ -93,8 +100,8 @@ namespace Lloyd
         {
             if (sphereCollider)
             {
-                Gizmos.color = Color.red;
-                Gizmos.DrawSphere(transform.position, sphereCollider.radius);
+               // Gizmos.color = Color.red;
+                //Gizmos.DrawSphere(transform.position, sphereCollider.radius);
             }
         }
 
@@ -111,6 +118,7 @@ namespace Lloyd
 
             stingSensor.attacking = false;
             stingSensor.sting = false;
+            bodySphere.enabled = true;
             Finish();
         }
     }

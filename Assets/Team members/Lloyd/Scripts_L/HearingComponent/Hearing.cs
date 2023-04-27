@@ -82,8 +82,7 @@ namespace Lloyd
 			Debug.Log("Scary level :" + soundProperties.Fear);
 			Debug.Log("Bee level :" + soundProperties.Beeness);
 		}
-
-
+		
 		//where to put perlin randomiser for sound?
 		// float noiseX = Mathf.PerlinNoise(point.x * scale, 0f);
 		// float noiseY = Mathf.PerlinNoise(point.y * scale, 0f);
