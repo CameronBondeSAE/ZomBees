@@ -7,10 +7,15 @@ namespace Lloyd
         public Transform target;
         public float speed = 5f;
 
+        public Vector3 targetVector;
+
         private void Update()
         {
-            if(target!=null)
+            if(target)
                 transform.LookAt(target);
+            
+            else
+                transform.LookAt(targetVector);
         }
     }
 }

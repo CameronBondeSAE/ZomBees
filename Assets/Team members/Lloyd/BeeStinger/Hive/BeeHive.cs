@@ -16,7 +16,7 @@ namespace Lloyd
 
         public void ScaleByPercentage(float percentage)
         {
-            float scale = percentage * 100f;
+            float scale = percentage / 100f;
 
             me.localScale = Vector3.one * scale;
         }

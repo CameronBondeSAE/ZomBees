@@ -8,6 +8,8 @@ namespace Lloyd
         public BeeStingerSensor sensor;
 
         public ShaderGraphChangeColor shader;
+
+        public LesserQueenLookAt look;
     
         public Vector3 target;
         public Rigidbody rb;
@@ -20,15 +22,20 @@ namespace Lloyd
             base.Create(aGameObject);
             sensor = aGameObject.GetComponent<BeeStingerSensor>();
             shader = aGameObject.GetComponentInChildren<ShaderGraphChangeColor>();
+            look = aGameObject.GetComponent<LesserQueenLookAt>();
         }
 
         public override void Enter()
         {
             base.Enter();
             rb = sensor.rb;
+
             target = sensor.homePoint;
-        
-            sensor.GetComponent<BeenessIncreaserModel>().ChangeWings(-175, 12,true);
+
+            look.target = null;
+            look.targetVector = target;
+
+            sensor.beeWings.ChangeBeeWingStats(-175, 12,true);
         
             shader.ChangeColorOrange();
         
