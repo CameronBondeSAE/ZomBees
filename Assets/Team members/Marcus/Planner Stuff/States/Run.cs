@@ -42,7 +42,7 @@ namespace Marcus
             // Calculate directionToRun and send to movement script
             
             Vector3 sum = Vector3.zero;
-            foreach (GameObject bee in vision.beesInSight)
+            foreach (DynamicObject bee in vision.beesInSight)
                 sum += bee.transform.position;
 
             Vector3 centrePoint = sum / vision.beesInSight.Count;

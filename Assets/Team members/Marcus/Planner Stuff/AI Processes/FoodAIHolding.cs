@@ -31,11 +31,8 @@ namespace Marcus
 
         public void PickUpItem(GameObject item)
         {
-            vision.objectsInSight.Remove(item);
-
             if (item.GetComponent<DynamicObject>().isFood)
             {
-                vision.foodInSight.Remove(item);
                 holdingFood = true;
             }
             otherItem.transform.localPosition = transform.position + new Vector3(-0.1f, 0, 0.1f);
