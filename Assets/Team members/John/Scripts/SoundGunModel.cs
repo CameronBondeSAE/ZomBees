@@ -1,52 +1,39 @@
 using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.Serialization;
 
 
 namespace Johns
 {
-    public class SoundWeaponLogic : MonoBehaviour, IItem, IPowered, IInteractable, ISwitchable
-    {
-        public AudioClip sonicShot;
-        public AudioSource audioSource;
-        public bool poweredOn;
-        
+    public class SoundGunModel : MonoBehaviour, IItem, IPowered, IInteractable, ISwitchable
+    { 
+        public bool wasPowered;
 
-        private void OnEnable()
-        {
-            audioSource.clip = sonicShot;
-        }
-
-        
-        [Button]
         public void PoweredOn()
         {
-            poweredOn = true;
+            wasPowered = true;
         }
-
-        [Button]
+        
         public void PoweredOff()
         {
-            poweredOn = false;
+            TurnOff();
+            wasPowered = false;
         }
 
-        [Button]
         public void TurnOn()
         {
-            if (poweredOn)
+            if (wasPowered)
             {
-                audioSource.loop = true;
-                audioSource.Play();
+                GetComponent<StateManager>().ChangeState(GetComponent<SoundGunSwitchedOn>());
             }
         }
 
-        [Button]
         public void TurnOff()
         {
-            if (poweredOn == false)
+            if (wasPowered == false)
             {
-                audioSource.loop = false;
-                audioSource.Stop();
+                GetComponent<StateManager>().ChangeState(GetComponent<SoundGunSwitchedOff>());
             }
         }
         
@@ -79,8 +66,6 @@ namespace Johns
         {
             throw new NotImplementedException();
         }
-
-
     } 
 }
 

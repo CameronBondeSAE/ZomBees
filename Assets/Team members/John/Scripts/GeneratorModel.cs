@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Oscar;
+using Sirenix.OdinInspector;
 using SplineMesh;
 using UnityEngine;
 using Virginia;
@@ -94,6 +95,7 @@ namespace Johns
 			PoweredOn();
 		}
 
+		[Button]
 		public void TurnOff()
 		{
 			PoweredOff();

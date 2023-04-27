@@ -28,8 +28,8 @@ namespace Johns
 
         IEnumerator DelayCoroutine()
         {
-            yield return new WaitForSeconds(generatorStartUp.length);
             GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
+            yield return new WaitForSeconds(generatorStartUp.length);
         }
     }
 }
