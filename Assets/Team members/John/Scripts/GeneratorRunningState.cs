@@ -12,8 +12,14 @@ namespace Johns
         private void OnEnable()
         {
             PlaySound();
-            GetComponent<StateManager>().ChangeState(GetComponent<GeneratorRunningState>());
-            GetComponent<GeneratorModel>()?.thingToGivePowerTo?.PoweredOn();
+            GeneratorModel generator = GetComponent<GeneratorModel>();
+            if (generator != null)
+            {
+                foreach (IPowered poweredObject in generator.thingToGivePowerTo)
+                {
+                    poweredObject.PoweredOn();
+                }
+            }
         }
 
         [Button]
@@ -21,7 +27,14 @@ namespace Johns
         {
             generatorAudio.Stop();
             generatorAudio.loop = false;
-            GetComponent<GeneratorModel>()?.thingToGivePowerTo?.PoweredOff();
+            GeneratorModel generator = GetComponent<GeneratorModel>();
+            if (generator != null)
+            {
+                foreach (IPowered poweredObject in generator.thingToGivePowerTo)
+                {
+                    poweredObject.PoweredOff();
+                }
+            }
         }
 
         public void PlaySound()

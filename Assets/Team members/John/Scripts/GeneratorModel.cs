@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Oscar;
 using Sirenix.OdinInspector;
 using SplineMesh;
@@ -13,8 +14,9 @@ namespace Johns
 		public int currFuel;
 		public int maxFuel = 100;
 		public int rateOfConsumption = 1;
-		public IPowered thingToGivePowerTo;
+		public List<IPowered> thingToGivePowerTo;
 		public bool wasPowered;
+		public Collider triggerBoxCollider;
 
 		public void PoweredOn()
 		{
@@ -51,6 +53,16 @@ namespace Johns
 		//The thing that handles filling up the fuel
 		public void OnTriggerEnter(Collider other)
 		{
+			if(other == triggerBoxCollider)
+			{
+				IPowered powered = other.GetComponent<IPowered>();
+				
+				if (powered != null)
+				{
+					thingToGivePowerTo.Add(powered);
+				}
+			}
+
 			if (other.GetComponent<GasTank>())
 			{
 				Debug.Log("this works");
