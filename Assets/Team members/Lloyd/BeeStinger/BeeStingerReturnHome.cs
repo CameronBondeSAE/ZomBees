@@ -7,6 +7,8 @@ namespace Lloyd
     {
         public BeeStingerSensor sensor;
 
+        public LesserQueenLookAt look;
+
         public ShaderGraphChangeColor shader;
     
         public Vector3 target;
@@ -21,6 +23,7 @@ namespace Lloyd
             base.Create(aGameObject);
             sensor = aGameObject.GetComponent<BeeStingerSensor>();
             shader = aGameObject.GetComponentInChildren<ShaderGraphChangeColor>();
+            look = aGameObject.GetComponent<LesserQueenLookAt>();
         }
 
         public override void Enter()
@@ -28,8 +31,9 @@ namespace Lloyd
             base.Enter();
         
             shader.ChangeColorGreen();
-        
+            
             target = sensor.originalHomepoint;
+            look.targetVector = target;
             rb = sensor.rb;
         
             Quaternion targetRotation = Quaternion.LookRotation(target);

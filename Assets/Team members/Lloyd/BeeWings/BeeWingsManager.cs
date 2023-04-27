@@ -60,7 +60,7 @@ namespace Lloyd
 
         public void Update()
         {
-            if (spawned && wingParent != null)
+            if (wingParent != null)
             {
                 wingParent.transform.position = anchorPos.transform.position;
                 wingParent.transform.rotation = anchorPos.transform.rotation;

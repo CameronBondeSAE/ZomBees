@@ -10,10 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8184552582070858343}
   - component: {fileID: 5345164062300485062}
-  - component: {fileID: 1719335082512515404}
-  - component: {fileID: 6253999687824950254}
   - component: {fileID: 402164263123151827}
-  - component: {fileID: 1529064289477098557}
   m_Layer: 0
   m_Name: IdleState
   m_TagString: Untagged
@@ -49,63 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stingSensor: {fileID: 0}
-  heardSound: 0
-  seesTarget: 0
+  shader: {fileID: 0}
   homePoint: {x: 0, y: 0, z: 0}
   forceMagnitude: 0
   rb: {fileID: 0}
   stingerRandom: {fileID: 0}
   rotate: {fileID: 0}
   tether: {fileID: 0}
-  civVision: {fileID: 0}
   idleRotate: {fileID: 0}
---- !u!114 &1719335082512515404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184552582070858342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd28be45ee0c96d4e883c86c672a5c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxOffset: {x: 0, y: 0, z: 10}
-  boxSize: {x: 5, y: 5, z: 25}
-  visibleObjects: []
-  beeObjects: []
-  seesBees: 0
-  civObjects: []
-  seesCivs: 0
-  interactables: []
-  seesInteract: 0
-  resources: []
-  seesResource: 0
---- !u!114 &6253999687824950254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184552582070858342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc2568a4c8706f4fa50af6cee025454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heardSound: 0
-  loudestRecentSound:
-    Source: {fileID: 0}
-    SoundType: 0
-    Radius: 0
-    Distance: 0
-    Fear: 0
-    Beeness: 0
-    Team: 0
-    ObstaclesBetween: 0
-    Dialogue: 
-  soundsList: []
 --- !u!114 &402164263123151827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,20 +67,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetherForceMag: 5
---- !u!114 &1529064289477098557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184552582070858342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aacc1ee078a77642abd49cd83de057a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetObject: {x: 0, y: 0, z: 0}
-  rb: {fileID: 0}
-  distanceThreshold: 5
-  rotationSpeed: 5
-  looking: 0

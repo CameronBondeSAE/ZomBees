@@ -61,7 +61,7 @@ namespace Lloyd
         {
             base.Execute(aDeltaTime, aTimeScale);
             sphereCollider.center = rb.position;
-            stingSensor.GetComponent<BeenessIncreaserModel>().viewTransform.position = transform.position;
+            stingSensor.viewTransform.position = transform.position;
         }
 
         private IEnumerator Ticking()
@@ -100,7 +100,7 @@ namespace Lloyd
 
         private void EndAttack()
         {
-            stingSensor.GetComponent<BeenessIncreaserModel>().viewTransform.rotation = stingSensor.rb.rotation;
+            stingSensor.viewTransform.rotation = stingSensor.rb.rotation;
 
             stingSensor.rb.velocity = Vector3.zero;
 

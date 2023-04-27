@@ -8,22 +8,16 @@ namespace Lloyd
         public BeeStingerSensor stingSensor;
         public ShaderGraphChangeColor shader;
 
-        public bool heardSound;
-        public bool seesTarget;
-
         public Vector3 homePoint;
-        public float forceMagnitude;
+        //public float forceMagnitude;
 
         public Rigidbody rb;
 
         public StingerRandom stingerRandom;
-        public RotateAway rotate;
+       // public RotateAway rotate;
 
         public Tether tether;
-
-        public CivVision civVision;
-
-        public IdleRotate idleRotate;
+       // public IdleRotate idleRotate;
 
         public override void Create(GameObject aGameObject)
         {
@@ -35,42 +29,26 @@ namespace Lloyd
         public override void Enter()
         {
             base.Enter();
-            seesTarget = false;
         
             shader.ChangeColorGreen();
         
             homePoint = stingSensor.homePoint;
             rb = stingSensor.rb;
         
-            stingSensor.GetComponent<BeenessIncreaserModel>().ChangeWings(-90, 15,true);
+            stingSensor.beeWings.ChangeBeeWingStats(-90, 15,true);
 
-            //  rotate = GetComponent<RotateAway>();
-            //  rotate.StartSpin(rb, homePoint);
-
-            //  stingerRandom = GetComponent<StingerRandom>();
-            //  stingerRandom.StartRandom(rb);
-
-            idleRotate = GetComponent<IdleRotate>();
-            idleRotate.StartRotate(homePoint, rb);
+            //idleRotate = GetComponent<IdleRotate>();
+           // idleRotate.StartRotate(homePoint, rb);
 
             tether = GetComponent<Tether>();
             tether.StartTether(rb, homePoint);
 
-            civVision = GetComponent<CivVision>();
         }
 
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
-            base.Execute(aDeltaTime, aTimeScale);
-
-            seesTarget = civVision.seesCivs;
-            stingSensor.heardSound = heardSound;
-
-            if (heardSound || seesTarget)
+            if (stingSensor.seesTarget || stingSensor.heardSound)
             {
-                stingSensor.SetAttackTarget(civVision.ReturnNearestCiv());
-                Debug.Log(civVision.ReturnNearestCiv());
-                stingSensor.seesTarget = true;
                 stingSensor.idle = false;
                 Finish();
             }

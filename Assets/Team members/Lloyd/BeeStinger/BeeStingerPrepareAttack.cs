@@ -6,6 +6,8 @@ namespace Lloyd
 {
     public class StingerPrepareAttack : AntAIState
     {
+        public LesserQueenLookAt look;
+        
         public float timer;
         public float timerThresh;
         private bool ticking;
@@ -31,12 +33,15 @@ namespace Lloyd
             base.Create(aGameObject);
             sensor = aGameObject.GetComponent<BeeStingerSensor>();
             shaderScript = aGameObject.GetComponentInChildren<ShaderGraphChangeColor>();
+            look = aGameObject.GetComponent<LesserQueenLookAt>();
         }
 
         public override void Enter()
         {
-            base.Enter(); 
-        
+            base.Enter();
+
+            look.target = attackTarget;
+            
             shaderScript.ChangeColorRed();
         
             pissedOffFloat = 0;
@@ -49,9 +54,9 @@ namespace Lloyd
             attackTarget = sensor.attackTarget;
             rb = sensor.rb;
         
-            sensor.GetComponent<BeenessIncreaserModel>().ChangeWings(-125,45,true);
+            sensor.beeWings.ChangeBeeWingStats(-125,45,true);
 
-            viewTransform = sensor.GetComponent<BeenessIncreaserModel>().viewTransform;
+            viewTransform = sensor.viewTransform;
 
             MoveToSpot();
         }

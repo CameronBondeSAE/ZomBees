@@ -1,10 +1,17 @@
 using Anthill.AI;
 using UnityEngine;
+using Oscar;
 
 namespace Lloyd
 {
-    public class BeeStingerSensor : MonoBehaviour, ISense
+    public class BeeStingerSensor : DynamicObject, ISense
     {
+        
+        public void ImABee()
+        {
+            IsBee = true;
+        }
+        
         LesserQueenLookAt look;
         
         public Rigidbody rb;
@@ -18,13 +25,27 @@ namespace Lloyd
 
         public BeeStingAttack.BeeStingType myType;
 
+        public BeeStingerBrain brain;
+
         private void OnEnable()
         {
             rb = GetComponent<Rigidbody>();
+            brain = GetComponent<BeeStingerBrain>();
             homePoint = transform.position;
             originalHomepoint = homePoint;
-            look = GetComponent<LesserQueenLookAt>();
+            
             StartWings();
+            
+            ImABee();
+            
+            look = GetComponent<LesserQueenLookAt>();
+        }
+
+        public void Update()
+        {
+            seesTarget = brain.seesCiv;
+            if (seesTarget)
+                attackTarget = brain.nearestCiv;
         }
 
         #region AntAI
