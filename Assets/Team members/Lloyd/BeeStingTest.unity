@@ -918,11 +918,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2942100197627169295, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
       propertyPath: hangTime
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2942100197627169295, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
       propertyPath: moveDist
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2942100197627169295, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
       propertyPath: moveTime
@@ -948,11 +948,16 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 6635926902050588414, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
+    - target: {fileID: 8976148655549508655, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
+      propertyPath: myMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 64fadaf8dfa51bf4ca2f12cbb8e92b3c, type: 2}
     - target: {fileID: 8976148657003408311, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 8976148657003408311, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 261648221612186290, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 274482099753516392, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}

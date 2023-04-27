@@ -11,6 +11,8 @@ namespace Lloyd
         public float moveTime;
         public float hangTime;
 
+        private float timeOffsetMultiplier = 2;
+
         public bool movingUp;
 
         public BeeWingsManager beeWings;
@@ -38,10 +40,13 @@ namespace Lloyd
             {
                 Vector3 randomPoint = Random.onUnitSphere * moveDist;
 
+                float perlinOffset = Mathf.PerlinNoise(transform.position.x, transform.position.y);
+                float randomizedMoveTime = moveTime + perlinOffset * timeOffsetMultiplier * Time.deltaTime;
+
                 float elapsedTime = 0f;
-                while (elapsedTime < moveTime)
+                while (elapsedTime < randomizedMoveTime)
                 {
-                    transform.Translate((randomPoint - prevPosition) * Time.deltaTime / moveTime);
+                    transform.Translate((randomPoint - prevPosition) * Time.deltaTime / randomizedMoveTime);
                     elapsedTime += Time.deltaTime;
                     yield return null;
                 }
@@ -49,10 +54,9 @@ namespace Lloyd
                 yield return new WaitForSeconds(hangTime);
 
                 elapsedTime = 0f;
-                while (elapsedTime < moveTime)
+                while (elapsedTime < randomizedMoveTime)
                 {
-                    // Use Transform.Translate to move locally
-                    transform.Translate((origPos - randomPoint) * Time.deltaTime / moveTime);
+                    transform.Translate((origPos - randomPoint) * Time.deltaTime / randomizedMoveTime);
                     elapsedTime += Time.deltaTime;
                     yield return null;
                 }

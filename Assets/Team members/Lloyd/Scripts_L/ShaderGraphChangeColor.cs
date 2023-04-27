@@ -24,25 +24,25 @@ namespace Lloyd
         public void ChangeColorRed()
         {
             Color newColor = Color.red;
-            myMaterial.SetColor("_RedColor", newColor);
+            myMaterial.SetColor("Color", newColor);
         }
         
         public void ChangeColorGreen()
         {
             Color newColor = new Color(0, .4f, .1f, 1);
-            myMaterial.SetColor("_RedColor", newColor);
+            myMaterial.SetColor("Color", newColor);
         }
         
         public void ChangeColorOrange()
         {
             Color newColor = new Color(1, .6f, .2f, 1);
-            myMaterial.SetColor("RedColor", newColor);
+            myMaterial.SetColor("Color", newColor);
         }
         
         public void ChangeColorPurple()
         {
             Color newColor = new Color(.4f, 0, .8f, 1);
-            myMaterial.SetColor("_RedColor", newColor);
+            myMaterial.SetColor("Color", newColor);
         }
     }
 }
