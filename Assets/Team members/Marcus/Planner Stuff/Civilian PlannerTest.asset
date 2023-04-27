@@ -89,8 +89,6 @@ MonoBehaviour:
     - id: 8
       value: 0
     post:
-    - id: 1
-      value: 0
     - id: 2
       value: 1
     - id: 8
@@ -129,23 +127,6 @@ MonoBehaviour:
     - id: 6
       value: 1
     - id: 9
-      value: 0
-  - name: Run
-    isDefault: 0
-    state: {fileID: 5591337468728248698, guid: c2591cd6f91d3ce4287efa2986ae26d3, type: 3}
-    cost: 0
-    position: {x: 316, y: 562}
-    pre:
-    - id: 4
-      value: 1
-    - id: 6
-      value: 0
-    post:
-    - id: 4
-      value: 0
-    - id: 3
-      value: 0
-    - id: 7
       value: 0
   - name: Leave Hiding
     isDefault: 0
@@ -203,7 +184,7 @@ MonoBehaviour:
   - name: Turn Off Torch
     isDefault: 0
     state: {fileID: 5629122522613570257, guid: 5aa2dd7178558374b98a0cc48e2d0a9a, type: 3}
-    cost: 0
+    cost: 2
     position: {x: 1400, y: 860}
     pre:
     - id: 9
@@ -233,22 +214,22 @@ MonoBehaviour:
     isAutoUpdate: 1
     list:
     - id: 0
-      value: 0
+      value: 1
     - id: 1
       value: 1
     - id: 2
       value: 0
     - id: 3
-      value: 1
-    - id: 4
-      value: 1
-    - id: 5
-      value: 1
-    - id: 6
-      value: 1
-    - id: 7
-      value: 1
-    - id: 8
       value: 0
-    - id: 9
+    - id: 4
+      value: 0
+    - id: 5
+      value: 0
+    - id: 6
+      value: 0
+    - id: 7
+      value: 0
+    - id: 8
       value: 1
+    - id: 9
+      value: 0
