@@ -1,6 +1,17 @@
 using System;
 using UnityEngine;
 
+public interface IPowered
+{
+    public void PoweredOn()
+    {
+    }
+
+    public void PoweredOff()
+    {
+    }
+}
+
 public interface IInteractable
 {
     public void Interact(); // Works on ground and holding
