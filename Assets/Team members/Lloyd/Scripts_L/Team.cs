@@ -6,5 +6,6 @@ using Lloyd;
 public enum Team
 {
     Human,
-    Bee
+    Bee,
+    None
 }

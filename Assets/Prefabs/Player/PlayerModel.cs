@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace AlexM
 {
@@ -25,6 +26,7 @@ namespace AlexM
 		public Health health;
 
 		public InputManager inputManager;
+		[FormerlySerializedAs("chatBoxViewModel")]
 		public ChatBox chatBox;
 		
 		private void Awake()

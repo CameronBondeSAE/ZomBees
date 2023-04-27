@@ -117,7 +117,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 1
   checkPaddingRequired: 0
-  m_isRichText: 1
+  m_isRichText: 0
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -403,6 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5412064533601510239}
   - component: {fileID: 5927517202288379005}
+  - component: {fileID: 533852194985164525}
   m_Layer: 0
   m_Name: Chat box
   m_TagString: Untagged
@@ -439,11 +440,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   talkRadius: 5
+  talkDistance: 5
   soundEmitter: {fileID: 0}
   civilianTraits: {fileID: 0}
   beeNess_traitScriptableObject: {fileID: 11400000, guid: 304b019197703c34a939d77c9c91ef71, type: 2}
   tmpInputField: {fileID: 5412064533754572389}
   view: {fileID: 0}
+--- !u!114 &533852194985164525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5412064533601510232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a028e6925b261140b12ee6250222738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5412064533754572391
 GameObject:
   m_ObjectHideFlags: 0

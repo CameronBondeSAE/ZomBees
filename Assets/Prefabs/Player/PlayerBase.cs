@@ -10,7 +10,7 @@ using UnityEngine;
 // 	
 // }
 
-public class PlayerBase : DynamicObject
+public class PlayerBase : CharacterBase
 {
 
 	//[HideInInspector]

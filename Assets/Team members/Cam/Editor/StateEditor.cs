@@ -9,6 +9,7 @@ namespace CameronBonde
 	[CustomEditor(typeof(StateBase), true)]
 	public class StateEditor : Editor
 	{
+		
 		public override void OnInspectorGUI()
 		{
 			base.OnInspectorGUI();

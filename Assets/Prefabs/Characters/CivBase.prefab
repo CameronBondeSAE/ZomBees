@@ -5611,6 +5611,8 @@ GameObject:
   - component: {fileID: 8996337146436201905}
   - component: {fileID: 1437729101}
   - component: {fileID: 4928030342409070695}
+  - component: {fileID: 4706506736481325993}
+  - component: {fileID: 5195704613697758565}
   m_Layer: 17
   m_Name: CivBase
   m_TagString: Untagged
@@ -5761,6 +5763,8 @@ MonoBehaviour:
   isMoving: 0
   isFood: 0
   isObject: 0
+  isBee: 0
+  isCiv: 0
   importance: 0
   description: 
   randomNavmeshTest: {fileID: 5638098703994389364}
@@ -5811,7 +5815,8 @@ MonoBehaviour:
     ReplaceWithBool,\r\n\t\"summaryForMemory\": \"ExampleSummary\"\r\n}\r\n\r\nAll
     output must be in JSON formatted text. Don't include escape characters\r\n"
   prompt: 
-  memoryManager: {fileID: 0}
+  chatEmitter: {fileID: 4706506736481325993}
+  memoryManager: {fileID: 7466785138027924600}
   civilianTraits: {fileID: 8996337146436201905}
   questTrackerSimple: {fileID: 1437729101}
 --- !u!114 &8996337146436201905
@@ -5865,12 +5870,64 @@ MonoBehaviour:
     SoundType: 0
     Radius: 0
     Distance: 0
+    Directional: 0
     Fear: 0
     Beeness: 0
     Team: 0
     ObstaclesBetween: 0
     Dialogue: 
   soundsList: []
+--- !u!114 &4706506736481325993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638098703994389367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a028e6925b261140b12ee6250222738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkRadius: 3
+  directional: 0
+  talkDistance: 3
+  soundEmitter: {fileID: 5195704613697758565}
+  civilianTraits: {fileID: 8996337146436201905}
+  beeNess_traitScriptableObject: {fileID: 11400000, guid: 304b019197703c34a939d77c9c91ef71, type: 2}
+--- !u!114 &5195704613697758565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638098703994389367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  maxListeners: 20
+  testProperties:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Directional: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
 --- !u!1 &6141202668129551078
 GameObject:
   m_ObjectHideFlags: 0
@@ -6044,7 +6101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517030, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_text
-      value: Test
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517030, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_fontSize

@@ -33,6 +33,13 @@ public class CivilianModel : CharacterBase, IInteractable
 	private float gunForce = 10f;
 
 	public CivGPT civGpt;
+	// HACK: Demo suicide sequence
+	// Sequence sequence = DOTween.Sequence();
+	// sequence.AppendInterval(7.7f);
+	// sequence.Append(gun.transform.DORotate(new Vector3(-109.594f, 0, 0), 0.3f, RotateMode.LocalAxisAdd)
+	// 	.SetEase(Ease.InOutQuad));
+	// sequence.Play();
+
 
 	
 	void Awake()

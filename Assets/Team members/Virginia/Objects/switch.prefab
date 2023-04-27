@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3805b6a514a16bc429de1ec77dcc6990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: {fileID: 1419534772}
+  startingState: {fileID: 0}
   currentState: {fileID: 0}
 --- !u!114 &1419534773
 MonoBehaviour:
@@ -164,6 +164,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Switch: {fileID: -7428574510256755813}
+  soundProperties:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 0
+    Distance: 0
+    Directional: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
 --- !u!114 &1419534772
 MonoBehaviour:
   m_ObjectHideFlags: 0

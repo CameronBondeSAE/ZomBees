@@ -154,6 +154,8 @@ MonoBehaviour:
   isMoving: 0
   isFood: 0
   isObject: 0
+  isBee: 0
+  isCiv: 0
   importance: 0
   description: 
   initialLength: 10
@@ -597,6 +599,8 @@ MonoBehaviour:
   isMoving: 0
   isFood: 0
   isObject: 0
+  isBee: 0
+  isCiv: 0
   importance: 0
   description: 
   _inputManager: {fileID: 580642317967517823}
@@ -622,7 +626,7 @@ MonoBehaviour:
   groundAngleOffset: 0
   health: {fileID: 839573392}
   inputManager: {fileID: 580642317967517823}
-  chatBox: {fileID: 3127777798206344984}
+  chatBoxViewModel: {fileID: 3127777798206344984}
 --- !u!114 &488536307018931611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +760,7 @@ MonoBehaviour:
     SoundType: 0
     Radius: 0
     Distance: 0
+    Directional: 0
     Fear: 0
     Beeness: 0
     Team: 0
@@ -779,6 +784,7 @@ MonoBehaviour:
     SoundType: 0
     Radius: 0
     Distance: 0
+    Directional: 0
     Fear: 0
     Beeness: 0
     Team: 0
@@ -1345,6 +1351,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6271187260368080563}
     m_Modifications:
+    - target: {fileID: 533852194985164525, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
+      propertyPath: talkRadius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 533852194985164525, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
+      propertyPath: directional
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533852194985164525, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
+      propertyPath: soundEmitter
+      value: 
+      objectReference: {fileID: 6989164079533549418}
+    - target: {fileID: 533852194985164525, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
+      propertyPath: civilianTraits
+      value: 
+      objectReference: {fileID: 2524734214732923673}
+    - target: {fileID: 533852194985164525, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
+      propertyPath: beeNess_traitScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 304b019197703c34a939d77c9c91ef71, type: 2}
     - target: {fileID: 5412064533601510232, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
       propertyPath: m_Name
       value: Chat box
@@ -1398,6 +1424,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3616768923331202305}
     - target: {fileID: 5927517202288379005, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
+      propertyPath: chatEmitter
+      value: 
+      objectReference: {fileID: 9097908511462716808}
+    - target: {fileID: 5927517202288379005, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
       propertyPath: soundEmitter
       value: 
       objectReference: {fileID: 6989164079533549418}
@@ -1431,3 +1461,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5412064533450573412, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
   m_PrefabInstance: {fileID: 8731032894318562149}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9097908511462716808 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 533852194985164525, guid: 6ef731a335cc3924095a283e8244686a, type: 3}
+  m_PrefabInstance: {fileID: 8731032894318562149}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a028e6925b261140b12ee6250222738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

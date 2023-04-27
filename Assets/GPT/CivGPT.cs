@@ -24,12 +24,14 @@ public class CivGPT : MonoBehaviour, IHear
 	[TextArea(5, 40)]
 	public string prompt;
 
-	// TODO one per Civ pair
-	public Conversation currentChat;
 
-	public Dictionary<CharacterBase, Conversation> chats;
+	public ChatEmitter chatEmitter;
+	
+	
+	Conversation currentChat;
+	Dictionary<CharacterBase, Conversation> chats = new Dictionary<CharacterBase, Conversation>();
 
-	bool startedChat = false;
+	// bool startedChat = false;
 
 	public MemoryManager      memoryManager;
 	public CivilianTraits     civilianTraits;
@@ -59,28 +61,25 @@ public class CivGPT : MonoBehaviour, IHear
 	}
 
 	[Button]
-	public void StartChatConversation()
+	public Conversation InitChatConversation()
 	{
-		startedChat = true;
-		if (api == null)
-		{
-			Init();
-		}
-
-		currentChat = api.Chat.CreateConversation();
+		Conversation newChat;
+		newChat = api.Chat.CreateConversation();
 
 		/// give instruction as System
-		currentChat.Model                         = Model.ChatGPTTurbo;
-		currentChat.RequestParameters.MaxTokens   = 500;
-		currentChat.RequestParameters.Temperature = 0.9f; // Creative
+		newChat.Model                         = Model.ChatGPTTurbo;
+		newChat.RequestParameters.MaxTokens   = 500;
+		newChat.RequestParameters.Temperature = 0.9f; // Creative
 
-		currentChat.AppendSystemMessage(systemMessage);
+		newChat.AppendSystemMessage(systemMessage);
 
 		// give a few examples as user and assistant
 		// chat.AppendUserInput("Is this an animal? Cat");
 		// chat.AppendExampleChatbotOutput("Yes");
 		// chat.AppendUserInput("Is this an animal? House");
 		// chat.AppendExampleChatbotOutput("No");
+
+		return newChat;
 	}
 
 	[Button]
@@ -99,9 +98,6 @@ public class CivGPT : MonoBehaviour, IHear
 		// JSONToReal(json);
 
 		// return;
-
-		if (startedChat == false)
-			StartChatConversation();
 
 		currentChat.AppendUserInput(input);
 
@@ -132,20 +128,14 @@ public class CivGPT : MonoBehaviour, IHear
 		// }";
 
 
-		// HACK: Demo suicide sequence
-		// Sequence sequence = DOTween.Sequence();
-		// sequence.AppendInterval(7.7f);
-		// sequence.Append(gun.transform.DORotate(new Vector3(-109.594f, 0, 0), 0.3f, RotateMode.LocalAxisAdd)
-		// 	.SetEase(Ease.InOutQuad));
-		// sequence.Play();
-
 		MyObject myObject = JsonConvert.DeserializeObject<MyObject>(json);
 
 		GPTOutputDialogueEvent?.Invoke(this, myObject.OutputSpeech);
-
+		
 		// Wait for action to happen after talking
-		await Task.Delay(myObject.OutputSpeech.Length * 80);
+		await Task.Delay(1000 + myObject.OutputSpeech.Length * 80);
 
+		chatEmitter.Emit(myObject.OutputSpeech, gameObject);
 		GPTPerformingActionEvent?.Invoke(this, myObject.CivAction);
 	}
 
@@ -207,14 +197,22 @@ public class CivGPT : MonoBehaviour, IHear
 			// Retrieve specific chat log with this guy 
 			
 			// Does this chat combo exist? No? Create it
-			Conversation value;
-			// if(chats.TryGetValue(soundProperties.Source.GetComponent<CharacterBase>(), out value)
-			// {
-			// 	
-			// }
-			currentChat = chats[soundProperties.Source.GetComponent<CharacterBase>()];
+			CharacterBase characterBase = soundProperties.Source.GetComponent<CharacterBase>();
 			
-			AppendUserInput(soundProperties.Dialogue);
+			if(characterBase != null)
+			{
+				if (chats.TryGetValue(characterBase, out Conversation chat))
+				{
+					currentChat = chat;
+				}
+				else
+				{
+					Conversation newChat = InitChatConversation();
+					chats.TryAdd(characterBase, newChat);
+					currentChat = newChat;
+				}
+				AppendUserInput(soundProperties.Dialogue);
+			}
 		}
 	}
 }

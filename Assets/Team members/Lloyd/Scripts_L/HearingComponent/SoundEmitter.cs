@@ -73,25 +73,30 @@ namespace Lloyd
 
 			if (soundProperties.Directional)
 			{
-				numColliders = Physics.OverlapSphereNonAlloc(gameObject.transform.position, soundProperties.Radius, hitColliders);
+				Vector3 boxLocalSize = new Vector3(soundProperties.Radius, soundProperties.Radius, soundProperties.Distance);
+
+				numColliders = Physics.OverlapBoxNonAlloc(gameObject.transform.position + transform.TransformDirection(0, 0, soundProperties.Distance / 2f), transform.TransformDirection(boxLocalSize), hitColliders);
 			}
 			else
 			{
-				numColliders = Physics.OverlapBoxNonAlloc(gameObject.transform.position, transform.TransformDirection(new Vector3(soundProperties.Radius / 4f, soundProperties.Radius / 4f, soundProperties.Radius)), hitColliders);
+				numColliders = Physics.OverlapSphereNonAlloc(gameObject.transform.position, soundProperties.Radius, hitColliders);
 			}
 
 			for (int i = 0; i < numColliders; i++)
 			{
 				Collider collider = hitColliders[i];
 
-				listeners = collider.GetComponents<IHear>();
-
-				foreach (var item in listeners)
+				if (collider != null && collider.gameObject != soundProperties.Source)
 				{
-					if (item != null)
+					listeners = collider.GetComponents<IHear>();
+
+					foreach (var item in listeners)
 					{
-						soundProperties.Source = gameObject;
-						item.SoundHeard(soundProperties);
+						if (item != null)
+						{
+							soundProperties.Source = gameObject;
+							item.SoundHeard(soundProperties);
+						}
 					}
 				}
 			}
