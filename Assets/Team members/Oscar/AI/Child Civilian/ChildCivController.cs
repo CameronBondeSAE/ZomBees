@@ -9,6 +9,7 @@ namespace Oscar
 {
     public class ChildCivController : MonoBehaviour
     {
+        
         #region Variables
         
         public LittleGuy littleGuy;
@@ -21,24 +22,25 @@ namespace Oscar
         public Inventory inventory;
         public Hearing ears;
 
-        private bool iAmIdle;
-        private bool iAmAlive;
-        private bool iAmFollowing;
-        private bool iAmConversing;
-        private bool iAmScared;
-        private bool iAmHungry;
-        private bool iAmHiding;
-        private bool seeRocks;
-        private bool hasRocks;
-        private bool deliverRocks;
-        private bool getStuff;                        
-        private bool hasStuff;
-        private bool iDeliveredStuff;
-        private bool seeFood;
-        private bool hasFood;
+        private bool iAmIdle = false;
+        private bool iAmAlive = false;
+        private bool iAmFollowing = false;
+        private bool iAmConversing = false;
+        private bool iAmScared = false;
+        private bool iAmHungry = false;
+        private bool iAmHiding = false;
+        private bool seeRocks = false;
+        private bool hasRocks = false;
+        private bool deliverRocks = false;
+        private bool getStuff = false;
+        private bool hasStuff = false;
+        private bool iDeliveredStuff = false;
+        private bool seeFood = false;
+        private bool hasFood = false;
                 
         #endregion
 
+        #region GPTStuff
         private void Awake()
         {
             civGPT.GPTPerformingActionEvent += GPTPerformingAction;        
@@ -55,13 +57,20 @@ namespace Oscar
                     // Check memories for food, else go to resource points
                     break;
                 case CivGPT.CivAction.FollowPlayer:
+                    AmIIdle = false;
+                    AmIFollowing = true;
                     break;
                 case CivGPT.CivAction.RunAway:
+                    AmIIdle = false;
                     AmIScared = true;
+                    AmIFollowing = false;
                     break;
                 case CivGPT.CivAction.FrozenWithFear:
                     break;
                 case CivGPT.CivAction.DoNothing:
+                    AmIIdle = true;
+                    AmIScared = false;
+                    AmIFollowing = false;
                     break;
                 case CivGPT.CivAction.CommitSuicide:
                     break;
@@ -71,7 +80,9 @@ namespace Oscar
                     throw new ArgumentOutOfRangeException();
             }
         }
+        #endregion
 
+        #region GettersAndSetters
         public bool AmIIdle
         {
             get { return iAmIdle; }
@@ -85,8 +96,8 @@ namespace Oscar
 
         public bool AmIFollowing
         {
-            get { return iAmScared; }
-            set { iAmScared = value; }
+            get { return iAmFollowing; }
+            set { iAmFollowing = value; }
         }
         public bool AmIConversing
         {
@@ -148,8 +159,9 @@ namespace Oscar
             get { return hasFood; }
             set { hasFood = value; }
         }
-        
-        
+        #endregion
+
+        #region UpdateFunction
         private void FixedUpdate()
         {
             //IDLE |
@@ -159,14 +171,15 @@ namespace Oscar
             
             
             //FOLLOWING |
-            if (vision.civsInSight.Count >= 1 && iAmScared == true)
-            {
-                AmIFollowing = true;
-            }
-            else
-            {
-                AmIFollowing = false;
-            }
+            
+            // if (vision.civsInSight.Count >= 1 && iAmScared == true)
+            // {
+            //     AmIFollowing = true;
+            // }
+            // else
+            // {
+            //     AmIFollowing = false;
+            // }
             
             //Conversing |
             
@@ -266,5 +279,7 @@ namespace Oscar
                 DoIHaveFood = false;
             }
         }
+        #endregion
+
     }
 }

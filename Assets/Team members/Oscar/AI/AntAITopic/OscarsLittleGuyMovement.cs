@@ -72,6 +72,11 @@ namespace Oscar
             rb.AddRelativeForce(Vector3.forward * decidedSpeed,ForceMode.Acceleration);
         }
 
+        public void BasicStopping()
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
 
         #endregion
 

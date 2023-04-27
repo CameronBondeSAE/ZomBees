@@ -6,10 +6,5 @@ using UnityEngine;
 
 public class Idle : OscarsLittleGuyMovement
 {
-    public override void Execute(float aDeltaTime, float aTimeScale)
-    {
-        base.Execute(aDeltaTime, aTimeScale);
-        
-        Spin();
-    }
+    
 }

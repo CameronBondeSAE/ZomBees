@@ -13,7 +13,6 @@ public class RunAway : OscarsLittleGuyMovement
     //investigate navmesh for points to run to.
     
     private Vector3 targetPos;
-    float elapsedTime;
 
     public override void Enter()
     {

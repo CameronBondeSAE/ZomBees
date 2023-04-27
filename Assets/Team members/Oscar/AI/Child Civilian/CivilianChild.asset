@@ -51,13 +51,9 @@ MonoBehaviour:
     cost: 0
     position: {x: 297, y: 94}
     pre:
-    - id: 5
-      value: 1
     - id: 2
       value: 1
     post:
-    - id: 5
-      value: 0
     - id: 2
       value: 0
     - id: 1
@@ -271,7 +267,7 @@ MonoBehaviour:
     - id: 4
       value: 0
     - id: 5
-      value: 0
+      value: 1
     - id: 6
       value: 0
     - id: 7

@@ -83,7 +83,7 @@ public class CivilianModel : CharacterBase, IInteractable
 			case CivGPT.CivAction.FollowPlayer:
 				break;
 			case CivGPT.CivAction.RunAway:
-				randomNavmeshTest.FindRandomSpot();
+				//randomNavmeshTest.FindRandomSpot();
 				break;
 			case CivGPT.CivAction.FrozenWithFear:
 				break;
