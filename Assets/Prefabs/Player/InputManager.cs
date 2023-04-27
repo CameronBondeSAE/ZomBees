@@ -145,7 +145,7 @@ namespace AlexM
 				DynamicObject dynamicObject = interaction.Interact();
 				
 				// Player interacted with Civ?
-				if (dynamicObject != null && dynamicObject.GetComponent<CivilianModel>())
+				if (dynamicObject != null && dynamicObject.GetComponent<CharacterBase>())
 				{
 					playerInteractedWithCivEvent?.Invoke();
 				}
