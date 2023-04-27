@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Anthill.AI;
 using UnityEngine;
 
@@ -6,6 +8,14 @@ namespace Lloyd
 {
     public class LesserQueenSensor : MonoBehaviour, ISense
     {
+        public BeeStingerBrain brain;
+
+        public QueenEvent queenEvent;
+
+        public CivVision vision;
+
+        public Transform target;
+        
         #region ANTAI
 
         public bool patrol;
@@ -98,10 +108,41 @@ namespace Lloyd
 
         public void OnEnable()
         {
+            brain = GetComponent<BeeStingerBrain>();
             bob = GetComponent<SphereBob>();
+            vision = GetComponent<CivVision>();
             SetEyes();
             Debug.Log("SET");
             SetWings();
+
+            queenEvent = GetComponent<QueenEvent>();
+
+            StartCoroutine(AnnounceToFollowers());
+        }
+
+        private IEnumerator AnnounceToFollowers()
+        {
+            while (true)
+            {
+                queenEvent.OnChangeSwarmPoint(transform);
+                yield return new WaitForSeconds(.6f);
+            }
+        }
+
+        private void Update()
+        {
+            if (vision.civObjects.Any())
+            {
+                seesTarget = true;
+                   target = vision.ReturnNearestCiv();
+            }
+            else seesTarget = false;
+
+            if (brain.sounds.Any())
+            {
+                heardSound = true;
+            }
+            else heardSound = false;
         }
     }
 }

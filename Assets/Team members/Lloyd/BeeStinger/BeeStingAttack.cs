@@ -33,13 +33,13 @@ namespace Lloyd
 
         public BeeStingType myType;
 
-        private SphereCollider sphereCollider;
         private List<ICiv> civs = new List<ICiv>();
 
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
             stingSensor = aGameObject.GetComponent<BeeStingerSensor>();
+            bodySphere = GetComponent<SphereCollider>();
         }
 
 
@@ -48,18 +48,11 @@ namespace Lloyd
             base.Enter();
             rb = stingSensor.rb;
 
-            bodySphere = stingSensor.GetComponent<SphereCollider>();
-            bodySphere.enabled = false;
-
             stingSensor.seesTarget = false;
 
             myType = stingSensor.myType;
 
-            sphereCollider = gameObject.AddComponent<SphereCollider>();
-            
-            sphereCollider.center = transform.position;
-            sphereCollider.isTrigger = true;
-            sphereCollider.radius = radius;
+            bodySphere.isTrigger = true;
 
             StartCoroutine(Ticking());
         }
@@ -67,9 +60,8 @@ namespace Lloyd
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
-            sphereCollider.center = transform.position;
-            stingSensor.viewTransform.position = transform.position;
-            stingSensor.viewTransform.rotation = transform.rotation;
+            stingSensor.viewTransform.position = rb.position;
+            stingSensor.viewTransform.rotation = rb.rotation;
         }
 
         private IEnumerator Ticking()
@@ -99,7 +91,7 @@ namespace Lloyd
 
         private void OnDrawGizmos()
         {
-            if (sphereCollider)
+            if (bodySphere)
             {
                // Gizmos.color = Color.red;
                 //Gizmos.DrawSphere(transform.position, sphereCollider.radius);
@@ -119,7 +111,7 @@ namespace Lloyd
 
             stingSensor.attacking = false;
             stingSensor.sting = false;
-            bodySphere.enabled = true;
+            bodySphere.isTrigger = false;
             Finish();
         }
     }

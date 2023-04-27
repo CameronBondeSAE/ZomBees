@@ -105,5 +105,10 @@ namespace Lloyd
 
             return null;
         }
+
+        private void OnDisable()
+        {
+            hearing.SoundHeardEvent -= HeardSound;
+        }
     }
 }

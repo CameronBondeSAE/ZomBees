@@ -9,7 +9,7 @@ namespace Lloyd
 
         public Vector3 targetVector;
 
-        private void Update()
+        private void LateUpdate()
         {
             if(target)
                 transform.LookAt(target);
