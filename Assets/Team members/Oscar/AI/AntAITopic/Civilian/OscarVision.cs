@@ -29,12 +29,12 @@ public class OscarVision : MonoBehaviour
         //everything vision for anyone's use :D
         if (other != null)
         {
-            if (other.GetComponent<LivingEntity>() != null)
+            if (other.GetComponent<DynamicObject>() != null)
             {
-                LivingEntity livingThing = other.GetComponent<LivingEntity>();
+                DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
                 
                 //are they a Bee, use this:
-                if (livingThing.isBee == true)
+                if (dynamicObj.isBee == true)
                 {
                     GameObject beeStuff = other.gameObject;
                     
@@ -46,7 +46,7 @@ public class OscarVision : MonoBehaviour
                     }
                 }
                 //are they a Civ, use this:
-                if (livingThing.isBee == false)
+                if (dynamicObj.isBee == false)
                 {
                     GameObject civStuff = other.gameObject;
 
@@ -57,11 +57,6 @@ public class OscarVision : MonoBehaviour
                         objectSeenEvent?.Invoke(civStuff);
                     }
                 }
-            }
-            if (other.GetComponent<DynamicObject>() != null)
-            {
-                DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
-
                 //is it food, use this:
                 if (dynamicObj.isFood == true)
                 {
@@ -107,29 +102,24 @@ public class OscarVision : MonoBehaviour
         //everything vision for anyone's use :D
         if (other != null)
         {
-            if (other.GetComponent<LivingEntity>() != null)
+            if (other.GetComponent<DynamicObject>() != null)
             {
-                LivingEntity livingThing = other.GetComponent<LivingEntity>();
+                DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
 
                 //are they a Bee, use this:
-                if (livingThing.isBee == true)
+                if (dynamicObj.isBee == true)
                 {
                     GameObject beeStuff = other.gameObject;
                     
                     objectSeenEvent?.Invoke(beeStuff);
                 }
                 //are they a Civ, use this:
-                if (livingThing.isBee == false)
+                if (dynamicObj.isBee == false)
                 {
                     GameObject civStuff = other.gameObject;
                     
                     objectSeenEvent?.Invoke(civStuff);
                 }
-            }
-            if (other.GetComponent<DynamicObject>() != null)
-            {
-                DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
-
                 //is it a food, use this:
                 if (dynamicObj.isFood == true)
                 {
@@ -159,29 +149,24 @@ public class OscarVision : MonoBehaviour
     #region OnTriggerExit
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<LivingEntity>() != null)
+        if (other.GetComponent<DynamicObject>() != null)
         {
-            LivingEntity livingThing = other.GetComponent<LivingEntity>();
+            DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
             
             //removes Bees from current vision list
-            if (livingThing.isBee == true)
+            if (dynamicObj.isBee == true)
             {
                 GameObject beeStuff = other.gameObject;
                 
                 beesInSight.Remove(beeStuff);
             }
             //removes Civs from current vision list
-            if (livingThing.isBee == false)
+            if (dynamicObj.isBee == false)
             {
                 GameObject civStuff = other.gameObject;
 
                 civsInSight.Remove(civStuff);
             }
-        }
-        if (other.GetComponent<DynamicObject>() != null)
-        {
-            DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
-            
             //removes Food from current vision list
             if (dynamicObj.isFood == true)
             {
