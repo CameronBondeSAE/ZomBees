@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1827657527558912425}
   - component: {fileID: 5437157636519389611}
-  - component: {fileID: 641771764665262803}
   m_Layer: 0
   m_Name: BeeStingAttack
   m_TagString: Untagged
@@ -46,29 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stingSensor: {fileID: 0}
+  bodySphere: {fileID: 0}
   timeActive: 2
   attackAmount: 1
   radius: 3
   rb: {fileID: 0}
   myType: 0
---- !u!135 &641771764665262803
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80594319827432503}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

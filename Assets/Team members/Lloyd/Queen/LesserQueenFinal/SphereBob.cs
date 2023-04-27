@@ -32,20 +32,17 @@ namespace Lloyd
 
         private IEnumerator Bob()
         {
-            Vector3 prevPosition = transform.position;
+            Vector3 prevPosition = transform.localPosition;
 
             while (bobbing)
             {
-                Vector3 randomPoint = Random.onUnitSphere * moveDist + origPos;
+                Vector3 randomPoint = Random.onUnitSphere * moveDist;
 
                 float elapsedTime = 0f;
                 while (elapsedTime < moveTime)
                 {
-
-                    transform.position = Vector3.Slerp(transform.position, randomPoint, elapsedTime / moveTime);
+                    transform.Translate((randomPoint - prevPosition) * Time.deltaTime / moveTime);
                     elapsedTime += Time.deltaTime;
-                    
-                    prevPosition = transform.position;
                     yield return null;
                 }
 
@@ -54,15 +51,15 @@ namespace Lloyd
                 elapsedTime = 0f;
                 while (elapsedTime < moveTime)
                 {
-
-                    transform.position = Vector3.Slerp(transform.position, origPos, elapsedTime / moveTime);
+                    // Use Transform.Translate to move locally
+                    transform.Translate((origPos - randomPoint) * Time.deltaTime / moveTime);
                     elapsedTime += Time.deltaTime;
-
-                    prevPosition = transform.position;
                     yield return null;
                 }
 
                 yield return new WaitForSeconds(hangTime);
+
+                prevPosition = transform.localPosition;
             }
         }
 

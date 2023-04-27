@@ -55,7 +55,8 @@ namespace Lloyd
 
             myType = stingSensor.myType;
 
-            sphereCollider = GetComponent<SphereCollider>();
+            sphereCollider = gameObject.AddComponent<SphereCollider>();
+            
             sphereCollider.center = transform.position;
             sphereCollider.isTrigger = true;
             sphereCollider.radius = radius;
@@ -91,7 +92,7 @@ namespace Lloyd
         private void RunFunctionForCiv(ICiv civ)
         {
             civ.HitByBee(myType, attackAmount);
-            Debug.Log("Hit " + civ + " with " + myType + " for " + attackAmount + "!");
+            //Debug.Log("Hit " + civ + " with " + myType + " for " + attackAmount + "!");
 
             stingSensor.ChangeResources(101);
         }
@@ -111,7 +112,7 @@ namespace Lloyd
 
             stingSensor.rb.velocity = Vector3.zero;
 
-            Debug.Log("Finish Attack");
+            //Debug.Log("Finish Attack");
 
             if (stingSensor.currentResources >= stingSensor.maxResources)
                 stingSensor.hasResource = true;

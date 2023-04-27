@@ -108,7 +108,7 @@ namespace Lloyd
             openEgg.SetActive(true);
             closedEgg.SetActive(false);
             SafeEvent?.Invoke();
-            Debug.Log("SAFE!");
+         //   Debug.Log("SAFE!");
             ticking = false;
             pulsing = false;
         }
@@ -122,7 +122,7 @@ namespace Lloyd
             openEgg.SetActive(true);
             closedEgg.SetActive(false);
         
-            Debug.Log("TIMES UP!");
+//            Debug.Log("TIMES UP!");
             ticking = false;
             pulsing = false;
         }
