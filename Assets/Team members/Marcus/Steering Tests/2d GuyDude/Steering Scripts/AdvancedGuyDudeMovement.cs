@@ -40,14 +40,17 @@ namespace Marcus
 
         public void MoveToPoint(PatrolPoint destination)
         {
-            targetPoint = destination;
-            if (destination != null)
-                NavMesh.CalculatePath(transform.position, targetPoint.transform.position, NavMesh.AllAreas, path);
-
             if (usingRigidbodyMovement)
+            {
                 pathCounter = 0;
+            }
             else
-                navMeshAgent.SetDestination(targetPoint.transform.position);
+            {
+                navMeshAgent.SetDestination(destination.transform.position);
+            }
+            
+            targetPoint = destination;
+            NavMesh.CalculatePath(transform.position, targetPoint.transform.position, NavMesh.AllAreas, path);
         }
 
         // Update is called once per frame
