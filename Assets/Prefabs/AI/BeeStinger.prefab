@@ -16,6 +16,10 @@ GameObject:
   - component: {fileID: 2540832798896289489}
   - component: {fileID: 1665470721978290176}
   - component: {fileID: 6648348718542888675}
+  - component: {fileID: 194123507674948834}
+  - component: {fileID: 5189614074647768278}
+  - component: {fileID: -478264756442302359}
+  - component: {fileID: -6672697293598175972}
   m_Layer: 0
   m_Name: BeeStinger
   m_TagString: Untagged
@@ -66,12 +70,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93cc72e5c4b9e54cbc36266a347c304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isLit: 0
+  isMoving: 0
+  isFood: 0
+  isObject: 0
+  isBee: 0
+  isCiv: 0
+  importance: 0
+  description: 
   rb: {fileID: 0}
   homePoint: {x: 0, y: 0, z: 0}
   originalHomepoint: {x: 0, y: 0, z: 0}
   hivePoint: {fileID: 0}
   viewTransform: {fileID: 8706653093376687883}
   myType: 0
+  brain: {fileID: 0}
   attacking: 0
   idle: 1
   seesTarget: 0
@@ -83,6 +105,7 @@ MonoBehaviour:
   attackTarget: {fileID: 0}
   maxResources: 100
   currentResources: 0
+  beeWings: {fileID: 0}
 --- !u!54 &4288167157466808802
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -142,6 +165,7 @@ MonoBehaviour:
     SoundType: 0
     Radius: 0
     Distance: 0
+    Directional: 0
     Fear: 0
     Beeness: 0
     Team: 0
@@ -162,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 5
+  targetVector: {x: 0, y: 0, z: 0}
 --- !u!114 &6648348718542888675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,11 +214,92 @@ MonoBehaviour:
     SoundType: 0
     Radius: 0
     Distance: 0
+    Directional: 0
     Fear: 0
     Beeness: 0
     Team: 0
     ObstaclesBetween: 0
     Dialogue: 
+--- !u!114 &194123507674948834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9177922240726376441}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396e08aa229e55d4fa181c945cf540f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDist: 10
+  moveTime: 1
+  hangTime: 1
+  movingUp: 0
+  beeWings: {fileID: 0}
+  rb: {fileID: 0}
+  bobbing: 0
+--- !u!114 &5189614074647768278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9177922240726376441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd28be45ee0c96d4e883c86c672a5c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxOffset: {x: 0, y: 0, z: 25}
+  boxSize: {x: 5, y: 5, z: 50}
+  visibleObjects: []
+  beeObjects: []
+  seesBees: 0
+  civObjects: []
+  seesCivs: 0
+  interactables: []
+  seesInteract: 0
+  resources: []
+  seesResource: 0
+--- !u!114 &-478264756442302359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9177922240726376441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6782d99e84f5a874b8dbadb7af38c1a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nearestCiv: {fileID: 0}
+  seesCiv: 0
+  heardSound: 0
+  hearing: {fileID: 0}
+  sounds: []
+--- !u!135 &-6672697293598175972
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9177922240726376441}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7622812115610219455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,17 +379,12 @@ PrefabInstance:
     - target: {fileID: 1008877768134904859, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
       propertyPath: anchorPos
       value: 
-      objectReference: {fileID: 5494237981625982529}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
---- !u!1 &5494237981625982529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2735619491277516286, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
-  m_PrefabInstance: {fileID: 7622812115610219455}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7478767897415122855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1008877768134904856, guid: 0ca4ff5eff412484eaf399b4c5e9a08f, type: 3}
