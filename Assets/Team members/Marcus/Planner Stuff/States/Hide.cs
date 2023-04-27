@@ -7,16 +7,21 @@ namespace Marcus
 {
     public class Hide : AntAIState
     {
-        // Start is called before the first frame update
-        void Start()
+        public override void Enter()
         {
-
+            base.Enter();
+            //Find nearest hiding spot
         }
 
-        // Update is called once per frame
-        void Update()
+        public override void Execute(float aDeltaTime, float aTimeScale)
         {
+            base.Execute(aDeltaTime, aTimeScale);
+            //Run towards and hide at our desired spot
+        }
 
+        public override void Exit()
+        {
+            base.Exit();
         }
     }
 }
