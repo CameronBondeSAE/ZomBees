@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 406.89362, g: 307.38675, b: 230.3804, a: 1}
+  m_IndirectSpecularColor: {r: 397.83893, g: 295.17484, b: 216.93436, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -20278,6 +20278,7 @@ MonoBehaviour:
   isMoving: 0
   isFood: 0
   isObject: 0
+  isBee: 1
   importance: 1
   description: BBBBEEEEEEE
   isBee: 1
@@ -27516,6 +27517,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_WithRigidbody
       objectReference: {fileID: 0}
+    - target: {fileID: 6732787804643739882, guid: 17a9d4a3d42c62746ac18cc3322a8043, type: 3}
+      propertyPath: m_Intensity
+      value: 87.567
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31616,6 +31621,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 108806, guid: 4364c4769d122564abbf7277ef60854f, type: 3}
   m_PrefabInstance: {fileID: 873618033}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &874671763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 805523851910997187, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+  m_PrefabInstance: {fileID: 1843221251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8296700942121d4da1ea1a1fc1a1db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &877919627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70665,6 +70681,14 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 587475310, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+    - target: {fileID: 805523851910997187, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: civilianModel
+      value: 
+      objectReference: {fileID: 874671763}
+    - target: {fileID: 805523851910997187, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2018311179568459550, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -70680,6 +70704,10 @@ PrefabInstance:
     - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_Name
       value: Fake AI Guy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2072177004840980634, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2072177004840980636, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       propertyPath: m_RootOrder
@@ -70736,10 +70764,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2072177004840980636, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1966094781}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 513068326, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33f3c73d1e77d084ba9c5a5d8af6c612, type: 3}
 --- !u!4 &1845664869 stripped
 Transform:
