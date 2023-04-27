@@ -1,17 +1,29 @@
 using System;
+using Lloyd;
+using UnityEngine;
 
 namespace Johns
 {
     public class SoundGunSwitchedOn : StateBase
     {
-        private void OnEnable()
+        public AudioClip sonicShot;
+        public AudioSource audioSource;
+        public SoundEmitter soundEmitter;
+        public SoundProperties placeholderForSoundProperties;
+        
+        public void OnEnable()
         {
-            GetComponent<StateManager>().ChangeState(GetComponent<SoundGunSwitchedOn>());
+            audioSource.clip = sonicShot;
+            audioSource.loop = true;
+            audioSource.Play();
+            soundEmitter?.EmitSound(placeholderForSoundProperties);
         }
 
-        private void OnDisable()
+        public void OnDisable()
         {
-            throw new NotImplementedException();
+            audioSource.loop = false;
+            audioSource.Stop();
+            GetComponent<SoundGunModel>().TurnOff();
         }
     }
 }
