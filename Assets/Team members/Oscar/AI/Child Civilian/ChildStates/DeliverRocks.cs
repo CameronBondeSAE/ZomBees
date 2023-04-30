@@ -30,27 +30,25 @@ public class DeliverRocks : OscarsLittleGuyMovement
         Vector3 position = PatrolManager.singleton
             .pathsWithIndoors[Random.Range(0, PatrolManager.singleton.pathsWithIndoors.Count)].transform.position;
         NavmeshFindLocation(position);
-        Debug.Log(position);
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
 
-        if (inventory.heldItem == null)
+        if (inventory.heldItem != null)
+        {
+            NavmeshToLocation();
+        }
+        else
         {
             Finish();
         }
-
     }
 
     private void LocationArrivedAt()
     {
-        if (childControl != null)
-        {
-            childControl.ShouldIHide = true;
-            childControl.AmIScared = false;
-        }
+        inventory.Dispose();
     }
 
     public override void Exit()

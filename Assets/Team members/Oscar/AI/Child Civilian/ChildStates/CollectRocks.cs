@@ -30,7 +30,6 @@ public class CollectRocks : OscarsLittleGuyMovement
             if (distance < 2f)
             {
                 inventory.Pickup();
-                
             }
 
             TurnTowards(vision.objectsInSight[0].transform.position);

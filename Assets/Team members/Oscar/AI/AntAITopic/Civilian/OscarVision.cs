@@ -33,11 +33,12 @@ public class OscarVision : MonoBehaviour
 	{
 		StartCoroutine(CheckStillVisible());
 		
-		beesInSight.Clear();
-		civsInSight.Clear();
-		foodInSight.Clear();
-		lightInSight.Clear();
-		objectsInSight.Clear();
+		allInSight  = new List<DynamicObject>();
+		beesInSight = new List<DynamicObject>();
+		civsInSight = new List<DynamicObject>();
+		foodInSight = new List<DynamicObject>();
+		lightInSight = new List<DynamicObject>();
+		objectsInSight = new List<DynamicObject>();
 	}
 
 	#region OnTriggerEnter
@@ -50,8 +51,11 @@ public class OscarVision : MonoBehaviour
 			if (other.GetComponent<DynamicObject>() != null)
 			{
 				DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
-
-				allInSight.Add(dynamicObj);
+				
+				if (!allInSight.Contains(dynamicObj))
+				{
+					allInSight.Add(dynamicObj);
+				}
 			}
 		}
 	}
@@ -83,40 +87,51 @@ public class OscarVision : MonoBehaviour
 					if (hit)
 					{
 						//are they a Bee, use this:
-                     	if (dynamicObj.isBee == true)
-                     	{
-                     		//Add to list here
-                            beesInSight.Add(dynamicObj);
-                        }
-     
-                     	//are they a Civ, use this:
-                     	if (dynamicObj.isCiv == true)
-                     	{
-                     		//Add to list here
-                            civsInSight.Add(dynamicObj);
-                        }
-     
-                     	//is it a food, use this:
-                     	if (dynamicObj.isFood == true)
-                     	{
-                     		//Add to list here
-                            foodInSight.Add(dynamicObj);
-                        }
-     
-                     	//is it a Object, use this:
-                     	if (dynamicObj.isObject == true)
-                     	{
-                     		//Add to list here
-                            objectsInSight.Add(dynamicObj);
-                        }
-     
-                     	//is lit up, use this:
-                     	if (dynamicObj.isLit == true)
-                     	{
-                     		//Add to list here
-                            lightInSight.Add(dynamicObj);
-                        }
-                        // Invoke objectSeenEvent
+						if (!beesInSight.Contains(dynamicObj))
+						{
+							if (dynamicObj.isBee == true)
+		                    {
+                     			//Add to list here
+		                        beesInSight.Add(dynamicObj);
+		                    }
+						}
+						if (!civsInSight.Contains(dynamicObj))
+						{
+							//are they a Civ, use this:
+							if (dynamicObj.isCiv == true)
+							{
+								//Add to list here
+								civsInSight.Add(dynamicObj);
+							}
+						}
+						if (!foodInSight.Contains(dynamicObj))
+						{
+							//is it a food, use this:
+							if (dynamicObj.isFood == true)
+							{
+								//Add to list here
+								foodInSight.Add(dynamicObj);
+							}
+						}
+						if (!objectsInSight.Contains(dynamicObj))
+						{
+							//is it a Object, use this:
+							if (dynamicObj.isObject == true)
+							{
+								//Add to list here
+								objectsInSight.Add(dynamicObj);
+							}
+						}
+						if (!lightInSight.Contains(dynamicObj))
+						{
+							//is lit up, use this:
+							if (dynamicObj.isLit == true)
+							{
+								//Add to list here
+								lightInSight.Add(dynamicObj);
+							}
+						}
+						// Invoke objectSeenEvent
 						objectSeenEvent?.Invoke(dynamicObj.gameObject);
 					}
 				}

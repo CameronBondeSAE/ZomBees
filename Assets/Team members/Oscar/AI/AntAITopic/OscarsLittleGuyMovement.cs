@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -15,6 +16,7 @@ namespace Oscar
         //basic ones
         public LittleGuy littleGuy;
         public ChildCivController childControl;
+        private OscarControllerAI basicBeeControl;
         private Rigidbody rb;
         private float speed;
         private float turnSpeed;
@@ -49,7 +51,9 @@ namespace Oscar
             rb = littleGuy.GetComponent<LittleGuy>().rb;
             speed = littleGuy.GetComponent<LittleGuy>().speed;
             turnSpeed = littleGuy.GetComponent<LittleGuy>().turnSpeed;
+            
             childControl = aGameObject.GetComponent<ChildCivController>();
+            basicBeeControl = aGameObject.GetComponent<OscarControllerAI>();
             
                 //for perlin
             zoomX = Random.Range(-0.5f, 0.5f);
@@ -78,6 +82,30 @@ namespace Oscar
             rb.angularVelocity = Vector3.zero;
         }
 
+        public void FlightMode()
+        {
+            basicBeeControl.basicBeeWalking.SetActive(false); 
+            basicBeeControl.basicBeeFlying.SetActive(true); 
+            
+            //TODO ask cam about do tween not setting the values but instead returning
+            DOTween.To(DoTwenSetter, littleGuy.transform.position.y,littleGuy.transform.position.y + 10f, 5f);
+        }
+
+        public void LandMode()
+        {
+            //TODO ask cam about do tween not setting the values but instead returning
+            
+            //DOTween.To(DoTwenSetter, littleGuy.transform.position.y,littleGuy.transform.position.y - 10f, 5f);
+
+            basicBeeControl.basicBeeWalking.SetActive(true); 
+            basicBeeControl.basicBeeFlying.SetActive(false); 
+        }
+
+        private void DoTwenSetter(float newValue)
+        {
+            littleGuy.transform.position = new Vector3(littleGuy.transform.position.x, newValue,littleGuy.transform.position.z);
+        }
+        
         #endregion
 
         #region Stearing

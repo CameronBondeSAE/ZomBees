@@ -14,6 +14,11 @@ public class RunAway : OscarsLittleGuyMovement
     
     private Vector3 targetPos;
 
+    private void OnEnable()
+    {
+        objectArrivedEvent += LocationArrivedAt;
+    }
+    
     public override void Enter()
     {
         base.Enter();
@@ -29,6 +34,15 @@ public class RunAway : OscarsLittleGuyMovement
         base.Execute(aDeltaTime, aTimeScale);
         
         NavmeshToLocation();
+    }
+
+    private void LocationArrivedAt()
+    {
+        if (childControl != null)
+        {
+            childControl.ShouldIHide = true;
+            childControl.AmIScared = false;
+        }
     }
 
     public override void Exit()

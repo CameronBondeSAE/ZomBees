@@ -32,10 +32,6 @@ namespace Virginia
                     (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = true; //I forget I need GetComponent sometimes.
                     (heldItem as MonoBehaviour).transform.localPosition = Vector3.zero; //moves it to the position of the "hand"
                     (heldItem as MonoBehaviour).transform.rotation = Quaternion.identity; // allows for the object not fall in weird position 
-                    if ((heldItem as MonoBehaviour).GetComponent<Collider>() != null) //Oscar added
-                    {
-                        (heldItem as MonoBehaviour).GetComponent<Collider>().enabled = false; 
-                    }
 
                     //Debug.Log(message: "pick up");
                     heldItem.Pickup(gameObject);
@@ -60,11 +56,6 @@ namespace Virginia
             
             (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = false; 
             (heldItem as MonoBehaviour).transform.parent = null; //unparents the child aka child becomes an orphan 
-            
-            if ((heldItem as MonoBehaviour).GetComponent<Collider>() != null) //Oscar added
-            {
-                (heldItem as MonoBehaviour).GetComponent<Collider>().enabled = true; 
-            }
 
             heldItem = null; // clears the object from the held Item slot (I forgot the name)
             //Debug.Log("disposed item didn't need it");

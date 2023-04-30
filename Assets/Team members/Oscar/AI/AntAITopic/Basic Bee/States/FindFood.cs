@@ -35,6 +35,7 @@ public class FindFood : OscarsLittleGuyMovement
         //TODO Ask cam why this is not an active member of navmesh when it has the navmesh agent on it.
         //NavmeshFindLocation(patrolPointLoc);
         BasicMovement(1f);
+        Wondering();
     }
 
     public override void Exit()

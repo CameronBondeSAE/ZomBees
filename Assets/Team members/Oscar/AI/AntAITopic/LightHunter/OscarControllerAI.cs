@@ -13,9 +13,14 @@ public class OscarControllerAI : MonoBehaviour
     public ColourChangeShader colourChanger;
     public Inventory inventory;
 
+    public GameObject basicBeeWalking;
+    public GameObject basicBeeFlying;
+
     private void Awake()
     {
         //GetComponent<BeeWingsManager>().SetWings();
+        basicBeeFlying.SetActive(false);
+        basicBeeWalking.SetActive(true);
     }
 
     public bool seeTheFood()

@@ -5044,9 +5044,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3480590768837115260}
   - component: {fileID: 7405988188930513079}
-  - component: {fileID: 3978504168813315633}
-  - component: {fileID: 1386427047}
-  - component: {fileID: 9201919707044816528}
+  - component: {fileID: 1491344761}
   - component: {fileID: 3766555885203436555}
   - component: {fileID: 7553392581998968432}
   - component: {fileID: 4373097535868285947}
@@ -5055,7 +5053,7 @@ GameObject:
   - component: {fileID: 8822627639575176923}
   - component: {fileID: 3452993360891905805}
   - component: {fileID: 2575717550317940145}
-  - component: {fileID: 871231897562791965}
+  - component: {fileID: 7321126742481054084}
   m_Layer: 0
   m_Name: ChildCivFinal
   m_TagString: Untagged
@@ -5083,7 +5081,7 @@ Transform:
   - {fileID: 1618225960}
   - {fileID: 460890968}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!136 &7405988188930513079
 CapsuleCollider:
@@ -5108,7 +5106,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3978504168813315633
+--- !u!54 &1491344761
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5133,68 +5131,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1386427047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481231920541928607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8296700942121d4da1ea1a1fc1a1db2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  isLit: 0
-  isMoving: 0
-  isFood: 0
-  isObject: 0
-  isBee: 0
-  isCiv: 0
-  importance: 0
-  description: 
-  randomNavmeshTest: {fileID: 0}
-  civilianModel: {fileID: 0}
-  pistol: {fileID: 0}
-  gun: {fileID: 0}
-  head: {fileID: 0}
-  decals: []
-  gunForce: 10
-  civGpt: {fileID: 0}
---- !u!114 &9201919707044816528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481231920541928607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 971c5f3e095147e44b3609b484137ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hungry: 0
-  hungerLevel: 0
-  hungerThresh: 0
-  beeness: 0
-  beenessThresh: 0
-  readyToDie: 0
-  suicideLevel: 0
-  suicideThresh: 0
-  scared: 0
-  fearLevel: 0
-  fearThresh: 0
 --- !u!114 &3766555885203436555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5278,8 +5216,8 @@ MonoBehaviour:
   isCiv: 0
   importance: 0
   description: 
-  rb: {fileID: 3978504168813315633}
-  speed: 0
+  rb: {fileID: 1491344761}
+  speed: 5
   turnSpeed: 0.15
 --- !u!114 &107376083
 MonoBehaviour:
@@ -5322,6 +5260,7 @@ MonoBehaviour:
     \"ExampleAction\",\r\n\t\"importance\": value,\r\n\t\"fear\": value\r\n}\r\n\r\nAll
     output should use the JSON template.\r\n"
   prompt: 
+  chatEmitter: {fileID: 0}
   memoryManager: {fileID: 6461197163127814067}
   civilianTraits: {fileID: 3452993360891905805}
   questTrackerSimple: {fileID: 2575717550317940145}
@@ -5362,7 +5301,7 @@ MonoBehaviour:
   eventsList: []
   checkInterval: 1
   worldTime: {fileID: 0}
---- !u!195 &871231897562791965
+--- !u!195 &7321126742481054084
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5450,7 +5389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be214447e5c044b4492361663bf88223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 3978504168813315633}
+  rb: {fileID: 0}
 --- !u!1 &4945335230525609893
 GameObject:
   m_ObjectHideFlags: 0
@@ -5525,7 +5464,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -5557,7 +5496,7 @@ CharacterJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4945335230525609893}
-  m_ConnectedBody: {fileID: 3978504168813315633}
+  m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: -0.27, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
@@ -5965,19 +5904,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517028, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.6058773
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517028, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517028, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.79555815
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517028, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517028, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_AnchoredPosition.x

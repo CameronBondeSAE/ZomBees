@@ -210,7 +210,7 @@ namespace Oscar
                 CanISeeRocks = false;
             }
             
-            //HaveRocks |
+            //HaveRocks
             if (inventory.heldItem != null)
             {
                 if (inventory.heldItem.Description() == "Rock")
@@ -224,7 +224,7 @@ namespace Oscar
             }
             else
             {
-                DoIHaveRocks = false;
+                 DoIHaveRocks = false;
             }
 
             //DeliverRocks |

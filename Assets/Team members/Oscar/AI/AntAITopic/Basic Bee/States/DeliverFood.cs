@@ -13,6 +13,11 @@ public class DeliverFood : OscarsLittleGuyMovement
 {
 	private Inventory inventory;
 
+	private void OnEnable()
+	{
+		objectArrivedEvent += arrivedAtLocation;
+	}
+	
 	public override void Create(GameObject aGameObject)
 	{
 		base.Create(aGameObject);
@@ -22,6 +27,7 @@ public class DeliverFood : OscarsLittleGuyMovement
 	public override void Enter()
     {
 	    base.Enter();
+	    FlightMode();
 	    NavmeshEnabled();
     }
 
@@ -34,6 +40,13 @@ public class DeliverFood : OscarsLittleGuyMovement
 		    NavmeshFindLocation(
 			    PatrolManager.singleton.hivePoints[Random.Range(0, PatrolManager.singleton.hivePoints.Count)].transform.position);
 	    }
+    }
+
+    public void arrivedAtLocation()
+    {
+	    LandMode();
+	    inventory.Dispose();
+	    Exit();
     }
 
     public override void Exit()

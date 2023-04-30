@@ -19,8 +19,8 @@ namespace Oscar
         public void Pickup(GameObject obj)
         {
             //just disable the object until needed later
-            GetComponent<Collider>().enabled = false;
-            //UtilityManager.DisableAfterDelay(obj);
+            
+            UtilityManager.DisableAfterDelay(gameObject,obj.GetComponent<Inventory>().hand.gameObject);
         }
 
         public void Consume()
@@ -30,7 +30,7 @@ namespace Oscar
 
         public void Dispose()
         {
-            GetComponent<Collider>().enabled = false;
+            UtilityManager.EnableAfterDelay(gameObject);
         }
     }
 }

@@ -8,7 +8,6 @@ namespace Oscar
     {
         public static UtilityManager instance;
 
-        public static Hive myBase;
         private void Awake()
         {
             if (instance == null)
@@ -20,49 +19,50 @@ namespace Oscar
             {
                 gameObject.SetActive(false);
             }
-            
-            myBase = FindObjectOfType<Hive>();
         }
 
-        public static void DisableAfterDelay(GameObject obj)
+        public static void DisableAfterDelay(GameObject obj, GameObject caller)
         {
-            obj.transform.position = new Vector3(myBase.transform.position.x + 13,20f,myBase.transform.position.z + 13)  /*new Vector3(40, 30, 30)*/;
+            obj.transform.position = new Vector3(100000000000, 100000000000, 100000000000);
 
-            instance.StartCoroutine(DisableCoroutine(obj));
+            instance.StartCoroutine(DisableCoroutine(obj, caller));
         }
 
-        private static IEnumerator DisableCoroutine(GameObject obj)
+        private static IEnumerator DisableCoroutine(GameObject obj, GameObject caller)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.1f);
 
-            obj.SetActive(false);
-        }
+            obj.GetComponent<Collider>().enabled = false;
 
-        public static void DeleteAfterDelay(GameObject obj)
-        {
-            obj.transform.position = new Vector3(40, 30, 30);
+            yield return new WaitForSeconds(.1f);
 
-            instance.StartCoroutine(DeleteCoroutine(obj));
-        }
-
-        private static IEnumerator DeleteCoroutine(GameObject obj)
-        {
-            yield return new WaitForSeconds(3f);
-            
-            Destroy(obj);
+            obj.transform.position = caller.transform.position;
         }
 
         public static void EnableAfterDelay(GameObject obj)
         {
             instance.StartCoroutine(EnableCoroutine(obj));
         }
-        
+
         private static IEnumerator EnableCoroutine(GameObject obj)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.1f);
 
-            obj.SetActive(true);
+            obj.GetComponent<Collider>().enabled = true;
+        }
+
+        public static void DeleteAfterDelay(GameObject obj)
+        {
+            obj.transform.position = new Vector3(100000000000, 100000000000, 100000000000);
+
+            instance.StartCoroutine(DeleteCoroutine(obj));
+        }
+
+        private static IEnumerator DeleteCoroutine(GameObject obj)
+        {
+            yield return new WaitForSeconds(.1f);
+
+            Destroy(obj);
         }
     }
-
 }
