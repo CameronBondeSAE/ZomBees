@@ -13,5 +13,9 @@ namespace Oscar
         public Vector2Int gridPos;
 
         public Vector3 startPos;
+        
+        public bool isFilled;
+        
+        public Nodes parent;
     }
 }
