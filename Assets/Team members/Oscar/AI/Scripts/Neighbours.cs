@@ -42,6 +42,18 @@ namespace Oscar
                 }
             }
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (friendsList.Contains(other.transform))
+            {
+                friendsList.Remove(other.transform);
+            }
+            if (enemyList.Contains(other.transform))
+            {
+                enemyList.Remove(other.transform);
+            }
+        }
     }
 }
 

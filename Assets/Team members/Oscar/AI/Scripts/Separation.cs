@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class Cohesion : MonoBehaviour
+    public class Separation : MonoBehaviour
     {
         public LittleGuy guy;
         public Neighbours neighbours;
@@ -13,7 +13,7 @@ namespace Oscar
 
         void FixedUpdate()
         {
-            //Calculate the direction towards the position of the neighbors
+            //Calculate the separation movement
             Vector3 targetDirection = CalculateMove(neighbours.friendsList);
 
             guy.rb.AddForce(targetDirection * force);
@@ -24,21 +24,19 @@ namespace Oscar
             if (FriendsPos.Count == 0)
                 return Vector3.zero;
 
-            Vector3 cohesionMove = Vector3.zero;
+            Vector3 separationMove = Vector3.zero;
 
-            //Average position of the neighbors
+            //Direction AWAY from EACH neighbour and add to the final direction
             foreach (Transform item in FriendsPos)
             {
-                cohesionMove += item.position;
+                Vector3 awayDirection = transform.position - item.position;
+                separationMove += awayDirection.normalized;
             }
 
-            cohesionMove /= FriendsPos.Count;
-            
             //Direction to push the guy
-            cohesionMove -= transform.position;
-            cohesionMove = Vector3.Normalize(cohesionMove);
+            separationMove /= FriendsPos.Count;
 
-            return cohesionMove;
+            return separationMove.normalized;
         }
     }
 }

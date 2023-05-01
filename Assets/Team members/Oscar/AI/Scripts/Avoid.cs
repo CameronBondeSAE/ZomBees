@@ -9,7 +9,10 @@ namespace Oscar
     public class Avoid : MonoBehaviour
     {
         public LittleGuy guy;
-        public Feeler feel;
+        
+        public Feeler leftFeel;
+        public Feeler rightFeel;
+        
         private float distance = 5f;
         private int direction = 1;
         private float spinTimer;
@@ -17,10 +20,16 @@ namespace Oscar
     
         public void FixedUpdate()
         {
-            RaycastHit hitInfo = feel.GetHitInfo();
-            if (hitInfo.collider != null)
+            RaycastHit hitInfoLeft = leftFeel.GetHitInfo();
+            if (hitInfoLeft.collider != null)
             {
                 guy.rb.AddRelativeTorque(Vector3.up, ForceMode.VelocityChange);
+            }
+            
+            RaycastHit hitInfoRight = rightFeel.GetHitInfo();
+            if (hitInfoRight.collider != null)
+            {
+                guy.rb.AddRelativeTorque(Vector3.down, ForceMode.VelocityChange);
             }
         }
         

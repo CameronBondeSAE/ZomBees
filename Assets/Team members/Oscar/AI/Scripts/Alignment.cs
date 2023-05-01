@@ -6,13 +6,10 @@ namespace Oscar
 {
     public class Alignment : MonoBehaviour
     {
-        public Oscar.LittleGuy guy;
-        public Oscar.Neighbours neighbours;
+        public LittleGuy guy;
+        public Neighbours neighbours;
 
         public float force;
-
-        // Variable pointing to your Neighbours component
-        // Neighbours neighbours;
 
         void FixedUpdate()
         {
@@ -33,7 +30,6 @@ namespace Oscar
             Vector3 alignmentMove = Vector3.zero;
 
             // Average of all neighbours directions
-            // I’m using a list of transforms in my neighbours script, you might be using GameObjects etc
             foreach (Transform item in FriendsPos)
             {
                 alignmentMove += item.transform.forward;
