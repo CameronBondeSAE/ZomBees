@@ -39,7 +39,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 7819847402425102426, guid: 0b2f22a9956c18c479f87ede19246a3d, type: 3}
     cost: 2
-    position: {x: 316, y: 307}
+    position: {x: 319, y: 289}
     pre:
     - id: 0
       value: 1
@@ -129,23 +129,6 @@ MonoBehaviour:
     - id: 6
       value: 1
     - id: 9
-      value: 0
-  - name: Run
-    isDefault: 0
-    state: {fileID: 5591337468728248698, guid: c2591cd6f91d3ce4287efa2986ae26d3, type: 3}
-    cost: 0
-    position: {x: 316, y: 562}
-    pre:
-    - id: 4
-      value: 1
-    - id: 6
-      value: 0
-    post:
-    - id: 4
-      value: 0
-    - id: 3
-      value: 0
-    - id: 7
       value: 0
   - name: Leave Hiding
     isDefault: 0
