@@ -77,10 +77,10 @@ namespace Lloyd
 		{
 			SoundHeardEvent?.Invoke(soundProperties);
 
-			Debug.Log("Heard something" + soundProperties.Distance + " far away");
+			Debug.Log("Heard something : " + soundProperties.Distance + " far away");
 			Debug.Log(+thingsBetweenSound + " number of objects between");
-			Debug.Log("Scary level :" + soundProperties.Fear);
-			Debug.Log("Bee level :" + soundProperties.Beeness);
+			Debug.Log("Fear level : " + soundProperties.Fear);
+			Debug.Log("Beeness level : " + soundProperties.Beeness);
 		}
 		
 		//where to put perlin randomiser for sound?

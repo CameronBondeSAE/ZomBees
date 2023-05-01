@@ -119,6 +119,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f7ae5c7dd2e7a42a6f4a68314deb91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isLit: 0
+  isMoving: 0
+  isFood: 0
+  isObject: 1
+  isBee: 0
+  isCiv: 0
+  importance: 1
+  description: Health supplies
 --- !u!54 &2284147551008184242
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 5043529211726818044}
   m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4788608870772475652
 BoxCollider:
@@ -106,9 +106,11 @@ MonoBehaviour:
     SerializationNodes: []
   isLit: 0
   isMoving: 0
-  isFood: 0
+  isFood: 1
   isObject: 0
-  importance: 0
+  isBee: 0
+  isCiv: 0
+  importance: 1
   description: Food
   healthAmount: 50
 --- !u!1001 &4788608871901236503

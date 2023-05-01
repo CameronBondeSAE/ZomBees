@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using UnityEngine;
 
 namespace Virginia
 {
-    public class HealthSupplies : MonoBehaviour, IItem
+    public class HealthSupplies : DynamicObject, IItem
     {
         public void Consume()
         {

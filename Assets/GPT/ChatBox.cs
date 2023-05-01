@@ -36,6 +36,7 @@ public class ChatBox : MonoBehaviour
 	{
 		view.SetActive(true);
 		tmpInputField.ActivateInputField();
+		chatEmitter.PrepareEmit();
 	}
 
 	public void Deactivate()

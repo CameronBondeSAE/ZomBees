@@ -5613,6 +5613,7 @@ GameObject:
   - component: {fileID: 4928030342409070695}
   - component: {fileID: 4706506736481325993}
   - component: {fileID: 5195704613697758565}
+  - component: {fileID: 4601465466201257981}
   m_Layer: 17
   m_Name: CivBase
   m_TagString: Untagged
@@ -5634,6 +5635,7 @@ Transform:
   m_Children:
   - {fileID: 9194026212291496017}
   - {fileID: 8470070038936303645}
+  - {fileID: 8121367776909034940}
   m_Father: {fileID: 0}
   m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5764,9 +5766,9 @@ MonoBehaviour:
   isFood: 0
   isObject: 0
   isBee: 0
-  isCiv: 0
-  importance: 0
-  description: 
+  isCiv: 1
+  importance: 1
+  description: Character
   randomNavmeshTest: {fileID: 5638098703994389364}
   civilianModel: {fileID: 0}
   pistol: {fileID: 0}
@@ -5787,8 +5789,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac7728cfde9a72841ba6b2414274cacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalVision: {fileID: 0}
+  finalVision: {fileID: 3723662651303681762}
   memories: []
+  baseLifetime: 75
 --- !u!114 &6454894638875405118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5801,7 +5804,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd68dcb8f87c59d47850a862dd68ecdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiKeys: 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
+  randomCountry: 0
+  apiKeys: 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
+  memoryManager: {fileID: 7466785138027924600}
+  civilianTraits: {fileID: 8996337146436201905}
+  questTrackerSimple: {fileID: 1437729101}
+  antAIAgent: {fileID: 4601465466201257981}
+  chatEmitter: {fileID: 4706506736481325993}
   systemMessage: "I want you to generate dialogue from a character in a horror game.
     The world has been taken over by unknown creatures that resemble bees. You are
     40 years old, are helpful and brash. Respond to the user's conversation, disengage
@@ -5815,10 +5824,6 @@ MonoBehaviour:
     ReplaceWithBool,\r\n\t\"summaryForMemory\": \"ExampleSummary\"\r\n}\r\n\r\nAll
     output must be in JSON formatted text. Don't include escape characters\r\n"
   prompt: 
-  chatEmitter: {fileID: 4706506736481325993}
-  memoryManager: {fileID: 7466785138027924600}
-  civilianTraits: {fileID: 8996337146436201905}
-  questTrackerSimple: {fileID: 1437729101}
 --- !u!114 &8996337146436201905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5928,6 +5933,21 @@ MonoBehaviour:
     Team: 0
     ObstaclesBetween: 0
     Dialogue: 
+--- !u!114 &4601465466201257981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638098703994389367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e724e36405834fa192b36cd6a4e6059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manualUpdate: 0
+  thinkInterval: 0.1
+  scenario: {fileID: 11400000, guid: 17a9704effc25f741ac6613e650b245b, type: 2}
 --- !u!1 &6141202668129551078
 GameObject:
   m_ObjectHideFlags: 0
@@ -6011,6 +6031,83 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &3528076431746265268
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5638098703994389361}
+    m_Modifications:
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394953, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_Name
+      value: VisionSystem
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+--- !u!114 &3723662651303681762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 241828381315935830, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+  m_PrefabInstance: {fileID: 3528076431746265268}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9729b722772509f478c8353f9a609df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8121367776909034940 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4630503217969394952, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+  m_PrefabInstance: {fileID: 3528076431746265268}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5456403443902544946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6046,6 +6143,10 @@ PrefabInstance:
     - target: {fileID: 1821245225301517028, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1821245225301517028, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 1821245225301517028, guid: b5ae7368e9f16f14385f664a27d0f686, type: 3}
       propertyPath: m_SizeDelta.y

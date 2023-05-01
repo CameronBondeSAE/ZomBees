@@ -19,18 +19,28 @@ public class ChatEmitter : MonoBehaviour
 
 	public TraitScriptableObject beeNess_traitScriptableObject;
 
+	float beeness;
 
-	public void Emit(string input, GameObject source)
+	// eg So characters can look at each other while typing/thinking
+	public void PrepareEmit()
 	{
 		TraitStats trait = civilianTraits.GetTrait(beeNess_traitScriptableObject);
 
 		if (trait != null)
 		{
-			float beeness = trait.value;
-
-			Debug.Log("Beeness = " + beeness);
-			soundEmitter.EmitSound(new SoundProperties(source, SoundEmitter.SoundType.CivTalk, talkRadius, talkDistance, directional, 0,
-													   beeness, Team.Human, 0, input));
+			beeness = trait.value;
+			// Get the character's attention
+			soundEmitter.EmitSound(new SoundProperties(gameObject, SoundEmitter.SoundType.CivTalk, talkRadius,
+				talkDistance, directional, 0, beeness, Team.Human, 0, ""));
 		}
+	}
+
+	// You must call PrepareEmit first
+	public void Emit(string input, GameObject source)
+	{
+		Debug.Log("Beeness = " + beeness);
+		soundEmitter.EmitSound(new SoundProperties(source, SoundEmitter.SoundType.CivTalk, talkRadius, talkDistance,
+			directional, 0,
+			beeness, Team.Human, 0, input));
 	}
 }

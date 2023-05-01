@@ -1,5 +1,16 @@
 {
   "dependencies": {
+    "com.openai.unity": {
+      "version": "https://github.com/RageAgainstThePixel/com.openai.unity.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.0",
+        "com.utilities.rest": "1.3.1",
+        "com.utilities.encoder.wav": "1.0.2"
+      },
+      "hash": "ea8b9abe54bed272da8be43a68c84cfdaab88b7b"
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.1",
       "depth": 0,
@@ -34,9 +45,16 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.ext.nunit": {
-      "version": "1.0.6",
+    "com.unity.editorcoroutines": {
+      "version": "1.0.0",
       "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ext.nunit": {
+      "version": "2.0.2",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -77,6 +95,13 @@
     },
     "com.unity.mathematics": {
       "version": "1.2.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -187,11 +212,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.33",
-      "depth": 0,
+      "version": "2.0.1-pre.18",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.ext.nunit": "1.0.6",
+        "com.unity.ext.nunit": "2.0.2",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
       },
@@ -245,6 +270,51 @@
         "com.unity.shadergraph": "14.0.4",
         "com.unity.render-pipelines.core": "14.0.4"
       }
+    },
+    "com.utilities.async": {
+      "version": "https://github.com/RageAgainstThePixel/com.utilities.async.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.editorcoroutines": "1.0.0",
+        "com.unity.test-framework": "2.0.1-pre.18"
+      },
+      "hash": "1d903b743aba5159360827cd2187e6b019e14cb5"
+    },
+    "com.utilities.audio": {
+      "version": "https://github.com/RageAgainstThePixel/com.utilities.audio.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.unitywebrequestaudio": "1.0.0",
+        "com.utilities.async": "1.2.1"
+      },
+      "hash": "69b83f0c8da8e7014a66bdb8fdff5d168bc0662d"
+    },
+    "com.utilities.encoder.wav": {
+      "version": "https://github.com/RageAgainstThePixel/com.utilities.encoder.wav.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.utilities.async": "1.2.1",
+        "com.utilities.audio": "1.0.3"
+      },
+      "hash": "d3fc13c0b7381286f3d5e5710779ddb723a80ae1"
+    },
+    "com.utilities.rest": {
+      "version": "https://github.com/RageAgainstThePixel/com.utilities.rest.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.utilities.async": "1.2.1",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+        "com.unity.modules.unitywebrequestaudio": "1.0.0",
+        "com.unity.modules.unitywebrequesttexture": "1.0.0",
+        "com.unity.modules.unitywebrequestwww": "1.0.0"
+      },
+      "hash": "2ea3b41e58940d2ac81f77d4934569dfe6cd985e"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

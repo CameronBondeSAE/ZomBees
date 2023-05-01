@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Lloyd;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -28,7 +29,7 @@ namespace AlexM
 		public InputManager inputManager;
 		[FormerlySerializedAs("chatBoxViewModel")]
 		public ChatBox chatBox;
-		
+
 		private void Awake()
 		{
 			GetReferences();

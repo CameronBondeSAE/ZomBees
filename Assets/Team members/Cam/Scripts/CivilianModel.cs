@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Oscar;
 using System;
+using DG.Tweening;
+using Lloyd;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CivilianModel : CharacterBase, IInteractable
+public class CivilianModel : CharacterBase, IInteractable, IHear
 {
 	// public string GPTInfo;
 	// public string mainPrompt;
@@ -59,7 +61,13 @@ public class CivilianModel : CharacterBase, IInteractable
 		// decal.SetActive(false);
 		// }
 		
+		civGpt.GPTOutputDialogueEvent += CivGptOnGPTOutputDialogueEvent;
 		civGpt.GPTPerformingActionEvent += CivGptOnGPTPerformingActionEvent;
+	}
+
+	private void CivGptOnGPTOutputDialogueEvent(object sender, string e)
+	{
+		transform.DOLookAt((sender as MonoBehaviour).transform.position, 2f, AxisConstraint.Y, Vector3.up);
 	}
 
 	void CivGptOnGPTPerformingActionEvent(object sender, CivGPT.CivAction action)
@@ -133,5 +141,15 @@ public class CivilianModel : CharacterBase, IInteractable
 	public void Inspect()
 	{
 		throw new System.NotImplementedException();
+	}
+
+	public void SoundHeard(SoundProperties soundProperties)
+	{
+		// TODO look at other sounds
+		if (soundProperties.Team == Team.Human)
+		{
+			Debug.Log(gameObject.name + " heard something from "+soundProperties.Source.name);
+			transform.DOLookAt(soundProperties.Source.transform.position, 1f, AxisConstraint.Y, Vector3.up).SetEase(Ease.InOutSine);
+		}
 	}
 }

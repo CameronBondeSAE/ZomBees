@@ -13,7 +13,7 @@ namespace Marcus
         
         public List<Memory> memories;
 
-        private float baseLifetime = 75f;
+        public float baseLifetime = 75f;
 
         private bool alreadyExists;
 
@@ -22,12 +22,12 @@ namespace Marcus
 
         private void OnEnable()
         {
-            if (finalVision != null) finalVision.objectSeenEvent += AddMemories;
+            if (finalVision != null) finalVision.objectSeenEvent += AddMemory;
 
             StartCoroutine(RemoveMemories());
         }
 
-        private void AddMemories(GameObject objectSeen)
+        public void AddMemory(GameObject objectSeen)
         {
             alreadyExists = false;
 

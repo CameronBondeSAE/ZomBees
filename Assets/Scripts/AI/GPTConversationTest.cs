@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class GPTConversation : MonoBehaviour
+public class GPTConversationTest : MonoBehaviour
 {
     [TextArea(10, 500)]
     public string prompt = "";

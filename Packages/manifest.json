@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.openai.unity": "https://github.com/RageAgainstThePixel/com.openai.unity.git#upm",
     "com.unity.ai.navigation": "1.1.1",
     "com.unity.cinemachine": "2.9.5",
     "com.unity.collab-proxy": "2.0.0",
@@ -16,6 +17,10 @@
     "com.unity.timeline": "1.7.3",
     "com.unity.toolchain.win-x86_64-linux-x86_64": "2.0.4",
     "com.unity.ugui": "1.0.0",
+    "com.utilities.async": "https://github.com/RageAgainstThePixel/com.utilities.async.git#upm",
+    "com.utilities.audio": "https://github.com/RageAgainstThePixel/com.utilities.audio.git#upm",
+    "com.utilities.encoder.wav": "https://github.com/RageAgainstThePixel/com.utilities.encoder.wav.git#upm",
+    "com.utilities.rest": "https://github.com/RageAgainstThePixel/com.utilities.rest.git#upm",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

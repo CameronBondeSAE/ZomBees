@@ -20,7 +20,7 @@ namespace Oscar
             set { isBee = value; }
         }
 
-        public float importance;
+        public float importance = 1f;
         public string description;
     }
 }

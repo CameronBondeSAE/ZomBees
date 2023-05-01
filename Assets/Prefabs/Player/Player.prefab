@@ -157,7 +157,7 @@ MonoBehaviour:
   isBee: 0
   isCiv: 0
   importance: 0
-  description: 
+  description: Torch light
   initialLength: 10
   distance: 10
   lightCone: {fileID: 2115877263}
@@ -601,8 +601,8 @@ MonoBehaviour:
   isObject: 0
   isBee: 0
   isCiv: 0
-  importance: 0
-  description: 
+  importance: 1
+  description: Player
   _inputManager: {fileID: 580642317967517823}
   _rb: {fileID: 0}
   _movementInput: {x: 0, y: 0}
@@ -626,7 +626,7 @@ MonoBehaviour:
   groundAngleOffset: 0
   health: {fileID: 839573392}
   inputManager: {fileID: 580642317967517823}
-  chatBoxViewModel: {fileID: 3127777798206344984}
+  chatBox: {fileID: 3127777798206344984}
 --- !u!114 &488536307018931611
 MonoBehaviour:
   m_ObjectHideFlags: 0
