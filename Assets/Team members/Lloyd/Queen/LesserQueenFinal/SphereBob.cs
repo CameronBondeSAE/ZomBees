@@ -6,7 +6,7 @@ namespace Lloyd
 {
     public class SphereBob : MonoBehaviour
     {
-        private Vector3 origPos;
+        public Vector3 origPos;
         public float moveDist;
         public float moveTime;
         public float hangTime;

@@ -48,12 +48,9 @@ MonoBehaviour:
   stingSensor: {fileID: 0}
   shader: {fileID: 0}
   homePoint: {x: 0, y: 0, z: 0}
-  forceMagnitude: 0
   rb: {fileID: 0}
   stingerRandom: {fileID: 0}
-  rotate: {fileID: 0}
   tether: {fileID: 0}
-  idleRotate: {fileID: 0}
 --- !u!114 &402164263123151827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,4 +63,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c4f17923ee56a49859d2aba47aebbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetherForceMag: 5
+  tetherForceMag: 1

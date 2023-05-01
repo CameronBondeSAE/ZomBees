@@ -47,5 +47,9 @@ MonoBehaviour:
   eggObjectPrefab: {fileID: 2283788637565306239, guid: 8dc7987509956b741b30acb3a6c1851e, type: 3}
   eggLogic: {fileID: 0}
   originalCiv: {fileID: 0}
-  zombeeCiv: {fileID: 919132149155446097, guid: 61fd19c493765aa4f9b936bc39626ebe, type: 3}
+  zombeeCiv: {fileID: 274482099753516393, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
+  basicBee: {fileID: 0}
+  beeStinger: {fileID: 0}
+  beenessIncreaser: {fileID: 0}
+  eggType: 0
   eggList: []
