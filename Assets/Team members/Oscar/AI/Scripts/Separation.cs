@@ -14,7 +14,7 @@ namespace Oscar
         void FixedUpdate()
         {
             //Calculate the separation movement
-            Vector3 targetDirection = CalculateMove(neighbours.friendsList);
+            Vector3 targetDirection = CalculateMove(neighbours.overallList);
 
             guy.rb.AddForce(targetDirection * force);
         }

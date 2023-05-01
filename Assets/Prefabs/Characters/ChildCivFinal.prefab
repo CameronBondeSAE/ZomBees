@@ -5080,8 +5080,9 @@ Transform:
   - {fileID: 1635876051}
   - {fileID: 1618225960}
   - {fileID: 460890968}
+  - {fileID: 7439687858159993640}
   m_Father: {fileID: 0}
-  m_RootOrder: 42
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!136 &7405988188930513079
 CapsuleCollider:
@@ -5116,7 +5117,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 2
-  m_AngularDrag: 20
+  m_AngularDrag: 3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5159,7 +5160,7 @@ MonoBehaviour:
       Data: 
   radius: 5
   hand: {fileID: 1635876051}
-  placeDistance: 0
+  placeDistance: 10
 --- !u!114 &7553392581998968432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5246,7 +5247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd68dcb8f87c59d47850a862dd68ecdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomCountry: 0
   apiKeys: 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
+  memoryManager: {fileID: 6461197163127814067}
+  civilianTraits: {fileID: 3452993360891905805}
+  questTrackerSimple: {fileID: 2575717550317940145}
+  antAIAgent: {fileID: 0}
+  chatEmitter: {fileID: 0}
   systemMessage: "I want you to generate dialogue from a character in a horror game.
     The world has been taken over by unknown monsters/creatures that resemble bees.
     You are 10 years old, the youngest, alone and speak like a younger child would.\nRespond
@@ -5260,10 +5267,6 @@ MonoBehaviour:
     \"ExampleAction\",\r\n\t\"importance\": value,\r\n\t\"fear\": value\r\n}\r\n\r\nAll
     output should use the JSON template.\r\n"
   prompt: 
-  chatEmitter: {fileID: 0}
-  memoryManager: {fileID: 6461197163127814067}
-  civilianTraits: {fileID: 3452993360891905805}
-  questTrackerSimple: {fileID: 2575717550317940145}
 --- !u!114 &3452993360891905805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5323,6 +5326,123 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!1 &2459182198638201477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7439687858159993640}
+  - component: {fileID: 4450801758887384769}
+  - component: {fileID: 5994169470632360110}
+  - component: {fileID: 1888772122557433124}
+  - component: {fileID: 3294788314278862994}
+  - component: {fileID: 4759326609377816661}
+  m_Layer: 0
+  m_Name: AI Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7439687858159993640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459182198638201477}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3480590768837115260}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4450801758887384769
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459182198638201477}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5994169470632360110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459182198638201477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6945a3d003c50424096d16413cda98a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overallList: []
+  beeList: []
+  civList: []
+--- !u!114 &1888772122557433124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459182198638201477}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25896563404c2446ab9215e4f051735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guy: {fileID: 107376084}
+  neighbours: {fileID: 5994169470632360110}
+  force: 5
+--- !u!114 &3294788314278862994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459182198638201477}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b9d6817093662408b8109f9d062ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guy: {fileID: 107376084}
+  neighbours: {fileID: 5994169470632360110}
+  force: 1
+--- !u!114 &4759326609377816661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459182198638201477}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d1639b527c4574e9f9ff20f18192ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guy: {fileID: 107376084}
+  neighbours: {fileID: 5994169470632360110}
+  force: 3
 --- !u!1 &3521713356428858229
 GameObject:
   m_ObjectHideFlags: 0
@@ -5671,6 +5791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalVision: {fileID: 2338746979408309844}
   memories: []
+  baseLifetime: 75
 --- !u!114 &3131529511065738732
 MonoBehaviour:
   m_ObjectHideFlags: 0

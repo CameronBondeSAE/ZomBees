@@ -14,7 +14,7 @@ namespace Oscar
         void FixedUpdate()
         {
             // Some are Torque, some are Force		
-            Vector3 targetDirection = CalculateMove(neighbours.friendsList);
+            Vector3 targetDirection = CalculateMove(neighbours.overallList);
 		
             // Cross will take YOUR direction and the TARGET direction and turn it into a rotation force vector
             Vector3 cross = Vector3.Cross(transform.forward, targetDirection);

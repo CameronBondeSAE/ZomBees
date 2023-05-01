@@ -2,56 +2,60 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Oscar
 {
     public class Neighbours : MonoBehaviour
     {
-        public LayerMask comrades;
+        public List<Transform> overallList = new List<Transform>();
+
+        public List<Transform> beeList = new List<Transform>();
+        public List<Transform> civList = new List<Transform>();
         
-        public LayerMask enemys;
-
-        public List<Transform> friendsList = new List<Transform>();
-        
-        public List<Transform> enemyList = new List<Transform>();
-
-        /*
-        * This code uses a bitwise operation to check if the layer of the GameObject represented by "other" is included
-        * in the LayerMask represented by "comrades". The "&" operator performs a bitwise AND operation between
-        * "comrades.value" and a bit mask where the bit for the layer represented by "other" is set to 1. If the result
-        * is greater than 0, it means that the bit for the layer represented by "other" is also set to 1 in
-        * "comrades.value", indicating that the GameObject is in a layer included in the LayerMask.
-        */
-
         private void OnTriggerEnter(Collider other)
         {
-            if ((comrades.value & (1 << other.gameObject.layer)) > 0)
+            if (!overallList.Contains(other.transform))
             {
-                if (!friendsList.Contains(other.transform))
-                {
-                    friendsList.Add(other.transform);
-                    //print("added " + other.gameObject.name);
-                }
+                overallList.Add(other.transform);
             }
-            if ((enemys.value & (1 << other.gameObject.layer)) > 0)
+            
+            if (other.GetComponent<DynamicObject>() != null)
             {
-                if (!enemyList.Contains(other.transform))
+                if (other.GetComponent<DynamicObject>().isBee)
                 {
-                    enemyList.Add(other.transform);
-                    //print("added " + other.gameObject.name);
+                    if (!beeList.Contains(other.transform))
+                    {
+                        beeList.Add(other.transform);
+                    }
+                }
+                if (other.GetComponent<DynamicObject>().isCiv)
+                {
+                    if (!civList.Contains(other.transform))
+                    {
+                        civList.Add(other.transform);
+                    }
                 }
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (friendsList.Contains(other.transform))
+            if (overallList.Contains(other.transform))
             {
-                friendsList.Remove(other.transform);
+                overallList.Remove(other.transform);
             }
-            if (enemyList.Contains(other.transform))
+            
+            if (other.GetComponent<DynamicObject>() != null)
             {
-                enemyList.Remove(other.transform);
+                if (beeList.Contains(other.transform))
+                {
+                    beeList.Remove(other.transform);
+                }
+                if (civList.Contains(other.transform))
+                {
+                    civList.Remove(other.transform);
+                }
             }
         }
     }
