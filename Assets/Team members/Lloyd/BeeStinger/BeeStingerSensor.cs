@@ -27,6 +27,11 @@ namespace Lloyd
 
         public BeeStingerBrain brain;
 
+        public void SetHomePoint(Vector3 newPos)
+        {
+            homePoint = newPos;
+        }
+
         private void OnEnable()
         {
             rb = GetComponent<Rigidbody>();

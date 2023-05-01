@@ -27,6 +27,7 @@ namespace Lloyd
 
         public enum BeeStingType
         {
+            BasicBee,
             Attack,
             BeenessIncreaser
         }

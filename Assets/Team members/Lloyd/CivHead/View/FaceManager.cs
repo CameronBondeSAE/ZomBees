@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
@@ -9,17 +10,16 @@ namespace Lloyd
     {
         private Mouth mouth;
 
-        private Eyebrows eyebrows;
+        public Eyebrows eyebrows;
 
         public bool emoting = false;
 
         [Header("How long til features fade")] public float waitTime;
-
-        [Button]
-        public void StartGame()
+        
+        public void Start()
         {
             //mouth = GetComponentInChildren<Mouth>();
-            eyebrows = GetComponent<Eyebrows>();
+            //eyebrows = GetComponent<Eyebrows>();
 
             //mouth.StartGame(waitTime);
             eyebrows.StartGame(waitTime);
@@ -32,7 +32,7 @@ namespace Lloyd
 
         public event Action<CivEmotions, CivEmotions> ChangeEmotionEvent;
 
-        public void OnChangeEmotionEvent(CivEmotions firstEmote, CivEmotions secondEmote)
+        public void OnChangeEmotion(CivEmotions firstEmote, CivEmotions secondEmote)
         {
             ChangeEmotionEvent?.Invoke(firstEmote, secondEmote);
         }
@@ -44,14 +44,32 @@ namespace Lloyd
             emoting = false;
         }
 
+        public void RandomSadEmote()
+        {
+            CivEmotions newEmote;
+            int randomIndex = Random.Range(0, 3);
+            if (randomIndex == 0)
+            {
+                newEmote = CivEmotions.Angry;
+            } else if (randomIndex == 1)
+            {
+                newEmote = CivEmotions.Sad;
+            } else
+            {
+                newEmote = CivEmotions.Surprised;
+            }
+            
+            OnChangeEmotion(CivEmotions.Neutral, newEmote);
+        }
+
         [Button]
-        public void OnChangeEmotion(CivEmotions firstEmote, CivEmotions secondEmote)
+        public void OnChangeEmotionInspector(CivEmotions firstEmote, CivEmotions secondEmote)
         {
             if (!emoting)
             {
                 StartCoroutine(Emoting());
 
-                ChangeEmotionEvent?.Invoke(firstEmote, secondEmote);
+                OnChangeEmotion(firstEmote, secondEmote);
             }
         }
 

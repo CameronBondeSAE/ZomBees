@@ -155,8 +155,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2360624854886292036, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360624854886292036, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
       propertyPath: m_Constraints
-      value: 94
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5535101366018481352, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
       propertyPath: m_IsActive
@@ -252,10 +256,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565166100956226162, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
       propertyPath: m_Radius
-      value: 0.7
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 5565166100956226162, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
       propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565166100956226162, guid: a14bbfed5ba003e4eb31bb55ab6686c7, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: HalfZombeeScenario
+  m_EditorClassIdentifier: 
+  conditions:
+    list: []
+  actions:
+  - name: BiteCiv
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 451, y: 44.66668}
+    pre: []
+    post: []
+  - name: TurnIntoEgg
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 673.3332, y: 44.999992}
+    pre: []
+    post: []
+  - name: Wander
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 230, y: 41.66665}
+    pre: []
+    post: []
+  goals: []
+  worldStates: []

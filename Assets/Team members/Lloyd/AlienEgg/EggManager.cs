@@ -14,9 +14,17 @@ namespace Lloyd
 
         public GameObject zombeeCiv;
 
+        public GameObject basicBee;
+        public GameObject beeStinger;
+        public GameObject beenessIncreaser;
+
+        public BeeStingAttack.BeeStingType eggType;
+
         public List<Vector3> eggList;
     
         public static EggManager instance;
+
+        private BeeStingerSensor sensor;
 
         private void Awake()
         {
@@ -36,7 +44,7 @@ namespace Lloyd
         {
             originalCiv = newOriginalCiv;
 
-            GameObject instantiateEgg = Instantiate(eggObjectPrefab, originalCiv.transform.position, Quaternion.identity);
+            GameObject instantiateEgg = Instantiate(eggObjectPrefab, originalCiv.transform.position,originalCiv.transform.rotation);
 
             eggLogic = instantiateEgg.GetComponent<AlienEggPulse>();
 
@@ -58,7 +66,16 @@ namespace Lloyd
 
         public void SpawnBee()
         {
-            Instantiate(zombeeCiv, originalCiv.transform.position, Quaternion.identity);
+            GameObject newZombeeCiv = Instantiate(zombeeCiv, Vector3.zero, Quaternion.identity) as GameObject;
+
+            newZombeeCiv.transform.position = originalCiv.transform.position;
+            newZombeeCiv.transform.rotation = originalCiv.transform.rotation;
+
+            Rigidbody newRb = newZombeeCiv.GetComponent<Rigidbody>();
+            newRb.velocity = Vector3.zero;
+
+            sensor = newZombeeCiv.GetComponent<BeeStingerSensor>();
+            sensor.SetHomePoint(originalCiv.transform.position);
         }
 
         private void OnDisable()
