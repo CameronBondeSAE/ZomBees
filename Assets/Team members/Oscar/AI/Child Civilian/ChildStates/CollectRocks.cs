@@ -22,23 +22,34 @@ public class CollectRocks : OscarsLittleGuyMovement
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
-        
-        if (vision.objectsInSight.Count > 0)
-        {
-            float distance = Vector3.Distance(transform.position, vision.objectsInSight[0].transform.position);
-            
-            if (distance < 2f)
-            {
-                inventory.Pickup();
-            }
 
-            TurnTowards(vision.objectsInSight[0].transform.position);
-            
-            BasicMovement(10f);
-        }
-        else
+        if (inventory.heldItem == null)
         {
-            Finish();
+            if (vision.objectsInSight.Count > 0)
+            {
+                float distance = Vector3.Distance(transform.position, vision.objectsInSight[0].transform.position);
+
+                if (distance < 2f)
+                {
+                    inventory.Pickup();
+                }
+
+                TurnTowards(vision.objectsInSight[0].transform.position);
+
+                BasicMovement(10f);
+            }
+        }
+        else if (inventory.heldItem != null)
+        {
+            if (inventory.heldItem.Description() == "Rock")
+            {
+                childControl.DoIHaveRocks = true;
+                Finish();
+            }
+            else
+            {
+                inventory.Dispose();
+            }
         }
     }
 }

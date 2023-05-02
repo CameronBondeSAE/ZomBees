@@ -12,6 +12,9 @@ public class DeliverRocks : OscarsLittleGuyMovement
     //I want it to deliver it to the closest Civ or the players inventory.
     private Inventory inventory;
 
+    private bool finishDelivering;
+    private bool runnningAwayFromDelivery;
+    
     private void OnEnable()
     {
         objectArrivedEvent += LocationArrivedAt;
@@ -36,25 +39,35 @@ public class DeliverRocks : OscarsLittleGuyMovement
     {
         base.Execute(aDeltaTime, aTimeScale);
 
-        if (inventory.heldItem != null)
+        if (finishDelivering == false)
         {
             NavmeshToLocation();
-        }
-        else
-        {
-            Finish();
         }
     }
 
     private void LocationArrivedAt()
     {
         inventory.Dispose();
+        StartCoroutine(RunAway());
+    }
+
+    IEnumerator RunAway()
+    {
+        Vector3 position = PatrolManager.singleton
+            .sneaky[Random.Range(0, PatrolManager.singleton.sneaky.Count)].transform.position;
+        NavmeshFindLocation(position);
+        
+        yield return new WaitForSeconds(5f);
+        finishDelivering = true;
+        
+        Finish();
     }
 
     public override void Exit()
     {
         base.Exit();
-        
+
+        childControl.DoIHaveRocks = false;
         NavMeshFinish();
     }
 }

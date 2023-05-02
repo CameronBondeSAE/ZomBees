@@ -211,21 +211,7 @@ namespace Oscar
             }
             
             //HaveRocks
-            if (inventory.heldItem != null)
-            {
-                if (inventory.heldItem.Description() == "Rock")
-                {
-                    DoIHaveRocks = true;
-                }
-                else
-                {
-                    DoIHaveRocks = false;
-                }
-            }
-            else
-            {
-                 DoIHaveRocks = false;
-            }
+            
 
             //DeliverRocks |
             
