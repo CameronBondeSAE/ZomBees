@@ -45,39 +45,58 @@ namespace Oscar
         {
             civGPT.GPTPerformingActionEvent += GPTPerformingAction;        
         }
-
-        private void GPTPerformingAction(object sender, CivGPT.CivAction actionFromCiv)
+        
+        
+        private void GPTPerformingAction(object sender, CivGPT.GPTResponseData gptResponseData)
         {
-            switch (actionFromCiv)
+            switch (gptResponseData.CivAction)
             {
-                case CivGPT.CivAction.Shoot:
-                    // pistol.Shoot();
+                case CivGPT.CivAction.ActivateLightsToAttractCreatures:
                     break;
-                case CivGPT.CivAction.GatherFood:
-                    // Check memories for food, else go to resource points
+                
+                case CivGPT.CivAction.ActivateSonicWeapon:
                     break;
-                case CivGPT.CivAction.FollowPlayer:
-                    AmIIdle = false;
-                    AmIFollowing = true;
+                
+                case CivGPT.CivAction.CloseDoor:
                     break;
-                case CivGPT.CivAction.RunAway:
-                    AmIIdle = false;
-                    AmIScared = true;
-                    AmIFollowing = false;
+                
+                case CivGPT.CivAction.CommitSuicide:
                     break;
-                case CivGPT.CivAction.FrozenWithFear:
-                    break;
+                
                 case CivGPT.CivAction.DoNothing:
                     AmIIdle = true;
                     AmIScared = false;
                     AmIFollowing = false;
                     break;
-                case CivGPT.CivAction.CommitSuicide:
+                
+                case CivGPT.CivAction.DropItem:
                     break;
-                case CivGPT.CivAction.Shout:
+                
+                case CivGPT.CivAction.FindAndShootCreature:
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                
+                case CivGPT.CivAction.FindSafeLocation:
+                    break;
+                
+                case CivGPT.CivAction.FollowOtherCharacter:
+                    AmIIdle = false;
+                    AmIFollowing = true;
+                    break;
+                
+                case CivGPT.CivAction.GatherFood:
+                    break;
+                
+                case CivGPT.CivAction.RetrieveBomb:
+                    break;
+                
+                case CivGPT.CivAction.RunAndHide:
+                    AmIIdle = false;
+                    AmIScared = true;
+                    AmIFollowing = false;
+                    break;
+                
+                case CivGPT.CivAction.ShootOtherCharacter:
+                    break;
             }
         }
         #endregion
