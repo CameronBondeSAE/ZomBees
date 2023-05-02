@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using UnityEngine;
 using Virginia;
 
 namespace Virginia
 {
-    public class PowerLights : MonoBehaviour, ISwitchable, IItem
+    public class PowerLights : DynamicObject, ISwitchable, IItem
     {
         public Light light;
 

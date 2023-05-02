@@ -31,7 +31,7 @@ public class WorldTime : MonoBehaviour
 
     public bool initialized = false;
 
-    public float time;
+    public int time;
 
     public float timeScale;
 

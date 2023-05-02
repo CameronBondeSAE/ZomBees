@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 406252}
   - component: {fileID: 20503330}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prop_Chair_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 447.69424, y: 16.760788, z: 459.5115}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 433570}
   - {fileID: 460074}
@@ -68,7 +69,7 @@ GameObject:
   - component: {fileID: 3363470}
   - component: {fileID: 2382726}
   - component: {fileID: 6505384}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_Chair_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +86,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 406252}
   m_RootOrder: 1
@@ -108,6 +110,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -146,9 +149,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150862}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.68034685, y: 1.3078012, z: 0.6580485}
   m_Center: {x: -0.25946027, y: 0.65125227, z: -0.0034901202}
 --- !u!1 &179906
@@ -163,7 +174,7 @@ GameObject:
   - component: {fileID: 3378898}
   - component: {fileID: 2355576}
   - component: {fileID: 6571980}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_Chair_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,6 +191,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 406252}
   m_RootOrder: 0
@@ -203,6 +215,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -241,8 +254,16 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179906}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.68034685, y: 1.3078012, z: 0.6580485}
   m_Center: {x: -0.25946027, y: 0.65125227, z: -0.0034901202}

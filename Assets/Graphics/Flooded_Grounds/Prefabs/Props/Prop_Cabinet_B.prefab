@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3388182}
   - component: {fileID: 2345406}
   - component: {fileID: 6584366}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_Cabinet_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 408488}
   m_RootOrder: 1
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -90,9 +92,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102882}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2.156927, y: 3.438511, z: 1.0522707}
   m_Center: {x: 0.00071692467, y: 1.7208741, z: 0.46400052}
 --- !u!1 &107590
@@ -107,7 +117,7 @@ GameObject:
   - component: {fileID: 3391466}
   - component: {fileID: 2344978}
   - component: {fileID: 6511708}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_Cabinet_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +134,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 408488}
   m_RootOrder: 0
@@ -147,6 +158,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -185,9 +197,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107590}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2.156927, y: 3.438511, z: 1.0522707}
   m_Center: {x: 0.00071692467, y: 1.7208741, z: 0.46400052}
 --- !u!1 &126718
@@ -200,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 408488}
   - component: {fileID: 20548814}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prop_Cabinet_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,6 +237,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 445.01645, y: 16.760788, z: 459.0484}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 417556}
   - {fileID: 463258}

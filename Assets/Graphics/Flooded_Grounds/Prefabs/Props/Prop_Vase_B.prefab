@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488080}
   - component: {fileID: 20553470}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prop_Vase_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 373.73492, y: 16.754833, z: 470.03897}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 446794}
   - {fileID: 472486}
@@ -68,7 +69,7 @@ GameObject:
   - component: {fileID: 3395130}
   - component: {fileID: 2340862}
   - component: {fileID: 6590944}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_Vase_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +86,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 488080}
   m_RootOrder: 0
@@ -108,6 +110,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -146,9 +149,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137640}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.33391368, y: 0.77241653, z: 0.33241004}
   m_Center: {x: 0.006248653, y: 0.38887164, z: -0.0006618574}
 --- !u!1 &149744
@@ -163,7 +174,7 @@ GameObject:
   - component: {fileID: 3311064}
   - component: {fileID: 2329222}
   - component: {fileID: 6523468}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_Vase_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,6 +191,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 488080}
   m_RootOrder: 1
@@ -203,6 +215,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -241,8 +254,16 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149744}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.33391368, y: 0.77241653, z: 0.29068637}
   m_Center: {x: 0.006248653, y: 0.38887164, z: -0.0006618574}

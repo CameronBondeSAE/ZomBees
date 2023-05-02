@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3375094}
   - component: {fileID: 2371982}
   - component: {fileID: 6561772}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_Billboard_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 438262}
   m_RootOrder: 0
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -90,9 +92,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102108}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3.0082242, y: 5.3769717, z: 0.59135145}
   m_Center: {x: 0.016271472, y: 2.6900327, z: -0.05798342}
 --- !u!1 &137056
@@ -105,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 438262}
   - component: {fileID: 20507048}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_Billboard_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +132,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 632.34985, y: 16.759243, z: 478.89972}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 481680}
   - {fileID: 490382}
@@ -168,7 +179,7 @@ GameObject:
   - component: {fileID: 3323852}
   - component: {fileID: 2331872}
   - component: {fileID: 6508212}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_Billboard_C_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,6 +196,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 438262}
   m_RootOrder: 1
@@ -208,6 +220,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -246,9 +259,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160922}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3.0082242, y: 5.3769717, z: 0.59135145}
   m_Center: {x: 0.016271472, y: 2.6900327, z: -0.05798342}
 --- !u!1 &165108
@@ -263,7 +284,7 @@ GameObject:
   - component: {fileID: 3336868}
   - component: {fileID: 2317888}
   - component: {fileID: 6582830}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_Billboard_C_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,6 +301,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 438262}
   m_RootOrder: 2
@@ -303,6 +325,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -341,8 +364,16 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165108}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 3.0082242, y: 5.37697, z: 0.57600015}
   m_Center: {x: 0.016271472, y: 2.6900318, z: -0.05030776}

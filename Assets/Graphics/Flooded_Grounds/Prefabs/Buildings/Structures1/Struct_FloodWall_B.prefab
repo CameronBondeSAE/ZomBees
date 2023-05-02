@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3389486}
   - component: {fileID: 2338632}
   - component: {fileID: 6552552}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_FloodWall_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 498234}
   m_RootOrder: 0
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -90,9 +92,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114410}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 50.47337, y: 18.122732, z: 5.724446}
   m_Center: {x: -24.781565, y: 8.938329, z: 2.508376}
 --- !u!1 &116550
@@ -107,7 +117,7 @@ GameObject:
   - component: {fileID: 3312202}
   - component: {fileID: 2343834}
   - component: {fileID: 6538548}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_FloodWall_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +134,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 498234}
   m_RootOrder: 2
@@ -147,6 +158,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -185,9 +197,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116550}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 50.47337, y: 18.122732, z: 5.724446}
   m_Center: {x: -24.781565, y: 8.938329, z: 2.508376}
 --- !u!1 &149966
@@ -202,7 +222,7 @@ GameObject:
   - component: {fileID: 3381652}
   - component: {fileID: 2310520}
   - component: {fileID: 6556256}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_FloodWall_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,6 +239,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 498234}
   m_RootOrder: 1
@@ -242,6 +263,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -280,9 +302,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149966}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 50.47337, y: 18.122732, z: 5.724446}
   m_Center: {x: -24.781565, y: 8.938329, z: 2.508376}
 --- !u!1 &167778
@@ -295,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 498234}
   - component: {fileID: 20517222}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_FloodWall_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,6 +342,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 348.98685, y: 15.095139, z: 575.0472}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 408938}
   - {fileID: 403918}

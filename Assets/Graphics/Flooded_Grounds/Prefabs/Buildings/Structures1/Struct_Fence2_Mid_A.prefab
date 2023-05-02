@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3324768}
   - component: {fileID: 2327090}
   - component: {fileID: 6581810}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_Fence2_Mid_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 490552}
   m_RootOrder: 2
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -90,9 +92,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140290}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 6.625373, y: 1.313875, z: 0.20825693}
   m_Center: {x: -3.2194433, y: 0.64857435, z: 0.06567007}
 --- !u!1 &169984
@@ -107,7 +117,7 @@ GameObject:
   - component: {fileID: 3350744}
   - component: {fileID: 2383128}
   - component: {fileID: 6547330}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_Fence2_Mid_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +134,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 490552}
   m_RootOrder: 0
@@ -147,6 +158,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -185,9 +197,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169984}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 6.625373, y: 1.3483493, z: 0.20825693}
   m_Center: {x: -3.2194433, y: 0.66581154, z: 0.06567007}
 --- !u!1 &176956
@@ -202,7 +222,7 @@ GameObject:
   - component: {fileID: 3342250}
   - component: {fileID: 2308928}
   - component: {fileID: 6505332}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_Fence2_Mid_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,6 +239,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 490552}
   m_RootOrder: 1
@@ -242,6 +263,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -280,9 +302,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176956}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 6.625373, y: 1.3483493, z: 0.20825693}
   m_Center: {x: -3.2194433, y: 0.66581154, z: 0.06567007}
 --- !u!1 &182002
@@ -295,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490552}
   - component: {fileID: 20592644}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Struct_Fence2_Mid_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,6 +342,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 431.65463, y: 20.000244, z: 379.55215}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 480390}
   - {fileID: 489462}

@@ -18,11 +18,15 @@ namespace Lloyd
         // public GameObject newWorldTime;
         public WorldTime newWorldTimeScript;
 
+        public bool NPCOverheadText = true;
         public bool ElevenLabsVoice = false;
 
-        public PlayerModel playerModel;
+        // public PlayerModel playerModel;
 
-        public GameObject chatInterface;
+        // public GameObject chatInterface;
+
+        [Tooltip("Where the top corner of the map should be set to so we skip the empty parts of the map")]
+        public Vector3 coordinateOffsetForMapReadingEase;
         
         
         // public GameObject questTracker;
@@ -43,6 +47,8 @@ namespace Lloyd
 
         private void Awake()
         {
+            Instance = this;
+            
             // chatInterface.SetActive(false);
 
             if (autoStart)
@@ -118,6 +124,34 @@ namespace Lloyd
         }*/
     
         //subscribe to events later
-    
+
+        public string ConvertWorldSpaceToGridSpace(Vector3 worldSpace)
+        {
+            // We'll divide the real world by 10 to make it chunky so GPT can figure it out easier maybe
+            Vector3 offsetForMapReadingEase = (worldSpace - coordinateOffsetForMapReadingEase) / 20f;
+         
+            char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            int index = (int)offsetForMapReadingEase.x - 1;
+
+            char letter = ' ';
+            if (index<=25)
+            {
+                letter = alphabet[index];
+            }
+
+            return letter + ((int)offsetForMapReadingEase.z).ToString();
+        }
+
+        public Vector3 ConvertGridSpaceToWorldSpace(string gridSpace)
+        {
+            // We'll UNdivide the real world by X to make it real
+
+            char letter = char.Parse(gridSpace.Substring(0,1));
+            int x = letter - 'A' + 1;
+            int z = int.Parse(gridSpace.Substring(1, 1));
+            Vector3 worldSpace = new Vector3(x, 0, z) * 20f + new Vector3(coordinateOffsetForMapReadingEase.x, 0, coordinateOffsetForMapReadingEase.z);
+            
+            return worldSpace;
+        }
     }
 }

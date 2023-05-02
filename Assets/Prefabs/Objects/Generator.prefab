@@ -245,9 +245,16 @@ MonoBehaviour:
   isLit: 0
   isMoving: 0
   isFood: 0
-  isObject: 0
-  importance: 0
-  description: 
+  isObject: 1
+  isBee: 0
+  isCiv: 0
+  importance: 0.5
+  description: Generator
+  currFuel: 0
+  maxFuel: 100
+  rateOfConsumption: 1
+  wasPowered: 0
+  triggerBoxCollider: {fileID: 0}
 --- !u!114 &8936615562535271978
 MonoBehaviour:
   m_ObjectHideFlags: 0

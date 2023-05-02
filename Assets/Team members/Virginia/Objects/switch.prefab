@@ -136,6 +136,14 @@ MonoBehaviour:
     - Name: SwitchableList
       Entry: 6
       Data: 
+  isLit: 0
+  isMoving: 0
+  isFood: 0
+  isObject: 1
+  isBee: 0
+  isCiv: 0
+  importance: 0.7
+  description: Switch
   StateManager: {fileID: 406138924}
 --- !u!114 &406138924
 MonoBehaviour:

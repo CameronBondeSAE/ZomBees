@@ -32,9 +32,13 @@ public class RandomNavmeshTest : MonoBehaviour
 		bool    foundTarget = false;
 		
 		// Find a non-null entry
+		int bailOutCount = 0;
 		while (PatrolManager.singleton.pathsWithIndoors[index] == null)
 		{
 			index = Random.Range(0, PatrolManager.singleton.pathsWithIndoors.Count);
+			bailOutCount++;
+			if (bailOutCount > 100)
+				break;
 		}
 		finalTarget = PatrolManager.singleton.pathsWithIndoors[index].transform.position;
 
@@ -70,12 +74,17 @@ public class RandomNavmeshTest : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-	// 	Vector3 randomSpot = Vector3.zero;
-	// 	if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
-	// 	{
-	// 		randomSpot = FindRandomSpot();
-	// 	}	
-	// 	
+		if (!navMeshAgent.pathPending && !navMeshAgent.hasPath) 
+		{
+			Debug.Log ("I have reached my destination!");
+			FindRandomSpot();
+		}
+		// if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+		// {
+		// 	Debug.Log(gameObject.name + " got to the destination");
+		// 	FindRandomSpot();
+		// }	
+		
 		
 		// Debugging
 		// Update the way to the goal every second.

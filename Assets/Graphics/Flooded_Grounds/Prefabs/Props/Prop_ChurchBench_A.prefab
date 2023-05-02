@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3385130}
   - component: {fileID: 2364536}
   - component: {fileID: 6595830}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_ChurchBench_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 433038}
   m_RootOrder: 1
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -90,9 +92,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119706}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2.8562033, y: 1.3, z: 1.1}
   m_Center: {x: -1.3281018, y: 0.65, z: -0.35000008}
 --- !u!1 &132168
@@ -107,7 +117,7 @@ GameObject:
   - component: {fileID: 3348206}
   - component: {fileID: 2314332}
   - component: {fileID: 6522516}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_ChurchBench_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +134,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 433038}
   m_RootOrder: 0
@@ -147,6 +158,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -185,9 +197,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132168}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2.8562033, y: 1.3, z: 1.1}
   m_Center: {x: -1.3281018, y: 0.65, z: -0.35000008}
 --- !u!1 &144546
@@ -200,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 433038}
   - component: {fileID: 20543684}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prop_ChurchBench_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,6 +237,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 650.10004, y: 17.499998, z: 485.2356}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 449054}
   - {fileID: 477396}

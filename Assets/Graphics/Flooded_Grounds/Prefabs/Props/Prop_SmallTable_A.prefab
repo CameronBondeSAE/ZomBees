@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3393338}
   - component: {fileID: 2325728}
   - component: {fileID: 6573398}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_SmallTable_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 436586}
   m_RootOrder: 1
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -90,9 +92,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131464}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.5881537, y: 1.2126795, z: 0.5174784}
   m_Center: {x: 0.00082470477, y: 0.6010242, z: 0.24138345}
 --- !u!1 &142902
@@ -107,7 +117,7 @@ GameObject:
   - component: {fileID: 3371150}
   - component: {fileID: 2313160}
   - component: {fileID: 6555428}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_SmallTable_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +134,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 436586}
   m_RootOrder: 0
@@ -147,6 +158,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -185,9 +197,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142902}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.5881537, y: 1.2126795, z: 0.5174784}
   m_Center: {x: 0.00082470477, y: 0.6010242, z: 0.24138345}
 --- !u!1 &148580
@@ -200,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 436586}
   - component: {fileID: 20568700}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prop_SmallTable_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,6 +237,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 373.5001, y: 16.75613, z: 473.9322}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 408016}
   - {fileID: 457142}

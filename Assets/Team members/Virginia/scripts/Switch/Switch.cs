@@ -5,10 +5,11 @@ using Sirenix.OdinInspector;
 
 
 using System;
+using Oscar;
 
 namespace Virginia
 {
-    public class Switch : SerializedMonoBehaviour, ISwitchable, IInteractable 
+    public class Switch : DynamicObject, ISwitchable, IInteractable 
     {
         public event Action TurnOnEvent;
         public event Action TurnOffEvent;

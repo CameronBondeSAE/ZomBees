@@ -126,9 +126,9 @@ MonoBehaviour:
   _isTrigger: 1
   _material: {fileID: 0}
   _coneSides: 25
-  _proportionalRadius: 0
+  _proportionalRadius: 1
   _coneRadius: 0.5
-  _coneHeight: 1
+  _coneHeight: 5
 --- !u!114 &241828381315935830
 MonoBehaviour:
   m_ObjectHideFlags: 0

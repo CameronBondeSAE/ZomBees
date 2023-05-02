@@ -2,6 +2,7 @@ using Sirenix.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Lloyd;
 using UnityEngine;
 using Oscar;
 
@@ -43,7 +44,10 @@ namespace Marcus
 
             if (!alreadyExists)
             {
-                Memory newMemory = new Memory().CreateMemory(objectSeen.GetComponent<DynamicObject>());
+                Memory newMemory = new Memory();
+                newMemory.thingToRemember = objectSeen.GetComponent<DynamicObject>();
+                UpdateMemory(newMemory);
+
                 memories.Add(newMemory);
             }
             
@@ -94,10 +98,11 @@ namespace Marcus
         
         private void UpdateMemory(Memory memoryToUpdate)
         {
-            memoryToUpdate.timeStamp = Time.time;
+            memoryToUpdate.timeStamp = WorldTime.Instance.time;
+            memoryToUpdate.description = memoryToUpdate.thingToRemember.description;
 
             Vector3 pos = memoryToUpdate.thingToRemember.gameObject.transform.position;
-            memoryToUpdate.location = new Vector2Int((int)pos.x, (int)pos.z);
+            memoryToUpdate.gridLocation = ZombeeGameManager.Instance.ConvertWorldSpaceToGridSpace(pos);
         }
     }
 }

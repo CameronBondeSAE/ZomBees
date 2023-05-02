@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 19310186}
   - component: {fileID: 3380234}
   - component: {fileID: 2393040}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TreeCreator_Bush_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}

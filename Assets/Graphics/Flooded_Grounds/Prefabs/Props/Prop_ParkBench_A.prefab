@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3352258}
   - component: {fileID: 2318122}
   - component: {fileID: 6526028}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_ParkBench_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 413904}
   m_RootOrder: 1
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -90,9 +92,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122480}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2.616446, y: 1.1688807, z: 0.97970456}
   m_Center: {x: -0.0022388697, y: 0.6004895, z: 0.053472668}
 --- !u!1 &175182
@@ -107,7 +117,7 @@ GameObject:
   - component: {fileID: 3348780}
   - component: {fileID: 2341038}
   - component: {fileID: 6526088}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_ParkBench_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +134,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 413904}
   m_RootOrder: 2
@@ -147,6 +158,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -185,9 +197,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175182}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2.616446, y: 1.1688807, z: 0.97970456}
   m_Center: {x: -0.0022388697, y: 0.6004895, z: 0.053472668}
 --- !u!1 &191750
@@ -202,7 +222,7 @@ GameObject:
   - component: {fileID: 3329606}
   - component: {fileID: 2347452}
   - component: {fileID: 6528718}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_Prop_ParkBench_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,6 +239,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 413904}
   m_RootOrder: 0
@@ -242,6 +263,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -280,9 +302,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191750}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2.616446, y: 1.1726127, z: 0.9862871}
   m_Center: {x: -0.0022388697, y: 0.6023555, z: 0.050181404}
 --- !u!1 &194530
@@ -295,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 413904}
   - component: {fileID: 20503288}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Prop_ParkBench_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,6 +342,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 609.0172, y: 16.599646, z: 404.01926}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 459686}
   - {fileID: 440592}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1412732717117386053}
   - component: {fileID: 1772288214884500819}
   - component: {fileID: 9069110494735746269}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TreeCreator_Tall_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}

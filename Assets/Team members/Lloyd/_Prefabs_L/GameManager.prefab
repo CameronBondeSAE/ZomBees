@@ -44,13 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c23668f305a8145a1f619f422abea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldTime: {fileID: 8099583209665070653, guid: d52da034399be3345ab8d8b11466e210, type: 3}
-  newWorldTime: {fileID: 0}
-  questTracker: {fileID: 4610916517720961256, guid: dcd190b6f367be8489df062ed46087a5, type: 3}
-  newQuestTracker: {fileID: 0}
-  newQuestTrackerScript: {fileID: 0}
-  tileTracker: {fileID: 6202037697091711939, guid: 4eda53f0151aa27408bfd8ddb08155d9, type: 3}
-  newTileTracker: {fileID: 0}
-  civSpawner: {fileID: 6757004829756018335, guid: 3ae4d4f828b44c440951f3ddfd02f4f2, type: 3}
-  newCivSpawner: {fileID: 0}
-  customLevels: []
+  autoStart: 0
+  newWorldTimeScript: {fileID: 0}
+  ElevenLabsVoice: 0
+  coordinateOffsetForMapReadingEase: {x: 0, y: 0, z: 0}

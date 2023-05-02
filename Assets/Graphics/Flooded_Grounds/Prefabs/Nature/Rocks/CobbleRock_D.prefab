@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 408546}
   - component: {fileID: 3368378}
   - component: {fileID: 2345128}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_CobbleRock_D_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416718}
   m_RootOrder: 2
@@ -51,6 +52,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -91,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 416718}
   - component: {fileID: 20576234}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CobbleRock_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,6 +110,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 539.1087, y: 17.29565, z: 198.07043}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 461624}
   - {fileID: 470076}
@@ -153,7 +156,7 @@ GameObject:
   - component: {fileID: 470076}
   - component: {fileID: 3300080}
   - component: {fileID: 2350114}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_CobbleRock_D_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,6 +173,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416718}
   m_RootOrder: 1
@@ -193,6 +197,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -234,7 +239,7 @@ GameObject:
   - component: {fileID: 461624}
   - component: {fileID: 3382116}
   - component: {fileID: 2370112}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lo_CobbleRock_D_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,6 +256,7 @@ Transform:
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 416718}
   m_RootOrder: 0
@@ -274,6 +280,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

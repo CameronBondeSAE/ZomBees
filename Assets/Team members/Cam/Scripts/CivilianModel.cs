@@ -15,6 +15,7 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 	// public CivGPT civGpt;
 	public RandomNavmeshTest randomNavmeshTest;
 
+	public NavMeshAgent navMeshAgent;
 	
 	
 	/// <summary>
@@ -67,35 +68,26 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 
 	private void CivGptOnGPTOutputDialogueEvent(object sender, string e)
 	{
-		transform.DOLookAt((sender as MonoBehaviour).transform.position, 2f, AxisConstraint.Y, Vector3.up);
+		Debug.Log("Look at character talking to me : "+civGpt.currentChat.CharacterBase.gameObject.name, gameObject);
+		transform.DOLookAt(civGpt.currentChat.CharacterBase.transform.position, 2f, AxisConstraint.Y, Vector3.up);
 	}
 
-	void CivGptOnGPTPerformingActionEvent(object sender, CivGPT.CivAction action)
+	void CivGptOnGPTPerformingActionEvent(object sender, CivGPT.GPTResponseData gptResponseData)
 	{
-		DoAction(action);
+		DoAction(gptResponseData);
 	}
 
 
-	public void DoAction(CivGPT.CivAction civAction)
+	public void DoAction(CivGPT.GPTResponseData gptResponseData)
 	{
-		switch (civAction)
+		Debug.Log("Cam's civ action = "+gptResponseData.CivAction, gameObject);
+		switch (gptResponseData.CivAction)
 		{
-			case CivGPT.CivAction.Shoot:
-				// pistol.Shoot();
+			case CivGPT.CivAction.ActivateLightsToAttractCreatures:
 				break;
-			case CivGPT.CivAction.GatherFood:
-				// Check memories for food, else go to resource points
-
-
+			case CivGPT.CivAction.ActivateSonicWeapon:
 				break;
-			case CivGPT.CivAction.FollowPlayer:
-				break;
-			case CivGPT.CivAction.RunAway:
-				//randomNavmeshTest.FindRandomSpot();
-				break;
-			case CivGPT.CivAction.FrozenWithFear:
-				break;
-			case CivGPT.CivAction.DoNothing:
+			case CivGPT.CivAction.CloseDoor:
 				break;
 			case CivGPT.CivAction.CommitSuicide:
 				// pistol.Shoot();
@@ -118,14 +110,31 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 				// head.GetComponent<Rigidbody>()
 				// 	.AddForceAtPosition(transform.InverseTransformVector(new Vector3(-30f, 50f, -150f)) * gunForce,
 				// 						transform.position + new Vector3(0, 0, 0));
-
 				break;
-			case CivGPT.CivAction.Shout:
+			case CivGPT.CivAction.DoNothing:
+				break;
+			case CivGPT.CivAction.DropItem:
+				break;
+			case CivGPT.CivAction.FindAndShootCreature:
+				break;
+			case CivGPT.CivAction.FindSafeLocation:
+				break;
+			case CivGPT.CivAction.FollowOtherCharacter:
+				break;
+			case CivGPT.CivAction.GatherFood:
+				// Check memories for food, else go to resource points
+				navMeshAgent.SetDestination(ZombeeGameManager.Instance.ConvertGridSpaceToWorldSpace(gptResponseData.GridCoordinateForAction));
+				break;
+			case CivGPT.CivAction.RetrieveBomb:
+				break;
+			case CivGPT.CivAction.RunAndHide:
+				randomNavmeshTest.FindRandomSpot();
+				break;
+			case CivGPT.CivAction.ShootOtherCharacter:
 				break;
 			default:
 				throw new ArgumentOutOfRangeException();
 		}
-
 	}
 	
 	public void ActivateChatInterface()
@@ -135,7 +144,9 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 	
 	public void Interact()
 	{
-		
+		// navMeshAgent.SetDestination(ZombeeGameManager.Instance.ConvertGridSpaceToWorldSpace("K8"));
+		navMeshAgent.SetDestination(new Vector3(400,0,400));
+
 	}
 
 	public void Inspect()

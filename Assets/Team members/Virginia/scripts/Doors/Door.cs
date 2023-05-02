@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.ProBuilder.Shapes;
 
 namespace Virginia
 {
-    public class Door : MonoBehaviour, ISwitchable, IInteractable
+    public class Door : DynamicObject, ISwitchable, IInteractable
     {
         
         public StateManager StateManager;

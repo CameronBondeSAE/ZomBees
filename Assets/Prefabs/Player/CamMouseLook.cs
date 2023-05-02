@@ -32,7 +32,37 @@ namespace AlexM
 
 		void FixedUpdate()
 		{
-			OldMouseMovement();
+			InternalLockUpdate();
+			// Debug.Log(Cursor.visible + " : " +Cursor.lockState);
+			if (Cursor.lockState == CursorLockMode.Locked)
+			{
+				OldMouseMovement();
+			}
+		}
+		
+		bool m_cursorIsLocked;
+		private void InternalLockUpdate()
+		{
+#if UNITY_EDITOR
+			if (InputSystem.GetDevice<Keyboard>().escapeKey.wasPressedThisFrame)
+			{
+				m_cursorIsLocked = false;
+			}
+			else if (InputSystem.GetDevice<Mouse>().leftButton.wasPressedThisFrame)
+			{
+				m_cursorIsLocked = true;
+			}
+#endif
+			if (m_cursorIsLocked)
+			{
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+			}
+			else if (!m_cursorIsLocked)
+			{
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+			}
 		}
 
 		void MouseInput()
@@ -71,7 +101,7 @@ namespace AlexM
 			//camera.transform.localRotation = Quaternion.Euler(pitch, 0, 0);
 			lookAngle = Quaternion.Euler(pitch, 0, 0);
 			LookAngle(lookAngle);
-			Cursor.visible = false;
+			// Cursor.visible = false;
 		}
 	}
 }
