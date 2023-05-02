@@ -36,14 +36,26 @@ public class CivRandomRunAwayState : AntAIState
     [Button]
     public Vector3 FindRandomSpot()
     {
-        int index = Random.Range(0, PatrolManager.singleton.pathsWithIndoors.Count);
+        if (PatrolManager.singleton.pathsWithIndoors.Count <= 0)
+        {
+            Debug.LogWarning("FindRandom no patrol points found");
+            return Vector3.zero;
+        }
+        int index = 0;
         Vector3 finalTarget = Vector3.zero;
         bool foundTarget = false;
 
         // Find a non-null entry
+        int bailOutCount = 100;
         while (PatrolManager.singleton.pathsWithIndoors[index] == null)
         {
             index = Random.Range(0, PatrolManager.singleton.pathsWithIndoors.Count);
+            bailOutCount--;
+            if (bailOutCount<=0)
+            {
+                Debug.LogWarning("FindRandom no patrol points found");
+                return Vector3.zero;
+            }
         }
 
         finalTarget = PatrolManager.singleton.pathsWithIndoors[index].transform.position;
@@ -54,6 +66,7 @@ public class CivRandomRunAwayState : AntAIState
             return finalTarget;
         }
 
+        Debug.LogWarning("FindRandom no patrol points found");
         return Vector3.zero; // HACK won't really know if it succeeded. Should be bool or something
     }
 
