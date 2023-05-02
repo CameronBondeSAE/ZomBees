@@ -5,9 +5,7 @@ using UnityEngine;
 
 namespace Lloyd
 {
-
-
-    public class CivilianTraits : MonoBehaviour, ICiv
+    public class CivilianTraits : MonoBehaviour, ICivilian
     {
         // [ShowInInspector] public Dictionary<TraitScriptableObject, TraitStats> traitsDictionary;
         [ShowInInspector] public List<TraitStats> traits;

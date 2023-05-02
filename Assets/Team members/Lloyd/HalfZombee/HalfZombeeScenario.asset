@@ -13,28 +13,65 @@ MonoBehaviour:
   m_Name: HalfZombeeScenario
   m_EditorClassIdentifier: 
   conditions:
-    list: []
+    list:
+    - id: 0
+      name: SeesCiv
+    - id: 1
+      name: HeardNoise
+    - id: 2
+      name: BitCiv
   actions:
   - name: BiteCiv
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 8061347263482892826, guid: f79c48438c85fc94daac0c921adf745f, type: 3}
     cost: 0
-    position: {x: 451, y: 44.66668}
-    pre: []
-    post: []
-  - name: TurnIntoEgg
-    isDefault: 0
-    state: {fileID: 0}
-    cost: 0
-    position: {x: 673.3332, y: 44.999992}
-    pre: []
-    post: []
+    position: {x: 799.333, y: 46.333313}
+    pre:
+    - id: 0
+      value: 1
+    post:
+    - id: 2
+      value: 1
   - name: Wander
-    isDefault: 0
-    state: {fileID: 0}
+    isDefault: 1
+    state: {fileID: 4733347527213428090, guid: 7ed1b75083bbf464cafbc2f3c9249fdc, type: 3}
     cost: 0
-    position: {x: 230, y: 41.66665}
-    pre: []
-    post: []
-  goals: []
-  worldStates: []
+    position: {x: 226.66663, y: 41.66665}
+    pre:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
+    - id: 2
+      value: 0
+    post:
+    - id: 0
+      value: 1
+  - name: InvestigateNoise
+    isDefault: 0
+    state: {fileID: 3459857362219294439, guid: 2326dccee2af12f4e94737dd65a26794, type: 3}
+    cost: 0
+    position: {x: 500, y: 45.00003}
+    pre:
+    - id: 1
+      value: 1
+    post:
+    - id: 1
+      value: 0
+  goals:
+  - name: TurnCivs
+    isDefault: 1
+    position: {x: 1233.3335, y: 38.333344}
+    conditions:
+    - id: 2
+      value: 1
+  worldStates:
+  - position: {x: 258.33334, y: 330}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
+    - id: 2
+      value: 0

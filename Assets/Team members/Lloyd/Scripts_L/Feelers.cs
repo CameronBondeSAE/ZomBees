@@ -18,11 +18,11 @@ public class Feelers : MonoBehaviour
 
     public float multiplier;
 
-    public TurnTowards turnTowards;
+   // public TurnTowards turnTowards;
 
     private void Start()
     {
-        turnTowards = GetComponent<TurnTowards>();
+      //  turnTowards = GetComponent<TurnTowards>();
     }
 
     private void FixedUpdate()
@@ -37,7 +37,7 @@ public class Feelers : MonoBehaviour
             {
                 float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
                 float torque = angle * force * multiplier;
-                turnTowards.ApplyTorque(torque);
+               // turnTowards.ApplyTorque(torque);
             }
         }
     }

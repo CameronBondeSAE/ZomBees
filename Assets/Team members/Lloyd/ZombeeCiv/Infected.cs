@@ -22,7 +22,7 @@ public class Infected : MonoBehaviour
     public BeePartsManager beeParts;
 
     [ReadOnly] public int beePartsCount;
-
+    
     /*
     public void OnEnable()
     {
@@ -40,6 +40,13 @@ public class Infected : MonoBehaviour
     {
         beeParts.Cure();
         beeWings.DeleteWings();
+    }
+
+    [Button]
+    public void SetWings()
+    {
+        beeWings.SetWings();
+        beeWings.OnChangeStatEvent(-145, 3, true);
     }
 
     private IEnumerator Ticking()
@@ -70,8 +77,7 @@ public class Infected : MonoBehaviour
         }
 
         beeParts.BeeEyes();
-        beeWings.SetWings();
-        beeWings.OnChangeStatEvent(-145, 3, true);
+        SetWings();
         StartCoroutine(TimeTilEgg());
     }
 

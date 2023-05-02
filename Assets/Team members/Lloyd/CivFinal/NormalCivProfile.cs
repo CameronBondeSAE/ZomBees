@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Lloyd
 {
 
-    public class NormalCivProfile : MonoBehaviour, ICiv
+    public class NormalCivProfile : DynamicObject, ICivilian
     {
         private CivSensor sensor;
 
@@ -36,6 +37,8 @@ namespace Lloyd
             emoteDictionary.Add("Beeness", new TraitStats());
             emoteDictionary.Add("Hunger", new TraitStats());
             emoteDictionary.Add("Suicidal", new TraitStats());
+
+            isCiv = true;
         }
 
 

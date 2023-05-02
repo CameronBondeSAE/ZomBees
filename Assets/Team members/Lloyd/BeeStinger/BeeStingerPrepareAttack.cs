@@ -113,7 +113,7 @@ namespace Lloyd
                         return;
                     }
 
-                    ICiv civ = hitInfo.collider.gameObject.GetComponent<ICiv>();
+                    ICivilian civ = hitInfo.collider.gameObject.GetComponent<ICivilian>();
                     if (civ != null)
                     {
                         pissedOffFloat++;

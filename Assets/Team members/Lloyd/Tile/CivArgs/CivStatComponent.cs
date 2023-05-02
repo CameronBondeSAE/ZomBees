@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Lloyd
 {
 
-    public class CivStatComponent : MonoBehaviour, ICiv
+    public class CivStatComponent : MonoBehaviour, ICivilian
     {
         #region FloatStats
 

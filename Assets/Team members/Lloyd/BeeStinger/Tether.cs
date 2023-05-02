@@ -5,7 +5,7 @@ namespace Lloyd
     public class Tether : MonoBehaviour
     {
         public float tetherForceMag;
-        private Vector3 homePoint;
+        public Vector3 homePoint;
         private Rigidbody rb;
     
         public void StartTether(Rigidbody newRb, Vector3 newHomePoint)

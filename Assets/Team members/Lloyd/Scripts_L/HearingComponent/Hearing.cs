@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -21,12 +23,15 @@ namespace Lloyd
 		[ReadOnly]
 		public SoundProperties loudestRecentSound;
 
-		[ReadOnly]
+		//[ReadOnly]
 		public List<SoundProperties> soundsList = new List<SoundProperties>();
 
 		private float soundDistance;
 
 		private int thingsBetweenSound;
+
+		//determines how long a sound "lingers" in the soundList after hearing it
+		public float soundLingerTime;
 
 		public void Reset()
 		{
@@ -38,12 +43,12 @@ namespace Lloyd
 
 		public void Update()
 		{
-			if (soundsList.Count > 0)
+			if (soundsList.Any())
 			{
 				heardSound         = true;
 				loudestRecentSound = soundsList[0];
 			}
-
+			else
 			heardSound = false;
 		}
 
@@ -57,6 +62,7 @@ namespace Lloyd
 			soundProperties.ObstaclesBetween = thingsBetweenSound;
 			soundProperties.Distance         = soundDistance;
 			soundsList.Add(soundProperties);
+			StartCoroutine(RemoveSoundTimer(soundProperties));
 
 			// TODO 1-distance * volume should be the metric
 			soundsList.Sort(Comparison);
@@ -82,6 +88,22 @@ namespace Lloyd
 			Debug.Log("Fear level : " + soundProperties.Fear);
 			Debug.Log("Beeness level : " + soundProperties.Beeness);
 		}
+		
+		private IEnumerator RemoveSoundTimer(SoundProperties sound)
+		{
+			float countdownTime = soundLingerTime;
+			float elapsedTime = 0.0f;
+
+			while (elapsedTime < countdownTime)
+			{
+				elapsedTime += Time.deltaTime;
+				yield return null;
+			}
+			
+			if(soundsList.Contains(sound)) 
+				soundsList.Remove(sound);
+		}
+        
 		
 		//where to put perlin randomiser for sound?
 		// float noiseX = Mathf.PerlinNoise(point.x * scale, 0f);

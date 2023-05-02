@@ -6,7 +6,7 @@ namespace Lloyd
     {
     }
 
-    public interface ICiv
+    public interface ICivilian
     {
         public void HitByBee(BeeStingAttack.BeeStingType attackType, float amount)
         {

@@ -60,6 +60,7 @@ namespace Lloyd
 			Unknown,
 			PlayerTalk,
 			CivTalk,
+			HalfBee,
 			Bee,
 			Environment,
 			GunShot,

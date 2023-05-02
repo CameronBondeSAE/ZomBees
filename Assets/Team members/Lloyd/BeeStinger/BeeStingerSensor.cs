@@ -1,17 +1,12 @@
 using Anthill.AI;
 using UnityEngine;
 using Oscar;
+using Utilities;
 
 namespace Lloyd
 {
     public class BeeStingerSensor : DynamicObject, ISense
     {
-        
-        public void ImABee()
-        {
-            IsBee = true;
-        }
-        
         LesserQueenLookAt look;
         
         public Rigidbody rb;
@@ -40,9 +35,9 @@ namespace Lloyd
             originalHomepoint = homePoint;
             
             StartWings();
-            
-            ImABee();
-            
+
+            isBee = true;
+
             look = GetComponent<LesserQueenLookAt>();
         }
 

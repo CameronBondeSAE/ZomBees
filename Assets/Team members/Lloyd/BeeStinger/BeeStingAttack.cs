@@ -34,7 +34,7 @@ namespace Lloyd
 
         public BeeStingType myType;
 
-        private List<ICiv> civs = new List<ICiv>();
+        private List<ICivilian> civs = new List<ICivilian>();
 
         public override void Create(GameObject aGameObject)
         {
@@ -74,7 +74,7 @@ namespace Lloyd
 
         private void OnTriggerEnter(Collider other)
         {
-            ICiv civ = other.GetComponent<ICiv>();
+            ICivilian civ = other.GetComponent<ICivilian>();
             if (civ != null && !civs.Contains(civ))
             {
                 civs.Add(civ);
@@ -82,7 +82,7 @@ namespace Lloyd
             }
         }
 
-        private void RunFunctionForCiv(ICiv civ)
+        private void RunFunctionForCiv(ICivilian civ)
         {
             civ.HitByBee(myType, attackAmount);
             //Debug.Log("Hit " + civ + " with " + myType + " for " + attackAmount + "!");
