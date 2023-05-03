@@ -48,6 +48,8 @@ public class CivGPT : MonoBehaviour, IHear
 
 	public List<CivAction> supportedActions;
 
+	public TraitScriptableObject ageSO;
+
 	[Serializable]
 	public class ConversationWithCharacterBase
 	{
@@ -426,6 +428,7 @@ public class CivGPT : MonoBehaviour, IHear
 		// TODO: Add conspiracy theories
 		// TODO: Add backstory
 		// TODO: Age? Can't really do that with the traits things as it's 0 to 1?
+		prompt += "\nYour age is " + civilianTraits.GetTrait(ageSO);
 		// TODO: Gender. Again, traits are just a number. Do we even need this at all?
 		// TODO: Inventory
 
@@ -442,6 +445,11 @@ public class CivGPT : MonoBehaviour, IHear
 		prompt += "\n\nThese are your traits, with a 0 to 1 strength. ";
 		foreach (TraitStats traitStats in civilianTraits.traits)
 		{
+			if (traitStats.traitScriptableObject == ageSO)
+			{
+				traitStats.value *= 10f; // HACK: Age is 0 to 100 (from the 0 to 1 trait value)
+			}
+			
 			prompt +=
 				traitStats.traitScriptableObject.name + " = " +
 				(traitStats.value / traitStats.threshold).ToString("0.0") + ", ";
