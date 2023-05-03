@@ -36,7 +36,12 @@ namespace Johns
                 GetComponent<StateManager>().ChangeState(GetComponent<SoundGunSwitchedOff>());
             }
         }
-        
+
+        public void Toggle()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Consume()
         {
             throw new System.NotImplementedException();

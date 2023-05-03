@@ -37,5 +37,9 @@ namespace Cam
 			throw new System.NotImplementedException();
 		}
 
+		public void Toggle()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

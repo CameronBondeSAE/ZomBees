@@ -34,6 +34,11 @@ namespace Virginia
             
         }
 
+        public void Toggle()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Consume()
         {
             throw new System.NotImplementedException();

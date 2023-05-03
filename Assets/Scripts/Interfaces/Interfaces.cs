@@ -31,4 +31,6 @@ public interface ISwitchable
 {
     public void TurnOn();
     public void TurnOff();
+
+    public void Toggle();
 }

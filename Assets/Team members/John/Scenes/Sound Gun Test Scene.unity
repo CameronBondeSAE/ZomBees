@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.33694, g: 325.04984, b: 430.2193, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -237,6 +237,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 483312, guid: 52747c8eaee7a2946bb2f0fd90488797, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752655406189610255, guid: 52747c8eaee7a2946bb2f0fd90488797, type: 3}
+      propertyPath: soundEmitter
+      value: 
+      objectReference: {fileID: 1297567969}
+    - target: {fileID: 7752655406189610255, guid: 52747c8eaee7a2946bb2f0fd90488797, type: 3}
+      propertyPath: placeholderForSoundProperties.Radius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7752655406189610255, guid: 52747c8eaee7a2946bb2f0fd90488797, type: 3}
       propertyPath: placeholderForSoundProperties.Source
       value: 
@@ -300,14 +312,17 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8813493003957633635, guid: 52747c8eaee7a2946bb2f0fd90488797, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1297567969}
   m_SourcePrefab: {fileID: 100100000, guid: 52747c8eaee7a2946bb2f0fd90488797, type: 3}
 --- !u!114 &699255562 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1274810338, guid: 52747c8eaee7a2946bb2f0fd90488797, type: 3}
   m_PrefabInstance: {fileID: 669169019}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1297567963}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc34fe9dde6540244995059e6aadbe98, type: 3}
@@ -401,6 +416,44 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2008508169}
   m_SourcePrefab: {fileID: 100100000, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
+--- !u!1 &1297567963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8813493003957633635, guid: 52747c8eaee7a2946bb2f0fd90488797, type: 3}
+  m_PrefabInstance: {fileID: 669169019}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1297567969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297567963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28675f85274e5e45a8d985899168bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  maxListeners: 20
+  testProperties:
+    Source: {fileID: 0}
+    SoundType: 0
+    Radius: 50
+    Distance: 0
+    Directional: 0
+    Fear: 0
+    Beeness: 0
+    Team: 0
+    ObstaclesBetween: 0
+    Dialogue: 
 --- !u!1001 &1458229402
 PrefabInstance:
   m_ObjectHideFlags: 0

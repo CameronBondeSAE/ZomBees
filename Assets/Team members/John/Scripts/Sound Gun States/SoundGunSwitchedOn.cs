@@ -1,5 +1,6 @@
 using System;
 using Lloyd;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Johns
@@ -16,7 +17,14 @@ namespace Johns
             audioSource.clip = sonicShot;
             audioSource.loop = true;
             audioSource.Play();
-            soundEmitter?.EmitSound(placeholderForSoundProperties);
+//            soundEmitter.GetComponent<SoundEmitter>();
+            soundEmitter.EmitSound(placeholderForSoundProperties);
+        }
+
+        [Button]
+        public void MakeSound()
+        {
+            soundEmitter.EmitSound(placeholderForSoundProperties);
         }
 
         public void OnDisable()
