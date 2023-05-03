@@ -81,6 +81,19 @@ namespace Johns
 			}
 		}
 
+		private void OnTriggerExit(Collider other)
+		{
+			if(other == triggerBoxCollider)
+			{
+				IPowered powered = other.GetComponent<IPowered>();
+				
+				if (powered != null)
+				{
+					thingToGivePowerTo.Remove(powered);
+				}
+			}
+		}
+
 		public void   Consume()
 		{
 			
