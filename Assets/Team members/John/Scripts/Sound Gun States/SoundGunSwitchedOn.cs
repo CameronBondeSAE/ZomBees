@@ -17,7 +17,7 @@ namespace Johns
             audioSource.clip = sonicShot;
             audioSource.loop = true;
             audioSource.Play();
-//            soundEmitter.GetComponent<SoundEmitter>();
+    //      soundEmitter.GetComponent<SoundEmitter>();
             soundEmitter.EmitSound(placeholderForSoundProperties);
         }
 
