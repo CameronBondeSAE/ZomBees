@@ -247,7 +247,7 @@ Transform:
   - {fileID: 8628794340795267898}
   - {fileID: 7439687858159993640}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!136 &1876615668
 CapsuleCollider:
@@ -399,6 +399,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   supportedActions: 
   ageSO: {fileID: 0}
+  backStories_ReturnSeparatedLines: 
+  conspiracyTheories_ReturnSeparatedLines: 
+  randomBackStoryAndConspiracy: 1
+  backStory: 
+  conspiracyTheory: 
   randomCountry: 0
   apiKeys: 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
   memoryManager: {fileID: 6461197163127814067}
@@ -406,6 +411,7 @@ MonoBehaviour:
   questTrackerSimple: {fileID: 2575717550317940145}
   antAIAgent: {fileID: 7164411692719033370}
   chatEmitter: {fileID: 2165733543200711093}
+  promptHistoryDebug: 
   currentChat:
     CharacterBase: {fileID: 107376084}
 --- !u!114 &3452993360891905805
@@ -425,11 +431,13 @@ MonoBehaviour:
     value: 0
     threshold: 1
     changeValueOverTime: 0
+    canBeAlteredByGPT: 0
     thresholdHit: 0
   - traitScriptableObject: {fileID: 11400000, guid: a5f76bf83e00c2e4c9d82b562f9c1b4e, type: 2}
     value: 0
     threshold: 1
     changeValueOverTime: 0
+    canBeAlteredByGPT: 0
     thresholdHit: 0
 --- !u!114 &2575717550317940145
 MonoBehaviour:

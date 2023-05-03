@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5668621566296427}
+  - component: {fileID: 749302473}
   - component: {fileID: 1751265245}
   - component: {fileID: 952844609441976862}
   - component: {fileID: 5098364675696530885}
@@ -73,8 +74,31 @@ Transform:
   - {fileID: 9132206041865430102}
   - {fileID: 6342664566379943885}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &749302473
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5818210832180300190}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1751265245
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,6 +155,7 @@ MonoBehaviour:
   isCiv: 0
   importance: 0
   description: 
+  homeBase: {fileID: 0}
   rb: {fileID: 1751265245}
   speed: 3
   turnSpeed: 0.15
@@ -327,7 +352,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7675074516237998133}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac7728cfde9a72841ba6b2414274cacf, type: 3}
   m_Name: 
@@ -436,7 +461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6342664565842704608, guid: 10725d85d345a834a888a09a13c2664d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6342664565842704608, guid: 10725d85d345a834a888a09a13c2664d, type: 3}
       propertyPath: m_LocalRotation.w
