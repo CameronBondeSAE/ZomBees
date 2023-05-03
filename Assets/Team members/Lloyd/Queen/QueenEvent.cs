@@ -30,7 +30,6 @@ public class QueenEvent : MonoBehaviour
     public void OnChangeSwarmPoint(Transform swarmTransform)
     {
         ChangeSwarmTransform?.Invoke(swarmTransform);
-        Debug.Log("new point");
     }
     
     // changes the swarm's circle size

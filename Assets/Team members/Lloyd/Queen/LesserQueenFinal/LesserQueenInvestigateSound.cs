@@ -17,7 +17,7 @@ namespace Lloyd
         public override void Enter()
         {
             base.Enter();
-            lookAt.targetTransform = sensor.target;
+            lookAt.targetTransform = sensor.moveTarget;
             sensor.beeWings.ChangeBeeWingStats(-90, 25, true);
         }
 

@@ -10,7 +10,7 @@ namespace Lloyd
     {
         public float attackTime;
         
-        public BeeStingerSensor sensor;
+        public BeeStingerSensor stingerSensor;
 
         public LesserQueenSensor queenSensor;
 
@@ -18,6 +18,8 @@ namespace Lloyd
         public GameObject zombeenessIncreaser;
 
         public QueenEvent queenEvent;
+
+        public Transform attackTarget;
 
         public override void Create(GameObject aGameObject)
         {
@@ -29,13 +31,18 @@ namespace Lloyd
         public override void Enter()
         {
             base.Enter();
+            attackTarget = queenSensor.attackTarget;
             queenSensor.beeWings.ChangeBeeWingStats(-90, 50, true);
             if (queenSensor.beeBullets <= 0)
             {
+                queenSensor.attack = false;
                 Finish();
             }
             else
-            StartCoroutine(Attack());
+            {
+                queenSensor.attack = true;
+                StartCoroutine(Attack());
+            }
         }
 
         private IEnumerator Attack()
@@ -49,19 +56,22 @@ namespace Lloyd
             newObject.transform.rotation = transform.rotation;
 
             Rigidbody rb = newObject.GetComponent<Rigidbody>();
-            Vector3 direction = queenSensor.target.position - transform.position;
+            Vector3 direction = queenSensor.attackTarget.position - transform.position;
             rb.AddForce(direction.normalized * 100, ForceMode.Impulse);
 
             LesserQueenLookAt newLook = newObject.GetComponent<LesserQueenLookAt>();
-            newLook.target = queenSensor.target;
-            sensor = newObject.GetComponent<BeeStingerSensor>();
-            sensor.SetHomePoint(sensor.transform.position);
+            newLook.target = queenSensor.attackTarget;
+            stingerSensor = newObject.GetComponent<BeeStingerSensor>();
+            stingerSensor.SetHomePoint(queenSensor.transform.position);
             queenSensor.agitated = true;
-            queenEvent.OnChangeSwarmPoint(queenSensor.target);
+            
+            queenEvent.OnChangeSwarmPoint(queenSensor.attackTarget);
 
             queenSensor.beeBullets--;
 
             yield return new WaitForSeconds(attackTime);
+
+            queenSensor.attack = false;
             Finish();
         }
         

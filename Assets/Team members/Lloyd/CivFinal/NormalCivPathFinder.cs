@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utilities;
 
 namespace Lloyd
 {
@@ -18,7 +19,8 @@ namespace Lloyd
 
         public List<GameObject> civPoints;
 
-        public List<PatrolPoint> patrolPoints;
+        public List<
+            PatrolPoint> patrolPoints;
     
         private float scanRadius = 10f;
         private LayerMask scanLayerMask;
