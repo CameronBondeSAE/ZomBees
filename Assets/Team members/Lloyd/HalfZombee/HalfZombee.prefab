@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 2113993496808437931}
   - component: {fileID: 698232819}
   - component: {fileID: 698232820}
+  - component: {fileID: 4586317931434179207}
+  - component: {fileID: 691439350}
   m_Layer: 0
   m_Name: HalfZombee
   m_TagString: Untagged
@@ -44,7 +46,7 @@ Transform:
   - {fileID: 7243265456003834299}
   - {fileID: 2113993497356256774}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2113993496808437950
 Rigidbody:
@@ -55,8 +57,8 @@ Rigidbody:
   m_GameObject: {fileID: 2113993496808437944}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -90,8 +92,13 @@ MonoBehaviour:
   seesCiv: 0
   heardUnpleasantNoise: 0
   seesLight: 0
+  dead: 0
   hearing: {fileID: 0}
+  health: {fileID: 0}
   vision: {fileID: 0}
+  homePoint: {fileID: 0}
+  prevPoint: {fileID: 0}
+  beeWings: {fileID: 1393346345997994583}
 --- !u!114 &2113993496808437948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +176,7 @@ MonoBehaviour:
   hivePoint: {fileID: 0}
   walkSpeed: 5
   runSpeed: 10
-  currentSpeed: 0
+  currentSpeed: 1
 --- !u!114 &2113993496808437942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,11 +211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddecb0919a801864084a81e619aa6612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPosition: {x: 0, y: 0, z: 0}
+  targetTransform: {fileID: 0}
   rb: {fileID: 0}
-  minAngle: 0.01
-  turning: 0
-  torqueSpeed: 1
+  turnSpeed: 0.3
 --- !u!114 &2113993496808437940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +312,35 @@ MonoBehaviour:
   objectsInSight: []
   lightInSight: []
   allInSight: []
+--- !u!114 &4586317931434179207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113993496808437944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980964ef970af9c41aaa54a015b214cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  rb: {fileID: 0}
+  turnSpeed: 0.3
+--- !u!114 &691439350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113993496808437944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e066fcc5d4ea80741a41c44a087dc275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currHealth: 0
 --- !u!1 &2113993497064019106
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,15 +763,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 648883817, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 648883817, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.71
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 648883817, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.903
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1633854345031244569, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
       propertyPath: m_Name
@@ -794,6 +828,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+--- !u!114 &1393346345997994583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1008877767983926817, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}
+  m_PrefabInstance: {fileID: 2113993496698553462}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2359bfb9d4e5ce4cbb2ca71b5c76e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7243265456003834299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8778455123799270861, guid: c7a75a8bb56ab4149a1fc11b132132b8, type: 3}

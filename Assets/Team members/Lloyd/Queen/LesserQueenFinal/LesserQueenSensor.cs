@@ -19,6 +19,8 @@ namespace Lloyd
 
         public Transform moveTarget;
 
+        public PatrolPoint homePoint;
+
         public PatrolPoint previousPoint;
         
         #region ANTAI
@@ -101,6 +103,17 @@ namespace Lloyd
 
         #endregion
 
+        #region Health
+
+        public Health health;
+
+        public void Death()
+        {
+            
+        }
+
+        #endregion
+
         #region Idle
 
         public SphereBob bob;
@@ -143,19 +156,22 @@ namespace Lloyd
 
         private void Update()
         {
-            if (vision.civObjects.Any())
+            if (!agitated)
             {
-                seesTarget = true;
-                   attackTarget = vision.ReturnNearestCiv();
-            }
-            else seesTarget = false;
+                if (vision.civObjects.Any())
+                {
+                    seesTarget = true;
+                    attackTarget = vision.ReturnNearestCiv();
+                }
+                else seesTarget = false;
 
-            if (hearing.heardSound)
-            {
-                heardSound = true;
-                moveTarget = hearing.loudestRecentSound.Source.transform;
+                if (hearing.heardSound)
+                {
+                    heardSound = true;
+                    moveTarget = hearing.loudestRecentSound.Source.transform;
+                }
+                else heardSound = false;
             }
-            else heardSound = false;
         }
     }
 }

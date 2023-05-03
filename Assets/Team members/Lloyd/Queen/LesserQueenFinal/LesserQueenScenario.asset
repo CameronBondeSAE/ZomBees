@@ -32,6 +32,8 @@ MonoBehaviour:
       name: PrepareToAttack
     - id: 8
       name: Agitated
+    - id: 9
+      name: HasBullets
   actions:
   - name: Patrol
     isDefault: 0
@@ -53,6 +55,8 @@ MonoBehaviour:
       value: 0
     - id: 6
       value: 0
+    - id: 9
+      value: 1
     post:
     - id: 0
       value: 0
@@ -66,6 +70,8 @@ MonoBehaviour:
       value: 1
     post:
     - id: 8
+      value: 1
+    - id: 4
       value: 1
   - name: MoveToHiveSpot
     isDefault: 0
@@ -84,10 +90,12 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5808969912205423487, guid: 2bfd10345a84a9e43aa2f5354838d4f0, type: 3}
     cost: 0
-    position: {x: 851.6664, y: 240.00006}
+    position: {x: 849.9999, y: 261.66675}
     pre:
     - id: 8
       value: 1
+    - id: 4
+      value: 0
     post:
     - id: 8
       value: 0
@@ -101,9 +109,7 @@ MonoBehaviour:
       value: 1
     - id: 0
       value: 0
-    post:
-    - id: 8
-      value: 1
+    post: []
   - name: SpawnFollowers
     isDefault: 1
     state: {fileID: 7490214505321983684, guid: 693a3d895cb25e54195d6be260acce26, type: 3}
@@ -130,6 +136,17 @@ MonoBehaviour:
       value: 1
     - id: 5
       value: 0
+  - name: ReturnToHiveSpot
+    isDefault: 0
+    state: {fileID: 2435681656877434582, guid: 28c395e803394284fab16c0afc1de18f, type: 3}
+    cost: 0
+    position: {x: 1170, y: 361.6667}
+    pre:
+    - id: 9
+      value: 0
+    post:
+    - id: 9
+      value: 1
   goals:
   - name: SpawnHive
     isDefault: 1
@@ -158,4 +175,6 @@ MonoBehaviour:
     - id: 7
       value: 0
     - id: 8
+      value: 1
+    - id: 9
       value: 0

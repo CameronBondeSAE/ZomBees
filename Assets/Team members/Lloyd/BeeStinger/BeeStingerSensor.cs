@@ -33,6 +33,9 @@ namespace Lloyd
             rb = GetComponent<Rigidbody>();
             brain = GetComponent<BeeStingerBrain>();
 
+            health = GetComponent<Health>();
+            health.HealthReducedToZeroEvent += Death;
+
             if (homePoint == null)
             {
                 homePoint = transform.position;
@@ -98,6 +101,19 @@ namespace Lloyd
             attackTarget = newTarget;
         }
 
+        #endregion
+
+        #region Health
+
+        public Health health;
+
+        public void Death()
+        {
+            health.HealthReducedToZeroEvent -= Death;
+            beeWings.DeleteWings();
+            dead = true;
+        }
+        
         #endregion
 
         #region Resources

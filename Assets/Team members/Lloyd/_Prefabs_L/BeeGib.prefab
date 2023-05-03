@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &395559839041994076
+--- !u!1 &7457966979580360486
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 395559839041994077}
-  - component: {fileID: 5998251206293287790}
+  - component: {fileID: 7457966979580360489}
+  - component: {fileID: 7457966979580360488}
   m_Layer: 0
-  m_Name: RunFromNoise
+  m_Name: BeeGib
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &395559839041994077
+--- !u!4 &7457966979580360489
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395559839041994076}
+  m_GameObject: {fileID: 7457966979580360486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5998251206293287790
+--- !u!114 &7457966979580360488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395559839041994076}
+  m_GameObject: {fileID: 7457966979580360486}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b9fd31c4a7aba44a27872de13ac353, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f32d48a6fcebe941a2aedab74152d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 0}
-  sensor: {fileID: 0}
-  tether: {fileID: 0}
-  rb: {fileID: 0}
-  turnTowards: {fileID: 0}
-  turnAway: {fileID: 0}
-  hearing: {fileID: 0}
-  pathfinder: {fileID: 0}
-  heardSomethingScary: 0
+  antannae: {fileID: 8230449110480001284, guid: 398ce45b63a453545b2e8365727d62a9, type: 3}
+  mandibles: {fileID: 7755580987661910031, guid: 38187438a292be94d9b8c17b5bb41b80, type: 3}
+  beeLegs: {fileID: 5907524482299182046, guid: dbb47af1cabda8f4086e6b8738b8dba7, type: 3}
+  beeWings: {fileID: 3496102372384271001, guid: 6758dccd4fc2dec49a82f4eef1d140a3, type: 3}
+  beeParts: []
+  objectsToSpawn: []
+  gibVerticalForce: 5
+  gibSpinForce: 1000
+  myType: 0

@@ -5,16 +5,22 @@ namespace Lloyd
 {
     public class LesserQueenDead : AntAIState
     {
-        // Start is called before the first frame update
-        void Start()
+        public BeeGib beeGib;
+
+        public LesserQueenSensor sensor;
+
+        public override void Create(GameObject aGameObject)
         {
-        
+            base.Create(aGameObject);
+            sensor = aGameObject.GetComponent<LesserQueenSensor>();
         }
 
-        // Update is called once per frame
-        void Update()
+        public override void Enter()
         {
-        
+            base.Enter();
+            beeGib = GetComponentInChildren<BeeGib>();
+            beeGib.DetermineGib(BeeGib.BeeType.Large);
+            DestroyImmediate(sensor.gameObject);
         }
     }
 }

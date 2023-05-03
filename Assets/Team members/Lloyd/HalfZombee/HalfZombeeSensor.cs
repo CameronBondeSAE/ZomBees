@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
+using Utilities;
 
 namespace Lloyd
 {
@@ -12,6 +13,9 @@ namespace Lloyd
         {
             hearing = GetComponent<Hearing>();
             vision = GetComponent<OscarVision>();
+            health = GetComponent<Health>();
+            health.HealthReducedToZeroEvent += Death;
+            beeWings.SetWings();
         }
 
         public void Update()
@@ -55,6 +59,8 @@ namespace Lloyd
 
         public bool seesLight;
 
+        public bool dead;
+
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
         {
             aWorldState.BeginUpdate(aAgent.planner);
@@ -68,6 +74,8 @@ namespace Lloyd
                 aWorldState.Set(HalfZombeeScenario.HeardUnpleasantNoise, heardUnpleasantNoise);
 
                 aWorldState.Set(HalfZombeeScenario.SeesLight, seesLight);
+
+                aWorldState.Set(HalfZombeeScenario.Dead, dead);
             }
         }
 
@@ -79,9 +87,36 @@ namespace Lloyd
 
         #endregion
 
+        #region Health
+
+        public Health health;
+
+        public void Death()
+        {
+            health.HealthReducedToZeroEvent -= Death;
+            beeWings.DeleteWings();
+            dead = true;
+        }
+
+        #endregion
+
         #region Vision
 
         public OscarVision vision;
+
+        #endregion
+
+        #region Pathfinding
+
+        public PatrolPoint homePoint;
+
+        public PatrolPoint prevPoint;
+
+        #endregion
+
+        #region Wings
+
+        public BeeWingsManager beeWings;
 
         #endregion
     }

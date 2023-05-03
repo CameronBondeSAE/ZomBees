@@ -191,7 +191,7 @@ namespace Lloyd
 
                 if (wingParent != null)
                 {
-                    //DestroyImmediate(wingParent);
+                    DestroyImmediate(wingParent);
                 }
             }
         }

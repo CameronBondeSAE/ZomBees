@@ -49,6 +49,8 @@ MonoBehaviour:
       value: 0
     - id: 7
       value: 0
+    - id: 3
+      value: 0
     post:
     - id: 1
       value: 1
@@ -141,6 +143,17 @@ MonoBehaviour:
     post:
     - id: 6
       value: 0
+  - name: Dead
+    isDefault: 0
+    state: {fileID: 8299097200152521241, guid: 2a7ebf9889412a94c857901620661873, type: 3}
+    cost: 0
+    position: {x: 1191.6667, y: 129.99998}
+    pre:
+    - id: 3
+      value: 1
+    post:
+    - id: 3
+      value: 0
   goals:
   - name: GiveResourcesToHive
     isDefault: 1
@@ -153,7 +166,7 @@ MonoBehaviour:
     - id: 6
       value: 1
   worldStates:
-  - position: {x: 232.43597, y: 648.8464}
+  - position: {x: 429.1026, y: 503.84644}
     isAutoUpdate: 1
     list:
     - id: 0

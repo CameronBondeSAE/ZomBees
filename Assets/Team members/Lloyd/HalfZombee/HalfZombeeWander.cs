@@ -2,95 +2,138 @@ using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
+using Utilities;
+//this is copy/pasted from LessQueenPatrol.cs
 
-namespace Lloyd
-{
-    public class HalfZombeeWander : AntAIState
+namespace Lloyd {
+    public class HalfZombeeWander : AntAIState 
     {
-        public HalfZombeeProfile profile;
-
         public HalfZombeeSensor sensor;
-
-        public Tether tether;
-
-        public Rigidbody rb;
 
         public HalfZombeeTurnTowards turnTowards;
 
-        public HalfZombeePathfind pathfinder;
+        //public SharedMaterialChanger materialChanger;
 
-        public Transform homePos;
-        
-        public Transform nextTarget;
+        public bool hearSomething;
+        public bool seeSomething;
 
-        [Header("Min dist to noise to satisfy movement")]
+        public PatrolPoint homePoint;
+
+        public PatrolPoint currMoveTarget;
+        public PatrolPoint previousMoveTarget;
+
         public float minDist;
 
-        
+        private List<PatrolPoint> pathPointsReference;
+
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
-            rb = aGameObject.GetComponent<Rigidbody>();
-            tether = aGameObject.GetComponent<Tether>();
+            
             sensor = aGameObject.GetComponent<HalfZombeeSensor>();
-            profile = aGameObject.GetComponent<HalfZombeeProfile>();
             turnTowards = aGameObject.GetComponent<HalfZombeeTurnTowards>();
-            pathfinder = aGameObject.GetComponent<HalfZombeePathfind>();
+
+            hearSomething = false;
+            seeSomething = false;
         }
 
         public override void Enter()
         {
             base.Enter();
-            profile.currentSpeed = profile.walkSpeed;
+            
+            sensor.beeWings.ChangeBeeWingStats(-165, 3, true);
+            
+            pathPointsReference = PatrolManager.singleton.paths;
+            currMoveTarget = GetNewPatrolPoint();
+            turnTowards.targetTransform = currMoveTarget.transform;
 
-            homePos = PatrolManager.singleton.hivePoints[0].transform;
+            if (sensor.homePoint == null)
+            {
+                sensor.homePoint = currMoveTarget;
+            }
 
-            turnTowards.targetTransform = homePos;
+            homePoint = currMoveTarget;
 
-            pathfinder.finalTarget = homePos;
-            pathfinder.SeekPath(pathfinder.hivePoints);
-
-            StartCoroutine(PathFind());
+            StartCoroutine(WaitUntilNewPoint());
         }
-        
-        private IEnumerator PathFind()
+
+        private IEnumerator WaitUntilNewPoint()
         {
             while (true)
             {
-                if (pathfinder.lastViablePatrolPoint != null)
+                float distance = Vector3.Distance(transform.position, currMoveTarget.transform.position);
+//                Debug.Log(distance);
+
+                if (distance <= minDist)
                 {
-                    tether.StartTether(rb, pathfinder.lastViablePatrolPoint.transform.position);
-                    nextTarget = pathfinder.lastViablePatrolPoint.transform;
-                    turnTowards.targetTransform = nextTarget;
-
-                    if (Vector3.Distance(transform.position, pathfinder.lastViablePatrolPoint.transform.position) <
-                        minDist)
-                        pathfinder.SeekPath(pathfinder.hivePoints);
-
-                    if ((Vector3.Distance(transform.position,
-                            homePos.position) < minDist))
-                    {
-                        nextTarget = homePos;
-                        tether.StartTether(rb, homePos.position);
-                        turnTowards.targetTransform = homePos;
-                    }
+                    NewPatrolPoint();
+                    yield break;
                 }
 
                 yield return null;
             }
         }
 
+        public List<PatrolPoint> shuffledHivePoints;
+        public int nextPatrolPointIndex = 0;
+
+        private void ShuffleHivePoints()
+        {
+            shuffledHivePoints = new List<PatrolPoint>(pathPointsReference);
+
+            for (int i = shuffledHivePoints.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                PatrolPoint temp = shuffledHivePoints[i];
+                shuffledHivePoints[i] = shuffledHivePoints[j];
+                shuffledHivePoints[j] = temp;
+            }
+
+            nextPatrolPointIndex = 0;
+        }
+
+        private PatrolPoint GetNewPatrolPoint()
+        {
+            if (shuffledHivePoints == null || nextPatrolPointIndex >= shuffledHivePoints.Count)
+            {
+                ShuffleHivePoints();
+            }
+
+            PatrolPoint newPatrolPoint = shuffledHivePoints[nextPatrolPointIndex];
+
+            nextPatrolPointIndex++;
+
+            previousMoveTarget = newPatrolPoint;
+            sensor.prevPoint = newPatrolPoint;
+
+            return newPatrolPoint;
+        }
+
+        private void NewPatrolPoint()
+        {
+            sensor.prevPoint = previousMoveTarget;
+            currMoveTarget = GetNewPatrolPoint();
+            turnTowards.targetTransform = currMoveTarget.transform;
+
+            StartCoroutine(WaitUntilNewPoint());
+        }
+
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
-            if (sensor.heardNoise || sensor.seesCiv)
-                Finish();
-        }
 
+            hearSomething = sensor.heardNoise;
+            seeSomething = sensor.seesCiv;
+
+            if (hearSomething || seeSomething)
+            {
+                Finish();
+            }
+        }
 
         public override void Exit()
         {
-            base.Exit();
+            StopAllCoroutines();
         }
     }
 }

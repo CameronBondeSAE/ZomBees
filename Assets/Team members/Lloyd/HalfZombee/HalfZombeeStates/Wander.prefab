@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4733347527213428069}
-  - component: {fileID: 9020314395629508549}
+  - component: {fileID: 6230003872548213688}
   m_Layer: 0
   m_Name: Wander
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9020314395629508549
+--- !u!114 &6230003872548213688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,16 +41,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4733347527213428090}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e90618370e93c4bb9147b2347cb940, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cec3e6445047ac4e97707d1ede17a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 0}
   sensor: {fileID: 0}
-  tether: {fileID: 0}
-  rb: {fileID: 0}
   turnTowards: {fileID: 0}
-  pathfinder: {fileID: 0}
-  homePos: {fileID: 0}
-  nextTarget: {fileID: 0}
-  minDist: 5
-  idle: 0
+  hearSomething: 0
+  seeSomething: 0
+  homePoint: {fileID: 0}
+  currMoveTarget: {fileID: 0}
+  previousMoveTarget: {fileID: 0}
+  minDist: 1
+  shuffledHivePoints: []
+  nextPatrolPointIndex: 0

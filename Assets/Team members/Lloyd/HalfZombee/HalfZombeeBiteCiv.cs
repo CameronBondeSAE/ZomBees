@@ -45,6 +45,7 @@ public class HalfZombeeBiteCiv : AntAIState
     public override void Enter()
     {
         base.Enter();
+        sensor.beeWings.ChangeBeeWingStats(-100, 55, true);
         profile.currentSpeed = profile.walkSpeed;
     }
 

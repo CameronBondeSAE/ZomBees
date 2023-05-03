@@ -6,18 +6,22 @@ using Utilities;
 
 namespace Lloyd
 {
+    //patrol 
     public class LesserQueenPatrol : AntAIState
     {
         public LesserQueenSensor queenSensor;
+
         //public SphereBobRB bob;
         public QueenEvent queenEvent;
 
         public HalfZombeeTurnTowards turnTowards;
 
-        public SharedMaterialChanger materialChanger;
+        //public SharedMaterialChanger materialChanger;
 
         public bool hearSomething;
         public bool seeSomething;
+
+        public PatrolPoint homePoint;
 
         public PatrolPoint currMoveTarget;
         public PatrolPoint previousMoveTarget;
@@ -34,11 +38,11 @@ namespace Lloyd
             turnTowards = aGameObject.GetComponent<HalfZombeeTurnTowards>();
             //materialChanger = aGameObject.GetComponentInChildren<SharedMaterialChanger>();
 
-           // bob = aGameObject.GetComponent<SphereBobRB>();
-           
-           hivePointsReference = PatrolManager.singleton.hivePoints;
+            // bob = aGameObject.GetComponent<SphereBobRB>();
 
-           queenSensor.beeWings.ChangeBeeWingStats(-90, 15, true);
+            hivePointsReference = PatrolManager.singleton.hivePoints;
+
+            queenSensor.beeWings.ChangeBeeWingStats(-90, 15, true);
 
             hearSomething = false;
             seeSomething = false;
@@ -48,11 +52,18 @@ namespace Lloyd
         {
             base.Enter();
 //            bob.enabled = true;
-            queenEvent.OnChangeQueenState(LesserQueenState.Green);
+            //queenEvent.OnChangeQueenState(LesserQueenState.Green);
 //            materialChanger.ChangeColorGreen();
 
             currMoveTarget = GetNewPatrolPoint();
             turnTowards.targetTransform = currMoveTarget.transform;
+
+            if (queenSensor.homePoint == null)
+            {
+                queenSensor.homePoint = currMoveTarget;
+            }
+            
+            homePoint = currMoveTarget;
 
             StartCoroutine(WaitUntilNewPoint());
         }
@@ -69,19 +80,18 @@ namespace Lloyd
                     NewPatrolPoint();
                     yield break;
                 }
+
                 yield return null;
             }
         }
 
         public List<PatrolPoint> shuffledHivePoints;
         public int nextPatrolPointIndex = 0;
-        
+
         private void ShuffleHivePoints()
         {
-            // Create a new list to store the shuffled hive points
             shuffledHivePoints = new List<PatrolPoint>(hivePointsReference);
 
-            // Shuffle the list using the Fisher-Yates shuffle algorithm
             for (int i = shuffledHivePoints.Count - 1; i > 0; i--)
             {
                 int j = Random.Range(0, i + 1);
@@ -90,31 +100,26 @@ namespace Lloyd
                 shuffledHivePoints[j] = temp;
             }
 
-            // Reset the next patrol point index
             nextPatrolPointIndex = 0;
         }
 
         private PatrolPoint GetNewPatrolPoint()
         {
-            // Check if the shuffled list is empty or if we have reached the end of the list
             if (shuffledHivePoints == null || nextPatrolPointIndex >= shuffledHivePoints.Count)
             {
-                // Shuffle the list and reset the next patrol point index
                 ShuffleHivePoints();
             }
 
-            // Get the next patrol point from the shuffled list
             PatrolPoint newPatrolPoint = shuffledHivePoints[nextPatrolPointIndex];
 
-            // Increment the next patrol point index
             nextPatrolPointIndex++;
 
             previousMoveTarget = newPatrolPoint;
             queenSensor.previousPoint = newPatrolPoint;
-            
+
             return newPatrolPoint;
         }
-        
+
         private void NewPatrolPoint()
         {
             queenSensor.previousPoint = previousMoveTarget;
@@ -124,30 +129,13 @@ namespace Lloyd
             StartCoroutine(WaitUntilNewPoint());
         }
 
-        /*private PatrolPoint GetNewPatrolPoint()
-        {
-            //must set fly points in main scene
-
-            PatrolPoint newRandomPoint;
-            
-            do
-            {
-                newRandomPoint = hivePointsReference[Random.Range(0, hivePointsReference.Count)];
-                
-            } while (newRandomPoint == previousMoveTarget);
-
-            previousMoveTarget = newRandomPoint;
-
-            return newRandomPoint;
-        }*/
-
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
 
             hearSomething = queenSensor.heardSound;
             seeSomething = queenSensor.seesTarget;
-            
+
             if (hearSomething || seeSomething)
             {
                 queenSensor.patrol = false;
@@ -157,8 +145,8 @@ namespace Lloyd
 
         public override void Exit()
         {
-//            bob.enabled = false;
-StopAllCoroutines();
+            // bob.enabled = false;
+            StopAllCoroutines();
         }
     }
 }

@@ -17,6 +17,8 @@ namespace Lloyd
 
         public HalfZombeeTurnTowards turnTowards;
 
+        public HalfZombeeTurnAway turnAway;
+
         public Hearing hearing;
         
         public HalfZombeePathfind pathfinder;
@@ -33,6 +35,7 @@ namespace Lloyd
             turnTowards = aGameObject.GetComponent<HalfZombeeTurnTowards>();
             pathfinder = aGameObject.GetComponent<HalfZombeePathfind>();
             hearing = aGameObject.GetComponent<Hearing>();
+            turnAway = aGameObject.GetComponent<HalfZombeeTurnAway>();
         }
 
         public override void Enter()
@@ -41,12 +44,14 @@ namespace Lloyd
             profile.currentSpeed = profile.walkSpeed;
             heardSomethingScary = true;
 
+            turnTowards.enabled = false;
+            turnAway.enabled = true;
+
+            sensor.beeWings.ChangeBeeWingStats(-145, 25, true);
 
             Transform focusPoint = hearing.loudestRecentSound.Source.transform;
 
-            turnTowards.targetTransform = focusPoint.transform;
-            pathfinder.finalTarget = focusPoint.transform;
-            pathfinder.SeekPath(pathfinder.patrolPoints);
+            turnAway.targetTransform = focusPoint.transform;
         }
 
         public override void Execute(float aDeltaTime, float aTimeScale)
@@ -61,7 +66,8 @@ namespace Lloyd
         public override void Exit()
         {
             base.Exit();
-            heardSomethingScary = false;
+            turnTowards.enabled = true;
+            turnAway.enabled = false;
         }
     }
 }

@@ -24,6 +24,8 @@ MonoBehaviour:
       name: HeardUnpleasantNoise
     - id: 4
       name: SeesLight
+    - id: 5
+      name: Dead
   actions:
   - name: BiteCiv
     isDefault: 0
@@ -52,6 +54,8 @@ MonoBehaviour:
       value: 0
     - id: 4
       value: 0
+    - id: 5
+      value: 0
     post:
     - id: 0
       value: 1
@@ -70,7 +74,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 395559839041994076, guid: 1341af0ab0a2cd545a5903ca76762998, type: 3}
     cost: 0
-    position: {x: 750, y: 593.3333}
+    position: {x: 750, y: 594.99994}
     pre:
     - id: 3
       value: 1
@@ -87,6 +91,17 @@ MonoBehaviour:
       value: 1
     post:
     - id: 4
+      value: 0
+  - name: Dead
+    isDefault: 0
+    state: {fileID: 1266406384966255719, guid: 6d76634ed3b4671438687e29dc12b793, type: 3}
+    cost: 0
+    position: {x: 536.6665, y: 518.3333}
+    pre:
+    - id: 5
+      value: 1
+    post:
+    - id: 5
       value: 0
   goals:
   - name: TurnCivs
@@ -108,4 +123,6 @@ MonoBehaviour:
     - id: 3
       value: 0
     - id: 4
+      value: 0
+    - id: 5
       value: 0

@@ -21,8 +21,6 @@ namespace Lloyd
 
         public OscarVision oscarVision;
 
-        public HalfZombeePathfind pathfinder;
-
         public bool seesLight;
 
         public override void Create(GameObject aGameObject)
@@ -33,20 +31,17 @@ namespace Lloyd
             sensor = aGameObject.GetComponent<HalfZombeeSensor>();
             profile = aGameObject.GetComponent<HalfZombeeProfile>();
             turnTowards = aGameObject.GetComponent<HalfZombeeTurnTowards>();
-            pathfinder = aGameObject.GetComponent<HalfZombeePathfind>();
             oscarVision = aGameObject.GetComponent<OscarVision>();
         }
 
         public override void Enter()
         {
             base.Enter();
-            profile.currentSpeed = profile.walkSpeed;
+            profile.currentSpeed = profile.runSpeed;
 
             Transform focusPoint = ReturnNearestLight();
 
             turnTowards.targetTransform = focusPoint.transform;
-            pathfinder.finalTarget = focusPoint.transform;
-            pathfinder.SeekPath(pathfinder.patrolPoints);
             seesLight = true;
         }
 

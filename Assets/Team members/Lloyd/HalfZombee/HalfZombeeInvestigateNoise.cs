@@ -14,17 +14,9 @@ namespace Lloyd
 
         public HalfZombeeTurnTowards turnTowards;
 
-        public Rigidbody rb;
-
         public Hearing hearing;
 
-        public bool investigating;
-
-        public HalfZombeePathfind pathfinder;
-
         public Tether tether;
-
-        public Transform nextTarget;
 
         [Header("Min dist to noise to satisfy investigate")]
         public float minDist;
@@ -32,31 +24,24 @@ namespace Lloyd
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
+            sensor = aGameObject.GetComponent<HalfZombeeSensor>();
             turnTowards = aGameObject.GetComponent<HalfZombeeTurnTowards>();
             profile = aGameObject.GetComponent<HalfZombeeProfile>();
-            rb = aGameObject.GetComponent<Rigidbody>();
             hearing = aGameObject.GetComponent<Hearing>();
-            pathfinder = aGameObject.GetComponent<HalfZombeePathfind>();
             tether = aGameObject.GetComponent<Tether>();
         }
 
         public override void Enter()
         {
             base.Enter();
+            
+            sensor.beeWings.ChangeBeeWingStats(-165, 7, true);
 
             profile.currentSpeed = profile.runSpeed;
 
-            if (hearing.soundsList.Any())
-            {
-                if (hearing.loudestRecentSound.SoundType != SoundEmitter.SoundType.CreatureRepellant)
-                {
-                    pathfinder.finalTarget = hearing.loudestRecentSound.Source.transform;
-                    pathfinder.SeekPath(pathfinder.patrolPoints);
-                }
-            }
+            tether.homePoint = hearing.loudestRecentSound.Source.transform.position;
 
-            investigating = true;
-            StartCoroutine(PathFind());
+            turnTowards.targetTransform = hearing.loudestRecentSound.Source.transform;
         }
 
         public override void Execute(float aDeltaTime, float aTimeScale)
@@ -65,43 +50,13 @@ namespace Lloyd
 
             if (!hearing.soundsList.Any())
             {
-                investigating = false;
                 Finish();
-            }
-        }
-
-        private IEnumerator PathFind()
-        {
-            while (investigating)
-            {
-                if (pathfinder.lastViablePatrolPoint != null)
-                {
-                    turnTowards.targetTransform = pathfinder.lastViablePatrolPoint.transform;
-                    tether.StartTether(rb, pathfinder.lastViablePatrolPoint.transform.position);
-                    nextTarget = pathfinder.lastViablePatrolPoint.transform;
-
-                    Debug.Log(Vector3.Distance(transform.position,
-                        pathfinder.lastViablePatrolPoint.transform.position));
-
-                    if (Vector3.Distance(transform.position, pathfinder.lastViablePatrolPoint.transform.position) <
-                        minDist)
-                        pathfinder.SeekPath(pathfinder.patrolPoints);
-
-                    if ((Vector3.Distance(transform.position,
-                            pathfinder.finalTarget.transform.position) < minDist))
-                    {
-                        Finish();
-                    }
-                }
-
-                yield return null;
             }
         }
 
         public override void Exit()
         {
             base.Exit();
-            investigating = false;
         }
     }
 }

@@ -4,5 +4,6 @@ public enum HalfZombeeScenario
     HeardNoise = 1,
     BitCiv = 2,
     HeardUnpleasantNoise =3,
-    SeesLight = 4
+    SeesLight = 4,
+    Dead = 5
 }
