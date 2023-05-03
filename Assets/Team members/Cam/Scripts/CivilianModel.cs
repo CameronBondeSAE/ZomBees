@@ -151,7 +151,7 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 	public void Interact()
 	{
 		// navMeshAgent.SetDestination(ZombeeGameManager.Instance.ConvertGridSpaceToWorldSpace("K8"));
-		navMeshAgent.SetDestination(new Vector3(400,0,400));
+		// navMeshAgent.SetDestination(new Vector3(400,0,400));
 
 	}
 

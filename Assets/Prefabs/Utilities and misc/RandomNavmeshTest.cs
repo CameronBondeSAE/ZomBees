@@ -76,7 +76,7 @@ public class RandomNavmeshTest : MonoBehaviour
 	{
 		if (!navMeshAgent.pathPending && !navMeshAgent.hasPath) 
 		{
-			Debug.Log ("I have reached my destination!");
+			// Debug.Log ("I have reached my destination!");
 			FindRandomSpot();
 		}
 		// if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)

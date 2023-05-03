@@ -15,6 +15,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 using ChatRequest = OpenAI.Chat.ChatRequest;
+using Random = UnityEngine.Random;
 
 // using ChatRequest = OpenAI_API.Chat.ChatRequest;
 
@@ -51,6 +52,17 @@ public class CivGPT : MonoBehaviour, IHear
 
 	public TraitScriptableObject ageSO;
 
+	[TextArea(10,10)]
+	public string backStories_ReturnSeparatedLines;
+
+	[TextArea(10, 10)]
+	public string conspiracyTheories_ReturnSeparatedLines;
+
+	public bool randomBackStoryAndConspiracy = true;
+	
+	public string backStory;
+	public string conspiracyTheory;
+	
 	[Serializable]
 	public class ConversationWithCharacterBase
 	{
@@ -72,13 +84,16 @@ public class CivGPT : MonoBehaviour, IHear
 	public ChatEmitter        chatEmitter;
 
 
-	// [Header("Test area")]
-	// [TextArea(5, 40)]
-	//private string systemMessage;
+	[ReadOnly]
+	[Header("Test area")]
+	[TextArea(5, 40)]
+	private string systemMessageDebug;
 
-	// [TextArea(5, 40)]
-	// public string prompt;
+	[FormerlySerializedAs("promptHistory")]
+	[TextArea(5, 40)]
+	public string promptHistoryDebug;
 
+	
 
 	Dictionary<CharacterBase, Conversation> chats         = new Dictionary<CharacterBase, Conversation>();
 	Dictionary<CharacterBase, Relationship> relationships = new Dictionary<CharacterBase, Relationship>();
@@ -90,7 +105,8 @@ public class CivGPT : MonoBehaviour, IHear
 	// GoDoIt plugin
 	OpenAIAPI                            api;
 	public ConversationWithCharacterBase currentChat = new ConversationWithCharacterBase();
-
+	public GPTResponseData currentGptResponseData;
+	
 	void Awake()
 	{
 		// InitRageAgainstThePixelPlugin();
@@ -102,6 +118,11 @@ public class CivGPT : MonoBehaviour, IHear
 		Array values = Enum.GetValues(typeof(CivCountryOfOrigin));
 		randomCountry = (CivCountryOfOrigin) values.GetValue(UnityEngine.Random.Range(0, values.Length));
 
+		if (randomBackStoryAndConspiracy)
+		{
+			PickBackStoryAndTheory();
+		}
+		
 		// Default chat with the world, for world events and self scheduled quest events
 		FindOrCreateChatInDictionaryAndAppend(GetComponent<CharacterBase>(), "");
 	}
@@ -213,6 +234,9 @@ public class CivGPT : MonoBehaviour, IHear
 		currentChat.Conversation.AppendUserInput(input);
 		var res = await currentChat.Conversation.GetResponseFromChatbotAsync();
 		Debug.Log(res, gameObject);
+
+		promptHistoryDebug = ShowFullLog();
+		
 		JSONToReal(res);
 
 		// and get the response
@@ -236,70 +260,86 @@ public class CivGPT : MonoBehaviour, IHear
 		//     ""fear"": 0.9
 		// }";
 
-		GPTResponseData gptResponseData;
+		List<GPTResponseData> gptResponseDatas;
 		try
 		{
-			gptResponseData = JsonConvert.DeserializeObject<GPTResponseData>(json);
+			gptResponseDatas = JsonConvert.DeserializeObject<List<GPTResponseData>>(json);
 		}
 		catch (Exception e)
 		{
-			Console.WriteLine(e);
+			Debug.LogError("JSON FAILED: "+e);
 			throw;
 		}
 
-		if (gptResponseData != null)
+		// For when I get asked to do multiple things over time
+		// TODO: CHECK: If he gets asked to do two things WITHOUT times, I guess he'll just do both and immediately override the first one???
+		foreach (GPTResponseData gptResponseData in gptResponseDatas)
 		{
-			GPTOutputDialogueEvent?.Invoke(this, gptResponseData.OutputSpeech);
-
-			// Wait for action to happen after talking
-			if (gptResponseData.OutputSpeech != "")
+			if (gptResponseData != null)
 			{
-				await Task.Delay(3000 + gptResponseData.OutputSpeech.Length * 60);
-			}
+				// So other objects can get at some details
+				currentGptResponseData = gptResponseData;
+				
+				GPTOutputDialogueEvent?.Invoke(this, gptResponseData.OutputSpeech);
 
-			if (gptResponseData.MemorableEvent)
-			{
-				// TODO figure out how to add conversation bits to the memories
-				// memoryManager.AddMemory();
-			}
-
-			chatEmitter.PrepareEmit();
-			chatEmitter.Emit(gptResponseData.OutputSpeech, gameObject);
-
-			// Delayed action?
-			if (gptResponseData.ScheduleActionForTime > WorldTime.Instance.time)
-			{
-				// Delay the action. Only if GPT thinks it's worth remembering
-				Debug.Log("		Delayed action. Try to schedule. My time = " + WorldTime.Instance.time +
-						  " : Response time = " + gptResponseData.ScheduleActionForTime);
-				// TODO: Should this be true if it's worth doing???
-				// if (gptResponseData.MemorableEvent)
+				// Wait for action to happen after talking
+				if (gptResponseData.OutputSpeech != "")
 				{
-					string descriptionForGpt = "";
-					if (gptResponseData.SummaryForMemory != "")
-					{
-						descriptionForGpt = gptResponseData.SummaryForMemory;
-					}
-					else
-					{
-						descriptionForGpt = gptResponseData.CivAction.ToString();
-					}
-
-					questTrackerSimple.eventsList.Add(new CharacterQuestEvent
-													  {
-														  descriptionForGPT       = descriptionForGpt,
-														  CivAction               = gptResponseData.CivAction,
-														  TimeToPerformAction     = gptResponseData.ScheduleActionForTime,
-														  GridCoordinateForAction = gptResponseData.GridCoordinateForAction,
-														  gptResponseData         = gptResponseData
-													  });
+					await Task.Delay(3000 + gptResponseData.OutputSpeech.Length * 60);
 				}
-			}
-			else
-			{
-				// Do the action now
-				Debug.Log("CivGPT: JSONReal(). Doing Action = " + gptResponseData.CivAction.ToString());
-				GPTPerformingActionEvent?.Invoke(this, gptResponseData);
+
+				if (gptResponseData.MemorableEvent)
+				{
+					// TODO figure out how to add conversation bits to the memories
+					// memoryManager.AddMemory();
+				}
+
+				// When a civ hears ANOTHER civ talking, should we even bother replying?
+				// This stops them talking FOREVER about bullshit
+				// Check the OTHER character's civGPT for their last GPTResponse
+				// Won't run at all if it's the player as they don't have CivGPT script
+				CivGPT otherCivGPT = currentChat.CharacterBase.GetComponent<CivGPT>();
+				if (otherCivGPT != null && otherCivGPT.currentGptResponseData.AskingQuestion)
+				{
+					chatEmitter.PrepareEmit();
+					chatEmitter.Emit(gptResponseData.OutputSpeech, gameObject);
+				}
+
+				// Delayed action?
+				if (gptResponseData.ScheduledActionTime > WorldTime.Instance.time)
+				{
+					// Delay the action. Only if GPT thinks it's worth remembering
+					Debug.Log("		Delayed action = "+gptResponseData.CivAction+". My time = " + WorldTime.Instance.time +
+					          " : Response schedule time = " + gptResponseData.ScheduledActionTime);
+					// TODO: Should this be true if it's worth doing???
+					// if (gptResponseData.MemorableEvent)
+					{
+						string descriptionForGpt = "";
+						if (gptResponseData.SummaryForMemory != "")
+						{
+							descriptionForGpt = gptResponseData.SummaryForMemory;
+						}
+						else
+						{
+							descriptionForGpt = gptResponseData.CivAction.ToString();
+						}
+
+						questTrackerSimple.eventsList.Add(new CharacterQuestEvent
+						{
+							descriptionForGPT = descriptionForGpt,
+							CivAction = gptResponseData.CivAction,
+							TimeToPerformAction = gptResponseData.ScheduledActionTime,
+							GridCoordinateForAction = gptResponseData.GridCoordinateForAction,
+							gptResponseData = gptResponseData
+						});
+					}
+				}
+				else
+				{
+					// Do the action now
+					Debug.Log("CivGPT: JSONReal(). Doing Action = " + gptResponseData.CivAction.ToString());
+					GPTPerformingActionEvent?.Invoke(this, gptResponseData);
+				}
 			}
 		}
 	}
@@ -329,8 +369,8 @@ public class CivGPT : MonoBehaviour, IHear
 		[JsonProperty("action")]
 		public CivAction CivAction { get; set; }
 
-		[JsonProperty("scheduleActionForTime")]
-		public int ScheduleActionForTime { get; set; }
+		[JsonProperty("scheduledActionTime")]
+		public int ScheduledActionTime { get; set; }
 
 		[JsonProperty("gridCoordinateForAction")]
 		public string GridCoordinateForAction { get; set; }
@@ -343,6 +383,9 @@ public class CivGPT : MonoBehaviour, IHear
 
 		[JsonProperty("summaryForMemory")]
 		public string SummaryForMemory { get; set; }
+		
+		[JsonProperty("askingQuestion")]
+		public bool AskingQuestion { get; set; }
 	}
 
 	public void SoundHeard(SoundProperties soundProperties)
@@ -360,7 +403,6 @@ public class CivGPT : MonoBehaviour, IHear
 
 			// Does this chat combo exist? No? Create it
 			CharacterBase characterBase = soundProperties.Source.GetComponent<CharacterBase>();
-
 			FindOrCreateChatInDictionaryAndAppend(characterBase, soundProperties.Dialogue);
 		}
 	}
@@ -385,27 +427,39 @@ public class CivGPT : MonoBehaviour, IHear
 
 			if (information != "")
 			{
-				string example = @"
-			{
-				""emotion"": ""Neutral"",
-				""outputSpeech"": ""Hey, what's up?"",
-				""action"": ""DoNothing"",
-				""scheduleActionForTime"": 0,
-				""gridCoordinateForAction"": ""J8"",
-				""memorableEvent"": false,
-				""summaryForMemory"": """"}";
+			// 	string example = @"
+			// [{
+			// 	""emotion"": ""Neutral"",
+			// 	""outputSpeech"": ""Yeah, I can scout for supplies at 9:50 and stop at 13:20."",
+			// 	""action"": ""DoNothing"",
+			// 	""scheduledActionTime"": 590,
+			// 	""gridCoordinateForAction"": ""J8"",
+			// 	""memorableEvent"": true,
+			// 	""summaryForMemory"": ""Scouted for supplies""},
+			// 	{
+			// 	""emotion"": ""Neutral"",
+			// 	""outputSpeech"": """",
+			// 	""action"": ""DoNothing"",
+			// 	""scheduledActionTime"": 800,
+			// 	""gridCoordinateForAction"": ""J8"",
+			// 	""memorableEvent"": false,
+			// 	""summaryForMemory"": """"}
+			// 	}]";
 
-				AppendUserInput(
-								"ONLY OUTPUT IN JSON FORMATTED TEXT. Here's an example " + example +
-								". Give no explanation or clarifications. Here is the user's prompt: " +
-								information);
+
+			// AppendUserInput(information);
+			// AppendUserInput("ONLY OUTPUT IN JSON FORMATTED TEXT. Here's an example " + example +
+			//                 ". Give no explanation or clarifications. Here is the user's prompt: " +
+			//                 information+"\n");
+			AppendUserInput("ONLY OUTPUT IN JSON FORMATTED TEXT. Give no explanation or clarifications. Here is the user's prompt: " +
+			                information+"\n");
 			}
 		}
 	}
 
 
 	[Button]
-	public void ShowFullLog()
+	public string ShowFullLog()
 	{
 		string fullLog = "";
 		// the entire chat history is available in chat.Messages
@@ -418,12 +472,19 @@ public class CivGPT : MonoBehaviour, IHear
 
 			Debug.Log(fullLog, gameObject);
 		}
+
+		return fullLog;
 	}
 
 	// EVERY request has to recreate the system prompt, due to changing memories etc
 	public string AssembleSystemPrompt()
 	{
 		string prompt = "";
+
+		// TODO: Gender. Again, traits are just a number. Do we even need this at all?
+		// TODO: Inventory
+		// TODO: finalPrompt += "\nThese are your interests. ";
+		// TODO: Relationship trust/fear etc
 
 		prompt +=
 			"You are a character in a horror game. The world has been taken over by unknown creatures that resemble bees. The characters need to work together to survive and destroy the creatures.";
@@ -432,12 +493,8 @@ public class CivGPT : MonoBehaviour, IHear
 		prompt +=
 			"\nThe 'beeness' trait is how much you've been infected by a bee sting. The higher the value, the more you like the creatures";
 		prompt +=
-			"\nThe other characters will use 24 hour time formatting, but you store it as an int with total minutes.";
+			"\nThe other characters will use 24 hour time formatting, but you store it as an int with total minutes. Actions that should happen now should use a 0 in the scheduledActionTime. Don't include JSON variables that aren't needed";
 		
-		// TODO: Add conspiracy theories
-		// TODO: Add backstory
-		// TODO: Gender. Again, traits are just a number. Do we even need this at all?
-		// TODO: Inventory
 
 		// World state, time of day etc
 		prompt += "\nThe time is " + WorldTime.Instance.time + " in minutes. The day is " +
@@ -449,13 +506,18 @@ public class CivGPT : MonoBehaviour, IHear
 		// Country
 		prompt += "\n\nYour country of origin is " + randomCountry + ". ";
 
+		prompt += "\nYour backstory is " + backStory;
+		prompt += "\nYou believe the " + conspiracyTheory;
+
+		prompt += "\nUse your age and backstory to determine how to speak. Weave in your backstory and why you think the bees are here.";
+		
 		prompt += "\n\nThese are your traits, with a 0 to 1 strength. ";
 		foreach (TraitStats traitStats in civilianTraits.traits)
 		{
 			float value = 0;
 			if (traitStats.traitScriptableObject == ageSO)
 			{
-				value = traitStats.value * 10f; // HACK: Age is 0 to 100 (from the 0 to 1 trait value)
+				value = traitStats.value * 100f; // HACK: Age is 0 to 100 (from the 0 to 1 trait value)
 			}
 			else
 			{
@@ -466,17 +528,21 @@ public class CivGPT : MonoBehaviour, IHear
 			{
 				Debug.LogError("Trait threshold can't be zero!");
 			}
+
+			// Skip low value traits??
+			// if (value*traitStats.threshold > 0.5f)
+			// {
+			// 	
+			// }
 			prompt +=
 				traitStats.traitScriptableObject.name + " = " +
-				(value / traitStats.threshold).ToString("0.0") + ", ";
+				(value * traitStats.threshold).ToString("0.0") + ", ";
 			// I divide by threshold to normalise all values from 0 to 1, even if a threshold is say 0.4
 		}
 
 		// TODO: This doesn't work
 		prompt.Remove(prompt.Length - 2); // Remove the hanging comma space
-
-		// TODO:
-		// finalPrompt += "\nThese are your interests. ";
+		
 
 		// Memories
 		if (memoryManager.memories.Count > 0)
@@ -506,11 +572,13 @@ public class CivGPT : MonoBehaviour, IHear
 		}
 
 		prompt +=
-			"\n\nUse this JSON as a template. You don't have to put anything in ExampleSpeech if it's not important.";
+			"\n\nUse this JSON as a template.";//" You don't have to put anything in ExampleSpeech if it's not important.";
 		prompt +=
 			"\nReplace ExampleGridCoordinate with an atlas grid coordinate";
 		prompt +=
-			"\n Choose one action in the example json. Don't talk about doing things that you can't do.";
+			"\nChoose one emotion in the example json. Don't choose one that's not in the list.";
+		prompt +=
+			"\nChoose one action in the example json. Don't talk about doing things that you can't do.";
 
 		if (supportedActions.Count <= 0)
 		{
@@ -536,22 +604,38 @@ public class CivGPT : MonoBehaviour, IHear
 				emotions += "|";
 			}
 		}
+
+		prompt += "\nFor more than one action, add more entries to the JSON array.";
 		
 		prompt += @"
-		{
+		[{
 			""emotion"": """+emotions+@""",
 			""outputSpeech"": ""ExampleSpeech"",
 			""action"": """ + actions + @""",
-			""scheduleActionForTime"": IntegerOfTimeInMinutes,
+			""scheduledActionTime"": 0,
 			""gridCoordinateForAction"": ""ExampleGridCoordinate"",
 			""memorableEvent"": true|false,
 			""summaryForMemory"": ""ExampleSummary"",
-		}";
+			""askingQuestion"": true|false,
+		}]";
 
 		prompt +=
 			"\n\nONLY OUTPUT IN JSON FORMATTED TEXT. Don't include escape characters. Don't include explanations.";
 
 		Debug.Log("System prompt: \n" + prompt, gameObject);
+
+		systemMessageDebug = prompt;
+		
 		return prompt;
+	}
+
+	public void PickBackStoryAndTheory()
+	{
+		string[] lines = backStories_ReturnSeparatedLines.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+		backStory = lines[Random.Range(0, lines.Length - 1)];
+		
+		
+		string[] lines2 = conspiracyTheories_ReturnSeparatedLines.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+		conspiracyTheory = lines2[Random.Range(0, lines.Length - 1)];
 	}
 }

@@ -9,8 +9,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1437729101, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: checkInterval
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437729101, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: eventsList.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1437729101, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: eventsList.Array.data[0].CivAction
@@ -32,13 +36,17 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.6499996
       objectReference: {fileID: 0}
+    - target: {fileID: 4286518415627018922, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: m_Intensity
+      value: 91.121704
+      objectReference: {fileID: 0}
     - target: {fileID: 5195704613697758565, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 5195704613697758565, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_RootOrder
-      value: 42
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -82,8 +90,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389367, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_Name
-      value: Civ bomb guy
+      value: Civ bomb guy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5652203886910914644, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5652203886910914644, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
     - target: {fileID: 5835878249621070532, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: ElevenLabsVoiceAPITest
       value: 
@@ -106,7 +118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: traits.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: serializationData.Prefab
@@ -133,6 +145,10 @@ PrefabInstance:
       value: 0.307
       objectReference: {fileID: 0}
     - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: traits.Array.data[6].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: traits.Array.data[0].threshold
       value: 1
       objectReference: {fileID: 0}
@@ -155,6 +171,22 @@ PrefabInstance:
     - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: traits.Array.data[5].threshold
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: traits.Array.data[6].threshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: traits.Array.data[1].canBeAlteredByGPT
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: traits.Array.data[6].canBeAlteredByGPT
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: traits.Array.data[6].changeValueOverTime
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: traits.Array.data[0].traitScriptableObject
@@ -180,6 +212,10 @@ PrefabInstance:
       propertyPath: traits.Array.data[5].traitScriptableObject
       value: 
       objectReference: {fileID: 11400000, guid: e28aeaee3c5a5fc48b2bfda818d4263d, type: 2}
+    - target: {fileID: 8996337146436201905, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: traits.Array.data[6].traitScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ebb34689a60e164caf055183a550fa2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

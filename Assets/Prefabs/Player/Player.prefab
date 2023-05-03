@@ -159,6 +159,7 @@ MonoBehaviour:
   isCiv: 0
   importance: 0
   description: Torch light
+  homeBase: {fileID: 0}
   initialLength: 10
   distance: 10
   lightCone: {fileID: 2115877263}
@@ -255,7 +256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6271187259181377446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.879, z: 0.008}
+  m_LocalPosition: {x: -0, y: 0.879, z: -0.039}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -560,7 +561,7 @@ Transform:
   - {fileID: 3657965013280244160}
   - {fileID: 6271187259283767327}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6271187260368080560
 Rigidbody:
@@ -637,6 +638,7 @@ MonoBehaviour:
   isCiv: 0
   importance: 1
   description: Player
+  homeBase: {fileID: 0}
   _inputManager: {fileID: 580642317967517823}
   _rb: {fileID: 0}
   _movementInput: {x: 0, y: 0}
@@ -700,7 +702,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.23
+  m_Radius: 0.35
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -757,14 +759,17 @@ MonoBehaviour:
   - traitScriptableObject: {fileID: 11400000, guid: ca72b4631b3b6d04ab91364ae2a0e190, type: 2}
     value: 0.814
     threshold: 1
+    changeValueOverTime: 0
     thresholdHit: 0
   - traitScriptableObject: {fileID: 11400000, guid: a7b0073751aff784d975994f810239c9, type: 2}
     value: 0.255
     threshold: 1
+    changeValueOverTime: 0
     thresholdHit: 0
   - traitScriptableObject: {fileID: 11400000, guid: 304b019197703c34a939d77c9c91ef71, type: 2}
     value: 0
     threshold: 1
+    changeValueOverTime: 0
     thresholdHit: 0
 --- !u!114 &6989164079533549418
 MonoBehaviour:
@@ -1387,6 +1392,10 @@ PrefabInstance:
     - target: {fileID: 126132, guid: 8c67a9f3ccb17194ebf03e2327df0c98, type: 3}
       propertyPath: m_Name
       value: HumanScale
+      objectReference: {fileID: 0}
+    - target: {fileID: 126132, guid: 8c67a9f3ccb17194ebf03e2327df0c98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 472608, guid: 8c67a9f3ccb17194ebf03e2327df0c98, type: 3}
       propertyPath: m_RootOrder

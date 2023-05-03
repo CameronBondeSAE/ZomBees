@@ -46,7 +46,7 @@ Transform:
   - {fileID: 9194026212291496017}
   - {fileID: 8121367776909034940}
   m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &5638098703994389362
 CapsuleCollider:
@@ -108,8 +108,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 2.5
+  m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -216,6 +216,141 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   supportedActions: 0400000009000000
   ageSO: {fileID: 11400000, guid: e28aeaee3c5a5fc48b2bfda818d4263d, type: 2}
+  backStories_ReturnSeparatedLines: 'A former nurse who lost her husband and two
+    children to the virus and has been wandering the desolate streets in search of
+    a purpose ever since.
+
+    A once-successful businessman who turned to robbery
+    to survive in the new world, but has recently started to question the morality
+    of his actions.
+
+    A teenager who grew up in a doomsday cult and has found
+    herself struggling to adjust to life outside the compound after its collapse.
+
+    A
+    retired Marine who is haunted by the atrocities he witnessed during the war and
+    has become a lone wolf in the post-apocalyptic landscape.
+
+    A former gang
+    member who has found a sense of belonging in a community of survivors, but must
+    constantly fight against his old instincts to protect his new family.
+
+    A
+    prepper who had stockpiled supplies and weapons for years before the disaster,
+    but is now racked with guilt for not being able to save her family.
+
+    A young
+    scientist who was working on a cure for the virus when the world fell apart and
+    is now racing against time to finish his research.
+
+    A teacher who has taken
+    on the role of mentor to a group of orphaned children, but is struggling to keep
+    them safe and hopeful in the face of constant danger.
+
+    A former beauty queen
+    who has been forced to trade her looks for survival skills in a world where appearance
+    means nothing.
+
+    A truck driver who was on the road when the disaster struck
+    and has been traveling ever since, hoping to find some sign of life beyond the
+    desolation.
+
+    A firefighter who lost her entire team in the disaster and has
+    been struggling to come to terms with her survivor''s guilt.
+
+    A computer
+    programmer who has discovered a hidden government facility and is determined
+    to uncover the secrets within.
+
+    A chef who has used his culinary skills to
+    make the most of limited resources and keep his community fed.
+
+    A journalist
+    who has been documenting the struggles of survivors in hopes of one day finding
+    a way to rebuild.
+
+    A single mother who is determined to protect her children
+    at all costs, even if it means taking on dangerous missions.
+
+    A former athlete
+    who has used his physical abilities to help those in need, but is haunted by
+    the memories of his own failures.
+
+    A handyman who has become a valuable member
+    of his community by using his skills to fix broken equipment and structures.
+
+    A
+    student who was on a study abroad trip when disaster struck and has been trying
+    to find a way back home ever since.
+
+    A veterinarian who has been using her
+    medical expertise to care for injured animals in the wild.
+
+    A musician who
+    has found solace in playing for others, even in the darkest of times.'
+  conspiracyTheories_ReturnSeparatedLines: 'The government has created these creatures
+    as a way to control the population and enforce a new world order.
+
+    The bees
+    are an alien invasion designed to take over the planet.
+
+    The bees are a result
+    of a secret biological weapons program gone wrong.
+
+    The bees were created
+    by a rogue scientist attempting to play God.
+
+    The bees are a natural mutation
+    caused by radiation from the sun.
+
+    The bees are a manifestation of a collective
+    human subconscious fear of insectoid creatures.
+
+    The bees were released intentionally
+    by a secret society trying to bring about the end of the world.
+
+    The bees
+    were created by a corporation looking to profit off the destruction they cause.
+
+    The
+    bees are a warning from nature to humans about the consequences of our actions
+    on the environment.
+
+    The bees are the result of a time-traveling experiment
+    gone wrong.
+
+    The bees are a punishment from a vengeful god.
+
+    The bees
+    are a product of a reality-bending experiment gone awry.
+
+    The bees are a
+    new form of life that has evolved to take over the planet.
+
+    The bees are
+    the result of a virus that infects insects, causing them to mutate.
+
+    The
+    bees were genetically engineered by a rogue country looking to gain an edge in
+    the global arms race.
+
+    The bees are an ancient curse brought on by a long-forgotten
+    civilization.
+
+    The bees are the work of a rogue AI that has gone rogue and
+    is now using the creatures as its agents.
+
+    The bees are the result of a government
+    experiment to create a new form of renewable energy.
+
+    The bees are a byproduct
+    of a massive geoengineering project gone wrong.
+
+    The bees are a sign of the
+    impending apocalypse, heralding the end of the world.'
+  randomBackStoryAndConspiracy: 1
+  backStory: 
+  conspiracyTheory: 
   randomCountry: 0
   apiKeys: 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
   memoryManager: {fileID: 7466785138027924600}
@@ -223,6 +358,7 @@ MonoBehaviour:
   questTrackerSimple: {fileID: 1437729101}
   antAIAgent: {fileID: 4601465466201257981}
   chatEmitter: {fileID: 4706506736481325993}
+  promptHistoryDebug: 
   currentChat:
     CharacterBase: {fileID: 0}
 --- !u!114 &8996337146436201905
@@ -352,6 +488,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5638098703994389361}
     m_Modifications:
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.004268563
+      objectReference: {fileID: 0}
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.001836664
+      objectReference: {fileID: 0}
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.000238254
+      objectReference: {fileID: 0}
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.09057735
+      objectReference: {fileID: 0}
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7087825
+      objectReference: {fileID: 0}
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.015825255
+      objectReference: {fileID: 0}
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.6994089
+      objectReference: {fileID: 0}
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 173.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -89.698
+      objectReference: {fileID: 0}
+    - target: {fileID: 190422592828023918, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -8.626007
+      objectReference: {fileID: 0}
     - target: {fileID: 1467348423959695344, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
       propertyPath: m_Name
       value: Civ View
@@ -403,6 +579,126 @@ PrefabInstance:
     - target: {fileID: 6048419703654018736, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000005208462
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018354706
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0000000013969841
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99892324
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.004296682
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0027366776
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0461135
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.506
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.291
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155901147724294012, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 5.285
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00000040593295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018354725
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.000000016763803
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9998453
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0035234855
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0023929877
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.017067548
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.408
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.267
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219819299531246156, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1.955
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.004189691
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.001897132
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.000239393
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.012912672
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.71104753
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.040378325
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7018649
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -177.804
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -89.172
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595826135364473742, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -4.3359985
       objectReference: {fileID: 0}
     - target: {fileID: 8978708526143702053, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
       propertyPath: civGpt
@@ -503,21 +799,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5638098703994389361}
     m_Modifications:
+    - target: {fileID: 773831630170831252, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}
+      propertyPath: m_Intensity
+      value: 91.121704
+      objectReference: {fileID: 0}
     - target: {fileID: 9201240449187773481, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}
       propertyPath: m_RootOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9201240449187773481, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.267
+      value: 0.118
       objectReference: {fileID: 0}
     - target: {fileID: 9201240449187773481, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12
+      value: 0.601
       objectReference: {fileID: 0}
     - target: {fileID: 9201240449187773481, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.151
+      value: 0.441
       objectReference: {fileID: 0}
     - target: {fileID: 9201240449187773481, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -558,8 +858,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9201240449187773490, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3867614221140635219}
   m_SourcePrefab: {fileID: 100100000, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}
+--- !u!1 &5652203886755161868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9201240449187773490, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}
+  m_PrefabInstance: {fileID: 3585417314978585406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3867614221140635219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652203886755161868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67274e25511465344b6bc5ff84841888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5652203886755161879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9201240449187773481, guid: 51adc438476d6b7439f45332b17a6f4d, type: 3}

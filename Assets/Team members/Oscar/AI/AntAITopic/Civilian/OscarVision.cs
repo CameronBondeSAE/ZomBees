@@ -154,7 +154,7 @@ public class OscarVision : MonoBehaviour
 
 			allInSight.Remove(dynamicObj);
 			
-			print(dynamicObj.description);
+			// print(dynamicObj.description);
 			
 		}
 	}

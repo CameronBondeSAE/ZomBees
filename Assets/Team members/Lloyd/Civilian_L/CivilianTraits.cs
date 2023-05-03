@@ -113,6 +113,8 @@ namespace Lloyd
         [Range(-1f, 1f)]
         public float changeValueOverTime = 0f;
 
+        public bool canBeAlteredByGPT = false;
+        
         [ReadOnly] public bool thresholdHit;
     }
 }

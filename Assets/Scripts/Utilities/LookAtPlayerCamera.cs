@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Lloyd;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -10,6 +11,7 @@ public class LookAtPlayerCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+	    target = ZombeeGameManager.Instance.playerModel.transform;
     }
 
     // Update is called once per frame

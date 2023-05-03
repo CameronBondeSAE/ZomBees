@@ -12,6 +12,8 @@ public class CivViewModel : MonoBehaviour
 
     public TextMeshPro textMeshProUGUI;
 
+    public Renderer mainMesh;
+
     [SerializeField]
     private ParticleSystem bloodParticles;
 
@@ -25,6 +27,8 @@ public class CivViewModel : MonoBehaviour
     {
         civGpt.GPTOutputDialogueEvent += CivGptOnGPTOutputDialogueEvent;
         civGpt.GPTPerformingActionEvent += CivGptOnGPTPerformingActionEvent;
+
+        mainMesh.material.color = new Color(Random.value, Random.value, Random.value);
     }
 
 

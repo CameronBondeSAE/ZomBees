@@ -13,7 +13,7 @@ namespace Virginia
        private void OnTriggerEnter(Collider other)
         {
             Switch.ThingToSwitch?.TurnOn();
-            Debug.Log("on");
+            // Debug.Log("on");
             
 
         }
