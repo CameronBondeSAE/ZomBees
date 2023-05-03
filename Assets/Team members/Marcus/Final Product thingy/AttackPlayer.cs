@@ -26,7 +26,7 @@ namespace Marcus
         {
             if (vision.lightInSight.Count > 0)
             {
-                TurnTowards(rb, vision.lightInSight[0].gameObject, 0.1f);
+                TurnTowards(rb, vision.lightInSight[0].gameObject, 1000f);
 
                 tracking = true;
                 noticeCounter += Time.deltaTime;
