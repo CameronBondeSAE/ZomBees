@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Marcus;
 using UnityEngine;
 
-public class FlyDudeMovement : MonoBehaviour
+public class BasicFlyDudeMovement : MonoBehaviour
 {
     private float moveSpeed;
     private Rigidbody rb;

@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
 
     public float maxHealth;
     private float minHealth = 0f;
-    [SerializeField]private float currHealth;
+    public float currHealth { get; private set; }
     private float amount;
 
     public void OnEnable()
