@@ -42,7 +42,7 @@ namespace Lloyd
 
             look.target = attackTarget;
             
-            shaderScript.ChangeColorRed();
+//            shaderScript.ChangeColorRed();
         
             pissedOffFloat = 0;
             pissedOff = false;

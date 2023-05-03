@@ -11,13 +11,36 @@ namespace Lloyd
         public void OnEnable()
         {
             hearing = GetComponent<Hearing>();
-            vision = GetComponent<CivVision>();
+            vision = GetComponent<OscarVision>();
         }
 
         public void Update()
         {
-            heardNoise = hearing.heardSound;
-            seesCiv = vision.seesCivs;
+            if (hearing.heardSound)
+            {
+                foreach (SoundProperties sounds in hearing.soundsList)
+                {
+                    if (sounds.SoundType == SoundEmitter.SoundType.CreatureRepellant)
+                        heardUnpleasantNoise = true;
+
+                    else
+                    {
+                        heardNoise = true;
+                    }
+                }
+            }
+
+            else
+            {
+                heardNoise = false;
+                heardUnpleasantNoise = false;
+            }
+                
+                
+            if (vision.civsInSight.Count > 0)
+            {
+                seesCiv = true;
+            }
         }
 
         #region AntAI
@@ -28,6 +51,10 @@ namespace Lloyd
 
         public bool seesCiv;
 
+        public bool heardUnpleasantNoise;
+
+        public bool seesLight;
+
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
         {
             aWorldState.BeginUpdate(aAgent.planner);
@@ -37,6 +64,10 @@ namespace Lloyd
                 aWorldState.Set(HalfZombeeScenario.BitCiv, bitCiv);
 
                 aWorldState.Set(HalfZombeeScenario.SeesCiv, seesCiv);
+
+                aWorldState.Set(HalfZombeeScenario.HeardUnpleasantNoise, heardUnpleasantNoise);
+
+                aWorldState.Set(HalfZombeeScenario.SeesLight, seesLight);
             }
         }
 
@@ -50,7 +81,7 @@ namespace Lloyd
 
         #region Vision
 
-        public CivVision vision;
+        public OscarVision vision;
 
         #endregion
     }

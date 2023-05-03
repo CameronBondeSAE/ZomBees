@@ -6,45 +6,24 @@ using UnityEngine;
 
 public class HalfZombeeTurnTowards : MonoBehaviour
 {
-    public Vector3 targetPosition;
+    public Transform targetTransform;
 
     public Rigidbody rb;
 
-    public float minAngle;
-
-    public bool turning;
-
-    public float torqueSpeed;
+    public float turnSpeed;
 
     public void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        turning = true;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
-        if (turning)
+        if (targetTransform != null)
         {
-            Vector3 targetDir = targetPosition - transform.position;
-
-            float angle = Vector3.SignedAngle(transform.forward, targetDir, Vector3.up);
-            
-            float torqueSign = Mathf.Sign(angle);
-
-            if (angle < minAngle)
-            {
-                //can't strafe with MoveForwards on
-                /*
-                if (facingAway)
-                    angle = -angle;*/
-
-                rb.AddRelativeTorque(new Vector3(0, torqueSign * torqueSpeed, 0), ForceMode.VelocityChange);
-            }
-            else
-            {
-                rb.angularVelocity = Vector3.zero;
-            }
+            Vector3 targetDir = (targetTransform.position - transform.position).normalized;
+            Vector3 torqueDirection = Vector3.Cross(transform.forward, targetDir);
+            rb.AddTorque(torqueDirection * turnSpeed);
         }
     }
 }

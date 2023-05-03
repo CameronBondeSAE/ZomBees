@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Oscar;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
+using Oscar;
 
 namespace Lloyd
 {
@@ -15,6 +17,8 @@ namespace Lloyd
         //chatGPT WAS HERE
 
         public CivVision civVision;
+
+        public OscarVision oscarVision;
 
         private Rigidbody rb;
 
@@ -32,11 +36,12 @@ namespace Lloyd
 
         public bool running = false;
 
-        public List<GameObject> objs;
+        public List<DynamicObject> objs;
 
         private void OnEnable()
         {
-            civVision = GetComponent<CivVision>();
+            oscarVision = GetComponent<OscarVision>();
+        //    civVision = GetComponent<CivVision>();
             profile = GetComponent<HalfZombeeProfile>();
             rb = GetComponent<Rigidbody>();
             StartCoroutine(AdjustSpeed());
@@ -46,7 +51,8 @@ namespace Lloyd
         {
             while (true)
             {
-                objs = new List<GameObject>(civVision.visibleObjects);
+                //objs = new List<GameObject>(civVision.visibleObjects);
+                objs = new List<DynamicObject>(oscarVision.objectsInSight);
                 if (objs.Any())
                 {
                     float distance = Vector3.Distance(transform.position, objs[0].transform.position);

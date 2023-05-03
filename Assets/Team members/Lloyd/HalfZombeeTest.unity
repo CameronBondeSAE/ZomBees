@@ -1464,26 +1464,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &698232802 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2113993496808437944, guid: bbec12d51247d9543a7563ff39617592, type: 3}
-  m_PrefabInstance: {fileID: 2113993497221437274}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &698232819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698232802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71ff66bb6ef8b2f4aa3133d7cebf6deb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numRays: 10
-  initialRaycastDistance: 1
-  raycastDistanceDecay: 0.8
 --- !u!1 &802416920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2074,7 @@ MonoBehaviour:
   maxListeners: 20
   testProperties:
     Source: {fileID: 0}
-    SoundType: 0
+    SoundType: 8
     Radius: 50
     Distance: 0
     Directional: 0
@@ -3682,10 +3662,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2113993496808437930, guid: bbec12d51247d9543a7563ff39617592, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2113993496808437930, guid: bbec12d51247d9543a7563ff39617592, type: 3}
       propertyPath: maxPatrolPointsToCheck
       value: 0
       objectReference: {fileID: 0}
@@ -3693,10 +3669,6 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 2113993496808437931, guid: bbec12d51247d9543a7563ff39617592, type: 3}
-    - target: {fileID: 2113993496808437938, guid: bbec12d51247d9543a7563ff39617592, type: 3}
-      propertyPath: timeBetweenVisionChecks
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 2113993496808437943, guid: bbec12d51247d9543a7563ff39617592, type: 3}
       propertyPath: torqueSpeed
       value: 1
@@ -3704,10 +3676,6 @@ PrefabInstance:
     - target: {fileID: 2113993496808437944, guid: bbec12d51247d9543a7563ff39617592, type: 3}
       propertyPath: m_Name
       value: HalfZombee
-      objectReference: {fileID: 0}
-    - target: {fileID: 2113993496808437944, guid: bbec12d51247d9543a7563ff39617592, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2113993496808437945, guid: bbec12d51247d9543a7563ff39617592, type: 3}
       propertyPath: m_RootOrder
@@ -3757,16 +3725,8 @@ PrefabInstance:
       propertyPath: soundLingerTime
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 2113993496808437950, guid: bbec12d51247d9543a7563ff39617592, type: 3}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2113993496808437928, guid: bbec12d51247d9543a7563ff39617592, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2113993496808437944, guid: bbec12d51247d9543a7563ff39617592, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 698232819}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbec12d51247d9543a7563ff39617592, type: 3}

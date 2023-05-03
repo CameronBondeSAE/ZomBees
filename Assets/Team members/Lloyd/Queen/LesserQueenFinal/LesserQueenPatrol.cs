@@ -7,8 +7,10 @@ namespace Lloyd
     public class LesserQueenPatrol : AntAIState
     {
         public LesserQueenSensor queenSensor;
-        public SphereBob bob;
+        public SphereBobRB bob;
         public QueenEvent queenEvent;
+
+        public SharedMaterialChanger materialChanger;
 
         public bool hearSomething;
         public bool seeSomething;
@@ -18,6 +20,11 @@ namespace Lloyd
             base.Create(aGameObject);
             queenEvent = aGameObject.GetComponent<QueenEvent>();
             queenSensor = aGameObject.GetComponent<LesserQueenSensor>();
+            materialChanger = aGameObject.GetComponentInChildren<SharedMaterialChanger>();
+
+           // bob = aGameObject.GetComponent<SphereBobRB>();
+            
+            queenSensor.beeWings.ChangeBeeWingStats(-90, 15, true);
 
             hearSomething = false;
             seeSomething = false;
@@ -26,9 +33,9 @@ namespace Lloyd
         public override void Enter()
         {
             base.Enter();
-            bob = queenSensor.bob;
-            bob.enabled = true;
+//            bob.enabled = true;
             queenEvent.OnChangeQueenState(LesserQueenState.Green);
+//            materialChanger.ChangeColorGreen();
         }
 
         public override void Execute(float aDeltaTime, float aTimeScale)
@@ -47,7 +54,7 @@ namespace Lloyd
 
         public override void Exit()
         {
-          //  bob.enabled = false;
+//            bob.enabled = false;
         }
     }
 }

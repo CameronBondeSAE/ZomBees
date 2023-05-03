@@ -23,16 +23,14 @@ MonoBehaviour:
     - id: 3
       name: Dead
     - id: 4
-      name: Attack
-    - id: 5
       name: HasResource
-    - id: 6
+    - id: 5
       name: SpawnHive
-    - id: 7
+    - id: 6
       name: SpawnFollowers
-    - id: 8
+    - id: 7
       name: PrepareToAttack
-    - id: 9
+    - id: 8
       name: Agitated
   actions:
   - name: Patrol
@@ -43,48 +41,31 @@ MonoBehaviour:
     pre:
     - id: 1
       value: 0
+    - id: 3
+      value: 0
     - id: 4
       value: 0
-    - id: 3
+    - id: 0
+      value: 1
+    - id: 8
       value: 0
     - id: 5
       value: 0
-    - id: 0
-      value: 1
-    - id: 9
-      value: 0
     - id: 6
       value: 0
-    - id: 7
-      value: 0
     post:
     - id: 0
       value: 0
-  - name: PrepareToAttack
-    isDefault: 0
-    state: {fileID: 6567990286122523530, guid: b0259c5797d49b749a3add85e32755ed, type: 3}
-    cost: 0
-    position: {x: 651.6667, y: 45.000015}
-    pre:
-    - id: 1
-      value: 1
-    - id: 0
-      value: 0
-    post:
-    - id: 4
-      value: 1
   - name: Attack
     isDefault: 0
     state: {fileID: 5113330291672294385, guid: 3f440d94090a05f4e81fb5adc775092d, type: 3}
     cost: 0
     position: {x: 848.3334, y: 45.000023}
     pre:
-    - id: 4
+    - id: 1
       value: 1
     post:
-    - id: 4
-      value: 0
-    - id: 9
+    - id: 8
       value: 1
   - name: MoveToHiveSpot
     isDefault: 0
@@ -92,44 +73,36 @@ MonoBehaviour:
     cost: 0
     position: {x: 1058.3335, y: 44.999954}
     pre:
-    - id: 5
-      value: 1
     - id: 4
-      value: 0
-    - id: 9
+      value: 1
+    - id: 8
       value: 0
     post:
-    - id: 6
+    - id: 5
       value: 1
   - name: Agitated
     isDefault: 0
     state: {fileID: 5808969912205423487, guid: 2bfd10345a84a9e43aa2f5354838d4f0, type: 3}
     cost: 0
-    position: {x: 846.6664, y: 258.3334}
+    position: {x: 851.6664, y: 240.00006}
     pre:
-    - id: 9
+    - id: 8
       value: 1
     post:
-    - id: 9
+    - id: 8
       value: 0
   - name: InvestigateSound
     isDefault: 0
     state: {fileID: 1729071704234267617, guid: 259831935e93cb04f86e89f5d8f0490f, type: 3}
     cost: 0
-    position: {x: 415, y: 36.666702}
+    position: {x: 531.6667, y: 40.00004}
     pre:
     - id: 2
       value: 1
     - id: 0
       value: 0
-    - id: 4
-      value: 0
     post:
-    - id: 9
-      value: 1
-    - id: 2
-      value: 0
-    - id: 1
+    - id: 8
       value: 1
   - name: SpawnFollowers
     isDefault: 1
@@ -138,11 +111,9 @@ MonoBehaviour:
     position: {x: 915, y: 705}
     pre:
     - id: 6
-      value: 0
-    - id: 7
       value: 1
     post:
-    - id: 7
+    - id: 6
       value: 0
     - id: 0
       value: 1
@@ -150,21 +121,21 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 7369289450313721981, guid: 473dec47bffc2174591ab6a8fd96acbc, type: 3}
     cost: 0
-    position: {x: 636.66675, y: 605}
+    position: {x: 1371.6667, y: 595}
     pre:
-    - id: 6
+    - id: 5
       value: 1
     post:
-    - id: 7
-      value: 1
     - id: 6
+      value: 1
+    - id: 5
       value: 0
   goals:
   - name: SpawnHive
     isDefault: 1
     position: {x: 631.66656, y: 828.33325}
     conditions:
-    - id: 6
+    - id: 5
       value: 1
   worldStates:
   - position: {x: 205.00006, y: 506.66663}
@@ -187,6 +158,4 @@ MonoBehaviour:
     - id: 7
       value: 0
     - id: 8
-      value: 0
-    - id: 9
       value: 0

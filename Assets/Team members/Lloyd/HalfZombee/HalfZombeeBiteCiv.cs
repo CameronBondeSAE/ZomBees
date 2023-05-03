@@ -56,7 +56,7 @@ public class HalfZombeeBiteCiv : AntAIState
 
         if (vision.ReturnNearestCiv())
         {
-            turnTowards.targetPosition = vision.ReturnNearestCiv().position;
+            turnTowards.targetTransform = vision.ReturnNearestCiv();
             CheckDistance();
         }
 

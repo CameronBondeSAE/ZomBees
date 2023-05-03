@@ -25,15 +25,20 @@ namespace Lloyd
         public void SetHomePoint(Vector3 newPos)
         {
             homePoint = newPos;
+            originalHomepoint = newPos;
         }
 
         private void OnEnable()
         {
             rb = GetComponent<Rigidbody>();
             brain = GetComponent<BeeStingerBrain>();
-            homePoint = transform.position;
-            originalHomepoint = homePoint;
-            
+
+            if (homePoint == null)
+            {
+                homePoint = transform.position;
+                originalHomepoint = homePoint;
+            }
+
             StartWings();
 
             isBee = true;

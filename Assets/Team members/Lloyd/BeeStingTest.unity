@@ -421,6 +421,50 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &787027729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 787027730}
+  - component: {fileID: 787027731}
+  m_Layer: 0
+  m_Name: HalfZombeeRunAway
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &787027730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787027729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &787027731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787027729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b9fd31c4a7aba44a27872de13ac353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &902069353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4093698043019014009, guid: 9487ee4db6a0f994782b5b9adba2fcbd, type: 3}
@@ -797,7 +841,7 @@ PrefabInstance:
     - target: {fileID: 750106768172150419, guid: 7f8bf9c9842f3e546ae411e74c11c8f9, type: 3}
       propertyPath: paths.Array.data[0]
       value: 
-      objectReference: {fileID: 1440396105}
+      objectReference: {fileID: 0}
     - target: {fileID: 2681200209964297604, guid: 7f8bf9c9842f3e546ae411e74c11c8f9, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1160,17 +1204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: camn
---- !u!114 &1440396105 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7580649944573102855, guid: bed8999f350d500449df4efe211b6657, type: 3}
-  m_PrefabInstance: {fileID: 7580649943837702222}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86f7ec06d794efd409092520f5ef70ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1539167589
 GameObject:
   m_ObjectHideFlags: 0

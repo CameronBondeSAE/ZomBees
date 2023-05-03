@@ -1,4 +1,6 @@
 using UnityEngine;
+using Oscar;
+using Marcus;
 
 namespace Lloyd
 {
@@ -26,13 +28,13 @@ namespace Lloyd
 
         private float angleOffset;
 
-        private LookAtTarget lookAt;
-
         private CircleMovement circleMovement;
 
         private FollowerMinDist minDist;
 
         private BeeWingsManager beeWings;
+
+        public HalfZombeeTurnTowards turnTowards;
 
         public ShaderGraphChangeColor shader;
 
@@ -41,8 +43,12 @@ namespace Lloyd
             beeWings = GetComponentInChildren<BeeWingsManager>();
             beeWings.SpawnWings();
 
+            turnTowards = GetComponent<HalfZombeeTurnTowards>();
+
             shader = GetComponent<ShaderGraphChangeColor>();
             shader.ChangeColorPurple();
+
+            minDist = GetComponent<FollowerMinDist>();
 
             Begin();
         }
@@ -65,8 +71,6 @@ namespace Lloyd
             circleMovement = GetComponent<CircleMovement>();
 
             minDist = GetComponent<FollowerMinDist>();
-
-            lookAt = GetComponent<LookAtTarget>();
 
             rb = GetComponent<Rigidbody>();
 
@@ -98,7 +102,8 @@ namespace Lloyd
         {
             rotationTransform = swarmTransform;
             circleMovement.SetCenterPoint(swarmTransform);
-            lookAt.SetTarget(swarmTransform);
+            turnTowards.targetTransform = swarmTransform;
+            minDist.targetTransform = swarmTransform;
         }
 
         public void SetCircleSize(float newCircleSize)
@@ -113,9 +118,9 @@ namespace Lloyd
             if (rb != null)
             {
                 MoveToTarget();
-                lookAt.SetTarget(target);
+                /*turnTowards.targetTransform = target;
                 circleMovement.SetCenterPoint(target);
-                minDist.SetTarget(target);
+                minDist.SetTarget(target);*/
             }
         }
 

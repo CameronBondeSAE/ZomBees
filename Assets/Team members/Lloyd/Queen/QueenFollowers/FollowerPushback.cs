@@ -13,8 +13,7 @@ namespace Lloyd
 
         private void OnEnable()
         {
-            SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
-            sphereCollider.radius = sphereRadius;
+            sphereRadius = GetComponent<SphereCollider>().radius;
         }
 
         private void OnCollisionEnter(Collision collision)

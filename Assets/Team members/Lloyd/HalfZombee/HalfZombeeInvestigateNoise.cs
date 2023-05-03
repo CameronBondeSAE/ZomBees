@@ -14,8 +14,6 @@ namespace Lloyd
 
         public HalfZombeeTurnTowards turnTowards;
 
-        public CivVision vision;
-
         public Rigidbody rb;
 
         public Hearing hearing;
@@ -35,7 +33,6 @@ namespace Lloyd
         {
             base.Create(aGameObject);
             turnTowards = aGameObject.GetComponent<HalfZombeeTurnTowards>();
-            vision = aGameObject.GetComponent<CivVision>();
             profile = aGameObject.GetComponent<HalfZombeeProfile>();
             rb = aGameObject.GetComponent<Rigidbody>();
             hearing = aGameObject.GetComponent<Hearing>();
@@ -51,8 +48,11 @@ namespace Lloyd
 
             if (hearing.soundsList.Any())
             {
-                pathfinder.finalTarget = hearing.loudestRecentSound.Source.transform;
-                pathfinder.SeekPath(pathfinder.patrolPoints);
+                if (hearing.loudestRecentSound.SoundType != SoundEmitter.SoundType.CreatureRepellant)
+                {
+                    pathfinder.finalTarget = hearing.loudestRecentSound.Source.transform;
+                    pathfinder.SeekPath(pathfinder.patrolPoints);
+                }
             }
 
             investigating = true;
@@ -76,7 +76,7 @@ namespace Lloyd
             {
                 if (pathfinder.lastViablePatrolPoint != null)
                 {
-                    turnTowards.targetPosition = pathfinder.lastViablePatrolPoint.transform.position;
+                    turnTowards.targetTransform = pathfinder.lastViablePatrolPoint.transform;
                     tether.StartTether(rb, pathfinder.lastViablePatrolPoint.transform.position);
                     nextTarget = pathfinder.lastViablePatrolPoint.transform;
 

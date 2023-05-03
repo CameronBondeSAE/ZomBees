@@ -45,7 +45,7 @@ namespace Lloyd
 
             homePos = PatrolManager.singleton.hivePoints[0].transform;
 
-            turnTowards.targetPosition = homePos.position;
+            turnTowards.targetTransform = homePos;
 
             pathfinder.finalTarget = homePos;
             pathfinder.SeekPath(pathfinder.hivePoints);
@@ -61,7 +61,7 @@ namespace Lloyd
                 {
                     tether.StartTether(rb, pathfinder.lastViablePatrolPoint.transform.position);
                     nextTarget = pathfinder.lastViablePatrolPoint.transform;
-                    turnTowards.targetPosition = nextTarget.position;
+                    turnTowards.targetTransform = nextTarget;
 
                     if (Vector3.Distance(transform.position, pathfinder.lastViablePatrolPoint.transform.position) <
                         minDist)
@@ -72,7 +72,7 @@ namespace Lloyd
                     {
                         nextTarget = homePos;
                         tether.StartTether(rb, homePos.position);
-                        turnTowards.targetPosition = homePos.position;
+                        turnTowards.targetTransform = homePos;
                     }
                 }
 

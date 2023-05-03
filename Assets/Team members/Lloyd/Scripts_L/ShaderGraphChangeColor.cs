@@ -10,6 +10,8 @@ namespace Lloyd
     {
         public Renderer rend;
 
+        public Material targetMaterial;
+        
         public Material myMaterial;
 
         private void Awake()
@@ -18,7 +20,14 @@ namespace Lloyd
             if (rend == null)
                 rend = GetComponentInChildren<Renderer>();
             
-            myMaterial = rend.materials[2];
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers)
+            {
+                if (renderer.material == targetMaterial)
+                {
+                    renderer.material = myMaterial;
+                }
+            }
         }
 
         public void ChangeColorRed()

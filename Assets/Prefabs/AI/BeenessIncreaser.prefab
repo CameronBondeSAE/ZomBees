@@ -34,14 +34,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274482099753516393}
-  m_LocalRotation: {x: -0, y: -0.6058773, z: 0, w: 0.79555815}
-  m_LocalPosition: {x: 456.594, y: 17.809, z: 475.634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 307812122293706139}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &274482099753516395
 MonoBehaviour:
@@ -172,6 +172,7 @@ MonoBehaviour:
     ObstaclesBetween: 0
     Dialogue: 
   soundsList: []
+  soundLingerTime: 0
 --- !u!114 &6635926902050588414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,13 +250,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd28be45ee0c96d4e883c86c672a5c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenVisionChecks: 0
   boxOffset: {x: 0, y: 0, z: 25}
   boxSize: {x: 5, y: 5, z: 50}
+  sightMemoryTime: 0
   visibleObjects: []
   beeObjects: []
   seesBees: 0
   civObjects: []
   seesCivs: 0
+  switches: []
+  seesSwitch: 0
   interactables: []
   seesInteract: 0
   resources: []
@@ -449,38 +454,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1635b6db37171f54287d26326295a5a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1775537305334727522}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -6810379118734491892, guid: 1635b6db37171f54287d26326295a5a8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8976148655549508655}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1635b6db37171f54287d26326295a5a8, type: 3}
 --- !u!4 &307812122293706139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1635b6db37171f54287d26326295a5a8, type: 3}
-  m_PrefabInstance: {fileID: 274482099675560560}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2500487652999611772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6810379118734491892, guid: 1635b6db37171f54287d26326295a5a8, type: 3}
-  m_PrefabInstance: {fileID: 274482099675560560}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8976148655549508655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2500487652999611772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1357e1d34ed8c2e44b188888a01e8937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rend: {fileID: 7886299721021224318}
-  myMaterial: {fileID: 2100000, guid: 64fadaf8dfa51bf4ca2f12cbb8e92b3c, type: 2}
---- !u!23 &7886299721021224318 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1243297151746437362, guid: 1635b6db37171f54287d26326295a5a8, type: 3}
   m_PrefabInstance: {fileID: 274482099675560560}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1537984349798420783

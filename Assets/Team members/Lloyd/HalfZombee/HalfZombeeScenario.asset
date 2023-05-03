@@ -20,6 +20,10 @@ MonoBehaviour:
       name: HeardNoise
     - id: 2
       name: BitCiv
+    - id: 3
+      name: HeardUnpleasantNoise
+    - id: 4
+      name: SeesLight
   actions:
   - name: BiteCiv
     isDefault: 0
@@ -44,6 +48,10 @@ MonoBehaviour:
       value: 0
     - id: 2
       value: 0
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0
     post:
     - id: 0
       value: 1
@@ -57,6 +65,28 @@ MonoBehaviour:
       value: 1
     post:
     - id: 1
+      value: 0
+  - name: RunFromNoise
+    isDefault: 0
+    state: {fileID: 395559839041994076, guid: 1341af0ab0a2cd545a5903ca76762998, type: 3}
+    cost: 0
+    position: {x: 750, y: 593.3333}
+    pre:
+    - id: 3
+      value: 1
+    post:
+    - id: 3
+      value: 0
+  - name: DrawnToLight
+    isDefault: 0
+    state: {fileID: 5107732917740362578, guid: ae999c0e0439bf04498cccbb04aaf7e3, type: 3}
+    cost: 0
+    position: {x: 317, y: 551}
+    pre:
+    - id: 4
+      value: 1
+    post:
+    - id: 4
       value: 0
   goals:
   - name: TurnCivs
@@ -74,4 +104,8 @@ MonoBehaviour:
     - id: 1
       value: 0
     - id: 2
+      value: 0
+    - id: 3
+      value: 0
+    - id: 4
       value: 0

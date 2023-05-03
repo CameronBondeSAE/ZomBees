@@ -36,10 +36,10 @@ namespace Lloyd
 
             //bob.origPos = stingSensor.homePoint;
             
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
+           // rb.angularVelocity = Vector3.zero;
 
-            shader.ChangeColorGreen();
+//            shader.ChangeColorGreen();
         
             homePoint = stingSensor.homePoint;
             rb = stingSensor.rb;

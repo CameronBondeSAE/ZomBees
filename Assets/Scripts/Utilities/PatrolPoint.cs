@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PatrolPoint : MonoBehaviour
+namespace Utilities
 {
-	[Range(0,1f)]
-	public float howHidden = 0f;
-	public float radius    = 1f;
+	public class PatrolPoint : MonoBehaviour
+	{
+		[Range(0,1f)]
+		public float howHidden = 0f;
+		public float radius    = 1f;
+	}
 }

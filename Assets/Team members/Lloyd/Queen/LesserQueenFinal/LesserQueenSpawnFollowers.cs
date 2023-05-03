@@ -81,7 +81,6 @@ namespace Lloyd
                 queenEvent.ChangeSwarmCircleSize += follower.SetCircleSize;
                 queenEvent.ChangeQueenStateEvent += follower.ChangeQueenState;
 
-                queenEvent.OnChangeSwarmPoint(swarmer.transform);
 
                 follower.Begin();
 
@@ -89,6 +88,7 @@ namespace Lloyd
 
                 FollowerList.Add(swarmerObj);
             }
+            queenEvent.OnChangeSwarmPoint(swarmer.transform);
 
             queenSensor.spawnFollowers = false;
             queenSensor.patrol = true;

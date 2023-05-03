@@ -8,7 +8,7 @@ namespace Lloyd
 {
     public class LesserQueenSensor : MonoBehaviour, ISense
     {
-        public BeeStingerBrain brain;
+        public int beeBullets;
 
         public QueenEvent queenEvent;
 
@@ -74,6 +74,12 @@ namespace Lloyd
 
         #endregion
 
+        #region Ears
+
+        public Hearing hearing;
+
+        #endregion
+
         #region Followers
 
         public List<Follower> followers;
@@ -101,18 +107,16 @@ namespace Lloyd
         {
            // beeWings.GetComponentInChildren<BeeWingsManager>();
             beeWings.SetWings();
-            Debug.Log("WINGS");
         }
 
         #endregion
 
         public void OnEnable()
         {
-            brain = GetComponent<BeeStingerBrain>();
+            hearing = GetComponent<Hearing>();
             bob = GetComponent<SphereBob>();
             vision = GetComponent<CivVision>();
             SetEyes();
-            Debug.Log("SET");
             SetWings();
 
             queenEvent = GetComponent<QueenEvent>();
@@ -122,7 +126,7 @@ namespace Lloyd
 
         private IEnumerator AnnounceToFollowers()
         {
-            while (true)
+            while(!attack)
             {
                 queenEvent.OnChangeSwarmPoint(transform);
                 yield return new WaitForSeconds(.6f);
@@ -138,9 +142,10 @@ namespace Lloyd
             }
             else seesTarget = false;
 
-            if (brain.sounds.Any())
+            if (hearing.heardSound)
             {
                 heardSound = true;
+                target = hearing.loudestRecentSound.Source.transform;
             }
             else heardSound = false;
         }
