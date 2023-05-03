@@ -98,7 +98,7 @@ namespace Oscar
                 case CivGPT.CivAction.RetrieveBomb:
                     break;
                 
-                case CivGPT.CivAction.RunAwayAndHide:
+                case CivGPT.CivAction.RunAndHide:
                     AmIIdle = false;
                     AmIScared = true;
                     AmIFollowing = false;
