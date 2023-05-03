@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Virginia;
 using Lloyd;
@@ -21,7 +22,7 @@ namespace Oscar
         
         public Inventory inventory;
         public Hearing ears;
-
+        
         private bool iAmIdle = false;
         private bool iAmAlive = false;
         private bool iAmFollowing = false;
@@ -43,7 +44,15 @@ namespace Oscar
         #region GPTStuff
         private void Awake()
         {
-            civGPT.GPTPerformingActionEvent += GPTPerformingAction;        
+            civGPT.GPTPerformingActionEvent += GPTPerformingAction;    
+            civGPT.GPTOutputDialogueEvent += CivGptOnGPTOutputDialogueEvent;
+        }
+        
+        private void CivGptOnGPTOutputDialogueEvent(object sender, string e)
+        {
+            Debug.Log("Look at character talking to me : "+civGPT.currentChat.CharacterBase.gameObject.name, gameObject);
+            iAmIdle = true;
+            littleGuy.transform.DOLookAt(civGPT.currentChat.CharacterBase.transform.position, 1f, AxisConstraint.Y, Vector3.up);
         }
         
         
@@ -89,7 +98,7 @@ namespace Oscar
                 case CivGPT.CivAction.RetrieveBomb:
                     break;
                 
-                case CivGPT.CivAction.RunAndHide:
+                case CivGPT.CivAction.RunAwayAndHide:
                     AmIIdle = false;
                     AmIScared = true;
                     AmIFollowing = false;
@@ -204,7 +213,10 @@ namespace Oscar
             
             
             //Scared |
-            
+            if (AmIScared == true)
+            {
+                print(AmIScared);
+            }
                         
             //Hungry |
             if (civTraits.GetTrait(hunger).thresholdHit)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using DG.Tweening;
+using Lloyd;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -16,10 +17,11 @@ namespace Oscar
         //basic ones
         public LittleGuy littleGuy;
         public ChildCivController childControl;
-        private OscarControllerAI basicBeeControl;
+        public OscarControllerAI basicBeeControl;
         private Rigidbody rb;
         private float speed;
         private float turnSpeed;
+        public Hearing ears;
         
         //perlin
         
@@ -28,7 +30,7 @@ namespace Oscar
         private float perlin;
         
         //navmesh stuff
-        private NavMeshAgent navMeshAgent;
+        public NavMeshAgent navMeshAgent;
         private float arrivedDistance = 1.5f;
         private Transform target;
         private NavMeshPath path;
@@ -41,7 +43,6 @@ namespace Oscar
         public delegate void OnArrivedEvent();
         public event OnArrivedEvent objectArrivedEvent;
 
-
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
@@ -51,16 +52,19 @@ namespace Oscar
             rb = littleGuy.GetComponent<LittleGuy>().rb;
             speed = littleGuy.GetComponent<LittleGuy>().speed;
             turnSpeed = littleGuy.GetComponent<LittleGuy>().turnSpeed;
-            
+
             childControl = aGameObject.GetComponent<ChildCivController>();
+            
             basicBeeControl = aGameObject.GetComponent<OscarControllerAI>();
+
+            ears = aGameObject.GetComponent<Hearing>();
             
                 //for perlin
             zoomX = Random.Range(-0.5f, 0.5f);
             zoomZ = Random.Range(-0.5f, 0.5f);
             
             //for navmesh
-            navMeshAgent = aGameObject.GetComponentInParent<NavMeshAgent>();
+            navMeshAgent = aGameObject.GetComponent<NavMeshAgent>();
             elapsed = 0f;
             path = new NavMeshPath();
             

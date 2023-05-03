@@ -9,7 +9,7 @@ namespace Oscar
     {
         public LittleGuy guy;
         public RaycastHit hitInfo;
-        private float distance = 5f;
+        public float distance = 5f;
         public float feelerAmount;
         
         private void FixedUpdate()
@@ -17,7 +17,7 @@ namespace Oscar
             for (int i = 0; i < feelerAmount; i++)
             {
                 Vector3 direction = Quaternion.Euler(0f, i, 0f) * transform.forward;
-                if (Physics.Raycast(guy.rb.transform.localPosition, direction, out hitInfo, distance, 255, QueryTriggerInteraction.Ignore))
+                if (Physics.Raycast(guy.rb.transform.localPosition, direction, out hitInfo, distance, 255, QueryTriggerInteraction.UseGlobal))
                 {
                     
                 }

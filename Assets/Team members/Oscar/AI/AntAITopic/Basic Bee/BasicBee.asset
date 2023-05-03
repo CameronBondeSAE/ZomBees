@@ -26,11 +26,13 @@ MonoBehaviour:
       name: SeeCivilian
     - id: 5
       name: EnemyDead
+    - id: 6
+      name: CanHearCreatureRepellant
   actions:
   - name: FindFood
     isDefault: 1
     state: {fileID: 6652321108598669598, guid: c330721cb3e1aae41a55e988e9cfece9, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 319, y: 134}
     pre:
     - id: 0
@@ -43,7 +45,7 @@ MonoBehaviour:
   - name: CollectFood
     isDefault: 0
     state: {fileID: 6652321108598669598, guid: 72623ed644398494dab7f8a3219b161f, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 527, y: 137}
     pre:
     - id: 0
@@ -56,7 +58,7 @@ MonoBehaviour:
   - name: DeliverFood
     isDefault: 0
     state: {fileID: 6652321108598669598, guid: 77b5d257ff2f00342b9d11927894c43e, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 726, y: 136}
     pre:
     - id: 1
@@ -83,15 +85,30 @@ MonoBehaviour:
       value: 1
     - id: 3
       value: 1
+  - name: RunAway
+    isDefault: 0
+    state: {fileID: 1568887385976138239, guid: 443f3c052e4d4604e9bc7432cb8b0669, type: 3}
+    cost: 0
+    position: {x: 1118, y: 137}
+    pre:
+    - id: 6
+      value: 1
+    post:
+    - id: 6
+      value: 0
+    - id: 3
+      value: 1
   goals:
   - name: FoodDelivery
     isDefault: 1
-    position: {x: 319.31573, y: 369.89462}
+    position: {x: 321.31573, y: 357.89462}
     conditions:
     - id: 2
       value: 1
     - id: 3
       value: 1
+    - id: 6
+      value: 0
   worldStates:
   - position: {x: 320.4209, y: 509.99988}
     isAutoUpdate: 1
@@ -107,4 +124,6 @@ MonoBehaviour:
     - id: 4
       value: 0
     - id: 5
+      value: 0
+    - id: 6
       value: 0

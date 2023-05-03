@@ -12,15 +12,29 @@ public class OscarControllerAI : MonoBehaviour
     public LittleGuy littleGuy;
     public ColourChangeShader colourChanger;
     public Inventory inventory;
+    public Hearing ears;
 
     public GameObject basicBeeWalking;
     public GameObject basicBeeFlying;
 
+    private bool retreat;
+    
     private void Awake()
     {
         //GetComponent<BeeWingsManager>().SetWings();
         basicBeeFlying.SetActive(false);
         basicBeeWalking.SetActive(true);
+        ears.SoundHeardEvent += HeardSound;
+    }
+
+    private void HeardSound(SoundProperties sounds)
+    {
+        if (sounds.SoundType == SoundEmitter.SoundType.CreatureRepellant)
+        {
+            print("ears = "+ears.loudestRecentSound.SoundType);
+            print(sounds.SoundType);
+            RunAway = true;
+        }
     }
 
     public bool seeTheFood()
@@ -74,5 +88,11 @@ public class OscarControllerAI : MonoBehaviour
     public bool enemyIsDead()
     {
         return false;
+    }
+
+    public bool RunAway
+    {
+        get { return retreat; }
+        set { retreat = value; }
     }
 }
