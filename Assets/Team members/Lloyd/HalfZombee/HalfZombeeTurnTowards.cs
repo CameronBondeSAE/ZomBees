@@ -25,5 +25,8 @@ public class HalfZombeeTurnTowards : MonoBehaviour
             Vector3 torqueDirection = Vector3.Cross(transform.forward, targetDir);
             rb.AddTorque(torqueDirection * turnSpeed);
         }
+
+        Vector3 rotateUpDir = Vector3.Cross(transform.up, Vector3.up);
+        rb.AddTorque(rotateUpDir * turnSpeed);
     }
 }

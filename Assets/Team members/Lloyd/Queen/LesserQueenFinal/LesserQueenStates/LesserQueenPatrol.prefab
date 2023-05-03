@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   queenSensor: {fileID: 0}
-  hearingComp: {fileID: 0}
   queenEvent: {fileID: 0}
-  bob: {fileID: 0}
+  turnTowards: {fileID: 0}
+  materialChanger: {fileID: 0}
+  hearSomething: 0
+  seeSomething: 0
+  currMoveTarget: {fileID: 0}
+  previousMoveTarget: {fileID: 0}
+  minDist: 10

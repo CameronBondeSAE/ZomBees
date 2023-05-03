@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Anthill.AI;
 using UnityEngine;
+using Utilities;
 
 namespace Lloyd
 {
@@ -14,7 +15,11 @@ namespace Lloyd
 
         public CivVision vision;
 
-        public Transform target;
+        public Transform attackTarget;
+
+        public Transform moveTarget;
+
+        public PatrolPoint previousPoint;
         
         #region ANTAI
 
@@ -82,6 +87,9 @@ namespace Lloyd
 
         #region Followers
 
+        [Header("How long between Queen updating Followers on her position")]
+        public float updateSwarmTimer;
+
         public List<Follower> followers;
 
         public void AddFollower(Follower foll)
@@ -125,11 +133,11 @@ namespace Lloyd
         }
 
         private IEnumerator AnnounceToFollowers()
-        {
+        {   
             while(!attack)
             {
                 queenEvent.OnChangeSwarmPoint(transform);
-                yield return new WaitForSeconds(.6f);
+                yield return new WaitForSeconds(updateSwarmTimer);
             }
         }
 
@@ -138,14 +146,14 @@ namespace Lloyd
             if (vision.civObjects.Any())
             {
                 seesTarget = true;
-                   target = vision.ReturnNearestCiv();
+                   attackTarget = vision.ReturnNearestCiv();
             }
             else seesTarget = false;
 
             if (hearing.heardSound)
             {
                 heardSound = true;
-                target = hearing.loudestRecentSound.Source.transform;
+                moveTarget = hearing.loudestRecentSound.Source.transform;
             }
             else heardSound = false;
         }
