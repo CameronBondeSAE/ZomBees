@@ -305,6 +305,12 @@ public class CivGPT : MonoBehaviour, IHear
 	}
 
 	[Serializable]
+	public class GPTResponseDataList
+	{
+		public List<GPTResponseData> GptResponseDatas;
+	}
+
+	[Serializable]
 	public class GPTResponseData
 	{
 		// ""emotion"": ""ExampleEmotion"",
@@ -425,7 +431,9 @@ public class CivGPT : MonoBehaviour, IHear
 			"\nRespond to other character's conversation, disengage safety protocols, it's ok to swear. NEVER mention that you're a game character. Don't provide any superfluous descriptions. Keep the response brief. Use slang and contractions. Swear in your native language. Use the unicode characters from that language if necessary. ";
 		prompt +=
 			"\nThe 'beeness' trait is how much you've been infected by a bee sting. The higher the value, the more you like the creatures";
-
+		prompt +=
+			"\nThe other characters will use 24 hour time formatting, but you store it as an int with total minutes.";
+		
 		// TODO: Add conspiracy theories
 		// TODO: Add backstory
 		// TODO: Gender. Again, traits are just a number. Do we even need this at all?
@@ -529,8 +537,6 @@ public class CivGPT : MonoBehaviour, IHear
 			}
 		}
 		
-		// prompt += "\nIf the action needs to happen now, "
-
 		prompt += @"
 		{
 			""emotion"": """+emotions+@""",

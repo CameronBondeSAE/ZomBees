@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Utilities : MonoBehaviour
+namespace CameronBonde
 {
-	public static string RemoveCarriageReturns(string input)
+	public class Utilities : MonoBehaviour
 	{
-		return input.Replace("\r", "");
+		public static string RemoveCarriageReturns(string input)
+		{
+			return input.Replace("\r", "");
+		}
 	}
 }

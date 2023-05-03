@@ -59,7 +59,7 @@ public class ElevenLabsVoiceAPITest : MonoBehaviour
 			model_id = "eleven_monolingual_v1";
 		}
 
-		input = Utilities.RemoveCarriageReturns(input);
+		input = CameronBonde.Utilities.RemoveCarriageReturns(input);
 		string jsonRequestBody = "{\"text\":\"" + input + "\",\"model_id\":\"" + model_id + "\",\"voice_settings\":{\"stability\":" + stability +
 		                         ",\"similarity_boost\":" + similarity_boost + "}}";
 		

@@ -9,6 +9,8 @@ public class WorldTime_ViewModel : MonoBehaviour
     
     void Update()
     {
-        textMeshProUGUI.text = WorldTime.Instance.currentDayTracker + "\nTime = " + WorldTime.Instance.time;
+        // textMeshProUGUI.text = WorldTime.Instance.currentDayTracker + "\nTime = " + WorldTime.Instance.time;
+        // textMeshProUGUI.text = "Time = " + WorldTime.Instance.GetFormattedTime();
+        textMeshProUGUI.text = WorldTime.Instance.GetFormattedTime();
     }
 }

@@ -126,6 +126,7 @@ public class WorldTime : MonoBehaviour
         int minutes = Mathf.FloorToInt(time % MinutesPerHour);
 
         //cool
-        return string.Format("{0:00}:{1:00}", hours, minutes + " (" + realTime + ")");
+        // return string.Format("{0:00}:{1:00}", hours, minutes + " (" + realTime + " minutes)");
+        return $"{hours:00}:{minutes:00}";
     }
 }
