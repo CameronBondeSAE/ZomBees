@@ -18,6 +18,10 @@ public class OscarControllerAI : MonoBehaviour
     public GameObject basicBeeFlying;
 
     private bool retreat;
+    private bool iSeeFood;
+    private bool iHaveFood;
+    private bool iSeeLight;
+    private bool iSeeCivs;
     
     private void Awake()
     {
@@ -37,26 +41,57 @@ public class OscarControllerAI : MonoBehaviour
         }
     }
 
-    public bool seeTheFood()
+    private void FixedUpdate()
     {
         if (vision.foodInSight.Count > 0)
         {
+            seeTheFood = true;
             //colourChanger.attackPhase = true;
-            return true;
         }
+        else
+        {
+            seeTheFood = false;
+        }
+        
+        if (vision.lightInSight.Count > 0)
+        {
+            seeTheLight = true;
+        }
+        else
+        {
+            seeTheLight = false;
+        }
+        
+        if (vision.civsInSight.Count > 0)
+        {
+            seeCivilians = true;
+        }
+        else
+        {
+            seeCivilians = false;
+        }
+        
 
-        //colourChanger.attackPhase = false;
-        return false;
-    }
-
-    public bool hasTheFood()
-    {
         if(inventory.heldItem != null)
         {
-            return true;
+            hasTheFood = true;
         }
+        else
+        {
+            hasTheFood = false;
+        }
+    }
 
-        return false;
+    public bool seeTheFood
+    {
+        get { return iSeeFood; }
+        set { iSeeFood = value; }
+    }
+
+    public bool hasTheFood
+    {
+        get { return iHaveFood; }
+        set { iHaveFood = value; }
     }
 
     public bool DeliverTheFood()
@@ -64,25 +99,16 @@ public class OscarControllerAI : MonoBehaviour
         return false;
     }
 
-    public bool seeTheLight()
+    public bool seeTheLight
     {
-        if (vision.lightInSight.Count > 0)
-        {
-            return true;
-        }
-        return false;
+        get { return iSeeLight; }
+        set { iSeeLight = value; }
     }
 
-    public bool seeCivilians()
+    public bool seeCivilians
     {
-        if (vision.civsInSight.Count > 0)
-        {
-            //colourChanger.attackPhase = true;
-            return true;
-        }
-        
-        //colourChanger.attackPhase = false;
-        return false;
+        get { return iSeeCivs; }
+        set { iSeeCivs = value; }
     }
     
     public bool enemyIsDead()

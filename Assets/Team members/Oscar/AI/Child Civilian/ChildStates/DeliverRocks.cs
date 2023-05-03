@@ -14,6 +14,8 @@ public class DeliverRocks : OscarsLittleGuyMovement
 
     private bool finishDelivering;
     private bool runnningAwayFromDelivery;
+
+    private ChildCivController childControl;
     
     private void OnEnable()
     {
@@ -24,11 +26,14 @@ public class DeliverRocks : OscarsLittleGuyMovement
     {
     	base.Create(aGameObject);
     	inventory = aGameObject.GetComponentInParent<Inventory>();
+        
+        childControl = aGameObject.GetComponent<ChildCivController>();
     }
 
     public override void Enter()
     {
         base.Enter();
+        finishDelivering = false;
         NavmeshEnabled();
         Vector3 position = PatrolManager.singleton
             .pathsWithIndoors[Random.Range(0, PatrolManager.singleton.pathsWithIndoors.Count)].transform.position;

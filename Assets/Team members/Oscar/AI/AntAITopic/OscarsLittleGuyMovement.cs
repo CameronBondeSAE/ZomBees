@@ -16,8 +16,6 @@ namespace Oscar
 
         //basic ones
         public LittleGuy littleGuy;
-        public ChildCivController childControl;
-        public OscarControllerAI basicBeeControl;
         private Rigidbody rb;
         private float speed;
         private float turnSpeed;
@@ -30,12 +28,12 @@ namespace Oscar
         private float perlin;
         
         //navmesh stuff
-        public NavMeshAgent navMeshAgent;
+        private NavMeshAgent navMeshAgent;
         private float arrivedDistance = 1.5f;
         private Transform target;
         private NavMeshPath path;
         private Vector3 finalDestination;
-        private float stoppingDistance = 1f;
+        private float stoppingDistance = 2f;
         private float elapsed;
         public float distanceFromPoint;
         
@@ -53,10 +51,6 @@ namespace Oscar
             speed = littleGuy.GetComponent<LittleGuy>().speed;
             turnSpeed = littleGuy.GetComponent<LittleGuy>().turnSpeed;
 
-            childControl = aGameObject.GetComponent<ChildCivController>();
-            
-            basicBeeControl = aGameObject.GetComponent<OscarControllerAI>();
-
             ears = aGameObject.GetComponent<Hearing>();
             
                 //for perlin
@@ -64,7 +58,7 @@ namespace Oscar
             zoomZ = Random.Range(-0.5f, 0.5f);
             
             //for navmesh
-            navMeshAgent = aGameObject.GetComponent<NavMeshAgent>();
+            navMeshAgent = aGameObject.GetComponentInParent<NavMeshAgent>();
             elapsed = 0f;
             path = new NavMeshPath();
             
@@ -88,9 +82,6 @@ namespace Oscar
 
         public void FlightMode()
         {
-            basicBeeControl.basicBeeWalking.SetActive(false); 
-            basicBeeControl.basicBeeFlying.SetActive(true); 
-            
             //TODO ask cam about do tween not setting the values but instead returning
             DOTween.To(DoTwenSetter, littleGuy.transform.position.y,littleGuy.transform.position.y + 10f, 5f);
         }
@@ -100,9 +91,6 @@ namespace Oscar
             //TODO ask cam about do tween not setting the values but instead returning
             
             //DOTween.To(DoTwenSetter, littleGuy.transform.position.y,littleGuy.transform.position.y - 10f, 5f);
-
-            basicBeeControl.basicBeeWalking.SetActive(true); 
-            basicBeeControl.basicBeeFlying.SetActive(false); 
         }
 
         private void DoTwenSetter(float newValue)

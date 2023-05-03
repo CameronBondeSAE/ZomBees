@@ -11,6 +11,8 @@ public class RunAway : OscarsLittleGuyMovement
 {
     //forloop through a list of patrol points and go to the closest one with navmesh.
     //investigate navmesh for points to run to.
+
+    private ChildCivController childControl;
     
     private Vector3 targetPos;
 
@@ -18,7 +20,14 @@ public class RunAway : OscarsLittleGuyMovement
     {
         objectArrivedEvent += LocationArrivedAt;
     }
-    
+
+    public override void Create(GameObject aGameObject)
+    {
+        base.Create(aGameObject);
+
+        childControl = aGameObject.GetComponent<ChildCivController>();
+    }
+
     public override void Enter()
     {
         base.Enter();

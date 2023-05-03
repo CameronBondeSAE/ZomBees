@@ -6,8 +6,17 @@ using UnityEngine;
 
 public class RunAwayBee : OscarsLittleGuyMovement
 {
-    private float elapsedTime;
+    private OscarControllerAI basicBeeControl;
     
+    private float elapsedTime;
+
+    public override void Create(GameObject aGameObject)
+    {
+        base.Create(aGameObject);
+        
+        basicBeeControl = aGameObject.GetComponent<OscarControllerAI>();
+    }
+
     public override void Enter()
     {
         base.Enter();

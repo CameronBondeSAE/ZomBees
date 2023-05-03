@@ -242,7 +242,6 @@ namespace Oscar
             }
             
             //HaveRocks
-            
 
             //DeliverRocks |
             

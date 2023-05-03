@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 8882914658413988415}
   - component: {fileID: 2165733543200711093}
   - component: {fileID: 477530886}
+  - component: {fileID: 8524316860082257369}
   m_Layer: 0
   m_Name: ChildCivFinal
   m_TagString: Untagged
@@ -246,7 +247,7 @@ Transform:
   - {fileID: 8628794340795267898}
   - {fileID: 7439687858159993640}
   m_Father: {fileID: 0}
-  m_RootOrder: 44
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!136 &7405988188930513079
 CapsuleCollider:
@@ -265,7 +266,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -296,7 +297,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &107376084
 MonoBehaviour:
@@ -354,7 +355,7 @@ MonoBehaviour:
     - Name: heldItem
       Entry: 6
       Data: 
-  radius: 5
+  radius: 1
   hand: {fileID: 1635876051}
   placeDistance: 10
 --- !u!114 &7553392581998968432
@@ -370,7 +371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currHealth: 100
 --- !u!114 &4373097535868285947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,6 +519,28 @@ MonoBehaviour:
     Dialogue: 
   soundsList: []
   soundLingerTime: 0
+--- !u!195 &8524316860082257369
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481231920541928607}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2459182198638201477
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,73 +658,6 @@ MonoBehaviour:
   guy: {fileID: 107376084}
   neighbours: {fileID: 5994169470632360110}
   force: 3
---- !u!1 &3521713356428858229
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7498325073589832401}
-  - component: {fileID: 8661958644290693750}
-  - component: {fileID: 7437996151756845219}
-  m_Layer: 0
-  m_Name: Sensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7498325073589832401
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3521713356428858229}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7164411692719033350}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &8661958644290693750
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3521713356428858229}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7437996151756845219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3521713356428858229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be214447e5c044b4492361663bf88223, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
 --- !u!1 &4945335230525609893
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,8 +900,6 @@ GameObject:
   - component: {fileID: 7164411692719033370}
   - component: {fileID: 7573158467226798239}
   - component: {fileID: 362120819013706027}
-  - component: {fileID: 1500225858}
-  - component: {fileID: 5303122216395209808}
   m_Layer: 0
   m_Name: Brain
   m_TagString: Untagged
@@ -967,7 +920,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7164411691584304394}
-  - {fileID: 7498325073589832401}
   m_Father: {fileID: 3480590768837115260}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
@@ -1061,45 +1013,6 @@ MonoBehaviour:
   hunger: {fileID: 11400000, guid: a5f76bf83e00c2e4c9d82b562f9c1b4e, type: 2}
   inventory: {fileID: 3766555885203436555}
   ears: {fileID: 3131529511065738732}
---- !u!114 &1500225858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7164411692719033371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34c159a13fdbe0e40be6ea24f02530a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  civGpt: {fileID: 8822627639575176923}
-  clip: {fileID: 8300000, guid: 6cabcbba478443a4b81a569f3a4fe321, type: 3}
-  textMeshProUGUI: {fileID: 2804406367752823728}
-  bloodParticles: {fileID: 0}
-  ElevenLabsVoiceAPITest: {fileID: 8364334992607551769}
---- !u!195 &5303122216395209808
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7164411692719033371}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1001 &2535456621498712066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1155,6 +1068,10 @@ PrefabInstance:
     - target: {fileID: 4630503217969394953, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
       propertyPath: m_Name
       value: Vision
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630503217969394997, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1386,25 +1303,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6048419703654018736, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
   m_PrefabInstance: {fileID: 6373690580043094917}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2804406367752823728 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9122222926777088053, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
-  m_PrefabInstance: {fileID: 6373690580043094917}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8364334992607551769 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3199793843478657692, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
-  m_PrefabInstance: {fileID: 6373690580043094917}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19be72c443d001b448ed1a95986477a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

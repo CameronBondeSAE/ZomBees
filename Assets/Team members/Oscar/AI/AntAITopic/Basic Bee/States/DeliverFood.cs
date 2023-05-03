@@ -13,6 +13,8 @@ public class DeliverFood : OscarsLittleGuyMovement
 {
 	private Inventory inventory;
 
+	private OscarControllerAI basicBeeControl;
+
 	private void OnEnable()
 	{
 		objectArrivedEvent += arrivedAtLocation;
@@ -21,13 +23,16 @@ public class DeliverFood : OscarsLittleGuyMovement
 	public override void Create(GameObject aGameObject)
 	{
 		base.Create(aGameObject);
-		inventory = aGameObject.GetComponent<Inventory>();
+		inventory = aGameObject.GetComponentInParent<Inventory>();
+		basicBeeControl = aGameObject.GetComponent<OscarControllerAI>();
 	}
 
 	public override void Enter()
     {
 	    base.Enter();
 	    FlightMode();
+	    basicBeeControl.basicBeeWalking.SetActive(false); 
+	    basicBeeControl.basicBeeFlying.SetActive(true); 
 	    NavmeshEnabled();
     }
 
@@ -45,6 +50,9 @@ public class DeliverFood : OscarsLittleGuyMovement
     public void arrivedAtLocation()
     {
 	    LandMode();
+	    basicBeeControl.basicBeeWalking.SetActive(true); 
+	    basicBeeControl.basicBeeFlying.SetActive(false);
+	    
 	    inventory.Dispose();
 	    Exit();
     }

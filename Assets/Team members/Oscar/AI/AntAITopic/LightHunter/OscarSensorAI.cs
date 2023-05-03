@@ -13,9 +13,9 @@ public class OscarSensorAI : MonoBehaviour, ISense
     {
         aWorldState.BeginUpdate(aAgent.planner);
         
-        aWorldState.Set(LightHunter.SeeHoney, oscarController.seeTheFood());
-        aWorldState.Set(LightHunter.HasHoney, oscarController.hasTheFood());
-        aWorldState.Set(LightHunter.SeeLight, oscarController.seeTheLight());
+        aWorldState.Set(LightHunter.SeeHoney, oscarController.seeTheFood);
+        aWorldState.Set(LightHunter.HasHoney, oscarController.hasTheFood);
+        aWorldState.Set(LightHunter.SeeLight, oscarController.seeTheLight);
         aWorldState.Set(LightHunter.EnemyDead, oscarController.enemyIsDead());
         
         aWorldState.EndUpdate();

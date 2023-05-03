@@ -31,14 +31,14 @@ public class OscarVision : MonoBehaviour
 
 	void Start()
 	{
-		StartCoroutine(CheckStillVisible());
-		
 		allInSight  = new List<DynamicObject>();
 		beesInSight = new List<DynamicObject>();
 		civsInSight = new List<DynamicObject>();
 		foodInSight = new List<DynamicObject>();
 		lightInSight = new List<DynamicObject>();
-		objectsInSight = new List<DynamicObject>();
+		objectsInSight = new List<DynamicObject>();		
+		
+		StartCoroutine(CheckStillVisible());
 	}
 
 	#region OnTriggerEnter
@@ -142,6 +142,7 @@ public class OscarVision : MonoBehaviour
 	}
 
 	#endregion
+	
 
 	#region OnTriggerExit
 
@@ -152,6 +153,9 @@ public class OscarVision : MonoBehaviour
 			DynamicObject dynamicObj = other.GetComponent<DynamicObject>();
 
 			allInSight.Remove(dynamicObj);
+			
+			print(dynamicObj.description);
+			
 		}
 	}
 

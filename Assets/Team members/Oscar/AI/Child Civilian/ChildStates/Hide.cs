@@ -7,8 +7,17 @@ namespace Oscar
 {
     public class Hide : OscarsLittleGuyMovement
     {
-        private float elapsedTime;
+        private ChildCivController childControl;
         
+        private float elapsedTime;
+
+        public override void Create(GameObject aGameObject)
+        {
+            base.Create(aGameObject);
+
+            childControl = aGameObject.GetComponent<ChildCivController>();
+        }
+
         public override void Enter()
         {
             base.Enter();

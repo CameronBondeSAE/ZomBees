@@ -17,11 +17,11 @@ namespace Oscar
         {
             aWorldState.BeginUpdate(aAgent.planner);
             
-            aWorldState.Set(BasicBee.SeeFood, controllerAI.seeTheFood());
-            aWorldState.Set(BasicBee.HasFood, controllerAI.hasTheFood());
+            aWorldState.Set(BasicBee.SeeFood, controllerAI.seeTheFood);
+            aWorldState.Set(BasicBee.HasFood, controllerAI.hasTheFood);
             aWorldState.Set(BasicBee.DeliveredFood, controllerAI.DeliverTheFood());
             aWorldState.Set(BasicBee.StayAlive, beeStayAlive);
-            aWorldState.Set(BasicBee.SeeCivilian, controllerAI.seeCivilians());
+            aWorldState.Set(BasicBee.SeeCivilian, controllerAI.seeCivilians);
             aWorldState.Set(BasicBee.EnemyDead, controllerAI.enemyIsDead());
             aWorldState.Set(BasicBee.CanHearCreatureRepellant, controllerAI.RunAway);
             

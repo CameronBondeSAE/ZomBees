@@ -7,6 +7,7 @@ using UnityEngine;
 public class Follow : OscarsLittleGuyMovement
 {
     private OscarVision vision;
+    private ChildCivController childControl;
     private GameObject targetPos;
     private float maxFollowingDistance;
     private float distance;
@@ -16,6 +17,8 @@ public class Follow : OscarsLittleGuyMovement
         base.Create(aGameObject);
 
         vision = aGameObject.GetComponentInChildren<OscarVision>();
+        
+        childControl = aGameObject.GetComponent<ChildCivController>();
     }
 
     public override void Enter()

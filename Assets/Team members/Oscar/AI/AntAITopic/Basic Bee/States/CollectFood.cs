@@ -17,20 +17,16 @@ public class CollectFood : OscarsLittleGuyMovement
         
         vision = aGameObject.GetComponentInChildren<OscarVision>();
 
-        inventory = aGameObject.GetComponent<Inventory>();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-        
-        //GetComponentInChildren<ColourChangeShader>().attackPhase = true;
+        inventory = aGameObject.GetComponentInParent<Inventory>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
-
+        
+        TurnTowards(vision.foodInSight[0].transform.position);
+        BasicMovement(4f);
+        
         if (inventory.heldItem == null)
         {        
             inventory.Pickup();
@@ -46,17 +42,6 @@ public class CollectFood : OscarsLittleGuyMovement
             {
                 inventory.Dispose();
             }
-        }
-        
-        if (vision.foodInSight.Count > 0)
-        {
-            TurnTowards(vision.foodInSight[0].transform.position);
-            
-            BasicMovement(4f);
-        }
-        else
-        {
-            Finish();
         }
     }
 }

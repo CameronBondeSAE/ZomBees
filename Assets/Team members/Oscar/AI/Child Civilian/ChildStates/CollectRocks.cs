@@ -11,6 +11,8 @@ public class CollectRocks : OscarsLittleGuyMovement
 
     private Inventory inventory;
 
+    private ChildCivController childControl;
+
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
@@ -18,6 +20,8 @@ public class CollectRocks : OscarsLittleGuyMovement
         vision = aGameObject.GetComponentInChildren<OscarVision>();
 
         inventory = aGameObject.GetComponentInParent<Inventory>();
+        
+        childControl = aGameObject.GetComponent<ChildCivController>();
     }
     public override void Execute(float aDeltaTime, float aTimeScale)
     {

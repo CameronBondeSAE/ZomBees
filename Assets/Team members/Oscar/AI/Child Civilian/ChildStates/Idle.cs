@@ -7,7 +7,16 @@ using UnityEngine;
 public class Idle : OscarsLittleGuyMovement
 {
     private float elapsedTime;
+
+    private ChildCivController childControl;
+
+    public override void Create(GameObject aGameObject)
+    {
+        base.Create(aGameObject);
         
+        childControl = aGameObject.GetComponent<ChildCivController>();
+    }
+
     public override void Enter()
     {
         base.Enter();
