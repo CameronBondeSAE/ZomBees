@@ -23,4 +23,8 @@ public class RefferenceScript : MonoBehaviour, ISwitchable
         theLightIsSwitchedOn = null;
     }
 
+    public void Toggle()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -19,4 +19,9 @@ public class InterfaceLights : MonoBehaviour, ISwitchable
         light.enabled = false;
 
     }
+
+    public void Toggle()
+    {
+        throw new System.NotImplementedException();
+    }
 }

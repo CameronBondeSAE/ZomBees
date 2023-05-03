@@ -24,4 +24,9 @@ public class ToggleStateTest : MonoBehaviour, ISwitchable
 	{
 		
 	}
+
+	public void Toggle()
+	{
+		throw new System.NotImplementedException();
+	}
 }

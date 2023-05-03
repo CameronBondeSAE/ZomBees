@@ -13,4 +13,9 @@ public class ElectricFenceLogic : MonoBehaviour, ISwitchable
     {
         print("The Fence is now powered off");
     }
+
+    public void Toggle()
+    {
+        throw new System.NotImplementedException();
+    }
 }

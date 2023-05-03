@@ -27,6 +27,11 @@ namespace Virginia
 
         }
 
+        public void Toggle()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Interact()
         {
             if (GetComponent<StateManager>().currentState == GetComponent<DoorOpen>())

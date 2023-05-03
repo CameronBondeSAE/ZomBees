@@ -16,6 +16,11 @@ public class InterfaceTest : MonoBehaviour, ISwitchable, IInteractable
 	    Debug.Log("InterfaceTest turnoff");
     }
 
+    public void Toggle()
+    {
+	    throw new System.NotImplementedException();
+    }
+
     public void Interact()
     {
 	    Debug.Log("InterfaceTest interact");

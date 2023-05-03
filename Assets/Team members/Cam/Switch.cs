@@ -24,4 +24,9 @@ public class Switch : MonoBehaviour, ISwitchable
     public void TurnOff()
     {
     }
+
+    public void Toggle()
+    {
+        throw new NotImplementedException();
+    }
 }

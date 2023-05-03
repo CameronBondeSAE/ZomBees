@@ -112,5 +112,10 @@ namespace Johns
 		{
 			PoweredOff();
 		}
+
+		public void Toggle()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

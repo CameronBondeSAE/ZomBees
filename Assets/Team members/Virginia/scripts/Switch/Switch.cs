@@ -30,6 +30,11 @@ namespace Virginia
             StateManager.ChangeState(GetComponent<SwitchOff>());
         }
 
+        public void Toggle()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Interact()
         {
             if (GetComponent<StateManager>().currentState == GetComponent<SwitchOff>())
