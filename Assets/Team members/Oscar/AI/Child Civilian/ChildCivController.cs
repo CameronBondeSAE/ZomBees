@@ -30,9 +30,9 @@ namespace Oscar
         private bool iAmScared = false;
         private bool iAmHungry = false;
         private bool iAmHiding = false;
-        private bool seeRocks = false;
-        private bool hasRocks = false;
-        private bool deliverRocks = false;
+        private bool seeObjects = false;
+        private bool hasObjects = false;
+        private bool deliverObjects = false;
         private bool getStuff = false;
         private bool hasStuff = false;
         private bool iDeliveredStuff = false;
@@ -147,20 +147,20 @@ namespace Oscar
             get { return iAmHiding; }
             set { iAmHiding = value; }
         }
-        public bool CanISeeRocks
+        public bool CanISeeObjects
         {
-            get { return seeRocks; }
-            set { seeRocks = value; }
+            get { return seeObjects; }
+            set { seeObjects = value; }
         }
-        public bool DoIHaveRocks
+        public bool DoIHaveObjects
         {
-            get { return hasRocks; }
-            set { hasRocks = value; }
+            get { return hasObjects; }
+            set { hasObjects = value; }
         }
-        public bool DeliverTheRocks
+        public bool DeliverTheObjects
         {
-            get { return deliverRocks; }
-            set { deliverRocks = value; }
+            get { return deliverObjects; }
+            set { deliverObjects = value; }
         }
         public bool GetTheStuff
         {
@@ -234,17 +234,16 @@ namespace Oscar
             //SeeRocks |
             if (vision.objectsInSight.Count > 0)
             {
-                CanISeeRocks = true;
+                CanISeeObjects = true;
             }
             else
             {
-                CanISeeRocks = false;
+                CanISeeObjects = false;
             }
             
             //HaveRocks
 
             //DeliverRocks |
-            
 
             //GetStuff |
             

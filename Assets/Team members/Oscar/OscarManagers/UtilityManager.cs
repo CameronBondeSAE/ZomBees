@@ -34,7 +34,7 @@ namespace Oscar
 
             obj.GetComponent<Collider>().enabled = false;
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(.1f);
 
             obj.transform.position = caller.transform.position;
         }

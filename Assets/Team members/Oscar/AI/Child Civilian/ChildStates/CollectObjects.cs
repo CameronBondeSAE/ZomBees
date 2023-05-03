@@ -5,7 +5,7 @@ using Oscar;
 using UnityEngine;
 using Virginia;
 
-public class CollectRocks : OscarsLittleGuyMovement
+public class CollectObjects : OscarsLittleGuyMovement
 {
     private OscarVision vision;
 
@@ -45,15 +45,8 @@ public class CollectRocks : OscarsLittleGuyMovement
         }
         else if (inventory.heldItem != null)
         {
-            if (inventory.heldItem.Description() == "Rock")
-            {
-                childControl.DoIHaveRocks = true;
-                Finish();
-            }
-            else
-            {
-                inventory.Dispose();
-            }
+            childControl.DoIHaveObjects = true;
+            Finish();
         }
     }
 }

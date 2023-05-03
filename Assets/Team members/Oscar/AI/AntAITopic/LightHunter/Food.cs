@@ -18,8 +18,7 @@ namespace Oscar
 
         public void Pickup(GameObject obj)
         {
-            //just disable the object until needed later
-            
+            //disable the object out of the vision trigger until needed later
             UtilityManager.DisableAfterDelay(gameObject,obj.GetComponent<Inventory>().hand.gameObject);
         }
 
@@ -30,6 +29,7 @@ namespace Oscar
 
         public void Dispose()
         {
+            //re-enable the object now that its not in the inventory
             UtilityManager.EnableAfterDelay(gameObject);
         }
     }

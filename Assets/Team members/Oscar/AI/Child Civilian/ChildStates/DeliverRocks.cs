@@ -72,7 +72,7 @@ public class DeliverRocks : OscarsLittleGuyMovement
     {
         base.Exit();
 
-        childControl.DoIHaveRocks = false;
+        childControl.DoIHaveObjects = false;
         NavMeshFinish();
     }
 }
