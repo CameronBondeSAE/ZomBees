@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Lloyd
 {
@@ -14,8 +16,29 @@ namespace Lloyd
         {
             foreach (TraitStats trait in traits)
             {
-                UpdateThresholds(trait.value, trait);
+                // Triggers setting thresholdHit
+                UpdateThresholds(trait, trait.value);
             }
+
+            StartCoroutine(UpdateChangingTraits());
+        }
+
+        IEnumerator UpdateChangingTraits()
+        {
+            while (true)
+            {
+                foreach (TraitStats trait in traits)
+                {
+                    if (!Mathf.Approximately(0, trait.changeValueOverTime))
+                    {
+                        UpdateTrait(trait.traitScriptableObject, trait.value+trait.changeValueOverTime/10f);
+                    }
+                }
+
+                yield return new WaitForSeconds(1f);
+            }
+
+            yield return null;
         }
 
         public event Action<TraitStats> HitThresholdEvent;
@@ -35,6 +58,10 @@ namespace Lloyd
             return null;
         }
 
+        // TODO
+        // Shift traits over time
+        
+        
         public void UpdateTrait(TraitScriptableObject key, float newValue)
         {
             foreach (TraitStats civilianTraitsTrait in traits)
@@ -50,14 +77,14 @@ namespace Lloyd
                         newValue = 0.0f;
                     }
 
-                    UpdateThresholds(newValue, civilianTraitsTrait);
+                    UpdateThresholds(civilianTraitsTrait, newValue);
 
                     civilianTraitsTrait.value = newValue;
                 }
             }
         }
 
-        void UpdateThresholds(float newValue, TraitStats civilianTraitsTrait)
+        void UpdateThresholds(TraitStats civilianTraitsTrait, float newValue)
         {
             if (newValue >= civilianTraitsTrait.threshold)
             {
@@ -82,6 +109,9 @@ namespace Lloyd
         public float value = 0.5f;
 
         [Range(0f, 1f)] public float threshold = 1.0f;
+
+        [Range(-1f, 1f)]
+        public float changeValueOverTime = 0f;
 
         [ReadOnly] public bool thresholdHit;
     }

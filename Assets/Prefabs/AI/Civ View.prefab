@@ -134,7 +134,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3917348013385559272, guid: 1020237fc6ea66649bed25cb6e8d02fc, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.282
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -245,7 +245,7 @@ AudioReverbFilter:
   m_GameObject: {fileID: 1467348423959695344}
   m_Enabled: 1
   m_DryLevel: 0
-  m_Room: -1000
+  m_Room: -1981
   m_RoomHF: -3482
   m_DecayTime: 1.49
   m_DecayHFRatio: 0.54
@@ -372,8 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19be72c443d001b448ed1a95986477a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voiceList:
-    voices: []
   audioSource: {fileID: 7669238390416926874}
   stability: 0
   similarity_boost: 0

@@ -112,6 +112,8 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 				// 						transform.position + new Vector3(0, 0, 0));
 				break;
 			case CivGPT.CivAction.DoNothing:
+				navMeshAgent.ResetPath();
+				randomNavmeshTest.enabled = false;
 				break;
 			case CivGPT.CivAction.DropItem:
 				break;
@@ -129,6 +131,10 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 				break;
 			case CivGPT.CivAction.RunAndHide:
 				randomNavmeshTest.FindRandomSpot();
+				break;
+			case CivGPT.CivAction.SearchArea:
+				randomNavmeshTest.FindRandomSpot();
+				randomNavmeshTest.enabled = true;
 				break;
 			case CivGPT.CivAction.ShootOtherCharacter:
 				break;

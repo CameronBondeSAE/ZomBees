@@ -1,7 +1,6 @@
 using Anthill.AI;
 using UnityEngine;
 using Oscar;
-using Utilities;
 
 namespace Lloyd
 {

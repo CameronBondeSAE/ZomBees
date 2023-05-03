@@ -19,9 +19,8 @@ namespace Lloyd
         public WorldTime newWorldTimeScript;
 
         public bool NPCOverheadText = true;
-        public bool ElevenLabsVoice = false;
 
-        // public PlayerModel playerModel;
+        public PlayerModel playerModel;
 
         // public GameObject chatInterface;
 

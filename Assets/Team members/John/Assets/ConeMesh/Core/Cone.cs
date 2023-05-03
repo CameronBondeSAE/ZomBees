@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,6 +64,11 @@ namespace KevinCastejon.ConeMesh
             }
         }
         public bool ProportionalRadius { get => _proportionalRadius; set { _proportionalRadius = value; GenerateCone(); } }
+
+        void Awake()
+        {
+            GenerateCone();
+        }
 
         internal void GenerateCone()
         {

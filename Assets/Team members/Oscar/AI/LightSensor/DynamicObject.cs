@@ -14,13 +14,10 @@ namespace Oscar
         public bool isObject;
         public bool isBee;
         public bool isCiv;
-        public bool IsBee
-        {
-            get { return IsBee; }
-            set { isBee = value; }
-        }
 
         public float importance = 1f;
         public string description;
+
+        public Transform homeBase;
     }
 }

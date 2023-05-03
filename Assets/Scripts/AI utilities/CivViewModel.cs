@@ -40,7 +40,7 @@ public class CivViewModel : MonoBehaviour
         // GetComponent<AudioSource>().clip = clip;
         // GetComponent<AudioSource>().Play();
 
-        if (ZombeeGameManager.Instance.ElevenLabsVoice)
+        if (ElevenLabsManager.Instance.ElevenLabsVoice)
         {
             ElevenLabsVoiceAPITest.SynthesizeSpeech(input);
         }
