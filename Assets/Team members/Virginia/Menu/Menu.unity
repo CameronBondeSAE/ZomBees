@@ -500,7 +500,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press any key to continue
+  m_text: Press any key
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 978574956fee773438c734153da43b54, type: 2}
   m_sharedMaterial: {fileID: 7304690253944409317, guid: 978574956fee773438c734153da43b54, type: 2}
