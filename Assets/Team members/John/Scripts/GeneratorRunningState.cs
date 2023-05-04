@@ -10,44 +10,41 @@ namespace Johns
         public AudioClip   generatorRunning;
         public AudioSource generatorAudio;
         GeneratorModel     generator;
+        public float detectRadius;
+        public float rateOfConsumption = 1;
+        Collider[] things = new Collider[] { };
 
         private void OnEnable()
         {
             PlaySound();
-            generator = GetComponent<GeneratorModel>();
-            if (generator != null)
-            {
-                foreach (IPowered poweredObject in generator.thingToGivePowerTo)
-                {
-                    poweredObject.PoweredOn();
-                }
-            }
         }
 
-        void FixedUpdate()
+        public void FixedUpdate()
         {
-            Collider[] things = new Collider[] { };
-            // model radius var
-            Physics.OverlapSphereNonAlloc(transform.position, 3f, things, Int32.MaxValue, QueryTriggerInteraction.Ignore);
+            //Detect any Physics objects in a radius and and add them to an Array
+            Physics.OverlapSphereNonAlloc(transform.position, detectRadius, things, Int32.MaxValue, QueryTriggerInteraction.Ignore);
+            
             // Point to model variable, take off Time.fixedDeltaTime
+            GetComponent<GeneratorModel>().currFuel -= rateOfConsumption * Time.fixedDeltaTime;
 
+            //loop through all the items in that array and power them on!
             foreach (Collider item in things)
             {
-                // Do stuff to item.GetComponent<IPowered>().power....blah
+                item.GetComponent<IPowered>().PoweredOn();
             }
         }
 
         [Button]
         private void OnDisable()
         {
-            generatorAudio.Stop();
-            generatorAudio.loop = false;
-            GeneratorModel generator = GetComponent<GeneratorModel>();
+            StopSound();
+            
+            //loop through all items in the items array and power them off
             if (generator != null)
             {
-                foreach (IPowered poweredObject in generator.thingToGivePowerTo)
+                foreach (Collider item in things)
                 {
-                    poweredObject.PoweredOff();
+                    item.GetComponent<IPowered>().PoweredOff();
                 }
             }
         }
@@ -57,6 +54,12 @@ namespace Johns
             generatorAudio.clip = generatorRunning;
             generatorAudio.loop = true;
             generatorAudio.Play();
+        }
+
+        public void StopSound()
+        {
+            generatorAudio.loop = false;
+            generatorAudio.Stop();
         }
     }
 }

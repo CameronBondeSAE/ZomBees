@@ -11,9 +11,8 @@ namespace Johns
 {
 	public class GeneratorModel : DynamicObject, IItem, ISwitchable, IPowered
 	{
-		public int currFuel;
-		public int maxFuel = 100;
-		public int rateOfConsumption = 1;
+		public float currFuel;
+		public float maxFuel = 100;
 		public List<IPowered> thingToGivePowerTo;
 		public bool wasPowered;
 		public Collider triggerBoxCollider;
@@ -21,7 +20,6 @@ namespace Johns
 		public void PoweredOn()
 		{
 			GetComponent<StateManager>().ChangeState(GetComponent<GeneratorStartingState>());
-			StartCoroutine(FuelDrainCoroutine());
 			wasPowered = true;
 		}
 
@@ -33,36 +31,16 @@ namespace Johns
 		//just a check to see if it is at 0 fuel to power it off
 		private void FixedUpdate()
 		{
-			if (currFuel == 0 && wasPowered)
+			if (currFuel <= 0 && wasPowered)
 			{
 				PoweredOff();
 				wasPowered = false;
 			}
 		}
-		
-		//the thing that handles the consumption of the fuel
-		IEnumerator FuelDrainCoroutine()
-		{
-			for (int i = currFuel; currFuel > 0; currFuel--)
-			{
-				Debug.Log(currFuel);
-				yield return new WaitForSeconds(rateOfConsumption);
-			}
-		}
-		
+
 		//The thing that handles filling up the fuel
 		public void OnTriggerEnter(Collider other)
 		{
-			if(other == triggerBoxCollider)
-			{
-				IPowered powered = other.GetComponent<IPowered>();
-				
-				if (powered != null)
-				{
-					thingToGivePowerTo.Add(powered);
-				}
-			}
-
 			if (other.GetComponent<GasTank>())
 			{
 				Debug.Log("this works");
@@ -78,19 +56,6 @@ namespace Johns
 					currFuel = 0;
 				}
 				
-			}
-		}
-
-		private void OnTriggerExit(Collider other)
-		{
-			if(other == triggerBoxCollider)
-			{
-				IPowered powered = other.GetComponent<IPowered>();
-				
-				if (powered != null)
-				{
-					thingToGivePowerTo.Remove(powered);
-				}
 			}
 		}
 
