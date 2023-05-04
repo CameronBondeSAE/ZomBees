@@ -123,11 +123,13 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 				break;
 			case CivGPT.CivAction.FollowOtherCharacter:
 				break;
-			case CivGPT.CivAction.GatherFood:
+			case CivGPT.CivAction.FindFood:
 				// Check memories for food, else go to resource points
+				// GetComponent<MemoryManger>().AddMemory();
+				
 				navMeshAgent.SetDestination(ZombeeGameManager.Instance.ConvertGridSpaceToWorldSpace(gptResponseData.GridCoordinateForAction));
 				break;
-			case CivGPT.CivAction.RetrieveBomb:
+			case CivGPT.CivAction.FindBomb:
 				break;
 			case CivGPT.CivAction.RunAndHide:
 				randomNavmeshTest.FindRandomSpot();

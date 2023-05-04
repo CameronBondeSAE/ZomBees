@@ -95,7 +95,7 @@ namespace Oscar
 
                     break;
                 
-                case CivGPT.CivAction.GatherFood:
+                case CivGPT.CivAction.FindFood:
                     childSensor.CollectState();
                     GetTheStuff = true;
                     AmIIdle = false;
@@ -103,7 +103,7 @@ namespace Oscar
                     AmIFollowing = false;
                     break;
                 
-                case CivGPT.CivAction.RetrieveBomb:
+                case CivGPT.CivAction.FindBomb:
                     break;
                 
                 case CivGPT.CivAction.RunAndHide:
