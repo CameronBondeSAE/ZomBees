@@ -98,6 +98,15 @@ MonoBehaviour:
       value: 0
     - id: 3
       value: 1
+  - name: Die
+    isDefault: 0
+    state: {fileID: 994340823318101012, guid: 7ff48f39ace9c3e4d86406f78b145676, type: 3}
+    cost: -3
+    position: {x: 1316, y: 137}
+    pre:
+    - id: 3
+      value: 0
+    post: []
   goals:
   - name: FoodDelivery
     isDefault: 1

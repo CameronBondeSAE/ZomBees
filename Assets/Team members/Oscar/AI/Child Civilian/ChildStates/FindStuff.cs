@@ -6,5 +6,10 @@ using UnityEngine;
 
 public class FindStuff : OscarsLittleGuyMovement
 {
-    //this is the task the player sends it on to get whatever it is they wanted.
+    public override void Execute(float aDeltaTime, float aTimeScale)
+    {
+        base.Execute(aDeltaTime, aTimeScale);
+
+        
+    }
 }

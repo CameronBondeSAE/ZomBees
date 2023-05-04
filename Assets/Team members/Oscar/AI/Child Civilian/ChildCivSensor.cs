@@ -15,15 +15,19 @@ namespace Oscar
         private void Awake()
         {
             aiAgent = GetComponent<AntAIAgent>();
+            DefaultState();
         }
 
         public void DefaultState()
         {
             //set goal to the default one.
+            aiAgent.SetGoal(aiAgent.planner.goals[0].name);
+            print((aiAgent.planner.goals[0].name));
         }
         public void CollectState()
         {
             //set goal to the collection one.
+            aiAgent.SetGoal(aiAgent.planner.goals[0].name);
         }
 
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)

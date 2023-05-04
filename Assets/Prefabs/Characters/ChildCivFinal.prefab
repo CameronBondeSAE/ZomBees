@@ -247,7 +247,7 @@ Transform:
   - {fileID: 8628794340795267898}
   - {fileID: 7439687858159993640}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!136 &1876615668
 CapsuleCollider:
@@ -431,10 +431,16 @@ MonoBehaviour:
     value: 0
     threshold: 1
     changeValueOverTime: 0
-    canBeAlteredByGPT: 0
+    canBeAlteredByGPT: 1
     thresholdHit: 0
   - traitScriptableObject: {fileID: 11400000, guid: a5f76bf83e00c2e4c9d82b562f9c1b4e, type: 2}
     value: 0
+    threshold: 1
+    changeValueOverTime: 0.01
+    canBeAlteredByGPT: 0
+    thresholdHit: 0
+  - traitScriptableObject: {fileID: 11400000, guid: e28aeaee3c5a5fc48b2bfda818d4263d, type: 2}
+    value: 0.06
     threshold: 1
     changeValueOverTime: 0
     canBeAlteredByGPT: 0
@@ -1017,6 +1023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   littleGuy: {fileID: 107376084}
+  childSensor: {fileID: 0}
   vision: {fileID: 2338746979408309844}
   civGPT: {fileID: 8822627639575176923}
   civTraits: {fileID: 3452993360891905805}

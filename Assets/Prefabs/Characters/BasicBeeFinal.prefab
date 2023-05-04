@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 952844609441976862}
   - component: {fileID: 5098364675696530885}
   - component: {fileID: 8176706373874889461}
-  - component: {fileID: 4212922884260245810}
   - component: {fileID: 7912746828836835105}
   - component: {fileID: 1912909172151051552}
   - component: {fileID: 980534108}
@@ -212,21 +211,6 @@ MonoBehaviour:
   BeeWingDistorted: {fileID: 7661064535709151610, guid: 8bbdd2b57d9a1e049b78ec8fa0803f3f, type: 3}
   wingType: 1
   spawned: 1
---- !u!114 &4212922884260245810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5818210832180300190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e724e36405834fa192b36cd6a4e6059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manualUpdate: 0
-  thinkInterval: 0.1
-  scenario: {fileID: 11400000, guid: 891cece1984d1d74c843e648763eb8f1, type: 2}
 --- !u!114 &7912746828836835105
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ namespace Oscar
         #region Variables
         
         public LittleGuy littleGuy;
+        public ChildCivSensor childSensor;
         public OscarVision vision;
         public CivGPT civGPT;
         public CivilianTraits civTraits;
@@ -24,7 +25,7 @@ namespace Oscar
         public Hearing ears;
         
         private bool iAmIdle = false;
-        private bool iAmAlive = false;
+        private bool iAmAlive = true;
         private bool iAmFollowing = false;
         private bool iAmConversing = false;
         private bool iAmScared = false;
@@ -55,7 +56,6 @@ namespace Oscar
             littleGuy.transform.DOLookAt(civGPT.currentChat.CharacterBase.transform.position, 1f, AxisConstraint.Y, Vector3.up);
         }
         
-        
         private void GPTPerformingAction(object sender, CivGPT.GPTResponseData gptResponseData)
         {
             switch (gptResponseData.CivAction)
@@ -76,6 +76,7 @@ namespace Oscar
                     AmIIdle = true;
                     AmIScared = false;
                     AmIFollowing = false;
+                    GetTheStuff = false;
                     break;
                 
                 case CivGPT.CivAction.DropItem:
@@ -90,15 +91,23 @@ namespace Oscar
                 case CivGPT.CivAction.FollowOtherCharacter:
                     AmIIdle = false;
                     AmIFollowing = true;
+                    GetTheStuff = false;
+
                     break;
                 
                 case CivGPT.CivAction.GatherFood:
+                    childSensor.CollectState();
+                    GetTheStuff = true;
+                    AmIIdle = false;
+                    AmIScared = false;
+                    AmIFollowing = false;
                     break;
                 
                 case CivGPT.CivAction.RetrieveBomb:
                     break;
                 
                 case CivGPT.CivAction.RunAndHide:
+                    GetTheStuff = false;
                     AmIIdle = false;
                     AmIScared = true;
                     AmIFollowing = false;
@@ -213,9 +222,9 @@ namespace Oscar
             
             
             //Scared |
-            if (AmIScared == true)
+            if (civTraits.GetTrait(fear).thresholdHit)
             {
-                print(AmIScared);
+                AmIScared = true;
             }
                         
             //Hungry |

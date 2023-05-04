@@ -234,7 +234,7 @@ MonoBehaviour:
     - id: 14
       value: 0
   goals:
-  - name: DeliverRocks
+  - name: DeliverObjects
     isDefault: 1
     position: {x: 1314, y: 95}
     conditions:

@@ -71,15 +71,14 @@ public class OscarControllerAI : MonoBehaviour
             seeCivilians = false;
         }
         
-
-        if(inventory.heldItem != null)
-        {
-            hasTheFood = true;
-        }
-        else
-        {
-            hasTheFood = false;
-        }
+        // if(inventory.heldItem != null)
+        // {
+        //     hasTheFood = true;
+        // }
+        // else
+        // {
+        //     hasTheFood = false;
+        // }
     }
 
     public bool seeTheFood

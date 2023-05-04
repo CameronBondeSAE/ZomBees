@@ -14,7 +14,9 @@ public class DeliverFood : OscarsLittleGuyMovement
 	private Inventory inventory;
 
 	private OscarControllerAI basicBeeControl;
-
+	
+	private bool finishDelivering;
+	
 	private void OnEnable()
 	{
 		objectArrivedEvent += arrivedAtLocation;
@@ -30,6 +32,7 @@ public class DeliverFood : OscarsLittleGuyMovement
 	public override void Enter()
     {
 	    base.Enter();
+	    finishDelivering = false;
 	    FlightMode();
 	    basicBeeControl.basicBeeWalking.SetActive(false); 
 	    basicBeeControl.basicBeeFlying.SetActive(true); 
@@ -40,7 +43,7 @@ public class DeliverFood : OscarsLittleGuyMovement
     {
 	    base.Execute(aDeltaTime, aTimeScale);
 
-	    if (inventory.heldItem != null)
+	    if (finishDelivering == false)
 	    {
 		    NavmeshFindLocation(
 			    PatrolManager.singleton.hivePoints[Random.Range(0, PatrolManager.singleton.hivePoints.Count)].transform.position);
@@ -54,13 +57,27 @@ public class DeliverFood : OscarsLittleGuyMovement
 	    basicBeeControl.basicBeeFlying.SetActive(false);
 	    
 	    inventory.Dispose();
+	    StartCoroutine(RunAway());
 	    Exit();
+    }
+    
+    IEnumerator RunAway()
+    {
+	    Vector3 position = PatrolManager.singleton
+		    .sneaky[Random.Range(0, PatrolManager.singleton.sneaky.Count)].transform.position;
+	    NavmeshFindLocation(position);
+        
+	    yield return new WaitForSeconds(5f);
+	    finishDelivering = true;
+        
+	    Finish();
     }
 
     public override void Exit()
     {
 	    base.Exit();
-	    
+
+	    basicBeeControl.hasTheFood = false;
 	    NavMeshFinish();
     }
 }

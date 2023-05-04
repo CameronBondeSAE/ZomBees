@@ -11,6 +11,8 @@ public class CollectFood : OscarsLittleGuyMovement
     private OscarVision vision;
     private Inventory inventory;
 
+    private OscarControllerAI beeControl;
+
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
@@ -18,6 +20,8 @@ public class CollectFood : OscarsLittleGuyMovement
         vision = aGameObject.GetComponentInChildren<OscarVision>();
 
         inventory = aGameObject.GetComponentInParent<Inventory>();
+
+        beeControl = aGameObject.GetComponent<OscarControllerAI>();
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
@@ -34,14 +38,8 @@ public class CollectFood : OscarsLittleGuyMovement
         
         if (inventory.heldItem != null)
         {
-            if (inventory.heldItem.Description() == "Food")
-            {
-                Finish();
-            }
-            else
-            {
-                inventory.Dispose();
-            }
+            beeControl.hasTheFood = true;
+            Finish();
         }
     }
 }
