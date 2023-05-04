@@ -44,7 +44,8 @@ public class CivViewModel : MonoBehaviour
         // GetComponent<AudioSource>().clip = clip;
         // GetComponent<AudioSource>().Play();
 
-        if (ElevenLabsManager.Instance.ElevenLabsVoice)
+        // Don't generate if they're too far away
+        if (ElevenLabsManager.Instance.ElevenLabsVoice && Vector3.Distance( transform.position, ZombeeGameManager.Instance.playerModel.transform.position) < ElevenLabsManager.Instance.minimumDistanceToPlayerToGenerate)
         {
             ElevenLabsVoiceAPITest.SynthesizeSpeech(input);
         }

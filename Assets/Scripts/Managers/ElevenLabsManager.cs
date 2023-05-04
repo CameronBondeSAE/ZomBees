@@ -11,6 +11,8 @@ public class ElevenLabsManager : MonoBehaviour
 
 	public bool ElevenLabsVoice = false;
 
+	public float minimumDistanceToPlayerToGenerate = 5f;
+	
 	public string apiUrl = "https://api.elevenlabs.io/v1/text-to-speech/";
 	private string apiKey = "6fee898400ed59fa0e53d71ed9e585e0";
 

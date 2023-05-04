@@ -42,6 +42,7 @@ public class CivGPT : MonoBehaviour, IHear
 		FindSafeLocation,
 		FollowOtherCharacter,
 		SearchArea,
+		GoToLocation,
 		GatherFood,
 		RetrieveBomb,
 		RunAndHide,
