@@ -5,6 +5,7 @@ using Oscar;
 using Sirenix.OdinInspector;
 using SplineMesh;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Virginia;
 
 namespace Johns
@@ -13,14 +14,17 @@ namespace Johns
 	{
 		public float currFuel;
 		public float maxFuel = 100;
-		public List<IPowered> thingToGivePowerTo;
-		public bool wasPowered;
-		public Collider triggerBoxCollider;
+		[FormerlySerializedAs("wasPowered")] public bool isPowered;
+
+		public void Awake()
+		{
+			currFuel = maxFuel;
+		}
 
 		public void PoweredOn()
 		{
 			GetComponent<StateManager>().ChangeState(GetComponent<GeneratorStartingState>());
-			wasPowered = true;
+			isPowered = true;
 		}
 
 		public void PoweredOff()
@@ -31,10 +35,11 @@ namespace Johns
 		//just a check to see if it is at 0 fuel to power it off
 		private void FixedUpdate()
 		{
-			if (currFuel <= 0 && wasPowered)
+			if (currFuel <= 0f && isPowered)
 			{
 				PoweredOff();
-				wasPowered = false;
+				currFuel = 0f;
+				isPowered = false;
 			}
 		}
 
@@ -84,8 +89,7 @@ namespace Johns
 		{
 			PoweredOn();
 		}
-
-		[Button]
+		
 		public void TurnOff()
 		{
 			PoweredOff();
