@@ -73,7 +73,7 @@ Transform:
   - {fileID: 9132206041865430102}
   - {fileID: 6342664566379943885}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &749302473
 CapsuleCollider:
@@ -82,7 +82,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5818210832180300190}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bb1b203c4f56a984eb0dce66d110c3fc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   description: 
   homeBase: {fileID: 0}
   rb: {fileID: 1751265245}
-  speed: 3
+  speed: 5
   turnSpeed: 0.15
 --- !u!114 &5098364675696530885
 MonoBehaviour:
@@ -258,7 +258,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  maxListeners: 20
   testProperties:
     Source: {fileID: 0}
     SoundType: 0
@@ -280,7 +279,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 287145453
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -795,7 +794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4630503217969394997, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
