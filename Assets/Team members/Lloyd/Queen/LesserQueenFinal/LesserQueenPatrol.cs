@@ -138,7 +138,6 @@ namespace Lloyd
 
             if (hearSomething || seeSomething)
             {
-                queenSensor.patrol = false;
                 Finish();
             }
         }
