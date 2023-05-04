@@ -35,18 +35,6 @@ namespace Lloyd
 
             for (int i = 0; i < numColliders; i++)
             {
-                /*ItemPickup pickup = colliders[i].GetComponent<ItemPickup>();
-            if (pickup != null)
-            {
-                if (wantToActivate)
-                    pickup.SwitchActive();
-
-              //  else if (wantToPickUp)
-               // {
-                //    pickup.SwitchHeld(rightHand);
-              //  }
-            }*/
-
                 IInteractable interactable = colliders[i].GetComponent<IInteractable>();
                 if (interactable != null)
                 {

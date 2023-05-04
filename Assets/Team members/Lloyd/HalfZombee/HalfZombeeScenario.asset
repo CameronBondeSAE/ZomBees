@@ -19,30 +19,30 @@ MonoBehaviour:
     - id: 1
       name: HeardNoise
     - id: 2
-      name: BitCiv
-    - id: 3
       name: HeardUnpleasantNoise
-    - id: 4
+    - id: 3
       name: SeesLight
-    - id: 5
+    - id: 4
       name: Dead
+    - id: 5
+      name: BitCiv
   actions:
   - name: BiteCiv
     isDefault: 0
     state: {fileID: 8061347263482892826, guid: f79c48438c85fc94daac0c921adf745f, type: 3}
     cost: 0
-    position: {x: 799.333, y: 46.333313}
+    position: {x: 799.333, y: 76.33331}
     pre:
     - id: 0
       value: 1
     post:
-    - id: 2
+    - id: 5
       value: 1
   - name: Wander
     isDefault: 1
     state: {fileID: 4733347527213428090, guid: 7ed1b75083bbf464cafbc2f3c9249fdc, type: 3}
     cost: 0
-    position: {x: 226.66663, y: 41.66665}
+    position: {x: 239.66663, y: 57.66665}
     pre:
     - id: 0
       value: 0
@@ -54,8 +54,6 @@ MonoBehaviour:
       value: 0
     - id: 4
       value: 0
-    - id: 5
-      value: 0
     post:
     - id: 0
       value: 1
@@ -63,7 +61,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 3459857362219294439, guid: 2326dccee2af12f4e94737dd65a26794, type: 3}
     cost: 0
-    position: {x: 500, y: 45.00003}
+    position: {x: 500, y: 75.00003}
     pre:
     - id: 1
       value: 1
@@ -74,44 +72,44 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 395559839041994076, guid: 1341af0ab0a2cd545a5903ca76762998, type: 3}
     cost: 0
-    position: {x: 750, y: 594.99994}
+    position: {x: 750, y: 624.99994}
     pre:
-    - id: 3
+    - id: 2
       value: 1
     post:
-    - id: 3
+    - id: 2
       value: 0
   - name: DrawnToLight
     isDefault: 0
     state: {fileID: 5107732917740362578, guid: ae999c0e0439bf04498cccbb04aaf7e3, type: 3}
     cost: 0
-    position: {x: 317, y: 551}
+    position: {x: 317, y: 581}
     pre:
-    - id: 4
+    - id: 3
       value: 1
     post:
-    - id: 4
+    - id: 3
       value: 0
   - name: Dead
     isDefault: 0
     state: {fileID: 1266406384966255719, guid: 6d76634ed3b4671438687e29dc12b793, type: 3}
     cost: 0
-    position: {x: 536.6665, y: 518.3333}
+    position: {x: 536.6665, y: 548.3333}
     pre:
-    - id: 5
+    - id: 4
       value: 1
     post:
-    - id: 5
+    - id: 4
       value: 0
   goals:
   - name: TurnCivs
     isDefault: 1
-    position: {x: 1233.3335, y: 38.333344}
+    position: {x: 1233.3335, y: 68.33334}
     conditions:
-    - id: 2
+    - id: 5
       value: 1
   worldStates:
-  - position: {x: 258.33334, y: 330}
+  - position: {x: 258.33334, y: 360}
     isAutoUpdate: 1
     list:
     - id: 0
