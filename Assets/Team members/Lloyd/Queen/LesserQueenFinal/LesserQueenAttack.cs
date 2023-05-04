@@ -52,13 +52,12 @@ namespace Lloyd
 
         private IEnumerator Attack()
         {
-            queenSensor.agitated = true;
-            
             queenEvent.OnChangeSwarmPoint(queenSensor.attackTarget);
 
             yield return new WaitForSeconds(attackTime);
 
             moveForwards.enabled = true;
+            queenSensor.patrol = true;
             Finish();
         }
         

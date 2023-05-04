@@ -152,7 +152,9 @@ MonoBehaviour:
     cost: 0
     position: {x: 532, y: 290}
     pre: []
-    post: []
+    post:
+    - id: 7
+      value: 1
   goals:
   - name: SpawnHive
     isDefault: 0
@@ -185,4 +187,4 @@ MonoBehaviour:
     - id: 6
       value: 0
     - id: 7
-      value: 1
+      value: 0

@@ -71,7 +71,7 @@ namespace Johns
 
 		public void   Dispose()
 		{
-			
+			UtilityManager.EnableAfterDelay(gameObject);
 		}
 
 		public string Description()
@@ -81,7 +81,7 @@ namespace Johns
 
 		public void   Pickup(GameObject whoPickedMeUp)
 		{
-			
+			UtilityManager.DisableAfterDelay(gameObject,whoPickedMeUp.GetComponent<Inventory>().hand.gameObject);
 		}
 
 		//these 2 below are just to get a response from the switch
