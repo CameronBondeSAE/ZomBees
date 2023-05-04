@@ -334,10 +334,10 @@ namespace Oscar
                 DoIHaveFood = false;
             }
 
-            if (health.currHealth <= 0)
-            {
-                EggManager.instance.StartEgg(littleGuy.gameObject);
-            }
+            //if (health.currHealth <= 0)
+            //{
+            //    EggManager.instance.StartEgg(littleGuy.gameObject);
+            //}
         }
         #endregion
 
