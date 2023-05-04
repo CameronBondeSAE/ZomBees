@@ -50,7 +50,7 @@ namespace AlexM
 			Debug.Log("PLAYER DIED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 			// HACK
-			SceneManager.LoadScene("Main");
+			SceneManager.LoadScene("TitleScreen");
 		}
 		private void OnplayerInteractedWithCivEvent()
 		{

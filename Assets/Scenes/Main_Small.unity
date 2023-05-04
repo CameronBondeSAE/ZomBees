@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1194554256}
-  m_IndirectSpecularColor: {r: 0.003673092, g: 0.003524166, b: 0.0033356198, a: 1}
+  m_IndirectSpecularColor: {r: 0.0052203243, g: 0.0047830497, b: 0.004579772, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -64663,7 +64663,7 @@ PrefabInstance:
     - target: {fileID: 5941183614923157365, guid: 9d561a3e9d9c69847972028dc8351260, type: 3}
       propertyPath: flyDude
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6420452257677160548, guid: bab9d83e7a317ab45b59ed15787153c4, type: 3}
     - target: {fileID: 5941183614923157366, guid: 9d561a3e9d9c69847972028dc8351260, type: 3}
       propertyPath: m_Name
       value: Swarm Spawner

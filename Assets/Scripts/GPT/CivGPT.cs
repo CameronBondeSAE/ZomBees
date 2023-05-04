@@ -451,7 +451,7 @@ public class CivGPT : MonoBehaviour, IHear
 			// AppendUserInput("ONLY OUTPUT IN JSON FORMATTED TEXT. Here's an example " + example +
 			//                 ". Give no explanation or clarifications. Here is the user's prompt: " +
 			//                 information+"\n");
-			AppendUserInput("ONLY OUTPUT IN JSON FORMATTED TEXT. Give no explanation or clarifications. Here is the user's prompt: " +
+			AppendUserInput("ONLY OUTPUT IN JSON FORMATTED TEXT. Don't use options that aren't in the system JSON template. Give no explanation or clarifications. Here is the user's prompt: " +
 			                information+"\n");
 			}
 		}

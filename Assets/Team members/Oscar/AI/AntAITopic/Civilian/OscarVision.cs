@@ -9,7 +9,7 @@ public class OscarVision : MonoBehaviour
 {
 	#region Variables
 
-	public float sightRefreshTime;
+	public float sightRefreshTime = 2f;
 	
 	public List<DynamicObject> beesInSight = new List<DynamicObject>();	
 
@@ -55,8 +55,22 @@ public class OscarVision : MonoBehaviour
 				if (!allInSight.Contains(dynamicObj))
 				{
 					allInSight.Add(dynamicObj);
+					
+					allInSight.Sort(Comparison);
 				}
 			}
+		}
+	}
+
+	int Comparison(DynamicObject x, DynamicObject y)
+	{
+		if (Vector3.Distance(transform.position, x.transform.position) < Vector3.Distance(transform.position, y.transform.position))
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
 		}
 	}
 
@@ -140,7 +154,7 @@ public class OscarVision : MonoBehaviour
 			yield return new WaitForSeconds(sightRefreshTime);
 		}
 	}
-
+	
 	#endregion
 	
 
