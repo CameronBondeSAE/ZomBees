@@ -468,7 +468,7 @@ MonoBehaviour:
   _material: {fileID: 0}
   _coneSides: 25
   _proportionalRadius: 0
-  _coneRadius: 25
+  _coneRadius: 5
   _coneHeight: 45
 --- !u!1 &5345068578021014479
 GameObject:
@@ -817,7 +817,7 @@ MonoBehaviour:
   homeBase: {fileID: 0}
   tetheredObject: 1
   target: {fileID: 0}
-  tetherStrength: 0
+  tetherStrength: 100
 --- !u!1 &7566044581200001720
 GameObject:
   m_ObjectHideFlags: 0

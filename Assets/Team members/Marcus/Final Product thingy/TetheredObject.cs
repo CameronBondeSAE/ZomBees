@@ -14,7 +14,7 @@ namespace Marcus
         public Transform target;
         public float tetherStrength;
 
-        private void Awake()
+        private void Start()
         {
             target = homeBase.transform;
         }

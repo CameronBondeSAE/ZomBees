@@ -38,14 +38,17 @@ namespace Marcus
         private void FixedUpdate()
         {
             // Move towards loud sounds such as gun fire
-            if (sound.SoundType != SoundEmitter.SoundType.Bee && sound.SoundType != SoundEmitter.SoundType.CreatureRepellant)
+            if (hearing.heardSound)
             {
-                TurnTowards(rb, sound.Source, 1000f);
-            }
-            // Move away from repellant sounds
-            else if(sound.SoundType == SoundEmitter.SoundType.CreatureRepellant)
-            {
-                TurnTowards(rb, sound.Source.transform.position * -1f, 5000f);
+                if (sound.SoundType != SoundEmitter.SoundType.Bee && sound.SoundType != SoundEmitter.SoundType.CreatureRepellant)
+                {
+                    TurnTowards(rb, sound.Source, 1000f);
+                }
+                // Move away from repellant sounds
+                else if(sound.SoundType == SoundEmitter.SoundType.CreatureRepellant)
+                {
+                    TurnTowards(rb, sound.Source.transform.position * -1f, 5000f);
+                }
             }
             
             // Turn towards visible light
