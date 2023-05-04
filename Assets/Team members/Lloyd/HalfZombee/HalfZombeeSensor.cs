@@ -12,7 +12,6 @@ namespace Lloyd
         public void OnEnable()
         {
             hearing = GetComponent<Hearing>();
-            vision = GetComponent<OscarVision>();
             health = GetComponent<Health>();
             health.HealthReducedToZeroEvent += Death;
             beeWings.SetWings();

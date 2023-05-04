@@ -9,7 +9,7 @@ namespace Lloyd
 
 
 //this is copy/pasted from LessQueenPatrol.cs
-    public class HalfZombeeWander : AntAIState
+    public class Whatever : AntAIState
     {
         public HalfZombeeSensor sensor;
 
@@ -44,7 +44,7 @@ namespace Lloyd
         {
             base.Enter();
 
-            sensor.beeWings.ChangeBeeWingStats(-125, 1, true);
+            sensor.beeWings.ChangeBeeWingStats(-165, 3, true);
 
             pathPointsReference = PatrolManager.singleton.paths;
             currMoveTarget = GetNewPatrolPoint();

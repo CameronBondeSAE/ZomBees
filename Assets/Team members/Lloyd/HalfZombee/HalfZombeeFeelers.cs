@@ -6,7 +6,7 @@ public class HalfZombeeFeelers : MonoBehaviour
 {
     public int numRays;
     private float maxAngle = 90f;
-    public float initialRaycastDistance = 10f;
+    public float initialRaycastDistance = 8f;
     public float raycastDistanceDecay = 0.8f;
 
     void Update()
