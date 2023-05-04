@@ -1104,6 +1104,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2113993496808437951, guid: bbec12d51247d9543a7563ff39617592, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 2113993496808437951, guid: bbec12d51247d9543a7563ff39617592, type: 3}
     - target: {fileID: 8077315485739699798, guid: bbec12d51247d9543a7563ff39617592, type: 3}
       propertyPath: m_AdditionalVertexStreams
       value: 
@@ -1416,7 +1420,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currHealth: 0
 --- !u!65 &610590542
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1845,6 +1848,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1794797526480199507, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1794797526480199507, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
     - target: {fileID: 2925474553551602961, guid: 9cca22e6a4add264b92c7c1d4938b2e3, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -2276,7 +2283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currHealth: 0
 --- !u!1 &1292173037
 GameObject:
   m_ObjectHideFlags: 0
@@ -2523,13 +2529,17 @@ PrefabInstance:
       propertyPath: updateSwarmTimer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3729997568035788912, guid: 161a0747884805145906eb39f3c6c497, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 3729997568035788912, guid: 161a0747884805145906eb39f3c6c497, type: 3}
     - target: {fileID: 4598863733064716673, guid: 161a0747884805145906eb39f3c6c497, type: 3}
       propertyPath: m_Name
       value: ZombeeLesserQueen
       objectReference: {fileID: 0}
     - target: {fileID: 4598863733064716673, guid: 161a0747884805145906eb39f3c6c497, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4598863733064716675, guid: 161a0747884805145906eb39f3c6c497, type: 3}
       propertyPath: m_RootOrder
@@ -2778,7 +2788,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currHealth: 0
 --- !u!1 &1555470461
 GameObject:
   m_ObjectHideFlags: 0
@@ -3921,7 +3930,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currHealth: 0
 --- !u!23 &1990343864
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -47,6 +47,10 @@ namespace Lloyd
             isBee = true;
 
             look = GetComponent<LesserQueenLookAt>();
+
+            description = "A strange creature that looks like a giant bee. It's dangerous...";
+
+            importance = .7f;
         }
 
         public void Update()

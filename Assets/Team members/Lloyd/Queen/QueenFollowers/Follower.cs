@@ -6,7 +6,7 @@ namespace Lloyd
 {
 
 
-    public class Follower : MonoBehaviour, IFollower
+    public class Follower : DynamicObject, IFollower
     {
         public Transform rotationTransform;
         private Transform target;
@@ -44,6 +44,11 @@ namespace Lloyd
 
         private void OnEnable()
         {
+            isBee = true;
+            importance = .2f;
+            
+            description = "A hideous creature that looks like a bee.";
+            
             beeWings = GetComponentInChildren<BeeWingsManager>();
             beeWings.SpawnWings();
 
