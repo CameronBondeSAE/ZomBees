@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swarmer: {fileID: 889221432442366976, guid: 13d0de7039ab2004bbf10a88764026c1, type: 3}
-  waitTime: 0
+  waitTime: 0.1
   FollowerList: []
   queenEvent: {fileID: 0}
   queenSensor: {fileID: 0}

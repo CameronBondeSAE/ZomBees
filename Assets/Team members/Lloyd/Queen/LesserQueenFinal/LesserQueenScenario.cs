@@ -2,16 +2,13 @@ namespace Lloyd
 {
     public enum LesserQueenScenario
     {
-        Patrol =0,
-        SeesTarget        = 1,
-        HeardSound        = 2,
-        Dead              = 3, 
-        Attack            = 4,
-        HasResource       = 5,
-        SpawnHive = 6,
-        SpawnFollowers=7,
-        PrepareToAttack=8,
-        Agitated=9,
-        HasBullets = 10
+        SeesTarget = 0,
+        HeardSound = 1,
+        Dead = 2,
+        HasResource = 3,
+        SpawnHive = 4,
+        SpawnFollowers = 5,
+        Agitated = 6,
+        Patrol = 7
     }
 }

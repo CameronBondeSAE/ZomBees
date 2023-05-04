@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Oscar;
@@ -12,6 +13,11 @@ namespace Marcus
         public bool tetheredObject;
         public Transform target;
         public float tetherStrength;
+
+        private void Awake()
+        {
+            target = homeBase.transform;
+        }
 
         private void FixedUpdate()
         {
