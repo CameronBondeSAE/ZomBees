@@ -14,6 +14,15 @@ namespace Oscar
         public Rigidbody rb;
         public float speed;
         public float turnSpeed;
+        public Health health;
+        
+        private void Update()
+        {
+            if (health.currHealth <= 0)
+            {
+                UtilityManager.DeleteAfterDelay(gameObject);
+            }
+        }
 
         public void SoundHeard(SoundProperties soundProperties)
         {

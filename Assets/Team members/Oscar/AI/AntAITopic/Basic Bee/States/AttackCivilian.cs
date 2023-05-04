@@ -44,7 +44,8 @@ public class AttackCivilian : OscarsLittleGuyMovement
                     if (enemyHealth != null)
                     {
                         // Deal damage to the player
-                        enemyHealth.Change(10f, Health.DamageType.Bee, littleGuy.gameObject);
+                        if (enemyHealth != null && enemyHealth.currHealth > 0)
+                            enemyHealth.Change(-1000000000000000f);
                     }
                     
                 }

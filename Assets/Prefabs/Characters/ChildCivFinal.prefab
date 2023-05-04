@@ -332,6 +332,7 @@ MonoBehaviour:
   rb: {fileID: 1491344761}
   speed: 1
   turnSpeed: 0.15
+  health: {fileID: 7553392581998968432}
 --- !u!114 &3766555885203436555
 MonoBehaviour:
   m_ObjectHideFlags: 0

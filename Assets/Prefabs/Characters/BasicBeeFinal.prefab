@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 8176706373874889461}
   - component: {fileID: 7912746828836835105}
   - component: {fileID: 1912909172151051552}
+  - component: {fileID: 402686923948881750}
   - component: {fileID: 980534108}
   m_Layer: 0
   m_Name: BasicBeeFinal
@@ -158,6 +159,7 @@ MonoBehaviour:
   rb: {fileID: 1751265245}
   speed: 10
   turnSpeed: 0.15
+  health: {fileID: 402686923948881750}
 --- !u!114 &5098364675696530885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +271,19 @@ MonoBehaviour:
     Team: 0
     ObstaclesBetween: 0
     Dialogue: 
+--- !u!114 &402686923948881750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5818210832180300190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e066fcc5d4ea80741a41c44a087dc275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!195 &980534108
 NavMeshAgent:
   m_ObjectHideFlags: 0
