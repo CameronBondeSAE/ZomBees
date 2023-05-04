@@ -5,6 +5,7 @@ using DG.Tweening;
 using UnityEngine;
 using Virginia;
 using Lloyd;
+using Marcus;
 
 namespace Oscar
 {
@@ -13,8 +14,12 @@ namespace Oscar
         
         #region Variables
         
+        //managers if needed
+        private ZombeeGameManager zombeeGameManager;
+        public MemoryManager memoryManager;
+        
+        //general variables
         public LittleGuy littleGuy;
-        public ChildCivSensor childSensor;
         public OscarVision vision;
         public CivGPT civGPT;
         public CivilianTraits civTraits;
@@ -22,8 +27,8 @@ namespace Oscar
         public TraitScriptableObject hunger;
         
         public Inventory inventory;
-        public Hearing ears;
         
+        //bools for AI conditions
         private bool iAmIdle = false;
         private bool iAmAlive = true;
         private bool iAmFollowing = false;
@@ -39,6 +44,11 @@ namespace Oscar
         private bool iDeliveredStuff = false;
         private bool seeFood = false;
         private bool hasFood = false;
+        private bool doAsTold = false;
+
+        public Vector3 goToPos;
+        
+        
                 
         #endregion
 
@@ -47,13 +57,15 @@ namespace Oscar
         {
             civGPT.GPTPerformingActionEvent += GPTPerformingAction;    
             civGPT.GPTOutputDialogueEvent += CivGptOnGPTOutputDialogueEvent;
+            zombeeGameManager = ZombeeGameManager.Instance;
         }
         
         private void CivGptOnGPTOutputDialogueEvent(object sender, string e)
         {
             Debug.Log("Look at character talking to me : "+civGPT.currentChat.CharacterBase.gameObject.name, gameObject);
-            iAmIdle = true;
+            
             littleGuy.transform.DOLookAt(civGPT.currentChat.CharacterBase.transform.position, 1f, AxisConstraint.Y, Vector3.up);
+            iAmIdle = true;
         }
         
         private void GPTPerformingAction(object sender, CivGPT.GPTResponseData gptResponseData)
@@ -73,10 +85,11 @@ namespace Oscar
                     break;
                 
                 case CivGPT.CivAction.DoNothing:
+                    MustCompleteInstructions = false;
                     AmIIdle = true;
                     AmIScared = false;
                     AmIFollowing = false;
-                    GetTheStuff = false;
+                    ImHungry = false;
                     break;
                 
                 case CivGPT.CivAction.DropItem:
@@ -89,25 +102,42 @@ namespace Oscar
                     break;
                 
                 case CivGPT.CivAction.FollowOtherCharacter:
+                    MustCompleteInstructions = false;
+                    ImHungry = false;
                     AmIIdle = false;
                     AmIFollowing = true;
-                    GetTheStuff = false;
-
+                    ImHungry = false;
+                    break;
+                
+                case CivGPT.CivAction.GoToLocation:
+                    goToPos = zombeeGameManager.ConvertGridSpaceToWorldSpace(gptResponseData.GridCoordinateForAction);
+                    print(goToPos);
+                    
+                    MustCompleteInstructions = true;
+                    ImHungry = false;
+                    AmIIdle = false;
+                    AmIFollowing = true;
+                    ImHungry = false;
                     break;
                 
                 case CivGPT.CivAction.FindFood:
-                    childSensor.CollectState();
-                    GetTheStuff = true;
+                    // if (memoryManager.FindMemoryOfType<DynamicObject>().theThing.isFood)
+                    // {
+                    //     goToPos = zombeeGameManager.ConvertGridSpaceToWorldSpace(gptResponseData.GridCoordinateForAction);
+                    // }
+                    ImHungry = true;
                     AmIIdle = false;
                     AmIScared = false;
                     AmIFollowing = false;
+                    MustCompleteInstructions = false;
                     break;
                 
                 case CivGPT.CivAction.FindBomb:
                     break;
                 
                 case CivGPT.CivAction.RunAndHide:
-                    GetTheStuff = false;
+                    MustCompleteInstructions = false;
+                    ImHungry = false;
                     AmIIdle = false;
                     AmIScared = true;
                     AmIFollowing = false;
@@ -196,6 +226,11 @@ namespace Oscar
             get { return hasFood; }
             set { hasFood = value; }
         }
+        public bool MustCompleteInstructions
+        {
+            get { return doAsTold; }
+            set { doAsTold = value; }
+        }
         #endregion
 
         #region UpdateFunction
@@ -228,15 +263,7 @@ namespace Oscar
             }
                         
             //Hungry |
-            if (civTraits.GetTrait(hunger).thresholdHit)
-            {
-                ImHungry = true;
-            }
-            else
-            {
-                ImHungry = false;
-            }
-            
+
             //Hide |
             
             
@@ -258,21 +285,22 @@ namespace Oscar
             
             
             //HaveStuff |
-            if (inventory.heldItem != null)
-            {
-                if (inventory.heldItem.Description() == "Collected Item")
-                {
-                    DoIHaveStuff = true;
-                }
-                else
-                {
-                    DoIHaveStuff = false;
-                }
-            }
-            else
-            {
-                DoIHaveStuff = false;
-            }
+            
+            // if (inventory.heldItem != null)
+            // {
+            //     if (inventory.heldItem as MonoBehaviour == gameObject.GetComponent<DynamicObject>().isObject)
+            //     {
+            //         DoIHaveStuff = true;
+            //     }
+            //     else
+            //     {
+            //         DoIHaveStuff = false;
+            //     }
+            // }
+            // else
+            // {
+            //     DoIHaveStuff = false;
+            // }
 
             //DeliverStuff |
             

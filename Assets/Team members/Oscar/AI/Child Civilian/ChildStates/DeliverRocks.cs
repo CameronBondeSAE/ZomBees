@@ -36,7 +36,7 @@ public class DeliverRocks : OscarsLittleGuyMovement
         finishDelivering = false;
         NavmeshEnabled();
         Vector3 position = PatrolManager.singleton
-            .pathsWithIndoors[Random.Range(0, PatrolManager.singleton.pathsWithIndoors.Count)].transform.position;
+            .indoors[Random.Range(0, PatrolManager.singleton.indoors.Count)].transform.position;
         NavmeshFindLocation(position);
     }
 
@@ -59,7 +59,7 @@ public class DeliverRocks : OscarsLittleGuyMovement
     IEnumerator RunAway()
     {
         Vector3 position = PatrolManager.singleton
-            .sneaky[Random.Range(0, PatrolManager.singleton.sneaky.Count)].transform.position;
+            .paths[Random.Range(0, PatrolManager.singleton.paths.Count)].transform.position;
         NavmeshFindLocation(position);
         
         yield return new WaitForSeconds(5f);

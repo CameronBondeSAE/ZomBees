@@ -397,13 +397,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd68dcb8f87c59d47850a862dd68ecdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  supportedActions: 
+  supportedActions: 040000000a0000000c0000000800000007000000
   ageSO: {fileID: 0}
   backStories_ReturnSeparatedLines: 
   conspiracyTheories_ReturnSeparatedLines: 
-  randomBackStoryAndConspiracy: 1
-  backStory: 
-  conspiracyTheory: 
+  randomBackStoryAndConspiracy: 0
+  backStory: parents died
+  conspiracyTheory: bees were behind jfk assasination
   randomCountry: 0
   apiKeys: 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
   memoryManager: {fileID: 6461197163127814067}
@@ -1023,7 +1023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   littleGuy: {fileID: 107376084}
-  childSensor: {fileID: 0}
+  childSensor: {fileID: 7573158467226798239}
   vision: {fileID: 2338746979408309844}
   civGPT: {fileID: 8822627639575176923}
   civTraits: {fileID: 3452993360891905805}

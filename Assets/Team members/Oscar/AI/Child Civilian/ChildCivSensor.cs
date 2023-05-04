@@ -9,27 +9,7 @@ namespace Oscar
     public class ChildCivSensor : MonoBehaviour, ISense
     {
         public ChildCivController controller;
-
-        public AntAIAgent aiAgent;
-        
-        private void Awake()
-        {
-            aiAgent = GetComponent<AntAIAgent>();
-            DefaultState();
-        }
-
-        public void DefaultState()
-        {
-            //set goal to the default one.
-            aiAgent.SetGoal(aiAgent.planner.goals[0].name);
-            print((aiAgent.planner.goals[0].name));
-        }
-        public void CollectState()
-        {
-            //set goal to the collection one.
-            aiAgent.SetGoal(aiAgent.planner.goals[0].name);
-        }
-
+       
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
         {
             aWorldState.BeginUpdate(aAgent.planner);
@@ -49,6 +29,8 @@ namespace Oscar
             aWorldState.Set(CivilianChild.hasFood, controller.DoIHaveFood);
             aWorldState.Set(CivilianChild.seeFood, controller.ISeeFood);
             aWorldState.Set(CivilianChild.Hide, controller.ShouldIHide);
+            aWorldState.Set(CivilianChild.CompleteInstructions, controller.MustCompleteInstructions);
+            
             
             aWorldState.EndUpdate();
         }
@@ -69,7 +51,8 @@ namespace Oscar
             isHungry = 11,
             hasFood = 12,
             seeFood = 13,
-            Hide = 14
+            Hide = 14,
+            CompleteInstructions = 15
         }
     }
 }
