@@ -235,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 1481231920541928607}
   m_LocalRotation: {x: 0, y: -0.6058773, z: 0, w: 0.79555815}
   m_LocalPosition: {x: 434.61, y: 19.78, z: 516.55}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 829692009101767989}
@@ -487,7 +487,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  maxListeners: 20
   testProperties:
     Source: {fileID: 0}
     SoundType: 0
@@ -1035,6 +1034,7 @@ MonoBehaviour:
   civTraits: {fileID: 3452993360891905805}
   fear: {fileID: 11400000, guid: a7b0073751aff784d975994f810239c9, type: 2}
   hunger: {fileID: 11400000, guid: a5f76bf83e00c2e4c9d82b562f9c1b4e, type: 2}
+  health: {fileID: 0}
   inventory: {fileID: 3766555885203436555}
   goToPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &2535456621498712066

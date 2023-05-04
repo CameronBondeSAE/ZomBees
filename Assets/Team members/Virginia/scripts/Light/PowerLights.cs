@@ -46,7 +46,7 @@ namespace Virginia
 
         public void Dispose()
         {
-            throw new System.NotImplementedException();
+            UtilityManager.EnableAfterDelay(gameObject);
         }
 
         public string Description()
@@ -56,7 +56,7 @@ namespace Virginia
 
         public void Pickup(GameObject whoPickedMeUp)
         {
-            throw new System.NotImplementedException();
+            UtilityManager.DisableAfterDelay(gameObject,whoPickedMeUp.GetComponent<Inventory>().hand.gameObject);
         }
     }
 }

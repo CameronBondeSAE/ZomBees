@@ -1,7 +1,9 @@
 using System;
+using Oscar;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.Serialization;
+using Virginia;
 
 
 namespace Johns
@@ -49,7 +51,7 @@ namespace Johns
 
         public void Dispose()
         {
-            throw new System.NotImplementedException();
+            UtilityManager.EnableAfterDelay(gameObject);
         }
 
         public string Description()
@@ -59,7 +61,7 @@ namespace Johns
 
         public void Pickup(GameObject whoPickedMeUp)
         {
-            throw new System.NotImplementedException();
+            UtilityManager.DisableAfterDelay(gameObject,whoPickedMeUp.GetComponent<Inventory>().hand.gameObject);
         }
         
         public void Interact()
