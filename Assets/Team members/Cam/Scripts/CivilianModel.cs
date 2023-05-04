@@ -6,6 +6,8 @@ using DG.Tweening;
 using Lloyd;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
+using Virginia;
 
 public class CivilianModel : CharacterBase, IInteractable, IHear
 {
@@ -23,7 +25,7 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 	/// </summary>
 
 	// View
-	public CivilianModel civilianModel;
+	public CivViewModel civViewModel;
 
 	public Pistol pistol; // HACK
 
@@ -47,6 +49,8 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 	
 	void Awake()
 	{
+		GetComponent<Health>().HealthReducedToZeroWithDamageTypeEvent += OnHealthReducedToZeroWithDamageTypeEvent;
+		
 		// Init();
 
 
@@ -64,6 +68,38 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 		
 		civGpt.GPTOutputDialogueEvent += CivGptOnGPTOutputDialogueEvent;
 		civGpt.GPTPerformingActionEvent += CivGptOnGPTPerformingActionEvent;
+	}
+
+	void OnHealthReducedToZeroWithDamageTypeEvent(Health.DamageType damageType, GameObject source)
+	{
+		if (damageType == Health.DamageType.Gun)
+		{
+			// gun.transform.parent                      = null;
+			// gun.GetComponent<Rigidbody>().isKinematic = false;
+			// gun.GetComponent<Collider>().enabled      = true;
+			//
+			// GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+			// foreach (var decal in decals)
+			// {
+			// 	decal.SetActive(true);
+			// }
+
+
+			// HACK move to gun itself
+			Rigidbody headRB = head.GetComponent<Rigidbody>();
+			headRB.isKinematic = false;
+			headRB.AddForceAtPosition(transform.InverseTransformVector(new Vector3(-30f, 50f, -150f)) * gunForce, transform.position + new Vector3(0, 0, 0));
+
+			GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+			
+			civViewModel.bloodParticles.Emit(150);
+
+			foreach (Inventory item in GetComponents<Inventory>())
+			{
+				item.Dispose();
+			}
+		}
+
 	}
 
 	private void CivGptOnGPTOutputDialogueEvent(object sender, string e)

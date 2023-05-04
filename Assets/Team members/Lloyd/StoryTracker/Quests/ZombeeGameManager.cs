@@ -48,6 +48,9 @@ namespace Lloyd
         {
             Instance = this;
             
+            // HACK
+            playerModel = FindObjectOfType<PlayerModel>();
+            
             // chatInterface.SetActive(false);
 
             if (autoStart)

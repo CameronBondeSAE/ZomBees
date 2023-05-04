@@ -1,3 +1,4 @@
+using Lloyd;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,8 +7,18 @@ using UnityEngine.UIElements;
 
 public class Health : MonoBehaviour
 {
+    public enum DamageType
+    {
+        Normal,
+        Gun,
+        Bee
+    }
+    
     public delegate void DeathDelegate();
     public event DeathDelegate HealthReducedToZeroEvent;
+
+    public delegate void       DeathWithDamageTypeDelegate(DamageType damageType, GameObject source);
+    public event DeathWithDamageTypeDelegate HealthReducedToZeroWithDamageTypeEvent;
 
     public delegate void HealthChangeDelegate(float changeAmount);
 
@@ -24,6 +35,12 @@ public class Health : MonoBehaviour
         currHealth = maxHealth;
     }
 
+    public void Change(float changeAmount, DamageType damageType, GameObject source)
+    {
+        Change(changeAmount);
+        HealthReducedToZeroWithDamageTypeEvent?.Invoke(damageType, source);
+    }
+    
     public void Change(float changeAmount)
     {
         if (HealthChangedEvent != null)

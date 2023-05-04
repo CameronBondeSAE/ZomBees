@@ -1,7 +1,10 @@
 ﻿using Lloyd;
+using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Pistol : MonoBehaviour, IItem, IInteractable
 {
@@ -46,6 +49,7 @@ public class Pistol : MonoBehaviour, IItem, IInteractable
     }
 
 
+    [Button]
     //This function creates the bullet behavior
     public void Shoot()
     {
@@ -67,8 +71,15 @@ public class Pistol : MonoBehaviour, IItem, IInteractable
         if (!bulletPrefab)
         { return; }
 
+        RaycastHit hitInfo;
+        if (Physics.Raycast(new Ray(barrelLocation.position, transform.forward), out hitInfo, 500f, Int32.MaxValue, QueryTriggerInteraction.Ignore))
+        {
+            Health health = hitInfo.transform.GetComponent<Health>();
+            health?.Change(-500f, Health.DamageType.Gun, gameObject);
+        }
+        
         // Create a bullet and add force on it in direction of the barrel
-        Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
+        // Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
 
         CasingRelease();
     }

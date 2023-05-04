@@ -15,7 +15,7 @@ public class CivViewModel : MonoBehaviour
     public Renderer mainMesh;
 
     [SerializeField]
-    private ParticleSystem bloodParticles;
+    public ParticleSystem bloodParticles;
 
     public ElevenLabsVoiceAPITest ElevenLabsVoiceAPITest;
     

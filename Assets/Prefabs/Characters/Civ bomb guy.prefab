@@ -46,23 +46,23 @@ PrefabInstance:
       objectReference: {fileID: 5195704613697758565, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 415.82
+      value: 0.7734523
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.661
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 483.6
+      value: 1.3922207
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5965657
+      value: -0.015282569
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.80256426
+      value: 0.99988323
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalRotation.z
@@ -82,15 +82,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 106.751
+      value: 181.751
       objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389361, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5638098703994389362, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: m_Height
+      value: 1.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638098703994389362, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
+      propertyPath: m_Center.y
+      value: 0.11
+      objectReference: {fileID: 0}
     - target: {fileID: 5638098703994389367, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: m_Name
-      value: Civ bomb guy (2)
+      value: Civ bomb guy
       objectReference: {fileID: 0}
     - target: {fileID: 5652203886910914644, guid: ed8132e4e54ad8a44b7c7204baac513b, type: 3}
       propertyPath: serializationData.Prefab

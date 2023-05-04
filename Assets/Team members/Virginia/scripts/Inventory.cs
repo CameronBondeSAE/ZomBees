@@ -49,13 +49,16 @@ namespace Virginia
         [Button] 
         public void Dispose()
         {
-            heldItem.Dispose();
-            Vector3 playerDirection = (heldItem as MonoBehaviour).transform.forward; //Oscar added
-            Vector3 objectPosition = (heldItem as MonoBehaviour).transform.position + (playerDirection * placeDistance); //Oscar added
-            (heldItem as MonoBehaviour).transform.position = objectPosition; //Oscar added
-            
-            (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = false; 
-            (heldItem as MonoBehaviour).transform.parent = null; //unparents the child aka child becomes an orphan 
+            if (heldItem != null)
+            {
+                heldItem.Dispose();
+                Vector3 playerDirection = (heldItem as MonoBehaviour).transform.forward;                                      //Oscar added
+                Vector3 objectPosition  = (heldItem as MonoBehaviour).transform.position + (playerDirection * placeDistance); //Oscar added
+                (heldItem as MonoBehaviour).transform.position = objectPosition;                                              //Oscar added
+
+                (heldItem as MonoBehaviour).GetComponent<Rigidbody>().isKinematic = false;
+                (heldItem as MonoBehaviour).transform.parent                      = null; //unparents the child aka child becomes an orphan 
+            }
 
             heldItem = null; // clears the object from the held Item slot (I forgot the name)
             //Debug.Log("disposed item didn't need it");

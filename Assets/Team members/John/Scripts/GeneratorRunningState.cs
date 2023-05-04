@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 
@@ -6,13 +7,14 @@ namespace Johns
 {
     public class GeneratorRunningState : StateBase
     {
-        public AudioClip generatorRunning;
+        public AudioClip   generatorRunning;
         public AudioSource generatorAudio;
+        GeneratorModel     generator;
 
         private void OnEnable()
         {
             PlaySound();
-            GeneratorModel generator = GetComponent<GeneratorModel>();
+            generator = GetComponent<GeneratorModel>();
             if (generator != null)
             {
                 foreach (IPowered poweredObject in generator.thingToGivePowerTo)
@@ -20,6 +22,11 @@ namespace Johns
                     poweredObject.PoweredOn();
                 }
             }
+        }
+
+        void FixedUpdate()
+        {
+            // Point to model variable, take off Time.fixedDeltaTime
         }
 
         [Button]
