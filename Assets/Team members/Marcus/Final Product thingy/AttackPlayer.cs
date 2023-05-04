@@ -11,6 +11,9 @@ namespace Marcus
     {
         public OscarVision vision;
         public Rigidbody rb;
+        public Renderer renderer;
+
+        private float detection;
 
         [ReadOnly]
         public bool attacking;
@@ -27,6 +30,7 @@ namespace Marcus
             if (vision.lightInSight.Count > 0)
             {
                 TurnTowards(rb, vision.lightInSight[0].gameObject, 1000f);
+                SetView(detection + 0.2f);
 
                 tracking = true;
                 noticeCounter += Time.deltaTime;
@@ -34,6 +38,7 @@ namespace Marcus
             else
             {
                 noticeCounter = 0f;
+                SetView(0f);
 
                 tracking = false;
                 attacking = false;
@@ -50,7 +55,7 @@ namespace Marcus
 
         void Attack()
         {
-            hits = Physics.OverlapSphere(transform.position, 5f);
+            hits = Physics.OverlapSphere(transform.position, 1f);
 
             foreach (Collider item in hits)
             {
@@ -59,6 +64,12 @@ namespace Marcus
                 if (thing != null && thing.currHealth > 0)
                     thing.Change(-1000000000000000f);
             }
+        }
+
+        void SetView(float newValue)
+        {
+            detection = newValue;
+            renderer.material.SetFloat("_Detection", detection);
         }
     }
 }
