@@ -18,6 +18,6 @@ namespace Oscar
         public float importance = 1f;
         public string description;
 
-        public Transform homeBase;
+        public PatrolPoint homeBase;
     }
 }

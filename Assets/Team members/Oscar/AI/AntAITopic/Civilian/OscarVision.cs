@@ -66,11 +66,11 @@ public class OscarVision : MonoBehaviour
 	{
 		if (Vector3.Distance(transform.position, x.transform.position) < Vector3.Distance(transform.position, y.transform.position))
 		{
-			return 1;
+			return -1;
 		}
 		else
 		{
-			return 0;
+			return 1;
 		}
 	}
 
