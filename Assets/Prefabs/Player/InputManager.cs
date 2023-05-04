@@ -66,8 +66,8 @@ namespace AlexM
 			_controls.Ingame.Jump.performed         += playerModel.JumpInput;
 			_controls.Ingame.Sprint.performed       += playerModel.Sprint;
 			_controls.Ingame.Sprint.canceled        += playerModel.Sprint;
-			_controls.Ingame.Crouch.performed       += playerModel.CrouchInput;
-			_controls.Ingame.Crouch.canceled        += playerModel.CrouchInput;
+			//_controls.Ingame.Crouch.performed       += playerModel.CrouchInput;
+			//_controls.Ingame.Crouch.canceled        += playerModel.CrouchInput;
 			_controls.Ingame.Interact.performed     += UseOnperformed;
 			_controls.Ingame.Pickupleft.performed   += context => PickupOnperformed(context, Hand.Left);
 			_controls.Ingame.Dropleft.performed     += context => DropOnperformed(context, Hand.Left);
