@@ -40,7 +40,6 @@ namespace Lloyd
 
             // bob = aGameObject.GetComponent<SphereBobRB>();
 
-            hivePointsReference = PatrolManager.singleton.hivePoints;
 
             queenSensor.beeWings.ChangeBeeWingStats(-90, 15, true);
 
@@ -54,6 +53,9 @@ namespace Lloyd
 //            bob.enabled = true;
             //queenEvent.OnChangeQueenState(LesserQueenState.Green);
 //            materialChanger.ChangeColorGreen();
+
+            hivePointsReference = PatrolManager.singleton.hivePoints;
+
 
             currMoveTarget = GetNewPatrolPoint();
             turnTowards.targetTransform = currMoveTarget.transform;
