@@ -63,7 +63,7 @@ namespace Lloyd
 
 		public void EmitSound(SoundProperties soundProperties)
 		{
-			Debug.Log("EmitSound");
+//			Debug.Log("EmitSound");
 			int numColliders;
 
 			if (soundProperties.Directional)

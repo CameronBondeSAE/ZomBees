@@ -10,7 +10,7 @@ public class FindRocks : OscarsLittleGuyMovement
     {
         base.Execute(aDeltaTime, aTimeScale);
 
-        BasicMovement(1f);
-        Wondering();    
+        //BasicMovement(1f);
+        //Wondering();    
     }
 }

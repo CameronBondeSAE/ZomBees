@@ -805,6 +805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1148598013172864228}
     m_Modifications:
+    - target: {fileID: 823958968529605062, guid: dd7aeff003324434a82771d4aafd5787, type: 3}
+      propertyPath: ElevenLabsVoice
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2825303166240222958, guid: dd7aeff003324434a82771d4aafd5787, type: 3}
       propertyPath: m_RootOrder
       value: -1

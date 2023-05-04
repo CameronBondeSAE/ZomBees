@@ -248,7 +248,7 @@ Transform:
   - {fileID: 8628794340795267898}
   - {fileID: 7439687858159993640}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -74.584, z: 0}
 --- !u!136 &1876615668
 CapsuleCollider:
@@ -281,8 +281,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481231920541928607}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 2
+  m_Mass: 80
+  m_Drag: 5
   m_AngularDrag: 3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

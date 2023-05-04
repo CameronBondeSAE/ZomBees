@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -26,9 +27,13 @@ namespace Oscar
 
         public void SoundHeard(SoundProperties soundProperties)
         {
-            
+            // TODO look at other sounds
+            if (soundProperties.Team == Team.Human)
+            {
+                // Debug.Log(gameObject.name + " heard something from "+soundProperties.Source.name);
+                transform.DOLookAt(soundProperties.Source.transform.position, 1f, AxisConstraint.Y, Vector3.up).SetEase(Ease.InOutSine);
+            }
         }
-
         public void Interact()
         {
             
@@ -38,6 +43,8 @@ namespace Oscar
         {
             throw new NotImplementedException();
         }
+        
+        
     }
 }
 

@@ -64,13 +64,18 @@ namespace Oscar
         private void CivGptOnGPTOutputDialogueEvent(object sender, string e)
         {
             Debug.Log("Look at character talking to me : "+civGPT.currentChat.CharacterBase.gameObject.name, gameObject);
-            
+
+            // HACK
+            GetComponentInParent<Rigidbody>().isKinematic = true;
             littleGuy.transform.DOLookAt(civGPT.currentChat.CharacterBase.transform.position, 1f, AxisConstraint.Y, Vector3.up);
             iAmIdle = true;
         }
         
         private void GPTPerformingAction(object sender, CivGPT.GPTResponseData gptResponseData)
         {
+            // HACK
+            GetComponentInParent<Rigidbody>().isKinematic = false;
+
             switch (gptResponseData.CivAction)
             {
                 case CivGPT.CivAction.ActivateLightsToAttractCreatures:

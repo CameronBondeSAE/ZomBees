@@ -54,7 +54,7 @@ namespace Lloyd
 
 		public void SoundHeard(SoundProperties soundProperties)
 		{
-			Debug.Log("Hearing: SoundHeard");
+			//Debug.Log("Hearing: SoundHeard");
 			soundDistance = Vector3.Distance(transform.position, soundProperties.Source.transform.position);
 			RaycastHit[] hits =
 				Physics.RaycastAll(transform.position, soundProperties.Source.transform.position - transform.position, soundDistance);
