@@ -12,11 +12,14 @@ namespace Marcus
         
         public bool tetheredObject;
         public Transform target;
-        public float tetherStrength;
+
+        public float tetherStrengthDefault;
+        private float tetherStrength;
 
         private void Start()
         {
             target = homeBase.transform;
+            StartCoroutine(DistanceCheck());
         }
 
         private void FixedUpdate()
@@ -35,6 +38,24 @@ namespace Marcus
             if (me.transform.forward != targetDirection)
             {
                 me.AddTorque(Vector3.Cross(me.transform.forward, targetDirection).normalized * turnSpeed);
+            }
+        }
+
+        IEnumerator DistanceCheck()
+        {
+            while (true)
+            {
+                if (Vector3.Distance(transform.position, target.position) >= 100f)
+                {
+                    tetherStrength = 10f;
+                    yield return new WaitForSeconds(0.5f);
+                }
+                else
+                {
+                    tetherStrength = tetherStrengthDefault;
+                }
+
+                yield return new WaitForSeconds(5f);
             }
         }
     }
