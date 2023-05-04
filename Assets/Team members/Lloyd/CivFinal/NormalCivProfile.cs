@@ -10,6 +10,8 @@ namespace Lloyd
     public class NormalCivProfile : DynamicObject, ICivilian
     {
         private CivSensor sensor;
+        
+        
 
         [ShowInInspector] public Dictionary<string, TraitStats> emoteDictionary;
 

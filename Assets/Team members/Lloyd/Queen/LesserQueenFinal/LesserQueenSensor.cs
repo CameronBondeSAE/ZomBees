@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Anthill.AI;
+using Oscar;
 using UnityEngine;
 using Utilities;
 
 namespace Lloyd
 {
-    public class LesserQueenSensor : MonoBehaviour, ISense
+    public class LesserQueenSensor : DynamicObject, ISense
     {
 
         public QueenEvent queenEvent;
@@ -120,6 +121,12 @@ namespace Lloyd
 
         public void OnEnable()
         {
+            isBee = true;
+
+            description = "A giant intimidating creature. It appears to be some sort of queen.";
+
+            importance = 1;
+            
             hearing = GetComponent<Hearing>();
             vision = GetComponent<CivVision>();
             SetWings();

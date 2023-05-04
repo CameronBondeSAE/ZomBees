@@ -87,6 +87,7 @@ MonoBehaviour:
   isCiv: 0
   importance: 0
   description: 
+  homeBase: {fileID: 0}
   rb: {fileID: 0}
   homePoint: {x: 456.594, y: 17.809, z: 475.634}
   originalHomepoint: {x: 0, y: 0, z: 0}
@@ -103,6 +104,7 @@ MonoBehaviour:
   hasResource: 0
   backToOrigin: 0
   attackTarget: {fileID: 0}
+  health: {fileID: 0}
   maxResources: 100
   currentResources: 0
   beeWings: {fileID: 0}
@@ -194,7 +196,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  maxListeners: 20
   testProperties:
     Source: {fileID: 0}
     SoundType: 0
@@ -272,15 +273,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274482099753516393}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 396e08aa229e55d4fa181c945cf540f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   origPos: {x: 0, y: 0, z: 0}
-  moveDist: 5
+  moveDist: 1
   moveTime: 0.1
-  hangTime: 1
+  hangTime: 0.1
   movingUp: 0
   beeWings: {fileID: 0}
   rb: {fileID: 0}

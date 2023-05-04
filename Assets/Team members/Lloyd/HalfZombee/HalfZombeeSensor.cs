@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
+using Oscar;
 using UnityEngine;
 using Utilities;
 
 namespace Lloyd
 {
-    public class HalfZombeeSensor : MonoBehaviour, ISense
+    public class HalfZombeeSensor : DynamicObject, ISense
     {
         public void OnEnable()
         {
@@ -16,6 +17,13 @@ namespace Lloyd
             health.HealthReducedToZeroEvent += Death;
             beeWings.SetWings();
             infected.StartTicking();
+
+            isBee = true;
+            isCiv = true;
+
+            description = "A tragic figure of a broken human, halfway through metamorphosis.";
+
+            importance = .5f;
         }
 
         public void Update()

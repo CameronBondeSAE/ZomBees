@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Lloyd;
+using Oscar;
 using UnityEngine;
 
 public class FollowerAttack : MonoBehaviour
@@ -10,11 +11,11 @@ public class FollowerAttack : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ICivilian>() != null)
+        if (other.GetComponent<DynamicObject>() != null)
         {
-            if (other.GetComponent<Health>() != null)
-            {
-                Health newHealth = other.GetComponent<Health>();
+            DynamicObject obj = other.GetComponent<DynamicObject>();
+            if(obj.isCiv){
+                Health newHealth = obj.GetComponent<Health>();
                 newHealth.Change(-followerAttackAmount);
             }
         }
