@@ -62,6 +62,8 @@ namespace Lloyd
             {
                 queenSensor.homePoint = currMoveTarget;
             }
+
+            queenSensor.patrol = true;
             
             homePoint = currMoveTarget;
 

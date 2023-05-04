@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5941183614923157364}
   - component: {fileID: 5941183614923157365}
+  - component: {fileID: 3153378660258916160}
   m_Layer: 0
   m_Name: Swarm Spawner
   m_TagString: Untagged
@@ -45,10 +46,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d73b33e37f5e0f4e8437c4ba5564058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyDude: {fileID: 5986660047206588508, guid: 35938b17ce032e64eb0005756a842ee1, type: 3}
-  amount: 500
-  spawnDelay: 0.01
+  flyDude: {fileID: 5818210832180300190, guid: d57ddd6fce71a4e42943998c2d2724fa, type: 3}
+  amount: 10
+  homeBase: {fileID: 0}
+  spawnDelay: 0.05
   spawnedAI: []
+--- !u!114 &3153378660258916160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941183614923157366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f7ec06d794efd409092520f5ef70ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  howHidden: 0
+  radius: 1
 --- !u!1 &5941183615387075163
 GameObject:
   m_ObjectHideFlags: 0

@@ -198,7 +198,7 @@ namespace Lloyd
 
         private void OnDisable()
         {
-            DeleteWings();
+            //DeleteWings();
         }
 
         public event Action<float, float, bool> ChangeStatEvent;

@@ -54,6 +54,8 @@ MonoBehaviour:
     post:
     - id: 3
       value: 1
+    - id: 7
+      value: 1
   - name: Attack
     isDefault: 0
     state: {fileID: 5113330291672294385, guid: 3f440d94090a05f4e81fb5adc775092d, type: 3}
@@ -103,10 +105,10 @@ MonoBehaviour:
     - id: 1
       value: 0
   - name: SpawnFollowers
-    isDefault: 1
+    isDefault: 0
     state: {fileID: 7490214505321983684, guid: 693a3d895cb25e54195d6be260acce26, type: 3}
     cost: 0
-    position: {x: 1345, y: 648.33325}
+    position: {x: 1346, y: 648.33325}
     pre:
     - id: 5
       value: 0
@@ -137,19 +139,32 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 5733711600289730628, guid: 5e2b5090fef90ad42a241fe0954c6298, type: 3}
     cost: 0
-    position: {x: 368.11597, y: 787.319}
+    position: {x: 275.11597, y: 774.319}
     pre:
     - id: 2
       value: 1
     post:
     - id: 2
       value: 0
+  - name: Idle
+    isDefault: 1
+    state: {fileID: 127724997045392640, guid: b7b31f1250a37b14d844483fa9f31a51, type: 3}
+    cost: 0
+    position: {x: 532, y: 290}
+    pre: []
+    post: []
   goals:
   - name: SpawnHive
-    isDefault: 1
-    position: {x: 631.66656, y: 828.33325}
+    isDefault: 0
+    position: {x: 632.66656, y: 828.33325}
     conditions:
     - id: 4
+      value: 1
+  - name: Attack
+    isDefault: 1
+    position: {x: 860, y: 826}
+    conditions:
+    - id: 6
       value: 1
   worldStates:
   - position: {x: 205.00006, y: 506.66663}
