@@ -136,9 +136,13 @@ namespace Lloyd
             int index = (int)offsetForMapReadingEase.x - 1;
 
             char letter = ' ';
-            if (index<=25)
+
+            if (index >= 0)
             {
-                letter = alphabet[index];
+                if (index<=25)
+                {
+                    letter = alphabet[index];
+                }
             }
 
             return letter + ((int)offsetForMapReadingEase.z).ToString();
