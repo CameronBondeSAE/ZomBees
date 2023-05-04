@@ -22,9 +22,9 @@ namespace Lloyd
         public PatrolPoint homePoint;
 
         public PatrolPoint previousPoint;
-        
+
         #region ANTAI
-        
+
         public bool seesTarget;
 
         public bool heardSound;
@@ -52,9 +52,9 @@ namespace Lloyd
 
                 aWorldState.Set(LesserQueenScenario.HasResource, hasResource);
                 aWorldState.Set(LesserQueenScenario.SpawnFollowers, spawnFollowers);
-                
+
                 aWorldState.Set(LesserQueenScenario.Agitated, agitated);
-                
+
                 aWorldState.Set(LesserQueenScenario.Patrol, patrol);
 
             }
@@ -64,7 +64,7 @@ namespace Lloyd
         #endregion
 
         #region Eyes
-        
+
         #endregion
 
         #region Ears
@@ -95,7 +95,7 @@ namespace Lloyd
 
         public void Death()
         {
-            
+
         }
 
         #endregion
@@ -112,7 +112,7 @@ namespace Lloyd
 
         private void SetWings()
         {
-           // beeWings.GetComponentInChildren<BeeWingsManager>();
+            // beeWings.GetComponentInChildren<BeeWingsManager>();
             beeWings.SetWings();
         }
 
@@ -120,7 +120,7 @@ namespace Lloyd
 
         public void OnEnable()
         {
-            hearing = GetComponent<Hearing>(); 
+            hearing = GetComponent<Hearing>();
             vision = GetComponent<CivVision>();
             SetWings();
 
@@ -130,8 +130,8 @@ namespace Lloyd
         }
 
         private IEnumerator AnnounceToFollowers()
-        {   
-            while(patrol)
+        {
+            while (patrol)
             {
                 queenEvent.OnChangeSwarmPoint(transform);
                 yield return new WaitForSeconds(updateSwarmTimer);
@@ -140,27 +140,28 @@ namespace Lloyd
 
         private void Update()
         {
-            if (patrol)
+            /*if (patrol)
+            {*/
+            if (vision.civObjects.Any())
             {
-                if (vision.civObjects.Any())
-                {
-                    seesTarget = true;
-                    attackTarget = vision.ReturnNearestCiv();
-                }
-
-                if (hearing.heardSound)
-                {
-                    heardSound = true;
-                    moveTarget = hearing.loudestRecentSound.Source.transform;
-                }
+                seesTarget = true;
+                attackTarget = vision.ReturnNearestCiv();
             }
+
+            if (hearing.heardSound)
+            {
+                heardSound = true;
+                moveTarget = hearing.loudestRecentSound.Source.transform;
+            }
+            // }
             else
             {
                 heardSound = false;
                 seesTarget = false;
             }
-            
 
+
+            //}
         }
     }
 }

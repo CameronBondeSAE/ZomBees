@@ -15,6 +15,7 @@ namespace Lloyd
             health = GetComponent<Health>();
             health.HealthReducedToZeroEvent += Death;
             beeWings.SetWings();
+            infected.StartTicking();
         }
 
         public void Update()
@@ -77,6 +78,12 @@ namespace Lloyd
                 aWorldState.Set(HalfZombeeScenario.Dead, dead);
             }
         }
+
+        #endregion
+
+        #region Infected
+
+        public Infected infected;
 
         #endregion
 

@@ -36,22 +36,15 @@ namespace Lloyd
 
 	public class SoundEmitter : SerializedMonoBehaviour //MonoBehaviour
 	{
+		Collider[] hitColliders = new Collider[100];
 		// sound emitter uses EmitSound to create a nonAllocSphere as big as radius
 		// the sphere detects everything within it with IHear and tells them they heard the sound
 		// EmitSound transmits the gameObject.transform.position of itself as origin
 		// EmitSound transmits the float fear for how much fear level is changed
 		// EmitSound transmits the float team to communicate what team origin is (Human / Bee)
-		Collider[] hitColliders;
-
-		[SerializeField]
-		int maxListeners = 20;
 
 		IHear[] listeners;
 
-		void Awake()
-		{
-			hitColliders = new Collider[maxListeners];
-		}
 
 		// enum :)
 		// ordered in whatever of importance
@@ -70,6 +63,7 @@ namespace Lloyd
 
 		public void EmitSound(SoundProperties soundProperties)
 		{
+			Debug.Log("EmitSound");
 			int numColliders;
 
 			if (soundProperties.Directional)
@@ -82,6 +76,11 @@ namespace Lloyd
 			{
 				numColliders = Physics.OverlapSphereNonAlloc(gameObject.transform.position, soundProperties.Radius, hitColliders);
 			}
+
+			/*foreach (Collider hitCollider in hitColliders)
+			{
+				Debug.Log("SoundEmitter: Hitcollider "+hitCollider.name);
+			}*/
 
 			for (int i = 0; i < numColliders; i++)
 			{
@@ -109,7 +108,7 @@ namespace Lloyd
 		{
 			testProperties.Source = gameObject;
 			EmitSound(testProperties);
-			//Debug.Log(testProperties);
+//			Debug.Log(testProperties);
 		}
 	}
 }

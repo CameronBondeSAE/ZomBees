@@ -42,13 +42,6 @@ public class Infected : MonoBehaviour
         beeWings.DeleteWings();
     }
 
-    [Button]
-    public void SetWings()
-    {
-        beeWings.SetWings();
-        beeWings.OnChangeStatEvent(-145, 3, true);
-    }
-
     private IEnumerator Ticking()
     {
         beePartsCount = beeParts.beeParts.Count;
@@ -77,13 +70,12 @@ public class Infected : MonoBehaviour
         }
 
         beeParts.BeeEyes();
-        SetWings();
         StartCoroutine(TimeTilEgg());
     }
 
     private IEnumerator TimeTilEgg()
     {
         yield return new WaitForSeconds(countdownTilEgg);
-        EggManager.instance.StartEgg(gameObject);
+        EggManager.instance.StartEgg(transform.parent.gameObject);
     }
 }
