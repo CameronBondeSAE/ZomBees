@@ -19,5 +19,34 @@ namespace Oscar
             memory.theThing = objSeen.GetComponent<DynamicObject>();
             
         }
+
+        public Memory FindMemoryOfType<T>()
+        {
+            foreach (Memory item in memories)
+            {
+                if (item.theThing.GetType() == typeof(T))
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
+        public Memory FindClosestMemoryOfType<T>()
+        {
+            List<Memory> memoriesToSort = new List<Memory>();
+            
+            foreach (Memory item in memories)
+            {
+                if (item.theThing.GetType() == typeof(T))
+                {
+                    memoriesToSort.Add(item);
+                }
+                memoriesToSort.Sort((memory1, memory2) => Vector3.Distance(transform.position, memory1.theThing.transform.position) < Vector3.Distance(transform.position, memory2.theThing.transform.position) ? 1 : -1);
+            }
+
+            return null;
+        }
     }
 }
