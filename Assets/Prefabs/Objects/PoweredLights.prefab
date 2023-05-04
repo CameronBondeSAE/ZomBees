@@ -40,7 +40,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841548756955469187}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -251,7 +251,7 @@ Transform:
   - {fileID: 6295821263535162226}
   - {fileID: 4978553423245208269}
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8684709104479223725
 MonoBehaviour:
@@ -282,6 +282,7 @@ MonoBehaviour:
   isCiv: 0
   importance: 0.6
   description: Creature attracting lights
+  homeBase: {fileID: 0}
   light: {fileID: 1899606229622944648}
   Vswitch: {fileID: 0}
 --- !u!136 &7100310783023511618
