@@ -10,7 +10,7 @@ public class BombLogicScript : DynamicObject, IItem, IInteractable
 {
     [SerializeField]
     GameObject  whoPickedMeUp;
-    public int damage;
+    public int damage = 100000;
     public SoundProperties soundProperties;
     Collider[] hitColliders;
 
@@ -33,29 +33,26 @@ public class BombLogicScript : DynamicObject, IItem, IInteractable
             Health health = collider.GetComponent<Health>();
             if (collider != null && health != null)
             {
-                collider.gameObject.GetComponent<Health>().Change(damage);
+                collider.gameObject.GetComponent<Health>().Change(-damage);
             }
         }
     }
 
     public void Inspect()
     {
-        throw new System.NotImplementedException();
     }
     
     public void Consume()
     {
-        throw new System.NotImplementedException();
     }
 
     public void Dispose()
     {
-        throw new System.NotImplementedException();
     }
 
     public string Description()
     {
-        throw new System.NotImplementedException();
+        return description;
     }
 
     public void Pickup(GameObject _whoPickedMeUp)

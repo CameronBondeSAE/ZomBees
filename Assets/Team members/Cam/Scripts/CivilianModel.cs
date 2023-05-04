@@ -203,7 +203,7 @@ public class CivilianModel : CharacterBase, IInteractable, IHear
 		// TODO look at other sounds
 		if (soundProperties.Team == Team.Human)
 		{
-			Debug.Log(gameObject.name + " heard something from "+soundProperties.Source.name);
+			// Debug.Log(gameObject.name + " heard something from "+soundProperties.Source.name);
 			transform.DOLookAt(soundProperties.Source.transform.position, 1f, AxisConstraint.Y, Vector3.up).SetEase(Ease.InOutSine);
 		}
 	}

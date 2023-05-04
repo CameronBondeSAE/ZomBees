@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: b69341a008a3fb7448ab777cdb0abf7f
+  - enabled: 1
+    path: Assets/Team members/Virginia/Menu/Menu.unity
+    guid: f4ef9fa629e851f4baac8ca8aa4e4035
   m_configObjects: {}

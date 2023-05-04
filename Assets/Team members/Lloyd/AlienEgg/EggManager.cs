@@ -80,8 +80,11 @@ namespace Lloyd
 
         private void OnDisable()
         {
-            eggLogic.SafeEvent -= FreeCiv;
-            eggLogic.TimesUpEvent -= SpawnBee;
+            if (eggLogic != null)
+            {
+                eggLogic.SafeEvent    -= FreeCiv;
+                eggLogic.TimesUpEvent -= SpawnBee;
+            }
         }
     }
 }

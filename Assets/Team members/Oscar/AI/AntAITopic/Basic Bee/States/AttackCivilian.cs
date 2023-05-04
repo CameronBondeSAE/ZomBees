@@ -29,7 +29,7 @@ public class AttackCivilian : OscarsLittleGuyMovement
     {
         base.Execute(aDeltaTime, aTimeScale);
         
-        if (vision.civsInSight.Count >= 1)
+        if (vision.civsInSight.Count >= 1 && vision.foodInSight.Count > 0)
         {
             float distance = Vector3.Distance(littleGuy.transform.position, vision.foodInSight[0].transform.position);
 

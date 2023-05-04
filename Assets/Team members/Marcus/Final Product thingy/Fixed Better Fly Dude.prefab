@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 1442266001007880851}
   - component: {fileID: 3495630466404006524}
   - component: {fileID: 8670475086338465908}
+  - component: {fileID: 7801943364427963672}
   m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
@@ -146,8 +147,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 44b673bb458e5b546a8501758734298b, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 4df5181dcc4c3934cba1b74072acc6a7, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 0.9
   Loop: 1
@@ -156,7 +157,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -253,7 +254,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  maxListeners: 20
   testProperties:
     Source: {fileID: 6420452257677160548}
     SoundType: 4
@@ -278,6 +278,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEmitter: {fileID: 3495630466404006524}
+  audioSource: {fileID: 1442266001007880851}
+--- !u!170 &7801943364427963672
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706468959106754471}
+  m_Enabled: 1
+  m_DistortionLevel: 0.72
 --- !u!1 &3579368602634737658
 GameObject:
   m_ObjectHideFlags: 0
