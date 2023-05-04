@@ -26,7 +26,15 @@ namespace Johns
 
         void FixedUpdate()
         {
+            Collider[] things = new Collider[] { };
+            // model radius var
+            Physics.OverlapSphereNonAlloc(transform.position, 3f, things, Int32.MaxValue, QueryTriggerInteraction.Ignore);
             // Point to model variable, take off Time.fixedDeltaTime
+
+            foreach (Collider item in things)
+            {
+                // Do stuff to item.GetComponent<IPowered>().power....blah
+            }
         }
 
         [Button]
