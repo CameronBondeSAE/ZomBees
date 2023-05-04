@@ -9,69 +9,56 @@ namespace Lloyd
     public class LesserQueenAttack : AntAIState
     {
         public float attackTime;
-        
-        public BeeStingerSensor stingerSensor;
 
         public LesserQueenSensor queenSensor;
-
-        public GameObject zombeeStinger;
-        public GameObject zombeenessIncreaser;
 
         public QueenEvent queenEvent;
 
         public Transform attackTarget;
+
+        public HalfZombeeTurnTowards turnTowards;
+
+        public HalfZombeeMoveForwards moveForwards;
 
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
             queenSensor = aGameObject.GetComponent<LesserQueenSensor>();
             queenEvent = aGameObject.GetComponent<QueenEvent>();
+            turnTowards = aGameObject.GetComponent<HalfZombeeTurnTowards>();
+            moveForwards = aGameObject.GetComponent<HalfZombeeMoveForwards>();
         }
 
         public override void Enter()
         {
             base.Enter();
+            moveForwards.enabled = false;
             attackTarget = queenSensor.attackTarget;
             queenSensor.beeWings.ChangeBeeWingStats(-90, 50, true);
-            if (queenSensor.beeBullets <= 0)
+            turnTowards.targetTransform = attackTarget;
+            
             {
-                queenSensor.attack = false;
-                Finish();
-            }
-            else
-            {
-                queenSensor.attack = true;
+                queenSensor.agitated = true;
                 StartCoroutine(Attack());
             }
         }
 
+        public override void Execute(float aDeltaTime, float aTimeScale)
+        {
+            base.Execute(aDeltaTime, aTimeScale);
+            if(!queenSensor.seesTarget)
+                Finish();
+        }
+
         private IEnumerator Attack()
         {
-            int randomIndex = Random.Range(0, 2);
-
-            GameObject selectedObject = randomIndex == 0 ? zombeeStinger : zombeenessIncreaser;
-            
-            GameObject newObject = Instantiate(selectedObject, new Vector3(0,0,0), quaternion.identity);
-            newObject.transform.position = transform.position;
-            newObject.transform.rotation = transform.rotation;
-
-            Rigidbody rb = newObject.GetComponent<Rigidbody>();
-            Vector3 direction = queenSensor.attackTarget.position - transform.position;
-            rb.AddForce(direction.normalized * 100, ForceMode.Impulse);
-
-            LesserQueenLookAt newLook = newObject.GetComponent<LesserQueenLookAt>();
-            newLook.target = queenSensor.attackTarget;
-            stingerSensor = newObject.GetComponent<BeeStingerSensor>();
-            stingerSensor.SetHomePoint(queenSensor.transform.position);
             queenSensor.agitated = true;
             
             queenEvent.OnChangeSwarmPoint(queenSensor.attackTarget);
 
-            queenSensor.beeBullets--;
-
             yield return new WaitForSeconds(attackTime);
 
-            queenSensor.attack = false;
+            moveForwards.enabled = true;
             Finish();
         }
         

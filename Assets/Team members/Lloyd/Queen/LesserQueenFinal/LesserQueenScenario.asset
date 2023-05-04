@@ -29,9 +29,7 @@ MonoBehaviour:
     - id: 6
       name: Agitated
     - id: 7
-      name: HasBullets
-    - id: 8
-      name: Attack
+      name: Patrol
   actions:
   - name: Patrol
     isDefault: 0
@@ -45,16 +43,14 @@ MonoBehaviour:
       value: 0
     - id: 3
       value: 0
-    - id: 7
-      value: 1
     - id: 5
       value: 1
     - id: 2
       value: 0
     - id: 6
       value: 0
-    - id: 8
-      value: 0
+    - id: 7
+      value: 1
     post:
     - id: 3
       value: 1
@@ -69,8 +65,8 @@ MonoBehaviour:
     post:
     - id: 0
       value: 0
-    - id: 8
-      value: 0
+    - id: 6
+      value: 1
   - name: MoveToHiveSpot
     isDefault: 0
     state: {fileID: 2435681656877434582, guid: 28c395e803394284fab16c0afc1de18f, type: 3}
@@ -86,9 +82,13 @@ MonoBehaviour:
     pre:
     - id: 6
       value: 1
+    - id: 0
+      value: 0
     post:
     - id: 6
       value: 0
+    - id: 7
+      value: 1
   - name: InvestigateSound
     isDefault: 0
     state: {fileID: 1729071704234267617, guid: 259831935e93cb04f86e89f5d8f0490f, type: 3}
@@ -97,6 +97,8 @@ MonoBehaviour:
     pre:
     - id: 1
       value: 1
+    - id: 6
+      value: 0
     post:
     - id: 1
       value: 0
@@ -104,7 +106,7 @@ MonoBehaviour:
     isDefault: 1
     state: {fileID: 7490214505321983684, guid: 693a3d895cb25e54195d6be260acce26, type: 3}
     cost: 0
-    position: {x: 915, y: 705}
+    position: {x: 1345, y: 648.33325}
     pre:
     - id: 5
       value: 0
@@ -128,11 +130,9 @@ MonoBehaviour:
     cost: 0
     position: {x: 1355, y: 233.33337}
     pre:
-    - id: 7
-      value: 0
-    post:
-    - id: 7
+    - id: 3
       value: 1
+    post: []
   - name: Dead
     isDefault: 0
     state: {fileID: 5733711600289730628, guid: 5e2b5090fef90ad42a241fe0954c6298, type: 3}
@@ -156,7 +156,7 @@ MonoBehaviour:
     isAutoUpdate: 1
     list:
     - id: 0
-      value: 1
+      value: 0
     - id: 1
       value: 0
     - id: 2
@@ -166,10 +166,8 @@ MonoBehaviour:
     - id: 4
       value: 0
     - id: 5
-      value: 1
+      value: 0
     - id: 6
       value: 0
     - id: 7
       value: 1
-    - id: 8
-      value: 0

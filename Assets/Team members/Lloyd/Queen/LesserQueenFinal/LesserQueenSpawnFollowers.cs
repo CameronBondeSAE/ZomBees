@@ -90,7 +90,7 @@ namespace Lloyd
             }
             queenEvent.OnChangeSwarmPoint(swarmer.transform);
 
-            queenSensor.spawnFollowers = false;
+            queenSensor.spawnFollowers = true;
             queenSensor.patrol = true;
             Finish();
         }
@@ -104,7 +104,6 @@ namespace Lloyd
         public override void Exit()
         {
             rb.constraints = RigidbodyConstraints.None;
-            queenSensor.spawnFollowers = true;
         }
 
         private void FixedUpdate()

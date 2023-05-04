@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab48dd3630d8f641ac1d7412243952f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTime: 30
-  sensor: {fileID: 0}
+  attackTime: 4
   queenSensor: {fileID: 0}
-  zombeeStinger: {fileID: 9177922240726376441, guid: fd1c3d565f0d62240adc99ec67f0c9a9, type: 3}
-  zombeenessIncreaser: {fileID: 274482099753516393, guid: 3f256fed41e9fa54199085d041c5f075, type: 3}
   queenEvent: {fileID: 0}
+  attackTarget: {fileID: 0}
+  turnTowards: {fileID: 0}

@@ -10,7 +10,6 @@ namespace Lloyd
 {
     public class LesserQueenSensor : MonoBehaviour, ISense
     {
-        public int beeBullets;
 
         public QueenEvent queenEvent;
 
@@ -25,11 +24,7 @@ namespace Lloyd
         public PatrolPoint previousPoint;
         
         #region ANTAI
-
-        public bool patrol;
-
-        public bool hasBullets;
-
+        
         public bool seesTarget;
 
         public bool heardSound;
@@ -38,15 +33,11 @@ namespace Lloyd
 
         public bool hasResource;
 
-        public bool spawnHive;
-
         public bool spawnFollowers;
 
-        public bool attack;
-
-        public bool prepareToAttack;
-
         public bool agitated;
+
+        public bool patrol;
 
         public float resourceCount;
 
@@ -54,19 +45,18 @@ namespace Lloyd
         {
             aWorldState.BeginUpdate(aAgent.planner);
             {
-                aWorldState.Set(LesserQueenScenario.Patrol, patrol);
                 aWorldState.Set(LesserQueenScenario.SeesTarget, seesTarget);
                 aWorldState.Set(LesserQueenScenario.HeardSound, heardSound);
 
                 aWorldState.Set(LesserQueenScenario.Dead, dead);
 
                 aWorldState.Set(LesserQueenScenario.HasResource, hasResource);
-                aWorldState.Set(LesserQueenScenario.SpawnHive, spawnHive);
                 aWorldState.Set(LesserQueenScenario.SpawnFollowers, spawnFollowers);
-
-                aWorldState.Set(LesserQueenScenario.HasBullets, hasBullets);
-                aWorldState.Set(LesserQueenScenario.Attack, attack);
+                
                 aWorldState.Set(LesserQueenScenario.Agitated, agitated);
+                
+                aWorldState.Set(LesserQueenScenario.Patrol, patrol);
+
             }
             aWorldState.EndUpdate();
         }
@@ -137,14 +127,10 @@ namespace Lloyd
 
         public void OnEnable()
         {
-            hearing = GetComponent<Hearing>();
-            bob = GetComponent<SphereBob>();
+            hearing = GetComponent<Hearing>(); 
             vision = GetComponent<CivVision>();
             SetEyes();
             SetWings();
-
-            hasBullets = true;
-            spawnFollowers = false;
 
             queenEvent = GetComponent<QueenEvent>();
 
@@ -153,7 +139,7 @@ namespace Lloyd
 
         private IEnumerator AnnounceToFollowers()
         {   
-            while(!attack)
+            while(patrol)
             {
                 queenEvent.OnChangeSwarmPoint(transform);
                 yield return new WaitForSeconds(updateSwarmTimer);
@@ -162,22 +148,27 @@ namespace Lloyd
 
         private void Update()
         {
-            if (!agitated)
+            if (patrol)
             {
                 if (vision.civObjects.Any())
                 {
                     seesTarget = true;
                     attackTarget = vision.ReturnNearestCiv();
                 }
-                else seesTarget = false;
 
                 if (hearing.heardSound)
                 {
                     heardSound = true;
                     moveTarget = hearing.loudestRecentSound.Source.transform;
                 }
-                else heardSound = false;
             }
+            else
+            {
+                heardSound = false;
+                seesTarget = false;
+            }
+            
+
         }
     }
 }

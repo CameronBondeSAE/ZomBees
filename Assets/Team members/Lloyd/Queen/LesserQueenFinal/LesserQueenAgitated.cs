@@ -20,7 +20,6 @@ namespace Lloyd
         {
             base.Enter();
             StartCoroutine(WaitToReturn());
-            sensor.agitated = true;
             sensor.beeWings.ChangeBeeWingStats(-90, 45, true);
 
         }
@@ -29,6 +28,7 @@ namespace Lloyd
         {
             yield return new WaitForSeconds(waitTime);
             sensor.agitated = false;
+            sensor.patrol = true;
             Finish();
         }
     }
