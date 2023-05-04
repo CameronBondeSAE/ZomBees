@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
+using Oscar;
 using UnityEngine;
 
 namespace Lloyd
@@ -25,6 +26,8 @@ namespace Lloyd
 
         public Rigidbody rb;
 
+        public TraitScriptableObject beeness;
+
         public enum BeeStingType
         {
             BasicBee,
@@ -34,7 +37,7 @@ namespace Lloyd
 
         public BeeStingType myType;
 
-        private List<ICivilian> civs = new List<ICivilian>();
+        private List<DynamicObject> civs = new List<DynamicObject>();
 
         public override void Create(GameObject aGameObject)
         {
@@ -74,17 +77,28 @@ namespace Lloyd
 
         private void OnTriggerEnter(Collider other)
         {
-            ICivilian civ = other.GetComponent<ICivilian>();
-            if (civ != null && !civs.Contains(civ))
+            DynamicObject civ = other.GetComponent<DynamicObject>();
+            if (civ != null && civ.isCiv)
             {
                 civs.Add(civ);
                 RunFunctionForCiv(civ);
             }
         }
 
-        private void RunFunctionForCiv(ICivilian civ)
+        private void RunFunctionForCiv(DynamicObject civ)
         {
-            civ.HitByBee(myType, attackAmount);
+            if (myType == BeeStingType.Attack)
+            {
+                Health health = civ.GetComponent<Health>();
+                if(health!=null)
+                    health.Change(-attackAmount);
+            }
+
+            if (myType == BeeStingType.BeenessIncreaser)
+            {
+                CivilianTraits civTraits = civ.GetComponent<CivilianTraits>();
+                civTraits.UpdateTrait(beeness, attackAmount);
+            }
             //Debug.Log("Hit " + civ + " with " + myType + " for " + attackAmount + "!");
 
             stingSensor.ChangeResources(101);

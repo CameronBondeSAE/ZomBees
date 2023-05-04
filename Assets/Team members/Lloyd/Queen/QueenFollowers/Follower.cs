@@ -38,6 +38,10 @@ namespace Lloyd
 
         public ShaderGraphChangeColor shader;
 
+        public BeeGib beeGib ;
+
+        public Health health;
+
         private void OnEnable()
         {
             beeWings = GetComponentInChildren<BeeWingsManager>();
@@ -50,7 +54,17 @@ namespace Lloyd
 
             minDist = GetComponent<FollowerMinDist>();
 
+            health = GetComponent<Health>();
+            health.HealthReducedToZeroEvent += Death;
+
             Begin();
+        }
+
+        public void Death()
+        {
+            health.HealthReducedToZeroEvent -= Death;
+            beeGib.DetermineGib(BeeGib.BeeType.Small);
+            Destroy(gameObject);
         }
 
         public void ChangeQueenState(LesserQueenState state)

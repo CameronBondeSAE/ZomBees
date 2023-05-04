@@ -64,14 +64,7 @@ namespace Lloyd
         #endregion
 
         #region Eyes
-
-        public LesserQueenLookAt look;
-
-        private void SetEyes()
-        {
-            look = GetComponent<LesserQueenLookAt>();
-        }
-
+        
         #endregion
 
         #region Ears
@@ -129,7 +122,6 @@ namespace Lloyd
         {
             hearing = GetComponent<Hearing>(); 
             vision = GetComponent<CivVision>();
-            SetEyes();
             SetWings();
 
             queenEvent = GetComponent<QueenEvent>();

@@ -51,6 +51,7 @@ MonoBehaviour:
   attackAmount: 1
   radius: 3
   rb: {fileID: 0}
+  beeness: {fileID: 11400000, guid: 304b019197703c34a939d77c9c91ef71, type: 2}
   myType: 0
 --- !u!135 &8990286990541492669
 SphereCollider:

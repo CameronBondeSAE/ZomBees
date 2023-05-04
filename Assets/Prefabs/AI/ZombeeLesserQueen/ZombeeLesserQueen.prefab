@@ -1142,6 +1142,10 @@ GameObject:
   - component: {fileID: 3717758057398518584}
   - component: {fileID: 3184905146104439960}
   - component: {fileID: 3184905146104439959}
+  - component: {fileID: 1279198668}
+  - component: {fileID: 1279198669}
+  - component: {fileID: 1279198670}
+  - component: {fileID: 1279198681}
   m_Layer: 0
   m_Name: ZombeeLesserQueen
   m_TagString: Untagged
@@ -1169,7 +1173,7 @@ Transform:
   - {fileID: 7993866146836276314}
   - {fileID: 9101248853124693742}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4598863733064716674
 Rigidbody:
@@ -1235,7 +1239,7 @@ MonoBehaviour:
     ObstaclesBetween: 0
     Dialogue: 
   soundsList: []
-  soundLingerTime: 7
+  soundLingerTime: 14
 --- !u!114 &2408239871609964309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1296,25 +1300,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcd494de17675e4789c876d4a0495c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beeBullets: 0
   queenEvent: {fileID: 0}
   vision: {fileID: 0}
-  target: {fileID: 0}
-  patrol: 0
+  attackTarget: {fileID: 0}
+  moveTarget: {fileID: 0}
+  homePoint: {fileID: 0}
+  previousPoint: {fileID: 0}
   seesTarget: 0
   heardSound: 0
   dead: 0
   hasResource: 0
-  spawnHive: 0
-  spawnFollowers: 1
-  attack: 0
-  prepareToAttack: 0
+  spawnFollowers: 0
   agitated: 0
+  patrol: 0
   resourceCount: 0
   look: {fileID: 0}
   hearing: {fileID: 0}
+  updateSwarmTimer: 5
   followers: []
-  numSwarmers: 100
+  numSwarmers: 50
+  health: {fileID: 0}
   bob: {fileID: 0}
   beeWings: {fileID: 7993866146836276313}
 --- !u!114 &3717758057398518584
@@ -1329,7 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd28be45ee0c96d4e883c86c672a5c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenVisionChecks: 0.6
+  timeBetweenVisionChecks: 2
   boxOffset: {x: 0, y: -25, z: 250}
   boxSize: {x: 200, y: 200, z: 500}
   sightMemoryTime: 10
@@ -1358,7 +1363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
   rb: {fileID: 0}
-  turnSpeed: 1e+14
+  turnSpeed: 100000
 --- !u!135 &3184905146104439959
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1380,6 +1385,77 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 16
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1279198668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598863733064716673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c86b09a5c5b414d8253371dcd3fd84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  civVision: {fileID: 0}
+  oscarVision: {fileID: 0}
+  profile: {fileID: 0}
+  maxSpeed: 1000
+  speedMultiplier: 1
+  currentSpeed: 0
+  decreaseAmount: 1
+  checkTime: 1
+  running: 0
+  objs: []
+--- !u!114 &1279198669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598863733064716673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9729b722772509f478c8353f9a609df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sightRefreshTime: 1
+  beesInSight: []
+  foodInSight: []
+  civsInSight: []
+  objectsInSight: []
+  lightInSight: []
+  allInSight: []
+--- !u!114 &1279198670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598863733064716673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a307ad46aa9994c45944ba03b8a5594b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hivePoint: {fileID: 0}
+  walkSpeed: 500
+  runSpeed: 1000
+  currentSpeed: 3500
+--- !u!114 &1279198681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598863733064716673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e066fcc5d4ea80741a41c44a087dc275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1e+13
+  currHealth: 0
 --- !u!1 &4724037267364213319
 GameObject:
   m_ObjectHideFlags: 0
