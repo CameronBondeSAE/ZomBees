@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 557789038110661519}
   - component: {fileID: 5875876760736238529}
   - component: {fileID: 1029231823877320421}
+  - component: {fileID: 1358229903533086188}
   m_Layer: 0
   m_Name: Fixed Better Fly Dude
   m_TagString: Untagged
@@ -710,6 +711,39 @@ MonoBehaviour:
   renderer: {fileID: 5112875750605409204}
   attacking: 0
   tracking: 0
+--- !u!114 &1358229903533086188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6420452257677160548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0eb409dbfa8fa46891ed4b29114707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isLit: 0
+  isMoving: 0
+  isFood: 0
+  isObject: 0
+  isBee: 1
+  isCiv: 0
+  importance: 0.8
+  description: Swarmer Bee
+  homeBase: {fileID: 0}
+  tetheredObject: 1
+  target: {fileID: 0}
+  tetherStrength: 0
 --- !u!1 &7566044581200001720
 GameObject:
   m_ObjectHideFlags: 0
