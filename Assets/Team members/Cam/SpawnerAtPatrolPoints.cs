@@ -1,8 +1,10 @@
 using Oscar;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnerAtPatrolPoints : MonoBehaviour
 {
@@ -11,6 +13,11 @@ public class SpawnerAtPatrolPoints : MonoBehaviour
 
 	[SerializeField]
 	bool indoor = true;
+
+	void Awake()
+	{
+		Spawn();
+	}
 
 	[Button]
 	// Start is called before the first frame update
