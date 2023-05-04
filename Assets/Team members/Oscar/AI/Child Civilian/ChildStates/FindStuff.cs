@@ -23,14 +23,15 @@ public class FindStuff : OscarsLittleGuyMovement
     {
         base.Enter();
         
-        NavmeshEnabled();
+        NavmeshEnabled();        
+        NavmeshFindLocation(childControl.goToPos);
     }
 
     public override void Execute(float aDeltaTime, float aTimeScale)
     {
         base.Execute(aDeltaTime, aTimeScale);
         
-        NavmeshFindLocation(childControl.goToPos);
+        NavmeshToLocation();
     }
     
     public override void Exit()

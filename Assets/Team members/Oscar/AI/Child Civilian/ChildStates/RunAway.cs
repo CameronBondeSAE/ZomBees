@@ -24,17 +24,17 @@ public class RunAway : OscarsLittleGuyMovement
     public override void Create(GameObject aGameObject)
     {
         base.Create(aGameObject);
-
+        
         childControl = aGameObject.GetComponent<ChildCivController>();
     }
 
     public override void Enter()
     {
         base.Enter();
-        
+        NavmeshEnabled();
+
         targetPos = PatrolManager.singleton
                 .pathsWithIndoors[Random.Range(0, PatrolManager.singleton.pathsWithIndoors.Count)].transform.position;
-        
         NavmeshFindLocation(targetPos);
     }
 
@@ -47,11 +47,8 @@ public class RunAway : OscarsLittleGuyMovement
 
     private void LocationArrivedAt()
     {
-        if (childControl != null)
-        {
-            childControl.ShouldIHide = true;
-            childControl.AmIScared = false;
-        }
+        childControl.ShouldIHide = true;
+        childControl.AmIScared = false;
     }
 
     public override void Exit()

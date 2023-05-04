@@ -50,7 +50,7 @@ MonoBehaviour:
   - name: Follow
     isDefault: 1
     state: {fileID: 2978812013294736355, guid: 49d93846284182f4d9f44bc3d8b5ca2f, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 297, y: 94}
     pre:
     - id: 2
@@ -63,7 +63,7 @@ MonoBehaviour:
   - name: FindRocks
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: 4795898c4a97d824aac91c1f28d0c607, type: 3}
-    cost: 3
+    cost: 4
     position: {x: 490, y: 95}
     pre:
     - id: 6
@@ -76,7 +76,7 @@ MonoBehaviour:
   - name: CollectRocks
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: 222ac4e73e5ba2947bbb6355db56c828, type: 3}
-    cost: 3
+    cost: 4
     position: {x: 680, y: 95}
     pre:
     - id: 6
@@ -89,7 +89,7 @@ MonoBehaviour:
   - name: RunAway
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: f039d7608773793488c3717b7a7ce928, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 874, y: 96}
     pre:
     - id: 5
@@ -100,7 +100,7 @@ MonoBehaviour:
   - name: Idle
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: 7042c22c6c375404daa67a79a60b3807, type: 3}
-    cost: -1
+    cost: 0
     position: {x: 877, y: 325}
     pre:
     - id: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   - name: Converse
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: a2fff09906114e54db054ef34d5fd402, type: 3}
-    cost: -1
+    cost: 0
     position: {x: 684, y: 323}
     pre:
     - id: 3
@@ -122,7 +122,7 @@ MonoBehaviour:
   - name: DeliverRocks
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: eda9dd9c6a2d34b45ad49da1de807885, type: 3}
-    cost: 1
+    cost: 2
     position: {x: 298, y: 321}
     pre:
     - id: 7
@@ -139,7 +139,7 @@ MonoBehaviour:
   - name: CollectStuff
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: ed91e22ec46a0534ca876d214c4fba4e, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 1750, y: 97}
     pre:
     - id: 8
@@ -152,7 +152,7 @@ MonoBehaviour:
   - name: ReturnStuff
     isDefault: 0
     state: {fileID: 2978812013294736355, guid: e1e0d9dfa8eba174b8a61a29ce41065b, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 1946, y: 97}
     pre:
     - id: 9
@@ -169,7 +169,7 @@ MonoBehaviour:
   - name: FindStuff
     isDefault: 0
     state: {fileID: 3690172197307478699, guid: 0ab4c59c78d9e0a43bc99a679a0695b9, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 1553, y: 96}
     pre:
     - id: 8
@@ -182,7 +182,7 @@ MonoBehaviour:
   - name: FindFood
     isDefault: 0
     state: {fileID: 3979326832935926586, guid: 7a9ac15fb178a60499bd9507f2a56136, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 1167, y: 333}
     pre:
     - id: 11
@@ -197,8 +197,8 @@ MonoBehaviour:
   - name: GetFood
     isDefault: 0
     state: {fileID: 3979326832935926586, guid: 20f35949bda897a428421216c8a6eaf9, type: 3}
-    cost: 0
-    position: {x: 1362, y: 333}
+    cost: 1
+    position: {x: 1360, y: 333}
     pre:
     - id: 13
       value: 1
@@ -212,7 +212,7 @@ MonoBehaviour:
   - name: EatFood
     isDefault: 0
     state: {fileID: 3979326832935926586, guid: 37c1ecbdfbf839042b34c2f38996551c, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 1556, y: 333}
     pre:
     - id: 12
@@ -227,7 +227,7 @@ MonoBehaviour:
   - name: Hide
     isDefault: 0
     state: {fileID: 7911756724678263161, guid: 4c1d57c0cd00dc149a50843a7ae9ecbf, type: 3}
-    cost: 0
+    cost: 1
     position: {x: 1069, y: 97}
     pre:
     - id: 14

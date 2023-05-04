@@ -25,6 +25,7 @@ namespace Oscar
         public CivilianTraits civTraits;
         public TraitScriptableObject fear;
         public TraitScriptableObject hunger;
+        public Health health;
         
         public Inventory inventory;
         
@@ -111,7 +112,6 @@ namespace Oscar
                 
                 case CivGPT.CivAction.GoToLocation:
                     goToPos = zombeeGameManager.ConvertGridSpaceToWorldSpace(gptResponseData.GridCoordinateForAction);
-                    print(goToPos);
                     
                     MustCompleteInstructions = true;
                     ImHungry = false;
@@ -136,10 +136,10 @@ namespace Oscar
                     break;
                 
                 case CivGPT.CivAction.RunAndHide:
+                    AmIScared = true;
                     MustCompleteInstructions = false;
                     ImHungry = false;
                     AmIIdle = false;
-                    AmIScared = true;
                     AmIFollowing = false;
                     break;
                 
@@ -268,13 +268,16 @@ namespace Oscar
             
             
             //SeeRocks |
-            if (vision.objectsInSight.Count > 0)
+            if (MustCompleteInstructions == false)
             {
-                CanISeeObjects = true;
-            }
-            else
-            {
-                CanISeeObjects = false;
+                if (vision.objectsInSight.Count > 0)
+                {
+                    CanISeeObjects = true;
+                }
+                else
+                {
+                    CanISeeObjects = false;
+                }
             }
             
             //HaveRocks
@@ -329,6 +332,11 @@ namespace Oscar
             else
             {
                 DoIHaveFood = false;
+            }
+
+            if (health.currHealth <= 0)
+            {
+                EggManager.instance.StartEgg(littleGuy.gameObject);
             }
         }
         #endregion

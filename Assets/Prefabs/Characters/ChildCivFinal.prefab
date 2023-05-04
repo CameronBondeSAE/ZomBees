@@ -397,15 +397,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd68dcb8f87c59d47850a862dd68ecdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  supportedActions: 040000000a0000000c0000000800000007000000
-  ageSO: {fileID: 0}
+  supportedActions: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e000000
+  ageSO: {fileID: 11400000, guid: e28aeaee3c5a5fc48b2bfda818d4263d, type: 2}
   backStories_ReturnSeparatedLines: 
   conspiracyTheories_ReturnSeparatedLines: 
   randomBackStoryAndConspiracy: 0
-  backStory: parents died
-  conspiracyTheory: bees were behind jfk assasination
+  backStory: A 10-year-old girl who is very shy and introverted. She was on a school
+    trip when the creatures appeared, and she managed to find a group of survivors.
+    She is very smart and often comes up with ideas that the others don't think of.
+    She is also very kind and caring, and often comforts the other members of the
+    group when they are feeling scared or upset.
+  conspiracyTheory: The creatures are actually aliens who have come to take over
+    the world. The government has been keeping this a secret, but the aliens accidentally
+    released the bees, and now they are trying to take over using their bee-like
+    drones.
   randomCountry: 0
-  apiKeys: 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
+  apiKeys: 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
   memoryManager: {fileID: 6461197163127814067}
   civilianTraits: {fileID: 3452993360891905805}
   questTrackerSimple: {fileID: 2575717550317940145}
@@ -546,7 +553,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1009,7 +1016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 362120819013706027}
-  aiAgent: {fileID: 7164411692719033370}
 --- !u!114 &362120819013706027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,15 +1028,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e682e82d8d603439e761463715ff96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  memoryManager: {fileID: 6461197163127814067}
   littleGuy: {fileID: 107376084}
-  childSensor: {fileID: 7573158467226798239}
   vision: {fileID: 2338746979408309844}
   civGPT: {fileID: 8822627639575176923}
   civTraits: {fileID: 3452993360891905805}
   fear: {fileID: 11400000, guid: a7b0073751aff784d975994f810239c9, type: 2}
   hunger: {fileID: 11400000, guid: a5f76bf83e00c2e4c9d82b562f9c1b4e, type: 2}
   inventory: {fileID: 3766555885203436555}
-  ears: {fileID: 3131529511065738732}
+  goToPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &2535456621498712066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1101,7 +1107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4630503217969394997, guid: 49bbb9eb0a580f740b36371a045aa40a, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1275,6 +1281,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Civ View
       objectReference: {fileID: 0}
+    - target: {fileID: 3199793843478657692, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: testMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199793843478657692, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: stability
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199793843478657692, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: similarity_boost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199793843478657692, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: multiLingualVoice
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6048419703654018736, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1323,6 +1345,10 @@ PrefabInstance:
       propertyPath: civGpt
       value: 
       objectReference: {fileID: 8822627639575176923}
+    - target: {fileID: 8978708526143702053, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+      propertyPath: ElevenLabsVoiceAPITest
+      value: 
+      objectReference: {fileID: 8364334992607551769}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1333,3 +1359,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6048419703654018736, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
   m_PrefabInstance: {fileID: 6373690580043094917}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8364334992607551769 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3199793843478657692, guid: 825e19f4ca7083d41a47c84629663adb, type: 3}
+  m_PrefabInstance: {fileID: 6373690580043094917}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19be72c443d001b448ed1a95986477a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
