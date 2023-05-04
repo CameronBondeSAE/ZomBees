@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace Lloyd
         #region ANTAI
 
         public bool patrol;
+
+        public bool hasBullets;
 
         public bool seesTarget;
 
@@ -61,7 +64,7 @@ namespace Lloyd
                 aWorldState.Set(LesserQueenScenario.SpawnHive, spawnHive);
                 aWorldState.Set(LesserQueenScenario.SpawnFollowers, spawnFollowers);
 
-                aWorldState.Set(LesserQueenScenario.PrepareToAttack, prepareToAttack);
+                aWorldState.Set(LesserQueenScenario.HasBullets, hasBullets);
                 aWorldState.Set(LesserQueenScenario.Attack, attack);
                 aWorldState.Set(LesserQueenScenario.Agitated, agitated);
             }
@@ -139,6 +142,9 @@ namespace Lloyd
             vision = GetComponent<CivVision>();
             SetEyes();
             SetWings();
+
+            hasBullets = true;
+            spawnFollowers = false;
 
             queenEvent = GetComponent<QueenEvent>();
 

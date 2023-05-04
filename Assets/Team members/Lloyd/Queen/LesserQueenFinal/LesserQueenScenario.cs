@@ -11,6 +11,7 @@ namespace Lloyd
         SpawnHive = 6,
         SpawnFollowers=7,
         PrepareToAttack=8,
-        Agitated=9
+        Agitated=9,
+        HasBullets = 10
     }
 }

@@ -104,6 +104,7 @@ namespace Lloyd
         public override void Exit()
         {
             rb.constraints = RigidbodyConstraints.None;
+            queenSensor.spawnFollowers = true;
         }
 
         private void FixedUpdate()

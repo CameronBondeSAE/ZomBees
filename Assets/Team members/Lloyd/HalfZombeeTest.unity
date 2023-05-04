@@ -2609,12 +2609,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3729997568035788912, guid: 161a0747884805145906eb39f3c6c497, type: 3}
+      propertyPath: patrol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729997568035788912, guid: 161a0747884805145906eb39f3c6c497, type: 3}
       propertyPath: beeBullets
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3729997568035788912, guid: 161a0747884805145906eb39f3c6c497, type: 3}
+      propertyPath: hasBullets
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729997568035788912, guid: 161a0747884805145906eb39f3c6c497, type: 3}
       propertyPath: numSwarmers
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729997568035788912, guid: 161a0747884805145906eb39f3c6c497, type: 3}
+      propertyPath: spawnFollowers
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3729997568035788912, guid: 161a0747884805145906eb39f3c6c497, type: 3}
       propertyPath: updateSwarmTimer
@@ -2626,7 +2638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4598863733064716673, guid: 161a0747884805145906eb39f3c6c497, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4598863733064716675, guid: 161a0747884805145906eb39f3c6c497, type: 3}
       propertyPath: m_RootOrder
@@ -4195,6 +4207,10 @@ PrefabInstance:
     - target: {fileID: 2113993496808437944, guid: bbec12d51247d9543a7563ff39617592, type: 3}
       propertyPath: m_Name
       value: HalfZombee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113993496808437944, guid: bbec12d51247d9543a7563ff39617592, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2113993496808437945, guid: bbec12d51247d9543a7563ff39617592, type: 3}
       propertyPath: m_RootOrder
